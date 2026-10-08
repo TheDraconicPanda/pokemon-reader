@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.6.0";
+const APP_VERSION = "0.7.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -19,6 +19,10 @@ const moneyValue = document.querySelector("#money-value");
 const playTimeValue = document.querySelector("#play-time-value");
 const badgesValue = document.querySelector("#badges-value");
 const badgeGrid = document.querySelector("#badge-grid");
+const pokedexInfo = document.querySelector("#pokedex-info");
+const pokedexModeValue = document.querySelector("#pokedex-mode-value");
+const pokedexSeenValue = document.querySelector("#pokedex-seen-value");
+const pokedexCaughtValue = document.querySelector("#pokedex-caught-value");
 const trainerInfo = document.querySelector("#trainer-info");
 const partyInfo = document.querySelector("#party-info");
 const partyGrid = document.querySelector("#party-grid");
@@ -94,6 +98,7 @@ async function handleFile(file) {
       playTimeValue.textContent = formatPlayTime(trainer.playTime);
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
+      renderPokedex(result.save.pokedex);
       trainerInfo.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
@@ -109,6 +114,22 @@ async function handleFile(file) {
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
   }
+}
+
+function renderPokedex(pokedex) {
+  if (!pokedex) {
+    pokedexInfo.hidden = true;
+    return;
+  }
+
+  pokedexModeValue.textContent = pokedex.nationalDex
+    ? "National Dex"
+    : "Regional Dex";
+  pokedexSeenValue.textContent =
+    pokedex.seenCount + " / " + pokedex.speciesCount + " (" + formatPercent(pokedex.seenPercent) + ")";
+  pokedexCaughtValue.textContent =
+    pokedex.caughtCount + " / " + pokedex.speciesCount + " (" + formatPercent(pokedex.caughtPercent) + ")";
+  pokedexInfo.hidden = false;
 }
 
 function renderBadges(badges) {
@@ -706,6 +727,10 @@ function resetFileInfo() {
   playTimeValue.textContent = "—";
   badgesValue.textContent = "—";
   badgeGrid.replaceChildren();
+  pokedexModeValue.textContent = "—";
+  pokedexSeenValue.textContent = "—";
+  pokedexCaughtValue.textContent = "—";
+  pokedexInfo.hidden = true;
   trainerInfo.hidden = true;
   partyInfo.hidden = true;
   partyGrid.replaceChildren();
@@ -717,6 +742,10 @@ function resetFileInfo() {
 
 function formatNumber(value) {
   return value.toLocaleString("en-US");
+}
+
+function formatPercent(value) {
+  return value.toFixed(1) + "%";
 }
 
 function formatPlayTime(playTime) {
