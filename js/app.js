@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.2.5";
+const APP_VERSION = "0.2.6";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -74,15 +74,17 @@ async function handleFile(file) {
       ? "—"
       : result.activePartition === 0 ? "A" : "B";
 
-    if (result.trainer) {
-      trainerNameValue.textContent = result.trainer.name || "—";
-      trainerIdValue.textContent = result.trainer.trainerId;
-      secretIdValue.textContent = result.trainer.secretId;
-      genderValue.textContent = result.trainer.gender;
-      moneyValue.textContent = formatNumber(result.trainer.money);
-      playTimeValue.textContent = formatPlayTime(result.trainer.playTime);
-      badgesValue.textContent = `${result.trainer.badgeCount} / 16`;
-      renderBadges(result.trainer.badges);
+    if (result.save) {
+      const { trainer } = result.save;
+
+      trainerNameValue.textContent = trainer.name || "—";
+      trainerIdValue.textContent = trainer.trainerId;
+      secretIdValue.textContent = trainer.secretId;
+      genderValue.textContent = trainer.gender;
+      moneyValue.textContent = formatNumber(trainer.money);
+      playTimeValue.textContent = formatPlayTime(trainer.playTime);
+      badgesValue.textContent = `${trainer.badgeCount} / 16`;
+      renderBadges(trainer.badges);
       trainerInfo.hidden = false;
     }
 
