@@ -1,4 +1,6 @@
-const APP_VERSION = "0.1.1";
+import { detectSoulSilver } from "./saves/soulsilver.js";
+
+const APP_VERSION = "0.2.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -14,12 +16,10 @@ document.title = `Pokémon Reader — v${APP_VERSION}`;
 
 fileInput.addEventListener("change", () => {
   const [file] = fileInput.files;
-
   if (!file) {
     resetFileInfo();
     return;
   }
-
   handleFile(file);
 });
 
@@ -39,21 +39,34 @@ fileInput.addEventListener("change", () => {
 
 dropZone.addEventListener("drop", (event) => {
   const [file] = event.dataTransfer.files;
-
   if (!file) {
     resetFileInfo();
     return;
   }
-
   handleFile(file);
 });
 
-function handleFile(file) {
-  fileStatus.className = "status success";
-  fileStatus.textContent = "File selected. Save parsing is not implemented yet.";
+async function handleFile(file) {
+  resetFileInfo();
+  fileStatus.className = "status";
+  fileStatus.textContent = "Reading save file…";
   filePickerText.textContent = "Choose another save file or drop one here";
   fileValue.textContent = file.name;
   sizeValue.textContent = formatBytes(file.size);
+
+  try {
+    const buffer = await file.arrayBuffer();
+    const result = detectSoulSilver(buffer);
+
+    gameValue.textContent = result.game;
+    fileStatus.className = result.valid ? "status success" : "status error";
+    fileStatus.textContent = result.reason;
+  } catch (error) {
+    gameValue.textContent = "Not detected";
+    fileStatus.className = "status error";
+    fileStatus.textContent = "Unable to read the selected file.";
+    console.error(error);
+  }
 }
 
 function resetFileInfo() {
