@@ -20,6 +20,7 @@ export function detectSoulSilver(buffer) {
     valid: false,
     reason: "",
     activePartition: null,
+    trainer: null,
   };
 
   if (data.length !== SOULSILVER.fileSize) {
@@ -61,6 +62,7 @@ export function detectSoulSilver(buffer) {
 
   result.game = SOULSILVER.game;
   result.activePartition = activePartition;
+  result.trainer = readTrainerInfo(data, activePartition);
   result.supported = true;
   result.valid = true;
   result.reason = "Valid SoulSilver save structure detected.";
@@ -93,6 +95,66 @@ function compareCounters(counter0, counter1) {
   if (counter0 > counter1) return 0;
   if (counter0 < counter1) return 1;
   return 2;
+}
+
+function readTrainerInfo(data, activePartition) {
+  if (activePartition === null) return null;
+
+  const base = activePartition * SOULSILVER.partitionSize;
+  const trainer = base + SOULSILVER.trainerOffset;
+
+  return {
+    name: decodeTrainerName(data, trainer, 16),
+    trainerId: readUint16(data, trainer + 0x10),
+    secretId: readUint16(data, trainer + 0x12),
+    gender: data[trainer + 0x18] === 0 ? "Male" : "Female",
+  };
+}
+
+function decodeTrainerName(data, offset, byteLength) {
+  const chars = [];
+
+  for (let i = 0; i < byteLength; i += 2) {
+    const value = readUint16(data, offset + i);
+
+    if (value === 0 || value === 0xFFFF) break;
+
+    const character = decodeGen4Character(value);
+    chars.push(character);
+  }
+
+  return chars.join("");
+}
+
+function decodeGen4Character(value) {
+  if (value >= 0x121 && value <= 0x12A) {
+    return String.fromCharCode(0x30 + value - 0x121);
+  }
+
+  if (value >= 0x12B && value <= 0x144) {
+    return String.fromCharCode(0x41 + value - 0x12B);
+  }
+
+  if (value >= 0x145 && value <= 0x16E) {
+    return String.fromCharCode(0x61 + value - 0x145);
+  }
+
+  const punctuation = new Map([
+    [0x1D0, "@"],
+    [0x1D2, "%"],
+    [0x1D4, "!"],
+    [0x1D5, "?"],
+    [0x1D6, ","],
+    [0x1D7, "."],
+    [0x1DE, " "],
+    [0x1B3, "'"],
+    [0x1B4, "'"],
+    [0x1B5, "'"],
+    [0x1BC, "+"],
+    [0x1BD, "-"],
+  ]);
+
+  return punctuation.get(value) ?? "?";
 }
 
 function validateBlock(data, offset, size) {
