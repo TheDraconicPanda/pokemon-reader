@@ -102,13 +102,33 @@ function readTrainerInfo(data, activePartition) {
 
   const base = activePartition * SOULSILVER.partitionSize;
   const trainer = base + SOULSILVER.trainerOffset;
+  const badges = readUint16(data, trainer + 0x1A);
 
   return {
     name: decodeTrainerName(data, trainer, 16),
     trainerId: readUint16(data, trainer + 0x10),
     secretId: readUint16(data, trainer + 0x12),
+    money: readUint32(data, trainer + 0x14),
     gender: data[trainer + 0x18] === 0 ? "Male" : "Female",
+    badges,
+    badgeCount: countBits(badges),
+    playTime: {
+      hours: readUint16(data, trainer + 0x22),
+      minutes: data[trainer + 0x24],
+      seconds: data[trainer + 0x25],
+    },
   };
+}
+
+function countBits(value) {
+  let count = 0;
+
+  while (value !== 0) {
+    count += value & 1;
+    value >>>= 1;
+  }
+
+  return count;
 }
 
 function decodeTrainerName(data, offset, byteLength) {
