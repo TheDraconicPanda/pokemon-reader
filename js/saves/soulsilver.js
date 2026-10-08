@@ -102,7 +102,9 @@ function readTrainerInfo(data, activePartition) {
 
   const base = activePartition * SOULSILVER.partitionSize;
   const trainer = base + SOULSILVER.trainerOffset;
-  const badges = readUint16(data, trainer + 0x1A);
+  const badgesJohto = data[trainer + 0x1A];
+  const badgesKanto = data[trainer + 0x1F];
+  const badges = badgesJohto | (badgesKanto << 8);
 
   return {
     name: decodeTrainerName(data, trainer, 16),
