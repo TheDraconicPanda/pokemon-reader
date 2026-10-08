@@ -116,7 +116,7 @@ function decryptGen4PartyPokemon(data) {
   const result = new Uint8Array(data);
   const pid = readUint32(result, 0);
   const checksum = readUint16(result, 6);
-  const shuffle = GEN4_BLOCK_SHUFFLES[pid % 24];
+  const shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >> 13) & 0x1F];
 
   // Party data after the first 136 bytes is encrypted with the PID.
   cryptGen4(result, 136, 236, pid);
@@ -187,6 +187,8 @@ const GEN4_BLOCK_UNSHUFFLES = Object.freeze([
   [1, 2, 0, 3], [1, 3, 0, 2], [2, 1, 0, 3], [3, 1, 0, 2],
   [2, 3, 0, 1], [3, 2, 0, 1], [1, 2, 3, 0], [1, 3, 2, 0],
   [2, 1, 3, 0], [3, 1, 2, 0], [2, 3, 1, 0], [3, 2, 1, 0],
+  [0, 1, 2, 3], [0, 1, 3, 2], [0, 2, 1, 3], [0, 3, 1, 2],
+  [0, 2, 3, 1], [0, 3, 2, 1], [1, 0, 2, 3], [1, 0, 3, 2],
 ]);
 
 function getActivePartition(data, blocks) {
