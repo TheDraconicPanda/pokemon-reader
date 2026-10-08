@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.3.2";
+const APP_VERSION = "0.3.3";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -26,6 +26,8 @@ const storageInfo = document.querySelector("#storage-info");
 const boxTabs = document.querySelector("#box-tabs");
 const boxGrid = document.querySelector("#box-grid");
 let currentStorage = null;
+const pokemonDataCache = new Map();
+const itemNameCache = new Map();
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -92,8 +94,10 @@ async function handleFile(file) {
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
       trainerInfo.hidden = false;
-      renderParty(result.party);
-      renderStorage(result.storage);
+      const enrichedParty = await enrichPokemonList(result.party);
+      const enrichedStorage = await enrichStorage(result.storage);
+      renderParty(enrichedParty);
+      renderStorage(enrichedStorage);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -148,6 +152,73 @@ function renderBadges(badges) {
     section.append(grid);
     badgeGrid.append(section);
   }
+}
+
+async function enrichPokemonList(pokemonList) {
+  return Promise.all(pokemonList.map((pokemon) => enrichPokemon(pokemon)));
+}
+
+async function enrichStorage(storage) {
+  const boxes = await Promise.all(storage.boxes.map(async (box) => ({
+    ...box,
+    pokemon: await enrichPokemonList(box.pokemon),
+  })));
+
+  return { ...storage, boxes };
+}
+
+async function enrichPokemon(pokemon) {
+  if (pokemon.empty) return pokemon;
+
+  const data = await getPokemonData(pokemon.speciesId);
+  const heldItemName = await getItemName(pokemon.heldItemId);
+
+  return {
+    ...pokemon,
+    speciesName: data?.name ? formatPokemonName(data.name) : null,
+    gender: getGender(pokemon.personality, data?.gender_rate),
+    heldItemName,
+  };
+}
+
+async function getPokemonData(speciesId) {
+  if (pokemonDataCache.has(speciesId)) return pokemonDataCache.get(speciesId);
+
+  const promise = fetch(`https://pokeapi.co/api/v2/pokemon-species/${speciesId}`)
+    .then((response) => response.ok ? response.json() : null)
+    .catch(() => null);
+
+  pokemonDataCache.set(speciesId, promise);
+  return promise;
+}
+
+async function getItemName(itemId) {
+  if (!itemId) return "None";
+  if (itemNameCache.has(itemId)) return itemNameCache.get(itemId);
+
+  const promise = fetch(`https://pokeapi.co/api/v2/item/${itemId}`)
+    .then((response) => response.ok ? response.json() : null)
+    .then((item) => item ? formatPokemonName(item.name) : `Item #${itemId}`)
+    .catch(() => `Item #${itemId}`);
+
+  itemNameCache.set(itemId, promise);
+  return promise;
+}
+
+function formatPokemonName(name) {
+  return name
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function getGender(personality, genderRate) {
+  if (genderRate === 255) return "Genderless";
+  if (genderRate === 0) return "Male";
+  if (genderRate === 8) return "Female";
+  if (genderRate == null) return "Unknown";
+
+  return (personality & 0xFF) < genderRate * 32 ? "Female" : "Male";
 }
 
 function renderStorage(storage) {
