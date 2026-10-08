@@ -5,6 +5,9 @@ const SOULSILVER = Object.freeze({
   generalSize: 0xF628,
   storageOffset: 0xF700,
   storageSize: 0x12310,
+  boxCount: 18,
+  boxSlots: 30,
+  boxSize: 0x1000,
   trainerOffset: 0x64,
   romCodeOffset: 0x1C,
   romCode: 0x08,
@@ -70,16 +73,19 @@ export function detectSoulSilver(buffer) {
 
   const trainer = readTrainerInfo(data, activePartition);
   const party = readParty(data, activePartition);
+  const storage = readStorage(data, activePartition);
 
   result.game = SOULSILVER.game;
   result.activePartition = activePartition;
   result.trainer = trainer;
   result.party = party;
+  result.storage = storage;
   result.save = {
     game: SOULSILVER.game,
     activePartition,
     trainer,
     party,
+    storage,
   };
   result.supported = true;
   result.valid = true;
@@ -110,6 +116,84 @@ function readParty(data, activePartition) {
   }
 
   return party;
+}
+
+function readStorage(data, activePartition) {
+  const base = activePartition * SOULSILVER.partitionSize + SOULSILVER.storageOffset;
+  const boxes = [];
+
+  for (let box = 0; box < SOULSILVER.boxCount; box++) {
+    const boxBase = base + box * SOULSILVER.boxSize;
+    const pokemon = [];
+
+    for (let slot = 0; slot < SOULSILVER.boxSlots; slot++) {
+      const offset = boxBase + slot * 136;
+      const encrypted = data.slice(offset, offset + 136);
+      const parsed = decryptGen4StoredPokemon(encrypted);
+
+      pokemon.push({
+        slot: slot + 1,
+        ...parsed,
+      });
+    }
+
+    boxes.push({
+      number: box + 1,
+      name: decodeStorageText(data, base + 0x12008 + box * 40, 40) || `Box ${box + 1}`,
+      pokemon,
+    });
+  }
+
+  return {
+    currentBox: readUint32(data, base + 0x12000),
+    totalCount: readUint32(data, base + 0x12004),
+    boxes,
+  };
+}
+
+function decryptGen4StoredPokemon(data) {
+  const result = new Uint8Array(data);
+  const pid = readUint32(result, 0);
+
+  if (pid === 0) {
+    return { empty: true };
+  }
+
+  const checksum = readUint16(result, 6);
+  const shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >> 13) & 0x1F];
+
+  cryptGen4(result, 8, 136, checksum);
+
+  const blocks = [
+    result.slice(8, 40),
+    result.slice(40, 72),
+    result.slice(72, 104),
+    result.slice(104, 136),
+  ];
+  const unshuffled = new Uint8Array(128);
+
+  for (let i = 0; i < 4; i++) {
+    unshuffled.set(blocks[shuffle[i]], i * 32);
+  }
+  result.set(unshuffled, 8);
+
+  return {
+    empty: false,
+    personality: pid,
+    speciesId: readUint16(result, 8),
+    heldItemId: readUint16(result, 10),
+    experience: readUint32(result, 16),
+    friendship: result[20],
+    abilitySlot: result[21] & 1,
+    isEgg: (readUint32(result, 0x38) & 0x40000000) !== 0,
+    isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
+    nickname: decodePokemonNickname(result, 0x48, 20),
+    shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+  };
+}
+
+function decodeStorageText(data, offset, byteLength) {
+  return decodeTrainerName(data, offset, byteLength);
 }
 
 function decryptGen4PartyPokemon(data) {
