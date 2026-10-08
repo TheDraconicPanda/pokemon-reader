@@ -199,6 +199,9 @@ function decryptGen4StoredPokemon(data) {
     metLevel: result[0x84] & 0x7F,
     shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
     natureId: pid % 25,
+    moves: readGen4Moves(result),
+    evs: readGen4EVs(result),
+    ivs: readGen4IVs(result),
   };
 }
 
@@ -264,6 +267,41 @@ function decryptGen4PartyPokemon(data) {
       specialDefense: readUint16(result, 0x9A),
     },
     status: readUint32(result, 0x88),
+    moves: readGen4Moves(result),
+    evs: readGen4EVs(result),
+    ivs: readGen4IVs(result),
+  };
+}
+
+
+function readGen4Moves(data) {
+  return [0, 1, 2, 3].map((index) => ({
+    id: readUint16(data, 0x28 + index * 2),
+    pp: data[0x30 + index],
+    ppUps: data[0x34 + index],
+  }));
+}
+
+function readGen4EVs(data) {
+  return {
+    hp: data[0x18],
+    attack: data[0x19],
+    defense: data[0x1A],
+    speed: data[0x1B],
+    specialAttack: data[0x1C],
+    specialDefense: data[0x1D],
+  };
+}
+
+function readGen4IVs(data) {
+  const ivs = readUint32(data, 0x38);
+  return {
+    hp: ivs & 0x1F,
+    attack: (ivs >>> 5) & 0x1F,
+    defense: (ivs >>> 10) & 0x1F,
+    speed: (ivs >>> 15) & 0x1F,
+    specialAttack: (ivs >>> 20) & 0x1F,
+    specialDefense: (ivs >>> 25) & 0x1F,
   };
 }
 
