@@ -182,12 +182,21 @@ function decryptGen4StoredPokemon(data) {
     personality: pid,
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
+    otId: readUint16(result, 12),
+    secretId: readUint16(result, 14),
     experience: readUint32(result, 16),
     friendship: result[20],
     abilitySlot: result[21] & 1,
     isEgg: (readUint32(result, 0x38) & 0x40000000) !== 0,
     isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
     nickname: decodePokemonNickname(result, 0x48, 20),
+    otName: decodeTrainerName(result, 0x68, 16),
+    eggDate: readPokemonDate(result, 0x78),
+    metDate: readPokemonDate(result, 0x7B),
+    eggLocationId: readUint16(result, 0x44),
+    metLocationId: readUint16(result, 0x46),
+    pokeballId: result[0x86],
+    metLevel: result[0x84] & 0x7F,
     shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
     natureId: pid % 25,
   };
@@ -259,6 +268,20 @@ function cryptGen4(data, start, end, seed) {
     data[offset] = (current ^ xor) & 0xFF;
     data[offset + 1] = (current ^ xor) >>> 8;
   }
+}
+
+function readPokemonDate(data, offset) {
+  const year = data[offset];
+  const month = data[offset + 1];
+  const day = data[offset + 2];
+
+  if (!year || !month || !day) return null;
+
+  return {
+    year: 2000 + year,
+    month,
+    day,
+  };
 }
 
 function decodePokemonNickname(data, offset, byteLength) {
