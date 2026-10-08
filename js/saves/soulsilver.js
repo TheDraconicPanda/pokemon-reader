@@ -74,6 +74,7 @@ export function detectSoulSilver(buffer) {
   const trainer = readTrainerInfo(data, activePartition);
   const party = readParty(data, activePartition);
   const storage = readStorage(data, activePartition);
+  const pokedex = readPokedex(data, activePartition);
 
   result.game = SOULSILVER.game;
   result.activePartition = activePartition;
@@ -86,6 +87,7 @@ export function detectSoulSilver(buffer) {
     trainer,
     party,
     storage,
+    pokedex,
   };
   result.supported = true;
   result.valid = true;
@@ -380,6 +382,37 @@ function compareCounters(counter0, counter1) {
   if (counter0 > counter1) return 0;
   if (counter0 < counter1) return 1;
   return 2;
+}
+
+function readPokedex(data, activePartition) {
+  const base = activePartition * SOULSILVER.partitionSize;
+  const offset = base + SOULSILVER.trainerOffset + 0x12B8;
+  const speciesCount = 493;
+  const regionSize = 0x40;
+  let seenCount = 0;
+  let caughtCount = 0;
+
+  for (let species = 1; species <= speciesCount; species++) {
+    const bit = species - 1;
+    const byteOffset = offset + 4 + (bit >> 3);
+    const mask = 1 << (bit & 7);
+
+    if (data[byteOffset] & mask) caughtCount++;
+    if (data[byteOffset + regionSize] & mask) seenCount++;
+  }
+
+  const progressFlags = data[
+    base + SOULSILVER.trainerOffset + 0x1D
+  ];
+
+  return {
+    seenCount,
+    caughtCount,
+    speciesCount,
+    seenPercent: (seenCount / speciesCount) * 100,
+    caughtPercent: (caughtCount / speciesCount) * 100,
+    nationalDex: (progressFlags & 0x02) !== 0,
+  };
 }
 
 function readTrainerInfo(data, activePartition) {
