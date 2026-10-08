@@ -526,6 +526,32 @@ function renderParty(party) {
     const status = document.createElement("p");
     status.textContent = "Status: " + pokemon.statusText;
 
+
+    const history = document.createElement("div");
+    history.className = "party-history";
+
+    const historyHeading = document.createElement("h4");
+    historyHeading.textContent = "History & Identity";
+
+    const originalTrainer = document.createElement("p");
+    originalTrainer.textContent = "OT: " + (pokemon.otName || "Unknown") + " (ID " + (pokemon.otId || "—") + " / SID " + (pokemon.secretId || "—") + ")";
+
+    const met = document.createElement("p");
+    met.textContent = "Met: " + pokemon.metLocationText + " at Lv. " + (pokemon.metLevel || "—") + " on " + pokemon.metDateText;
+
+    const ball = document.createElement("p");
+    ball.textContent = "Poké Ball: " + pokemon.pokeballName;
+
+    const egg = document.createElement("p");
+    egg.textContent = pokemon.isEgg
+      ? "Egg: Yes · Received " + pokemon.eggDateText + " · Location " + pokemon.eggLocationText
+      : "Egg: No";
+
+    const nicknameStatus = document.createElement("p");
+    nicknameStatus.textContent = "Nickname: " + (pokemon.isNicknamed ? "Yes" : "No");
+
+    history.append(historyHeading, originalTrainer, met, ball, egg, nicknameStatus);
+
     const stats = document.createElement("div");
     stats.className = "party-stats";
     const statEntries = [
@@ -542,7 +568,7 @@ function renderParty(party) {
       stats.append(stat);
     }
 
-    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, stats);
+    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, history, stats);
     partyItem.append(image, details);
     partyGrid.append(partyItem);
   }
