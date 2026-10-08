@@ -399,9 +399,30 @@ function formatPokemonDate(date) {
   return String(date.month).padStart(2, "0") + "/" + String(date.day).padStart(2, "0") + "/" + date.year;
 }
 
+const HGSS_LOCATION_NAMES = Object.freeze({
+  126: "New Bark Town", 127: "Cherrygrove City", 128: "Violet City",
+  129: "Azalea Town", 130: "Cianwood City", 131: "Goldenrod City",
+  132: "Olivine City", 133: "Ecruteak City", 134: "Mahogany Town",
+  135: "Lake of Rage", 136: "Blackthorn City",
+  138: "Pallet Town", 139: "Viridian City", 140: "Pewter City",
+  141: "Cerulean City", 142: "Lavender Town", 143: "Vermilion City",
+  144: "Celadon City", 145: "Fuchsia City", 146: "Cinnabar Island",
+  147: "Indigo Plateau", 148: "Saffron City",
+  149: "Route 1", 150: "Route 2", 151: "Route 3", 152: "Route 4",
+  153: "Route 5", 154: "Route 6", 155: "Route 7", 156: "Route 8",
+  157: "Route 9", 158: "Route 10", 159: "Route 11", 160: "Route 12",
+  161: "Route 13", 162: "Route 14", 163: "Route 15", 164: "Route 16",
+  165: "Route 17", 166: "Route 18", 170: "Route 22", 172: "Route 24",
+  173: "Route 25", 174: "Route 26", 175: "Route 27", 176: "Route 28",
+  177: "Route 29", 178: "Route 30", 179: "Route 31", 180: "Route 32",
+  181: "Route 33", 182: "Route 34", 183: "Route 35", 184: "Route 36",
+  185: "Route 37", 186: "Route 38", 187: "Route 39", 190: "Route 42",
+  191: "Route 43", 192: "Route 44", 193: "Route 45", 194: "Route 46",
+});
+
 function formatLocation(locationId) {
   if (!locationId) return "Unknown";
-  return "Location #" + locationId;
+  return HGSS_LOCATION_NAMES[locationId] || "Location #" + locationId;
 }
 
 function formatPokemonName(name) {
