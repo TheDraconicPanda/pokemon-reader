@@ -60,6 +60,7 @@ export function detectSoulSilver(buffer) {
   }
 
   result.game = SOULSILVER.game;
+  result.activePartition = activePartition;
   result.supported = true;
   result.valid = true;
   result.reason = "Valid SoulSilver save structure detected.";
