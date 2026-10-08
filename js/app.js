@@ -1,6 +1,6 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 
-const APP_VERSION = "0.2.2";
+const APP_VERSION = "0.2.3";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -10,6 +10,11 @@ const gameValue = document.querySelector("#game-value");
 const fileValue = document.querySelector("#file-value");
 const sizeValue = document.querySelector("#size-value");
 const partitionValue = document.querySelector("#partition-value");
+const trainerNameValue = document.querySelector("#trainer-name-value");
+const trainerIdValue = document.querySelector("#trainer-id-value");
+const secretIdValue = document.querySelector("#secret-id-value");
+const genderValue = document.querySelector("#gender-value");
+const trainerInfo = document.querySelector("#trainer-info");
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -63,6 +68,15 @@ async function handleFile(file) {
     partitionValue.textContent = result.activePartition === null
       ? "—"
       : result.activePartition === 0 ? "A" : "B";
+
+    if (result.trainer) {
+      trainerNameValue.textContent = result.trainer.name || "—";
+      trainerIdValue.textContent = result.trainer.trainerId;
+      secretIdValue.textContent = result.trainer.secretId;
+      genderValue.textContent = result.trainer.gender;
+      trainerInfo.hidden = false;
+    }
+
     fileStatus.className = result.valid ? "status success" : "status error";
     fileStatus.textContent = result.reason;
   } catch (error) {
@@ -81,6 +95,11 @@ function resetFileInfo() {
   fileValue.textContent = "—";
   sizeValue.textContent = "—";
   partitionValue.textContent = "—";
+  trainerNameValue.textContent = "—";
+  trainerIdValue.textContent = "—";
+  secretIdValue.textContent = "—";
+  genderValue.textContent = "—";
+  trainerInfo.hidden = true;
 }
 
 function formatBytes(bytes) {
