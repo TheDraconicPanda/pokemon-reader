@@ -40,8 +40,6 @@ export function detectSoulSilver(buffer) {
     )
   );
 
-  const generalValid = generalBlocks.some((block) => block.valid);
-  const storageValid = storageBlocks.some((block) => block.valid);
   const romCodeValid = partitions.some(
     (partition) =>
       data[partition + SOULSILVER.trainerOffset + SOULSILVER.romCodeOffset] ===
@@ -53,16 +51,31 @@ export function detectSoulSilver(buffer) {
       block.magic === SOULSILVER.magic ||
       block.magic === SOULSILVER.koreanMagic
   );
+  const activeStorageValid =
+    activePartition !== null && storageBlocks[activePartition].valid;
 
-  if (!generalValid || !storageValid || !romCodeValid || !magicValid) {
+  if (
+    activePartition === null ||
+    !generalBlocks[activePartition].valid ||
+    !activeStorageValid ||
+    !romCodeValid ||
+    !magicValid
+  ) {
     result.reason =
-      "The file is 512.0 KB, but its SoulSilver save structure could not be validated.";
+      "The file is 512.0 KB, but its active SoulSilver save partition could not be validated.";
     return result;
   }
 
+  const trainer = readTrainerInfo(data, activePartition);
+
   result.game = SOULSILVER.game;
   result.activePartition = activePartition;
-  result.trainer = readTrainerInfo(data, activePartition);
+  result.trainer = trainer;
+  result.save = {
+    game: SOULSILVER.game,
+    activePartition,
+    trainer,
+  };
   result.supported = true;
   result.valid = true;
   result.reason = "Valid SoulSilver save structure detected.";
