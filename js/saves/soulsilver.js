@@ -91,7 +91,7 @@ export function detectSoulSilver(buffer) {
 
 function readParty(data, activePartition) {
   const base = activePartition * SOULSILVER.partitionSize;
-  const partyBase = base + SOULSILVER.trainerOffset + 0x34;
+  const partyBase = base + SOULSILVER.trainerOffset + 0x30;
   const count = data[partyBase];
   const party = [];
 
