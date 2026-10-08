@@ -108,6 +108,69 @@ dd {
   overflow-wrap: anywhere;
 }
 
+.badge-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.badge-region h3 {
+  margin: 0 0 0.75rem;
+}
+
+.badge-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.badge-item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  opacity: 0.42;
+}
+
+.badge-item.earned {
+  opacity: 1;
+  background: #fff;
+}
+
+.badge-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.badge-item span:not(.badge-status) {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.badge-status {
+  grid-column: 2;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.badge-item.earned .badge-status {
+  color: #166534;
+}
+
+@media (max-width: 700px) {
+  .badge-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 600px) {
   .app {
     width: min(100% - 1rem, 900px);
@@ -121,5 +184,11 @@ dd {
   dl div {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .badge-list {
+    grid-template-columns: 1fr;
   }
 }
