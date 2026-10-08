@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader</title>
+  <title>Pokémon Reader — v0.1.1</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
 
     <section class="card">
       <h2>Load Save</h2>
-      <label class="file-picker" for="save-file">
-        <span>Choose a save file</span>
-        <input id="save-file" type="file">
+      <label id="drop-zone" class="file-picker" for="save-file">
+        <span class="file-picker-text">Choose a save file or drop one here</span>
+        <input id="save-file" type="file" accept=".sav,.dsv,.dat,application/octet-stream">
       </label>
       <p id="file-status" class="status" aria-live="polite">No save file loaded.</p>
     </section>
