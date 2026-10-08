@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.5.0";
+const APP_VERSION = "0.5.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -177,7 +177,7 @@ async function enrichPokemon(pokemon) {
     ...pokemon,
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
-    abilityName: getAbilityName(data?.pokemon, pokemon.abilitySlot),
+    abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
     natureName: getNatureName(pokemon.natureId),
     statusText: getStatusText(pokemon.status),
     experienceText: formatNumber(pokemon.experience),
@@ -218,10 +218,14 @@ function getNatureName(natureId) {
   return NATURE_NAMES[natureId] || "Unknown";
 }
 
-function getAbilityName(data, abilitySlot) {
-  if (!data?.abilities) return "Unknown";
+function getAbilityName(data, abilityId) {
+  if (!data?.abilities || abilityId == null) return "Unknown";
 
-  const ability = data.abilities.find((entry) => entry.slot === abilitySlot + 1);
+  const ability = data.abilities.find((entry) => {
+    const match = entry.ability?.url?.match(/\\/(\\d+)\\/?$/);
+    return match && Number(match[1]) === abilityId;
+  });
+
   return ability?.ability?.name
     ? formatPokemonName(ability.ability.name)
     : "Unknown";
