@@ -1,6 +1,6 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 
-const APP_VERSION = "0.2.1";
+const APP_VERSION = "0.2.2";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -9,6 +9,7 @@ const filePickerText = document.querySelector(".file-picker-text");
 const gameValue = document.querySelector("#game-value");
 const fileValue = document.querySelector("#file-value");
 const sizeValue = document.querySelector("#size-value");
+const partitionValue = document.querySelector("#partition-value");
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -59,6 +60,9 @@ async function handleFile(file) {
     const result = detectSoulSilver(buffer);
 
     gameValue.textContent = result.game;
+    partitionValue.textContent = result.activePartition === null
+      ? "—"
+      : result.activePartition === 0 ? "A" : "B";
     fileStatus.className = result.valid ? "status success" : "status error";
     fileStatus.textContent = result.reason;
   } catch (error) {
@@ -76,6 +80,7 @@ function resetFileInfo() {
   gameValue.textContent = "Not detected";
   fileValue.textContent = "—";
   sizeValue.textContent = "—";
+  partitionValue.textContent = "—";
 }
 
 function formatBytes(bytes) {
