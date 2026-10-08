@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.3.1";
+const APP_VERSION = "0.3.2";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -185,7 +185,7 @@ function renderBox(boxNumber) {
     item.className = `box-slot${pokemon.empty ? " empty" : ""}`;
     item.title = pokemon.empty
       ? `Empty slot ${pokemon.slot}`
-      : (pokemon.nickname || `Pokémon #${pokemon.speciesId}`);
+      : (pokemon.nickname || pokemon.speciesName || `Pokémon #${pokemon.speciesId}`);
 
     if (!pokemon.empty) {
       const image = document.createElement("img");
@@ -195,7 +195,7 @@ function renderBox(boxNumber) {
       image.height = 72;
 
       const name = document.createElement("span");
-      name.textContent = pokemon.nickname || `#${pokemon.speciesId}`;
+      name.textContent = pokemon.nickname || pokemon.speciesName || `#${pokemon.speciesId}`;
       item.append(image, name);
 
       if (pokemon.shiny) {
@@ -234,12 +234,16 @@ function renderParty(party) {
     title.textContent = pokemon.nickname || `Species #${pokemon.speciesId}`;
     const species = document.createElement("p");
     species.className = "party-species";
-    species.textContent = `Species #${pokemon.speciesId}`;
+    species.textContent = pokemon.speciesName || `Species #${pokemon.speciesId}`;
     const level = document.createElement("p");
     level.textContent = `Level ${pokemon.level}`;
+    const gender = document.createElement("p");
+    gender.textContent = `Gender ${pokemon.gender}`;
+    const item = document.createElement("p");
+    item.textContent = `Held item: ${pokemon.heldItemName || "None"}`;
     const hp = document.createElement("p");
     hp.textContent = `HP ${pokemon.currentHp} / ${pokemon.maxHp}`;
-    details.append(title, species, level, hp);
+    details.append(title, species, level, gender, item, hp);
     item.append(image, details);
     partyGrid.append(item);
   }
