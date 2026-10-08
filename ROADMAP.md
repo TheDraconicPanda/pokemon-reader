@@ -8,13 +8,13 @@
 - [ ] Establish basic development/testing conventions
 
 ## Phase 1 — Basic web application
-- [ ] HTML application shell
-- [ ] CSS layout and styling
-- [ ] JavaScript application entry point
-- [ ] File picker
-- [ ] Drag-and-drop save file input
-- [ ] File metadata/status display
-- [ ] Clear error and success states
+- [x] HTML application shell
+- [x] CSS layout and styling
+- [x] JavaScript application entry point
+- [x] File picker
+- [x] Drag-and-drop save file input
+- [x] File metadata/status display
+- [x] Clear error and success states
 
 ## Phase 2 — SoulSilver save reader
 - [ ] Detect SoulSilver save files
