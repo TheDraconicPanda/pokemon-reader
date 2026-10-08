@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.3.3";
+const APP_VERSION = "0.4.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -175,8 +175,12 @@ async function enrichPokemon(pokemon) {
 
   return {
     ...pokemon,
-    speciesName: data?.name ? formatPokemonName(data.name) : null,
-    gender: getGender(pokemon.personality, data?.gender_rate),
+    speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
+    gender: getGender(pokemon.personality, data?.species?.gender_rate),
+    abilityName: getAbilityName(data?.pokemon, pokemon.abilitySlot),
+    natureName: getNatureName(pokemon.natureId),
+    statusText: getStatusText(pokemon.status),
+    experienceText: formatNumber(pokemon.experience),
     heldItemName,
   };
 }
@@ -184,12 +188,56 @@ async function enrichPokemon(pokemon) {
 async function getPokemonData(speciesId) {
   if (pokemonDataCache.has(speciesId)) return pokemonDataCache.get(speciesId);
 
-  const promise = fetch(`https://pokeapi.co/api/v2/pokemon-species/${speciesId}`)
-    .then((response) => response.ok ? response.json() : null)
-    .catch(() => null);
+  const promise = Promise.all([
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${speciesId}`)
+      .then((response) => response.ok ? response.json() : null)
+      .catch(() => null),
+    fetch(`https://pokeapi.co/api/v2/pokemon/${speciesId}`)
+      .then((response) => response.ok ? response.json() : null)
+      .catch(() => null),
+  ]).then(([species, pokemon]) => ({ species, pokemon }));
 
   pokemonDataCache.set(speciesId, promise);
   return promise;
+}
+
+const NATURE_NAMES = Object.freeze([
+  "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
+  "Docile", "Bold", "Relaxed", "Impish", "Lax",
+  "Serious", "Timid", "Hasty", "Jolly", "Naive",
+  "Bashful", "Modest", "Mild", "Quiet", "Rash",
+  "Quirky", "Calm", "Gentle", "Sassy", "Careful",
+]);
+
+function getNatureName(natureId) {
+  return NATURE_NAMES[natureId] || "Unknown";
+}
+
+function getAbilityName(data, abilitySlot) {
+  if (!data?.abilities) return "Unknown";
+
+  const ability = data.abilities.find((entry) => entry.slot === abilitySlot + 1);
+  return ability?.ability?.name
+    ? formatPokemonName(ability.ability.name)
+    : "Unknown";
+}
+
+function getStatusText(status) {
+  if (!status) return "Healthy";
+
+  const conditions = [];
+  const sleepTurns = status & 0x07;
+
+  if (sleepTurns) {
+    conditions.push("Sleep (" + sleepTurns + " turn" + (sleepTurns === 1 ? "" : "s") + ")");
+  }
+  if (status & 0x08) conditions.push("Poisoned");
+  if (status & 0x10) conditions.push("Burned");
+  if (status & 0x20) conditions.push("Frozen");
+  if (status & 0x40) conditions.push("Paralyzed");
+  if (status & 0x80) conditions.push("Badly Poisoned");
+
+  return conditions.join(", ") || "Unknown";
 }
 
 const GEN4_HELD_ITEM_SLUGS = Object.freeze({
@@ -436,8 +484,37 @@ function renderParty(party) {
     const heldItem = document.createElement("p");
     heldItem.textContent = `Held item: ${pokemon.heldItemName || "None"}`;
     const hp = document.createElement("p");
-    hp.textContent = `HP ${pokemon.currentHp} / ${pokemon.maxHp}`;
-    details.append(title, species, level, gender, heldItem, hp);
+    hp.textContent = "HP " + pokemon.currentHp + " / " + pokemon.maxHp;
+
+    const nature = document.createElement("p");
+    nature.textContent = "Nature: " + pokemon.natureName;
+
+    const ability = document.createElement("p");
+    ability.textContent = "Ability: " + pokemon.abilityName;
+
+    const experience = document.createElement("p");
+    experience.textContent = "EXP: " + pokemon.experienceText;
+
+    const status = document.createElement("p");
+    status.textContent = "Status: " + pokemon.statusText;
+
+    const stats = document.createElement("div");
+    stats.className = "party-stats";
+    const statEntries = [
+      ["Attack", pokemon.stats?.attack],
+      ["Defense", pokemon.stats?.defense],
+      ["Speed", pokemon.stats?.speed],
+      ["Sp. Atk", pokemon.stats?.specialAttack],
+      ["Sp. Def", pokemon.stats?.specialDefense],
+    ];
+
+    for (const [label, value] of statEntries) {
+      const stat = document.createElement("span");
+      stat.textContent = label + ": " + (value ?? "—");
+      stats.append(stat);
+    }
+
+    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, stats);
     partyItem.append(image, details);
     partyGrid.append(partyItem);
   }
