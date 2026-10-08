@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.3.0";
+const APP_VERSION = "0.3.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
