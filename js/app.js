@@ -1,8 +1,14 @@
+const APP_VERSION = "0.0.1";
+
 const fileInput = document.querySelector("#save-file");
 const fileStatus = document.querySelector("#file-status");
 const gameValue = document.querySelector("#game-value");
 const fileValue = document.querySelector("#file-value");
 const sizeValue = document.querySelector("#size-value");
+const appVersion = document.querySelector("#app-version");
+
+appVersion.textContent = APP_VERSION;
+document.title = `Pokémon Reader — v${APP_VERSION}`;
 
 fileInput.addEventListener("change", () => {
   const [file] = fileInput.files;
