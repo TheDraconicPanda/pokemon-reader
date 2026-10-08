@@ -236,3 +236,91 @@ dd {
     grid-template-columns: 1fr;
   }
 }
+
+
+.box-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.box-tab {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  cursor: pointer;
+  font: inherit;
+}
+
+.box-tab:hover,
+.box-tab.active {
+  border-color: #374151;
+  background: #e5e7eb;
+  font-weight: 600;
+}
+
+.storage-summary {
+  color: #6b7280;
+  margin-top: -0.5rem;
+}
+
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #f3f4f6;
+}
+
+.box-slot {
+  position: relative;
+  min-height: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.box-slot img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.box-slot.empty {
+  background: #e5e7eb;
+  color: #9ca3af;
+}
+
+.empty-slot-number {
+  font-size: 0.8rem;
+}
+
+.shiny-marker {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.35rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .box-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .box-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
