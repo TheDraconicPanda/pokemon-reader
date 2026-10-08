@@ -23,3 +23,13 @@ The application is intended to process save files locally in the browser wheneve
 The project starts with plain HTML, CSS, and JavaScript. Features will be implemented incrementally and verified against real save data before expanding the scope.
 
 See [ROADMAP.md](ROADMAP.md) for the development plan.
+
+## Versioning
+
+During development, the application uses the format **0.<phase>.<iteration>**:
+
+- The first number stays at `0` until the project reaches its first stable release.
+- The second number identifies the current development phase from [ROADMAP.md](ROADMAP.md).
+- The third number identifies a meaningful application iteration within that phase.
+
+The iteration number is intended to make deployed builds easy to identify while testing. Documentation-only changes do not require an application version change.
