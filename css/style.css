@@ -362,3 +362,50 @@ dd {
   margin: 0.2rem 0;
   font-size: 0.9rem;
 }
+
+
+.party-moves,
+.party-competitive {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.party-moves h4,
+.party-competitive h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.move-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+.move-row span:first-child {
+  font-weight: 600;
+}
+
+.move-row span:last-child,
+.party-competitive span {
+  color: #4b5563;
+}
+
+.party-competitive {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem 0.75rem;
+}
+
+.party-competitive h4 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 420px) {
+  .party-competitive {
+    grid-template-columns: 1fr;
+  }
+}
