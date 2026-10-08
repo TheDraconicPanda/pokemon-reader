@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.2.6";
+const APP_VERSION = "0.3.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -20,6 +20,8 @@ const playTimeValue = document.querySelector("#play-time-value");
 const badgesValue = document.querySelector("#badges-value");
 const badgeGrid = document.querySelector("#badge-grid");
 const trainerInfo = document.querySelector("#trainer-info");
+const partyInfo = document.querySelector("#party-info");
+const partyGrid = document.querySelector("#party-grid");
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -86,6 +88,7 @@ async function handleFile(file) {
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
       trainerInfo.hidden = false;
+      renderParty(result.party);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -142,6 +145,37 @@ function renderBadges(badges) {
   }
 }
 
+function renderParty(party) {
+  partyGrid.replaceChildren();
+
+  for (const pokemon of party) {
+    const item = document.createElement("article");
+    item.className = "party-item";
+
+    const image = document.createElement("img");
+    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
+    image.alt = `Pokémon #${pokemon.speciesId}`;
+    image.width = 96;
+    image.height = 96;
+
+    const details = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = pokemon.nickname || `Species #${pokemon.speciesId}`;
+    const species = document.createElement("p");
+    species.className = "party-species";
+    species.textContent = `Species #${pokemon.speciesId}`;
+    const level = document.createElement("p");
+    level.textContent = `Level ${pokemon.level}`;
+    const hp = document.createElement("p");
+    hp.textContent = `HP ${pokemon.currentHp} / ${pokemon.maxHp}`;
+    details.append(title, species, level, hp);
+    item.append(image, details);
+    partyGrid.append(item);
+  }
+
+  partyInfo.hidden = party.length === 0;
+}
+
 function resetFileInfo() {
   fileStatus.className = "status";
   fileStatus.textContent = "No save file loaded.";
@@ -159,6 +193,8 @@ function resetFileInfo() {
   badgesValue.textContent = "—";
   badgeGrid.replaceChildren();
   trainerInfo.hidden = true;
+  partyInfo.hidden = true;
+  partyGrid.replaceChildren();
 }
 
 function formatNumber(value) {
