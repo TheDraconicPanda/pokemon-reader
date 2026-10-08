@@ -21,6 +21,7 @@ export function detectSoulSilver(buffer) {
     reason: "",
     activePartition: null,
     trainer: null,
+    party: [],
     save: null,
   };
 
@@ -68,20 +69,125 @@ export function detectSoulSilver(buffer) {
   }
 
   const trainer = readTrainerInfo(data, activePartition);
+  const party = readParty(data, activePartition);
 
   result.game = SOULSILVER.game;
   result.activePartition = activePartition;
   result.trainer = trainer;
+  result.party = party;
   result.save = {
     game: SOULSILVER.game,
     activePartition,
     trainer,
+    party,
   };
   result.supported = true;
   result.valid = true;
   result.reason = "Valid SoulSilver save structure detected.";
   return result;
 }
+
+
+
+function readParty(data, activePartition) {
+  const base = activePartition * SOULSILVER.partitionSize;
+  const partyBase = base + SOULSILVER.trainerOffset + 0x34;
+  const count = data[partyBase];
+  const party = [];
+
+  for (let slot = 0; slot < Math.min(count, 6); slot++) {
+    const offset = partyBase + 0x04 + slot * 236;
+    if (offset + 236 > data.length) break;
+
+    const encrypted = data.slice(offset, offset + 236);
+    const pokemon = decryptGen4PartyPokemon(encrypted);
+
+    if (pokemon.speciesId === 0) continue;
+    party.push({
+      slot: slot + 1,
+      ...pokemon,
+    });
+  }
+
+  return party;
+}
+
+function decryptGen4PartyPokemon(data) {
+  const result = new Uint8Array(data);
+  const pid = readUint32(result, 0);
+  const checksum = readUint16(result, 6);
+  const shuffle = GEN4_BLOCK_SHUFFLES[pid % 24];
+
+  // Party data after the first 136 bytes is encrypted with the PID.
+  cryptGen4(result, 136, 236, pid);
+
+  // The four 32-byte data blocks are encrypted with the checksum and
+  // stored in a PID-dependent order.
+  cryptGen4(result, 8, 136, checksum);
+
+  const blocks = [
+    result.slice(8, 40),
+    result.slice(40, 72),
+    result.slice(72, 104),
+    result.slice(104, 136),
+  ];
+  const unshuffled = new Uint8Array(128);
+
+  for (let i = 0; i < 4; i++) {
+    unshuffled.set(blocks[shuffle[i]], i * 32);
+  }
+  result.set(unshuffled, 8);
+
+  return {
+    personality: pid,
+    speciesId: readUint16(result, 8),
+    heldItemId: readUint16(result, 10),
+    experience: readUint32(result, 16),
+    friendship: result[20],
+    abilitySlot: result[21] & 1,
+    isEgg: (readUint32(result, 0x38) & 0x40000000) !== 0,
+    isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
+    nickname: decodePokemonNickname(result, 0x48, 20),
+    shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+    level: result[0x8C],
+    currentHp: readUint16(result, 0x8E),
+    maxHp: readUint16(result, 0x90),
+    status: readUint32(result, 0x88),
+  };
+}
+
+function cryptGen4(data, start, end, seed) {
+  let value = seed >>> 0;
+
+  for (let offset = start; offset < end; offset += 2) {
+    value = Math.imul(value, 0x41C64E6D) + 0x6073;
+    const xor = (value >>> 16) & 0xFFFF;
+    const current = data[offset] | (data[offset + 1] << 8);
+    data[offset] = (current ^ xor) & 0xFF;
+    data[offset + 1] = (current ^ xor) >>> 8;
+  }
+}
+
+function decodePokemonNickname(data, offset, byteLength) {
+  const chars = [];
+
+  for (let i = 0; i < byteLength; i += 2) {
+    const value = readUint16(data, offset + i);
+    if (value === 0 || value === 0xFFFF) break;
+    chars.push(decodeGen4Character(value));
+  }
+
+  return chars.join("");
+}
+
+const GEN4_BLOCK_SHUFFLES = Object.freeze([
+  [0, 1, 2, 3], [0, 1, 3, 2], [0, 2, 1, 3], [0, 3, 1, 2],
+  [0, 2, 3, 1], [0, 3, 2, 1], [1, 0, 2, 3], [1, 0, 3, 2],
+  [1, 2, 0, 3], [1, 3, 0, 2], [2, 0, 1, 3], [2, 1, 0, 3],
+  [2, 3, 0, 1], [3, 0, 1, 2], [3, 1, 0, 2], [3, 0, 2, 1],
+  [2, 0, 3, 1], [2, 1, 3, 0], [3, 2, 0, 1], [3, 2, 1, 0],
+  [1, 2, 3, 0], [1, 3, 2, 0], [2, 3, 1, 0], [3, 1, 2, 0],
+]);
 
 function getActivePartition(data, blocks) {
   if (blocks[0].valid && !blocks[1].valid) return 0;
