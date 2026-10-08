@@ -1,6 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
+import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.2.4";
+const APP_VERSION = "0.2.5";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -17,6 +18,7 @@ const genderValue = document.querySelector("#gender-value");
 const moneyValue = document.querySelector("#money-value");
 const playTimeValue = document.querySelector("#play-time-value");
 const badgesValue = document.querySelector("#badges-value");
+const badgeGrid = document.querySelector("#badge-grid");
 const trainerInfo = document.querySelector("#trainer-info");
 const appVersion = document.querySelector("#app-version");
 
@@ -80,6 +82,7 @@ async function handleFile(file) {
       moneyValue.textContent = formatNumber(result.trainer.money);
       playTimeValue.textContent = formatPlayTime(result.trainer.playTime);
       badgesValue.textContent = `${result.trainer.badgeCount} / 16`;
+      renderBadges(result.trainer.badges);
       trainerInfo.hidden = false;
     }
 
@@ -90,6 +93,50 @@ async function handleFile(file) {
     fileStatus.className = "status error";
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
+  }
+}
+
+function renderBadges(badges) {
+  badgeGrid.replaceChildren();
+
+  for (const region of ["johto", "kanto"]) {
+    const regionBadges = HGSS_BADGES.filter((badge) => badge.region === region);
+    const section = document.createElement("section");
+    section.className = "badge-region";
+
+    const heading = document.createElement("h3");
+    heading.textContent = region === "johto" ? "Johto" : "Kanto";
+    section.append(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "badge-list";
+
+    for (const badge of regionBadges) {
+      const earned = (badges & (1 << badge.bit)) !== 0;
+
+      const item = document.createElement("div");
+      item.className = `badge-item${earned ? " earned" : ""}`;
+      item.title = `${badge.name}: ${earned ? "Obtained" : "Not obtained"}`;
+
+      const image = document.createElement("img");
+      image.src = badge.image;
+      image.alt = badge.name;
+      image.width = 40;
+      image.height = 40;
+
+      const name = document.createElement("span");
+      name.textContent = badge.name;
+
+      const status = document.createElement("span");
+      status.className = "badge-status";
+      status.textContent = earned ? "Obtained" : "Not obtained";
+
+      item.append(image, name, status);
+      grid.append(item);
+    }
+
+    section.append(grid);
+    badgeGrid.append(section);
   }
 }
 
@@ -108,6 +155,7 @@ function resetFileInfo() {
   moneyValue.textContent = "—";
   playTimeValue.textContent = "—";
   badgesValue.textContent = "—";
+  badgeGrid.replaceChildren();
   trainerInfo.hidden = true;
 }
 
