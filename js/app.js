@@ -291,8 +291,8 @@ function renderParty(party) {
   partyGrid.replaceChildren();
 
   for (const pokemon of party) {
-    const item = document.createElement("article");
-    item.className = "party-item";
+    const partyItem = document.createElement("article");
+    partyItem.className = "party-item";
 
     const image = document.createElement("img");
     image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
@@ -310,13 +310,13 @@ function renderParty(party) {
     level.textContent = `Level ${pokemon.level}`;
     const gender = document.createElement("p");
     gender.textContent = `Gender ${pokemon.gender}`;
-    const item = document.createElement("p");
-    item.textContent = `Held item: ${pokemon.heldItemName || "None"}`;
+    const heldItem = document.createElement("p");
+    heldItem.textContent = `Held item: ${pokemon.heldItemName || "None"}`;
     const hp = document.createElement("p");
     hp.textContent = `HP ${pokemon.currentHp} / ${pokemon.maxHp}`;
-    details.append(title, species, level, gender, item, hp);
-    item.append(image, details);
-    partyGrid.append(item);
+    details.append(title, species, level, gender, heldItem, hp);
+    partyItem.append(image, details);
+    partyGrid.append(partyItem);
   }
 
   partyInfo.hidden = party.length === 0;
