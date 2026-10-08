@@ -21,6 +21,7 @@ export function detectSoulSilver(buffer) {
     reason: "",
     activePartition: null,
     trainer: null,
+    save: null,
   };
 
   if (data.length !== SOULSILVER.fileSize) {
