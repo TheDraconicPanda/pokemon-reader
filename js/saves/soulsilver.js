@@ -240,7 +240,7 @@ function decryptGen4PartyPokemon(data) {
     secretId: readUint16(result, 14),
     experience: readUint32(result, 16),
     friendship: result[20],
-    abilitySlot: result[21] & 1,
+    abilityId: result[21],
     isEgg: (readUint32(result, 0x38) & 0x40000000) !== 0,
     isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
     nickname: decodePokemonNickname(result, 0x48, 20),
