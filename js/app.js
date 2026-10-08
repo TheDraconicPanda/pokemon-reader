@@ -22,6 +22,10 @@ const badgeGrid = document.querySelector("#badge-grid");
 const trainerInfo = document.querySelector("#trainer-info");
 const partyInfo = document.querySelector("#party-info");
 const partyGrid = document.querySelector("#party-grid");
+const storageInfo = document.querySelector("#storage-info");
+const boxTabs = document.querySelector("#box-tabs");
+const boxGrid = document.querySelector("#box-grid");
+let currentStorage = null;
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -89,6 +93,7 @@ async function handleFile(file) {
       renderBadges(trainer.badges);
       trainerInfo.hidden = false;
       renderParty(result.party);
+      renderStorage(result.storage);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -145,6 +150,72 @@ function renderBadges(badges) {
   }
 }
 
+function renderStorage(storage) {
+  currentStorage = storage;
+  boxTabs.replaceChildren();
+
+  for (const box of storage.boxes) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "box-tab";
+    button.textContent = box.name;
+    button.dataset.box = box.number;
+    button.addEventListener("click", () => renderBox(box.number));
+    boxTabs.append(button);
+  }
+
+  renderBox(storage.currentBox + 1);
+  storageInfo.hidden = false;
+}
+
+function renderBox(boxNumber) {
+  if (!currentStorage) return;
+
+  const box = currentStorage.boxes[boxNumber - 1];
+  if (!box) return;
+
+  boxTabs.querySelectorAll(".box-tab").forEach((button) => {
+    button.classList.toggle("active", Number(button.dataset.box) === boxNumber);
+  });
+
+  boxGrid.replaceChildren();
+
+  for (const pokemon of box.pokemon) {
+    const item = document.createElement("article");
+    item.className = `box-slot${pokemon.empty ? " empty" : ""}`;
+    item.title = pokemon.empty
+      ? `Empty slot ${pokemon.slot}`
+      : (pokemon.nickname || `Pokémon #${pokemon.speciesId}`);
+
+    if (!pokemon.empty) {
+      const image = document.createElement("img");
+      image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
+      image.alt = `Pokémon #${pokemon.speciesId}`;
+      image.width = 72;
+      image.height = 72;
+
+      const name = document.createElement("span");
+      name.textContent = pokemon.nickname || `#${pokemon.speciesId}`;
+      item.append(image, name);
+
+      if (pokemon.shiny) {
+        const shiny = document.createElement("span");
+        shiny.className = "shiny-marker";
+        shiny.textContent = "★";
+        shiny.setAttribute("aria-label", "Shiny");
+        item.append(shiny);
+      }
+    } else {
+      const slot = document.createElement("span");
+      slot.textContent = pokemon.slot;
+      slot.className = "empty-slot-number";
+      item.append(slot);
+    }
+
+    boxGrid.append(item);
+  }
+}
+
 function renderParty(party) {
   partyGrid.replaceChildren();
 
@@ -195,6 +266,10 @@ function resetFileInfo() {
   trainerInfo.hidden = true;
   partyInfo.hidden = true;
   partyGrid.replaceChildren();
+  storageInfo.hidden = true;
+  boxTabs.replaceChildren();
+  boxGrid.replaceChildren();
+  currentStorage = null;
 }
 
 function formatNumber(value) {
