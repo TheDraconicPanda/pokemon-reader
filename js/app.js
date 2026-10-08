@@ -182,6 +182,11 @@ async function enrichPokemon(pokemon) {
     statusText: getStatusText(pokemon.status),
     experienceText: formatNumber(pokemon.experience),
     heldItemName,
+    pokeballName: getPokeballName(pokemon.pokeballId),
+    metDateText: formatPokemonDate(pokemon.metDate),
+    eggDateText: formatPokemonDate(pokemon.eggDate),
+    metLocationText: formatLocation(pokemon.metLocationId),
+    eggLocationText: formatLocation(pokemon.eggLocationId),
   };
 }
 
