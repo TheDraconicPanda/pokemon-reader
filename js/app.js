@@ -213,7 +213,7 @@ function formatPokemonName(name) {
 }
 
 function getGender(personality, genderRate) {
-  if (genderRate === 255) return "Genderless";
+  if (genderRate === -1) return "Genderless";
   if (genderRate === 0) return "Male";
   if (genderRate === 8) return "Female";
   if (genderRate == null) return "Unknown";
