@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokémon Reader</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Pokémon Reader</h1>
+      <p>SoulSilver save-file reader</p>
+    </header>
+
+    <section class="card">
+      <h2>Load Save</h2>
+      <label class="file-picker" for="save-file">
+        <span>Choose a save file</span>
+        <input id="save-file" type="file">
+      </label>
+      <p id="file-status" class="status" aria-live="polite">No save file loaded.</p>
+    </section>
+
+    <section class="card">
+      <h2>Save Information</h2>
+      <dl>
+        <div><dt>Game</dt><dd id="game-value">Not detected</dd></div>
+        <div><dt>File</dt><dd id="file-value">—</dd></div>
+        <div><dt>Size</dt><dd id="size-value">—</dd></div>
+      </dl>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
