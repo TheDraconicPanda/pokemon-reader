@@ -189,6 +189,7 @@ function decryptGen4StoredPokemon(data) {
     isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
     nickname: decodePokemonNickname(result, 0x48, 20),
     shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+    natureId: pid % 25,
   };
 }
 
@@ -233,9 +234,17 @@ function decryptGen4PartyPokemon(data) {
     isNicknamed: (readUint32(result, 0x38) & 0x80000000) !== 0,
     nickname: decodePokemonNickname(result, 0x48, 20),
     shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+    natureId: pid % 25,
     level: result[0x8C],
     currentHp: readUint16(result, 0x8E),
     maxHp: readUint16(result, 0x90),
+    stats: {
+      attack: readUint16(result, 0x92),
+      defense: readUint16(result, 0x94),
+      speed: readUint16(result, 0x96),
+      specialAttack: readUint16(result, 0x98),
+      specialDefense: readUint16(result, 0x9A),
+    },
     status: readUint32(result, 0x88),
   };
 }
