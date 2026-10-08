@@ -19,6 +19,7 @@ export function detectSoulSilver(buffer) {
     supported: false,
     valid: false,
     reason: "",
+    activePartition: null,
   };
 
   if (data.length !== SOULSILVER.fileSize) {
@@ -45,6 +46,7 @@ export function detectSoulSilver(buffer) {
       data[partition + SOULSILVER.trainerOffset + SOULSILVER.romCodeOffset] ===
       SOULSILVER.romCode
   );
+  const activePartition = getActivePartition(data, generalBlocks);
   const magicValid = generalBlocks.some(
     (block) =>
       block.magic === SOULSILVER.magic ||
@@ -62,6 +64,34 @@ export function detectSoulSilver(buffer) {
   result.valid = true;
   result.reason = "Valid SoulSilver save structure detected.";
   return result;
+}
+
+function getActivePartition(data, blocks) {
+  if (blocks[0].valid && !blocks[1].valid) return 0;
+  if (blocks[1].valid && !blocks[0].valid) return 1;
+  if (!blocks[0].valid && !blocks[1].valid) return null;
+
+  const footer0 = SOULSILVER.generalSize - 0x14;
+  const footer1 = SOULSILVER.partitionSize + footer0;
+  const major0 = readUint32(data, footer0);
+  const major1 = readUint32(data, footer1);
+
+  const majorComparison = compareCounters(major0, major1);
+  if (majorComparison !== 2) return majorComparison;
+
+  const minor0 = readUint32(data, footer0 + 0x04);
+  const minor1 = readUint32(data, footer1 + 0x04);
+  const minorComparison = compareCounters(minor0, minor1);
+
+  return minorComparison === 1 ? 1 : 0;
+}
+
+function compareCounters(counter0, counter1) {
+  if (counter0 === 0xFFFFFFFF && counter1 !== 0xFFFFFFFE) return 1;
+  if (counter1 === 0xFFFFFFFF && counter0 !== 0xFFFFFFFE) return 0;
+  if (counter0 > counter1) return 0;
+  if (counter0 < counter1) return 1;
+  return 2;
 }
 
 function validateBlock(data, offset, size) {
