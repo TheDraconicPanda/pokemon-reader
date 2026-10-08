@@ -6,7 +6,10 @@
   background: #f3f4f6;
 }
 
-body { margin: 0; min-width: 320px; }
+body {
+  margin: 0;
+  min-width: 320px;
+}
 
 .app {
   width: min(900px, calc(100% - 2rem));
@@ -14,9 +17,18 @@ body { margin: 0; min-width: 320px; }
   padding: 2rem 0 4rem;
 }
 
-.app-header { margin-bottom: 2rem; }
-.app-header h1 { margin: 0; }
-.app-header p { margin: 0.35rem 0 0; color: #6b7280; }
+.app-header {
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.app-header p {
+  margin: 0.35rem 0 0;
+  color: #6b7280;
+}
 
 .card {
   margin-bottom: 1rem;
@@ -26,22 +38,88 @@ body { margin: 0; min-width: 320px; }
   border-radius: 0.75rem;
 }
 
-.card h2 { margin-top: 0; }
-
-.file-picker {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border: 1px solid #9ca3af;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  background: #fff;
+.card h2 {
+  margin-top: 0;
 }
 
-.file-picker input { margin-left: 0.75rem; }
-.status { color: #6b7280; }
+.file-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7rem;
+  padding: 1rem;
+  border: 2px dashed #9ca3af;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  background: #f9fafb;
+  text-align: center;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
 
-dl { display: grid; gap: 0.75rem; margin: 0; }
-dl div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; }
-dt { font-weight: 600; }
-dd { margin: 0; }
+.file-picker:hover,
+.file-picker:focus-within,
+.file-picker.drag-over {
+  border-color: #374151;
+  background: #f3f4f6;
+}
+
+.file-picker-text {
+  font-weight: 600;
+}
+
+.file-picker input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.status {
+  color: #6b7280;
+}
+
+.status.success {
+  color: #166534;
+}
+
+.status.error {
+  color: #b91c1c;
+}
+
+dl {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: min(100% - 1rem, 900px);
+    padding-top: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  dl div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
