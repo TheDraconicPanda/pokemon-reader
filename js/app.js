@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.5.3";
+const APP_VERSION = "0.6.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -28,6 +28,7 @@ const boxGrid = document.querySelector("#box-grid");
 let currentStorage = null;
 const pokemonDataCache = new Map();
 const itemNameCache = new Map();
+const moveNameCache = new Map();
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -187,6 +188,53 @@ async function enrichPokemon(pokemon) {
     eggDateText: formatPokemonDate(pokemon.eggDate),
     metLocationText: formatLocation(pokemon.metLocationId),
     eggLocationText: formatLocation(pokemon.eggLocationId),
+    moves: await enrichMoves(pokemon.moves),
+    hiddenPower: getHiddenPower(pokemon.ivs),
+  };
+}
+
+async function enrichMoves(moves) {
+  if (!moves) return [];
+
+  return Promise.all(moves.map(async (move) => ({
+    ...move,
+    name: await getMoveName(move.id),
+  })));
+}
+
+async function getMoveName(moveId) {
+  if (!moveId) return "—";
+  if (moveNameCache.has(moveId)) return moveNameCache.get(moveId);
+
+  const promise = fetch(`https://pokeapi.co/api/v2/move/${moveId}`)
+    .then((response) => response.ok ? response.json() : null)
+    .then((move) => move?.name ? formatPokemonName(move.name) : `Move #${moveId}`)
+    .catch(() => `Move #${moveId}`);
+
+  moveNameCache.set(moveId, promise);
+  return promise;
+}
+
+const HIDDEN_POWER_TYPES = Object.freeze([
+  "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost",
+  "Steel", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice",
+  "Dragon", "Dark",
+]);
+
+function getHiddenPower(ivs) {
+  if (!ivs) return null;
+
+  const bits = [ivs.hp, ivs.attack, ivs.defense, ivs.speed, ivs.specialAttack, ivs.specialDefense];
+  const typeValue = Math.floor(
+    bits.reduce((sum, iv, index) => sum + (iv % 2) * (2 ** index), 0) * 15 / 63
+  );
+  const powerValue = Math.floor(
+    (bits.reduce((sum, iv, index) => sum + (Math.floor(iv / 2) % 2) * (2 ** index), 0) * 40 / 63) + 30
+  );
+
+  return {
+    type: HIDDEN_POWER_TYPES[typeValue],
+    power: powerValue,
   };
 }
 
@@ -577,6 +625,47 @@ function renderParty(party) {
 
     history.append(historyHeading, originalTrainer, met, ball, egg, nicknameStatus);
 
+    const moves = document.createElement("div");
+    moves.className = "party-moves";
+    const movesHeading = document.createElement("h4");
+    movesHeading.textContent = "Moves";
+    moves.append(movesHeading);
+
+    for (const move of pokemon.moves || []) {
+      const moveRow = document.createElement("div");
+      moveRow.className = "move-row";
+      const moveName = document.createElement("span");
+      moveName.textContent = move.name || "—";
+      const moveDetails = document.createElement("span");
+      moveDetails.textContent = move.id ? `PP ${move.pp} / ${move.ppUps} PP Up${move.ppUps === 1 ? "" : "s"}` : "—";
+      moveRow.append(moveName, moveDetails);
+      moves.append(moveRow);
+    }
+
+    const ivs = document.createElement("div");
+    ivs.className = "party-competitive";
+    const ivsHeading = document.createElement("h4");
+    ivsHeading.textContent = "IVs / EVs";
+    ivs.append(ivsHeading);
+    const competitiveEntries = [
+      ["HP", pokemon.ivs?.hp, pokemon.evs?.hp],
+      ["Attack", pokemon.ivs?.attack, pokemon.evs?.attack],
+      ["Defense", pokemon.ivs?.defense, pokemon.evs?.defense],
+      ["Speed", pokemon.ivs?.speed, pokemon.evs?.speed],
+      ["Sp. Atk", pokemon.ivs?.specialAttack, pokemon.evs?.specialAttack],
+      ["Sp. Def", pokemon.ivs?.specialDefense, pokemon.evs?.specialDefense],
+    ];
+    for (const [label, iv, ev] of competitiveEntries) {
+      const row = document.createElement("span");
+      row.textContent = `${label}: IV ${iv ?? "—"} · EV ${ev ?? "—"}`;
+      ivs.append(row);
+    }
+    if (pokemon.hiddenPower) {
+      const hiddenPower = document.createElement("span");
+      hiddenPower.textContent = `Hidden Power: ${pokemon.hiddenPower.type} (${pokemon.hiddenPower.power})`;
+      ivs.append(hiddenPower);
+    }
+
     const stats = document.createElement("div");
     stats.className = "party-stats";
     const statEntries = [
@@ -593,7 +682,7 @@ function renderParty(party) {
       stats.append(stat);
     }
 
-    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, history, stats);
+    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, history, stats, moves, ivs);
     partyItem.append(image, details);
     partyGrid.append(partyItem);
   }
