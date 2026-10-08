@@ -192,3 +192,47 @@ dd {
     grid-template-columns: 1fr;
   }
 }
+
+
+.party-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.party-item {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+}
+
+.party-item img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.party-item h3 {
+  margin: 0 0 0.25rem;
+}
+
+.party-item p {
+  margin: 0.2rem 0;
+}
+
+.party-species {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .party-grid {
+    grid-template-columns: 1fr;
+  }
+}
