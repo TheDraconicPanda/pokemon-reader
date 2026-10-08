@@ -95,7 +95,7 @@ async function handleFile(file) {
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
       trainerInfo.hidden = false;
-      const enrichedParty = await enrichPokemonList(result.party);
+      const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
       renderParty(enrichedParty);
       renderStorage(enrichedStorage);
@@ -155,8 +155,8 @@ function renderBadges(badges) {
   }
 }
 
-async function enrichPokemonList(pokemonList) {
-  return Promise.all(pokemonList.map((pokemon) => enrichPokemon(pokemon)));
+async function enrichPokemonList(pokemonList, includeMoves = false) {
+  return Promise.all(pokemonList.map((pokemon) => enrichPokemon(pokemon, includeMoves)));
 }
 
 async function enrichStorage(storage) {
@@ -168,7 +168,7 @@ async function enrichStorage(storage) {
   return { ...storage, boxes };
 }
 
-async function enrichPokemon(pokemon) {
+async function enrichPokemon(pokemon, includeMoves = false) {
   if (pokemon.empty) return pokemon;
 
   const data = await getPokemonData(pokemon.speciesId);
@@ -188,7 +188,7 @@ async function enrichPokemon(pokemon) {
     eggDateText: formatPokemonDate(pokemon.eggDate),
     metLocationText: formatLocation(pokemon.metLocationId),
     eggLocationText: formatLocation(pokemon.eggLocationId),
-    moves: await enrichMoves(pokemon.moves),
+    moves: includeMoves ? await enrichMoves(pokemon.moves) : pokemon.moves,
     hiddenPower: getHiddenPower(pokemon.ivs),
   };
 }
