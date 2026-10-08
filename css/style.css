@@ -345,3 +345,20 @@ dd {
     grid-template-columns: 1fr;
   }
 }
+
+
+.party-history {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.party-history h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.party-history p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
