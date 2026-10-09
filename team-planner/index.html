@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>SoulSilver Team Planner — Pokémon Reader</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <a class="back-link" href="../">← Pokémon Reader</a>
+      <p class="eyebrow">POKÉMON READER · SEPARATE FEATURE</p>
+      <h1>SoulSilver Team Planner</h1>
+      <p>Track the team plan, exploration HMs, final moves, EV goals, and postgame options. This page is separate from save-file reading.</p>
+      <div class="toolbar">
+        <span id="save-status" class="save-status" aria-live="polite">Progress saves in this browser</span>
+        <button id="export-btn" class="button secondary" type="button">Export backup</button>
+        <label class="button secondary file-button" for="import-file">Import backup<input id="import-file" type="file" accept="application/json,.json"></label>
+        <button id="reset-btn" class="button danger" type="button">Reset progress</button>
+      </div>
+    </header>
+
+    <section class="summary-grid" aria-label="Progress summary">
+      <article class="summary-card"><span>Party</span><strong id="party-count">0 / 6 ready</strong><div class="meter"><span id="party-meter"></span></div></article>
+      <article class="summary-card"><span>Move goals</span><strong id="move-count">0 complete</strong><div class="meter"><span id="move-meter"></span></div></article>
+      <article class="summary-card"><span>EV targets</span><strong id="ev-count">0 / 6 planned</strong><div class="meter"><span id="ev-meter"></span></div></article>
+    </section>
+
+    <nav class="tabs" aria-label="Planner sections">
+      <button class="tab active" data-tab="team" type="button">Main team</button>
+      <button class="tab" data-tab="hms" type="button">HM plan</button>
+      <button class="tab" data-tab="evs" type="button">EV training</button>
+      <button class="tab" data-tab="bench" type="button">Postgame options</button>
+    </nav>
+
+    <section id="panel-team" class="panel active">
+      <div class="section-heading"><div><h2>Main team</h2><p>Move order is priority order. Temporary HMs are shown separately and are not part of the final Red configuration.</p></div></div>
+      <div id="team-grid" class="team-grid"></div>
+    </section>
+
+    <section id="panel-hms" class="panel" hidden>
+      <div class="section-heading"><div><h2>HM & exploration plan</h2><p>Keep the travel setup stable; remove the temporary moves only when preparing the final Red configuration.</p></div></div>
+      <div id="hm-list" class="stack"></div>
+      <article class="card note"><h3>Final battle configuration</h3><p>Planned to remain on the final sets: <strong>Surf on Kingdra</strong> and <strong>Fly on Dragonite</strong>. Whirlpool, Waterfall, Rock Climb, Strength, Cut, and Rock Smash are exploration-only. Flash remains unassigned.</p></article>
+    </section>
+
+    <section id="panel-evs" class="panel" hidden>
+      <div class="section-heading"><div><h2>EV training</h2><p>Targets are planning goals, not a claim about current save-file EVs. Mark a stat complete when you've reached its target. In Generation IV, a Pokémon can have up to 510 total EVs and 252 in one stat.</p></div></div>
+      <div id="ev-list" class="stack"></div>
+      <p class="small muted">EVs already earned during the story count toward these targets. This tracker does not read or modify your save file.</p>
+    </section>
+
+    <section id="panel-bench" class="panel" hidden>
+      <div class="section-heading"><div><h2>Postgame candidates</h2><p>Optional bench choices, not replacements that have been approved for the main six.</p></div></div>
+      <div id="bench-list" class="bench-grid"></div>
+      <article class="card note"><h3>Current decision</h3><p>Keep the planned main six. Revisit a replacement only if a concrete gap appears; Metagross, Roserade, and Electivire remain optional candidates.</p></article>
+    </section>
+
+    <footer><p>Standalone planner · Progress stays in this browser unless you export a backup. No save file is uploaded or edited.</p></footer>
+  </main>
+  <dialog id="confirm-dialog"><form method="dialog"><h2>Reset planner progress?</h2><p>This clears the checklist and EV completion marks stored in this browser. Export a backup first if you want to keep them.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button id="confirm-reset" class="button danger" value="confirm">Reset progress</button></div></form></dialog>
+  <script src="js/app.js"></script>
+</body>
+</html>
