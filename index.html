@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.7.1</title>
+  <title>Pokémon Reader — v0.8.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.7.1</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.8.0</span></p>
     </header>
 
     <section class="card">
@@ -53,6 +53,21 @@
         <div><dt>Seen</dt><dd id="pokedex-seen-value">—</dd></div>
         <div><dt>Caught</dt><dd id="pokedex-caught-value">—</dd></div>
       </dl>
+    </section>
+
+    <section id="collection-info" class="card" hidden>
+      <h2>Collection Statistics</h2>
+      <dl class="collection-summary">
+        <div><dt>Total Pokémon</dt><dd id="collection-total-value">—</dd></div>
+        <div><dt>In Party</dt><dd id="collection-party-value">—</dd></div>
+        <div><dt>In PC</dt><dd id="collection-pc-value">—</dd></div>
+        <div><dt>Unique Species</dt><dd id="collection-species-value">—</dd></div>
+        <div><dt>Shiny Pokémon</dt><dd id="collection-shiny-value">—</dd></div>
+        <div><dt>Eggs</dt><dd id="collection-eggs-value">—</dd></div>
+      </dl>
+      <h3 class="box-count-heading">PC Box Occupancy</h3>
+      <div id="collection-box-counts" class="collection-box-counts"></div>
+      <p class="collection-note">Total includes Eggs. Unique Species excludes Eggs.</p>
     </section>
 
     <section id="party-info" class="card" hidden>
