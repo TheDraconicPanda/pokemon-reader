@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.7.1";
+const APP_VERSION = "0.8.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -23,6 +23,14 @@ const pokedexInfo = document.querySelector("#pokedex-info");
 const pokedexModeValue = document.querySelector("#pokedex-mode-value");
 const pokedexSeenValue = document.querySelector("#pokedex-seen-value");
 const pokedexCaughtValue = document.querySelector("#pokedex-caught-value");
+const collectionInfo = document.querySelector("#collection-info");
+const collectionTotalValue = document.querySelector("#collection-total-value");
+const collectionPartyValue = document.querySelector("#collection-party-value");
+const collectionPcValue = document.querySelector("#collection-pc-value");
+const collectionSpeciesValue = document.querySelector("#collection-species-value");
+const collectionShinyValue = document.querySelector("#collection-shiny-value");
+const collectionEggsValue = document.querySelector("#collection-eggs-value");
+const collectionBoxCounts = document.querySelector("#collection-box-counts");
 const trainerInfo = document.querySelector("#trainer-info");
 const partyInfo = document.querySelector("#party-info");
 const partyGrid = document.querySelector("#party-grid");
@@ -99,6 +107,7 @@ async function handleFile(file) {
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
       renderPokedex(result.save.pokedex);
+      renderCollectionStats(result.party, result.storage);
       trainerInfo.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
@@ -114,6 +123,42 @@ async function handleFile(file) {
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
   }
+}
+
+
+function renderCollectionStats(party, storage) {
+  const partyPokemon = party.filter((pokemon) => !pokemon.empty);
+  const boxPokemon = storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty));
+  const allPokemon = [...partyPokemon, ...boxPokemon];
+  const uniqueSpecies = new Set(
+    allPokemon.filter((pokemon) => !pokemon.isEgg && pokemon.speciesId > 0)
+      .map((pokemon) => pokemon.speciesId)
+  );
+
+  collectionTotalValue.textContent = formatNumber(allPokemon.length);
+  collectionPartyValue.textContent = `${partyPokemon.length} / 6`;
+  collectionPcValue.textContent = `${boxPokemon.length} / ${storage.boxes.length * 30}`;
+  collectionSpeciesValue.textContent = formatNumber(uniqueSpecies.size);
+  collectionShinyValue.textContent = formatNumber(allPokemon.filter((pokemon) => pokemon.shiny).length);
+  collectionEggsValue.textContent = formatNumber(allPokemon.filter((pokemon) => pokemon.isEgg).length);
+
+  collectionBoxCounts.replaceChildren();
+  for (const box of storage.boxes) {
+    const occupied = box.pokemon.filter((pokemon) => !pokemon.empty).length;
+    const item = document.createElement("div");
+    item.className = "collection-box-count";
+
+    const name = document.createElement("span");
+    name.textContent = box.name;
+
+    const count = document.createElement("span");
+    count.textContent = `${occupied} / 30`;
+
+    item.append(name, count);
+    collectionBoxCounts.append(item);
+  }
+
+  collectionInfo.hidden = false;
 }
 
 function renderPokedex(pokedex) {
@@ -731,6 +776,14 @@ function resetFileInfo() {
   pokedexSeenValue.textContent = "—";
   pokedexCaughtValue.textContent = "—";
   pokedexInfo.hidden = true;
+  collectionTotalValue.textContent = "—";
+  collectionPartyValue.textContent = "—";
+  collectionPcValue.textContent = "—";
+  collectionSpeciesValue.textContent = "—";
+  collectionShinyValue.textContent = "—";
+  collectionEggsValue.textContent = "—";
+  collectionBoxCounts.replaceChildren();
+  collectionInfo.hidden = true;
   trainerInfo.hidden = true;
   partyInfo.hidden = true;
   partyGrid.replaceChildren();
