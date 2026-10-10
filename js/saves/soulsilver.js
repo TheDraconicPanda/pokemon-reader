@@ -416,14 +416,22 @@ function readPokedex(data, activePartition) {
     : HGSS_REGIONAL_DEX_SPECIES;
   let seenCount = 0;
   let caughtCount = 0;
+  const caughtSpecies = [];
+  const seenSpecies = [];
 
   for (const speciesId of species) {
     const bit = speciesId - 1;
     const byteOffset = offset + 4 + (bit >> 3);
     const mask = 1 << (bit & 7);
 
-    if (data[byteOffset] & mask) caughtCount++;
-    if (data[byteOffset + regionSize] & mask) seenCount++;
+    if (data[byteOffset] & mask) {
+      caughtCount++;
+      caughtSpecies.push(speciesId);
+    }
+    if (data[byteOffset + regionSize] & mask) {
+      seenCount++;
+      seenSpecies.push(speciesId);
+    }
   }
 
   const speciesCount = species.length;
@@ -435,6 +443,9 @@ function readPokedex(data, activePartition) {
     seenPercent: (seenCount / speciesCount) * 100,
     caughtPercent: (caughtCount / speciesCount) * 100,
     nationalDex,
+    speciesIds: species,
+    caughtSpecies,
+    seenSpecies,
   };
 }
 
