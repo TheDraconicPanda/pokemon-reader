@@ -407,7 +407,7 @@ const HGSS_REGIONAL_DEX_SPECIES = Object.freeze([
 
 function readPokedex(data, activePartition) {
   const base = activePartition * SOULSILVER.partitionSize;
-  const offset = base + SOULSILVER.trainerOffset + 0x12B8;
+  const offset = base + 0x12B8;
   const regionSize = 0x40;
   const progressFlags = data[base + SOULSILVER.trainerOffset + 0x1D];
   const nationalDex = (progressFlags & 0x02) !== 0;
