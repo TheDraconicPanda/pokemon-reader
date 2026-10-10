@@ -218,7 +218,7 @@ function getSpeciesIndex() {
       .then((data) => {
         const names = new Map();
         for (const species of data?.results || []) {
-          const match = species.url.match(/\\/(\\d+)\\/?$/);
+          const match = species.url.match(/\/(\d+)\/?$/);
           if (match) names.set(Number(match[1]), formatPokemonName(species.name));
         }
         return names;
