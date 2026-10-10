@@ -593,3 +593,41 @@ dd {
     text-align: left;
   }
 }
+
+
+.unown-form-summary {
+  margin: 0 0 0.75rem;
+}
+
+.unown-form-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.unown-form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: #f9fafb;
+}
+
+.unown-form-letter {
+  font-weight: 700;
+}
+
+.unown-form-count {
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .unown-form-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
