@@ -461,10 +461,10 @@ async function getPokemonData(speciesId) {
 
 const NATURE_NAMES = Object.freeze([
   "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
-  "Docile", "Bold", "Relaxed", "Impish", "Lax",
-  "Serious", "Timid", "Hasty", "Jolly", "Naive",
-  "Bashful", "Modest", "Mild", "Quiet", "Rash",
-  "Quirky", "Calm", "Gentle", "Sassy", "Careful",
+  "Bold", "Docile", "Relaxed", "Impish", "Lax",
+  "Timid", "Hasty", "Serious", "Jolly", "Naive",
+  "Modest", "Mild", "Quiet", "Bashful", "Rash",
+  "Calm", "Gentle", "Sassy", "Careful", "Quirky",
 ]);
 
 function getNatureName(natureId) {
