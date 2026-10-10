@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.9.3";
+const APP_VERSION = "0.9.4";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -123,6 +123,7 @@ async function handleFile(file) {
       const enrichedStorage = await enrichStorage(result.storage);
       renderParty(enrichedParty);
       renderStorage(enrichedStorage);
+      renderCollectionGender(enrichedParty, enrichedStorage);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -133,6 +134,27 @@ async function handleFile(file) {
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
   }
+}
+
+
+function renderCollectionGender(party, storage) {
+  const ownedPokemon = [
+    ...party.filter((pokemon) => !pokemon.empty),
+    ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty)),
+  ].filter((pokemon) => !pokemon.isEgg);
+
+  const counts = { Male: 0, Female: 0, Genderless: 0, Unknown: 0 };
+  for (const pokemon of ownedPokemon) {
+    const gender = counts[pokemon.gender] === undefined ? "Unknown" : pokemon.gender;
+    counts[gender]++;
+  }
+
+  document.querySelector("#collection-gender-total").textContent = formatNumber(ownedPokemon.length);
+  document.querySelector("#collection-gender-male").textContent = formatNumber(counts.Male);
+  document.querySelector("#collection-gender-female").textContent = formatNumber(counts.Female);
+  document.querySelector("#collection-genderless").textContent = formatNumber(counts.Genderless);
+  document.querySelector("#collection-gender-unknown").textContent = formatNumber(counts.Unknown);
+  document.querySelector("#collection-gender-info").hidden = false;
 }
 
 
@@ -923,6 +945,12 @@ function resetFileInfo() {
   collectionEggsValue.textContent = "—";
   collectionBoxCounts.replaceChildren();
   collectionInfo.hidden = true;
+  document.querySelector("#collection-gender-total").textContent = "—";
+  document.querySelector("#collection-gender-male").textContent = "—";
+  document.querySelector("#collection-gender-female").textContent = "—";
+  document.querySelector("#collection-genderless").textContent = "—";
+  document.querySelector("#collection-gender-unknown").textContent = "—";
+  document.querySelector("#collection-gender-info").hidden = true;
   collectionDetailsInfo.hidden = true;
   collectionDetailsCount.textContent = "—";
   collectionSpeciesList.replaceChildren();
