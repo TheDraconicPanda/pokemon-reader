@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.8.0</title>
+  <title>Pokémon Reader — v0.9.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.8.0</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.9.0</span></p>
     </header>
 
     <section class="card">
@@ -75,6 +75,26 @@
       <h3 class="box-count-heading">PC Box Occupancy</h3>
       <div id="collection-box-counts" class="collection-box-counts"></div>
       <p class="collection-note">Total includes Eggs. Unique Species excludes Eggs.</p>
+    </section>
+
+    <section id="collection-details-info" class="card" hidden>
+      <h2>Collection Details</h2>
+      <p class="collection-details-intro">Browse Pokédex progress and find duplicate species in your party and PC. Eggs are excluded from duplicate counts.</p>
+      <div class="collection-details-controls">
+        <label for="collection-list-mode">Show
+          <select id="collection-list-mode">
+            <option value="caught">Caught in Pokédex</option>
+            <option value="missing">Missing from Pokédex</option>
+            <option value="duplicates">Duplicate species owned</option>
+          </select>
+        </label>
+        <label for="collection-search">Search species
+          <input id="collection-search" type="search" placeholder="Search by name or number">
+        </label>
+      </div>
+      <p id="collection-details-count" class="collection-details-count" aria-live="polite">—</p>
+      <div id="collection-species-list" class="collection-species-list"></div>
+      <button id="collection-show-more" class="collection-show-more" type="button" hidden>Show more</button>
     </section>
 
     <section id="party-info" class="card" hidden>
