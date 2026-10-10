@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.9.3</title>
+  <title>Pokémon Reader — v0.9.4</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.9.3</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.9.4</span></p>
     </header>
 
     <section class="card">
@@ -75,6 +75,18 @@
       <h3 class="box-count-heading">PC Box Occupancy</h3>
       <div id="collection-box-counts" class="collection-box-counts"></div>
       <p class="collection-note">Total includes Eggs. Unique Species excludes Eggs.</p>
+    </section>
+
+    <section id="collection-gender-info" class="card" hidden>
+      <h2>Collection Gender Breakdown</h2>
+      <p class="collection-note">Counts Pokémon currently in your party and PC, excluding Eggs. Gender depends on each Pokémon's species and personality value; genderless species are counted separately.</p>
+      <dl class="collection-summary">
+        <div><dt>Eligible Pokémon</dt><dd id="collection-gender-total">—</dd></div>
+        <div><dt>Male</dt><dd id="collection-gender-male">—</dd></div>
+        <div><dt>Female</dt><dd id="collection-gender-female">—</dd></div>
+        <div><dt>Genderless</dt><dd id="collection-genderless">—</dd></div>
+        <div><dt>Unknown</dt><dd id="collection-gender-unknown">—</dd></div>
+      </dl>
     </section>
 
     <section id="collection-details-info" class="card" hidden>
