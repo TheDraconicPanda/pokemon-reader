@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.8.0";
+const APP_VERSION = "0.9.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -31,6 +31,15 @@ const collectionSpeciesValue = document.querySelector("#collection-species-value
 const collectionShinyValue = document.querySelector("#collection-shiny-value");
 const collectionEggsValue = document.querySelector("#collection-eggs-value");
 const collectionBoxCounts = document.querySelector("#collection-box-counts");
+const collectionDetailsInfo = document.querySelector("#collection-details-info");
+const collectionListMode = document.querySelector("#collection-list-mode");
+const collectionSearch = document.querySelector("#collection-search");
+const collectionDetailsCount = document.querySelector("#collection-details-count");
+const collectionSpeciesList = document.querySelector("#collection-species-list");
+const collectionShowMore = document.querySelector("#collection-show-more");
+let currentCollectionDetails = null;
+let speciesIndexPromise = null;
+let collectionVisibleLimit = 40;
 const trainerInfo = document.querySelector("#trainer-info");
 const partyInfo = document.querySelector("#party-info");
 const partyGrid = document.querySelector("#party-grid");
@@ -108,6 +117,7 @@ async function handleFile(file) {
       renderBadges(trainer.badges);
       renderPokedex(result.save.pokedex);
       renderCollectionStats(result.party, result.storage);
+      renderCollectionDetails(result.save.pokedex, result.party, result.storage);
       trainerInfo.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
@@ -159,6 +169,135 @@ function renderCollectionStats(party, storage) {
   }
 
   collectionInfo.hidden = false;
+}
+
+
+function renderCollectionDetails(pokedex, party, storage) {
+  const ownedCounts = new Map();
+  const allPokemon = [
+    ...party.filter((pokemon) => !pokemon.empty),
+    ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty)),
+  ];
+
+  for (const pokemon of allPokemon) {
+    if (pokemon.isEgg || !pokemon.speciesId) continue;
+    ownedCounts.set(pokemon.speciesId, (ownedCounts.get(pokemon.speciesId) || 0) + 1);
+  }
+
+  currentCollectionDetails = {
+    speciesIds: pokedex.speciesIds || [],
+    caughtSpecies: new Set(pokedex.caughtSpecies || []),
+    ownedCounts,
+  };
+  collectionListMode.value = "caught";
+  collectionSearch.value = "";
+  collectionVisibleLimit = 40;
+  collectionDetailsInfo.hidden = false;
+  renderCollectionSpeciesList();
+}
+
+collectionListMode.addEventListener("change", () => {
+  collectionVisibleLimit = 40;
+  renderCollectionSpeciesList();
+});
+
+collectionSearch.addEventListener("input", () => {
+  collectionVisibleLimit = 40;
+  renderCollectionSpeciesList();
+});
+
+collectionShowMore.addEventListener("click", () => {
+  collectionVisibleLimit += 40;
+  renderCollectionSpeciesList();
+});
+
+function getSpeciesIndex() {
+  if (!speciesIndexPromise) {
+    speciesIndexPromise = fetch("https://pokeapi.co/api/v2/pokemon-species?limit=493")
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => {
+        const names = new Map();
+        for (const species of data?.results || []) {
+          const match = species.url.match(/\\/(\\d+)\\/?$/);
+          if (match) names.set(Number(match[1]), formatPokemonName(species.name));
+        }
+        return names;
+      })
+      .catch(() => new Map());
+  }
+  return speciesIndexPromise;
+}
+
+async function renderCollectionSpeciesList() {
+  if (!currentCollectionDetails) return;
+
+  const { speciesIds, caughtSpecies, ownedCounts } = currentCollectionDetails;
+  const mode = collectionListMode.value;
+  const query = collectionSearch.value.trim().toLowerCase();
+  const speciesIndex = await getSpeciesIndex();
+  let entries = [];
+
+  if (mode === "caught") {
+    entries = speciesIds.filter((id) => caughtSpecies.has(id)).map((id) => ({ id, count: ownedCounts.get(id) || 0 }));
+  } else if (mode === "missing") {
+    entries = speciesIds.filter((id) => !caughtSpecies.has(id)).map((id) => ({ id, count: ownedCounts.get(id) || 0 }));
+  } else {
+    entries = [...ownedCounts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([id, count]) => ({ id, count }))
+      .sort((a, b) => b.count - a.count || a.id - b.id);
+  }
+
+  entries = entries.filter(({ id }) => {
+    const name = (speciesIndex.get(id) || "").toLowerCase();
+    return !query || name.includes(query) || String(id).includes(query.replace(/^#/, ""));
+  });
+
+  collectionDetailsCount.textContent = query
+    ? `${formatNumber(entries.length)} matching species`
+    : `${formatNumber(entries.length)} species`;
+  collectionSpeciesList.replaceChildren();
+
+  const visibleEntries = entries.slice(0, collectionVisibleLimit);
+  for (const entry of visibleEntries) {
+    const row = document.createElement("div");
+    row.className = "collection-species-row";
+
+    const image = document.createElement("img");
+    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${entry.id}.png`;
+    image.alt = "";
+    image.loading = "lazy";
+
+    const info = document.createElement("div");
+    const name = document.createElement("div");
+    name.className = "collection-species-name";
+    name.textContent = speciesIndex.get(entry.id) || `Pokémon #${entry.id}`;
+
+    const id = document.createElement("div");
+    id.className = "collection-species-id";
+    id.textContent = `National Dex #${entry.id}`;
+    info.append(name, id);
+
+    const meta = document.createElement("div");
+    meta.className = "collection-species-meta";
+    if (mode === "duplicates") {
+      meta.textContent = `Owned ×${entry.count}`;
+    } else {
+      const count = ownedCounts.get(entry.id) || 0;
+      meta.textContent = count ? `Owned: ${count}` : "Not in party/PC";
+    }
+
+    row.append(image, info, meta);
+    collectionSpeciesList.append(row);
+  }
+
+  collectionShowMore.hidden = entries.length <= collectionVisibleLimit;
+  if (visibleEntries.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "collection-details-count";
+    empty.textContent = query ? "No matching species." : "Nothing to show in this category yet.";
+    collectionSpeciesList.append(empty);
+  }
 }
 
 function renderPokedex(pokedex) {
@@ -784,6 +923,12 @@ function resetFileInfo() {
   collectionEggsValue.textContent = "—";
   collectionBoxCounts.replaceChildren();
   collectionInfo.hidden = true;
+  collectionDetailsInfo.hidden = true;
+  collectionDetailsCount.textContent = "—";
+  collectionSpeciesList.replaceChildren();
+  collectionShowMore.hidden = true;
+  currentCollectionDetails = null;
+  collectionSearch.value = "";
   trainerInfo.hidden = true;
   partyInfo.hidden = true;
   partyGrid.replaceChildren();
