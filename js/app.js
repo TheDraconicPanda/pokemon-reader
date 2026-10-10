@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.9.4";
+const APP_VERSION = "0.10.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -124,6 +124,7 @@ async function handleFile(file) {
       renderParty(enrichedParty);
       renderStorage(enrichedStorage);
       renderCollectionGender(enrichedParty, enrichedStorage);
+      renderUnownForms(enrichedParty, enrichedStorage);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -157,6 +158,59 @@ function renderCollectionGender(party, storage) {
   document.querySelector("#collection-gender-info").hidden = false;
 }
 
+
+const UNOWN_FORM_NAMES = Object.freeze([
+  ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "!", "?",
+]);
+
+function getUnownForm(personality) {
+  const pid = personality >>> 0;
+  const formIndex = (
+    ((pid & 0x03000000) >>> 18) |
+    ((pid & 0x00030000) >>> 12) |
+    ((pid & 0x00000300) >>> 6) |
+    (pid & 0x00000003)
+  ) % 28;
+  return UNOWN_FORM_NAMES[formIndex];
+}
+
+function renderUnownForms(party, storage) {
+  const counts = new Map(UNOWN_FORM_NAMES.map((form) => [form, 0]));
+  const ownedPokemon = [
+    ...party.filter((pokemon) => !pokemon.empty),
+    ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty)),
+  ];
+
+  for (const pokemon of ownedPokemon) {
+    if (pokemon.speciesId !== 201 || pokemon.isEgg) continue;
+    const form = pokemon.formName || getUnownForm(pokemon.personality);
+    counts.set(form, (counts.get(form) || 0) + 1);
+  }
+
+  const list = document.querySelector("#unown-form-list");
+  document.querySelector("#unown-form-total").textContent = formatNumber(
+    [...counts.values()].reduce((sum, count) => sum + count, 0)
+  );
+  list.replaceChildren();
+
+  for (const form of UNOWN_FORM_NAMES) {
+    const item = document.createElement("div");
+    item.className = "unown-form-item";
+
+    const label = document.createElement("span");
+    label.className = "unown-form-letter";
+    label.textContent = form;
+
+    const count = document.createElement("span");
+    count.className = "unown-form-count";
+    count.textContent = formatNumber(counts.get(form));
+
+    item.append(label, count);
+    list.append(item);
+  }
+
+  document.querySelector("#unown-form-info").hidden = false;
+}
 
 function renderCollectionStats(party, storage) {
   const partyPokemon = party.filter((pokemon) => !pokemon.empty);
@@ -404,6 +458,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
   return {
     ...pokemon,
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
+    formName: pokemon.speciesId === 201 ? getUnownForm(pokemon.personality) : null,
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
     abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
     natureName: getNatureName(pokemon.natureId),
@@ -720,6 +775,13 @@ function getGender(personality, genderRate) {
   return (personality & 0xFF) < genderRate * 32 ? "Female" : "Male";
 }
 
+function getDisplaySpeciesName(pokemon) {
+  const speciesName = pokemon.speciesName || `Species #${pokemon.speciesId}`;
+  return pokemon.speciesId === 201 && pokemon.formName
+    ? `${speciesName} (${pokemon.formName})`
+    : speciesName;
+}
+
 function renderStorage(storage) {
   currentStorage = storage;
   boxTabs.replaceChildren();
@@ -755,7 +817,7 @@ function renderBox(boxNumber) {
     item.className = `box-slot${pokemon.empty ? " empty" : ""}`;
     item.title = pokemon.empty
       ? `Empty slot ${pokemon.slot}`
-      : (pokemon.nickname || pokemon.speciesName || `Pokémon #${pokemon.speciesId}`);
+      : (pokemon.nickname || getDisplaySpeciesName(pokemon) || `Pokémon #${pokemon.speciesId}`);
 
     if (!pokemon.empty) {
       const image = document.createElement("img");
@@ -765,7 +827,7 @@ function renderBox(boxNumber) {
       image.height = 72;
 
       const name = document.createElement("span");
-      name.textContent = pokemon.nickname || pokemon.speciesName || `#${pokemon.speciesId}`;
+      name.textContent = pokemon.nickname || getDisplaySpeciesName(pokemon) || `#${pokemon.speciesId}`;
       item.append(image, name);
 
       if (pokemon.shiny) {
@@ -804,7 +866,7 @@ function renderParty(party) {
     title.textContent = pokemon.nickname || `Species #${pokemon.speciesId}`;
     const species = document.createElement("p");
     species.className = "party-species";
-    species.textContent = pokemon.speciesName || `Species #${pokemon.speciesId}`;
+    species.textContent = getDisplaySpeciesName(pokemon) || `Species #${pokemon.speciesId}`;
     const level = document.createElement("p");
     level.textContent = `Level ${pokemon.level}`;
     const gender = document.createElement("p");
@@ -951,6 +1013,9 @@ function resetFileInfo() {
   document.querySelector("#collection-genderless").textContent = "—";
   document.querySelector("#collection-gender-unknown").textContent = "—";
   document.querySelector("#collection-gender-info").hidden = true;
+  document.querySelector("#unown-form-total").textContent = "—";
+  document.querySelector("#unown-form-list").replaceChildren();
+  document.querySelector("#unown-form-info").hidden = true;
   collectionDetailsInfo.hidden = true;
   collectionDetailsCount.textContent = "—";
   collectionSpeciesList.replaceChildren();
