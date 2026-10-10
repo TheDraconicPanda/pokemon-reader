@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.9.1";
+const APP_VERSION = "0.9.2";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -284,7 +284,7 @@ async function renderCollectionSpeciesList() {
       meta.textContent = `Owned ×${entry.count}`;
     } else {
       const count = ownedCounts.get(entry.id) || 0;
-      meta.textContent = count ? `Owned: ${count}` : "Not in party/PC";
+      meta.textContent = count ? `Owned: ${count}` : "Not currently in party/PC";
     }
 
     row.append(image, info, meta);
