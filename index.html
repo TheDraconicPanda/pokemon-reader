@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.12.1</title>
+  <title>Pokémon Reader — v0.13.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.12.1</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.13.0</span></p>
     </header>
 
     <section class="card">
@@ -109,6 +109,13 @@
         </label>
         <label for="collection-search">Search species
           <input id="collection-search" type="search" placeholder="Search by name or number">
+        </label>
+        <label for="collection-sort">Sort by
+          <select id="collection-sort">
+            <option value="priority">Collection priority (owned first)</option>
+            <option value="dex">National Dex number</option>
+            <option value="name">Name (A–Z)</option>
+          </select>
         </label>
       </div>
       <p id="collection-details-count" class="collection-details-count" aria-live="polite">—</p>
