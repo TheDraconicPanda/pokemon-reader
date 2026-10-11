@@ -901,6 +901,7 @@ function renderBox(boxNumber) {
       item.append(slot);
     }
 
+    if (!pokemon.empty) addEvolutionControl(item, pokemon);
     boxGrid.append(item);
   }
 }
@@ -1029,6 +1030,7 @@ function renderParty(party) {
     }
 
     details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, history, stats, moves, ivs);
+    addEvolutionControl(details, pokemon);
     partyItem.append(image, details);
     partyGrid.append(partyItem);
   }
