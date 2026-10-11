@@ -182,6 +182,7 @@ function decryptGen4StoredPokemon(data) {
   return {
     empty: false,
     personality: pid,
+    formId: result[0x40] >>> 3,
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
     otId: readUint16(result, 12),
@@ -239,6 +240,7 @@ function decryptGen4PartyPokemon(data) {
 
   return {
     personality: pid,
+    formId: result[0x40] >>> 3,
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
     otId: readUint16(result, 12),
