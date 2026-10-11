@@ -797,3 +797,139 @@ dd {
     padding-bottom: 0.2rem;
   }
 }
+
+
+/* Focused, reusable Pokémon detail view. */
+.pokemon-detail-button {
+  margin-top: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pokemon-detail-button:hover,
+.pokemon-detail-button:focus-visible,
+.pokemon-detail-close:hover,
+.pokemon-detail-close:focus-visible {
+  background: #e5e7eb;
+}
+
+.pokemon-detail-dialog {
+  width: min(760px, calc(100% - 1.25rem));
+  max-width: 760px;
+  max-height: min(88vh, 900px);
+  padding: 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 1rem;
+  color: #1f2937;
+  background: #fff;
+  box-shadow: 0 20px 60px rgb(15 23 42 / 25%);
+  overflow-y: auto;
+}
+
+.pokemon-detail-dialog::backdrop {
+  background: rgb(15 23 42 / 55%);
+}
+
+.pokemon-detail-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pokemon-detail-dialog-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.pokemon-detail-close {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pokemon-detail-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.pokemon-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.pokemon-detail-header img {
+  flex: 0 0 auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.pokemon-detail-header h2,
+.pokemon-detail-header p {
+  margin: 0.2rem 0;
+  overflow-wrap: anywhere;
+}
+
+.pokemon-detail-section {
+  min-width: 0;
+  padding: 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+}
+
+.pokemon-detail-section h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+}
+
+.pokemon-detail-list {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 0.45rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.pokemon-detail-list dt {
+  overflow-wrap: anywhere;
+}
+
+.pokemon-detail-list dd {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .pokemon-detail-dialog {
+    padding: 0.9rem;
+  }
+
+  .pokemon-detail-content {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .pokemon-detail-header img {
+    width: 84px;
+    height: 84px;
+  }
+
+  .pokemon-detail-section {
+    padding: 0.75rem;
+  }
+}
