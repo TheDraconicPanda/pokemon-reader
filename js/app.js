@@ -805,9 +805,7 @@ function getGender(personality, genderRate) {
 
 function getDisplaySpeciesName(pokemon) {
   const speciesName = pokemon.speciesName || `Species #${pokemon.speciesId}`;
-  return pokemon.speciesId === 201 && pokemon.formName
-    ? `${speciesName} (${pokemon.formName})`
-    : speciesName;
+  return pokemon.formName ? `${speciesName} (${pokemon.formName})` : speciesName;
 }
 
 function renderStorage(storage) {
