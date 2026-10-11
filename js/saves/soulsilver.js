@@ -153,19 +153,13 @@ function readStorage(data, activePartition) {
   };
 }
 
-function getGen4FormId(speciesId, pid) {
-  // Unown's Generation IV letter is derived from the personality value.
-  // Other Generation IV alternate forms are not reliably represented by
-  // this field and are deliberately left unmapped.
-  if (speciesId !== 201) return null;
+const GEN4_FORM_SPECIES = new Set([172, 201, 386, 412, 413, 422, 423, 479, 487, 492, 493]);
 
-  const value =
-    ((pid & 0x03000000) >>> 18) |
-    ((pid & 0x00030000) >>> 12) |
-    ((pid & 0x00000300) >>> 6) |
-    (pid & 0x00000003);
-
-  return value % 28;
+function getGen4FormId(speciesId, formByte) {
+  // Generation IV stores alternate-form indices in bits 3–7 of byte 0x40
+  // in the decrypted, unshuffled Pokémon structure.
+  if (!GEN4_FORM_SPECIES.has(speciesId)) return null;
+  return formByte >>> 3;
 }
 
 function decryptGen4StoredPokemon(data) {
@@ -197,7 +191,7 @@ function decryptGen4StoredPokemon(data) {
   return {
     empty: false,
     personality: pid,
-    formId: getGen4FormId(readUint16(result, 8), pid),
+    formId: getGen4FormId(readUint16(result, 8), result[0x40]),
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
     otId: readUint16(result, 12),
@@ -255,7 +249,7 @@ function decryptGen4PartyPokemon(data) {
 
   return {
     personality: pid,
-    formId: getGen4FormId(readUint16(result, 8), pid),
+    formId: getGen4FormId(readUint16(result, 8), result[0x40]),
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
     otId: readUint16(result, 12),
