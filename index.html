@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.10.0</title>
+  <title>Pokémon Reader — v0.11.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.10.0</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.11.0</span></p>
     </header>
 
     <section class="card">
@@ -90,9 +90,9 @@
     </section>
 
     <section id="unown-form-info" class="card" hidden>
-      <h2>Unown Form Collection</h2>
-      <p class="collection-note">Counts Unown forms currently in your party and PC, excluding Eggs. Forms are derived from each Pokémon's personality value. Zero means that form is not currently in your collection.</p>
-      <p class="unown-form-summary">Unown owned: <strong id="unown-form-total">—</strong></p>
+      <h2>Alternate Form Collection</h2>
+      <p class="collection-note">Tracks form variants stored in your party and PC, excluding Eggs. Form labels come from the Generation IV form field, not the personality value. Species with no reliably supported form mapping are omitted for now.</p>
+      <p class="unown-form-summary">Tracked Pokémon: <strong id="unown-form-total">—</strong></p>
       <div id="unown-form-list" class="unown-form-list"></div>
     </section>
 
