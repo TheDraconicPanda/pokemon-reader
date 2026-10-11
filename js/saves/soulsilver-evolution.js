@@ -37,14 +37,15 @@ const LOCATION_EVOLUTIONS = Object.freeze([
 ]);
 
 export function getAvailableEvolutions(pokemon) {
-  if (!pokemon || pokemon.empty || pokemon.isEgg || !pokemon.speciesId || pokemon.level >= 100) return [];
+  if (!pokemon || pokemon.empty || pokemon.isEgg || !pokemon.speciesId) return [];
   const options = TRADE_EVOLUTIONS.filter((rule) =>
     rule.from === pokemon.speciesId &&
     (rule.method === "trade" || pokemon.heldItemId === rule.item)
   ).map((rule) => ({ ...rule, consumesItem: rule.method === "trade-item" }));
 
-  const locationOptions = LOCATION_EVOLUTIONS.filter((rule) => rule.from === pokemon.speciesId)
-    .map((rule) => ({ ...rule, consumesItem: false }));
+  const locationOptions = LOCATION_EVOLUTIONS.filter((rule) =>
+    rule.from === pokemon.speciesId && Number.isInteger(pokemon.level) && pokemon.level < 100
+  ).map((rule) => ({ ...rule, consumesItem: false }));
 
   // The location trigger is emulated; the Pokémon's level and experience remain unchanged.
   return [...options, ...locationOptions];
