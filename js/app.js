@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.10.0";
+const APP_VERSION = "0.11.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -124,7 +124,7 @@ async function handleFile(file) {
       renderParty(enrichedParty);
       renderStorage(enrichedStorage);
       renderCollectionGender(enrichedParty, enrichedStorage);
-      renderUnownForms(enrichedParty, enrichedStorage);
+      renderAlternateForms(enrichedParty, enrichedStorage);
     }
 
     fileStatus.className = result.valid ? "status success" : "status error";
@@ -159,56 +159,84 @@ function renderCollectionGender(party, storage) {
 }
 
 
-const UNOWN_FORM_NAMES = Object.freeze([
-  ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "!", "?",
+
+const ALTERNATE_FORM_SPECIES = Object.freeze([
+  { id: 201, name: "Unown", forms: [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "!", "?"] },
+  { id: 386, name: "Deoxys", forms: ["Normal", "Attack", "Defense", "Speed"] },
+  { id: 412, name: "Burmy", forms: ["Plant Cloak", "Sandy Cloak", "Trash Cloak"] },
+  { id: 413, name: "Wormadam", forms: ["Plant Cloak", "Sandy Cloak", "Trash Cloak"] },
+  { id: 422, name: "Shellos", forms: ["West Sea", "East Sea"] },
+  { id: 423, name: "Gastrodon", forms: ["West Sea", "East Sea"] },
+  { id: 479, name: "Rotom", forms: ["Normal", "Heat", "Wash", "Frost", "Fan", "Mow"] },
+  { id: 487, name: "Giratina", forms: ["Altered", "Origin"] },
+  { id: 492, name: "Shaymin", forms: ["Land", "Sky"] },
+  { id: 172, name: "Pichu", forms: ["Normal", "Spiky-eared"] },
 ]);
 
-function getUnownForm(personality) {
-  const pid = personality >>> 0;
-  const formIndex = (
-    ((pid & 0x03000000) >>> 18) |
-    ((pid & 0x00030000) >>> 12) |
-    ((pid & 0x00000300) >>> 6) |
-    (pid & 0x00000003)
-  ) % 28;
-  return UNOWN_FORM_NAMES[formIndex];
+const ALTERNATE_FORM_BY_SPECIES = new Map(
+  ALTERNATE_FORM_SPECIES.map((entry) => [entry.id, entry])
+);
+
+function getPokemonFormName(pokemon) {
+  const species = ALTERNATE_FORM_BY_SPECIES.get(pokemon.speciesId);
+  if (!species || !Number.isInteger(pokemon.formId)) return null;
+  return species.forms[pokemon.formId] || null;
 }
 
-function renderUnownForms(party, storage) {
-  const counts = new Map(UNOWN_FORM_NAMES.map((form) => [form, 0]));
+function renderAlternateForms(party, storage) {
+  const counts = new Map();
+  for (const species of ALTERNATE_FORM_SPECIES) {
+    counts.set(species.id, species.forms.map(() => 0));
+  }
+
   const ownedPokemon = [
     ...party.filter((pokemon) => !pokemon.empty),
     ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty)),
   ];
 
+  let total = 0;
   for (const pokemon of ownedPokemon) {
-    if (pokemon.speciesId !== 201 || pokemon.isEgg) continue;
-    const form = pokemon.formName || getUnownForm(pokemon.personality);
-    counts.set(form, (counts.get(form) || 0) + 1);
+    if (pokemon.isEgg) continue;
+    const species = ALTERNATE_FORM_BY_SPECIES.get(pokemon.speciesId);
+    if (!species || !Number.isInteger(pokemon.formId)) continue;
+    const speciesCounts = counts.get(species.id);
+    if (pokemon.formId < 0 || pokemon.formId >= speciesCounts.length) continue;
+    speciesCounts[pokemon.formId]++;
+    total++;
   }
 
   const list = document.querySelector("#unown-form-list");
-  document.querySelector("#unown-form-total").textContent = formatNumber(
-    [...counts.values()].reduce((sum, count) => sum + count, 0)
-  );
   list.replaceChildren();
+  for (const species of ALTERNATE_FORM_SPECIES) {
+    const group = document.createElement("section");
+    group.className = "alternate-form-group";
 
-  for (const form of UNOWN_FORM_NAMES) {
-    const item = document.createElement("div");
-    item.className = "unown-form-item";
+    const heading = document.createElement("h3");
+    heading.textContent = species.name;
 
-    const label = document.createElement("span");
-    label.className = "unown-form-letter";
-    label.textContent = form;
+    const forms = document.createElement("div");
+    forms.className = "unown-form-list";
+    species.forms.forEach((form, index) => {
+      const item = document.createElement("div");
+      item.className = "unown-form-item";
 
-    const count = document.createElement("span");
-    count.className = "unown-form-count";
-    count.textContent = formatNumber(counts.get(form));
+      const label = document.createElement("span");
+      label.className = "unown-form-letter";
+      label.textContent = form;
 
-    item.append(label, count);
-    list.append(item);
+      const count = document.createElement("span");
+      count.className = "unown-form-count";
+      count.textContent = formatNumber(counts.get(species.id)[index]);
+
+      item.append(label, count);
+      forms.append(item);
+    });
+
+    group.append(heading, forms);
+    list.append(group);
   }
 
+  document.querySelector("#unown-form-total").textContent = formatNumber(total);
   document.querySelector("#unown-form-info").hidden = false;
 }
 
@@ -458,7 +486,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
   return {
     ...pokemon,
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
-    formName: pokemon.speciesId === 201 ? getUnownForm(pokemon.personality) : null,
+    formName: getPokemonFormName(pokemon),
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
     abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
     natureName: getNatureName(pokemon.natureId),
