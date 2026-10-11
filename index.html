@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.17.1</title>
+  <title>Pokémon Reader — v0.18.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.17.1</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.18.0</span></p>
     </header>
 
     <section class="card">
@@ -65,6 +65,17 @@
         <a href="#storage-info">PC storage</a>
       </div>
     </nav>
+
+    <section id="party-info" class="card" hidden>
+      <h2>Current Party</h2>
+      <div id="party-grid" class="party-grid"></div>
+    </section>
+    <section id="storage-info" class="card" hidden>
+      <h2>PC Storage</h2>
+      <p class="storage-summary">18 boxes · 30 slots each</p>
+      <div id="box-tabs" class="box-tabs" role="tablist" aria-label="PC boxes"></div>
+      <div id="box-grid" class="box-grid"></div>
+    </section>
 
     <section id="pokedex-info" class="card" hidden>
       <h2>Pokédex</h2>
@@ -136,16 +147,6 @@
       <button id="collection-show-more" class="collection-show-more" type="button" hidden>Show more</button>
     </section>
 
-    <section id="party-info" class="card" hidden>
-      <h2>Current Party</h2>
-      <div id="party-grid" class="party-grid"></div>
-    </section>
-    <section id="storage-info" class="card" hidden>
-      <h2>PC Storage</h2>
-      <p class="storage-summary">18 boxes · 30 slots each</p>
-      <div id="box-tabs" class="box-tabs" role="tablist" aria-label="PC boxes"></div>
-      <div id="box-grid" class="box-grid"></div>
-    </section>
   </main>
   <dialog id="pokemon-detail-dialog" class="pokemon-detail-dialog" aria-labelledby="pokemon-detail-dialog-title">
     <div class="pokemon-detail-dialog-header">
