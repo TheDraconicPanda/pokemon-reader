@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.11.1";
+const APP_VERSION = "0.12.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -162,15 +162,6 @@ function renderCollectionGender(party, storage) {
 
 const ALTERNATE_FORM_SPECIES = Object.freeze([
   { id: 201, name: "Unown", forms: [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "!", "?"] },
-  { id: 386, name: "Deoxys", forms: ["Normal", "Attack", "Defense", "Speed"] },
-  { id: 412, name: "Burmy", forms: ["Plant Cloak", "Sandy Cloak", "Trash Cloak"] },
-  { id: 413, name: "Wormadam", forms: ["Plant Cloak", "Sandy Cloak", "Trash Cloak"] },
-  { id: 422, name: "Shellos", forms: ["West Sea", "East Sea"] },
-  { id: 423, name: "Gastrodon", forms: ["West Sea", "East Sea"] },
-  { id: 479, name: "Rotom", forms: ["Normal", "Heat", "Wash", "Frost", "Fan", "Mow"] },
-  { id: 487, name: "Giratina", forms: ["Altered", "Origin"] },
-  { id: 492, name: "Shaymin", forms: ["Land", "Sky"] },
-  { id: 172, name: "Pichu", forms: ["Normal", "Spiky-eared"] },
 ]);
 
 const ALTERNATE_FORM_BY_SPECIES = new Map(
