@@ -113,8 +113,6 @@ function readParty(data, activePartition) {
     if (pokemon.speciesId === 0) continue;
     party.push({
       slot: slot + 1,
-      saveOffset: offset,
-      recordKind: "party",
       ...pokemon,
       saveOffset: offset,
       recordKind: "party",
