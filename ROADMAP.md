@@ -77,3 +77,13 @@
 4. Avoid unnecessary dependencies.
 5. Implement and test one small feature at a time.
 6. Do not generalize for other games until SoulSilver gives us a proven foundation.
+
+
+## Phase 8 — Targeted evolution save editing
+- [x] Define a restricted evolution-only editing scope
+- [x] Add trade and unavailable-location evolution rules for Generation IV
+- [x] Add eligibility-based Evolve controls for party and PC Pokémon
+- [x] Preserve the original upload and export a separate evolved save
+- [ ] Validate encrypted Pokémon record writing and save checksums against real SoulSilver test saves
+- [ ] Test trade-item consumption and party stat recalculation in-game or in an emulator
+- [ ] Expand only after the first writes are validated
