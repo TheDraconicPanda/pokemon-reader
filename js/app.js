@@ -2,7 +2,7 @@ import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.16.0";
+const APP_VERSION = "0.17.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -58,7 +58,7 @@ let currentSaveBytes = null;
 let currentSaveFileName = "pokemon-save.sav";
 let currentActivePartition = null;
 const itemNameCache = new Map();
-const moveNameCache = new Map();
+const moveDataCache = new Map();
 const appVersion = document.querySelector("#app-version");
 
 appVersion.textContent = APP_VERSION;
@@ -546,23 +546,43 @@ async function enrichPokemon(pokemon, includeMoves = false) {
 async function enrichMoves(moves) {
   if (!moves) return [];
 
-  return Promise.all(moves.map(async (move) => ({
-    ...move,
-    name: await getMoveName(move.id),
-  })));
+  return Promise.all(moves.map(async (move) => {
+    if (!move.id) return { ...move, name: "—", maxPP: null };
+    const details = await getMoveData(move.id);
+    const ppUps = Math.min(3, Math.max(0, Number(move.ppUps) || 0));
+    const maxPP = Number.isFinite(details.basePP)
+      ? Math.floor(details.basePP * (5 + ppUps) / 5)
+      : null;
+
+    return {
+      ...move,
+      name: details.name,
+      maxPP,
+    };
+  }));
 }
 
-async function getMoveName(moveId) {
-  if (!moveId) return "—";
-  if (moveNameCache.has(moveId)) return moveNameCache.get(moveId);
+async function getMoveData(moveId) {
+  if (!moveId) return { name: "—", basePP: null };
+  if (moveDataCache.has(moveId)) return moveDataCache.get(moveId);
 
   const promise = fetch(`https://pokeapi.co/api/v2/move/${moveId}`)
     .then((response) => response.ok ? response.json() : null)
-    .then((move) => move?.name ? formatPokemonName(move.name) : `Move #${moveId}`)
-    .catch(() => `Move #${moveId}`);
+    .then((move) => ({
+      name: move?.name ? formatPokemonName(move.name) : `Move #${moveId}`,
+      basePP: Number.isFinite(move?.pp) ? move.pp : null,
+    }))
+    .catch(() => ({ name: `Move #${moveId}`, basePP: null }));
 
-  moveNameCache.set(moveId, promise);
+  moveDataCache.set(moveId, promise);
   return promise;
+}
+
+function formatMovePP(move) {
+  const currentPP = Number.isFinite(move.pp) ? move.pp : "—";
+  const maxPP = Number.isFinite(move.maxPP) ? move.maxPP : "?";
+  const ppUps = move.ppUps ?? 0;
+  return `PP ${currentPP} / ${maxPP} · PP Ups: ${ppUps}`;
 }
 
 const HIDDEN_POWER_TYPES = Object.freeze([
@@ -1012,7 +1032,7 @@ function renderPokemonDetail(pokemon) {
 
   const moveRows = (pokemon.moves || []).filter((move) => move.id).map((move, index) => [
     `Move ${index + 1}`,
-    `${move.name || `Move #${move.id}`} · PP Ups: ${move.ppUps ?? 0}`,
+    `${move.name || `Move #${move.id}`} · ${formatMovePP(move)}`,
   ]);
   addSection("Moves", moveRows.length ? moveRows : [["Moves", "No move data available"]]);
 
@@ -1130,7 +1150,7 @@ function renderParty(party) {
       const moveName = document.createElement("span");
       moveName.textContent = move.name || "—";
       const moveDetails = document.createElement("span");
-      moveDetails.textContent = move.id ? `PP ${move.pp} / ${move.ppUps} PP Up${move.ppUps === 1 ? "" : "s"}` : "—";
+      moveDetails.textContent = move.id ? formatMovePP(move) : "—";
       moveRow.append(moveName, moveDetails);
       moves.append(moveRow);
     }
