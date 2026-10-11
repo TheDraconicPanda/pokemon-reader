@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.12.1";
+const APP_VERSION = "0.13.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -34,6 +34,7 @@ const collectionBoxCounts = document.querySelector("#collection-box-counts");
 const collectionDetailsInfo = document.querySelector("#collection-details-info");
 const collectionListMode = document.querySelector("#collection-list-mode");
 const collectionSearch = document.querySelector("#collection-search");
+const collectionSort = document.querySelector("#collection-sort");
 const collectionDetailsCount = document.querySelector("#collection-details-count");
 const collectionSpeciesList = document.querySelector("#collection-species-list");
 const collectionShowMore = document.querySelector("#collection-show-more");
@@ -307,6 +308,11 @@ collectionListMode.addEventListener("change", () => {
   renderCollectionSpeciesList();
 });
 
+collectionSort.addEventListener("change", () => {
+  collectionVisibleLimit = 40;
+  renderCollectionSpeciesList();
+});
+
 collectionSearch.addEventListener("input", () => {
   collectionVisibleLimit = 40;
   renderCollectionSpeciesList();
@@ -357,6 +363,21 @@ async function renderCollectionSpeciesList() {
   entries = entries.filter(({ id }) => {
     const name = (speciesIndex.get(id) || "").toLowerCase();
     return !query || name.includes(query) || String(id).includes(query.replace(/^#/, ""));
+  });
+
+  const sortMode = collectionSort.value;
+  entries.sort((a, b) => {
+    if (sortMode === "name") {
+      return (speciesIndex.get(a.id) || `Pokémon #${a.id}`).localeCompare(
+        speciesIndex.get(b.id) || `Pokémon #${b.id}`
+      ) || a.id - b.id;
+    }
+    if (sortMode === "priority") {
+      const aOwned = a.count || 0;
+      const bOwned = b.count || 0;
+      return bOwned - aOwned || a.id - b.id;
+    }
+    return a.id - b.id;
   });
 
   collectionDetailsCount.textContent = query
