@@ -2,7 +2,7 @@ import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.14.0";
+const APP_VERSION = "0.15.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -43,6 +43,7 @@ let currentCollectionDetails = null;
 let speciesIndexPromise = null;
 let collectionVisibleLimit = 40;
 const trainerInfo = document.querySelector("#trainer-info");
+const collectionNav = document.querySelector("#collection-nav");
 const partyInfo = document.querySelector("#party-info");
 const partyGrid = document.querySelector("#party-grid");
 const storageInfo = document.querySelector("#storage-info");
@@ -127,6 +128,7 @@ async function handleFile(file) {
       renderCollectionStats(result.party, result.storage);
       renderCollectionDetails(result.save.pokedex, result.party, result.storage);
       trainerInfo.hidden = false;
+      collectionNav.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
       renderParty(enrichedParty);
@@ -1203,6 +1205,7 @@ function resetFileInfo() {
   currentCollectionDetails = null;
   collectionSearch.value = "";
   trainerInfo.hidden = true;
+  collectionNav.hidden = true;
   partyInfo.hidden = true;
   partyGrid.replaceChildren();
   storageInfo.hidden = true;
