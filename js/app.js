@@ -2,7 +2,7 @@ import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.17.0";
+const APP_VERSION = "0.17.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -1287,10 +1287,13 @@ function addEvolutionControl(container, pokemon) {
         currentActivePartition,
         evolvedStats
       );
-      const baseName = currentSaveFileName
-        .replace(/\.evolved(?=\.(?:sav|dsv|dat)$)/i, "")
-        .replace(/\.(?:sav|dsv|dat)$/i, "");
-      const outputName = `${baseName}.evolved.sav`;
+      const extensionMatch = currentSaveFileName.match(/(\.[^./\\]+)$/);
+      const extension = extensionMatch ? extensionMatch[1] : ".sav";
+      const baseName = (extensionMatch
+        ? currentSaveFileName.slice(0, -extension.length)
+        : currentSaveFileName
+      ).replace(/\.evolved$/i, "");
+      const outputName = `${baseName}.evolved${extension}`;
       const blob = new Blob([output], { type: "application/octet-stream" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
