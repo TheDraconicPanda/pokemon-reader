@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.13.0</title>
+  <title>Pokémon Reader — v0.15.0</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.14.0</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.15.0</span></p>
     </header>
 
     <section class="card">
@@ -53,7 +53,20 @@
 
       <div id="badge-grid" class="badge-grid" aria-label="Gym badges"></div>
     </section>
-        <section id="pokedex-info" class="card" hidden>
+        <nav id="collection-nav" class="collection-nav card" aria-label="Save sections" hidden>
+      <span class="collection-nav-label">Jump to section</span>
+      <div class="collection-nav-links">
+        <a href="#pokedex-info">Pokédex</a>
+        <a href="#collection-info">Statistics</a>
+        <a href="#collection-gender-info">Gender</a>
+        <a href="#unown-form-info">Alternate forms</a>
+        <a href="#collection-details-info">Collection details</a>
+        <a href="#party-info">Party</a>
+        <a href="#storage-info">PC storage</a>
+      </div>
+    </nav>
+
+    <section id="pokedex-info" class="card" hidden>
       <h2>Pokédex</h2>
       <dl>
         <div><dt>Mode</dt><dd id="pokedex-mode-value">—</dd></div>
