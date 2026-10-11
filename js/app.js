@@ -1,7 +1,8 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
+import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.13.0";
+const APP_VERSION = "0.14.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -49,6 +50,9 @@ const boxTabs = document.querySelector("#box-tabs");
 const boxGrid = document.querySelector("#box-grid");
 let currentStorage = null;
 const pokemonDataCache = new Map();
+let currentSaveBytes = null;
+let currentSaveFileName = "pokemon-save.sav";
+let currentActivePartition = null;
 const itemNameCache = new Map();
 const moveNameCache = new Map();
 const appVersion = document.querySelector("#app-version");
@@ -99,6 +103,9 @@ async function handleFile(file) {
   try {
     const buffer = await file.arrayBuffer();
     const result = detectSoulSilver(buffer);
+    currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
+    currentSaveFileName = file.name || "pokemon-save.sav";
+    currentActivePartition = result.valid ? result.activePartition : null;
 
     gameValue.textContent = result.game;
     partitionValue.textContent = result.activePartition === null
@@ -509,6 +516,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
   return {
     ...pokemon,
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
+    growthRate: data?.species?.growth_rate?.name || null,
     formName: getPokemonFormName(pokemon),
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
     abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
@@ -1028,6 +1036,92 @@ function renderParty(party) {
   partyInfo.hidden = party.length === 0;
 }
 
+
+function addEvolutionControl(container, pokemon) {
+  const options = getAvailableEvolutions(pokemon);
+  if (!options.length) return;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "evolution-control";
+  const select = document.createElement("select");
+  select.setAttribute("aria-label", "Evolution target");
+  for (const option of options) {
+    const item = document.createElement("option");
+    item.value = String(option.to);
+    item.textContent = `Evolve to ${getKnownSpeciesName(option.to)}${option.consumesItem ? ` (consume ${option.itemName})` : ""}`;
+    select.append(item);
+  }
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "evolve-button";
+  button.textContent = "Evolve";
+  button.addEventListener("click", async () => {
+    const evolution = options.find((option) => option.to === Number(select.value));
+    if (!evolution || !currentSaveBytes || currentActivePartition === null) return;
+    const targetName = getKnownSpeciesName(evolution.to);
+    const itemNote = evolution.consumesItem ? `\n\nThis will consume the held ${evolution.itemName}.` : "";
+    const locationNote = evolution.method === "location-level-up"
+      ? "\n\nThis simulates the unavailable location's level-up trigger. The Pokémon's level and experience will not change."
+      : "";
+    if (!window.confirm(`Evolve ${pokemon.nickname || getDisplaySpeciesName(pokemon)} into ${targetName}?${itemNote}${locationNote}\n\nA separate modified save will be downloaded. Your original file is not overwritten.`)) return;
+
+    button.disabled = true;
+    button.textContent = "Evolving…";
+    try {
+      let evolvedStats = null;
+      if (pokemon.recordKind === "party") {
+        const data = await getPokemonData(evolution.to);
+        evolvedStats = data?.pokemon?.stats || null;
+        if (!evolvedStats) throw new Error("Could not load the evolved species' base stats. No changes were made.");
+      }
+      const output = evolveSoulSilverPokemon(
+        currentSaveBytes,
+        pokemon,
+        evolution,
+        currentActivePartition,
+        evolvedStats
+      );
+      const baseName = currentSaveFileName
+        .replace(/\.evolved(?=\.(?:sav|dsv|dat)$)/i, "")
+        .replace(/\.(?:sav|dsv|dat)$/i, "");
+      const outputName = `${baseName}.evolved.sav`;
+      const blob = new Blob([output], { type: "application/octet-stream" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = outputName;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      fileStatus.className = "status success";
+      fileStatus.textContent = `Evolved into ${targetName}. Downloaded ${outputName}. The updated save is now loaded in this session.`;
+      await handleFile(new File([output], outputName, { type: "application/octet-stream" }));
+    } catch (error) {
+      fileStatus.className = "status error";
+      fileStatus.textContent = error?.message || "Evolution failed; the save was not changed.";
+      button.disabled = false;
+      button.textContent = "Evolve";
+    }
+  });
+
+  wrapper.append(select, button);
+  container.append(wrapper);
+}
+
+const KNOWN_SPECIES_NAMES = Object.freeze({
+  65: "Alakazam", 68: "Machamp", 76: "Golem", 94: "Gengar", 186: "Politoed",
+  199: "Slowking", 208: "Steelix", 212: "Scizor", 230: "Kingdra", 233: "Porygon2",
+  367: "Huntail", 368: "Gorebyss", 462: "Magnezone", 464: "Rhyperior",
+  466: "Electivire", 467: "Magmortar", 470: "Leafeon", 471: "Glaceon",
+  474: "Porygon-Z", 476: "Probopass", 477: "Dusknoir",
+});
+
+function getKnownSpeciesName(speciesId) {
+  return KNOWN_SPECIES_NAMES[speciesId] || `Pokémon #${speciesId}`;
+}
+
 function resetFileInfo() {
   fileStatus.className = "status";
   fileStatus.textContent = "No save file loaded.";
@@ -1078,6 +1172,8 @@ function resetFileInfo() {
   boxTabs.replaceChildren();
   boxGrid.replaceChildren();
   currentStorage = null;
+  currentSaveBytes = null;
+  currentActivePartition = null;
 }
 
 function formatNumber(value) {
