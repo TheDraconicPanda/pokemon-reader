@@ -926,13 +926,27 @@ function renderBox(boxNumber) {
 }
 
 
-function openPokemonDetails(pokemon) {
+async function openPokemonDetails(pokemon) {
   if (!pokemon || pokemon.empty) return;
-  renderPokemonDetail(pokemon);
+  pokemonDetailContent.replaceChildren();
+  const loading = document.createElement("p");
+  loading.textContent = "Loading Pokémon details…";
+  pokemonDetailContent.append(loading);
   if (typeof pokemonDetailDialog.showModal === "function") {
     pokemonDetailDialog.showModal();
   } else {
     pokemonDetailDialog.setAttribute("open", "");
+  }
+  try {
+    const detailedPokemon = await enrichPokemon(pokemon, true);
+    renderPokemonDetail(detailedPokemon);
+  } catch (error) {
+    pokemonDetailContent.replaceChildren();
+    const message = document.createElement("p");
+    message.textContent = "Some Pokémon details could not be loaded. Parsed save data is shown where available.";
+    pokemonDetailContent.append(message);
+    renderPokemonDetail(pokemon);
+    console.error(error);
   }
 }
 
