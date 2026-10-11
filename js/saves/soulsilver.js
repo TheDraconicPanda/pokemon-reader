@@ -113,7 +113,11 @@ function readParty(data, activePartition) {
     if (pokemon.speciesId === 0) continue;
     party.push({
       slot: slot + 1,
+      saveOffset: offset,
+      recordKind: "party",
       ...pokemon,
+      saveOffset: offset,
+      recordKind: "party",
     });
   }
 
@@ -136,6 +140,9 @@ function readStorage(data, activePartition) {
       pokemon.push({
         slot: slot + 1,
         ...parsed,
+        saveOffset: offset,
+        recordKind: "storage",
+        boxNumber: box + 1,
       });
     }
 
