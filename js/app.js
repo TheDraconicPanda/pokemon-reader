@@ -1,7 +1,7 @@
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.11.0";
+const APP_VERSION = "0.11.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -206,6 +206,7 @@ function renderAlternateForms(party, storage) {
   }
 
   const list = document.querySelector("#unown-form-list");
+  list.className = "alternate-form-groups";
   list.replaceChildren();
   for (const species of ALTERNATE_FORM_SPECIES) {
     const group = document.createElement("section");
@@ -215,7 +216,7 @@ function renderAlternateForms(party, storage) {
     heading.textContent = species.name;
 
     const forms = document.createElement("div");
-    forms.className = "unown-form-list";
+    forms.className = "alternate-form-options";
     species.forms.forEach((form, index) => {
       const item = document.createElement("div");
       item.className = "unown-form-item";
