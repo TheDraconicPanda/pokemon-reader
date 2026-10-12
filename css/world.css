@@ -75,3 +75,38 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
   .location-card { grid-template-columns: 1fr; }
   .location-type { justify-self: start; }
 }
+
+
+.location-connections {
+  grid-column: 1 / -1;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+.location-connections > strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.82rem;
+}
+.connection-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.connection-link {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.connection-link:hover, .connection-link:focus-visible {
+  background: #dbeafe;
+  border-color: #60a5fa;
+}
+.connection-link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
