@@ -113,6 +113,85 @@ const CONNECTIONS = Object.freeze({
   "Mt. Silver": ["Indigo Plateau"]
 });
 
+
+const ROUTE_32_ENCOUNTERS = Object.freeze([
+  { method: "Walking", pokemon: "Rattata", levels: "4–6", times: "Morning", rarity: "Common" },
+  { method: "Walking", pokemon: "Rattata", levels: "6", times: "Morning", rarity: "Rare" },
+  { method: "Walking", pokemon: "Rattata", levels: "4–6", times: "Day", rarity: "Uncommon" },
+  { method: "Walking", pokemon: "Rattata", levels: "4", times: "Night", rarity: "Common" },
+  { method: "Walking", pokemon: "Ekans", levels: "4", times: "Morning, day, night", rarity: "Common" },
+  { method: "Walking", pokemon: "Bellsprout", levels: "6", times: "Morning, day", rarity: "Common" },
+  { method: "Walking", pokemon: "Bellsprout", levels: "6", times: "Night", rarity: "Uncommon" },
+  { method: "Walking", pokemon: "Wooper", levels: "6", times: "Night", rarity: "Common" },
+  { method: "Walking", pokemon: "Zubat", levels: "4", times: "Morning, night", rarity: "Rare" },
+  { method: "Walking", pokemon: "Mareep", levels: "6", times: "Morning, day, night", rarity: "Uncommon" },
+  { method: "Walking", pokemon: "Hoppip", levels: "6", times: "Morning, day", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Linoone", levels: "6", times: "All times", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Whismur", levels: "4–6", times: "All times", rarity: "Uncommon" },
+  { method: "Sinnoh Sound", pokemon: "Bidoof", levels: "6", times: "All times", rarity: "Uncommon" },
+  { method: "Sinnoh Sound", pokemon: "Buizel", levels: "4–6", times: "All times", rarity: "Uncommon" },
+  { method: "Swarm", pokemon: "Qwilfish", levels: "20–40", times: "All times", rarity: "Common" },
+  { method: "Surfing", pokemon: "Tentacool", levels: "10–20", times: "All times", rarity: "Common" },
+  { method: "Surfing", pokemon: "Quagsire", levels: "15–25", times: "All times", rarity: "Common" },
+  { method: "Surfing", pokemon: "Tentacruel", levels: "15–36", times: "All times", rarity: "Uncommon" },
+  { method: "Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Tentacool", levels: "10", times: "All times", rarity: "Rare" },
+  { method: "Good Rod", pokemon: "Tentacool", levels: "20", times: "All times", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Qwilfish", levels: "20", times: "All times", rarity: "Rare" },
+  { method: "Super Rod", pokemon: "Tentacool", levels: "40", times: "All times", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rarity: "Rare" },
+  { method: "Super Rod", pokemon: "Qwilfish", levels: "40", times: "All times", rarity: "Rare" },
+  { method: "Headbutt", pokemon: "Hoothoot", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt", pokemon: "Exeggcute", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt", pokemon: "Ekans", levels: "10", times: "All times", rarity: "Uncommon" },
+  { method: "Headbutt", pokemon: "Spearow", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt", pokemon: "Aipom", levels: "10", times: "All times", rarity: "Uncommon" },
+  { method: "Headbutt (special trees)", pokemon: "Hoothoot", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt (special trees)", pokemon: "Pineco", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt (special trees)", pokemon: "Exeggcute", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt (special trees)", pokemon: "Spearow", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt (special trees)", pokemon: "Heracross", levels: "10", times: "All times", rarity: "Common" },
+  { method: "Headbutt (special trees)", pokemon: "Aipom", levels: "10", times: "All times", rarity: "Uncommon" }
+]);
+
+function renderEncounters(locationName) {
+  if (locationName !== "Route 32") return null;
+  const section = document.createElement("section");
+  section.className = "location-encounters";
+  const heading = document.createElement("strong");
+  heading.textContent = "Wild Pokémon · SoulSilver";
+  const note = document.createElement("p");
+  note.className = "encounter-note";
+  note.textContent = "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  section.append(heading, note);
+
+  const methods = [...new Set(ROUTE_32_ENCOUNTERS.map((entry) => entry.method))];
+  for (const method of methods) {
+    const group = document.createElement("div");
+    group.className = "encounter-method";
+    const methodHeading = document.createElement("h3");
+    methodHeading.textContent = method;
+    const entries = document.createElement("div");
+    entries.className = "encounter-entries";
+    for (const encounter of ROUTE_32_ENCOUNTERS.filter((entry) => entry.method === method)) {
+      const row = document.createElement("div");
+      row.className = "encounter-entry";
+      const name = document.createElement("span");
+      name.className = "encounter-name";
+      name.textContent = encounter.pokemon;
+      const info = document.createElement("span");
+      info.className = "encounter-info";
+      info.textContent = `Lv. ${encounter.levels} · ${encounter.times} · ${encounter.rarity}`;
+      row.append(name, info);
+      entries.append(row);
+    }
+    group.append(methodHeading, entries);
+    section.append(group);
+  }
+  return section;
+}
+
 const searchInput = document.querySelector("#location-search");
 const typeSelect = document.querySelector("#location-type");
 const countLabel = document.querySelector("#location-count");
@@ -155,7 +234,7 @@ function renderLocations() {
 
     card.append(text, badge);
 
-    const connectedNames = (CONNECTIONS[location.name] || []).filter((name) =>
+    const encounterSection = renderEncounters(location.name);\n    if (encounterSection) card.append(encounterSection);\n\n    const connectedNames = (CONNECTIONS[location.name] || []).filter((name) =>
       LOCATIONS.some((candidate) => candidate.name === name)
     );
     if (connectedNames.length) {
