@@ -60,7 +60,7 @@
 - [ ] Expand and verify Johto locations
 - [x] Add connected-location navigation
 - [ ] Routes and areas
-- [ ] Wild encounters
+- [x] Add first verified wild-encounter dataset (Route 32)\n- [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
 - [ ] Other useful location data
