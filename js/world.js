@@ -234,7 +234,10 @@ function renderLocations() {
 
     card.append(text, badge);
 
-    const encounterSection = renderEncounters(location.name);\n    if (encounterSection) card.append(encounterSection);\n\n    const connectedNames = (CONNECTIONS[location.name] || []).filter((name) =>
+    const encounterSection = renderEncounters(location.name);
+    if (encounterSection) card.append(encounterSection);
+
+    const connectedNames = (CONNECTIONS[location.name] || []).filter((name) =>
       LOCATIONS.some((candidate) => candidate.name === name)
     );
     if (connectedNames.length) {
