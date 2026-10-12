@@ -155,18 +155,84 @@ const ROUTE_32_ENCOUNTERS = Object.freeze([
   { method: "Headbutt (special trees)", pokemon: "Aipom", levels: "10", times: "All times", rarity: "Uncommon" }
 ]);
 
+const UNION_CAVE_ENCOUNTERS = Object.freeze([
+  { method: "1F · Walking", pokemon: "Geodude", levels: "6", times: "All times", rate: "30%", rarity: "Uncommon" }
+  { method: "1F · Walking", pokemon: "Rattata", levels: "4–6", times: "All times", rate: "40%", rarity: "Common" }
+  { method: "1F · Walking", pokemon: "Zubat", levels: "5–7", times: "All times", rate: "25%", rarity: "Uncommon" }
+  { method: "1F · Walking", pokemon: "Onix", levels: "6", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "1F · Hoenn Sound", pokemon: "Absol", levels: "6", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "1F · Hoenn Sound", pokemon: "Makuhita", levels: "5", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "1F · Sinnoh Sound", pokemon: "Bronzor", levels: "6", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "1F · Sinnoh Sound", pokemon: "Chingling", levels: "5", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "1F · Surfing", pokemon: "Wooper", levels: "10–20", times: "All times", rate: "60%", rarity: "Common" }
+  { method: "1F · Surfing", pokemon: "Quagsire", levels: "10–25", times: "All times", rate: "40%", rarity: "Common" }
+  { method: "1F · Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" }
+  { method: "1F · Old Rod", pokemon: "Goldeen", levels: "10", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "1F · Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rate: "60%", rarity: "Common" }
+  { method: "1F · Good Rod", pokemon: "Goldeen", levels: "20", times: "All times", rate: "40%", rarity: "Common" }
+  { method: "1F · Super Rod", pokemon: "Goldeen", levels: "40", times: "All times", rate: "90%", rarity: "Common" }
+  { method: "1F · Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rate: "7%", rarity: "Rare" }
+  { method: "1F · Super Rod", pokemon: "Seaking", levels: "40", times: "All times", rate: "3%", rarity: "Rare" }
+  { method: "B1F · Walking", pokemon: "Geodude", levels: "8", times: "All times", rate: "30%", rarity: "Uncommon" }
+  { method: "B1F · Walking", pokemon: "Rattata", levels: "6–8", times: "All times", rate: "35%", rarity: "Uncommon" }
+  { method: "B1F · Walking", pokemon: "Zubat", levels: "7–9", times: "All times", rate: "25%", rarity: "Uncommon" }
+  { method: "B1F · Walking", pokemon: "Onix", levels: "8", times: "All times", rate: "10%", rarity: "Uncommon" }
+  { method: "B1F · Hoenn Sound", pokemon: "Absol", levels: "8", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "B1F · Hoenn Sound", pokemon: "Makuhita", levels: "7", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "B1F · Sinnoh Sound", pokemon: "Bronzor", levels: "8", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "B1F · Sinnoh Sound", pokemon: "Chingling", levels: "7", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "B1F · Surfing", pokemon: "Wooper", levels: "10–20", times: "All times", rate: "60%", rarity: "Common" }
+  { method: "B1F · Surfing", pokemon: "Quagsire", levels: "10–25", times: "All times", rate: "40%", rarity: "Common" }
+  { method: "B1F · Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" }
+  { method: "B1F · Old Rod", pokemon: "Goldeen", levels: "10", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "B1F · Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rate: "60%", rarity: "Common" }
+  { method: "B1F · Good Rod", pokemon: "Goldeen", levels: "20", times: "All times", rate: "40%", rarity: "Common" }
+  { method: "B1F · Super Rod", pokemon: "Goldeen", levels: "40", times: "All times", rate: "90%", rarity: "Common" }
+  { method: "B1F · Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rate: "7%", rarity: "Rare" }
+  { method: "B1F · Super Rod", pokemon: "Seaking", levels: "40", times: "All times", rate: "3%", rarity: "Rare" }
+  { method: "B2F · Walking", pokemon: "Zubat", levels: "22", times: "All times", rate: "30%", rarity: "Uncommon" }
+  { method: "B2F · Walking", pokemon: "Raticate", levels: "22", times: "All times", rate: "30%", rarity: "Uncommon" }
+  { method: "B2F · Walking", pokemon: "Golbat", levels: "22", times: "All times", rate: "20%", rarity: "Uncommon" }
+  { method: "B2F · Walking", pokemon: "Geodude", levels: "21", times: "All times", rate: "10%", rarity: "Uncommon" }
+  { method: "B2F · Walking", pokemon: "Rattata", levels: "20", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "B2F · Walking", pokemon: "Onix", levels: "23", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "B2F · Hoenn Sound", pokemon: "Absol", levels: "22", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "B2F · Hoenn Sound", pokemon: "Makuhita", levels: "22", times: "Hoenn Sound", rarity: "Conditional" }
+  { method: "B2F · Sinnoh Sound", pokemon: "Bronzor", levels: "22", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "B2F · Sinnoh Sound", pokemon: "Chingling", levels: "22", times: "Sinnoh Sound", rarity: "Conditional" }
+  { method: "B2F · Surfing", pokemon: "Tentacool", levels: "10–20", times: "All times", rate: "60%", rarity: "Common" }
+  { method: "B2F · Surfing", pokemon: "Quagsire", levels: "15–25", times: "All times", rate: "30%", rarity: "Uncommon" }
+  { method: "B2F · Surfing", pokemon: "Tentacruel", levels: "15–25", times: "All times", rate: "10%", rarity: "Uncommon" }
+  { method: "B2F · Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" }
+  { method: "B2F · Old Rod", pokemon: "Krabby", levels: "10", times: "All times", rate: "5%", rarity: "Rare" }
+  { method: "B2F · Good Rod (morning/day)", pokemon: "Magikarp", levels: "25", times: "Morning, day", rate: "60%", rarity: "Common" }
+  { method: "B2F · Good Rod (morning/day)", pokemon: "Krabby", levels: "25", times: "Morning, day", rate: "37%", rarity: "Uncommon" }
+  { method: "B2F · Good Rod (morning/day)", pokemon: "Corsola", levels: "25", times: "Morning, day", rate: "3%", rarity: "Rare" }
+  { method: "B2F · Good Rod (night)", pokemon: "Magikarp", levels: "25", times: "Night", rate: "60%", rarity: "Common" }
+  { method: "B2F · Good Rod (night)", pokemon: "Krabby", levels: "25", times: "Night", rate: "37%", rarity: "Uncommon" }
+  { method: "B2F · Good Rod (night)", pokemon: "Staryu", levels: "25", times: "Night", rate: "3%", rarity: "Rare" }
+  { method: "B2F · Super Rod (morning/day)", pokemon: "Krabby", levels: "40", times: "Morning, day", rate: "67%", rarity: "Common" }
+  { method: "B2F · Super Rod (morning/day)", pokemon: "Corsola", levels: "40", times: "Morning, day", rate: "30%", rarity: "Uncommon" }
+  { method: "B2F · Super Rod (morning/day)", pokemon: "Kingler", levels: "40", times: "Morning, day", rate: "3%", rarity: "Rare" }
+  { method: "B2F · Super Rod (night)", pokemon: "Krabby", levels: "40", times: "Night", rate: "67%", rarity: "Common" }
+  { method: "B2F · Super Rod (night)", pokemon: "Staryu", levels: "40", times: "Night", rate: "30%", rarity: "Uncommon" }
+  { method: "B2F · Super Rod (night)", pokemon: "Kingler", levels: "40", times: "Night", rate: "3%", rarity: "Rare" }
+  { method: "B2F · Friday encounter", pokemon: "Lapras", levels: "20", times: "Friday, interact", rate: "Limited", rarity: "Limited" }
+]);
+
 function renderEncounters(locationName) {
-  if (locationName !== "Route 32") return null;
+  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : null;
+  if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
   const heading = document.createElement("strong");
   heading.textContent = "Wild Pokémon · SoulSilver";
   const note = document.createElement("p");
   note.className = "encounter-note";
-  note.textContent = "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
   section.append(heading, note);
 
-  const methods = [...new Set(ROUTE_32_ENCOUNTERS.map((entry) => entry.method))];
+  const methods = [...new Set(encounters.map((entry) => entry.method))];
   for (const method of methods) {
     const group = document.createElement("div");
     group.className = "encounter-method";
@@ -174,7 +240,7 @@ function renderEncounters(locationName) {
     methodHeading.textContent = method;
     const entries = document.createElement("div");
     entries.className = "encounter-entries";
-    for (const encounter of ROUTE_32_ENCOUNTERS.filter((entry) => entry.method === method)) {
+    for (const encounter of encounters.filter((entry) => entry.method === method)) {
       const row = document.createElement("div");
       row.className = "encounter-entry";
       const name = document.createElement("span");
@@ -182,7 +248,7 @@ function renderEncounters(locationName) {
       name.textContent = encounter.pokemon;
       const info = document.createElement("span");
       info.className = "encounter-info";
-      info.textContent = `Lv. ${encounter.levels} · ${encounter.times} · ${encounter.rarity}`;
+      info.textContent = `Lv. ${encounter.levels} · ${encounter.times}${encounter.rate ? ` · ${encounter.rate}` : ` · ${encounter.rarity}`}`;
       row.append(name, info);
       entries.append(row);
     }
