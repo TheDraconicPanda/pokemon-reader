@@ -60,7 +60,9 @@
 - [ ] Expand and verify Johto locations
 - [x] Add connected-location navigation
 - [ ] Routes and areas
-- [x] Add first verified wild-encounter dataset (Route 32)\n- [ ] Expand wild encounters to other areas
+- [x] Add first verified wild-encounter dataset (Route 32)
+- [x] Add Union Cave wild encounters by floor and method
+- [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
 - [ ] Other useful location data
