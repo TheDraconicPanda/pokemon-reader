@@ -62,6 +62,7 @@
 - [ ] Routes and areas
 - [x] Add first verified wild-encounter dataset (Route 32)
 - [x] Add Union Cave wild encounters by floor and method
+- [x] Add Route 33 wild encounters by time, Radio, and Headbutt group
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
