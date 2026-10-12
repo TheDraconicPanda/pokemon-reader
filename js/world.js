@@ -269,7 +269,7 @@ const ROUTE_34_ENCOUNTERS = Object.freeze([
   { method: "Super Rod · Morning/Day", pokemon: "Corsola", levels: "40", times: "Morning, day", rate: "30%", rarity: "Common" },
   { method: "Super Rod · Morning/Day", pokemon: "Kingler", levels: "40", times: "Morning, day", rate: "3%", rarity: "Rare" },
   { method: "Super Rod · Night", pokemon: "Krabby", levels: "40", times: "Night", rate: "67%", rarity: "Common" },
-  { method: "Super Rod · Night", pokemon: "Super Rod · Night", levels: "40", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Super Rod · Night", pokemon: "Staryu", levels: "40", times: "Night", rate: "30%", rarity: "Common" },
   { method: "Super Rod · Night", pokemon: "Kingler", levels: "40", times: "Night", rate: "3%", rarity: "Rare" },
   { method: "Headbutt", pokemon: "Hoothoot", levels: "9–12", times: "All times", rate: "50%", rarity: "Common" },
   { method: "Headbutt", pokemon: "Exeggcute", levels: "9–12", times: "All times", rate: "20%", rarity: "Uncommon" },
