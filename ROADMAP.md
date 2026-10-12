@@ -58,6 +58,7 @@
 - [x] Define initial location data model
 - [x] Build searchable directory foundation
 - [ ] Expand and verify Johto locations
+- [x] Add connected-location navigation
 - [ ] Routes and areas
 - [ ] Wild encounters
 - [ ] Trainers
