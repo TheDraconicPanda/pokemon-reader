@@ -174,7 +174,6 @@ function renderLocations() {
           searchInput.value = name;
           typeSelect.value = "all";
           renderLocations();
-          searchInput.focus();
         });
         links.append(link);
       }
