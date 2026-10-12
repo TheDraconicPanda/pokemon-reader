@@ -64,6 +64,7 @@
 - [x] Add Union Cave wild encounters by floor and method
 - [x] Add Route 33 wild encounters by time, Radio, and Headbutt group
 - [x] Add Azalea Town Headbutt encounters
+- [x] Add Route 34 wild encounters by method and condition
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
