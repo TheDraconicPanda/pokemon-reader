@@ -220,8 +220,30 @@ const UNION_CAVE_ENCOUNTERS = Object.freeze([
   { method: "B2F · Friday encounter", pokemon: "Lapras", levels: "20", times: "Friday, interact", rate: "Limited", rarity: "Limited" },
 ]);
 
+const ROUTE_33_ENCOUNTERS = Object.freeze([
+  { method: "Walking · Morning", pokemon: "Hoppip", levels: "6–8", times: "Morning", rate: "35%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Ekans", levels: "7", times: "Morning", rate: "30%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Spearow", levels: "6", times: "Morning", rate: "20%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Rattata", levels: "6", times: "Morning", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Morning", pokemon: "Zubat", levels: "4", times: "Morning", rate: "5%", rarity: "Rare" },
+  { method: "Walking · Day", pokemon: "Hoppip", levels: "6–8", times: "Day", rate: "35%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Ekans", levels: "7", times: "Day", rate: "30%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Spearow", levels: "6", times: "Day", rate: "20%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Rattata", levels: "4–6", times: "Day", rate: "15%", rarity: "Uncommon" },
+  { method: "Walking · Night", pokemon: "Rattata", levels: "6", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Zubat", levels: "4–8", times: "Night", rate: "40%", rarity: "Common" },
+  { method: "Hoenn Sound", pokemon: "Plusle", levels: "6–7", times: "Hoenn Sound", rate: "20%", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Minun", levels: "6", times: "Hoenn Sound", rate: "20%", rarity: "Uncommon" },
+  { method: "Sinnoh Sound", pokemon: "Shinx", levels: "6–7", times: "Sinnoh Sound", rate: "40%", rarity: "Uncommon" },
+  { method: "Headbutt · Group A", pokemon: "Spearow", levels: "3–5", times: "All times", rate: "50%", rarity: "Common" },
+  { method: "Headbutt · Group A", pokemon: "Aipom", levels: "3–5", times: "All times", rate: "20%", rarity: "Uncommon" },
+  { method: "Headbutt · Group A", pokemon: "Heracross", levels: "3–5", times: "All times", rate: "30%", rarity: "Uncommon" },
+  { method: "Headbutt · Group B", pokemon: "Spearow", levels: "6–8", times: "All times", rate: "80%", rarity: "Common" },
+  { method: "Headbutt · Group B", pokemon: "Aipom", levels: "6–8", times: "All times", rate: "20%", rarity: "Uncommon" }
+]);
+
 function renderEncounters(locationName) {
-  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : null;
+  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : null;
   if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
@@ -229,7 +251,7 @@ function renderEncounters(locationName) {
   heading.textContent = "Wild Pokémon · SoulSilver";
   const note = document.createElement("p");
   note.className = "encounter-note";
-  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
   section.append(heading, note);
 
   const methods = [...new Set(encounters.map((entry) => entry.method))];
