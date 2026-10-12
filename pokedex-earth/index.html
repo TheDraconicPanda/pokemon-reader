@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>SoulSilver PokéEarth — Pokémon Reader</title>
+  <link rel="stylesheet" href="../css/world.css">
+</head>
+<body>
+  <main class="world-app">
+    <header class="world-header">
+      <a class="back-link" href="../">← Pokémon Reader</a>
+      <p class="eyebrow">POKÉMON READER · SOULSILVER REFERENCE</p>
+      <h1>Johto PokéEarth</h1>
+      <p>Search a starter directory of Johto towns, routes, landmarks, and facilities. Encounter tables, trainers, and item locations will be added in later slices.</p>
+    </header>
+
+    <section class="world-panel" aria-label="Search locations">
+      <label class="search-label" for="location-search">Search locations
+        <input id="location-search" type="search" placeholder="Try Violet City, Route 32, or cave…" autocomplete="off">
+      </label>
+      <label class="filter-label" for="location-type">Location type
+        <select id="location-type">
+          <option value="all">All locations</option>
+          <option value="town">Towns &amp; cities</option>
+          <option value="route">Routes</option>
+          <option value="landmark">Caves &amp; landmarks</option>
+          <option value="facility">Buildings &amp; facilities</option>
+        </select>
+      </label>
+      <p id="location-count" class="location-count" aria-live="polite">Loading locations…</p>
+      <div id="location-list" class="location-list"></div>
+      <p id="empty-message" class="empty-message" hidden>No locations match that search.</p>
+    </section>
+  </main>
+  <script type="module" src="../js/world.js"></script>
+</body>
+</html>
