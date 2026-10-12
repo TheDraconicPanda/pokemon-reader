@@ -55,6 +55,64 @@ const LOCATIONS = Object.freeze([
   { name: "Mt. Silver", type: "landmark", region: "Kanto border", details: "Postgame mountain area west of the Pokémon League." }
 ]);
 
+
+const CONNECTIONS = Object.freeze({
+  "New Bark Town": ["Route 29"],
+  "Cherrygrove City": ["Route 29", "Route 30"],
+  "Violet City": ["Route 31", "Route 32", "Route 36"],
+  "Azalea Town": ["Route 33", "Ilex Forest", "Slowpoke Well"],
+  "Goldenrod City": ["Route 34", "Route 35", "Goldenrod Department Store", "Goldenrod Radio Tower"],
+  "Ecruteak City": ["Route 37", "Route 38", "Route 42", "Burned Tower", "Bell Tower"],
+  "Olivine City": ["Route 39", "Route 40", "Olivine Lighthouse", "S.S. Aqua"],
+  "Cianwood City": ["Route 41", "Route 47"],
+  "Mahogany Town": ["Route 42", "Route 43", "Route 44"],
+  "Blackthorn City": ["Route 45", "Ice Path", "Dragon's Den"],
+  "Route 29": ["New Bark Town", "Cherrygrove City", "Route 46"],
+  "Route 30": ["Cherrygrove City", "Route 31", "Ruins of Alph"],
+  "Route 31": ["Route 30", "Violet City", "Dark Cave"],
+  "Route 32": ["Violet City", "Union Cave", "Ruins of Alph"],
+  "Route 33": ["Union Cave", "Azalea Town"],
+  "Route 34": ["Goldenrod City", "Pokémon Day Care"],
+  "Route 35": ["Goldenrod City", "National Park", "Pokéathlon Dome"],
+  "Route 36": ["Violet City", "National Park", "Route 37"],
+  "Route 37": ["Route 36", "Ecruteak City"],
+  "Route 38": ["Ecruteak City", "Route 39"],
+  "Route 39": ["Route 38", "Olivine City"],
+  "Route 40": ["Olivine City", "Route 41"],
+  "Route 41": ["Route 40", "Whirl Islands", "Cianwood City"],
+  "Route 42": ["Ecruteak City", "Mt. Mortar", "Mahogany Town"],
+  "Route 43": ["Mahogany Town", "Lake of Rage"],
+  "Route 44": ["Mahogany Town", "Ice Path"],
+  "Route 45": ["Blackthorn City", "Dark Cave", "Route 46"],
+  "Route 46": ["Route 29", "Route 45", "Dark Cave"],
+  "Route 47": ["Cianwood City", "Route 48", "Safari Zone"],
+  "Route 48": ["Route 47", "Safari Zone"],
+  "Dark Cave": ["Route 31", "Route 45", "Route 46"],
+  "Sprout Tower": ["Violet City"],
+  "Ruins of Alph": ["Route 30", "Route 32"],
+  "Union Cave": ["Route 32", "Route 33"],
+  "Slowpoke Well": ["Azalea Town"],
+  "Ilex Forest": ["Azalea Town"],
+  "National Park": ["Route 35", "Route 36", "Pokéathlon Dome"],
+  "Burned Tower": ["Ecruteak City"],
+  "Bell Tower": ["Ecruteak City"],
+  "Mt. Mortar": ["Route 42"],
+  "Whirl Islands": ["Route 41"],
+  "Lake of Rage": ["Route 43"],
+  "Ice Path": ["Route 44", "Blackthorn City"],
+  "Dragon's Den": ["Blackthorn City"],
+  "Safari Zone": ["Route 47", "Route 48"],
+  "Pokéathlon Dome": ["National Park", "Route 35"],
+  "Goldenrod Department Store": ["Goldenrod City"],
+  "Goldenrod Radio Tower": ["Goldenrod City"],
+  "Olivine Lighthouse": ["Olivine City"],
+  "Pokémon Day Care": ["Route 34", "Goldenrod City"],
+  "S.S. Aqua": ["Olivine City"],
+  "Victory Road": ["Indigo Plateau"],
+  "Indigo Plateau": ["Victory Road"],
+  "Mt. Silver": ["Indigo Plateau"]
+});
+
 const searchInput = document.querySelector("#location-search");
 const typeSelect = document.querySelector("#location-type");
 const countLabel = document.querySelector("#location-count");
@@ -96,6 +154,34 @@ function renderLocations() {
     badge.textContent = TYPE_LABELS[location.type];
 
     card.append(text, badge);
+
+    const connectedNames = (CONNECTIONS[location.name] || []).filter((name) =>
+      LOCATIONS.some((candidate) => candidate.name === name)
+    );
+    if (connectedNames.length) {
+      const connections = document.createElement("div");
+      connections.className = "location-connections";
+      const label = document.createElement("strong");
+      label.textContent = "Connected locations";
+      const links = document.createElement("div");
+      links.className = "connection-links";
+      for (const name of connectedNames) {
+        const link = document.createElement("button");
+        link.type = "button";
+        link.className = "connection-link";
+        link.textContent = name;
+        link.addEventListener("click", () => {
+          searchInput.value = name;
+          typeSelect.value = "all";
+          renderLocations();
+          searchInput.focus();
+        });
+        links.append(link);
+      }
+      connections.append(label, links);
+      card.append(connections);
+    }
+
     list.append(card);
   }
 
