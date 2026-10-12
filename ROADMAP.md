@@ -55,9 +55,9 @@
 - [ ] Detailed Pokémon view
 
 ## Phase 6 — Custom PokéEarth
-- [ ] Define data model
-- [ ] World/map foundation
-- [ ] Johto locations
+- [x] Define initial location data model
+- [x] Build searchable directory foundation
+- [ ] Expand and verify Johto locations
 - [ ] Routes and areas
 - [ ] Wild encounters
 - [ ] Trainers
