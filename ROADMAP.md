@@ -71,6 +71,7 @@
 - [x] Add Route 38 encounter reference
 - [x] Add Route 39 encounter reference
 - [x] Add Route 40 encounter reference
+- [x] Add Route 41 encounter reference
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
