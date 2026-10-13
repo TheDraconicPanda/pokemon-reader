@@ -1,0 +1,16 @@
+{
+  "name": "pokemon-reader",
+  "version": "1.0.0",
+  "description": "A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server . -p 8080 -c-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
