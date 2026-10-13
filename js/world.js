@@ -368,8 +368,45 @@ const ROUTE_37_ENCOUNTERS = Object.freeze([
   { method: "Sinnoh Sound", pokemon: "Shinx", levels: "13, 15", times: "Radio broadcast", rate: "40%", rarity: "Conditional" }
 ]);
 
+const ROUTE_38_ENCOUNTERS = Object.freeze([
+  { method: "Walking · Morning", pokemon: "Raticate", levels: "16", times: "Morning", rate: "30%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Meowth", levels: "16", times: "Morning", rate: "30%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Magnemite", levels: "16", times: "Morning", rate: "20%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Farfetch'd", levels: "16", times: "Morning", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Morning", pokemon: "Miltank", levels: "13", times: "Morning", rate: "5%", rarity: "Rare" },
+  { method: "Walking · Morning", pokemon: "Tauros", levels: "13", times: "Morning", rate: "4%", rarity: "Rare" },
+  { method: "Walking · Morning", pokemon: "Snubbull", levels: "13", times: "Morning", rate: "1%", rarity: "Very rare" },
+  { method: "Walking · Day", pokemon: "Raticate", levels: "16", times: "Day", rate: "30%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Meowth", levels: "16", times: "Day", rate: "30%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Magnemite", levels: "16", times: "Day", rate: "20%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Farfetch'd", levels: "16", times: "Day", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Day", pokemon: "Miltank", levels: "13", times: "Day", rate: "5%", rarity: "Rare" },
+  { method: "Walking · Day", pokemon: "Tauros", levels: "13", times: "Day", rate: "4%", rarity: "Rare" },
+  { method: "Walking · Day", pokemon: "Snubbull", levels: "13", times: "Day", rate: "1%", rarity: "Very rare" },
+  { method: "Walking · Night", pokemon: "Meowth", levels: "16", times: "Night", rate: "40%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Raticate", levels: "16", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Magnemite", levels: "16", times: "Night", rate: "20%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Miltank", levels: "13", times: "Night", rate: "5%", rarity: "Rare" },
+  { method: "Walking · Night", pokemon: "Tauros", levels: "13", times: "Night", rate: "4%", rarity: "Rare" },
+  { method: "Walking · Night", pokemon: "Snubbull", levels: "13", times: "Night", rate: "1%", rarity: "Very rare" },
+  { method: "Headbutt · Group A", pokemon: "Hoothoot", levels: "13–14", times: "All times", rate: "50%", rarity: "Common" },
+  { method: "Headbutt · Group A", pokemon: "Pineco", levels: "13–14", times: "All times", rate: "30%", rarity: "Uncommon" },
+  { method: "Headbutt · Group A", pokemon: "Exeggcute", levels: "13–14", times: "All times", rate: "20%", rarity: "Uncommon" },
+  { method: "Headbutt · Group B", pokemon: "Hoothoot", levels: "15–16", times: "All times", rate: "50%", rarity: "Common" },
+  { method: "Headbutt · Group B", pokemon: "Ledyba", levels: "15–16", times: "All times", rate: "30%", rarity: "Uncommon" },
+  { method: "Headbutt · Group B", pokemon: "Spinarak", levels: "15–16", times: "All times", rate: "30%", rarity: "Uncommon" },
+  { method: "Headbutt · Group B", pokemon: "Exeggcute", levels: "15–16", times: "All times", rate: "20%", rarity: "Uncommon" },
+  { method: "Headbutt · Rock Climb tree", pokemon: "Exeggcute", levels: "18–25", times: "All times", rate: "65%", rarity: "Common" },
+  { method: "Headbutt · Rock Climb tree", pokemon: "Burmy", levels: "18–20", times: "All times", rate: "30%", rarity: "Uncommon" },
+  { method: "Headbutt · Rock Climb tree", pokemon: "Burmy", levels: "21–25", times: "All times", rate: "5%", rarity: "Rare" },
+  { method: "Hoenn Sound", pokemon: "Plusle", levels: "16", times: "Radio broadcast", rate: "20%", rarity: "Conditional" },
+  { method: "Hoenn Sound", pokemon: "Minun", levels: "16", times: "Radio broadcast", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Shinx", levels: "16", times: "Radio broadcast", rate: "40%", rarity: "Conditional" },
+  { method: "Swarm", pokemon: "Snubbull", levels: "13–16", times: "Swarm active", rate: "40%", rarity: "Conditional" }
+]);
+
 function renderEncounters(locationName) {
-  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : null;
+  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : locationName === "Route 38" ? ROUTE_38_ENCOUNTERS : null;
   if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
@@ -377,7 +414,7 @@ function renderEncounters(locationName) {
   heading.textContent = "Wild Pokémon · SoulSilver";
   const note = document.createElement("p");
   note.className = "encounter-note";
-  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : locationName === "Route 35" ? "Walking encounters vary by time of day; surfing, fishing, Headbutt tree groups, Radio broadcasts, and Yanma swarms have separate entries." : locationName === "Route 36" ? "SoulSilver walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, Headbutt details are not fully listed by the reference, and Sudowoodo is a special level 20 interaction." : locationName === "Route 37" ? "SoulSilver walking encounters vary by time of day; Headbutt entries vary by tree group, while Plusle and Minun require Hoenn Sound and Shinx requires Sinnoh Sound." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : locationName === "Route 35" ? "Walking encounters vary by time of day; surfing, fishing, Headbutt tree groups, Radio broadcasts, and Yanma swarms have separate entries." : locationName === "Route 36" ? "SoulSilver walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, Headbutt details are not fully listed by the reference, and Sudowoodo is a special level 20 interaction." : locationName === "Route 37" ? "SoulSilver walking encounters vary by time of day; Headbutt entries vary by tree group, while Plusle and Minun require Hoenn Sound and Shinx requires Sinnoh Sound." : locationName === "Route 38" ? "Walking encounters vary by time of day. Headbutt entries include regular tree groups and a special tree reached with Rock Climb; Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, and Snubbull appears during a swarm." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
   section.append(heading, note);
 
   const methods = [...new Set(encounters.map((entry) => entry.method))];
