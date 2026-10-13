@@ -66,6 +66,7 @@
 - [x] Add Azalea Town Headbutt encounters
 - [x] Add Route 34 wild encounters by method and condition
 - [x] Add Route 35 wild encounters by time, method, and condition
+- [x] Add Route 36 wild encounters by time, Radio, Headbutt, and special interaction
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
