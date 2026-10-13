@@ -519,8 +519,94 @@ const WHIRL_ISLANDS_ENCOUNTERS = Object.freeze([
   { method: "Bottom · Special encounter", pokemon: "Lugia", levels: "45", times: "After required story items/event", rarity: "Legendary" }
 ]);
 
+
+const ROUTE_42_ENCOUNTERS = Object.freeze([
+  { method: "Walking · Morning", pokemon: "Mareep", levels: "13–15", times: "Morning", rate: "50%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Spearow", levels: "14–16", times: "Morning", rate: "40%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Flaaffy", levels: "15–17", times: "Morning", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Day", pokemon: "Mareep", levels: "13–15", times: "Day", rate: "50%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Spearow", levels: "14–16", times: "Day", rate: "40%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Flaaffy", levels: "15–17", times: "Day", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Night", pokemon: "Mareep", levels: "13–15", times: "Night", rate: "50%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Zubat", levels: "14–16", times: "Night", rate: "40%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Flaaffy", levels: "15–17", times: "Night", rate: "10%", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Whismur", levels: "13–14", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Hoenn Sound", pokemon: "Linoone", levels: "14", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Bidoof", levels: "14", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Buizel", levels: "13–14", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Headbutt", pokemon: "Spearow", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Aipom", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Heracross", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Surfing", pokemon: "Goldeen", levels: "10–25", times: "All times", rate: "90%", rarity: "Common" },
+  { method: "Surfing", pokemon: "Seaking", levels: "15–25", times: "All times", rate: "10%", rarity: "Uncommon" },
+  { method: "Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Goldeen", levels: "10", times: "All times", rate: "5%", rarity: "Rare" },
+  { method: "Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rate: "60%", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Goldeen", levels: "20", times: "All times", rate: "40%", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Goldeen", levels: "40", times: "All times", rate: "90%", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rate: "7%", rarity: "Rare" },
+  { method: "Super Rod", pokemon: "Seaking", levels: "40", times: "All times", rate: "3%", rarity: "Rare" }
+]);
+
+const ROUTE_43_ENCOUNTERS = Object.freeze([
+  { method: "Walking · Morning", pokemon: "Flaaffy", levels: "15", times: "Morning", rate: "30%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Girafarig", levels: "15", times: "Morning", rate: "30%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Pidgeotto", levels: "17", times: "Morning", rate: "25%", rarity: "Common" },
+  { method: "Walking · Morning", pokemon: "Mareep", levels: "15", times: "Morning", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Morning", pokemon: "Venonat", levels: "16", times: "Morning", rate: "5%", rarity: "Rare" },
+  { method: "Walking · Day", pokemon: "Flaaffy", levels: "15–17", times: "Day", rate: "40%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Girafarig", levels: "15", times: "Day", rate: "30%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Pidgeotto", levels: "17", times: "Day", rate: "20%", rarity: "Common" },
+  { method: "Walking · Day", pokemon: "Mareep", levels: "15", times: "Day", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking · Night", pokemon: "Flaaffy", levels: "15", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Girafarig", levels: "15", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Noctowl", levels: "17", times: "Night", rate: "20%", rarity: "Common" },
+  { method: "Walking · Night", pokemon: "Venonat", levels: "15–17", times: "Night", rate: "15%", rarity: "Uncommon" },
+  { method: "Walking · Night", pokemon: "Mareep", levels: "16", times: "Night", rate: "5%", rarity: "Rare" },
+  { method: "Hoenn Sound", pokemon: "Whismur", levels: "15", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Hoenn Sound", pokemon: "Linoone", levels: "17", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Bidoof", levels: "17", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Buizel", levels: "15", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Headbutt", pokemon: "Venonat", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Exeggcute", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Hoothoot", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Pineco", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Surfing", pokemon: "Magikarp", levels: "5–50", times: "All times", rate: "100%", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Poliwag", levels: "10", times: "All times", rate: "5%", rarity: "Rare" },
+  { method: "Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rate: "60%", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Poliwag", levels: "20", times: "All times", rate: "40%", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Poliwag", levels: "40", times: "All times", rate: "93%", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rate: "7%", rarity: "Rare" }
+]);
+
+const ROUTE_44_ENCOUNTERS = Object.freeze([
+  { method: "Walking", pokemon: "Weepinbell", levels: "22–24", times: "All times", rate: "35%", rarity: "Common" },
+  { method: "Walking", pokemon: "Tangela", levels: "23", times: "All times", rate: "30%", rarity: "Common" },
+  { method: "Walking", pokemon: "Bellsprout", levels: "22", times: "All times", rate: "20%", rarity: "Common" },
+  { method: "Walking", pokemon: "Lickitung", levels: "24–26", times: "All times", rate: "15%", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Whismur", levels: "22–23", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Hoenn Sound", pokemon: "Linoone", levels: "22", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Buizel", levels: "22–23", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Sinnoh Sound", pokemon: "Bidoof", levels: "22", times: "All times", rate: "20%", rarity: "Conditional" },
+  { method: "Headbutt", pokemon: "Spearow", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Aipom", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Headbutt", pokemon: "Heracross", levels: "Not specified", times: "All times", rarity: "Encounter listed; rate not specified" },
+  { method: "Surfing", pokemon: "Poliwag", levels: "10–25", times: "All times", rate: "90%", rarity: "Common" },
+  { method: "Surfing", pokemon: "Poliwhirl", levels: "15–32", times: "All times", rate: "10%", rarity: "Uncommon" },
+  { method: "Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "95%", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Poliwag", levels: "10", times: "All times", rate: "5%", rarity: "Rare" },
+  { method: "Good Rod", pokemon: "Magikarp", levels: "20", times: "All times", rate: "60%", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Poliwag", levels: "20", times: "All times", rate: "38%", rarity: "Common" },
+  { method: "Good Rod", pokemon: "Remoraid", levels: "20", times: "All times", rate: "2%", rarity: "Rare" },
+  { method: "Super Rod", pokemon: "Poliwag", levels: "40", times: "All times", rate: "90%", rarity: "Common" },
+  { method: "Super Rod", pokemon: "Magikarp", levels: "40", times: "All times", rate: "7%", rarity: "Rare" },
+  { method: "Super Rod", pokemon: "Remoraid", levels: "40", times: "All times", rate: "3%", rarity: "Rare" },
+  { method: "Swarm", pokemon: "Remoraid", levels: "10–40", times: "Fishing swarm", rate: "90%", rarity: "Conditional" }
+]);
+
 function renderEncounters(locationName) {
-  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : locationName === "Route 38" ? ROUTE_38_ENCOUNTERS : locationName === "Route 39" ? ROUTE_39_ENCOUNTERS : locationName === "Route 40" ? ROUTE_40_ENCOUNTERS : locationName === "Route 41" ? ROUTE_41_ENCOUNTERS : locationName === "Whirl Islands" ? WHIRL_ISLANDS_ENCOUNTERS : null;
+  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : locationName === "Route 38" ? ROUTE_38_ENCOUNTERS : locationName === "Route 39" ? ROUTE_39_ENCOUNTERS : locationName === "Route 40" ? ROUTE_40_ENCOUNTERS : locationName === "Route 41" ? ROUTE_41_ENCOUNTERS : locationName === "Route 42" ? ROUTE_42_ENCOUNTERS : locationName === "Route 43" ? ROUTE_43_ENCOUNTERS : locationName === "Route 44" ? ROUTE_44_ENCOUNTERS : locationName === "Whirl Islands" ? WHIRL_ISLANDS_ENCOUNTERS : null;
   if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
@@ -528,7 +614,7 @@ function renderEncounters(locationName) {
   heading.textContent = "Wild Pokémon · SoulSilver";
   const note = document.createElement("p");
   note.className = "encounter-note";
-  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : locationName === "Route 35" ? "Walking encounters vary by time of day; surfing, fishing, Headbutt tree groups, Radio broadcasts, and Yanma swarms have separate entries." : locationName === "Route 36" ? "SoulSilver walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, Headbutt details are not fully listed by the reference, and Sudowoodo is a special level 20 interaction." : locationName === "Route 37" ? "SoulSilver walking encounters vary by time of day; Headbutt entries vary by tree group, while Plusle and Minun require Hoenn Sound and Shinx requires Sinnoh Sound." : locationName === "Route 38" ? "Walking encounters vary by time of day. Headbutt entries include regular tree groups and a special tree reached with Rock Climb; Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, and Snubbull appears during a swarm." : locationName === "Route 39" ? "Walking encounters vary by time of day; Headbutt encounters vary by tree group, and Plusle, Minun, and Shinx require the matching radio broadcast." : locationName === "Route 40" ? "This sea route has Surfing encounters and fishing tables. Good Rod and Super Rod species vary by time of day; Route 40 has no separate walking encounter table." : locationName === "Route 41" ? "This sea route surrounds the Whirl Islands. SoulSilver Surfing and fishing encounters are listed here; access into the islands requires Whirlpool." : locationName === "Whirl Islands" ? "Encounter tables are grouped by floor. Radio species require the matching broadcast; Lugia is a special story encounter in the bottom chamber, not a normal wild encounter." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : locationName === "Route 35" ? "Walking encounters vary by time of day; surfing, fishing, Headbutt tree groups, Radio broadcasts, and Yanma swarms have separate entries." : locationName === "Route 36" ? "SoulSilver walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, Headbutt details are not fully listed by the reference, and Sudowoodo is a special level 20 interaction." : locationName === "Route 37" ? "SoulSilver walking encounters vary by time of day; Headbutt entries vary by tree group, while Plusle and Minun require Hoenn Sound and Shinx requires Sinnoh Sound." : locationName === "Route 38" ? "Walking encounters vary by time of day. Headbutt entries include regular tree groups and a special tree reached with Rock Climb; Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, and Snubbull appears during a swarm." : locationName === "Route 39" ? "Walking encounters vary by time of day; Headbutt encounters vary by tree group, and Plusle, Minun, and Shinx require the matching radio broadcast." : locationName === "Route 40" ? "This sea route has Surfing encounters and fishing tables. Good Rod and Super Rod species vary by time of day; Route 40 has no separate walking encounter table." : locationName === "Route 41" ? "This sea route surrounds the Whirl Islands. SoulSilver Surfing and fishing encounters are listed here; access into the islands requires Whirlpool." : locationName === "Route 42" ? "Walking encounters vary by time of day; Radio encounters require the matching broadcast. Headbutt encounter rates and levels are not specified in the reference." : locationName === "Route 43" ? "Walking encounters vary by time of day; Radio and Headbutt entries are conditional. The route also has Surfing and fishing tables." : locationName === "Route 44" ? "Walking, Radio, Headbutt, Surfing, fishing, and Remoraid swarm encounters are listed. Headbutt rates and levels are not specified in the reference." : locationName === "Whirl Islands" ? "Encounter tables are grouped by floor. Radio species require the matching broadcast; Lugia is a special story encounter in the bottom chamber, not a normal wild encounter." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
   section.append(heading, note);
 
   const methods = [...new Set(encounters.map((entry) => entry.method))];
