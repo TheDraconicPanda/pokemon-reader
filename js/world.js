@@ -249,8 +249,41 @@ const AZALEA_TOWN_ENCOUNTERS = Object.freeze([
   { method: "Headbutt · Group A", pokemon: "Heracross", levels: "—", times: "All times", rate: "Not listed", rarity: "Uncommon" }
 ]);
 
+
+const ROUTE_34_ENCOUNTERS = Object.freeze([
+  { method: "Walking", pokemon: "Rattata", levels: "11–13", times: "Morning, day, night", rate: "35%", rarity: "Common" },
+  { method: "Walking", pokemon: "Drowzee", levels: "10–12", times: "Morning, day, night", rate: "50%", rarity: "Common" },
+  { method: "Walking", pokemon: "Abra", levels: "10", times: "Morning, day, night", rate: "10%", rarity: "Uncommon" },
+  { method: "Walking", pokemon: "Ditto", levels: "10", times: "Morning, day, night", rate: "5%", rarity: "Rare" },
+  { method: "Surfing", pokemon: "Tentacool", levels: "10–25", times: "All times", rate: "90%", rarity: "Common" },
+  { method: "Surfing", pokemon: "Tentacruel", levels: "15–29", times: "All times", rate: "10%", rarity: "Uncommon" },
+  { method: "Old Rod", pokemon: "Magikarp", levels: "10", times: "All times", rate: "85%", rarity: "Common" },
+  { method: "Old Rod", pokemon: "Krabby", levels: "10", times: "All times", rate: "15%", rarity: "Uncommon" },
+  { method: "Good Rod · Morning/Day", pokemon: "Magikarp", levels: "20", times: "Morning, day", rate: "60%", rarity: "Common" },
+  { method: "Good Rod · Morning/Day", pokemon: "Krabby", levels: "20", times: "Morning, day", rate: "37%", rarity: "Common" },
+  { method: "Good Rod · Morning/Day", pokemon: "Corsola", levels: "20", times: "Morning, day", rate: "3%", rarity: "Rare" },
+  { method: "Good Rod · Night", pokemon: "Magikarp", levels: "20", times: "Night", rate: "60%", rarity: "Common" },
+  { method: "Good Rod · Night", pokemon: "Krabby", levels: "20", times: "Night", rate: "37%", rarity: "Common" },
+  { method: "Good Rod · Night", pokemon: "Staryu", levels: "20", times: "Night", rate: "3%", rarity: "Rare" },
+  { method: "Super Rod · Morning/Day", pokemon: "Krabby", levels: "40", times: "Morning, day", rate: "67%", rarity: "Common" },
+  { method: "Super Rod · Morning/Day", pokemon: "Corsola", levels: "40", times: "Morning, day", rate: "30%", rarity: "Common" },
+  { method: "Super Rod · Morning/Day", pokemon: "Kingler", levels: "40", times: "Morning, day", rate: "3%", rarity: "Rare" },
+  { method: "Super Rod · Night", pokemon: "Krabby", levels: "40", times: "Night", rate: "67%", rarity: "Common" },
+  { method: "Super Rod · Night", pokemon: "Staryu", levels: "40", times: "Night", rate: "30%", rarity: "Common" },
+  { method: "Super Rod · Night", pokemon: "Kingler", levels: "40", times: "Night", rate: "3%", rarity: "Rare" },
+  { method: "Headbutt", pokemon: "Hoothoot", levels: "9–12", times: "All times", rate: "50%", rarity: "Common" },
+  { method: "Headbutt", pokemon: "Exeggcute", levels: "9–12", times: "All times", rate: "20%", rarity: "Uncommon" },
+  { method: "Headbutt", pokemon: "Ledyba", levels: "11–12", times: "All times", rate: "20%", rarity: "Uncommon" },
+  { method: "Headbutt", pokemon: "Pineco", levels: "9–10", times: "All times", rate: "10%", rarity: "Rare" },
+  { method: "Hoenn Sound", pokemon: "Linoone", levels: "12", times: "Radio broadcast", rate: "20%", rarity: "Uncommon" },
+  { method: "Hoenn Sound", pokemon: "Whismur", levels: "10–11", times: "Radio broadcast", rate: "20%", rarity: "Uncommon" },
+  { method: "Sinnoh Sound", pokemon: "Bidoof", levels: "12", times: "Radio broadcast", rate: "20%", rarity: "Uncommon" },
+  { method: "Sinnoh Sound", pokemon: "Buizel", levels: "10–11", times: "Radio broadcast", rate: "20%", rarity: "Uncommon" },
+  { method: "Swarm", pokemon: "Ralts", levels: "10–11", times: "Swarm active", rate: "40%", rarity: "Uncommon" }
+]);
+
 function renderEncounters(locationName) {
-  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : null;
+  const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : null;
   if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
@@ -258,7 +291,7 @@ function renderEncounters(locationName) {
   heading.textContent = "Wild Pokémon · SoulSilver";
   const note = document.createElement("p");
   note.className = "encounter-note";
-  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
+  note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
   section.append(heading, note);
 
   const methods = [...new Set(encounters.map((entry) => entry.method))];
