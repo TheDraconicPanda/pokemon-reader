@@ -70,6 +70,7 @@
 - [x] Add Route 37 wild encounters by time, Headbutt group, and Radio
 - [x] Add Route 38 encounter reference
 - [x] Add Route 39 encounter reference
+- [x] Add Route 40 encounter reference
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
