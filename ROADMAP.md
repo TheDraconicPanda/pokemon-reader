@@ -72,6 +72,9 @@
 - [x] Add Route 39 encounter reference
 - [x] Add Route 40 encounter reference
 - [x] Add Route 41 encounter reference
+- [x] Add Route 42 encounter reference
+- [x] Add Route 43 encounter reference
+- [x] Add Route 44 encounter reference
 - [x] Add Whirl Islands wild encounters by floor and method
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
