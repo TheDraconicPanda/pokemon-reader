@@ -67,6 +67,7 @@
 - [x] Add Route 34 wild encounters by method and condition
 - [x] Add Route 35 wild encounters by time, method, and condition
 - [x] Add Route 36 wild encounters by time, Radio, Headbutt, and special interaction
+- [x] Add Route 37 wild encounters by time, Headbutt group, and Radio
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
 - [ ] Items
