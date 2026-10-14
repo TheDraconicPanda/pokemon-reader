@@ -169,3 +169,13 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Restore subtle text styling for Load Save, Planner, Atlas, and theme controls
 - [x] Preserve touch targets, focus indicators, and existing behavior
 - [ ] User acceptance of v0.25.31; Party refinements are next
+
+## Compact Party and detail refinement — v0.25.32
+
+- [x] Six whole-card buttons in a compact three-column/two-row grid with unchanged 96px sprites
+- [x] Nickname, type badges, and five-band HP bars; full stats/status/items remain in details
+- [x] One dialog name, right-side shiny/Egg icons, and two-row nature modifiers
+- [x] Borderless Moves and Training tables, IV/EV totals, and retained Hidden Power
+- [x] Conditional egg/form history, Friendship / 255, and expanded sourced Gen IV location labels
+- [x] Validate with 24 browser tests and phone/desktop visual review
+- [ ] User acceptance and real-save review of v0.25.32

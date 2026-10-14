@@ -204,16 +204,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.31<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.32<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.31'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.31");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.32");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.31'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -272,7 +272,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.31'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -300,15 +300,15 @@ test('Party keeps six slots and shared details retain fields, moves, and focus',
   await fixtureReader();
   await evaluate(`location.hash='party'`);
   await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`), 'Party route');
-  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > article').length`),6);
+  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > button').length`),6);
   assert.equal(await evaluate(`document.querySelectorAll('.empty-party-slot').length`),4);
-  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > article')[2].textContent.includes('Buddy')`),true);
+  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > button')[2].textContent.includes('Buddy')`),true);
   assert.equal(await evaluate(`document.querySelector('.hp-bar').value`),25);
-  assert.equal(await evaluate(`document.querySelector('.shiny-label').textContent`),'★ Shiny');
+  assert.equal(await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').tagName`),'BUTTON');
   await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').focus(); document.activeElement.click()`);
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`), 'Detail loaded');
   const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
-  for (const value of ['Summary','Stats','Moves','Training','History','Original','PP 20 / 49','PP Ups: 2','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
+  for (const value of ['Summary','Stats','Moves','Training','History','Original','20 / 49','PP Ups','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
   await command('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await until(() => evaluate(`!document.querySelector('#pokemon-detail-dialog').open`), 'Escape did not close details');
@@ -439,8 +439,8 @@ test('Metadata outage retains parsed data with honest fallback labels', async ()
     await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Fallback detail');
     const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
     assert.ok(content.includes('AbilityUnknown'));
-    assert.ok(content.includes('PP 20 / ?'));
-    assert.ok(content.includes('IV 31 · EV 1'));
+    assert.ok(content.includes('20 / ?'));
+    assert.equal(await evaluate(`document.querySelector('.training-section tbody tr').textContent`),'HP311');
   } finally { apiUnavailable=false; await command('Fetch.disable'); }
 });
 
@@ -516,7 +516,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
   await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
   await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Nature details');
-  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-content').textContent.includes('Attack +10% · Special Attack −10%')`),true);
+  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent.includes('Attack +10%') && document.querySelector('.nature-down').textContent.includes('Special Attack −10%')`),true);
   await evaluate(`document.querySelector('#pokemon-detail-close').click(); location.hash='storage'`);
   await until(() => evaluate(`document.querySelector('[data-view="storage"]').getAttribute('aria-current') === 'page'`),'Storage route');
   await evaluate(`document.querySelector('#box-grid .pokemon-detail-button').click()`);
@@ -529,7 +529,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.31'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -594,5 +594,86 @@ test('Reader ribbon sticks to the top on desktop and mobile without overflow', a
     assert.equal(await evaluate(`document.querySelector('.secondary-nav').getBoundingClientRect().top < 0`),true,'Only Reader navigation should stick');
   }
   await command('Emulation.clearDeviceMetricsOverride');
+  await command('Fetch.disable');
+});
+
+test('Six occupied Party card buttons keep 96px sprites and fit a single viewport', async () => {
+  const data=fixture();
+  data.party=Array.from({length:6},(_,i)=>({...data.party[0],slot:i+1,nickname:`Teammate ${i+1}`,currentHp:[100,45,30,15,5,0][i],maxHp:100,shiny:false}));
+  await fixtureReader(data);
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+  assert.equal(await evaluate(`document.querySelectorAll('#party-grid button button').length`),0,'No nested Inspect controls');
+  assert.equal(await evaluate(`document.querySelector('#party-grid').textContent.includes('Held item') || document.querySelector('#party-grid').textContent.includes('Status:') || document.querySelector('#party-grid').textContent.includes('Inspect')`),false);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('#party-grid progress'),bar=>bar.className)`),['hp-bar hp-green','hp-bar hp-yellow','hp-bar hp-orange','hp-bar hp-red','hp-bar hp-critical','hp-bar hp-critical']);
+  for (const [width,height] of [[320,700],[390,844],[768,700],[1440,900]]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<800});
+    await evaluate(`window.scrollTo(0,0)`);
+    const layout=await evaluate(`Array.from(document.querySelectorAll('#party-grid > button'),card=>({top:card.getBoundingClientRect().top,bottom:card.getBoundingClientRect().bottom,spriteWidth:card.querySelector('img').getBoundingClientRect().width,spriteHeight:card.querySelector('img').getBoundingClientRect().height}))`);
+    for (const card of layout) {
+      assert.ok(card.top>=0 && card.bottom<=height,`Card outside ${width}×${height}: ${JSON.stringify(card)}`);
+      assert.equal(card.spriteWidth,96); assert.equal(card.spriteHeight,96);
+    }
+    assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
+    if (process.env.READER_SCREENSHOT_DIR) {
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.READER_SCREENSHOT_DIR,`six-party-${width}.png`),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await command('Page.bringToFront');
+  await evaluate(`document.querySelector('#party-grid button').focus()`);
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-dialog').open`),'Whole card Enter activation');
+  await command('Emulation.clearDeviceMetricsOverride'); await command('Fetch.disable');
+});
+
+test('Detail header, borderless tables, totals and conditional history match parsed data', async () => {
+  await command('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false});
+  const data=fixture(); Object.assign(data.party[0],{isEgg:true,friendship:200,natureId:3,metLocationId:227,eggDate:{year:2020,month:1,day:2},eggLocationId:2000});
+  await fixtureReader(data);
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Detailed record');
+  assert.equal(await evaluate(`document.querySelectorAll('#pokemon-detail-content h2').length`),0,'Name only in dialog title');
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.detail-icons [role="img"]'),icon=>icon.getAttribute('aria-label'))`),['Shiny Pokémon','Egg']);
+  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent`),'↑ Attack +10%');
+  assert.equal(await evaluate(`document.querySelector('.nature-down').textContent`),'↓ Special Attack −10%');
+  assert.equal(await evaluate(`Math.abs(document.querySelector('.nature-up').getBoundingClientRect().x - document.querySelector('.nature-down').getBoundingClientRect().x) < 1 && document.querySelector('.nature-down').getBoundingClientRect().y > document.querySelector('.nature-up').getBoundingClientRect().y`),true,'Nature modifiers must be two rows, not two columns');
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.moves-section thead th'),cell=>cell.textContent)`),['Move','Name','PP','PP Ups']);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelector('.moves-section tbody tr').children,cell=>cell.textContent)`),['1','Pound','20 / 49','2']);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.training-section thead th'),cell=>cell.textContent)`),['Stat','IV','EV']);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelector('.training-section tbody tr:last-child').children,cell=>cell.textContent)`),['Total','171','21']);
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.detail-table td')).borderTopWidth`),'0px');
+  const text=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
+  for (const value of ['200 / 255','Safari Zone Gate','Day-Care Couple','Egg received']) assert.ok(text.includes(value),value);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.pokemon-detail-list dt')).some(term=>term.textContent === 'Form')`),false);
+  if (process.env.READER_SCREENSHOT_DIR) {
+    const shot=await command('Page.captureScreenshot',{format:'png'});
+    await require('node:fs/promises').writeFile(path.join(process.env.READER_SCREENSHOT_DIR,'detail-tables-desktop.png'),Buffer.from(shot.data,'base64'));
+  }
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:true});
+  assert.equal(await evaluate(`document.querySelector('.nature-up').getBoundingClientRect().height < 20 && document.querySelector('.nature-down').getBoundingClientRect().height < 20`),true,'Each nature modifier is one line on mobile');
+  assert.equal(await evaluate(`const dialog=document.querySelector('#pokemon-detail-dialog'); dialog.scrollWidth <= dialog.clientWidth`),true);
+  if (process.env.READER_SCREENSHOT_DIR) {
+    const shot=await command('Page.captureScreenshot',{format:'png'});
+    await require('node:fs/promises').writeFile(path.join(process.env.READER_SCREENSHOT_DIR,'nature-mobile.png'),Buffer.from(shot.data,'base64'));
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  await command('Fetch.disable');
+});
+
+test('Ordinary Pokémon hide unknown egg history and missing training values do not invent totals', async () => {
+  const data=fixture(); data.party[0].ivs=null; data.party[0].evs=null; data.party[0].metLocationId=9999;
+  await fixtureReader(data);
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Details');
+  const terms=await evaluate(`Array.from(document.querySelectorAll('.pokemon-detail-list dt'),term=>term.textContent)`);
+  for (const term of ['Egg received','Egg location','Form']) assert.ok(!terms.includes(term),term);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelector('.training-section tbody tr:last-child').children,cell=>cell.textContent)`),['Total','—','—']);
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-content').textContent.includes('Location #9999')`),true,'Unknown IDs remain explicit');
   await command('Fetch.disable');
 });

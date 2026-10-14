@@ -76,7 +76,7 @@ The iteration number is intended to make deployed builds easy to identify while 
 
 ## Reader dashboard redesign
 
-Reader **v0.25.31** completes the implementation of milestones B–F on the dashboard
+Reader **v0.25.32** completes the implementation of milestones B–F on the dashboard
 foundation. Atlas remains v0.25.27; Team Planner and the binary parser are unchanged.
 The user requested one integrated release followed by final user testing.
 
@@ -84,9 +84,9 @@ The user requested one integrated release followed by final user testing.
   and interactive summary buttons. Load Save in the top ribbon clears the session
   and returns to the initial upload screen. The upload area is hidden once loaded;
   the old diagnostic Save Information block has been removed.
-- Party: six original slots, empty slots, SoulSilver-era sprites, shiny labels,
-  Generation IV types, HP bars, status, and held items. Inspect a card by clicking it or using its
-  keyboard-accessible Inspect button.
+- Party: six compact card buttons in a three-column, two-row grid. Sprites remain
+  96px; cards show nickname, Generation IV types, and an HP bar. Status, held item,
+  level, gender, and full identity remain in details. Enter or Space opens a card.
 - Details: one modal for Party and PC with Summary, Stats, all four Moves, Training,
   and History. Escape closes it; Tab stays inside; closing restores focus. Existing
   evolution export controls remain available here. PC records do not store current
@@ -117,7 +117,7 @@ Metadata requests time out after eight seconds and fall back to explicit unavail
 labels. Binary decoding, ability/item/nature identification, PP/PP Ups, Hidden Power,
 regional registration logic, and evolution mechanics remain unchanged.
 
-`npm test` runs 21 browser tests covering Atlas and Planner regressions, Reader
+`npm test` runs 24 browser tests covering Atlas and Planner regressions, Reader
 invalid-save handling, routing/themes, synthetic parsed-save rendering/replacement,
 six-slot Party order, modal keyboard behavior, PC order/search, registration versus
 ownership, collection controls/pagination, metadata outages, theme contrast, loaded layouts at 320/390/768/1440px, reset/reload behavior, sticky ribbons, and
@@ -131,7 +131,7 @@ into an isolated temporary Chromium trust database using `certutil`, retaining T
 verification. Neither variable is required for the normal regression suite.
 
 Final user acceptance and real-save validation remain pending. On the existing
-GitHub Pages site, confirm v0.25.31, load a known SoulSilver save, compare trainer,
+GitHub Pages site, confirm v0.25.32, load a known SoulSilver save, compare trainer,
 Party, PC, registrations, and collection counts against the game, then replace the
 save and verify every view refreshes. Check both themes, mobile navigation, dialog
 scrolling/keyboard controls, PC search, and existing evolution export behavior.
@@ -145,3 +145,26 @@ show their nickname, original Party/box slot, and an Inspect button.
 
 Reader v0.25.31 makes the top ribbon controls subtle text links, retaining keyboard
 focus indicators, touch targets, and existing reset/theme behavior.
+
+Reader v0.25.32 compacts Party and refines the shared detail dialog:
+
+- All six occupied cards fit in the tested 320×700, 390×844, 768×700, and 1440×900
+  viewports. Smaller viewport heights or larger accessibility text may still scroll.
+- HP bands: green above 50%, yellow above 35%, orange above 20%, red above 10%,
+  and deep red at 10% or below. Actual HP numbers remain in details.
+- The nickname appears once in the dialog title; shiny and Egg icons sit at the
+  header's far right. Nature changes occupy separate green-up and red-down rows;
+  neutral natures explicitly have no stat changes.
+- Borderless Moves (slot/name/current-max PP/PP Ups) and Training (stat/IV/EV)
+  tables retain all four moves and six stats. Totals precede Hidden Power and stay
+  unavailable if any contributing value is missing.
+- History omits unknown egg fields and unnamed forms, and shows Friendship / 255.
+  Generation IV location names now cover the base, 2000, and 3000 ID banks using
+  [PKHeX's location reference](https://github.com/kwsch/PKHeX/tree/641c26ba100225f3605e5a44b61b3b16e15a3774/PKHeX.Core/Resources/text/locations/gen4)
+  and its verified bank offsets. Unrecognized met IDs retain an explicit numeric
+  fallback rather than a guessed name. Binary parsing and calculations are unchanged.
+
+The 24 browser checks include six occupied cards, unchanged sprite dimensions,
+whole-card keyboard activation, HP colors, nature-row layout, table columns/totals,
+icon placement, conditional history, and location-name examples. Real-save review
+of the revised Party and details remains pending on the published site.
