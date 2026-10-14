@@ -882,6 +882,28 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Marshland · Walking · Morning/Day", pokemon: "Grimer", levels: "17", times: "Morning, day", rarity: "Standard encounter" },
   { method: "Marshland · Walking · Night", pokemon: "Koffing", levels: "15–17", times: "Night", rarity: "Standard encounter" },
   { method: "Marshland · Walking · Night", pokemon: "Gloom", levels: "17", times: "Night", rarity: "Standard encounter" }
+  { method: "Wetland · Surfing", pokemon: "Quagsire", levels: "16–17", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Surfing", pokemon: "Goldeen", levels: "15–17", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Old Rod", pokemon: "Magikarp", levels: "12–14", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Old Rod", pokemon: "Poliwag", levels: "10–15", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Good Rod", pokemon: "Magikarp", levels: "20–24", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Good Rod", pokemon: "Poliwag", levels: "20–24", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Good Rod", pokemon: "Poliwhirl", levels: "20–25", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Super Rod", pokemon: "Poliwag", levels: "35–40", times: "All times", rarity: "Standard encounter" },
+  { method: "Meadow · Super Rod", pokemon: "Poliwhirl", levels: "35–40", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Old Rod", pokemon: "Magikarp", levels: "12–14", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Old Rod", pokemon: "Poliwag", levels: "12–15", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Good Rod", pokemon: "Poliwag", levels: "22–24", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Good Rod", pokemon: "Poliwhirl", levels: "23–25", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Super Rod", pokemon: "Poliwag", levels: "35–37", times: "All times", rarity: "Standard encounter" },
+  { method: "Wetland · Super Rod", pokemon: "Poliwhirl", levels: "35–37", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Old Rod", pokemon: "Magikarp", levels: "12–15", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Good Rod", pokemon: "Magikarp", levels: "22–24", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Good Rod", pokemon: "Goldeen", levels: "22–24", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Good Rod", pokemon: "Seaking", levels: "24–25", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Super Rod", pokemon: "Goldeen", levels: "35–37", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Super Rod", pokemon: "Seaking", levels: "35–37", times: "All times", rarity: "Standard encounter" },
+  { method: "Marshland · Super Rod", pokemon: "Dratini", levels: "36–37", times: "All times", rarity: "Standard encounter" },
 ]);
 
 function renderEncounters(locationName) {
