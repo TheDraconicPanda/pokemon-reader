@@ -163,3 +163,9 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Make six summary statistics buttons with real Party/PC/owned/shiny/Seen/Caught destinations
 - [x] Validate with 21 browser tests, including reset/reload, sticky navigation, and summary destinations
 - [ ] User acceptance of v0.25.30 and confirmation it is live
+
+## Reader top ribbon refinement — v0.25.31
+
+- [x] Restore subtle text styling for Load Save, Planner, Atlas, and theme controls
+- [x] Preserve touch targets, focus indicators, and existing behavior
+- [ ] User acceptance of v0.25.31; Party refinements are next

@@ -76,7 +76,7 @@ The iteration number is intended to make deployed builds easy to identify while 
 
 ## Reader dashboard redesign
 
-Reader **v0.25.30** completes the implementation of milestones B–F on the dashboard
+Reader **v0.25.31** completes the implementation of milestones B–F on the dashboard
 foundation. Atlas remains v0.25.27; Team Planner and the binary parser are unchanged.
 The user requested one integrated release followed by final user testing.
 
@@ -131,7 +131,7 @@ into an isolated temporary Chromium trust database using `certutil`, retaining T
 verification. Neither variable is required for the normal regression suite.
 
 Final user acceptance and real-save validation remain pending. On the existing
-GitHub Pages site, confirm v0.25.30, load a known SoulSilver save, compare trainer,
+GitHub Pages site, confirm v0.25.31, load a known SoulSilver save, compare trainer,
 Party, PC, registrations, and collection counts against the game, then replace the
 save and verify every view refreshes. Check both themes, mobile navigation, dialog
 scrolling/keyboard controls, PC search, and existing evolution export behavior.
@@ -142,3 +142,6 @@ individual shiny Pokémon (including Eggs when counted), and Seen/Caught Pokéde
 filters. Owned-species browsing includes species outside the currently active
 regional Pokédex, matching the existing unique-species statistic. Shiny entries
 show their nickname, original Party/box slot, and an Inspect button.
+
+Reader v0.25.31 makes the top ribbon controls subtle text links, retaining keyboard
+focus indicators, touch targets, and existing reset/theme behavior.

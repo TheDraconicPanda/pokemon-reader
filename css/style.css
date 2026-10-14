@@ -955,8 +955,9 @@ button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .app { width: min(1200px, calc(100% - 32px)); max-width: 1200px; margin: 0 auto; padding: 16px 0 48px; }
 .secondary-nav { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 8px; margin-bottom: 20px; }
-.secondary-nav a, .secondary-nav button { padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; min-height: 44px; color: var(--accent); background: var(--surface); font: inherit; }
-.secondary-nav #theme-toggle { justify-self: end; }
+.secondary-nav a, .secondary-nav button { padding: 10px 8px; border: 0; border-radius: 0; text-decoration: none; min-height: 44px; color: var(--accent); background: transparent; font: inherit; }
+.secondary-nav #theme-toggle { justify-self: end; border: 0; border-radius: 0; background: transparent; color: var(--accent); padding: 10px 8px; }
+.secondary-nav a:hover, .secondary-nav button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .dashboard-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
 .dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; color: var(--muted); text-decoration: none; text-align: center; }
 .dashboard-nav a[aria-current], .dashboard-nav a:hover { background: var(--elevated); color: var(--accent); }
