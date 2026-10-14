@@ -83,7 +83,11 @@
 - [x] Add Cliff Cave encounter reference
 - [x] Add Embedded Tower special-encounter reference
 - [x] Add Safari Zone Gate SoulSilver Headbutt encounter reference
-- [x] Expand standard walking encounter coverage across all 12 Safari Zone areas (full audit, block-attracted Pokémon, and remaining Surfing/fishing tables still pending)
+- [x] Expand standard walking encounter coverage across all 12 Safari Zone areas
+- [x] Add a first batch of Safari Zone Surfing and fishing encounters (coverage and level ranges still need an accuracy audit)
+- [ ] Complete remaining Safari Zone water/fishing tables
+- [ ] Add block-attracted Pokémon and block placement requirements
+- [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
