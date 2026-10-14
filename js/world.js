@@ -1006,7 +1006,7 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Marshland · Surfing · Blocks", pokemon: "Muk", levels: "48", times: "Any time", rarity: "Requires 16 Water blocks; available after 0 days" },
   { method: "Marshland · Old Rod · Blocks", pokemon: "Poliwag", levels: "16–18", times: "Any time", rarity: "Requires 2 Water blocks; available after 0 days" },
   { method: "Marshland · Good Rod · Blocks", pokemon: "Gyarados", levels: "26–29", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
-  { method: "Marshland · Super Rod · Blocks", pokemon: "Barboach", levels: "42–45", times: "Any time", rarity: "Requires 4 Water blocks; available after 0 days" },,
+  { method: "Marshland · Super Rod · Blocks", pokemon: "Barboach", levels: "42–45", times: "Any time", rarity: "Requires 4 Water blocks; available after 0 days" },
   { method: "Swamp · Walking · Blocks", pokemon: "Parasect", levels: "41", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
   { method: "Swamp · Walking · Blocks", pokemon: "Furret", levels: "42", times: "Any time", rarity: "Requires 5 Plains blocks; available after 0 days" },
   { method: "Swamp · Walking · Blocks", pokemon: "Pachirisu", levels: "47", times: "Any time", rarity: "Requires 10 Plains blocks; available after 0 days" },
