@@ -881,7 +881,7 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Marshland · Walking · Morning/Day", pokemon: "Arbok", levels: "17", times: "Morning, day", rarity: "Standard encounter" },
   { method: "Marshland · Walking · Morning/Day", pokemon: "Grimer", levels: "17", times: "Morning, day", rarity: "Standard encounter" },
   { method: "Marshland · Walking · Night", pokemon: "Koffing", levels: "15–17", times: "Night", rarity: "Standard encounter" },
-  { method: "Marshland · Walking · Night", pokemon: "Gloom", levels: "17", times: "Night", rarity: "Standard encounter" }
+  { method: "Marshland · Walking · Night", pokemon: "Gloom", levels: "17", times: "Night", rarity: "Standard encounter" },
   { method: "Wetland · Surfing", pokemon: "Quagsire", levels: "16–17", times: "All times", rarity: "Standard encounter" },
   { method: "Marshland · Surfing", pokemon: "Goldeen", levels: "15–17", times: "All times", rarity: "Standard encounter" },
   { method: "Meadow · Old Rod", pokemon: "Magikarp", levels: "15–17", times: "All times", rarity: "Standard encounter" },
@@ -981,6 +981,16 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Wetland · Old Rod · Blocks", pokemon: "Poliwhirl", levels: "17–18", times: "Any time", rarity: "Requires 2 Water blocks; available after 0 days" },
   { method: "Wetland · Good Rod · Blocks", pokemon: "Corphish", levels: "26–28", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
   { method: "Wetland · Super Rod · Blocks", pokemon: "Gyarados", levels: "45–48", times: "Any time", rarity: "Requires 6 Water blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Mr. Mime", levels: "45", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Budew", levels: "47", times: "Any time", rarity: "Requires 24 Plains blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Misdreavus", levels: "42", times: "Any time", rarity: "Requires 4 Forest blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Electabuzz", levels: "41", times: "Any time", rarity: "Requires 4 Peak blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Lickitung", levels: "40", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Bidoof", levels: "40", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Surskit", levels: "42", times: "Any time", rarity: "Requires 24 Water blocks; available after 0 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Shuppet", levels: "46", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Beldum", levels: "44", times: "Any time", rarity: "Requires 21 Peak blocks; available after 70 days" },
+  { method: "Forest · Walking · Blocks", pokemon: "Bronzong", levels: "45", times: "Any time", rarity: "Requires 9 Forest blocks + 19 Peak blocks; available after 110 days" },
 ]);
 
 function renderEncounters(locationName) {
