@@ -86,7 +86,8 @@
 - [x] Expand standard walking encounter coverage across all 12 Safari Zone areas
 - [x] Add standard Safari Zone Surfing encounters and fishing tables for Meadow, Wetland, Marshland, and Rocky Beach (full coverage and level-range audit still pending)
 - [ ] Verify remaining Safari Zone water/fishing tables against the SoulSilver reference
-- [x] Add the first block-attracted Pokémon batch for Plains and Meadow, with object counts and unlock-day requirements
+- [x] Add block-attracted Pokémon for Plains and Meadow, with object counts and unlock-day requirements
+- [x] Add block-attracted Pokémon for Savannah and Peak, with object counts and unlock-day requirements
 - [ ] Add block-attracted Pokémon for the remaining Safari Zone areas and complete the block reference
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
