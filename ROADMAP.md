@@ -89,6 +89,7 @@
 - [x] Add block-attracted Pokémon for Plains and Meadow, with object counts and unlock-day requirements
 - [x] Add block-attracted Pokémon for Savannah and Peak, with object counts and unlock-day requirements
 - [x] Add block-attracted Pokémon for Rocky Beach, with object counts and unlock-day requirements
+- [x] Add block-attracted Pokémon for Wetland, with object counts and unlock-day requirements
 - [ ] Add block-attracted Pokémon for the remaining Safari Zone areas and complete the block reference
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
