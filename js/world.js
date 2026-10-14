@@ -1025,7 +1025,27 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Swamp · Old Rod · Blocks", pokemon: "Seaking", levels: "17", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
   { method: "Swamp · Good Rod · Blocks", pokemon: "Seaking", levels: "27", times: "Any time", rarity: "Requires 6 Water blocks; available after 0 days" },
   { method: "Swamp · Good Rod · Blocks", pokemon: "Dratini", levels: "29", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
-  { method: "Swamp · Super Rod · Blocks", pokemon: "Dragonair", levels: "42–45", times: "Any time", rarity: "Requires 20 Water blocks; available after 0 days" }
+  { method: "Swamp · Super Rod · Blocks", pokemon: "Dragonair", levels: "42–45", times: "Any time", rarity: "Requires 20 Water blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Manectric", levels: "41", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Illumise", levels: "46", times: "Any time", rarity: "Requires 10 Plains blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Bellsprout", levels: "41", times: "Any time", rarity: "Requires 3 Forest blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Machoke", levels: "40", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Skorupi", levels: "44–45", times: "Any time", rarity: "Requires 28 Peak blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Golduck", levels: "45", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Kingler", levels: "48", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Medicham", levels: "44", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Breloom", levels: "46", times: "Any time", rarity: "Requires 21 Forest blocks; available after 20 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Solrock", levels: "45–46", times: "Any time", rarity: "Requires 21 Peak blocks; available after 30 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Magneton", levels: "42", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Volbeat", levels: "46", times: "Any time", rarity: "Requires 10 Plains blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Chingling", levels: "38", times: "Any time", rarity: "Requires 10 Forest blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Meditite", levels: "44", times: "Any time", rarity: "Requires 20 Forest blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Larvitar", levels: "42", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Lunatone", levels: "46", times: "Any time", rarity: "Requires 15 Peak blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Krabby", levels: "43", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Dusclops", levels: "45", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Metang", levels: "44", times: "Any time", rarity: "Requires 28 Peak blocks; available after 30 days" },
+  { method: "Wasteland · Walking · Blocks", pokemon: "Sealeo", levels: "45", times: "Any time", rarity: "Requires 7 Peak blocks + 17 Water blocks; available after 80 days" }
 ]);
 
 function renderEncounters(locationName) {
