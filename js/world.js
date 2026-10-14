@@ -88,7 +88,7 @@ const CONNECTIONS = Object.freeze({
   "Route 44": ["Mahogany Town", "Ice Path"],
   "Route 45": ["Blackthorn City", "Dark Cave", "Route 46"],
   "Route 46": ["Route 29", "Route 45", "Dark Cave"],
-  "Route 47": ["Cianwood City", "Route 48", "Safari Zone"],
+  "Route 47": ["Cliff Edge Gate", "Cliff Cave", "Embedded Tower", "Route 48", "Safari Zone"],
   "Route 48": ["Route 47", "Safari Zone"],
   "Cliff Edge Gate": ["Cianwood City", "Route 47"],
   "Cliff Cave": ["Route 47"],
