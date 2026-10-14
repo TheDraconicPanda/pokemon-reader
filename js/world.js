@@ -1036,16 +1036,26 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Wasteland · Walking · Blocks", pokemon: "Medicham", levels: "44", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
   { method: "Wasteland · Walking · Blocks", pokemon: "Breloom", levels: "46", times: "Any time", rarity: "Requires 21 Forest blocks; available after 20 days" },
   { method: "Wasteland · Walking · Blocks", pokemon: "Solrock", levels: "45–46", times: "Any time", rarity: "Requires 21 Peak blocks; available after 30 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Magneton", levels: "42", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Volbeat", levels: "46", times: "Any time", rarity: "Requires 10 Plains blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Chingling", levels: "38", times: "Any time", rarity: "Requires 10 Forest blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Meditite", levels: "44", times: "Any time", rarity: "Requires 20 Forest blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Larvitar", levels: "42", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Lunatone", levels: "46", times: "Any time", rarity: "Requires 15 Peak blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Krabby", levels: "43", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Dusclops", levels: "45", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Metang", levels: "44", times: "Any time", rarity: "Requires 28 Peak blocks; available after 30 days" },
-  { method: "Wasteland · Walking · Blocks", pokemon: "Sealeo", levels: "45", times: "Any time", rarity: "Requires 7 Peak blocks + 17 Water blocks; available after 80 days" }
+  { method: "Mountain · Walking · Blocks", pokemon: "Magneton", levels: "42", times: "Any time", rarity: "Requires 3 Plains blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Volbeat", levels: "46", times: "Any time", rarity: "Requires 10 Plains blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Chingling", levels: "38", times: "Any time", rarity: "Requires 10 Forest blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Meditite", levels: "44", times: "Any time", rarity: "Requires 20 Forest blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Larvitar", levels: "42", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Lunatone", levels: "46", times: "Any time", rarity: "Requires 15 Peak blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Krabby", levels: "43", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Dusclops", levels: "45", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Metang", levels: "44", times: "Any time", rarity: "Requires 28 Peak blocks; available after 30 days" },
+  { method: "Mountain · Walking · Blocks", pokemon: "Sealeo", levels: "45", times: "Any time", rarity: "Requires 7 Peak blocks + 17 Water blocks; available after 80 days" }
+
+
+
+
+
+
+
+
+
+
 ]);
 
 function renderEncounters(locationName) {
