@@ -283,3 +283,26 @@ test('Overview displays parsed summaries and replaces stale save state', async (
   assert.equal(await evaluate(`document.querySelector('.app').getAttribute('aria-busy')`),'false');
   await command('Fetch.disable');
 });
+
+test('Party keeps six slots and shared details retain fields, moves, and focus', async () => {
+  await fixtureReader();
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`), 'Party route');
+  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > article').length`),6);
+  assert.equal(await evaluate(`document.querySelectorAll('.empty-party-slot').length`),4);
+  assert.equal(await evaluate(`document.querySelectorAll('#party-grid > article')[2].textContent.includes('Buddy')`),true);
+  assert.equal(await evaluate(`document.querySelector('.hp-bar').value`),25);
+  assert.equal(await evaluate(`document.querySelector('.shiny-label').textContent`),'★ Shiny');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').focus(); document.activeElement.click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`), 'Detail loaded');
+  const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
+  for (const value of ['Summary','Stats','Moves','Training','History','Original','PP 20 / 49','PP Ups: 2','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
+  await command('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await until(() => evaluate(`!document.querySelector('#pokemon-detail-dialog').open`), 'Escape did not close details');
+  assert.equal(await evaluate(`document.activeElement.classList.contains('pokemon-detail-button')`),true);
+  await evaluate(`document.activeElement.click()`);
+  await uploadFixture(fixture('Next Trainer'));
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog').open`),false);
+  await command('Fetch.disable');
+});

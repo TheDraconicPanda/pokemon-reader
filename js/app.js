@@ -544,6 +544,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
 
   return {
     ...pokemon,
+    types: (data?.pokemon?.types || []).map(entry => entry.type.name),
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
     growthRate: data?.species?.growth_rate?.name || null,
     level: pokemon.level ?? estimateLevelFromExperience(
@@ -931,7 +932,7 @@ function renderBox(boxNumber) {
 
     if (!pokemon.empty) {
       const image = document.createElement("img");
-      image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
+      image.src = pokemonSprite(pokemon);
       image.alt = `Pokémon #${pokemon.speciesId}`;
       image.width = 72;
       image.height = 72;
@@ -972,7 +973,9 @@ function renderBox(boxNumber) {
 
 async function openPokemonDetails(pokemon) {
   if (!pokemon || pokemon.empty) return;
+  const revision = ++detailRevision;
   pokemonDetailContent.replaceChildren();
+  pokemonDetailContent.setAttribute("aria-busy", "true");
   const loading = document.createElement("p");
   loading.textContent = "Loading Pokémon details…";
   pokemonDetailContent.append(loading);
@@ -983,8 +986,10 @@ async function openPokemonDetails(pokemon) {
   }
   try {
     const detailedPokemon = await enrichPokemon(pokemon, true);
+    if (revision !== detailRevision || !pokemonDetailDialog.open) return;
     renderPokemonDetail(detailedPokemon);
   } catch (error) {
+    if (revision !== detailRevision || !pokemonDetailDialog.open) return;
     pokemonDetailContent.replaceChildren();
     const message = document.createElement("p");
     message.textContent = "Some Pokémon details could not be loaded. Parsed save data is shown where available.";
@@ -995,12 +1000,14 @@ async function openPokemonDetails(pokemon) {
 }
 
 function renderPokemonDetail(pokemon) {
+  pokemonDetailContent.setAttribute("aria-busy", "false");
   pokemonDetailContent.replaceChildren();
+  document.querySelector("#pokemon-detail-dialog-title").textContent = pokemon.nickname || getDisplaySpeciesName(pokemon);
 
   const header = document.createElement("div");
   header.className = "pokemon-detail-header";
   const image = document.createElement("img");
-  image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
+  image.src = pokemonSprite(pokemon);
   image.alt = "";
   image.width = 112;
   image.height = 112;
@@ -1013,6 +1020,7 @@ function renderPokemonDetail(pokemon) {
   const level = document.createElement("p");
   level.textContent = `Level ${pokemon.level ?? "—"} · ${pokemon.gender || "Gender unknown"}`;
   identity.append(title, species, level);
+  appendTypeBadges(identity, pokemon);
   header.append(image, identity);
   pokemonDetailContent.append(header);
 
@@ -1035,10 +1043,13 @@ function renderPokemonDetail(pokemon) {
     pokemonDetailContent.append(section);
   };
 
-  addSection("Battle & configuration", [
+  addSection("Summary", [
+    ["Level", pokemon.level],
+    ["Trainer", `${pokemon.otName || "Unknown"} · ID ${pokemon.otId ?? "—"}`],
     ["HP", `${pokemon.currentHp ?? "—"} / ${pokemon.maxHp ?? "—"}`],
     ["Status", pokemon.statusText],
     ["Nature", pokemon.natureName],
+    ["Nature modifiers", natureModifiers(pokemon.natureId)],
     ["Ability", pokemon.abilityName],
     ["Held item", pokemon.heldItemName || "None"],
     ["Experience", pokemon.experienceText],
@@ -1047,6 +1058,7 @@ function renderPokemonDetail(pokemon) {
   ]);
 
   addSection("Stats", [
+    ["HP", `${pokemon.currentHp ?? "—"} / ${pokemon.maxHp ?? "—"}`],
     ["Attack", pokemon.stats?.attack],
     ["Defense", pokemon.stats?.defense],
     ["Speed", pokemon.stats?.speed],
@@ -1054,11 +1066,11 @@ function renderPokemonDetail(pokemon) {
     ["Special Defense", pokemon.stats?.specialDefense],
   ]);
 
-  const moveRows = (pokemon.moves || []).filter((move) => move.id).map((move, index) => [
-    `Move ${index + 1}`,
-    `${move.name || `Move #${move.id}`} · ${formatMovePP(move)}`,
-  ]);
-  addSection("Moves", moveRows.length ? moveRows : [["Moves", "No move data available"]]);
+  const moveRows = Array.from({length: 4}, (_, index) => {
+    const move = pokemon.moves?.[index];
+    return [`Move ${index + 1}`, move?.id ? `${move.name || `Move #${move.id}`} · ${formatMovePP(move)}` : "Empty move slot"];
+  });
+  addSection("Moves", moveRows);
 
   const competitiveRows = [
     ["HP", pokemon.ivs?.hp, pokemon.evs?.hp],
@@ -1069,9 +1081,12 @@ function renderPokemonDetail(pokemon) {
     ["Special Defense", pokemon.ivs?.specialDefense, pokemon.evs?.specialDefense],
   ].map(([name, iv, ev]) => [name, `IV ${iv ?? "—"} · EV ${ev ?? "—"}`]);
   if (pokemon.hiddenPower) competitiveRows.push(["Hidden Power", `${pokemon.hiddenPower.type} · Power ${pokemon.hiddenPower.power}`]);
-  addSection("IVs, EVs & Hidden Power", competitiveRows);
+  addSection("Training · IVs, EVs & Hidden Power", competitiveRows);
 
   addSection("History & identity", [
+    ["Friendship", pokemon.friendship],
+    ["Personality (PID)", pokemon.personality],
+    ["Form", pokemon.formName || pokemon.formId],
     ["Original Trainer", pokemon.otName || "Unknown"],
     ["Trainer ID / Secret ID", `${pokemon.otId ?? "—"} / ${pokemon.secretId ?? "—"}`],
     ["Met location", pokemon.metLocationText],
@@ -1082,7 +1097,17 @@ function renderPokemonDetail(pokemon) {
     ["Egg received", pokemon.isEgg ? pokemon.eggDateText : "Not an Egg"],
     ["Egg location", pokemon.isEgg ? pokemon.eggLocationText : "—"],
   ]);
+  addEvolutionControl(pokemonDetailContent, pokemon);
 }
+
+function natureModifiers(natureId) {
+  if (!Number.isInteger(natureId) || natureId < 0 || natureId > 24) return "Unknown";
+  const stats = ["Attack", "Defense", "Speed", "Special Attack", "Special Defense"];
+  const raised = Math.floor(natureId / 5), lowered = natureId % 5;
+  return raised === lowered ? "Neutral" : `${stats[raised]} +10% · ${stats[lowered]} −10%`;
+}
+
+pokemonDetailDialog.addEventListener("close", () => { detailRevision++; });
 
 pokemonDetailClose.addEventListener("click", () => {
   if (typeof pokemonDetailDialog.close === "function") pokemonDetailDialog.close();
@@ -1096,145 +1121,58 @@ pokemonDetailDialog.addEventListener("click", (event) => {
   }
 });
 
-function renderParty(party) {
-  partyGrid.replaceChildren();
-
-  for (const pokemon of party) {
-    const partyItem = document.createElement("article");
-    partyItem.className = "party-item";
-
-    const image = document.createElement("img");
-    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.speciesId}.png`;
-    image.alt = `Pokémon #${pokemon.speciesId}`;
-    image.width = 96;
-    image.height = 96;
-
-    const details = document.createElement("div");
-    const title = document.createElement("h3");
-    title.textContent = pokemon.nickname || `Species #${pokemon.speciesId}`;
-    const species = document.createElement("p");
-    species.className = "party-species";
-    species.textContent = getDisplaySpeciesName(pokemon) || `Species #${pokemon.speciesId}`;
-    const level = document.createElement("p");
-    level.textContent = `Level ${pokemon.level}`;
-    const gender = document.createElement("p");
-    gender.textContent = `Gender ${pokemon.gender}`;
-    const heldItem = document.createElement("p");
-    heldItem.textContent = `Held item: ${pokemon.heldItemName || "None"}`;
-    const hp = document.createElement("p");
-    hp.textContent = "HP " + pokemon.currentHp + " / " + pokemon.maxHp;
-
-    const nature = document.createElement("p");
-    nature.textContent = "Nature: " + pokemon.natureName;
-
-    const ability = document.createElement("p");
-    ability.textContent = "Ability: " + pokemon.abilityName;
-
-    const experience = document.createElement("p");
-    experience.textContent = "EXP: " + pokemon.experienceText;
-
-    const status = document.createElement("p");
-    status.textContent = "Status: " + pokemon.statusText;
-
-
-    const history = document.createElement("div");
-    history.className = "party-history";
-
-    const historyHeading = document.createElement("h4");
-    historyHeading.textContent = "History & Identity";
-
-    const originalTrainer = document.createElement("p");
-    originalTrainer.textContent = "OT: " + (pokemon.otName || "Unknown") + " (ID " + (pokemon.otId || "—") + " / SID " + (pokemon.secretId || "—") + ")";
-
-    const met = document.createElement("p");
-    met.textContent = "Met: " + pokemon.metLocationText + " at Lv. " + (pokemon.metLevel || "—") + " on " + pokemon.metDateText;
-
-    const ball = document.createElement("p");
-    ball.textContent = "Poké Ball: " + pokemon.pokeballName;
-
-    const egg = document.createElement("p");
-    egg.textContent = pokemon.isEgg
-      ? "Egg: Yes · Received " + pokemon.eggDateText + " · Location " + pokemon.eggLocationText
-      : "Egg: No";
-
-    const nicknameStatus = document.createElement("p");
-    nicknameStatus.textContent = "Nickname: " + (pokemon.isNicknamed ? "Yes" : "No");
-
-    history.append(historyHeading, originalTrainer, met, ball, egg, nicknameStatus);
-
-    const moves = document.createElement("div");
-    moves.className = "party-moves";
-    const movesHeading = document.createElement("h4");
-    movesHeading.textContent = "Moves";
-    moves.append(movesHeading);
-
-    for (const move of pokemon.moves || []) {
-      const moveRow = document.createElement("div");
-      moveRow.className = "move-row";
-      const moveName = document.createElement("span");
-      moveName.textContent = move.name || "—";
-      const moveDetails = document.createElement("span");
-      moveDetails.textContent = move.id ? formatMovePP(move) : "—";
-      moveRow.append(moveName, moveDetails);
-      moves.append(moveRow);
-    }
-
-    const ivs = document.createElement("div");
-    ivs.className = "party-competitive";
-    const ivsHeading = document.createElement("h4");
-    ivsHeading.textContent = "IVs / EVs";
-    ivs.append(ivsHeading);
-    const competitiveEntries = [
-      ["HP", pokemon.ivs?.hp, pokemon.evs?.hp],
-      ["Attack", pokemon.ivs?.attack, pokemon.evs?.attack],
-      ["Defense", pokemon.ivs?.defense, pokemon.evs?.defense],
-      ["Speed", pokemon.ivs?.speed, pokemon.evs?.speed],
-      ["Sp. Atk", pokemon.ivs?.specialAttack, pokemon.evs?.specialAttack],
-      ["Sp. Def", pokemon.ivs?.specialDefense, pokemon.evs?.specialDefense],
-    ];
-    for (const [label, iv, ev] of competitiveEntries) {
-      const row = document.createElement("span");
-      row.textContent = `${label}: IV ${iv ?? "—"} · EV ${ev ?? "—"}`;
-      ivs.append(row);
-    }
-    if (pokemon.hiddenPower) {
-      const hiddenPower = document.createElement("span");
-      hiddenPower.textContent = `Hidden Power: ${pokemon.hiddenPower.type} (${pokemon.hiddenPower.power})`;
-      ivs.append(hiddenPower);
-    }
-
-    const stats = document.createElement("div");
-    stats.className = "party-stats";
-    const statEntries = [
-      ["Attack", pokemon.stats?.attack],
-      ["Defense", pokemon.stats?.defense],
-      ["Speed", pokemon.stats?.speed],
-      ["Sp. Atk", pokemon.stats?.specialAttack],
-      ["Sp. Def", pokemon.stats?.specialDefense],
-    ];
-
-    for (const [label, value] of statEntries) {
-      const stat = document.createElement("span");
-      stat.textContent = label + ": " + (value ?? "—");
-      stats.append(stat);
-    }
-
-    details.append(title, species, level, gender, heldItem, hp, nature, ability, experience, status, history, stats, moves, ivs);
-    const detailButton = document.createElement("button");
-    detailButton.type = "button";
-    detailButton.className = "pokemon-detail-button";
-    detailButton.textContent = "View full details";
-    detailButton.addEventListener("click", () => openPokemonDetails(pokemon));
-    details.append(detailButton);
-    addEvolutionControl(details, pokemon);
-    partyItem.append(image, details);
-    partyGrid.append(partyItem);
-  }
-
-  partyInfo.hidden = party.length === 0;
+function pokemonSprite(pokemon) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/${pokemon.shiny ? "shiny/" : ""}${pokemon.speciesId}.png`;
 }
 
+function appendTypeBadges(container, pokemon) {
+  const types = document.createElement("div"); types.className = "type-badges";
+  for (const type of pokemon.types || []) {
+    const badge = document.createElement("span"); badge.className = `type-badge type-${type}`;
+    badge.textContent = formatPokemonName(type); types.append(badge);
+  }
+  if (pokemon.shiny) {
+    const shiny = document.createElement("span"); shiny.className = "shiny-label"; shiny.textContent = "★ Shiny"; types.append(shiny);
+  }
+  if (pokemon.isEgg) {
+    const egg = document.createElement("span"); egg.textContent = "Egg"; types.append(egg);
+  }
+  container.append(types);
+}
 
+function renderParty(party) {
+  partyGrid.replaceChildren();
+  for (let slot = 1; slot <= 6; slot++) {
+    const pokemon = party.find(entry => entry.slot === slot && !entry.empty);
+    const card = document.createElement("article"); card.className = "party-item dashboard-party-card";
+    const label = document.createElement("p"); label.className = "slot-label"; label.textContent = `Party slot ${slot}`;
+    card.append(label);
+    if (!pokemon) {
+      card.classList.add("empty-party-slot");
+      const empty = document.createElement("p"); empty.textContent = "Empty slot"; card.append(empty); partyGrid.append(card); continue;
+    }
+    const image = document.createElement("img"); image.src = pokemonSprite(pokemon); image.alt = ""; image.width = 96; image.height = 96;
+    const title = document.createElement("h3"); title.textContent = pokemon.nickname || getDisplaySpeciesName(pokemon);
+    const species = document.createElement("p"); species.className = "party-species";
+    species.textContent = `${getDisplaySpeciesName(pokemon)} · Lv. ${pokemon.level ?? "—"} · ${pokemon.gender}`;
+    card.append(image, title, species); appendTypeBadges(card, pokemon);
+    const hp = document.createElement("p"); hp.textContent = `HP ${pokemon.currentHp ?? "—"} / ${pokemon.maxHp ?? "—"}`;
+    card.append(hp);
+    if (Number.isFinite(pokemon.currentHp) && pokemon.maxHp > 0) {
+      const bar = document.createElement("progress"); bar.max = pokemon.maxHp; bar.value = pokemon.currentHp;
+      bar.setAttribute("aria-label", `${title.textContent} HP`);
+      const ratio = pokemon.currentHp / pokemon.maxHp;
+      bar.className = `hp-bar ${ratio > 0.5 ? "hp-green" : ratio > 0.2 ? "hp-yellow" : "hp-red"}`; card.append(bar);
+    }
+    const status = document.createElement("p"); status.textContent = `Status: ${pokemon.statusText}`;
+    const item = document.createElement("p"); item.textContent = `Held item: ${pokemon.heldItemName || "None"}`; card.append(status, item);
+    const button = document.createElement("button"); button.type = "button"; button.className = "pokemon-detail-button";
+    button.textContent = `Inspect ${title.textContent}`; button.addEventListener("click", () => openPokemonDetails(pokemon)); card.append(button);
+    card.addEventListener("click", event => { if (!event.target.closest("button, select")) { button.focus(); openPokemonDetails(pokemon); } });
+    addEvolutionControl(card, pokemon); partyGrid.append(card);
+  }
+  partyInfo.hidden = false;
+}
 
 function estimateLevelFromExperience(experience, growthRate) {
   if (!Number.isFinite(experience) || !growthRate) return null;
@@ -1355,6 +1293,7 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  document.querySelector(".app").setAttribute("aria-busy", "false");
   loadRevision++;
   detailRevision++;
   collectionRevision++;
