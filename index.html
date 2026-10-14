@@ -96,7 +96,16 @@
     <section data-reader-view="storage" id="storage-info" class="card" hidden>
       <h2>PC Storage</h2>
       <p class="storage-summary">18 boxes · 30 slots each</p>
-      <div id="box-tabs" class="box-tabs" role="tablist" aria-label="PC boxes"></div>
+      <div class="storage-controls">
+        <button id="box-previous" type="button" aria-label="Previous box">← Previous</button>
+        <label>Current box<select id="box-select"></select></label>
+        <button id="box-next" type="button" aria-label="Next box">Next →</button>
+        <label class="storage-search-label">Find in all boxes<input id="storage-search" type="search" placeholder="Species, nickname, or Dex number"></label>
+      </div>
+      <p id="box-occupancy" aria-live="polite"></p>
+      <p class="collection-note">Search highlights matches without moving slots. Choose a result to open its original box.</p>
+      <div id="storage-results" class="storage-results" aria-live="polite" hidden></div>
+      <nav id="box-tabs" class="box-tabs" aria-label="PC boxes"></nav>
       <div id="box-grid" class="box-grid"></div>
     </section>
 

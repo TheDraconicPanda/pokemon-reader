@@ -306,3 +306,27 @@ test('Party keeps six slots and shared details retain fields, moves, and focus',
   assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog').open`),false);
   await command('Fetch.disable');
 });
+
+test('PC retains 18 boxes and 30 slots while search navigates in original order', async () => {
+  await fixtureReader();
+  await evaluate(`location.hash='storage'`);
+  await until(() => evaluate(`document.querySelector('[data-view="storage"]').getAttribute('aria-current') === 'page'`), 'Storage route');
+  assert.equal(await evaluate(`document.querySelectorAll('#box-select option').length`),18);
+  assert.equal(await evaluate(`document.querySelectorAll('#box-grid > article').length`),30);
+  assert.equal(await evaluate(`document.querySelectorAll('#box-grid > article')[4].textContent.includes('Thunder')`),true);
+  await evaluate(`var search=document.querySelector('#storage-search'); search.value='egg friend'; search.dispatchEvent(new Event('input'));`);
+  assert.equal(await evaluate(`document.querySelectorAll('#storage-results button').length`),1);
+  await evaluate(`document.querySelector('#storage-results button').click()`);
+  assert.equal(await evaluate(`document.querySelector('#box-select').value`),'18');
+  assert.equal(await evaluate(`document.querySelectorAll('#box-grid > article')[29].classList.contains('search-match')`),true);
+  assert.equal(await evaluate(`document.querySelector('#box-occupancy').textContent`),'Box 18 · 1 / 30 occupied');
+  await evaluate(`document.activeElement.click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'PC details');
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog-title').textContent`),'Egg friend');
+  await evaluate(`document.querySelector('#pokemon-detail-close').click(); document.querySelector('#box-previous').click()`);
+  assert.equal(await evaluate(`document.querySelector('#box-select').value`),'17');
+  assert.equal(await evaluate(`document.querySelectorAll('#box-grid > article').length`),30);
+  await evaluate(`var search=document.querySelector('#storage-search'); search.value='no such pokemon'; search.dispatchEvent(new Event('input'));`);
+  assert.equal(await evaluate(`document.querySelector('#storage-results').textContent`),'0 matching Pokémon across all boxes');
+  await command('Fetch.disable');
+});

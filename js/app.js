@@ -53,6 +53,7 @@ const storageInfo = document.querySelector("#storage-info");
 const boxTabs = document.querySelector("#box-tabs");
 const boxGrid = document.querySelector("#box-grid");
 let currentStorage = null;
+let activeBoxNumber = 1;
 const pokemonDataCache = new Map();
 let loadRevision = 0;
 let detailRevision = 0;
@@ -896,18 +897,23 @@ function getDisplaySpeciesName(pokemon) {
 function renderStorage(storage) {
   currentStorage = storage;
   boxTabs.replaceChildren();
+  document.querySelector("#box-select").replaceChildren();
 
   for (const box of storage.boxes) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "box-tab";
-    button.textContent = box.name;
+    const occupied = box.pokemon.filter(p => !p.empty).length;
+    button.textContent = `${box.name} (${occupied})`;
+    const option = document.createElement("option"); option.value = box.number; option.textContent = `${box.name} · ${occupied}/30`;
+    document.querySelector("#box-select").append(option);
     button.dataset.box = box.number;
     button.addEventListener("click", () => renderBox(box.number));
     boxTabs.append(button);
   }
 
-  renderBox(storage.currentBox + 1);
+  renderBox(storage.boxes[storage.currentBox] ? storage.currentBox + 1 : 1);
+  renderStorageSearch();
   storageInfo.hidden = false;
 }
 
@@ -917,8 +923,15 @@ function renderBox(boxNumber) {
   const box = currentStorage.boxes[boxNumber - 1];
   if (!box) return;
 
+  activeBoxNumber = boxNumber;
+  document.querySelector("#box-select").value = String(boxNumber);
+  document.querySelector("#box-previous").disabled = boxNumber === 1;
+  document.querySelector("#box-next").disabled = boxNumber === currentStorage.boxes.length;
+  document.querySelector("#box-occupancy").textContent = `${box.name} · ${box.pokemon.filter(p => !p.empty).length} / 30 occupied`;
   boxTabs.querySelectorAll(".box-tab").forEach((button) => {
-    button.classList.toggle("active", Number(button.dataset.box) === boxNumber);
+    const selected = Number(button.dataset.box) === boxNumber;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-current", selected ? "true" : "false");
   });
 
   boxGrid.replaceChildren();
@@ -926,6 +939,10 @@ function renderBox(boxNumber) {
   for (const pokemon of box.pokemon) {
     const item = document.createElement("article");
     item.className = `box-slot${pokemon.empty ? " empty" : ""}`;
+    item.dataset.slot = pokemon.slot;
+    const query = document.querySelector("#storage-search").value.trim().toLowerCase();
+    if (query && !pokemon.empty) item.classList.add(storageMatches(pokemon, query) ? "search-match" : "search-muted");
+    const position = document.createElement("span"); position.className = "slot-label"; position.textContent = `Slot ${pokemon.slot}`; item.append(position);
     item.title = pokemon.empty
       ? `Empty slot ${pokemon.slot}`
       : (pokemon.nickname || getDisplaySpeciesName(pokemon) || `Pokémon #${pokemon.speciesId}`);
@@ -944,12 +961,14 @@ function renderBox(boxNumber) {
       const detailButton = document.createElement("button");
       detailButton.type = "button";
       detailButton.className = "pokemon-detail-button";
-      detailButton.textContent = "Details";
+      detailButton.textContent = "Inspect";
+      detailButton.setAttribute("aria-label", `Inspect ${name.textContent}, slot ${pokemon.slot}`);
       detailButton.addEventListener("click", (event) => {
         event.stopPropagation();
         openPokemonDetails(pokemon);
       });
       item.append(detailButton);
+      item.addEventListener("click", event => { if (!event.target.closest("button, select")) { detailButton.focus(); openPokemonDetails(pokemon); } });
 
       if (pokemon.shiny) {
         const shiny = document.createElement("span");
@@ -965,10 +984,41 @@ function renderBox(boxNumber) {
       item.append(slot);
     }
 
-    if (!pokemon.empty) addEvolutionControl(item, pokemon);
     boxGrid.append(item);
   }
 }
+
+
+function storageMatches(pokemon, query) {
+  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId}`.toLowerCase().includes(query);
+}
+function renderStorageSearch() {
+  const results = document.querySelector("#storage-results"); results.replaceChildren();
+  const query = document.querySelector("#storage-search").value.trim().toLowerCase();
+  results.hidden = !query || !currentStorage;
+  if (results.hidden) return;
+  const matches = currentStorage.boxes.flatMap(box => box.pokemon.filter(p => storageMatches(p, query)).map(pokemon => ({box,pokemon})));
+  const count = document.createElement("p"); count.textContent = `${matches.length} matching Pokémon across all boxes`; results.append(count);
+  for (const {box,pokemon} of matches) {
+    const button = document.createElement("button"); button.type = "button";
+    button.textContent = `${pokemon.nickname || getDisplaySpeciesName(pokemon)} · ${box.name}, slot ${pokemon.slot}`;
+    button.addEventListener("click", () => {
+      renderBox(box.number);
+      const target = boxGrid.querySelector(`[data-slot="${pokemon.slot}"] .pokemon-detail-button`);
+      target.focus(); target.scrollIntoView({block:"nearest"});
+    }); results.append(button);
+  }
+}
+document.querySelector("#box-select").addEventListener("change", event => renderBox(Number(event.target.value)));
+document.querySelector("#box-previous").addEventListener("click", () => renderBox(activeBoxNumber - 1));
+document.querySelector("#box-next").addEventListener("click", () => renderBox(activeBoxNumber + 1));
+document.querySelector("#storage-search").addEventListener("input", () => { renderBox(activeBoxNumber); renderStorageSearch(); });
+boxTabs.addEventListener("keydown", event => {
+  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key) || !event.target.matches(".box-tab")) return;
+  event.preventDefault();
+  const next = event.key === "Home" ? 1 : event.key === "End" ? 18 : Math.min(18, Math.max(1, activeBoxNumber + (event.key === "ArrowRight" ? 1 : -1)));
+  renderBox(next); boxTabs.querySelector(`[data-box="${next}"]`).focus();
+});
 
 
 async function openPokemonDetails(pokemon) {
@@ -1351,6 +1401,11 @@ function resetFileInfo() {
   boxTabs.replaceChildren();
   boxGrid.replaceChildren();
   currentStorage = null;
+  document.querySelector("#storage-search").value = "";
+  document.querySelector("#storage-results").replaceChildren();
+  document.querySelector("#storage-results").hidden = true;
+  document.querySelector("#box-select").replaceChildren();
+  document.querySelector("#box-occupancy").textContent = "";
   currentSaveBytes = null;
   currentActivePartition = null;
 }
