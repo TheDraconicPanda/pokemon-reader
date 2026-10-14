@@ -79,6 +79,9 @@
 - [x] Add Route 46 encounter reference
 - [x] Add Route 47 encounter reference
 - [x] Add Route 48 encounter reference
+- [x] Add Cliff Edge Gate encounter reference
+- [x] Add Cliff Cave encounter reference
+- [x] Add Embedded Tower special-encounter reference
 - [x] Add Whirl Islands wild encounters by floor and method
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
