@@ -840,7 +840,8 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Forest · Walking · Night", pokemon: "Gastly", levels: "15–17", times: "Night", rarity: "Standard encounter" },
   { method: "Forest · Walking · Night", pokemon: "Voltorb", levels: "15–17", times: "Night", rarity: "SoulSilver" }
 ]);
-\nfunction renderEncounters(locationName) {
+
+function renderEncounters(locationName) {
   const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : locationName === "Route 38" ? ROUTE_38_ENCOUNTERS : locationName === "Route 39" ? ROUTE_39_ENCOUNTERS : locationName === "Route 40" ? ROUTE_40_ENCOUNTERS : locationName === "Route 41" ? ROUTE_41_ENCOUNTERS : locationName === "Route 42" ? ROUTE_42_ENCOUNTERS : locationName === "Route 43" ? ROUTE_43_ENCOUNTERS : locationName === "Route 44" ? ROUTE_44_ENCOUNTERS : locationName === "Route 45" ? ROUTE_45_ENCOUNTERS : locationName === "Route 46" ? ROUTE_46_ENCOUNTERS : locationName === "Route 47" ? ROUTE_47_ENCOUNTERS : locationName === "Route 48" ? ROUTE_48_ENCOUNTERS : locationName === "Cliff Edge Gate" ? CLIFF_EDGE_GATE_ENCOUNTERS : locationName === "Cliff Cave" ? CLIFF_CAVE_ENCOUNTERS : locationName === "Embedded Tower" ? EMBEDDED_TOWER_ENCOUNTERS : locationName === "Safari Zone Gate" ? SAFARI_ZONE_GATE_ENCOUNTERS : locationName === "Safari Zone" ? SAFARI_ZONE_ENCOUNTERS : locationName === "Whirl Islands" ? WHIRL_ISLANDS_ENCOUNTERS : null;
   if (!encounters) return null;
   const section = document.createElement("section");
