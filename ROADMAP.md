@@ -147,9 +147,19 @@ The user authorized completing B–F and publishing one integrated release befor
 final user testing, superseding intermediate user-review gates for this redesign.
 
 - [ ] Final user acceptance and real SoulSilver save/replacement validation
-- [ ] Confirm the v0.25.29 release is live on the existing Pages site
+- [x] Confirm the v0.25.29 release is live on the existing Pages site (user confirmed)
 
 Parser/game mechanics, Atlas internals, and Team Planner internals are unchanged.
 Automated UI checks use synthetic parsed records and do not validate binary parsing
 or the known historical gameplay-data issues. No parser defects were resolved as
 part of the redesign; real-save correctness and evolution validation remain pending.
+
+## Reader ribbon and Overview refinements — v0.25.30
+
+- [x] Move Load Save, Planner, Atlas, and theme into the top ribbon
+- [x] Place Reader view navigation above the companion heading and make it sticky
+- [x] Remove diagnostic Save Information and redundant header status/shortcut links
+- [x] Hide upload area after loading; Load Save clears all Reader state and returns to upload
+- [x] Make six summary statistics buttons with real Party/PC/owned/shiny/Seen/Caught destinations
+- [x] Validate with 21 browser tests, including reset/reload, sticky navigation, and summary destinations
+- [ ] User acceptance of v0.25.30 and confirmation it is live

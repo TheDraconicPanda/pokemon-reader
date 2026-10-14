@@ -23,14 +23,17 @@ function route(focus = false) {
     else link.removeAttribute('aria-current');
   }
   updateState();
-  if (focus) heading.focus();
+  if (focus) {
+    const target = section?.querySelector('h2') || heading;
+    target.tabIndex = -1; target.focus();
+  }
 }
 function updateState() {
   const empty = document.querySelector('#view-empty');
   const hideEmpty = activeView === 'overview' || panels.some(panel => panel.dataset.readerView === activeView && !panel.hidden);
   if (empty.hidden !== hideEmpty) empty.hidden = hideEmpty;
-  const status = document.querySelector('#file-status');
-  document.querySelector('#dashboard-save-status').textContent = status.classList.contains('success') ? 'Save loaded' : status.classList.contains('error') ? 'Save needs attention' : status.textContent.includes('Reading') ? 'Loading save…' : 'No save loaded';
+  const loaded = !document.querySelector('#overview-summary').hidden;
+  document.querySelector('#view-description').textContent = activeView === 'overview' && loaded ? 'Your party, collection, and Pokédex at a glance.' : views[activeView][1];
 }
 new MutationObserver(updateState).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden']});
 new MutationObserver(updateState).observe(document.querySelector('#file-status'), {subtree:true, childList:true, attributes:true, attributeFilter:['class']});

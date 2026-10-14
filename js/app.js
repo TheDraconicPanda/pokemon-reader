@@ -2,16 +2,12 @@ import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.29";
+const APP_VERSION = "0.25.30";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
 const fileStatus = document.querySelector("#file-status");
 const filePickerText = document.querySelector(".file-picker-text");
-const gameValue = document.querySelector("#game-value");
-const fileValue = document.querySelector("#file-value");
-const sizeValue = document.querySelector("#size-value");
-const partitionValue = document.querySelector("#partition-value");
 const trainerNameValue = document.querySelector("#trainer-name-value");
 const trainerIdValue = document.querySelector("#trainer-id-value");
 const secretIdValue = document.querySelector("#secret-id-value");
@@ -111,8 +107,6 @@ async function handleFile(file) {
   fileStatus.className = "status";
   fileStatus.textContent = "Reading save file…";
   filePickerText.textContent = "Choose another save file or drop one here";
-  fileValue.textContent = file.name;
-  sizeValue.textContent = formatBytes(file.size);
 
   try {
     const buffer = await file.arrayBuffer();
@@ -121,11 +115,6 @@ async function handleFile(file) {
     currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
     currentSaveFileName = file.name || "pokemon-save.sav";
     currentActivePartition = result.valid ? result.activePartition : null;
-
-    gameValue.textContent = result.game;
-    partitionValue.textContent = result.activePartition === null
-      ? "—"
-      : result.activePartition === 0 ? "A" : "B";
 
     if (result.save) {
       const { trainer } = result.save;
@@ -144,6 +133,7 @@ async function handleFile(file) {
       renderOverview(result);
       document.querySelector("#upload-heading").textContent = "Load another save";
       document.querySelector("#upload-help").hidden = true;
+      document.querySelector("#upload-area").hidden = true;
       trainerInfo.hidden = false;
       collectionNav.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
@@ -160,7 +150,6 @@ async function handleFile(file) {
   } catch (error) {
     if (revision !== loadRevision) return;
     resetFileInfo();
-    gameValue.textContent = "Not detected";
     fileStatus.className = "status error";
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
@@ -169,14 +158,41 @@ async function handleFile(file) {
   }
 }
 
+document.querySelector("#load-save").addEventListener("click", () => {
+  resetFileInfo();
+  location.hash = "overview";
+  fileInput.focus();
+});
+
 function renderOverview(result) {
   const list = document.querySelector("#overview-stats");
   list.replaceChildren();
-  for (const [label, value] of [["Party", document.querySelector("#collection-party-value").textContent], ["PC Pokémon", document.querySelector("#collection-pc-value").textContent], ["Unique species", document.querySelector("#collection-species-value").textContent], ["Shiny Pokémon", document.querySelector("#collection-shiny-value").textContent], ["Seen", result.save.pokedex.seenCount], ["Caught", result.save.pokedex.caughtCount]]) {
-    const tile = document.createElement("div");
-    const term = document.createElement("dt"); term.textContent = label;
-    const valueNode = document.createElement("dd"); valueNode.textContent = value;
-    tile.append(term, valueNode); list.append(tile);
+  const metrics = [
+    ["Party", collectionPartyValue.textContent, "party"],
+    ["PC Pokémon", collectionPcValue.textContent, "storage"],
+    ["Unique Species", collectionSpeciesValue.textContent, "owned"],
+    ["Shiny", collectionShinyValue.textContent, "shiny"],
+    ["Seen", result.save.pokedex.seenCount, "seen"],
+    ["Caught", result.save.pokedex.caughtCount, "caught"],
+  ];
+  for (const [label, value, destination] of metrics) {
+    const button = document.createElement("button"); button.type = "button";
+    button.className = "summary-button"; button.dataset.destination = destination;
+    const title = document.createElement("span"); title.textContent = label;
+    const count = document.createElement("strong"); count.textContent = value;
+    button.append(title, count);
+    button.addEventListener("click", () => {
+      if (destination === "party" || destination === "storage") location.hash = destination;
+      else if (destination === "seen" || destination === "caught") {
+        document.querySelector("#dex-search").value = "";
+        document.querySelector("#dex-filter").value = destination;
+        dexVisibleLimit = 40; renderPokedexList(); location.hash = "pokedex";
+      } else {
+        collectionListMode.value = destination; collectionSearch.value = "";
+        collectionVisibleLimit = 40; renderCollectionSpeciesList(); location.hash = "collection-details-info";
+      }
+    });
+    list.append(button);
   }
   document.querySelector("#overview-summary").hidden = false;
 }
@@ -325,7 +341,7 @@ function renderCollectionDetails(pokedex, party, storage) {
   const ownedCounts = new Map();
   const allPokemon = [
     ...party.filter((pokemon) => !pokemon.empty),
-    ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty)),
+    ...storage.boxes.flatMap((box) => box.pokemon.filter((pokemon) => !pokemon.empty).map(pokemon => ({...pokemon, boxName:box.name}))),
   ];
 
   for (const pokemon of allPokemon) {
@@ -337,6 +353,7 @@ function renderCollectionDetails(pokedex, party, storage) {
     speciesIds: pokedex.speciesIds || [],
     caughtSpecies: new Set(pokedex.caughtSpecies || []),
     ownedCounts,
+    allPokemon,
   };
   collectionListMode.value = "caught";
   collectionSearch.value = "";
@@ -392,7 +409,7 @@ async function renderCollectionSpeciesList() {
 
   const revision = ++collectionRevision;
   const context = currentCollectionDetails;
-  const { speciesIds, caughtSpecies, ownedCounts } = context;
+  const { speciesIds, caughtSpecies, ownedCounts, allPokemon } = context;
   const sortMode = collectionSort.value;
   const mode = collectionListMode.value;
   const query = collectionSearch.value.trim().toLowerCase();
@@ -404,22 +421,24 @@ async function renderCollectionSpeciesList() {
     entries = speciesIds.filter((id) => caughtSpecies.has(id)).map((id) => ({ id, count: ownedCounts.get(id) || 0 }));
   } else if (mode === "missing") {
     entries = speciesIds.filter((id) => !caughtSpecies.has(id)).map((id) => ({ id, count: ownedCounts.get(id) || 0 }));
+  } else if (mode === "shiny") {
+    entries = allPokemon.filter(pokemon => pokemon.shiny).map(pokemon => ({id:pokemon.speciesId,pokemon,count:1}));
   } else {
     entries = [...ownedCounts.entries()]
-      .filter(([, count]) => count > 1)
+      .filter(([, count]) => mode === "owned" || count > 1)
       .map(([id, count]) => ({ id, count }))
       .sort((a, b) => b.count - a.count || a.id - b.id);
   }
 
-  entries = entries.filter(({ id }) => {
-    const name = (speciesIndex.get(id) || "").toLowerCase();
+  entries = entries.filter(({ id, pokemon }) => {
+    const name = `${speciesIndex.get(id) || ""} ${pokemon?.nickname || ""}`.toLowerCase();
     return !query || name.includes(query) || String(id).includes(query.replace(/^#/, ""));
   });
 
   entries.sort((a, b) => {
     if (sortMode === "name") {
-      return (speciesIndex.get(a.id) || `Pokémon #${a.id}`).localeCompare(
-        speciesIndex.get(b.id) || `Pokémon #${b.id}`
+      return (a.pokemon?.nickname || speciesIndex.get(a.id) || `Pokémon #${a.id}`).localeCompare(
+        b.pokemon?.nickname || speciesIndex.get(b.id) || `Pokémon #${b.id}`
       ) || a.id - b.id;
     }
     if (sortMode === "priority") {
@@ -431,8 +450,8 @@ async function renderCollectionSpeciesList() {
   });
 
   collectionDetailsCount.textContent = query
-    ? `${formatNumber(entries.length)} matching species`
-    : `${formatNumber(entries.length)} species`;
+    ? `${formatNumber(entries.length)} matching ${mode === "shiny" ? "shiny Pokémon" : "species"}`
+    : `${formatNumber(entries.length)} ${mode === "shiny" ? "shiny Pokémon" : "species"}`;
   collectionSpeciesList.replaceChildren();
 
   const visibleEntries = entries.slice(0, collectionVisibleLimit);
@@ -441,23 +460,27 @@ async function renderCollectionSpeciesList() {
     row.className = "collection-species-row";
 
     const image = document.createElement("img");
-    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${entry.id}.png`;
+    image.src = entry.pokemon ? pokemonSprite(entry.pokemon) : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${entry.id}.png`;
     image.alt = "";
     image.loading = "lazy";
 
     const info = document.createElement("div");
     const name = document.createElement("div");
     name.className = "collection-species-name";
-    name.textContent = speciesIndex.get(entry.id) || `Pokémon #${entry.id}`;
+    name.textContent = entry.pokemon?.nickname || speciesIndex.get(entry.id) || `Pokémon #${entry.id}`;
 
     const id = document.createElement("div");
     id.className = "collection-species-id";
-    id.textContent = `National Dex #${entry.id}`;
+    id.textContent = `${entry.pokemon ? `${speciesIndex.get(entry.id) || "Pokémon"} · ` : ""}National Dex #${entry.id}`;
     info.append(name, id);
 
     const meta = document.createElement("div");
     meta.className = "collection-species-meta";
-    if (mode === "duplicates") {
+    if (mode === "shiny") {
+      meta.textContent = `★ Shiny · ${entry.pokemon.boxName || "Party"}, slot ${entry.pokemon.slot}${entry.pokemon.isEgg ? " · Egg" : ""}`;
+      const inspect = document.createElement("button"); inspect.type = "button"; inspect.className = "pokemon-detail-button";
+      inspect.textContent = `Inspect ${name.textContent}`; inspect.addEventListener("click", () => openPokemonDetails(entry.pokemon)); info.append(inspect);
+    } else if (mode === "duplicates") {
       meta.textContent = `Owned ×${entry.count}`;
     } else {
       const count = ownedCounts.get(entry.id) || 0;
@@ -1400,12 +1423,14 @@ function addEvolutionControl(container, pokemon) {
       if (revision !== loadRevision) return;
       fileStatus.className = "status error";
       fileStatus.textContent = error?.message || "Evolution failed; the save was not changed.";
+      feedback.textContent = fileStatus.textContent;
       button.disabled = false;
       button.textContent = "Evolve";
     }
   });
 
-  wrapper.append(select, button);
+  const feedback = document.createElement("p"); feedback.className = "status error"; feedback.setAttribute("aria-live", "polite");
+  wrapper.append(select, button, feedback);
   container.append(wrapper);
 }
 
@@ -1422,6 +1447,17 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  currentSaveFileName = "pokemon-save.sav";
+  activeBoxNumber = 1;
+  dexVisibleLimit = 40;
+  collectionVisibleLimit = 40;
+  document.querySelectorAll(".app details").forEach(details => { details.open = false; });
+  document.querySelector("#upload-area").hidden = false;
+  document.querySelector("#dex-search").value = "";
+  document.querySelector("#dex-filter").value = "all";
+  collectionListMode.value = "caught";
+  collectionSort.value = "priority";
+  fileInput.value = "";
   document.querySelector("#upload-heading").textContent = "Your adventure starts here";
   document.querySelector("#upload-help").hidden = false;
   document.querySelector(".app").setAttribute("aria-busy", "false");
@@ -1440,10 +1476,6 @@ function resetFileInfo() {
   fileStatus.className = "status";
   fileStatus.textContent = "No save file loaded.";
   filePickerText.textContent = "Choose a save file or drop one here";
-  gameValue.textContent = "Not detected";
-  fileValue.textContent = "—";
-  sizeValue.textContent = "—";
-  partitionValue.textContent = "—";
   trainerNameValue.textContent = "—";
   trainerIdValue.textContent = "—";
   secretIdValue.textContent = "—";
@@ -1510,16 +1542,4 @@ function formatPlayTime(playTime) {
   const seconds = String(playTime.seconds).padStart(2, "0");
 
   return `${hours}h ${minutes}m ${seconds}s`;
-}
-
-function formatBytes(bytes) {
-  if (bytes === 0) return "0 B";
-
-  const units = ["B", "KB", "MB", "GB"];
-  const exponent = Math.min(
-    Math.floor(Math.log(bytes) / Math.log(1024)),
-    units.length - 1
-  );
-
-  return `${(bytes / 1024 ** exponent).toFixed(1)} ${units[exponent]}`;
 }

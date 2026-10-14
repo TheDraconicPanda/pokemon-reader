@@ -76,12 +76,14 @@ The iteration number is intended to make deployed builds easy to identify while 
 
 ## Reader dashboard redesign
 
-Reader **v0.25.29** completes the implementation of milestones B–F on the dashboard
+Reader **v0.25.30** completes the implementation of milestones B–F on the dashboard
 foundation. Atlas remains v0.25.27; Team Planner and the binary parser are unchanged.
 The user requested one integrated release followed by final user testing.
 
 - Overview: raw-save upload guidance, trainer cards, badge artwork, parsed summaries,
-  and shortcuts. Load another save from the header without refreshing.
+  and interactive summary buttons. Load Save in the top ribbon clears the session
+  and returns to the initial upload screen. The upload area is hidden once loaded;
+  the old diagnostic Save Information block has been removed.
 - Party: six original slots, empty slots, SoulSilver-era sprites, shiny labels,
   Generation IV types, HP bars, status, and held items. Inspect a card by clicking it or using its
   keyboard-accessible Inspect button.
@@ -97,9 +99,12 @@ The user requested one integrated release followed by final user testing.
   and Currently Owned remain independent; ownership excludes Eggs, Day Care, and
   traded-away Pokémon.
 - Collection: all existing summaries, duplicate/caught/missing lists, search, sorting,
-  and pagination, with expandable occupancy, gender, and form details.
+  and pagination, with expandable occupancy, gender, and form details. New owned-species and shiny
+  individual lists provide destinations for the corresponding summary buttons.
 
-Desktop uses a sidebar; mobile uses bottom navigation and a compact box selector.
+Desktop and mobile use two horizontal ribbons: Load Save/Planner/Atlas/theme at the
+top, then Reader views above the companion heading. The Reader ribbon sticks to the
+top while scrolling. Mobile retains a compact box selector.
 Dark mode is the default, with a locally saved light/dark preference and reduced-motion
 support. Uploaded saves are held in memory only. Rapid save replacement clears dialogs
 and prevents old asynchronous results from overwriting the current save.
@@ -112,11 +117,11 @@ Metadata requests time out after eight seconds and fall back to explicit unavail
 labels. Binary decoding, ability/item/nature identification, PP/PP Ups, Hidden Power,
 regional registration logic, and evolution mechanics remain unchanged.
 
-`npm test` runs 18 browser tests covering Atlas and Planner regressions, Reader
+`npm test` runs 21 browser tests covering Atlas and Planner regressions, Reader
 invalid-save handling, routing/themes, synthetic parsed-save rendering/replacement,
 six-slot Party order, modal keyboard behavior, PC order/search, registration versus
-ownership, collection controls/pagination, metadata outages, theme contrast, and
-loaded layouts at 320/390/768/1440px. Synthetic fixtures are injected by the test
+ownership, collection controls/pagination, metadata outages, theme contrast, loaded layouts at 320/390/768/1440px, reset/reload behavior, sticky ribbons, and
+summary destinations. Synthetic fixtures are injected by the test
 harness only; they do not validate the real binary parser or game-data accuracy.
 
 For optional screenshot review, create a local output directory and set
@@ -126,8 +131,14 @@ into an isolated temporary Chromium trust database using `certutil`, retaining T
 verification. Neither variable is required for the normal regression suite.
 
 Final user acceptance and real-save validation remain pending. On the existing
-GitHub Pages site, confirm v0.25.29, load a known SoulSilver save, compare trainer,
+GitHub Pages site, confirm v0.25.30, load a known SoulSilver save, compare trainer,
 Party, PC, registrations, and collection counts against the game, then replace the
 save and verify every view refreshes. Check both themes, mobile navigation, dialog
 scrolling/keyboard controls, PC search, and existing evolution export behavior.
 Evolution writing still requires the real-game validation listed in the roadmap.
+
+Overview summary buttons open Party, PC Storage, the unique-species owned list,
+individual shiny Pokémon (including Eggs when counted), and Seen/Caught Pokédex
+filters. Owned-species browsing includes species outside the currently active
+regional Pokédex, matching the existing unique-species statistic. Shiny entries
+show their nickname, original Party/box slot, and an Inspect button.

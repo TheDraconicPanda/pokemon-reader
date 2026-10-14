@@ -204,16 +204,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.29<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.30<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.29");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.30'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.30");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.30'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -272,7 +272,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.30'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -287,7 +287,7 @@ test('Overview displays parsed summaries and replaces stale save state', async (
   assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Test Trainer');
   assert.equal(await evaluate(`document.querySelector('#overview-summary').hidden`),false);
   assert.equal(await evaluate(`document.querySelector('#overview-stats').textContent.includes('PC Pokémon2')`),true);
-  assert.equal(await evaluate(`document.querySelectorAll('.overview-shortcuts a').length`),4);
+  assert.equal(await evaluate(`document.querySelectorAll('.summary-button').length`),6);
   assert.equal(await evaluate(`document.querySelectorAll('#badge-grid img').length`),16);
   assert.equal(await evaluate(`document.querySelectorAll('#badge-grid .earned').length`),2);
   await uploadFixture(fixture('Replacement'));
@@ -524,5 +524,75 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
   const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
   assert.ok(content.includes('HP— / —'));
   assert.ok(content.includes('StatusNot stored in PC record'));
+  await command('Fetch.disable');
+});
+
+test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
+  await command('Page.navigate',{url:baseURL+'/'});
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.30'`),'Reader ready');
+  assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
+  assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
+  assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
+  assert.equal(await evaluate(`document.querySelector('.dashboard-nav').nextElementSibling.className`),'view-intro');
+  assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),false);
+  await fixtureReader();
+  assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),true);
+  assert.equal(await evaluate(`document.querySelector('#overview-summary').hidden`),false);
+  await evaluate(`location.hash='pokedex'; document.querySelector('#dex-search').value='pikachu'; document.querySelector('#load-save').click()`);
+  await until(() => evaluate(`document.querySelector('[data-view="overview"]').getAttribute('aria-current') === 'page'`),'Reset route');
+  for (const id of ['overview-summary','trainer-info','party-info','storage-info','pokedex-info','collection-info']) {
+    assert.equal(await evaluate(`document.querySelector('#${id}').hidden`),true,id);
+  }
+  assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),false);
+  assert.equal(await evaluate(`document.querySelector('#file-status').textContent`),'No save file loaded.');
+  assert.equal(await evaluate(`document.querySelector('#dex-search').value`),'');
+  assert.equal(await evaluate(`document.querySelector('#overview-stats').childElementCount`),0);
+  await uploadFixture(fixture('Loaded after reset'));
+  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Loaded after reset');
+  assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),true);
+  await command('Fetch.disable');
+});
+
+test('Summary buttons navigate to real Party, PC, ownership, shiny, and registration views', async () => {
+  const data=fixture(); data.save.pokedex.speciesIds=[25];
+  data.storage.boxes[0].pokemon[4].shiny=true;
+  data.storage.boxes[17].pokemon[29].shiny=true;
+  await fixtureReader(data);
+  for (const [destination, view] of [['party','party'],['storage','storage'],['seen','pokedex'],['caught','pokedex'],['owned','collection'],['shiny','collection']]) {
+    await evaluate(`location.hash='overview'`);
+    await until(() => evaluate(`document.querySelector('[data-view="overview"]').getAttribute('aria-current') === 'page'`),'Overview route');
+    await evaluate(`document.querySelector('.summary-button[data-destination="${destination}"]').click()`);
+    await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`),'Summary destination');
+    if (destination === 'seen' || destination === 'caught') assert.equal(await evaluate(`document.querySelector('#dex-filter').value`),destination);
+    if (destination === 'owned') {
+      await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 2`),'Owned species include those outside regional Dex');
+      assert.equal(await evaluate(`document.querySelector('#collection-list-mode').value`),'owned');
+    }
+    if (destination === 'shiny') {
+      await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 3`),'Every shiny individual, including Eggs');
+      assert.equal(await evaluate(`document.querySelector('#collection-details-count').textContent`),'3 shiny Pokémon');
+      assert.equal(await evaluate(`document.querySelector('#collection-species-list').textContent.includes('Box 18, slot 30 · Egg')`),true);
+      await evaluate(`document.querySelector('#collection-species-list .pokemon-detail-button').click()`);
+      await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Shiny inspection');
+      assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog-title').textContent`),'Sparky');
+      await evaluate(`document.querySelector('#pokemon-detail-close').click()`);
+    }
+  }
+  assert.equal(await evaluate(`globalThis.__parseCount`),1,'Summary navigation must not reparse the save');
+  await command('Fetch.disable');
+});
+
+test('Reader ribbon sticks to the top on desktop and mobile without overflow', async () => {
+  await fixtureReader();
+  for (const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:600,deviceScaleFactor:1,mobile:width<800});
+    await evaluate(`window.scrollTo(0,0)`);
+    assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true,`Top ribbon overflow at ${width}`);
+    assert.equal(await evaluate(`document.querySelector('.dashboard-nav').getBoundingClientRect().top > 0`),true);
+    await evaluate(`window.scrollTo(0,500)`);
+    await until(() => evaluate(`Math.abs(document.querySelector('.dashboard-nav').getBoundingClientRect().top) <= 1`),'Ribbon did not stick');
+    assert.equal(await evaluate(`document.querySelector('.secondary-nav').getBoundingClientRect().top < 0`),true,'Only Reader navigation should stick');
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
   await command('Fetch.disable');
 });

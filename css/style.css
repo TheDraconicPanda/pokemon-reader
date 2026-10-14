@@ -953,19 +953,17 @@ button, input, select { font: inherit; }
 button, select { min-height: 44px; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-.app { width: auto; max-width: 1500px; margin: 0 0 0 240px; padding: 24px 32px 48px; }
-.dashboard-sidebar { position: fixed; inset: 0 auto 0 0; width: 240px; padding: 32px 20px; background: var(--surface); border-right: 1px solid var(--border); }
-.dashboard-brand { display: block; font-weight: 750; text-decoration: none; font-size: 20px; color: var(--text); margin-bottom: 36px; }
-.dashboard-brand small { display: block; margin-top: 8px; font-size: 12px; color: var(--muted); font-weight: 400; }
-.dashboard-nav, .secondary-nav { display: grid; gap: 8px; }
-.dashboard-nav a, .secondary-nav a { padding: 12px; border-radius: 10px; text-decoration: none; }
-.dashboard-nav a { color: var(--muted); }
+.app { width: min(1200px, calc(100% - 32px)); max-width: 1200px; margin: 0 auto; padding: 16px 0 48px; }
+.secondary-nav { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 8px; margin-bottom: 20px; }
+.secondary-nav a, .secondary-nav button { padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; min-height: 44px; color: var(--accent); background: var(--surface); font: inherit; }
+.secondary-nav #theme-toggle { justify-self: end; }
+.dashboard-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; color: var(--muted); text-decoration: none; text-align: center; }
 .dashboard-nav a[aria-current], .dashboard-nav a:hover { background: var(--elevated); color: var(--accent); }
-.secondary-nav { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+[id] { scroll-margin-top: 90px; }
 .app-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
 .app-header h1 { font-size: 20px; }
 .app-header p { font-size: 12px; }
-.header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); }
 #theme-toggle { border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; color: var(--text); background: var(--elevated); }
 .view-intro { margin: 28px 0; }
 .view-intro h2 { font-size: clamp(26px, 4vw, 36px); margin: 8px 0; }
@@ -976,13 +974,10 @@ button { cursor: pointer; }
 .skip-link:focus { top: 12px; }
 .app > *, dd, .party-item > div { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 800px) {
-  .app { margin: 0; padding: 16px 16px 32px; }
-  .dashboard-sidebar { position: static; width: auto; padding: 0 0 16px; border: 0; background: transparent; }
-  .dashboard-brand { display: none; }
-  .dashboard-nav { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
-  .dashboard-nav a { padding: 12px 6px; text-align: center; font-size: 13px; }
-  .secondary-nav { display: flex; flex-wrap: wrap; margin: 8px 0 0; padding: 0; border: 0; font-size: 12px; }
-  .secondary-nav a { padding: 8px; }
+  .secondary-nav { gap: 4px; }
+  .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle { padding: 8px 6px; font-size: 12px; white-space: nowrap; }
+  .dashboard-nav { gap: 4px; padding: 4px; grid-template-columns: minmax(0, 53fr) minmax(0, 44fr) minmax(0, 55fr) minmax(0, 50fr) minmax(0, 60fr); }
+  .dashboard-nav a { font-size: 11px; padding: 10px 1px; overflow-wrap: normal; }
   .card { padding: 16px; }
   .pokemon-detail-list { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
 }
@@ -993,8 +988,9 @@ button { cursor: pointer; }
 .dashboard-stats, #trainer-info > dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
 .dashboard-stats > div, #trainer-info > dl > div { display: flex; flex-direction: column; padding: 16px; border: 1px solid var(--border); background: var(--elevated); border-radius: 12px; gap: 8px; }
 .dashboard-stats dd { font-size: 26px; font-weight: 750; }
-.overview-shortcuts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 20px; }
-.overview-shortcuts a, .load-another { display: inline-flex; align-items: center; min-height: 44px; padding: 10px; border-radius: 8px; background: var(--elevated); text-decoration: none; }
+.summary-button { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--elevated); color: var(--text); text-align: left; }
+.summary-button:hover { border-color: var(--accent); }
+.summary-button span { color: var(--accent); }.summary-button strong { font-size: 26px; }
 .party-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 .dashboard-party-card { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px; background: var(--surface); }
 .dashboard-party-card p, .dashboard-party-card h3 { margin: 0; }
@@ -1054,10 +1050,4 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .dashboard-party-card .evolution-control { width: 100%; }
 .dashboard-party-card .evolution-control select { min-width: 0; max-width: 100%; }
 @media (max-width: 800px) { .app-header { gap: 12px; }.app-header > p { margin: 0; } }
-@media (max-width: 800px) {
-  .app { padding-bottom: 100px; }
-  .dashboard-nav { position: fixed; inset: auto 0 0; grid-template-columns: repeat(5, minmax(0, 1fr)); z-index: 3; padding: 8px 6px max(8px, env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); }
-  .dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 52px; font-size: 11px; padding: 6px 2px; }
-  .secondary-nav { margin-top: 0; }
-  .box-tabs { display: none; }
-}
+@media (max-width: 800px) { .box-tabs { display: none; } }
