@@ -110,7 +110,6 @@ const CONNECTIONS = Object.freeze({
   "Lake of Rage": ["Route 43"],
   "Ice Path": ["Route 44", "Blackthorn City"],
   "Dragon's Den": ["Blackthorn City"],
-  "Safari Zone": ["Route 47", "Route 48"],
   "Pokéathlon Dome": ["National Park", "Route 35"],
   "Goldenrod Department Store": ["Goldenrod City"],
   "Goldenrod Radio Tower": ["Goldenrod City"],
@@ -1109,10 +1108,11 @@ const TYPE_LABELS = Object.freeze({
   facility: "Facility"
 });
 
-function renderLocations() {
+function renderLocations({ exactName = null } = {}) {
   const query = searchInput.value.trim().toLowerCase();
   const selectedType = typeSelect.value;
   const matches = LOCATIONS.filter((location) => {
+    if (exactName !== null) return location.name === exactName;
     const matchesType = selectedType === "all" || location.type === selectedType;
     const searchable = `${location.name} ${location.region} ${location.details} ${TYPE_LABELS[location.type]}`.toLowerCase();
     return matchesType && searchable.includes(query);
@@ -1159,7 +1159,7 @@ function renderLocations() {
         link.addEventListener("click", () => {
           searchInput.value = name;
           typeSelect.value = "all";
-          renderLocations();
+          renderLocations({ exactName: name });
         });
         links.append(link);
       }

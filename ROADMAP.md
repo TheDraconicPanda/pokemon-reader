@@ -55,6 +55,11 @@
 - [ ] Detailed Pokémon view
 
 ## Phase 6 — Custom PokéEarth
+- [x] Fix exact connected-location selection and Safari Zone Gate return navigation (v0.25.27)
+- [x] Add Chromium regression checks for all existing connection buttons and search/filter behavior
+- [x] Record the current 58-location inventory and unresolved coverage in [the Atlas assessment](docs/atlas-assessment.md)
+- [ ] Complete static location details and access/landmark coverage for the agreed Atlas inventory
+- [ ] Audit every static location against SoulSilver references and record source evidence
 - [x] Define initial location data model
 - [x] Build searchable directory foundation
 - [ ] Expand and verify Johto locations

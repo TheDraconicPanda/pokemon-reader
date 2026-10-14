@@ -15,25 +15,22 @@ A phase is complete only when:
 - Required routes, records, encounter methods, and edge cases are covered.
 - Game-specific data and mechanics have been checked against reliable references.
 - Relevant automated checks pass and regressions are resolved.
-- The actual feature is available in a practical preview for review.
+- The actual feature has been published to the existing site for user validation.
 - Any required manual testing is completed, or clearly identified as a remaining blocker.
 - Documentation and the roadmap accurately reflect the state of the work.
 
 Prefer correctness and completeness over visual polish. Do not guess at game data or mechanics. Investigate discrepancies, document uncertainty, and resolve it before declaring the relevant feature complete. Keep changes focused and avoid unnecessary dependencies or unrelated refactoring.
 
-## Git workflow: feature branch and preview before merge
+## Git workflow: validate, publish, then user test
 
-- Never work directly on `main`.
-- Before editing, inspect the working tree and preserve all existing user changes. Never discard, reset, or overwrite uncommitted work.
-- Create a dedicated feature branch (or isolated worktree) from the appropriate up-to-date base before implementation.
-- Implement and test on that branch.
-- Do not push, merge to `main`, or deploy without the user's authorization.
-- Before asking for approval, inspect the diff and run relevant tests/checks. Explain what changed, what was tested, and any known limitations.
-- Provide a practical preview of the running application where possible. For this browser app, prefer the local development server or an appropriate branch preview. A branch alone is not a browser preview. Never claim that something was previewed or tested if it was not.
-- Keep the production GitHub Pages deployment unchanged until the user approves integration and deployment.
-- Ask for approval at meaningful checkpoints, not for every routine coding choice.
-
-If the environment cannot provide a live browser preview, state that clearly and give the best available alternative and exact local steps.
+- Never implement directly on `main`. Inspect status and preserve existing changes before editing.
+- Use a dedicated feature branch in the existing isolated checkout; do not create a worktree unless explicitly requested.
+- Complete the agreed milestone, inspect the diff, and run meaningful automated checks before publication. Check the changed feature and relevant regressions in Reader, Team Planner, and Atlas. Report missing real-save validation accurately.
+- Standing user authorization (2026-10-14): after a milestone is developed and validated, commit it, integrate it into the existing deployment branch, and push to GitHub so the existing Pages workflow can publish it. No additional routine approval is required for these steps. Do not publish unfinished or failing work.
+- Fetch the deployment branch before integration, preserve remote changes, and use normal non-force pushes. Respect branch protections; report any concrete blocker.
+- Keep the existing repository and GitHub Pages site. Do not introduce separate preview hosting, repositories, or ZIP-based review as the normal workflow.
+- After pushing, tell the user what changed, which checks passed, the version, deployment status, and the existing URLs to test. A pushed commit is not proof the deployment is live.
+- The user validates the outcome online when available; they are not expected to review code. Keep user acceptance and real-game validation distinct from automated checks and do not mark a phase fully accepted before required validation finishes.
 
 ## Atlas roadmap and required order
 
@@ -44,7 +41,7 @@ The Atlas is a PokéEarth-inspired world reference for SoulSilver. Build and val
 3. **Complete Safari Zone mechanics and data.** Verify and implement all required encounter methods and conditions, including walking, surfing, fishing, block placement/attraction, area-specific species, and any relevant time, duration, level, or other game conditions. Inspect the repository first to establish the real current status. Share validated encounter data between the Atlas and simulator rather than maintaining inconsistent duplicates.
 4. **Build the separate Safari Zone simulator.** The intended path is `safari-zone/index.html`, unless the existing architecture indicates a better compatible location. Link to it from the Safari Zone Atlas entry. Implement the agreed simulator functionality using validated data and actual game rules; do not make a merely decorative or incomplete calculator.
 5. **Audit the complete Safari Zone experience.** Check the Atlas, encounter data, block mechanics, simulator calculations, and displayed results against reliable references and known game behavior. Resolve discrepancies before advancing.
-6. **Proceed to subsequent Atlas features only after the above stages are complete.** Apply the same cycle—scope, full implementation, complete data, reference audit, testing, preview, approval, documentation—to every subsequent feature.
+6. **Proceed to subsequent Atlas features only after the above stages are complete.** Apply the same cycle—scope, full implementation, complete data, reference audit, testing, publication, user validation, documentation—to every subsequent feature.
 
 Historical checkpoint from project planning: Atlas v0.25.16 was reported to have Safari Zone walking coverage complete, with water/fishing encounters and block-attraction requirements still pending; a later audit and simulator were planned, browser testing had not yet been completed, and some encounter levels still needed verification. Treat this as a lead to investigate, not as current verified repository state.
 
@@ -71,8 +68,8 @@ At meaningful checkpoints, report:
 - What was completed.
 - What tests/checks were run and their results.
 - What remains before the current phase is complete.
-- How to preview and manually test the implementation.
-- What approval is needed.
+- The existing site links, deployed version/status, and what to test online.
+- Any remaining user validation or concrete blocker.
 
 ## First task when resuming work
 
