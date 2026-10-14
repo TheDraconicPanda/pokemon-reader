@@ -991,6 +991,22 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Forest · Walking · Blocks", pokemon: "Shuppet", levels: "46", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
   { method: "Forest · Walking · Blocks", pokemon: "Beldum", levels: "44", times: "Any time", rarity: "Requires 21 Peak blocks; available after 70 days" },
   { method: "Forest · Walking · Blocks", pokemon: "Bronzong", levels: "45", times: "Any time", rarity: "Requires 9 Forest blocks + 19 Peak blocks; available after 110 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Gloom", levels: "42", times: "Any time", rarity: "Requires 2 Plains blocks; available after 0 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Jumpluff", levels: "38", times: "Any time", rarity: "Requires 5 Plains blocks; available after 0 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Diglett", levels: "43", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Shuckle", levels: "44", times: "Any time", rarity: "Requires 8 Peak blocks; available after 0 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Muk", levels: "38", times: "Any time", rarity: "Requires 8 Water blocks; available after 0 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Seviper", levels: "48", times: "Any time", rarity: "Requires 18 Plains blocks; available after 10 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Carnivine", levels: "41", times: "Any time", rarity: "Requires 18 Forest blocks; available after 20 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Croagunk", levels: "44", times: "Any time", rarity: "Requires 21 Forest blocks; available after 20 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Roselia", levels: "46", times: "Any time", rarity: "Requires 25 Forest blocks; available after 20 days" },
+  { method: "Swamp · Walking · Blocks", pokemon: "Banette", levels: "44", times: "Any time", rarity: "Requires 25 Peak blocks; available after 30 days" },
+  { method: "Swamp · Surfing · Blocks", pokemon: "Jumpluff", levels: "47", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
+  { method: "Swamp · Surfing · Blocks", pokemon: "Quagsire", levels: "43", times: "Any time", rarity: "Requires 13 Water blocks; available after 0 days" },
+  { method: "Swamp · Surfing · Blocks", pokemon: "Muk", levels: "48", times: "Any time", rarity: "Requires 16 Water blocks; available after 0 days" },
+  { method: "Swamp · Old Rod · Blocks", pokemon: "Poliwag", levels: "16–18", times: "Any time", rarity: "Requires 2 Water blocks; available after 0 days" },
+  { method: "Swamp · Good Rod · Blocks", pokemon: "Gyarados", levels: "26–29", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Swamp · Super Rod · Blocks", pokemon: "Barboach", levels: "42–45", times: "Any time", rarity: "Requires 4 Water blocks; available after 0 days" },
 ]);
 
 function renderEncounters(locationName) {
