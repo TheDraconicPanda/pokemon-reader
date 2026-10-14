@@ -2,7 +2,7 @@ import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.28";
+const APP_VERSION = "0.25.29";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -54,6 +54,9 @@ const boxTabs = document.querySelector("#box-tabs");
 const boxGrid = document.querySelector("#box-grid");
 let currentStorage = null;
 const pokemonDataCache = new Map();
+let loadRevision = 0;
+let detailRevision = 0;
+let collectionRevision = 0;
 let currentSaveBytes = null;
 let currentSaveFileName = "pokemon-save.sav";
 let currentActivePartition = null;
@@ -66,6 +69,7 @@ document.title = `Pokémon Reader — v${APP_VERSION}`;
 
 fileInput.addEventListener("change", () => {
   const [file] = fileInput.files;
+  fileInput.value = "";
   if (!file) {
     resetFileInfo();
     return;
@@ -98,6 +102,8 @@ dropZone.addEventListener("drop", (event) => {
 
 async function handleFile(file) {
   resetFileInfo();
+  const revision = loadRevision;
+  document.querySelector(".app").setAttribute("aria-busy", "true");
   fileStatus.className = "status";
   fileStatus.textContent = "Reading save file…";
   filePickerText.textContent = "Choose another save file or drop one here";
@@ -106,6 +112,7 @@ async function handleFile(file) {
 
   try {
     const buffer = await file.arrayBuffer();
+    if (revision !== loadRevision) return;
     const result = detectSoulSilver(buffer);
     currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
     currentSaveFileName = file.name || "pokemon-save.sav";
@@ -130,10 +137,12 @@ async function handleFile(file) {
       renderPokedex(result.save.pokedex);
       renderCollectionStats(result.party, result.storage);
       renderCollectionDetails(result.save.pokedex, result.party, result.storage);
+      renderOverview(result);
       trainerInfo.hidden = false;
       collectionNav.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
       const enrichedStorage = await enrichStorage(result.storage);
+      if (revision !== loadRevision) return;
       renderParty(enrichedParty);
       renderStorage(enrichedStorage);
       renderCollectionGender(enrichedParty, enrichedStorage);
@@ -143,13 +152,28 @@ async function handleFile(file) {
     fileStatus.className = result.valid ? "status success" : "status error";
     fileStatus.textContent = result.reason;
   } catch (error) {
+    if (revision !== loadRevision) return;
+    resetFileInfo();
     gameValue.textContent = "Not detected";
     fileStatus.className = "status error";
     fileStatus.textContent = "Unable to read the selected file.";
     console.error(error);
+  } finally {
+    if (revision === loadRevision) document.querySelector(".app").setAttribute("aria-busy", "false");
   }
 }
 
+function renderOverview(result) {
+  const list = document.querySelector("#overview-stats");
+  list.replaceChildren();
+  for (const [label, value] of [["Party", document.querySelector("#collection-party-value").textContent], ["PC Pokémon", document.querySelector("#collection-pc-value").textContent], ["Unique species", document.querySelector("#collection-species-value").textContent], ["Shiny Pokémon", document.querySelector("#collection-shiny-value").textContent], ["Seen", result.save.pokedex.seenCount], ["Caught", result.save.pokedex.caughtCount]]) {
+    const tile = document.createElement("div");
+    const term = document.createElement("dt"); term.textContent = label;
+    const valueNode = document.createElement("dd"); valueNode.textContent = value;
+    tile.append(term, valueNode); list.append(tile);
+  }
+  document.querySelector("#overview-summary").hidden = false;
+}
 
 function renderCollectionGender(party, storage) {
   const ownedPokemon = [
@@ -1331,6 +1355,13 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  loadRevision++;
+  detailRevision++;
+  collectionRevision++;
+  pokemonDetailDialog.close();
+  pokemonDetailContent.replaceChildren();
+  document.querySelector("#overview-summary").hidden = true;
+  document.querySelector("#overview-stats").replaceChildren();
   fileStatus.className = "status";
   fileStatus.textContent = "No save file loaded.";
   filePickerText.textContent = "Choose a save file or drop one here";

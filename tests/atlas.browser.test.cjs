@@ -5,6 +5,7 @@ const { mkdtemp, readFile, rm } = require("node:fs/promises");
 const { tmpdir } = require("node:os");
 const path = require("node:path");
 const httpServer = require("http-server");
+const { fixture } = require("./fixtures/reader.cjs");
 
 const root = path.resolve(__dirname, "..");
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -85,6 +86,17 @@ before(async () => {
     if (message.id) {
       pending.get(message.id)?.(message);
       pending.delete(message.id);
+    }
+    if (message.method === "Fetch.requestPaused") {
+      const { requestId, request } = message.params;
+      let body;
+      if (request.url.includes('/js/saves/soulsilver.js')) body = 'export function detectSoulSilver() { globalThis.__parseCount = (globalThis.__parseCount || 0) + 1; return structuredClone(globalThis.__readerFixture); }';
+      else if (request.url.includes('pokemon-species?')) body = JSON.stringify({results:[{name:'pikachu',url:'https://pokeapi.co/api/v2/pokemon-species/25/'},{name:'eevee',url:'https://pokeapi.co/api/v2/pokemon-species/133/'},{name:'chikorita',url:'https://pokeapi.co/api/v2/pokemon-species/152/'}]});
+      else if (request.url.includes('/pokemon-species/')) body = JSON.stringify({name:request.url.endsWith('/25')?'pikachu':'eevee',gender_rate:4,growth_rate:{name:'medium'}});
+      else if (request.url.includes('/pokemon/')) body = JSON.stringify({types:[{type:{name:'electric'}}],abilities:[{ability:{name:'static',url:'https://pokeapi.co/api/v2/ability/9/'}}]});
+      else if (request.url.includes('/move/')) body = JSON.stringify({name:'pound',pp:35});
+      else body = '{}';
+      command('Fetch.fulfillRequest', {requestId,responseCode:200,responseHeaders:[{name:'Content-Type',value:request.url.includes('.js')?'text/javascript':'application/json'},{name:'Access-Control-Allow-Origin',value:'*'}],body:Buffer.from(body).toString('base64')}).catch(error => browserLog += error.message);
     }
     if (message.method === "Runtime.exceptionThrown") exceptions.push(message.params.exceptionDetails);
   });
@@ -182,16 +194,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.28<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.29<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.28'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.28");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.29");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.28'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -244,4 +256,30 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
   await command("Emulation.clearDeviceMetricsOverride");
   await evaluate(`document.querySelector('#theme-toggle').click()`);
   assert.deepEqual(exceptions, []);
+});
+
+
+async function fixtureReader(data = fixture()) {
+  await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
+  await command('Page.navigate', {url:baseURL + '/'});
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.29'`), 'Reader did not initialize');
+  await uploadFixture(data);
+}
+async function uploadFixture(data) {
+  await evaluate(`globalThis.__readerFixture = ${JSON.stringify(data)}; (() => {
+    const files = new DataTransfer(); files.items.add(new File([new Uint8Array(512*1024)], 'ui-fixture.sav'));
+    const input=document.querySelector('#save-file'); input.files=files.files; input.dispatchEvent(new Event('change'));
+  })()`);
+  await until(() => evaluate(`document.querySelector('#file-status').classList.contains('success')`), 'Fixture save did not render');
+}
+test('Overview displays parsed summaries and replaces stale save state', async () => {
+  await fixtureReader();
+  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Test Trainer');
+  assert.equal(await evaluate(`document.querySelector('#overview-summary').hidden`),false);
+  assert.equal(await evaluate(`document.querySelector('#overview-stats').textContent.includes('PC Pokémon2')`),true);
+  assert.equal(await evaluate(`document.querySelectorAll('.overview-shortcuts a').length`),4);
+  await uploadFixture(fixture('Replacement'));
+  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Replacement');
+  assert.equal(await evaluate(`document.querySelector('.app').getAttribute('aria-busy')`),'false');
+  await command('Fetch.disable');
 });

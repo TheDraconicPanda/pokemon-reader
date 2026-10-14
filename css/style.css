@@ -990,3 +990,8 @@ button { cursor: pointer; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 .dashboard-nav a { min-height: 44px; }
+.dashboard-stats, #trainer-info > dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.dashboard-stats > div, #trainer-info > dl > div { display: flex; flex-direction: column; padding: 16px; border: 1px solid var(--border); background: var(--elevated); border-radius: 12px; gap: 8px; }
+.dashboard-stats dd { font-size: 26px; font-weight: 750; }
+.overview-shortcuts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 20px; }
+.overview-shortcuts a, .load-another { display: inline-flex; align-items: center; min-height: 44px; padding: 10px; border-radius: 8px; background: var(--elevated); text-decoration: none; }
