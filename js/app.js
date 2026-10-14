@@ -41,6 +41,9 @@ const collectionSpeciesList = document.querySelector("#collection-species-list")
 const collectionShowMore = document.querySelector("#collection-show-more");
 let currentCollectionDetails = null;
 let speciesIndexPromise = null;
+let currentPokedex = null;
+let dexRevision = 0;
+let dexVisibleLimit = 40;
 let collectionVisibleLimit = 40;
 const trainerInfo = document.querySelector("#trainer-info");
 const collectionNav = document.querySelector("#collection-nav");
@@ -338,6 +341,7 @@ function renderCollectionDetails(pokedex, party, storage) {
   collectionVisibleLimit = 40;
   collectionDetailsInfo.hidden = false;
   renderCollectionSpeciesList();
+  renderPokedexList();
 }
 
 collectionListMode.addEventListener("change", () => {
@@ -380,10 +384,14 @@ function getSpeciesIndex() {
 async function renderCollectionSpeciesList() {
   if (!currentCollectionDetails) return;
 
-  const { speciesIds, caughtSpecies, ownedCounts } = currentCollectionDetails;
+  const revision = ++collectionRevision;
+  const context = currentCollectionDetails;
+  const { speciesIds, caughtSpecies, ownedCounts } = context;
+  const sortMode = collectionSort.value;
   const mode = collectionListMode.value;
   const query = collectionSearch.value.trim().toLowerCase();
   const speciesIndex = await getSpeciesIndex();
+  if (revision !== collectionRevision || context !== currentCollectionDetails) return;
   let entries = [];
 
   if (mode === "caught") {
@@ -402,7 +410,6 @@ async function renderCollectionSpeciesList() {
     return !query || name.includes(query) || String(id).includes(query.replace(/^#/, ""));
   });
 
-  const sortMode = collectionSort.value;
   entries.sort((a, b) => {
     if (sortMode === "name") {
       return (speciesIndex.get(a.id) || `Pokémon #${a.id}`).localeCompare(
@@ -465,6 +472,8 @@ async function renderCollectionSpeciesList() {
 }
 
 function renderPokedex(pokedex) {
+  currentPokedex = pokedex;
+  dexVisibleLimit = 40;
   if (!pokedex) {
     pokedexInfo.hidden = true;
     return;
@@ -479,6 +488,42 @@ function renderPokedex(pokedex) {
     pokedex.caughtCount + " / " + pokedex.speciesCount + " (" + formatPercent(pokedex.caughtPercent) + ")";
   pokedexInfo.hidden = false;
 }
+
+async function renderPokedexList() {
+  if (!currentPokedex || !currentCollectionDetails) return;
+  const revision = ++dexRevision;
+  const dex = currentPokedex;
+  const ownership = currentCollectionDetails.ownedCounts;
+  const query = document.querySelector("#dex-search").value.trim().toLowerCase();
+  const filter = document.querySelector("#dex-filter").value;
+  const names = await getSpeciesIndex();
+  if (revision !== dexRevision || dex !== currentPokedex) return;
+  const seen = new Set(dex.seenSpecies || []), caught = new Set(dex.caughtSpecies || []);
+  const entries = dex.speciesIds.filter(id => {
+    const matches = !query || `${names.get(id) || ""} #${id}`.toLowerCase().includes(query);
+    return matches && (filter === "all" || filter === "seen" && seen.has(id) || filter === "caught" && caught.has(id) || filter === "owned" && ownership.has(id) || filter === "missing" && !caught.has(id) || filter === "unseen" && !seen.has(id));
+  });
+  const list = document.querySelector("#dex-list"); list.replaceChildren();
+  document.querySelector("#dex-count").textContent = `${entries.length} matching species${names.size ? "" : " · Species names unavailable; search by number"}`;
+  for (const id of entries.slice(0, dexVisibleLimit)) {
+    const card = document.createElement("article"); card.className = "dex-entry"; card.dataset.species = id;
+    const image = document.createElement("img"); image.src = pokemonSprite({speciesId:id}); image.alt = ""; image.loading = "lazy"; image.width = 80; image.height = 80;
+    const name = document.createElement("h3"); name.textContent = names.get(id) || `Pokémon #${id}`;
+    const number = document.createElement("p"); number.textContent = `National Dex #${id}`;
+    const flags = document.createElement("div"); flags.className = "dex-flags";
+    for (const [label, active] of [["Seen", seen.has(id)], ["Caught", caught.has(id)], ["Currently Owned", ownership.has(id)]]) {
+      const flag = document.createElement("span"); flag.className = active ? "registered" : "unregistered";
+      flag.textContent = `${label}: ${active ? "Yes" : "No"}${label === "Currently Owned" && active ? ` (${ownership.get(id)})` : ""}`; flags.append(flag);
+    }
+    card.append(image, name, number, flags); list.append(card);
+  }
+  if (!entries.length) { const empty = document.createElement("p"); empty.textContent = "No species match these filters."; list.append(empty); }
+  document.querySelector("#dex-more").hidden = entries.length <= dexVisibleLimit;
+}
+for (const [id, event] of [["dex-search", "input"], ["dex-filter", "change"]]) {
+  document.querySelector(`#${id}`).addEventListener(event, () => { dexVisibleLimit = 40; renderPokedexList(); });
+}
+document.querySelector("#dex-more").addEventListener("click", () => { dexVisibleLimit += 40; renderPokedexList(); });
 
 function renderBadges(badges) {
   badgeGrid.replaceChildren();
@@ -1347,6 +1392,11 @@ function resetFileInfo() {
   loadRevision++;
   detailRevision++;
   collectionRevision++;
+  dexRevision++;
+  currentPokedex = null;
+  document.querySelector("#dex-list").replaceChildren();
+  document.querySelector("#dex-count").textContent = "";
+  document.querySelector("#dex-more").hidden = true;
   pokemonDetailDialog.close();
   pokemonDetailContent.replaceChildren();
   document.querySelector("#overview-summary").hidden = true;

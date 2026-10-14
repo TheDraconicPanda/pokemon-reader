@@ -116,6 +116,18 @@
         <div><dt>Seen</dt><dd id="pokedex-seen-value">—</dd></div>
         <div><dt>Caught</dt><dd id="pokedex-caught-value">—</dd></div>
       </dl>
+      <p class="collection-note">Seen and Caught are permanent save registrations. Currently Owned counts non-Egg Pokémon in your party and PC only; it excludes Day Care and Pokémon traded away.</p>
+      <div class="dex-controls">
+        <label>Search species<input id="dex-search" type="search" placeholder="Species name or Dex number"></label>
+        <label>Show<select id="dex-filter">
+          <option value="all">All species in this Dex</option><option value="seen">Seen</option>
+          <option value="caught">Caught</option><option value="owned">Currently Owned</option>
+          <option value="missing">Not Caught</option><option value="unseen">Not Seen</option>
+        </select></label>
+      </div>
+      <p id="dex-count" aria-live="polite"></p>
+      <div id="dex-list" class="dex-list"></div>
+      <button id="dex-more" class="dex-more" type="button" hidden>Show more species</button>
     </section>
 
     <section data-reader-view="collection" id="collection-info" class="card" hidden>
@@ -128,13 +140,14 @@
         <div><dt>Shiny Pokémon</dt><dd id="collection-shiny-value">—</dd></div>
         <div><dt>Eggs</dt><dd id="collection-eggs-value">—</dd></div>
       </dl>
-      <h3 class="box-count-heading">PC Box Occupancy</h3>
-      <div id="collection-box-counts" class="collection-box-counts"></div>
+      <details class="collection-expand"><summary>PC box occupancy</summary>
+      <div id="collection-box-counts" class="collection-box-counts"></div></details>
       <p class="collection-note">Total includes Eggs. Unique Species excludes Eggs.</p>
     </section>
 
     <section data-reader-view="collection" id="collection-gender-info" class="card" hidden>
       <h2>Collection Gender Breakdown</h2>
+      <details><summary>Gender breakdown details</summary>
       <p class="collection-note">Counts Pokémon currently in your party and PC, excluding Eggs. Gender depends on each Pokémon's species and personality value; genderless species are counted separately.</p>
       <dl class="collection-summary">
         <div><dt>Eligible Pokémon</dt><dd id="collection-gender-total">—</dd></div>
@@ -143,13 +156,18 @@
         <div><dt>Genderless</dt><dd id="collection-genderless">—</dd></div>
         <div><dt>Unknown</dt><dd id="collection-gender-unknown">—</dd></div>
       </dl>
+
+      </details>
     </section>
 
     <section data-reader-view="collection" id="unown-form-info" class="card" hidden>
       <h2>Alternate Form Collection</h2>
+      <details><summary>Alternate forms details</summary>
       <p class="collection-note">Tracks supported alternate forms among Pokémon in your party and PC, excluding Eggs. Form IDs are read from the Generation IV form field in each decrypted Pokémon record.</p>
       <p class="unown-form-summary">Tracked Pokémon: <strong id="unown-form-total">—</strong></p>
       <div id="unown-form-list" class="unown-form-list"></div>
+
+      </details>
     </section>
 
     <section data-reader-view="collection" id="collection-details-info" class="card" hidden>

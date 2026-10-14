@@ -330,3 +330,46 @@ test('PC retains 18 boxes and 30 slots while search navigates in original order'
   assert.equal(await evaluate(`document.querySelector('#storage-results').textContent`),'0 matching Pokémon across all boxes');
   await command('Fetch.disable');
 });
+
+test('Pokédex separates registrations from ownership and preserves regional scope', async () => {
+  const data = fixture(); data.save.pokedex.caughtSpecies=[25,152]; data.save.pokedex.caughtCount=2;
+  await fixtureReader(data);
+  await evaluate(`location.hash='pokedex'`);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 3`),'Dex entries');
+  assert.equal(await evaluate(`document.querySelector('[data-species="152"]').textContent.includes('Currently Owned: No')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-species="133"]').textContent.includes('Caught: No')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-species="133"]').textContent.includes('Currently Owned: Yes (1)')`),true);
+  await evaluate(`var filter=document.querySelector('#dex-filter'); filter.value='owned'; filter.dispatchEvent(new Event('change'));`);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 2`),'Owned filter');
+  await evaluate(`var search=document.querySelector('#dex-search'); search.value='EEVEE'; search.dispatchEvent(new Event('input'));`);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 1`),'Dex search');
+  assert.equal(await evaluate(`document.querySelector('.dex-entry').dataset.species`),'133');
+  const regional=fixture('Regional'); regional.save.pokedex={...regional.save.pokedex,nationalDex:false,speciesIds:[25]};
+  await evaluate(`document.querySelector('#dex-search').value=''; document.querySelector('#dex-filter').value='all';`);
+  await uploadFixture(regional);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 1`),'Regional scope');
+  assert.equal(await evaluate(`document.querySelector('#pokedex-mode-value').textContent`),'Regional Dex');
+  assert.equal(await evaluate(`document.querySelector('.dex-entry').dataset.species`),'25');
+  await command('Fetch.disable');
+});
+
+test('Collection keeps counts, duplicates, caught/missing views, search and sorting', async () => {
+  await fixtureReader();
+  await evaluate(`location.hash='collection'`);
+  assert.equal(await evaluate(`document.querySelector('#collection-total-value').textContent`),'4');
+  assert.equal(await evaluate(`document.querySelector('#collection-eggs-value').textContent`),'1');
+  assert.equal(await evaluate(`document.querySelector('#collection-gender-total').textContent`),'3');
+  assert.equal(await evaluate(`document.querySelectorAll('#collection-box-counts > *').length`),18);
+  await evaluate(`var mode=document.querySelector('#collection-list-mode'); mode.value='duplicates'; mode.dispatchEvent(new Event('change'));`);
+  await until(() => evaluate(`document.querySelector('#collection-species-list').textContent.includes('Owned ×2')`),'Duplicate count');
+  assert.equal(await evaluate(`document.querySelectorAll('.collection-species-row').length`),1);
+  await evaluate(`var mode=document.querySelector('#collection-list-mode'); mode.value='missing'; mode.dispatchEvent(new Event('change'));`);
+  await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 2`),'Missing registrations');
+  await evaluate(`var sort=document.querySelector('#collection-sort'); sort.value='name'; sort.dispatchEvent(new Event('change'));`);
+  await until(() => evaluate(`document.querySelector('.collection-species-name').textContent === 'Chikorita'`),'Alphabetical sort');
+  await evaluate(`var search=document.querySelector('#collection-search'); search.value='eevee'; search.dispatchEvent(new Event('input'));`);
+  await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 1`),'Collection search');
+  assert.equal(await evaluate(`document.querySelector('.collection-species-meta').textContent`),'Owned: 1');
+  assert.equal(await evaluate(`globalThis.__parseCount`),1);
+  await command('Fetch.disable');
+});

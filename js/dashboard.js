@@ -14,6 +14,7 @@ function route(focus = false) {
   const section = document.getElementById(requested);
   const view = Object.hasOwn(views, requested) ? requested : section?.dataset.readerView || 'overview';
   activeView = view;
+  if (section?.dataset.readerView) section.querySelector("details")?.setAttribute("open", "");
   heading.textContent = views[view][0];
   document.querySelector('#view-description').textContent = views[view][1];
   for (const panel of panels) panel.classList.toggle('inactive-view', panel.dataset.readerView !== view);

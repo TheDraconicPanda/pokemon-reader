@@ -1036,3 +1036,16 @@ button:disabled { opacity: .5; cursor: default; }
  .box-slot { padding: 6px; font-size: 12px; }
  .box-slot img { width: 56px; height: 56px; }
 }
+.dex-controls { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; margin-top: 20px; }
+.dex-controls label { display: grid; gap: 8px; }
+.dex-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 12px; }
+.dex-entry { padding: 16px; border-radius: 12px; background: var(--elevated); border: 1px solid var(--border); }
+.dex-entry img { display: block; margin: auto; image-rendering: pixelated; }
+.dex-entry h3 { margin: 8px 0; }.dex-entry p { color: var(--muted); font-size: 12px; }
+.dex-flags { display: grid; gap: 6px; font-size: 12px; }
+.registered { color: var(--success); }.unregistered { color: var(--muted); }
+.dex-more { margin-top: 16px; }
+summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; }
+.collection-expand { margin-top: 16px; }
+.collection-summary { gap: 12px; }.collection-summary > div { padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
+@media (max-width: 520px) { .dex-controls { grid-template-columns: 1fr; } }
