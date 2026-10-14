@@ -966,6 +966,21 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
   { method: "Rocky Beach · Walking · Blocks", pokemon: "Aron", levels: "44–45", times: "Any time", rarity: "Requires 24 Peak blocks; available after 0 days" },
   { method: "Rocky Beach · Walking · Blocks", pokemon: "Slowbro", levels: "37", times: "Any time", rarity: "Requires 5 Water blocks; available after 0 days" },
   { method: "Rocky Beach · Walking · Blocks", pokemon: "Gible", levels: "44", times: "Any time", rarity: "Requires 13 Plains blocks + 17 Peak blocks; available after 100 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Furret", levels: "37", times: "Any time", rarity: "Requires 2 Plains blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Surskit", levels: "40", times: "Any time", rarity: "Requires 6 Plains blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Lombre", levels: "47", times: "Any time", rarity: "Requires 14 Plains blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Farfetch'd", levels: "41", times: "Any time", rarity: "Requires 3 Forest blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Pachirisu", levels: "43", times: "Any time", rarity: "Requires 8 Forest blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Doduo", levels: "45", times: "Any time", rarity: "Requires 4 Peak blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Golduck", levels: "40", times: "Any time", rarity: "Requires 5 Peak blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Ditto", levels: "41", times: "Any time", rarity: "Requires 15 Water blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Buizel", levels: "45", times: "Any time", rarity: "Requires 18 Water blocks; available after 0 days" },
+  { method: "Wetland · Walking · Blocks", pokemon: "Shelgon", levels: "46", times: "Any time", rarity: "Requires 21 Peak blocks; available after 70 days" },
+  { method: "Wetland · Surfing · Blocks", pokemon: "Quagsire", levels: "37", times: "Any time", rarity: "Requires 3 Water blocks; available after 0 days" },
+  { method: "Wetland · Surfing · Blocks", pokemon: "Golduck", levels: "37–45", times: "Any time", rarity: "Requires 4 Water blocks; available after 0 days" },
+  { method: "Wetland · Old Rod · Blocks", pokemon: "Poliwhirl", levels: "17–18", times: "Any time", rarity: "Requires 2 Water blocks; available after 0 days" },
+  { method: "Wetland · Good Rod · Blocks", pokemon: "Corphish", levels: "26–28", times: "Any time", rarity: "Requires 10 Water blocks; available after 0 days" },
+  { method: "Wetland · Super Rod · Blocks", pokemon: "Gyarados", levels: "45–48", times: "Any time", rarity: "Requires 6 Water blocks; available after 0 days" },
 ]);
 
 function renderEncounters(locationName) {
