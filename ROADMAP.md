@@ -135,12 +135,21 @@
 ## Reader UI redesign — Atlas development temporarily paused
 
 - [x] A: implement dashboard shell, five-view routing, responsive navigation, and persistent themes (Reader v0.25.28); automated checks pass
-- [ ] A: user acceptance and real-save regression validation on the deployed site
-- [ ] B: Overview upload experience, trainer cards, badges, and summary statistics
-- [ ] C: Party cards and complete unified Pokémon details
-- [ ] D: PC box navigation, 30-slot layouts, search, and inspection
-- [ ] E: dedicated Pokédex and organized Collection
-- [ ] F: integration, responsive/accessibility checks, and visual polish
+- [x] A: visual direction accepted by the user; real-save validation remains part of final acceptance
+- [x] B: Overview upload experience, trainer cards, badges, and summary statistics
+- [x] C: Party cards and complete unified Pokémon details
+- [x] D: PC box navigation, 30-slot layouts, search, and inspection
+- [x] E: dedicated Pokédex and organized Collection
+- [x] F: integration, responsive/accessibility checks, and visual polish
 
-Complete validation of each milestone before advancing. Parser/game mechanics,
-Atlas internals, and Team Planner internals are outside this UI milestone.
+B–F implementation is complete in Reader v0.25.29 with 18 passing browser checks.
+The user authorized completing B–F and publishing one integrated release before
+final user testing, superseding intermediate user-review gates for this redesign.
+
+- [ ] Final user acceptance and real SoulSilver save/replacement validation
+- [ ] Confirm the v0.25.29 release is live on the existing Pages site
+
+Parser/game mechanics, Atlas internals, and Team Planner internals are unchanged.
+Automated UI checks use synthetic parsed records and do not validate binary parsing
+or the known historical gameplay-data issues. No parser defects were resolved as
+part of the redesign; real-save correctness and evolution validation remain pending.

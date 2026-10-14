@@ -1,7 +1,7 @@
 const { before, after, test } = require("node:test");
 const assert = require("node:assert/strict");
-const { spawn } = require("node:child_process");
-const { mkdtemp, readFile, rm } = require("node:fs/promises");
+const { spawn, spawnSync } = require("node:child_process");
+const { mkdtemp, readFile, rm, mkdir } = require("node:fs/promises");
 const { tmpdir } = require("node:os");
 const path = require("node:path");
 const httpServer = require("http-server");
@@ -14,6 +14,7 @@ let nextId = 0;
 const pending = new Map();
 const exceptions = [];
 let browserLog = "";
+let apiUnavailable = false;
 
 async function until(operation, message) {
   const deadline = Date.now() + 15000;
@@ -64,11 +65,19 @@ before(async () => {
   });
   baseURL = `http://127.0.0.1:${server.server.address().port}`;
   profile = await mkdtemp(path.join(tmpdir(), "pokemon-atlas-test-"));
+  // Optional proxy CA trust for cloud visual testing; verification stays enabled.
+  if (process.env.CHROMIUM_CA_CERT) {
+    const database=path.join(profile,'.pki','nssdb'); await mkdir(database,{recursive:true});
+    for (const args of [['-N','--empty-password','-d',`sql:${database}`], ['-A','-d',`sql:${database}`,'-n','Cloud proxy CA','-t','C,,','-i',process.env.CHROMIUM_CA_CERT]]) {
+      const result=spawnSync('certutil',args,{encoding:'utf8'});
+      assert.equal(result.status,0,result.stderr);
+    }
+  }
   browser = spawn(process.env.CHROMIUM_PATH || "chromium", [
     "--headless", "--no-sandbox", "--no-first-run", "--disable-extensions",
     "--disable-gpu", "--disable-dev-shm-usage", "--remote-debugging-port=0",
     `--user-data-dir=${profile}`, "about:blank"
-  ], { stdio: ["ignore", "ignore", "pipe"] });
+  ], { stdio: ["ignore", "ignore", "pipe"], env:{...process.env,HOME:profile} });
   browser.on("error", (error) => { browserLog += error.message; });
   browser.stderr.on("data", (data) => { browserLog = (browserLog + data).slice(-4000); });
   const port = await until(async () => {
@@ -93,10 +102,11 @@ before(async () => {
       if (request.url.includes('/js/saves/soulsilver.js')) body = 'export function detectSoulSilver() { globalThis.__parseCount = (globalThis.__parseCount || 0) + 1; return structuredClone(globalThis.__readerFixture); }';
       else if (request.url.includes('pokemon-species?')) body = JSON.stringify({results:[{name:'pikachu',url:'https://pokeapi.co/api/v2/pokemon-species/25/'},{name:'eevee',url:'https://pokeapi.co/api/v2/pokemon-species/133/'},{name:'chikorita',url:'https://pokeapi.co/api/v2/pokemon-species/152/'}]});
       else if (request.url.includes('/pokemon-species/')) body = JSON.stringify({name:request.url.endsWith('/25')?'pikachu':'eevee',gender_rate:4,growth_rate:{name:'medium'}});
-      else if (request.url.includes('/pokemon/')) body = JSON.stringify({types:[{type:{name:'electric'}}],abilities:[{ability:{name:'static',url:'https://pokeapi.co/api/v2/ability/9/'}}]});
+      else if (request.url.endsWith('/pokemon/35')) body=JSON.stringify({types:[{type:{name:'fairy'}}],past_types:[{generation:{name:'generation-v'},types:[{type:{name:'normal'}}]}]});
+      else if (request.url.includes('/pokemon/')) body = JSON.stringify({types:[{type:{name:request.url.endsWith('/25')?'electric':'normal'}}],abilities:[{ability:{name:'static',url:'https://pokeapi.co/api/v2/ability/9/'}}]});
       else if (request.url.includes('/move/')) body = JSON.stringify({name:'pound',pp:35});
       else body = '{}';
-      command('Fetch.fulfillRequest', {requestId,responseCode:200,responseHeaders:[{name:'Content-Type',value:request.url.includes('.js')?'text/javascript':'application/json'},{name:'Access-Control-Allow-Origin',value:'*'}],body:Buffer.from(body).toString('base64')}).catch(error => browserLog += error.message);
+      command('Fetch.fulfillRequest', {requestId,responseCode:apiUnavailable && request.url.includes("pokeapi.co") ? 503 : 200,responseHeaders:[{name:'Content-Type',value:request.url.includes('.js')?'text/javascript':'application/json'},{name:'Access-Control-Allow-Origin',value:'*'}],body:Buffer.from(body).toString('base64')}).catch(error => browserLog += error.message);
     }
     if (message.method === "Runtime.exceptionThrown") exceptions.push(message.params.exceptionDetails);
   });
@@ -270,7 +280,7 @@ async function uploadFixture(data) {
     const files = new DataTransfer(); files.items.add(new File([new Uint8Array(512*1024)], 'ui-fixture.sav'));
     const input=document.querySelector('#save-file'); input.files=files.files; input.dispatchEvent(new Event('change'));
   })()`);
-  await until(() => evaluate(`document.querySelector('#file-status').classList.contains('success')`), 'Fixture save did not render');
+  await until(() => evaluate(`document.querySelector('#file-status').classList.contains('${data.valid ? 'success' : 'error'}')`), 'Fixture save did not render');
 }
 test('Overview displays parsed summaries and replaces stale save state', async () => {
   await fixtureReader();
@@ -278,6 +288,8 @@ test('Overview displays parsed summaries and replaces stale save state', async (
   assert.equal(await evaluate(`document.querySelector('#overview-summary').hidden`),false);
   assert.equal(await evaluate(`document.querySelector('#overview-stats').textContent.includes('PC Pokémon2')`),true);
   assert.equal(await evaluate(`document.querySelectorAll('.overview-shortcuts a').length`),4);
+  assert.equal(await evaluate(`document.querySelectorAll('#badge-grid img').length`),16);
+  assert.equal(await evaluate(`document.querySelectorAll('#badge-grid .earned').length`),2);
   await uploadFixture(fixture('Replacement'));
   assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Replacement');
   assert.equal(await evaluate(`document.querySelector('.app').getAttribute('aria-busy')`),'false');
@@ -371,5 +383,146 @@ test('Collection keeps counts, duplicates, caught/missing views, search and sort
   await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 1`),'Collection search');
   assert.equal(await evaluate(`document.querySelector('.collection-species-meta').textContent`),'Owned: 1');
   assert.equal(await evaluate(`globalThis.__parseCount`),1);
+  await command('Fetch.disable');
+});
+
+test('Loaded dashboard and dialogs fit mobile/desktop in both themes', async () => {
+  await fixtureReader();
+  for (const theme of ['dark','light']) {
+    await evaluate(`if (document.documentElement.dataset.theme !== '${theme}') document.querySelector('#theme-toggle').click()`);
+    for (const width of [320,390,768,1440]) {
+      await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
+      for (const view of ['overview','party','storage','pokedex','collection']) {
+        await evaluate(`location.hash='${view}'`);
+        await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`),'View switch');
+        assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true,`${theme}/${view}/${width} overflow`);
+        if (process.env.READER_SCREENSHOT_DIR && (width === 320 || width === 1440)) {
+          const shot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+          await require('node:fs/promises').writeFile(path.join(process.env.READER_SCREENSHOT_DIR, `${theme}-${view}-${width}.png`),Buffer.from(shot.data,'base64'));
+        }
+      }
+    }
+  }
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:true});
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party view');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').focus(); document.activeElement.click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Details');
+  assert.equal(await evaluate(`const dialog=document.querySelector('#pokemon-detail-dialog'); dialog.scrollWidth <= dialog.clientWidth`),true,'Dialog overflow');
+  for (let i=0;i<5;i++) {
+    await command('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+    await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+    assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog').contains(document.activeElement)`),true,'Dialog focus escaped');
+  }
+  if (process.env.READER_SCREENSHOT_DIR) {
+    const shot=await command('Page.captureScreenshot',{format:'png'});
+    await require('node:fs/promises').writeFile(path.join(process.env.READER_SCREENSHOT_DIR,'detail-320.png'),Buffer.from(shot.data,'base64'));
+  }
+  await command('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('#drop-zone')).transitionDuration`),'0s');
+  await command('Emulation.setEmulatedMedia',{features:[]});
+  await evaluate(`document.querySelector('#pokemon-detail-close').click()`);
+  await command('Emulation.clearDeviceMetricsOverride');
+  await command('Fetch.disable');
+});
+
+test('Metadata outage retains parsed data with honest fallback labels', async () => {
+  apiUnavailable=true;
+  try {
+    await fixtureReader();
+    assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Test Trainer');
+    assert.equal(await evaluate(`document.querySelector('#party-grid').textContent.includes('Sparky')`),true);
+    assert.equal(await evaluate(`document.querySelector('#dex-count').textContent.includes('Species names unavailable')`),true);
+    await evaluate(`location.hash='party'`);
+    await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+    await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
+    await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Fallback detail');
+    const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
+    assert.ok(content.includes('AbilityUnknown'));
+    assert.ok(content.includes('PP 20 / ?'));
+    assert.ok(content.includes('IV 31 · EV 1'));
+  } finally { apiUnavailable=false; await command('Fetch.disable'); }
+});
+
+test('Pagination and rapid replacement do not reparse or resurrect stale information', async () => {
+  const data=fixture(); data.save.pokedex.speciesIds=Array.from({length:100},(_,i)=>i+1);
+  await fixtureReader(data);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 40`),'Initial Dex page');
+  await evaluate(`document.querySelector('#dex-more').click()`);
+  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 80`),'More Dex entries');
+  await evaluate(`var mode=document.querySelector('#collection-list-mode'); mode.value='missing'; mode.dispatchEvent(new Event('change'));`);
+  await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 40`),'Initial collection page');
+  await evaluate(`document.querySelector('#collection-show-more').click()`);
+  await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 80`),'More collection entries');
+  await evaluate(`globalThis.__arrayBuffer = File.prototype.arrayBuffer; globalThis.__delayed = true;
+    File.prototype.arrayBuffer = async function() { if (globalThis.__delayed) { globalThis.__delayed=false; await new Promise(r=>setTimeout(r,250)); } return globalThis.__arrayBuffer.call(this); };
+    globalThis.__readerFixture = ${JSON.stringify(fixture('Slow old file'))};
+    var transfer=new DataTransfer(); transfer.items.add(new File([new Uint8Array(512*1024)],'old.sav'));
+    document.querySelector('#save-file').files=transfer.files; document.querySelector('#save-file').dispatchEvent(new Event('change'));
+  `);
+  await uploadFixture(fixture('Newest file'));
+  await pause(300);
+  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Newest file');
+  assert.equal(await evaluate(`globalThis.__parseCount`),2,'Delayed old file should not be parsed');
+  await evaluate(`File.prototype.arrayBuffer=globalThis.__arrayBuffer`);
+  await command('Fetch.disable');
+});
+
+test('Invalid replacement clears all previous data and empty parties keep six slots', async () => {
+  const empty=fixture(); empty.party=[];
+  await fixtureReader(empty);
+  const storageKeys = await evaluate(`Object.keys(localStorage).sort()`);
+  assert.equal(await evaluate(`document.querySelectorAll('.empty-party-slot').length`),6);
+  await uploadFixture({valid:false,game:'Not detected',activePartition:null,reason:'Invalid test save',party:[],save:null});
+  for (const id of ['trainer-info','party-info','storage-info','pokedex-info','collection-info','collection-gender-info','unown-form-info','collection-details-info','overview-summary']) {
+    assert.equal(await evaluate(`document.querySelector('#${id}').hidden`),true,id);
+  }
+  assert.equal(await evaluate(`document.querySelector('#party-grid').childElementCount`),0);
+  assert.equal(await evaluate(`document.querySelector('#dex-list').childElementCount`),0);
+  assert.equal(await evaluate(`document.querySelector('.app').getAttribute('aria-busy')`),'false');
+  assert.deepEqual(await evaluate(`Object.keys(localStorage).sort()`),storageKeys);
+  await command('Fetch.disable');
+});
+
+test('Dashboard theme text and type badges meet readable contrast', async () => {
+  await fixtureReader();
+  for (const theme of ['dark','light']) {
+    await evaluate(`if (document.documentElement.dataset.theme !== '${theme}') document.querySelector('#theme-toggle').click()`);
+    const ratios=await evaluate(`(() => {
+      const luminance = color => {
+        const rgb=color.match(/[\\d.]+/g).slice(0,3).map(n=>Number(n)/255).map(v=>v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4);
+        return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
+      };
+      const ratio=(a,b) => (Math.max(luminance(a),luminance(b))+.05)/(Math.min(luminance(a),luminance(b))+.05);
+      const css=getComputedStyle(document.documentElement);
+      const resolve=name => { const p=document.createElement('span'); p.style.color='var('+name+')'; document.body.append(p); const value=getComputedStyle(p).color; p.remove(); return value; };
+      const values={};
+      for (const text of ['--text','--muted','--accent','--success','--error']) for (const surface of ['--background','--surface','--elevated']) values[text+surface]=ratio(resolve(text),resolve(surface));
+      for (const badge of document.querySelectorAll('.type-badge')) { const style=getComputedStyle(badge); values[badge.textContent]=ratio(style.color,style.backgroundColor); }
+      return values;
+    })()`);
+    for (const [name,ratio] of Object.entries(ratios)) assert.ok(ratio>=4.5,`${theme} ${name} contrast ${ratio}`);
+  }
+  await command('Fetch.disable');
+  assert.deepEqual(exceptions,[]);
+});
+
+
+test('Details show Generation IV types, nature modifiers, and unavailable PC battle fields', async () => {
+  const data=fixture(); data.party[0].speciesId=35; data.party[0].natureId=3;
+  await fixtureReader(data);
+  assert.equal(await evaluate(`document.querySelector('#party-grid .type-badge').textContent`),'Normal');
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Nature details');
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-content').textContent.includes('Attack +10% · Special Attack −10%')`),true);
+  await evaluate(`document.querySelector('#pokemon-detail-close').click(); location.hash='storage'`);
+  await until(() => evaluate(`document.querySelector('[data-view="storage"]').getAttribute('aria-current') === 'page'`),'Storage route');
+  await evaluate(`document.querySelector('#box-grid .pokemon-detail-button').click()`);
+  await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'PC record');
+  const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
+  assert.ok(content.includes('HP— / —'));
+  assert.ok(content.includes('StatusNot stored in PC record'));
   await command('Fetch.disable');
 });

@@ -13,9 +13,10 @@ function fixture(name='Test Trainer') {
  const party=[pokemon(1,25,'Sparky',{shiny:true}),pokemon(3,133,'Buddy')];
  const storage={currentBox:0,boxes:Array.from({length:18},(_,i)=>({number:i+1,name:`Box ${i+1}`,pokemon:Array.from({length:30},(_,j)=>({slot:j+1,empty:true}))}))};
  storage.boxes[0].pokemon[4]=pokemon(5,25,'Thunder',{recordKind:'storage'});
- storage.boxes[17].pokemon[29]=pokemon(30,133,'Egg friend',{isEgg:true});
+ storage.boxes[17].pokemon[29]=pokemon(30,133,'Egg friend',{isEgg:true,recordKind:'storage'});
+ for (const record of [storage.boxes[0].pokemon[4], storage.boxes[17].pokemon[29]]) for (const key of ['currentHp','maxHp','stats','status','level']) delete record[key];
  const pokedex={nationalDex:true,speciesIds:[25,133,152],seenSpecies:[25,133],caughtSpecies:[25],speciesCount:3,seenCount:2,caughtCount:1,seenPercent:2/3*100,caughtPercent:1/3*100};
- const trainer={name,trainerId:123,secretId:456,gender:'Male',money:5000,playTime:{hours:12,minutes:34,seconds:0},badges:[],badgeCount:0};
+ const trainer={name,trainerId:123,secretId:456,gender:'Male',money:5000,playTime:{hours:12,minutes:34,seconds:0},badges:3,badgeCount:2};
  return {valid:true,game:'Pokémon SoulSilver',activePartition:0,reason:'Valid SoulSilver save structure detected.',party,storage,save:{trainer,pokedex}};
 }
 module.exports={fixture};

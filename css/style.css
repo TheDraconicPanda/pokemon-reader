@@ -1049,3 +1049,15 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .collection-expand { margin-top: 16px; }
 .collection-summary { gap: 12px; }.collection-summary > div { padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
 @media (max-width: 520px) { .dex-controls { grid-template-columns: 1fr; } }
+.detail-record-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 13px; }
+.pokemon-detail-dialog-header { position: sticky; top: -1.25rem; background: var(--surface); z-index: 1; padding-top: 12px; }
+.dashboard-party-card .evolution-control { width: 100%; }
+.dashboard-party-card .evolution-control select { min-width: 0; max-width: 100%; }
+@media (max-width: 800px) { .app-header { gap: 12px; }.app-header > p { margin: 0; } }
+@media (max-width: 800px) {
+  .app { padding-bottom: 100px; }
+  .dashboard-nav { position: fixed; inset: auto 0 0; grid-template-columns: repeat(5, minmax(0, 1fr)); z-index: 3; padding: 8px 6px max(8px, env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); }
+  .dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 52px; font-size: 11px; padding: 6px 2px; }
+  .secondary-nav { margin-top: 0; }
+  .box-tabs { display: none; }
+}

@@ -142,6 +142,8 @@ async function handleFile(file) {
       renderCollectionStats(result.party, result.storage);
       renderCollectionDetails(result.save.pokedex, result.party, result.storage);
       renderOverview(result);
+      document.querySelector("#upload-heading").textContent = "Load another save";
+      document.querySelector("#upload-help").hidden = true;
       trainerInfo.hidden = false;
       collectionNav.hidden = false;
       const enrichedParty = await enrichPokemonList(result.party, true);
@@ -364,9 +366,13 @@ collectionShowMore.addEventListener("click", () => {
   renderCollectionSpeciesList();
 });
 
+function fetchMetadata(url) {
+  return fetch(url, { signal: AbortSignal.timeout(8000) });
+}
+
 function getSpeciesIndex() {
   if (!speciesIndexPromise) {
-    speciesIndexPromise = fetch("https://pokeapi.co/api/v2/pokemon-species?limit=493")
+    speciesIndexPromise = fetchMetadata("https://pokeapi.co/api/v2/pokemon-species?limit=493")
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
         const names = new Map();
@@ -582,6 +588,14 @@ async function enrichStorage(storage) {
   return { ...storage, boxes };
 }
 
+function getSoulSilverTypes(data) {
+  // PokeAPI past_types records the last generation using each historical typing.
+  const generations = ["generation-i", "generation-ii", "generation-iii", "generation-iv", "generation-v", "generation-vi", "generation-vii", "generation-viii", "generation-ix"];
+  const historical = (data?.past_types || []).filter(entry => generations.indexOf(entry.generation.name) >= 3)
+    .sort((a, b) => generations.indexOf(a.generation.name) - generations.indexOf(b.generation.name))[0];
+  return (historical?.types || data?.types || []).map(entry => entry.type.name);
+}
+
 async function enrichPokemon(pokemon, includeMoves = false) {
   if (pokemon.empty) return pokemon;
 
@@ -590,7 +604,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
 
   return {
     ...pokemon,
-    types: (data?.pokemon?.types || []).map(entry => entry.type.name),
+    types: getSoulSilverTypes(data?.pokemon),
     speciesName: data?.species?.name ? formatPokemonName(data.species.name) : null,
     growthRate: data?.species?.growth_rate?.name || null,
     level: pokemon.level ?? estimateLevelFromExperience(
@@ -601,7 +615,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
     abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
     natureName: getNatureName(pokemon.natureId),
-    statusText: getStatusText(pokemon.status),
+    statusText: pokemon.status === undefined ? "Not stored in PC record" : getStatusText(pokemon.status),
     experienceText: formatNumber(pokemon.experience),
     heldItemName,
     pokeballName: getPokeballName(pokemon.pokeballId),
@@ -637,7 +651,7 @@ async function getMoveData(moveId) {
   if (!moveId) return { name: "—", basePP: null };
   if (moveDataCache.has(moveId)) return moveDataCache.get(moveId);
 
-  const promise = fetch(`https://pokeapi.co/api/v2/move/${moveId}`)
+  const promise = fetchMetadata(`https://pokeapi.co/api/v2/move/${moveId}`)
     .then((response) => response.ok ? response.json() : null)
     .then((move) => ({
       name: move?.name ? formatPokemonName(move.name) : `Move #${moveId}`,
@@ -683,10 +697,10 @@ async function getPokemonData(speciesId) {
   if (pokemonDataCache.has(speciesId)) return pokemonDataCache.get(speciesId);
 
   const promise = Promise.all([
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${speciesId}`)
+    fetchMetadata(`https://pokeapi.co/api/v2/pokemon-species/${speciesId}`)
       .then((response) => response.ok ? response.json() : null)
       .catch(() => null),
-    fetch(`https://pokeapi.co/api/v2/pokemon/${speciesId}`)
+    fetchMetadata(`https://pokeapi.co/api/v2/pokemon/${speciesId}`)
       .then((response) => response.ok ? response.json() : null)
       .catch(() => null),
   ]).then(([species, pokemon]) => ({ species, pokemon }));
@@ -865,7 +879,7 @@ async function getItemName(itemId) {
     ? `https://pokeapi.co/api/v2/item/${itemSlug}`
     : `https://pokeapi.co/api/v2/item/${itemId}`;
 
-  const promise = fetch(endpoint)
+  const promise = fetchMetadata(endpoint)
     .then((response) => response.ok ? response.json() : null)
     .then((item) => item ? formatPokemonName(item.name) : `Item #${itemId}`)
     .catch(() => `Item #${itemId}`);
@@ -1118,6 +1132,11 @@ function renderPokemonDetail(pokemon) {
   appendTypeBadges(identity, pokemon);
   header.append(image, identity);
   pokemonDetailContent.append(header);
+  if (pokemon.recordKind === "storage") {
+    const note = document.createElement("p"); note.className = "detail-record-note";
+    note.textContent = "PC records do not store current HP, battle stats, or status. Level is estimated from experience when species metadata is available.";
+    pokemonDetailContent.append(note);
+  }
 
   const addSection = (headingText, rows, className = "") => {
     const section = document.createElement("section");
@@ -1189,8 +1208,8 @@ function renderPokemonDetail(pokemon) {
     ["Met date", pokemon.metDateText],
     ["Poké Ball", pokemon.pokeballName],
     ["Nickname changed", pokemon.isNicknamed ? "Yes" : "No"],
-    ["Egg received", pokemon.isEgg ? pokemon.eggDateText : "Not an Egg"],
-    ["Egg location", pokemon.isEgg ? pokemon.eggLocationText : "—"],
+    ["Egg received", pokemon.eggDateText],
+    ["Egg location", pokemon.eggLocationText],
   ]);
   addEvolutionControl(pokemonDetailContent, pokemon);
 }
@@ -1201,6 +1220,18 @@ function natureModifiers(natureId) {
   const raised = Math.floor(natureId / 5), lowered = natureId % 5;
   return raised === lowered ? "Neutral" : `${stats[raised]} +10% · ${stats[lowered]} −10%`;
 }
+
+pokemonDetailDialog.addEventListener("keydown", event => {
+  if (event.key !== "Tab") return;
+  const controls = [...pokemonDetailDialog.querySelectorAll('button:not(:disabled), select:not(:disabled), a[href], input:not(:disabled), [tabindex="0"]')].filter(node => node.getClientRects().length);
+  const first = controls[0], last = controls.at(-1);
+  if (!first) { event.preventDefault(); return; }
+  if (event.shiftKey && (document.activeElement === first || !pokemonDetailDialog.contains(document.activeElement))) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && (document.activeElement === last || !pokemonDetailDialog.contains(document.activeElement))) {
+    event.preventDefault(); first.focus();
+  }
+});
 
 pokemonDetailDialog.addEventListener("close", () => { detailRevision++; });
 
@@ -1264,7 +1295,7 @@ function renderParty(party) {
     const button = document.createElement("button"); button.type = "button"; button.className = "pokemon-detail-button";
     button.textContent = `Inspect ${title.textContent}`; button.addEventListener("click", () => openPokemonDetails(pokemon)); card.append(button);
     card.addEventListener("click", event => { if (!event.target.closest("button, select")) { button.focus(); openPokemonDetails(pokemon); } });
-    addEvolutionControl(card, pokemon); partyGrid.append(card);
+    partyGrid.append(card);
   }
   partyInfo.hidden = false;
 }
@@ -1328,6 +1359,7 @@ function addEvolutionControl(container, pokemon) {
       : "";
     if (!window.confirm(`Evolve ${pokemon.nickname || getDisplaySpeciesName(pokemon)} into ${targetName}?${itemNote}${locationNote}\n\nA separate modified save will be downloaded. Your original file is not overwritten.`)) return;
 
+    const revision = loadRevision;
     button.disabled = true;
     button.textContent = "Evolving…";
     try {
@@ -1337,6 +1369,7 @@ function addEvolutionControl(container, pokemon) {
         evolvedStats = data?.pokemon?.stats || null;
         if (!evolvedStats) throw new Error("Could not load the evolved species' base stats. No changes were made.");
       }
+      if (revision !== loadRevision) return;
       const output = evolveSoulSilverPokemon(
         currentSaveBytes,
         pokemon,
@@ -1364,6 +1397,7 @@ function addEvolutionControl(container, pokemon) {
       fileStatus.textContent = `Evolved into ${targetName}. Downloaded ${outputName}. The updated save is now loaded in this session.`;
       await handleFile(new File([output], outputName, { type: "application/octet-stream" }));
     } catch (error) {
+      if (revision !== loadRevision) return;
       fileStatus.className = "status error";
       fileStatus.textContent = error?.message || "Evolution failed; the save was not changed.";
       button.disabled = false;
@@ -1388,6 +1422,8 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  document.querySelector("#upload-heading").textContent = "Your adventure starts here";
+  document.querySelector("#upload-help").hidden = false;
   document.querySelector(".app").setAttribute("aria-busy", "false");
   loadRevision++;
   detailRevision++;
