@@ -3,7 +3,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.32";
+const APP_VERSION = "0.25.33";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -1205,10 +1205,10 @@ function renderPokemonDetail(pokemon) {
   };
   const moves = Array.from({length: 4}, (_, index) => {
     const move = pokemon.moves?.[index];
-    return [index + 1, move?.id ? move.name || `Move #${move.id}` : "Empty move slot",
-      move?.id ? `${Number.isFinite(move.pp) ? move.pp : "—"} / ${Number.isFinite(move.maxPP) ? move.maxPP : "?"}` : "—", move?.id ? move.ppUps ?? 0 : "—"];
+    return [move?.id ? move.name || `Move #${move.id}` : "Empty move slot",
+      move?.id ? `${Number.isFinite(move.pp) ? move.pp : "—"}/${Number.isFinite(move.maxPP) ? move.maxPP : "?"}` : "—", move?.id ? move.ppUps ?? 0 : "—"];
   });
-  addTable("Moves", ["Move", "Name", "PP", "PP Ups"], moves, "moves-section");
+  addTable("Moves", ["Name", "PP", "PP Ups"], moves, "moves-section");
   const stats = [["HP", "hp"], ["Attack", "attack"], ["Defense", "defense"], ["Special Attack", "specialAttack"], ["Special Defense", "specialDefense"], ["Speed", "speed"]];
   const trainingRows = stats.map(([label, key]) => [label, pokemon.ivs?.[key], pokemon.evs?.[key]]);
   const total = values => values.every(Number.isFinite) ? values.reduce((sum, value) => sum + value, 0) : "—";

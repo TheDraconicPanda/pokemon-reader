@@ -204,16 +204,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.32<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.33<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.32");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.33");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -272,7 +272,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -308,7 +308,7 @@ test('Party keeps six slots and shared details retain fields, moves, and focus',
   await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').focus(); document.activeElement.click()`);
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`), 'Detail loaded');
   const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
-  for (const value of ['Summary','Stats','Moves','Training','History','Original','20 / 49','PP Ups','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
+  for (const value of ['Summary','Stats','Moves','Training','History','Original','20/49','PP Ups','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
   await command('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await until(() => evaluate(`!document.querySelector('#pokemon-detail-dialog').open`), 'Escape did not close details');
@@ -439,7 +439,7 @@ test('Metadata outage retains parsed data with honest fallback labels', async ()
     await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Fallback detail');
     const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
     assert.ok(content.includes('AbilityUnknown'));
-    assert.ok(content.includes('20 / ?'));
+    assert.ok(content.includes('20/?'));
     assert.equal(await evaluate(`document.querySelector('.training-section tbody tr').textContent`),'HP311');
   } finally { apiUnavailable=false; await command('Fetch.disable'); }
 });
@@ -529,7 +529,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.32'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -603,6 +603,7 @@ test('Six occupied Party card buttons keep 96px sprites and fit a single viewpor
   await fixtureReader(data);
   await evaluate(`location.hash='party'`);
   await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
+  assert.equal(await evaluate(`document.querySelector('#party-info > h2')`),null);
   assert.equal(await evaluate(`document.querySelectorAll('#party-grid button button').length`),0,'No nested Inspect controls');
   assert.equal(await evaluate(`document.querySelector('#party-grid').textContent.includes('Held item') || document.querySelector('#party-grid').textContent.includes('Status:') || document.querySelector('#party-grid').textContent.includes('Inspect')`),false);
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('#party-grid progress'),bar=>bar.className)`),['hp-bar hp-green','hp-bar hp-yellow','hp-bar hp-orange','hp-bar hp-red','hp-bar hp-critical','hp-bar hp-critical']);
@@ -641,11 +642,18 @@ test('Detail header, borderless tables, totals and conditional history match par
   assert.equal(await evaluate(`document.querySelector('.nature-up').textContent`),'↑ Attack +10%');
   assert.equal(await evaluate(`document.querySelector('.nature-down').textContent`),'↓ Special Attack −10%');
   assert.equal(await evaluate(`Math.abs(document.querySelector('.nature-up').getBoundingClientRect().x - document.querySelector('.nature-down').getBoundingClientRect().x) < 1 && document.querySelector('.nature-down').getBoundingClientRect().y > document.querySelector('.nature-up').getBoundingClientRect().y`),true,'Nature modifiers must be two rows, not two columns');
-  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.moves-section thead th'),cell=>cell.textContent)`),['Move','Name','PP','PP Ups']);
-  assert.deepEqual(await evaluate(`Array.from(document.querySelector('.moves-section tbody tr').children,cell=>cell.textContent)`),['1','Pound','20 / 49','2']);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.moves-section thead th'),cell=>cell.textContent)`),['Name','PP','PP Ups']);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelector('.moves-section tbody tr').children,cell=>cell.textContent)`),['Pound','20/49','2']);
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.training-section thead th'),cell=>cell.textContent)`),['Stat','IV','EV']);
   assert.deepEqual(await evaluate(`Array.from(document.querySelector('.training-section tbody tr:last-child').children,cell=>cell.textContent)`),['Total','171','21']);
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.detail-table td')).borderTopWidth`),'0px');
+  assert.equal(await evaluate(`Math.abs(document.querySelector('.nature-modifiers').getBoundingClientRect().right - document.querySelector('.nature-modifiers').parentElement.getBoundingClientRect().right) < 1`),true,'Nature block right alignment');
+  for (const section of ['moves-section','training-section']) {
+    const widths=await evaluate(`Array.from(document.querySelectorAll('.${section} thead th'),cell=>cell.getBoundingClientRect().width)`);
+    const total=widths.reduce((a,b)=>a+b,0);
+    assert.ok(widths[0]/total > .65);
+    assert.ok(widths[1]/total < .17 && widths[2]/total < .17);
+  }
   const text=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
   for (const value of ['200 / 255','Safari Zone Gate','Day-Care Couple','Egg received']) assert.ok(text.includes(value),value);
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.pokemon-detail-list dt')).some(term=>term.textContent === 'Form')`),false);

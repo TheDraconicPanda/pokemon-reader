@@ -76,7 +76,7 @@ The iteration number is intended to make deployed builds easy to identify while 
 
 ## Reader dashboard redesign
 
-Reader **v0.25.32** completes the implementation of milestones B–F on the dashboard
+Reader **v0.25.33** completes the implementation of milestones B–F on the dashboard
 foundation. Atlas remains v0.25.27; Team Planner and the binary parser are unchanged.
 The user requested one integrated release followed by final user testing.
 
@@ -131,7 +131,7 @@ into an isolated temporary Chromium trust database using `certutil`, retaining T
 verification. Neither variable is required for the normal regression suite.
 
 Final user acceptance and real-save validation remain pending. On the existing
-GitHub Pages site, confirm v0.25.32, load a known SoulSilver save, compare trainer,
+GitHub Pages site, confirm v0.25.33, load a known SoulSilver save, compare trainer,
 Party, PC, registrations, and collection counts against the game, then replace the
 save and verify every view refreshes. Check both themes, mobile navigation, dialog
 scrolling/keyboard controls, PC search, and existing evolution export behavior.
@@ -168,3 +168,7 @@ The 24 browser checks include six occupied cards, unchanged sprite dimensions,
 whole-card keyboard activation, HP colors, nature-row layout, table columns/totals,
 icon placement, conditional history, and location-name examples. Real-save review
 of the revised Party and details remains pending on the published site.
+
+Reader v0.25.33 removes the redundant Current Party subtitle, right-aligns the
+nature modifier block while keeping its arrows left-aligned, and gives Moves
+(Name/PP/PP Ups) and Training (Stat/IV/EV) tables 70%/15%/15% columns.

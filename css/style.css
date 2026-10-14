@@ -1003,7 +1003,6 @@ button { cursor: pointer; }
 .app[data-view="party"] .view-intro { margin: 12px 0; }
 .app[data-view="party"] #view-description { display: none; }
 .app[data-view="party"] #party-info { padding: 12px; }
-.app[data-view="party"] #party-info > h2 { font-size: 18px; margin-bottom: 10px; }
 @media (max-width: 520px) {
  .app[data-view="party"] { width: calc(100% - 16px); }
  .app[data-view="party"] #party-info { padding: 4px; }
@@ -1065,15 +1064,17 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 
 .pokemon-detail-header .detail-icons { margin-left: auto; align-self: flex-start; display: grid; gap: 6px; font-size: 24px; color: #d6aa25; text-align: center; flex-shrink: 0; }
 .pokemon-detail-header > div:not(.detail-icons) { min-width: 0; }
-.nature-modifiers { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; text-align: left; font-size: 12px; }
+.nature-modifiers { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; text-align: left; font-size: 12px; width: max-content; max-width: 100%; margin-left: auto; }
 .nature-modifiers span { white-space: nowrap; }
 @media (max-width: 560px) { .nature-modifiers { font-size: 11px; } }
 .nature-up { color: var(--success); }.nature-down { color: var(--error); }
 .detail-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 12px; }
 .detail-table th, .detail-table td { border: 0; padding: 6px 4px; text-align: left; overflow-wrap: anywhere; }
 .detail-table thead th { color: var(--muted); }
-.moves-section th:first-child { width: 16%; }.moves-section th:nth-child(2) { width: 38%; }.moves-section th:nth-child(3) { width: 26%; }.moves-section th:nth-child(4) { width: 20%; }
-.training-section th:first-child { width: 48%; }.training-section th:nth-child(2), .training-section th:nth-child(3) { width: 26%; }
+.moves-section thead th:first-child, .training-section thead th:first-child { width: 70%; }
+.moves-section thead th:nth-child(2), .moves-section thead th:nth-child(3), .training-section thead th:nth-child(2), .training-section thead th:nth-child(3) { width: 15%; }
+.detail-table th:not(:first-child), .detail-table td { padding-inline: 2px; }
+.moves-section td { white-space: nowrap; font-size: 11px; }
 .training-section tbody tr:last-child { font-weight: 700; }
 .hidden-power { margin: 12px 0 0; font-size: 13px; }
 .app[data-view="party"] .eyebrow { margin: 4px 0; }

@@ -179,3 +179,10 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Conditional egg/form history, Friendship / 255, and expanded sourced Gen IV location labels
 - [x] Validate with 24 browser tests and phone/desktop visual review
 - [ ] User acceptance and real-save review of v0.25.32
+
+## Party detail spacing — v0.25.33
+
+- [x] Remove Current Party subtitle and right-align the nature modifier block
+- [x] Remove move slot column and use 70%/15%/15% columns for Moves and Training
+- [x] Validate with the 24 browser regressions
+- [ ] User acceptance of v0.25.33
