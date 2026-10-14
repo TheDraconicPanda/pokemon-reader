@@ -92,6 +92,7 @@
 - [x] Add block-attracted Pokémon for Wetland, with object counts and unlock-day requirements
 - [x] Add block-attracted Pokémon for Forest, with object counts and unlock-day requirements
 - [x] Add block-attracted Pokémon for Swamp, including walking, surfing, and fishing requirements
+- [x] Add block-attracted Pokémon for Marshland, including walking, surfing, and fishing requirements
 - [ ] Add block-attracted Pokémon for the remaining Safari Zone areas and complete the block reference
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
