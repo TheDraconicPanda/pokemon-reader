@@ -82,6 +82,8 @@
 - [x] Add Cliff Edge Gate encounter reference
 - [x] Add Cliff Cave encounter reference
 - [x] Add Embedded Tower special-encounter reference
+- [x] Add Safari Zone Gate SoulSilver Headbutt encounter reference
+- [x] Add initial Safari Zone standard encounter coverage (partial; block-attracted and remaining area tables still pending)
 - [x] Add Whirl Islands wild encounters by floor and method
 - [ ] Expand wild encounters to other areas
 - [ ] Trainers
