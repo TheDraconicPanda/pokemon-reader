@@ -94,7 +94,8 @@
 - [x] Add block-attracted Pokémon for Swamp, including walking, surfing, and fishing requirements
 - [x] Add block-attracted Pokémon for Marshland, including walking, surfing, and fishing requirements
 - [x] Add Wasteland block-attracted Pokémon, including mixed block requirements and delayed unlocks
-- [ ] Add block-attracted Pokémon for the remaining Safari Zone areas and complete the block reference
+- [x] Add Mountain block-attracted Pokémon, including mixed block requirements and delayed unlocks
+- [ ] Add Desert block-attracted Pokémon and complete the block reference
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
 - [ ] Expand wild encounters to other areas
