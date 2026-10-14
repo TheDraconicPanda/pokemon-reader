@@ -131,3 +131,16 @@
 - [ ] Validate encrypted Pokémon record writing and save checksums against real SoulSilver test saves
 - [ ] Test trade-item consumption and party stat recalculation in-game or in an emulator
 - [ ] Expand only after the first writes are validated
+
+## Reader UI redesign — Atlas development temporarily paused
+
+- [x] A: implement dashboard shell, five-view routing, responsive navigation, and persistent themes (Reader v0.25.28); automated checks pass
+- [ ] A: user acceptance and real-save regression validation on the deployed site
+- [ ] B: Overview upload experience, trainer cards, badges, and summary statistics
+- [ ] C: Party cards and complete unified Pokémon details
+- [ ] D: PC box navigation, 30-slot layouts, search, and inspection
+- [ ] E: dedicated Pokédex and organized Collection
+- [ ] F: integration, responsive/accessibility checks, and visual polish
+
+Complete validation of each milestone before advancing. Parser/game mechanics,
+Atlas internals, and Team Planner internals are outside this UI milestone.

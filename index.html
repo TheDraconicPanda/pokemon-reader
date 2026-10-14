@@ -3,24 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.25.27</title>
+  <title>Pokémon Reader — v0.25.28</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#view-heading">Skip to content</a>
   <main class="app">
+    <aside class="dashboard-sidebar">
+      <a class="dashboard-brand" href="#overview">Pokémon Reader <small>SoulSilver companion</small></a>
+      <nav class="dashboard-nav" aria-label="Reader views">
+        <a href="#overview" data-view="overview">Overview</a>
+        <a href="#party" data-view="party">Party</a>
+        <a href="#storage" data-view="storage">PC Storage</a>
+        <a href="#pokedex" data-view="pokedex">Pokédex</a>
+        <a href="#collection" data-view="collection">Collection</a>
+      </nav>
+      <nav class="secondary-nav" aria-label="Companion tools">
+        <a href="team-planner/">Team Planner</a>
+        <a href="pokedex-earth/">Atlas</a>
+      </nav>
+    </aside>
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.27</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.28</span></p>
+      <div class="header-actions"><span id="dashboard-save-status" role="status">No save loaded</span>
+      <button id="theme-toggle" type="button" aria-pressed="false">Light mode</button></div>
     </header>
+    <div class="view-intro"><p class="eyebrow">YOUR SOULSILVER COMPANION</p><h2 id="view-heading" tabindex="-1">Overview</h2>
+    <p id="view-description">Load a save to explore your adventure. Your file stays in this browser.</p></div>
+    <p id="view-empty" class="card" hidden>Load a SoulSilver save in <a href="#overview">Overview</a> to use this view.</p>
 
-    <section class="card">
-      <h2>SoulSilver Team Planner</h2>
-      <p>Track your planned party, move priorities, exploration HMs, EV goals, and optional postgame candidates separately from save-file reading.</p>
-      <p><a href="team-planner/">Open Team Planner →</a></p>
-      <p>Explore Johto with the <a href="pokedex-earth/">SoulSilver PokéEarth directory →</a></p>
-    </section>
-
-    <section class="card">
+    <section class="card" data-reader-view="overview">
       <h2>Load Save</h2>
       <label id="drop-zone" class="file-picker" for="save-file">
         <span class="file-picker-text">Choose a save file or drop one here</span>
@@ -29,7 +42,7 @@
       <p id="file-status" class="status" aria-live="polite">No save file loaded.</p>
     </section>
 
-    <section class="card">
+    <section class="card" data-reader-view="overview">
       <h2>Save Information</h2>
       <dl>
         <div><dt>Game</dt><dd id="game-value">Not detected</dd></div>
@@ -39,7 +52,7 @@
       </dl>
     </section>
 
-    <section id="trainer-info" class="card" hidden>
+    <section data-reader-view="overview" id="trainer-info" class="card" hidden>
       <h2>Trainer Information</h2>
       <dl>
         <div><dt>Name</dt><dd id="trainer-name-value">—</dd></div>
@@ -53,7 +66,7 @@
 
       <div id="badge-grid" class="badge-grid" aria-label="Gym badges"></div>
     </section>
-        <nav id="collection-nav" class="collection-nav card" aria-label="Save sections" hidden>
+        <nav data-reader-view="collection" id="collection-nav" class="collection-nav card" aria-label="Save sections" hidden>
       <span class="collection-nav-label">Jump to section</span>
       <div class="collection-nav-links">
         <a href="#party-info">Party</a>
@@ -66,18 +79,18 @@
       </div>
     </nav>
 
-    <section id="party-info" class="card" hidden>
+    <section data-reader-view="party" id="party-info" class="card" hidden>
       <h2>Current Party</h2>
       <div id="party-grid" class="party-grid"></div>
     </section>
-    <section id="storage-info" class="card" hidden>
+    <section data-reader-view="storage" id="storage-info" class="card" hidden>
       <h2>PC Storage</h2>
       <p class="storage-summary">18 boxes · 30 slots each</p>
       <div id="box-tabs" class="box-tabs" role="tablist" aria-label="PC boxes"></div>
       <div id="box-grid" class="box-grid"></div>
     </section>
 
-    <section id="pokedex-info" class="card" hidden>
+    <section data-reader-view="pokedex" id="pokedex-info" class="card" hidden>
       <h2>Pokédex</h2>
       <dl>
         <div><dt>Mode</dt><dd id="pokedex-mode-value">—</dd></div>
@@ -86,7 +99,7 @@
       </dl>
     </section>
 
-    <section id="collection-info" class="card" hidden>
+    <section data-reader-view="collection" id="collection-info" class="card" hidden>
       <h2>Collection Statistics</h2>
       <dl class="collection-summary">
         <div><dt>Total Pokémon</dt><dd id="collection-total-value">—</dd></div>
@@ -101,7 +114,7 @@
       <p class="collection-note">Total includes Eggs. Unique Species excludes Eggs.</p>
     </section>
 
-    <section id="collection-gender-info" class="card" hidden>
+    <section data-reader-view="collection" id="collection-gender-info" class="card" hidden>
       <h2>Collection Gender Breakdown</h2>
       <p class="collection-note">Counts Pokémon currently in your party and PC, excluding Eggs. Gender depends on each Pokémon's species and personality value; genderless species are counted separately.</p>
       <dl class="collection-summary">
@@ -113,14 +126,14 @@
       </dl>
     </section>
 
-    <section id="unown-form-info" class="card" hidden>
+    <section data-reader-view="collection" id="unown-form-info" class="card" hidden>
       <h2>Alternate Form Collection</h2>
       <p class="collection-note">Tracks supported alternate forms among Pokémon in your party and PC, excluding Eggs. Form IDs are read from the Generation IV form field in each decrypted Pokémon record.</p>
       <p class="unown-form-summary">Tracked Pokémon: <strong id="unown-form-total">—</strong></p>
       <div id="unown-form-list" class="unown-form-list"></div>
     </section>
 
-    <section id="collection-details-info" class="card" hidden>
+    <section data-reader-view="collection" id="collection-details-info" class="card" hidden>
       <h2>Collection Details</h2>
       <p class="collection-details-intro">Browse Pokédex registrations and find duplicate species in your party and PC. Ownership counts include only your party and PC boxes, not Pokémon at Day Care or traded away; Pokédex registrations remain after a Pokémon evolves or is traded. Eggs are excluded from duplicate counts.</p>
       <div class="collection-details-controls">
@@ -156,5 +169,6 @@
     <div id="pokemon-detail-content" class="pokemon-detail-content"></div>
   </dialog>
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>

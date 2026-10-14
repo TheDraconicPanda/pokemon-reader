@@ -182,16 +182,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.27<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.28<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.27'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.27");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.28'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.28");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.27'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.28'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -217,5 +217,31 @@ test("Planner checklist persists and tabs work independently of Atlas", async ()
     assert.equal(await evaluate(`document.querySelector('#panel-${tab}').hidden`), false);
     assert.equal(await evaluate(`document.querySelectorAll('.panel:not([hidden])').length`), 1);
   }
+  assert.deepEqual(exceptions, []);
+});
+
+
+test("Reader dashboard routes, themes, and mobile layout work", async () => {
+  await command("Page.navigate", { url: `${baseURL}/` });
+  await until(() => evaluate(`document.querySelector('[data-view="overview"]')?.getAttribute('aria-current') === 'page'`), "Dashboard did not initialize");
+  assert.equal(await evaluate(`document.documentElement.dataset.theme`), "dark");
+  for (const view of ["party", "storage", "pokedex", "collection", "overview"]) {
+    await evaluate(`document.querySelector('[data-view="${view}"]').click()`);
+    await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`), "View did not switch");
+    assert.equal(await evaluate(`document.activeElement.id`), "view-heading");
+    assert.equal(await evaluate(`Array.from(document.querySelectorAll('[data-reader-view]')).every(p => p.classList.contains('inactive-view') === (p.dataset.readerView !== '${view}'))`), true);
+    assert.equal(await evaluate(`document.querySelector('#view-empty').hidden`), view === "overview");
+  }
+  await evaluate(`document.querySelector('#theme-toggle').click()`);
+  await command("Page.reload");
+  await until(() => evaluate(`document.documentElement.dataset.theme === 'light'`), "Theme was not persisted");
+  assert.equal(await evaluate(`document.querySelector('#theme-toggle').getAttribute('aria-pressed')`), "true");
+  for (const width of [320, 390, 768, 1440]) {
+    await command("Emulation.setDeviceMetricsOverride", {width, height: 900, deviceScaleFactor:1, mobile:width < 800});
+    assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`), true, `Overflow at ${width}px`);
+    assert.equal(await evaluate(`Array.from(document.querySelectorAll('[data-view]')).every(a => a.getBoundingClientRect().height >= 44)`), true);
+  }
+  await command("Emulation.clearDeviceMetricsOverride");
+  await evaluate(`document.querySelector('#theme-toggle').click()`);
   assert.deepEqual(exceptions, []);
 });

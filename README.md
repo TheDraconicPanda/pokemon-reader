@@ -73,3 +73,17 @@ During development, the application uses the format **0.<phase>.<iteration>**:
 - The third number identifies a meaningful application iteration within that phase.
 
 The iteration number is intended to make deployed builds easy to identify while testing. Documentation-only changes do not require an application version change.
+
+## Reader dashboard redesign
+
+Reader **v0.25.28** introduces Milestone A: five dedicated views, desktop sidebar,
+mobile navigation usable at 320px, default dark mode, and a locally saved light/dark
+preference. Only the theme is persisted; uploaded saves remain in memory. Existing
+save fields and collection controls remain available in their respective views.
+Atlas remains v0.25.27 and Team Planner is unchanged.
+
+Automated browser checks cover routing, focus after navigation, empty views, theme
+persistence, touch targets, and page overflow at 320/390/768/1440px, alongside the
+existing Reader, Atlas, and Planner regressions. Real-save validation and user
+acceptance remain pending. Milestones B–F cover the richer Overview, Party/detail,
+PC, Pokédex/Collection, and final polish; the foundation does not complete them.
