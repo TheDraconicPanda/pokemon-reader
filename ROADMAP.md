@@ -103,7 +103,7 @@
 - [ ] Add Desert block-attracted Pokémon and complete the block reference
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
-- [ ] Expand wild encounters to other areas
+- [x] Complete encounter coverage across existing non-Safari locations (v0.25.42)
 - [ ] Trainers
 - [ ] Items
 - [ ] Other useful location data
@@ -292,3 +292,44 @@ See [route audit and scope](docs/atlas-route-audit.md). Other location encounter
 tables, full Kanto coverage, remaining maps and trainer party/strategy data are
 not completed by this milestone. Safari Zone data/mechanics remain the next
 planned technical milestone after this route work is accepted.
+
+
+## Current Atlas order — revised 2026-10-15
+
+This user-approved order supersedes the historical Safari-first sequence and the
+previous "Safari next" notes above. The 25-table count in earlier planning was
+historical: v0.25.41 has 31 populated location sections after its route audit.
+
+1. **Complete encounters across the existing Atlas except Safari Zone.** Audit all
+   69 non-Safari location groups, including city water, cave floors, special
+   encounters, version/time conditions and verified no-wild-encounter locations.
+   Include Safari Zone Gate; preserve Safari Zone's separate dataset.
+2. **Expand maps**, including remaining outdoor maps, dungeon floors and navigation.
+3. **Complete structured location details**: items, TMs/HMs, gifts, trades, trainers
+   and applicable conditions; retain existing route details.
+4. **Complete Safari Zone data/mechanics** for all 12 areas and all conditions.
+5. **Build and audit the Safari simulator** using the same validated dataset.
+6. **Expand Kanto** to complete SoulSilver's second region.
+7. **Run the final integrated audit** of accuracy, navigation, mobile and regressions.
+
+All new data/rules must stay game-scoped for future support, without prematurely
+adding other games or changing the SoulSilver-first scope.
+
+
+## Whole-Atlas encounter milestone — v0.25.42
+
+- [x] Inventory/audit all 69 existing non-Safari groups and actual cave floors
+- [x] Complete town water/tree/rock encounters, including Cherrygrove
+- [x] Add missing cave/floor tables and correct existing non-route tables
+- [x] Audit SoulSilver methods, times, levels, rates and version conditions
+- [x] Cover contest sets, Unown gates, stationary/weekly/story encounters and roamers
+- [x] Distinguish verified no-fixed-wild areas from missing data (16 groups)
+- [x] Keep data game-scoped and share extraction rules with the route generator
+- [x] Preserve audited route data and all Safari Zone records unchanged
+- [x] Record [full source evidence and coverage](docs/atlas-encounter-audit.md)
+- [x] Complete automated checks and phone/desktop visual review (53 checks)
+- [ ] User acceptance and independent in-game validation
+
+Next: verified map expansion and floor navigation. Structured gift/egg/trade,
+item and Trainer reference details are milestone 3, not wild encounter gaps.
+Safari Zone data/mechanics and simulator remain milestones 4/5.

@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.41') && document.querySelector('.eyebrow').textContent.includes('v0.25.41'),
+    version: document.title.includes('v0.25.42') && document.querySelector('.eyebrow').textContent.includes('v0.25.42'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -802,7 +802,7 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
 test('Atlas separates overview and encounters for every location at mobile and desktop widths', async () => {
   await atlas();
   const baseline = await evaluate(`Array.from(document.querySelectorAll('.location-card'), card => ({name:card.querySelector('h2').textContent,entries:Array.from(card.querySelectorAll('.encounter-entry'),row=>row.textContent)}))`);
-  assert.equal(baseline.filter(location=>location.entries.length).length,31);
+  assert.equal(baseline.filter(location=>location.entries.length).length,54);
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
     assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(card => {
@@ -812,7 +812,7 @@ test('Atlas separates overview and encounters for every location at mobile and d
         !overview.contains(card.querySelector('.location-connections')) || !overview.contains(card.querySelector('.location-static')) ||
         overview.contains(encounters) || overview.getBoundingClientRect().bottom+8>encounters.getBoundingClientRect().top ||
         !card.getAttribute('aria-labelledby') || !encounters.getAttribute('aria-label') ||
-        (encounters.querySelectorAll('.encounter-entry').length===0 && !encounters.textContent.includes('not been added'));
+        (encounters.querySelectorAll('.encounter-entry').length===0 && !encounters.textContent.includes('No fixed wild encounters'));
     }).map(card=>card.querySelector('h2').textContent)`),[],`Separate accessible blocks at ${width}`);
     assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
   }
@@ -887,4 +887,32 @@ test('all 23 routes expose encounters and expandable items/NPCs on phones and de
   await evaluate(`document.querySelector('#location-search').value='Tuscany';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
   assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`), 'Route 29');
   assert.deepEqual(exceptions, []);
+});
+
+test('whole Atlas distinguishes verified empty locations and exposes city and cave encounters', async () => {
+  await atlas();
+  const cards = await evaluate(`Array.from(document.querySelectorAll('.location-card'),card=>({name:card.querySelector('h2').textContent,text:card.querySelector('.location-encounters').textContent,rows:card.querySelectorAll('.encounter-entry').length}))`);
+  assert.equal(cards.length,70);
+  assert.equal(cards.filter(c=>c.rows===0).length,16);
+  assert.ok(cards.every(c=>!c.text.includes('not been added')));
+  for (const name of ['Cherrygrove City','Dark Cave','Ilex Forest','Mt. Mortar','Ice Path']) assert.ok(cards.find(c=>c.name===name).rows>0,name);
+  assert.match(cards.find(c=>c.name==='Goldenrod City').text,/No fixed wild encounters/);
+  assert.equal(cards.find(c=>c.name==='Safari Zone').rows,269);
+  for (const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    for (const name of ['Cherrygrove City','Ruins of Alph','National Park','Mt. Silver','Victory Road']) {
+      await evaluate(`document.querySelector('#location-search').value=${JSON.stringify(name)};document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+      const result = await evaluate(`(() => {const card=Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent===${JSON.stringify(name)});return {fits:document.documentElement.scrollWidth<=innerWidth,text:card.querySelector('.location-encounters').textContent};})()`);
+      assert.equal(result.fits,true,`${name} at ${width}px`);
+      if (name==='Cherrygrove City') for (const pattern of [/Tentacool/,/Tentacruel/,/Surfing/,/Old Rod/,/Staryu/,/Taillow/]) assert.match(result.text,pattern);
+      if (name==='Victory Road') assert.match(result.text,/3F · Rock Smash/);
+      if (process.env.ATLAS_SCREENSHOT_DIR && width===390 && ['Cherrygrove City','National Park'].includes(name)) {
+        await evaluate(`Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent===${JSON.stringify(name)}).querySelector('.location-encounters').scrollIntoView({block:'start'})`);
+        const shot=await command('Page.captureScreenshot',{format:'png'});
+        await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`${name.replaceAll(' ','-')}-encounters-390.png`),Buffer.from(shot.data,'base64'));
+      }
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
 });

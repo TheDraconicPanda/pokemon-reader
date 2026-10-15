@@ -34,14 +34,17 @@ Prefer correctness and completeness over visual polish. Do not guess at game dat
 
 ## Atlas roadmap and required order
 
-The Atlas is a PokéEarth-inspired world reference for SoulSilver. Build and validate it in the following order; do not skip ahead:
+The Atlas is a PokéEarth-inspired world reference for SoulSilver. The user revised the required order on 2026-10-15; this supersedes the earlier Safari-first order:
 
-1. **Complete static Atlas coverage.** Inspect the current route/location inventory and finish every required route and location with its relevant static information. A page existing does not mean its content is complete.
-2. **Audit the static Atlas.** Systematically compare the full scope against established references, including Serebii (https://www.serebii.net/) and Bulbapedia (https://bulbapedia.bulbagarden.net/). Verify route/location names, connections, landmarks, features, and other applicable static facts. Track coverage and discrepancies; correct them before proceeding. Use SoulSilver-specific information for the initial target.
-3. **Complete Safari Zone mechanics and data.** Verify and implement all required encounter methods and conditions, including walking, surfing, fishing, block placement/attraction, area-specific species, and any relevant time, duration, level, or other game conditions. Inspect the repository first to establish the real current status. Share validated encounter data between the Atlas and simulator rather than maintaining inconsistent duplicates.
-4. **Build the separate Safari Zone simulator.** The intended path is `safari-zone/index.html`, unless the existing architecture indicates a better compatible location. Link to it from the Safari Zone Atlas entry. Implement the agreed simulator functionality using validated data and actual game rules; do not make a merely decorative or incomplete calculator.
-5. **Audit the complete Safari Zone experience.** Check the Atlas, encounter data, block mechanics, simulator calculations, and displayed results against reliable references and known game behavior. Resolve discrepancies before advancing.
-6. **Proceed to subsequent Atlas features only after the above stages are complete.** Apply the same cycle—scope, full implementation, complete data, reference audit, testing, publication, user validation, documentation—to every subsequent feature.
+1. **Complete and audit encounters across the existing Atlas, excluding Safari Zone itself.** Cover every existing non-Safari location, including towns, routes, caves, floors, method/time/version conditions, stationary encounters and applicable special encounter systems. Check SoulSilver-specific data against Serebii, Bulbapedia and reliable primary evidence. Explicitly distinguish verified absence of wild encounters from missing data. Safari Zone Gate remains a normal location in this pass; Safari Zone's 12-area data/mechanics remain untouched.
+2. **Expand maps.** Add verified remaining outdoor maps and dungeon floors, with floor navigation where appropriate.
+3. **Complete location reference details.** Add structured items, TMs/HMs, gifts, trades, trainers and relevant conditions beyond static summaries. Existing route details remain supported.
+4. **Complete Safari Zone mechanics and data.** Audit all 12 areas, methods, levels, times, rates, blocks and area aging. Share validated data between Atlas and simulator.
+5. **Build and audit the separate Safari Zone simulator.** Use `safari-zone/index.html` unless a better compatible path is established, link it from Atlas, and verify actual rules and known game examples end to end.
+6. **Add Kanto for full SoulSilver coverage.** Retain the existing border/endgame locations while expanding the second region.
+7. **Run the final integrated audit.** Verify accuracy, navigation, mobile usability and Reader/Planner regressions across the complete result.
+
+Complete each agreed milestone before advancing. Publish validated milestones to the existing site for user outcome testing. Keep SoulSilver data/rules explicitly game-scoped and shared presentation separate, so future games do not silently inherit its locations, encounters or mechanics. Do not implement another game's support or refactor unrelated save logic as part of this work.
 
 Historical checkpoint from project planning: Atlas v0.25.16 was reported to have Safari Zone walking coverage complete, with water/fishing encounters and block-attraction requirements still pending; a later audit and simulator were planned, browser testing had not yet been completed, and some encounter levels still needed verification. Treat this as a lead to investigate, not as current verified repository state.
 

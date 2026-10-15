@@ -18,6 +18,15 @@ The application is intended to process save files locally in the browser wheneve
 - A custom PokéEarth-style game world reference
 - Support for additional Pokémon games after SoulSilver is complete
 
+## Current Atlas priorities
+
+The agreed order (2026-10-15) is: complete/audit encounters throughout the existing
+Atlas except Safari Zone; expand maps and floor navigation; complete structured
+location details; complete Safari data/mechanics; build/audit its simulator; expand
+Kanto; then run the final integrated audit. Safari Zone Gate is included in normal
+location coverage. New datasets remain explicitly scoped by game, starting with
+SoulSilver. See ROADMAP.md for current completion status.
+
 ## Development approach
 
 The project starts with plain HTML, CSS, and JavaScript. Features will be implemented incrementally and verified against real save data before expanding the scope.
@@ -39,7 +48,7 @@ No build step is needed. Save files are selected in the browser; do not commit p
 Run `npm test` for the Reader, Atlas, and Planner browser regression checks. Tests require Chromium on
 your PATH, or `CHROMIUM_PATH` set to its executable. They launch their own temporary
 server and browser, test every existing connection button plus search/filter
-behavior, Reader invalid-save handling, and Planner persistence/tabs, and clean up afterward. They do not verify game data or real-save parsing.
+behavior, Reader invalid-save handling, and Planner persistence/tabs, and clean up afterward. Encounter checks validate local coverage, distributions and known reference cases; they do not perform a live content audit or real-save parsing validation.
 
 ## Development and online validation
 
@@ -255,3 +264,25 @@ audit; Reader remains v0.25.37 and Team Planner is unchanged.
 Validation: 43 automated checks pass, covering route content/distributions, game
 isolation, mobile/desktop presentation and Reader/Planner regressions. User
 acceptance and real-game validation of the published result remain pending.
+
+
+## Whole-Atlas encounters — v0.25.42
+
+All **69 existing non-Safari location groups** now have audited wild/stationary
+encounter coverage: 53 with records and 16 explicitly verified as having no fixed
+wild encounters. This includes Cherrygrove and other city water, cave floors,
+Headbutt/Rock Smash, radio, outbreaks, the Bug-Catching Contest, Unown unlocks,
+weekly Lapras, SoulSilver legendary levels and eligible roaming Pokémon notes.
+There are 1,384 non-Safari records; the prior route data is unchanged. Safari Zone
+Gate is included, while Safari Zone's 269-record dataset is untouched.
+
+See the [full encounter audit](docs/atlas-encounter-audit.md) for the 69-location
+inventory, source evidence, game-specific discrepancies and reproduction steps.
+The revised order is recorded in AGENTS.md and ROADMAP.md. Maps are the next
+milestone; structured gifts/trades/items/Trainer details follow them. This is not
+full Kanto coverage or a completed Safari Zone project.
+
+Validation: **53 checks passed**, with no failures or skips, including Reader/Planner
+regressions and phone/desktop Atlas checks. Cherrygrove and National Park mobile
+screenshots were reviewed. Reader remains v0.25.37; Team Planner is unchanged.
+User acceptance and independent in-game validation of Atlas v0.25.42 remain pending.

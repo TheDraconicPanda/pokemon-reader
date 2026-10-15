@@ -1,0 +1,3126 @@
+{
+  "release": "0.25.42",
+  "gameId": "soulsilver",
+  "reviewed_on": "2026-10-15",
+  "scope": "All 69 existing Atlas groups except Safari Zone itself: wild/stationary encounters, floors, methods, times, version and unlock conditions. Gifts, eggs, trades and Trainer parties remain milestone 3.",
+  "primary_revision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "route_data_sha256": "ff16f0bc6c5dcac04e58f6bdbf5e720ca5d229034735d7e09b301a2fe5f6bb23",
+  "safari_zone_unchanged_sha256": "6efec18ba95e7962f6a0e5696e7b97b9b8ceff6d04ee34678c7eb514c0c9907b",
+  "rules": [
+    {
+      "path": "src/data/map_headers.h",
+      "sha256": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539"
+    },
+    {
+      "path": "files/fielddata/encountdata/gs_enc_data.json",
+      "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+    },
+    {
+      "path": "files/arc/headbutt.json",
+      "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+    },
+    {
+      "path": "src/field/encounter_check.c",
+      "sha256": "a91dad88736b55698c9d06485c98167b48b732f81469c75234327cb5d9dc1c18"
+    },
+    {
+      "path": "src/field/headbutt.c",
+      "sha256": "43d7b1253e7c89db41a9bb6d8021b51749b6ce053dc0fa547cd8f263958f6242"
+    },
+    {
+      "path": "src/unk_02097F6C.c",
+      "sha256": "59bed4aca31cb35d948ce5a667ebc8afb295b82fd4d41c3565713b0451f8c401"
+    },
+    {
+      "path": "src/field_roamer.c",
+      "sha256": "a413683ab55d410ddcf57e13d0931a1db5f700829e92d4e557c1d080f017b19d"
+    },
+    {
+      "path": "files/data/mushi/mushi_encount.csv",
+      "sha256": "53165b94c57c03297ba64fd3138e6d6ac6f2846e6956e751bc5e25009b6ab199"
+    },
+    {
+      "path": "src/overlay_bug_contest.c",
+      "sha256": "f795d0c2eb281a40595f7d280a7371a7655c9ac48455d3d0cdc57fc0655f8827"
+    }
+  ],
+  "locations": [
+    {
+      "location": "New Bark Town",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/newbarktown.shtml",
+          "http_status": 200,
+          "sha256": "8a12946997127b216072fb4298d78318f094335825014f474fedc0da13c928af"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/New_Bark_Town",
+          "http_status": 200,
+          "sha256": "ebfa209306fa89b3ba59748389e541b08aaba53d34296ad08555e224e78a09db"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 18,
+      "maps": [
+        {
+          "mapId": "MAP_NEW_BARK",
+          "bank": "T20",
+          "head": "T20",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0842_T20.s",
+          "script_sha256": "0e5324b4ce0f42fd90265c82ade0086f76699a603f29120f1f588759bddb74ed"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Chikorita",
+          "reference_method": "Gift",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Cyndaquil",
+          "reference_method": "Gift",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Totodile",
+          "reference_method": "Gift",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Cherrygrove City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cherrygrovecity.shtml",
+          "http_status": 200,
+          "sha256": "f147257be40fd3ddd9f626576a3ec1ef37001db31308d29e816a4826d289153c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cherrygrove_City",
+          "http_status": 200,
+          "sha256": "d41695d24e85ca37169fbd23256e83d2b9b277ede0f4a3df553fda5a05a16c27"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 20,
+      "maps": [
+        {
+          "mapId": "MAP_CHERRYGROVE",
+          "bank": "T21",
+          "head": "T21",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0850_T21.s",
+          "script_sha256": "b9bb47399d4a4e9d40b20e56301fa4c5f749f70b84d18bfee24bcf80be923dc9"
+        }
+      ],
+      "notes": [
+        "Surf encounters are in the coast west of the city. Special Headbutt trees are reached with Surf and Rock Climb."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Violet City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/violetcity.shtml",
+          "http_status": 200,
+          "sha256": "c8277f21288fdb93775aab04b0c32f797747ad1610b38f5ad555d345dc877fae"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Violet_City",
+          "http_status": 200,
+          "sha256": "08e1b6dff1e27b628950734216357f84bae16855b40e0f875a71daad3edf8203"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 16,
+      "maps": [
+        {
+          "mapId": "MAP_VIOLET",
+          "bank": "T22",
+          "head": "T22",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0857_T22.s",
+          "script_sha256": "cfc842f261e46ca4c398cee867351f0cf3a4bd44bf52ae93de1e8ff39edec6d3"
+        }
+      ],
+      "notes": [
+        "Whiscash outbreaks apply to fishing, not the ordinary Surf table."
+      ],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Togepi",
+          "reference_method": "Egg",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Mareep",
+          "reference_method": "Egg",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Wooper",
+          "reference_method": "Egg",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Slugma",
+          "reference_method": "Egg",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        },
+        {
+          "pokemon": "Onix",
+          "reference_method": "TradeBellsprout",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Azalea Town",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/azaleatown.shtml",
+          "http_status": 200,
+          "sha256": "0ceb1115cc0be5e7ffb31e82e7ceaab943244aaf2c268389c46bc73d9d4b8671"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Town",
+          "http_status": 200,
+          "sha256": "1a411a81c5abb1b993f3b5cb166cbf0dee51b4e424fac327a89cddc4f1ce0ce6"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 5,
+      "maps": [
+        {
+          "mapId": "MAP_AZALEA",
+          "bank": "NA",
+          "head": "T23",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0866_T23.s",
+          "script_sha256": "e30672a63b145980f80208eb966b3bc693a5900e37866a8e2603957917da44ff"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Goldenrod City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City",
+          "http_status": 200,
+          "sha256": "27d56cdc0b36eaff1ece0ea5fd010b621daac76426df48a76d095c9d346582b1"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_GOLDENROD",
+          "bank": "NA",
+          "head": "T25",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0885_T25.s",
+          "script_sha256": "25708bb2b107632de432ee0ba93842375d540c318f0858e59926a438fa098ce9"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Eevee",
+          "reference_method": "Gift",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Ecruteak City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ecruteakcity.shtml",
+          "http_status": 200,
+          "sha256": "2c711072cab71dcddaeda686a99dbf6f399fb0982784cd978df734d2ed5d6d0a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_City",
+          "http_status": 200,
+          "sha256": "1ca99f900364ddc9d27c2a7f9c93bee6cd6fcb238bf0c5db16c7da9668b4598c"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 14,
+      "maps": [
+        {
+          "mapId": "MAP_ECRUTEAK",
+          "bank": "T27",
+          "head": "T27",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0920_T27.s",
+          "script_sha256": "fd5bce273e8c917e90d280261dd26677b94057816be0af378477389b41f78cda"
+        }
+      ],
+      "notes": [
+        "City encounters exclude Burned Tower, Bell Tower and Bellchime Trail, which have separate entries."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Olivine City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/olivinecity.shtml",
+          "http_status": 200,
+          "sha256": "7bac0256dfc70f52d74fe9f6dda8a1993dee762482428558a6c988d96eabb96a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_City",
+          "http_status": 200,
+          "sha256": "e855f314c164e2a8330ff49108c7eb1c90d867cf189e0610604aed5ea7d0541e"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 12,
+      "maps": [
+        {
+          "mapId": "MAP_OLIVINE",
+          "bank": "T26",
+          "head": "T26",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0911_T26.s",
+          "script_sha256": "fead7e64a4e8355a660313211bb1dbdb3de6191405a3e05bee623e82aeb7f515"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Voltorb",
+          "reference_method": "TradeKrabby",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Cianwood City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cianwoodcity.shtml",
+          "http_status": 200,
+          "sha256": "42f1ba0fb3190b663ab7d5ba27b6c892ff4ea8ca19caab2f6e09bceda587042d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_City",
+          "http_status": 200,
+          "sha256": "7b1a1d7a806c0c5547698ab5e7ead05e41960c08473e9453d0430524092395b2"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 14,
+      "maps": [
+        {
+          "mapId": "MAP_CIANWOOD",
+          "bank": "T24",
+          "head": "T24",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0875_T24.s",
+          "script_sha256": "6c8c0af4af174140d11944d52c2614a065e994231f807a56092ae90c6ae0a17f"
+        }
+      ],
+      "notes": [
+        "Rock Smash encounters are on the northern beach. The Suicune sighting here is not a catchable Suicune encounter."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Mahogany Town",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mahoganytown.shtml",
+          "http_status": 200,
+          "sha256": "45758b263fd9c14f272846a0761c4356717bbf2d64712691b8523ce8e3096f49"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Town",
+          "http_status": 200,
+          "sha256": "762b769f40fbd0f6c3e6632b35a95333934d62cef0568deca5ad341b3d548a5d"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_MAHOGANY",
+          "bank": "NA",
+          "head": "T28",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0930_T28.s",
+          "script_sha256": "17a909c508d35b2fa4e520996f5165b310ea27c3b959ffda54f6e2212675ba21"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Blackthorn City",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/blackthorncity.shtml",
+          "http_status": 200,
+          "sha256": "625aa9139a330b086d095c46aad7b9d47e11439f6ec0dde54da01903aac0edf5"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City",
+          "http_status": 200,
+          "sha256": "5b7f4a614edd754dfe67b89aae6014a3aad2a7e04d604376c671f94fc26651fc"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 7,
+      "maps": [
+        {
+          "mapId": "MAP_BLACKTHORN",
+          "bank": "T30",
+          "head": "T30",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0941_T30.s",
+          "script_sha256": "db052247c43143f569e7d2ce09d780e0c38a20d25791d9cad0300441be818fcc"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Dodrio",
+          "reference_method": "TradeDragonair♀",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Route 29",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route29.shtml",
+          "http_status": 200,
+          "sha256": "d3ea83f5ce9790d3f82ebaf94f98fa2fcb822c1233fe328a60c0fbc10de9bee5"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29",
+          "http_status": 200,
+          "sha256": "e89c5bffd126fc569b11e8e0ad9d6c6a1ea610535b36692b06d016ac8fcb3990"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 16,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 30",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route30.shtml",
+          "http_status": 200,
+          "sha256": "7301f02da05bca93bd816044f51550eebef2b7169970e979a68ba0ad02281c88"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30",
+          "http_status": 200,
+          "sha256": "22edcbfae5d7b043475dc9f918d14d10761b690ee3f065ea1e51d12600050bd5"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 27,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 31",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route31.shtml",
+          "http_status": 200,
+          "sha256": "1fce56b4c72293db0cecf70fbcd0356694bee5c676156be3c5a4573b1480ffb7"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31",
+          "http_status": 200,
+          "sha256": "5b4e328d8153d52a47860da32c85db509792197ad39da7d5aa66bb7ffdbf2028"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 28,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 32",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route32.shtml",
+          "http_status": 200,
+          "sha256": "b0a8a7c0a2bd1f9b5b9f8b09d7586905beb24dc31c236f5168cecd928f960afe"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32",
+          "http_status": 200,
+          "sha256": "3710afb848309d973bfe4eba1f6c9decabdee8c046a0161cff5961a9cb10003c"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 33,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 33",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route33.shtml",
+          "http_status": 200,
+          "sha256": "4b2c9f070d03fdf3bb8fba86f50a067f6d9969d16498385e7a448f68c3e3422d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33",
+          "http_status": 200,
+          "sha256": "bfa0f3601c36a85c428dd553c48f88795148168057506c1a3ccd33a15af67875"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 16,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 34",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "http_status": 200,
+          "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+          "http_status": 200,
+          "sha256": "38be5f342ca9bca2faaf0aa98f5cfbf8a5156ff2baf6c4b27ab08e0df3c5f337"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 27,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 35",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route35.shtml",
+          "http_status": 200,
+          "sha256": "e00bddb963621697c77885ee4e53955fff27d1ff1095cc430363c7d51eb55495"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35",
+          "http_status": 200,
+          "sha256": "cc5e8fc2270540151daf73f7ffca6a0890dfcd82358b73a64e16e2fe41157dc0"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 28,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 36",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route36.shtml",
+          "http_status": 200,
+          "sha256": "3466cb6592205f4cfa64f8fec250ba417664f3f5ba4585a9217b999d3fa101c5"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36",
+          "http_status": 200,
+          "sha256": "df20ebb3fbbb07ef103394932b04ec02434098d82f8be2d73e29ed857cebcaf7"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 20,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 37",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route37.shtml",
+          "http_status": 200,
+          "sha256": "b826114918bb3999e0051c46bb21d0d247f64937f4dee794d33f882f0bcbe438"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37",
+          "http_status": 200,
+          "sha256": "f99e9821f12725209d70e31d84832d0a7249710dc28eef5d77ce49c8b534aecc"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 17,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 38",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route38.shtml",
+          "http_status": 200,
+          "sha256": "39ea805d6de800855abb8a0957a9bd65da808590f37949c360dcaca5dfcd7b48"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38",
+          "http_status": 200,
+          "sha256": "48af7cd2b0bf4ae2c9c0efe975b3f914a46d2eb45b4006c9ae0b8f87be4a1096"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 20,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 39",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "http_status": 200,
+          "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39",
+          "http_status": 200,
+          "sha256": "4bfd16d2ed9542c59ef1679578a45b38413cb58c3ad8387c6c81491e51a47412"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 16,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 40",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route40.shtml",
+          "http_status": 200,
+          "sha256": "89343a7709aa066be6b58e4dff11150a1cf6b9c16376180ad254c7184caad68d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40",
+          "http_status": 200,
+          "sha256": "b94db2e65f1c825629c97e4989bd7f4d07bbdfb9aa9bb073ecab27927eae3707"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 12,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 41",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route41.shtml",
+          "http_status": 200,
+          "sha256": "0c9a8d9cb940d53b69d804e5891af2b845b4b7be768a3f0cc68aeee02beb5649"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41",
+          "http_status": 200,
+          "sha256": "fc2871789e76315d5ba023c2642d276f6c09fc7ae2b3f5705dc958af6255ce59"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 12,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 42",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route42.shtml",
+          "http_status": 200,
+          "sha256": "669a405422d85864b768ff4f0de91a38c600ba4223d460067db955913ea3c427"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42",
+          "http_status": 200,
+          "sha256": "fc75beb713f6b0a0c7b5c0cadc9e58d6ea00792212a465bbf111f190b6606ec7"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 22,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 43",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route43.shtml",
+          "http_status": 200,
+          "sha256": "e65833fb176efffa30a80cd90a5cd62ac22c44bd39b1f69ed228f6271de8cf1c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43",
+          "http_status": 200,
+          "sha256": "816944a5694179a57e06bd3ae5221feacd045848a44a268b726423aa71831a58"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 27,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 44",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route44.shtml",
+          "http_status": 200,
+          "sha256": "f4b1e86bdd37063e8380cad288c7ead9f092a1e9870f235a316f351fb799056c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44",
+          "http_status": 200,
+          "sha256": "d5061fd799b2c77bce7b0c91e3d80ef0baa5f4f92daa94fd89b8487165a104ff"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 26,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 45",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route45.shtml",
+          "http_status": 200,
+          "sha256": "7cdb6245c3ea292cd32d74a149019e9e40660796a2b522026e063e8a4e8cc456"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45",
+          "http_status": 200,
+          "sha256": "3a1e47a2bd74829badad1bae156de18e5198d62f54147019d40da12eeae7dd05"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 21,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 46",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route46.shtml",
+          "http_status": 200,
+          "sha256": "e328951b2121603712aad1c6fe4e9591a45aac5d24e725f8141c780fd30cbdd7"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46",
+          "http_status": 200,
+          "sha256": "7a3104bc4ae73fe1d5b8be86f98674719305e8797f3258772c7fbecf789ce941"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 13,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 47",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route47.shtml",
+          "http_status": 200,
+          "sha256": "209f3c6ef8afb16f3283e5d8b582c7d304e86ec582a4c5e99535776f87f93cc4"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47",
+          "http_status": 200,
+          "sha256": "480c2e5bb701dd3f3cdad7d2c4a6aa642bb8881a6c67d72b019386399b77fd37"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 35,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 48",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route48.shtml",
+          "http_status": 200,
+          "sha256": "2edb97d32061e0a9223884866e8f3ae4e44aee4dc879ede94fe3171a6bba7596"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48",
+          "http_status": 200,
+          "sha256": "6fc8adf057f462a379f8dc9001de1d5dee2f0e97330e0d09e62797af01b9ba88"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 18,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Cliff Edge Gate",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cliffedgegate.shtml",
+          "http_status": 200,
+          "sha256": "f3690ea16216a5be21d5eb79daccb48c00655e28e119a7b685029bc7c0b55f99"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Edge_Gate",
+          "http_status": 200,
+          "sha256": "c716ba17e24d09a3dd416089c46cf22d432ef5d095a25962b161005aa769267e"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 9,
+      "maps": [
+        {
+          "mapId": "MAP_CLIFF_EDGE_GATE",
+          "bank": "D48R0101",
+          "head": "D48R0101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0121_D48R0101.s",
+          "script_sha256": "3a511104e293b82eeadf120a6498f1a780a5339bb171921e078546c90e08b98e"
+        }
+      ],
+      "notes": [
+        "The lake is reached with Rock Climb; water encounters require access to that lake."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Cliff Cave",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cliffcave.shtml",
+          "http_status": 200,
+          "sha256": "814165d1c11d52ae383fc701f259d5641ca991ff24fe1a06848ae9464102e849"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Cave",
+          "http_status": 200,
+          "sha256": "f675562597872913dfadbe365601d17503193f32164325a0ee6b20bc2ccbe148"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 20,
+      "maps": [
+        {
+          "mapId": "MAP_CLIFF_CAVE",
+          "bank": "D50R0101",
+          "head": "D50R0101",
+          "area": "1F / 2F / B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0129_D50R0101.s",
+          "script_sha256": "007eea301437b411cc924da7e66404fe0a6f0d31e100cc036e4c68a6e8d24802"
+        }
+      ],
+      "notes": [
+        "Walking and radio encounters share the 1F/2F/B1F table. Rock Smash encounters are on B1F."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Embedded Tower",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/embeddedtower.shtml",
+          "http_status": 200,
+          "sha256": "e505fe91007a8f25400a9543fd2f73e4575ee05d8a3f61f874d364a94354c793"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Embedded_Tower",
+          "http_status": 200,
+          "sha256": "5d7b2ed990ad624494fecf6a3dad1ac381643308a9b8d5ac94e956361a0e03fb"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 2,
+      "maps": [
+        {
+          "mapId": "MAP_EMBEDDED_TOWER_GROUDON_ROOM",
+          "bank": "NA",
+          "head": "D52R0101",
+          "area": "Embedded Tower Groudon Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0133_D52R0101.s",
+          "script_sha256": "bada10cd362a94be87e76637de73de8fb4b0e653c04c238b4af052bc417d375d"
+        },
+        {
+          "mapId": "MAP_EMBEDDED_TOWER_KYOGRE_ROOM",
+          "bank": "NA",
+          "head": "D52R0102",
+          "area": "Embedded Tower Kyogre Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0134_D52R0102.s",
+          "script_sha256": "1365da478fe6cc92a71bbd78d53e5545d63fd315b73219e8a90f1382bf3aad55"
+        },
+        {
+          "mapId": "MAP_EMBEDDED_TOWER_RAYQUAZA_ROOM",
+          "bank": "NA",
+          "head": "D52R0103",
+          "area": "Embedded Tower Rayquaza Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0135_D52R0103.s",
+          "script_sha256": "551dac5e651ce3526c16e91e4df2383f7959afc59007f4ddd026c8344bc89bda"
+        }
+      ],
+      "notes": [
+        "Groudon is the SoulSilver Red Orb encounter. Rayquaza requires the Jade Orb after showing Professor Oak both a HeartGold-origin Kyogre and a SoulSilver-origin Groudon. Kyogre is not a SoulSilver encounter here."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Dark Cave",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/darkcave.shtml",
+          "http_status": 200,
+          "sha256": "37eca82d4740a585bc09688185cd3ba1d5e6c45ce3d2a06c673e2a7ca8ca624d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Cave",
+          "http_status": 200,
+          "sha256": "952eaf55d0b76a2565174decf0ff27862c1f3d6de25062d1e269bdb6e211f8e3"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 35,
+      "maps": [
+        {
+          "mapId": "MAP_DARK_CAVE_ROUTE_45_SIDE",
+          "bank": "D42R0101",
+          "head": "D42R0101",
+          "area": "Route 45 side",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0108_D42R0101.s",
+          "script_sha256": "b70ec4800d6d033e2307351f1597f3858a1ff44d9435eed7afaa775ee4e330d2"
+        },
+        {
+          "mapId": "MAP_DARK_CAVE_ROUTE_31_SIDE",
+          "bank": "D42R0102",
+          "head": "D42R0102",
+          "area": "Route 31 / Route 46 side",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        }
+      ],
+      "notes": [
+        "The Route 31/46 side and Route 45 side have separate tables. Dunsparce outbreaks occur on the Route 31/46 side."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Sprout Tower",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/sprouttower.shtml",
+          "http_status": 200,
+          "sha256": "eebe371c59369fc241965e52fde0dcc3532bf47da52673652f1cb505cb1dbe9e"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Sprout_Tower",
+          "http_status": 200,
+          "sha256": "6ea5d8408f97b2aa747b42de174f33ad3219af3359e9dac09ae7eae2810f4d53"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 14,
+      "maps": [
+        {
+          "mapId": "MAP_SPROUT_TOWER_1F",
+          "bank": "NA",
+          "head": "D15R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0016_D15R0101.s",
+          "script_sha256": "319c15e5cd5e36d7262a8a8bd9fe8ab4fd7191b783b37eae7f315af82e6a0467"
+        },
+        {
+          "mapId": "MAP_SPROUT_TOWER_2F",
+          "bank": "D15R0102",
+          "head": "D15R0102",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0017_D15R0102.s",
+          "script_sha256": "af88447e158d71445fdc91766b3b585b713861cfa3a0c9f1755004f42f11dea5"
+        },
+        {
+          "mapId": "MAP_SPROUT_TOWER_3F",
+          "bank": "D15R0103",
+          "head": "D15R0103",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0018_D15R0103.s",
+          "script_sha256": "989ff8b92e293c94aab8e941dae62eddf0891a5c834be3932dfc48c8dfadd13d"
+        }
+      ],
+      "notes": [
+        "Wild encounters occur on 2F and 3F, not 1F."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Ruins of Alph",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ruinsofalph.shtml",
+          "http_status": 200,
+          "sha256": "c9054a3415e3746518f8567070aeee14b0d72a9a95880fb5cfe5e3168d2343ae"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ruins_of_Alph",
+          "http_status": 200,
+          "sha256": "9c7bb887f0909e6b2ebc7164c5e6c984362f026604d59287f19b942c3a46fe5f"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 18,
+      "maps": [
+        {
+          "mapId": "MAP_RUINS_OF_ALPH",
+          "bank": "D24R0101",
+          "head": "D24R0101",
+          "area": "Outside",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0037_D24R0101.s",
+          "script_sha256": "1c44eeec42f9a6b024f36bf87bb6705de6ed4f0dd69f7c5648378d3d704116de"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_ENTRANCE_FIRST_ROOM",
+          "bank": "NA",
+          "head": "D24R0202",
+          "area": "Ruins Of Alph Northeast Entrance First Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0039_D24R0202.s",
+          "script_sha256": "747c71c1e2f72c480caac098f7dd703d1442ddefe7350de1dfffcee313e67cfd"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_HIDDEN_ROOM",
+          "bank": "NA",
+          "head": "D24R0203",
+          "area": "Ruins Of Alph Northeast Hidden Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0040_D24R0203.s",
+          "script_sha256": "7e582d835dc7e901e60357d45123107322d1a9335157a87299e3c111fa9c2484"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_ENTRANCE_FIRST_ROOM",
+          "bank": "NA",
+          "head": "D24R0204",
+          "area": "Ruins Of Alph Southeast Entrance First Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0041_D24R0204.s",
+          "script_sha256": "fdc8ccd3d403651d06de5ea545b668c7a0d39df180a16493dcb73306319bfcf0"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL",
+          "bank": "D24R0205",
+          "head": "D24R0205",
+          "area": "Underground hall",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0042_D24R0205.s",
+          "script_sha256": "a369b99ff21d17d023fabb8d837d68a1db57dc9dd483e0d72b7cf8519bf0646a"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_ENTRANCE_FIRST_ROOM",
+          "bank": "NA",
+          "head": "D24R0206",
+          "area": "Ruins Of Alph Southwest Entrance First Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0043_D24R0206.s",
+          "script_sha256": "8fe2ebfad9f7e66ee2830029fa6aca47c57c8b44edd6648d64ea73a053cdc6a9"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_HIDDEN_ROOM",
+          "bank": "NA",
+          "head": "D24R0207",
+          "area": "Ruins Of Alph Southwest Hidden Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0044_D24R0207.s",
+          "script_sha256": "888ffcba4d9f0374296b2afc0db4d88b53d0dfb43f63ccf1fb38b7ed2a9dbcea"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_ENTRANCE_FIRST_ROOM",
+          "bank": "NA",
+          "head": "D24R0208",
+          "area": "Ruins Of Alph Northwest Entrance First Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0045_D24R0208.s",
+          "script_sha256": "11a70da1df70de426a942d1866e3e38e4482e03ad2945c3bcf8ea534c112f943"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_HIDDEN_ROOM",
+          "bank": "NA",
+          "head": "D24R0209",
+          "area": "Ruins Of Alph Northwest Hidden Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0046_D24R0209.s",
+          "script_sha256": "132e52f151b455ce4b4dd6e4f454c953f68844d6e7b7538210936d9dc2eb21f6"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_HIDDEN_ROOM",
+          "bank": "NA",
+          "head": "D24R0210",
+          "area": "Ruins Of Alph Southeast Hidden Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0047_D24R0210.s",
+          "script_sha256": "e2491c868a4cfc679e8b9a8fcc62f7b2719b6f254867a9493a3b0d5983ba853c"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+          "bank": "NA",
+          "head": "D24R0102",
+          "area": "Ruins Of Alph Research Center",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0038_D24R0102.s",
+          "script_sha256": "0458527897cc1709a59307839ad9c6fcc104a20520c763083a05efb98d425f7d"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_HALL_ENTRANCE",
+          "bank": "NA",
+          "head": "D24R0211",
+          "area": "Ruins Of Alph Hall Entrance",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0048_D24R0211.s",
+          "script_sha256": "74d4d0b7e6e32ea7ee7ce89b611930909706608febbe67d97e424b06f4682892"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_ENTRANCE_SECOND_ROOM",
+          "bank": "NA",
+          "head": "D24R0212",
+          "area": "Ruins Of Alph Northeast Entrance Second Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0049_D24R0212.s",
+          "script_sha256": "743cddaf0725414df0208cb80946ce311e28edea880b5e5c3bd80fe05e689a51"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_ENTRANCE_SECOND_ROOM",
+          "bank": "NA",
+          "head": "D24R0213",
+          "area": "Ruins Of Alph Southeast Entrance Second Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0050_D24R0213.s",
+          "script_sha256": "4a6626b3d704fd664b42f5501c6d9f8c6a027dc065fd30dc57de3fc4d2906d1d"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_ENTRANCE_SECOND_ROOM",
+          "bank": "NA",
+          "head": "D24R0214",
+          "area": "Ruins Of Alph Northwest Entrance Second Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0051_D24R0214.s",
+          "script_sha256": "89659f568f5b53a48a4109e6ae55235da67a9a1dfa54045df49007f2113714a6"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_ENTRANCE_SECOND_ROOM",
+          "bank": "NA",
+          "head": "D24R0215",
+          "area": "Ruins Of Alph Southwest Entrance Second Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0052_D24R0215.s",
+          "script_sha256": "8339bd9a138f124d2894a7179c03b0e33f939be601968639085b5c461d2e3367"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_HALL_ENTRANCE_SINJOH_EVENT",
+          "bank": "D24R0217",
+          "head": "D24R0217",
+          "area": "Hall entrance",
+          "specialOnly": true,
+          "script": "files/fielddata/script/scr_seq/scr_seq_0054_D24R0217.s",
+          "script_sha256": "5ca9764d8dba896f7d5e2b29c0d1881d5279eacf0405a692a59d6c9751048fab"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL_SINJOH_EVENT",
+          "bank": "D24R0216",
+          "head": "D24R0216",
+          "area": "Underground hall",
+          "aliasOf": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0053_D24R0216.s",
+          "script_sha256": "2a9413c7357aa21b0b588fdd9bed65b23118aa54081e9c7cb371c939fe1dd793"
+        },
+        {
+          "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL_SINJOH_EVENT_2",
+          "bank": "D24R0218",
+          "head": "D24R0218",
+          "area": "Underground hall",
+          "aliasOf": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0055_D24R0218.s",
+          "script_sha256": "7bc93afa38ba76a777a715461f07d7543216cc0b0e4da8dc518d5ce8bccc8c3d"
+        }
+      ],
+      "notes": [
+        "Solve at least one tile puzzle to encounter Unown in the underground hall. Kabuto unlocks A–J; Omanyte K–Q; Aerodactyl R–V; Ho-Oh W–Z.",
+        "After all 26 letters are caught, all four tile puzzles and all four secret rooms are complete, and the researchers update the Unown Report, investigate the entrance panel to unlock ! and ? in the hall entrance. Unown Radio changes form selection, not the 100% species share.",
+        "Outside grass lies in the western enclosure reached through Union Cave; it is separate from the Unown hall."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Union Cave",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/unioncave.shtml",
+          "http_status": 200,
+          "sha256": "83cb7b4b5278c5c42f0868c2e1d73c9e5a2b1d80bf5b543667c29c8dd3f0e41d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Union_Cave",
+          "http_status": 200,
+          "sha256": "58ad5d08f42a1ddc0c51f332e619efd5a31c1efa36d5b62a900fe1deefbbe948"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 58,
+      "maps": [
+        {
+          "mapId": "MAP_UNION_CAVE_1F",
+          "bank": "D25R0101",
+          "head": "D25R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0056_D25R0101.s",
+          "script_sha256": "37e2f62d98cdb9bb3a21b8f868e3face9a6b90da41e37f6436bab0590c0dfb17"
+        },
+        {
+          "mapId": "MAP_UNION_CAVE_B1F",
+          "bank": "D25R0102",
+          "head": "D25R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0057_D25R0102.s",
+          "script_sha256": "089fe16cd3b6f4fd86edc339756ae952011fdd3687ec3977f7778a5e63b1e968"
+        },
+        {
+          "mapId": "MAP_UNION_CAVE_B2F",
+          "bank": "D25R0103",
+          "head": "D25R0103",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0058_D25R0103.s",
+          "script_sha256": "ca45fe79dc54498ef91faf7a464bf6fb61eee884304f1bda0d38f62398d36e2a"
+        }
+      ],
+      "notes": [
+        "Lapras is a repeatable Friday interaction on B2F, reached using Surf; it is not a random walking or Surf encounter."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Slowpoke Well",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/slowpokewell.shtml",
+          "http_status": 200,
+          "sha256": "8d8f91a2ecc1c5d633127e704d9fd0acd3c5e363f002aa6410caead9185c7e7c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Slowpoke_Well",
+          "http_status": 200,
+          "sha256": "b569265f219a2002daf9f595117b2d493743b269a06a72c92277a5a2c50a793f"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 30,
+      "maps": [
+        {
+          "mapId": "MAP_SLOWPOKE_WELL_ENTRANCE",
+          "bank": "NA",
+          "head": "D26R0101",
+          "area": "Entrance",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0059_D26R0101.s",
+          "script_sha256": "82c615f2dc58dd53e38458ff9e274a47e7e6537087c0a268f3c513065f52dc5a"
+        },
+        {
+          "mapId": "MAP_SLOWPOKE_WELL_B1F",
+          "bank": "D26R0102",
+          "head": "D26R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0060_D26R0102.s",
+          "script_sha256": "f1cc00fb5ab73433542dabf7f7b98dd5793780ea4269fc6650995485bc294829"
+        },
+        {
+          "mapId": "MAP_SLOWPOKE_WELL_B2F",
+          "bank": "D26R0103",
+          "head": "D26R0103",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0061_D26R0103.s",
+          "script_sha256": "30c49123ab20aa663f33a94b266db00f29aaa0db1efae9529f4a0cb3f90c0816"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Ilex Forest",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ilexforest.shtml",
+          "http_status": 200,
+          "sha256": "6598245de4f142200820c6ab79f000881ed9b340d4025bebbbbedc4fd82ee7bd"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ilex_Forest",
+          "http_status": 200,
+          "sha256": "a6ceda7cf7837e28008c2ebc7a2b31574deeb6ccf99920467a022a65684765b0"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 28,
+      "maps": [
+        {
+          "mapId": "MAP_ILEX_FOREST",
+          "bank": "D36R0101",
+          "head": "D36R0101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0092_D36R0101.s",
+          "script_sha256": "9f448ea8175ef08abe6530ec33731267970855f4a3a6909b8f89e1108b166af4"
+        }
+      ],
+      "notes": [
+        "Use Headbutt on trees for the tree groups; the Headbutt tutor is in this forest. Event/gift Pokémon are not ordinary wild encounters."
+      ],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Pichu",
+          "reference_method": "EventPikachu-colored Pichu",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "National Park",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/nationalpark.shtml",
+          "http_status": 200,
+          "sha256": "2312b7ea0a6c0c306e8718c435d7f739d12b9cbc7f6ba0b3e20cf5426c782246"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/National_Park",
+          "http_status": 200,
+          "sha256": "4f7333da8d676e56692c553945057b33ca8dc02b322c0ee668ac10b42be547af"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 58,
+      "maps": [
+        {
+          "mapId": "MAP_NATIONAL_PARK",
+          "bank": "D22R0101",
+          "head": "D22R0101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0025_D22R0101.s",
+          "script_sha256": "52b767a9764464e1d476739fc413cdbc36d3a5580bbb9c72be5a793ee8f3cae3"
+        }
+      ],
+      "notes": [
+        "Bug-Catching Contest: Tuesdays, Thursdays and Saturdays, once per day, with a 20-minute limit. Contest species and levels change after obtaining the National Pokédex.",
+        "Ordinary park encounters and contest encounters are separate tables. Special Headbutt trees require Rock Climb."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Burned Tower",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/burnedtower.shtml",
+          "http_status": 200,
+          "sha256": "efd2ba971b1ef03d422278ebd8196fad585efd668fa96dc16d37fd356fb9e946"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Burned_Tower",
+          "http_status": 200,
+          "sha256": "8f96e87bf37079ef7106cece970a8403c3df2dd9961574dda4283e7ac95cfc0c"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 18,
+      "maps": [
+        {
+          "mapId": "MAP_BURNED_TOWER_1F",
+          "bank": "D18R0101",
+          "head": "D18R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0023_D18R0101.s",
+          "script_sha256": "d949dbe738cdc7bee9204ea11a870d9b211f1146531aad3928dae7838d2178d2"
+        },
+        {
+          "mapId": "MAP_BURNED_TOWER_B1F",
+          "bank": "D18R0102",
+          "head": "D18R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0024_D18R0102.s",
+          "script_sha256": "82a8858665647fa76928c0f60f5ec7841ac2acb865bc846382e53f23b5625ae9"
+        }
+      ],
+      "notes": [
+        "Approaching the legendary beasts on B1F releases level-40 Raikou and Entei to roam eligible Johto routes. They cannot be caught by interacting with their basement sprites; Suicune follows its separate story."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Bell Tower",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/belltower.shtml",
+          "http_status": 200,
+          "sha256": "4b6ce0f58bae779542dd55ab3fb29c1595fc9082e459064fcc3079c271755b6a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Bell_Tower",
+          "http_status": 200,
+          "sha256": "b96273d8bdb32b24cb8b478a82a96e63b842c87ef2bf88808f373d2038bef20e"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pewter_City",
+          "http_status": 200,
+          "sha256": "2d9b0d5c95b873013fcb962675eda54511d145a4c8e40d1fc57048a499db3c72"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 64,
+      "maps": [
+        {
+          "mapId": "MAP_BELL_TOWER_1F",
+          "bank": "NA",
+          "head": "D17R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0019_D17R0101.s",
+          "script_sha256": "2e9087cfcf9dcad53c14f774c4eb39f1e561feb1ea64960d7175352bcd65199b"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_2F",
+          "bank": "D17R0102",
+          "head": "D17R0102",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_3F",
+          "bank": "D17R0103",
+          "head": "D17R0103",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_4F",
+          "bank": "D17R0104",
+          "head": "D17R0104",
+          "area": "4F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_5F",
+          "bank": "D17R0105",
+          "head": "D17R0105",
+          "area": "5F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_6F",
+          "bank": "D17R0106",
+          "head": "D17R0106",
+          "area": "6F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_7F",
+          "bank": "D17R0107",
+          "head": "D17R0107",
+          "area": "7F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0020_D17R0107.s",
+          "script_sha256": "7a99724f40d37e528f1fa2423b4e3b9e47f487244e5efc02b5e2bbe375f830ad"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_8F",
+          "bank": "D17R0108",
+          "head": "D17R0108",
+          "area": "8F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_9F",
+          "bank": "D17R0109",
+          "head": "D17R0109",
+          "area": "9F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_ROOF",
+          "bank": "NA",
+          "head": "D17R0110",
+          "area": "Bell Tower Roof",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0021_D17R0110.s",
+          "script_sha256": "136231a91845b2354819681df2b6e0cba0235d69158c8c708f20ed0c0e1cb172"
+        },
+        {
+          "mapId": "MAP_BELL_TOWER_10F",
+          "bank": "D17R0112",
+          "head": "D17R0112",
+          "area": "10F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        }
+      ],
+      "notes": [
+        "The roof has the SoulSilver level-70 Ho-Oh encounter after obtaining the Rainbow Wing from the man in Pewter City. No wild encounters occur on 1F."
+      ],
+      "reference_boundary": "Serebii spells Ho-Oh as Ho-oh; this is the same species, already represented.",
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Mt. Mortar",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mt.mortar.shtml",
+          "http_status": 200,
+          "sha256": "5ef68c5bec70fa6307f9d86c02c65f8df288e511ba5feafe39281de37e045ece"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Mortar",
+          "http_status": 200,
+          "sha256": "d79a7bdcb33abed0f5ad3d23f0ba4e92171a54976adcb6d40f3c4902ce34d8f5"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 64,
+      "maps": [
+        {
+          "mapId": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "bank": "D38R0101",
+          "head": "D38R0101",
+          "area": "1F · entrance",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_MORTAR_1F_BACK",
+          "bank": "D38R0102",
+          "head": "D38R0102",
+          "area": "1F · back",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_MORTAR_2F",
+          "bank": "D38R0103",
+          "head": "D38R0103",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_MORTAR_B1F",
+          "bank": "D38R0104",
+          "head": "D38R0104",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0098_D38R0104.s",
+          "script_sha256": "539be57915d1dfad85a9353c8912ca3e04b5078aa9e8bdd0448a82ae5361ac01"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Tyrogue",
+          "reference_method": "Gift",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Whirl Islands",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/whirlislands.shtml",
+          "http_status": 200,
+          "sha256": "b0abba74118c82258e47280ff4c5774917199904dd25f3d695620606a04a6e75"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands",
+          "http_status": 200,
+          "sha256": "793203ba66541f9efbf09de2bbbb274aff7adabd539372fcfecd2154faa60048"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 57,
+      "maps": [
+        {
+          "mapId": "MAP_WHIRL_ISLANDS_1F",
+          "bank": "D40R0101",
+          "head": "D40R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_WHIRL_ISLANDS_B1F",
+          "bank": "D40R0102",
+          "head": "D40R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0102_D40R0102.s",
+          "script_sha256": "4fd17bdce41a0613ad04c44c2b00329e7e1c0a663381d134447e650d04270aff"
+        },
+        {
+          "mapId": "MAP_WHIRL_ISLANDS_B2F",
+          "bank": "D40R0104",
+          "head": "D40R0104",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0103_D40R0104.s",
+          "script_sha256": "6c10d208d08355a266e5270b107607fac742a311f8faad916d50980edaa17f4b"
+        },
+        {
+          "mapId": "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE",
+          "bank": "NA",
+          "head": "D40R0107",
+          "area": "Lugia chamber",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0104_D40R0107.s",
+          "script_sha256": "7834b490d6cd8f154caf49d1660695ee1cf3b9cf2ee75d01627a78ec1e95496e"
+        },
+        {
+          "mapId": "MAP_WHIRL_ISLANDS_B3F",
+          "bank": "D40R0106",
+          "head": "D40R0106",
+          "area": "B3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        }
+      ],
+      "notes": [
+        "Lugia is level 45 in SoulSilver, in its separate chamber after the Kimono Girls summon it using the Silver Wing and Tidal Bell. Surf and Whirlpool are needed to reach the chamber."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Lake of Rage",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/lakeofrage.shtml",
+          "http_status": 200,
+          "sha256": "329bed5c33937ca2eb20d2190712502c18319cb5fb17c5554e5152f0e07a9384"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Lake_of_Rage",
+          "http_status": 200,
+          "sha256": "b2e6786288c4c69ead235bc17b6781c3572fdc914dfad0866e1cbaeaf0c4a8db"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 14,
+      "maps": [
+        {
+          "mapId": "MAP_LAKE_OF_RAGE",
+          "bank": "T29",
+          "head": "T29",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0938_T29.s",
+          "script_sha256": "df08773260755cba505abf148f3f5613b343619bb085a002dfde6e91ce0a304c"
+        }
+      ],
+      "notes": [
+        "The red Gyarados is a guaranteed shiny level-30 interaction in the lake; it is distinct from ordinary wild Gyarados."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Ice Path",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/icepath.shtml",
+          "http_status": 200,
+          "sha256": "678bb31ae51706e9493929debfe00aa04f77451bfb5332f33190f20147558646"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ice_Path",
+          "http_status": 200,
+          "sha256": "bda3098ccf0ca7c7e34a4061d0da777c1be28d88676b98c18984a555881ef3a5"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 40,
+      "maps": [
+        {
+          "mapId": "MAP_ICE_PATH_1F",
+          "bank": "D39R0101",
+          "head": "D39R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0099_D39R0101.s",
+          "script_sha256": "2f73084f265b10c8d1a5d3d2188528a05e9adc84b91765df74c5244e7a1c2c1f"
+        },
+        {
+          "mapId": "MAP_ICE_PATH_B1F",
+          "bank": "D39R0102",
+          "head": "D39R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s",
+          "script_sha256": "c4acf05db8115d13e32b518e8638c9e5e3ac2e27a714c8ff628392295823c334"
+        },
+        {
+          "mapId": "MAP_ICE_PATH_B2F",
+          "bank": "D39R0103",
+          "head": "D39R0103",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0101_D39R0103.s",
+          "script_sha256": "89eb6a59fdf9dd8445415e09b0a61afe617eb7dd556e56a6c28a8453124a6af4"
+        },
+        {
+          "mapId": "MAP_ICE_PATH_B3F",
+          "bank": "D39R0104",
+          "head": "D39R0104",
+          "area": "B3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Dragon's Den",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/dragon'sden.shtml",
+          "http_status": 200,
+          "sha256": "867ede1233117e3f60e3c64abad138a45db206ceeee3cd41505ec7f13b3ee8b7"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Dragon's_Den",
+          "http_status": 200,
+          "sha256": "9f2fe9402e5bfbf6531b13772407e8b6bf7656833bf208fc5c32f6649b986669"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 8,
+      "maps": [
+        {
+          "mapId": "MAP_DRAGONS_DEN_ENTRANCE",
+          "bank": "NA",
+          "head": "D44R0101",
+          "area": "Dragons Den Entrance",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_DRAGONS_DEN",
+          "bank": "D44R0102",
+          "head": "D44R0102",
+          "area": "Dragons Den",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0111_D44R0102.s",
+          "script_sha256": "8d1391afa3df9925907fab9d015738db9e91174a03d805120a4702bb6eac3cf5"
+        },
+        {
+          "mapId": "MAP_DRAGONS_DEN_SHRINE",
+          "bank": "NA",
+          "head": "D44R0103",
+          "area": "Dragons Den Shrine",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0112_D44R0103.s",
+          "script_sha256": "b56cf4cabe9495342e2951b40aa927f0fbccba95873f34bfdf76cb1deb91a2f0"
+        }
+      ],
+      "notes": [
+        "The cave and water have wild encounters; the shrine does not have random encounters. The shrine’s Dratini is a gift, not a random wild encounter."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Safari Zone Gate",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/safarizonegate.shtml",
+          "http_status": 200,
+          "sha256": "21cae0f4914189dd95d65ba3253e62500501eb63dd482f248faebd8db8192e5c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Safari_Zone_Gate",
+          "http_status": 200,
+          "sha256": "5addaf82a6584dd082a69ef7669a1467d5fe4b10adde3c2c77a046ec8338dbf2"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 6,
+      "maps": [
+        {
+          "mapId": "MAP_SAFARI_ZONE_GATE",
+          "bank": "NA",
+          "head": "D47",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0116_D47.s",
+          "script_sha256": "eb59dff512c55f26774e98eb426ed6b8dd6f064916557f40a5c9d67644e9fb8c"
+        }
+      ],
+      "notes": [
+        "These Headbutt encounters occur around Safari Zone Gate; the Safari Zone habitats have separate encounter tables."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Pokéathlon Dome",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/pokeathlondome.shtml",
+          "http_status": 200,
+          "sha256": "a5001f22fb9d40062fa689b60a23d66474bd7ab6fb2f61761d58990651c88c6c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon_Dome",
+          "http_status": 200,
+          "sha256": "40f0cf4983dc9b3b1eb0eddb8e0b27ed679f7947003a542cc51941bf79474548"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_POKEATHLON_DOME",
+          "bank": "NA",
+          "head": "D49",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0122_D49.s",
+          "script_sha256": "965e5e5fb4719941a3dfacb37724e631c6a3b494e0fb39a58de5e50591556428"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Goldenrod Department Store",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Department_Store",
+          "http_status": 200,
+          "sha256": "3b7f0b2d65bd76a1547964a00f37746f792bd0cbe948fcad64ce3178aa588fa8"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_1F",
+          "bank": "NA",
+          "head": "T25R1001",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0899_T25R1001.s",
+          "script_sha256": "0d16ed0bd4d640b04d8c449321e7120244ca1ce0e83cbdd57837c0e51acce227"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_2F",
+          "bank": "NA",
+          "head": "T25R1002",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0900_T25R1002.s",
+          "script_sha256": "53801ccec71024dc0b1a97d5eff0cb5c1a87506fb687c7b24452a3ea72260582"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_3F",
+          "bank": "NA",
+          "head": "T25R1003",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0901_T25R1003.s",
+          "script_sha256": "6123b2a85f0fc989f6b0bb101ae0ae3e50c386b8e8c00526ef2b5af287000c2a"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_4F",
+          "bank": "NA",
+          "head": "T25R1004",
+          "area": "4F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0902_T25R1004.s",
+          "script_sha256": "d9b411478ea635963f01b568ef3442906b4596f69e90c873a58c8f33a1e4ec20"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_5F",
+          "bank": "NA",
+          "head": "T25R1005",
+          "area": "5F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0903_T25R1005.s",
+          "script_sha256": "a3d477b7bd7ac15ab1b26b59309090f554562146baa9fb7c2ba62a1f3153ef6d"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_6F",
+          "bank": "NA",
+          "head": "T25R1006",
+          "area": "6F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0904_T25R1006.s",
+          "script_sha256": "45026150bbb8392ec4535caa0e36094b6f378152ff37537235e3a92c7305a6a0"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_BASEMENT",
+          "bank": "NA",
+          "head": "D37R0103",
+          "area": "Goldenrod Department Store Basement",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0095_D37R0103.s",
+          "script_sha256": "44247c9c53906d5d74de148e80f056bf0fa1510127556235b64ced8384683e5f"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_ELEVATOR",
+          "bank": "NA",
+          "head": "T25R1007",
+          "area": "Goldenrod Department Store Elevator",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0905_T25R1007.s",
+          "script_sha256": "972a16534a7374e482f4922bcbe9b67b2cec401d5e31e53b3d055374546f9ef7"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [
+        {
+          "pokemon": "Machop",
+          "reference_method": "TradeDrowzee",
+          "reason": "Gift/egg/trade/event gift: reserved for structured location details, milestone 3."
+        }
+      ],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Goldenrod Radio Tower",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/radiotower.shtml",
+          "http_status": 200,
+          "sha256": "41d523726ee098931e4a36c6fe51054f66f853dfac9acd19798cede103d657f1"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Radio_Tower",
+          "http_status": 200,
+          "sha256": "3e755108a4af1b6010663d376acfbd4049ab525154f0af3be6503f8661f2c978"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_1F",
+          "bank": "NA",
+          "head": "D23R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0029_D23R0101.s",
+          "script_sha256": "6248b8c7b9b3b5370ebb696f52156071998b8af26f4adc458dd2d2adf61821bd"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_2F",
+          "bank": "NA",
+          "head": "D23R0102",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0030_D23R0102.s",
+          "script_sha256": "3b5d831d11cd19088e662b35dda77d80d1f3cff21162ab457fdec32d92ce0c9b"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_3F",
+          "bank": "NA",
+          "head": "D23R0103",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0031_D23R0103.s",
+          "script_sha256": "ba3328fd7d309fe9245a00a8ce5487e851f0e5c56961612dfa835152a8bab39c"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_4F",
+          "bank": "NA",
+          "head": "D23R0104",
+          "area": "4F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0032_D23R0104.s",
+          "script_sha256": "01ebc076028f1215d0d3b9720bde95123b9e13b33071f60825d5d9b0c8d83e7e"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_5F",
+          "bank": "NA",
+          "head": "D23R0105",
+          "area": "5F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0033_D23R0105.s",
+          "script_sha256": "632d48fc9f5970bfc88837d07bc9b8b0c6fd4b270e952aece7ebd803daca51c8"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_OBSERVATION_DECK",
+          "bank": "NA",
+          "head": "D23R0106",
+          "area": "Goldenrod Radio Tower Observation Deck",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0034_D23R0106.s",
+          "script_sha256": "6c52e2c2b2a65f2fb0f4f304cfccfb31845f51f5f04f8610095481a3fc51a91e"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_RADIO_TOWER_ELEVATOR",
+          "bank": "NA",
+          "head": "D23R0107",
+          "area": "Goldenrod Radio Tower Elevator",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0035_D23R0107.s",
+          "script_sha256": "8278b6be4b9b07858d82de08c31cb4a18449fd1312b45e72064f34bbb67c4832"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Olivine Lighthouse",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/shininglighthouse.shtml",
+          "http_status": 200,
+          "sha256": "27ce12192b5e902a04a3d86c2a8c4b06a307bb2825b56408195b8fc35984db7a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Glitter_Lighthouse",
+          "http_status": 200,
+          "sha256": "480567f13cba4e241ca00dce7a0342ad0b0780925b8cc8be09efbdce7e10bb51"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_1F",
+          "bank": "NA",
+          "head": "D27R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0062_D27R0101.s",
+          "script_sha256": "6c4b2b2f023716eb7e9aa9fd730b1e7b379653ee0ccf6e28ff36caba9e1f0e26"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_2F",
+          "bank": "NA",
+          "head": "D27R0102",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_EXTERIOR",
+          "bank": "NA",
+          "head": "D27R0103",
+          "area": "Olivine Lighthouse Exterior",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0063_D27R0103.s",
+          "script_sha256": "28564861dae4041cbadbfd828391cfa9995b1d37fdb8d2ecdc1034616ccd2f5d"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_3F",
+          "bank": "NA",
+          "head": "D27R0104",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_4F",
+          "bank": "NA",
+          "head": "D27R0105",
+          "area": "4F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0064_D27R0105.s",
+          "script_sha256": "fa712ee33604bf97da960a7db4346f26ff04bfd08c439a998439ef4df2fe7f2a"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_5F",
+          "bank": "NA",
+          "head": "D27R0106",
+          "area": "5F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0065_D27R0106.s",
+          "script_sha256": "6d56926ebb781d31e94ccc7525796651d0514a6a76621b9c8946f6d1b6b711b6"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_LIGHT_ROOM",
+          "bank": "NA",
+          "head": "D27R0107",
+          "area": "Olivine Lighthouse Light Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0066_D27R0107.s",
+          "script_sha256": "b5242e6f8999cd61d237e723b8d711bf13e9c5871372a0a0ba0f409ea8ec4d07"
+        },
+        {
+          "mapId": "MAP_OLIVINE_LIGHTHOUSE_ELEVATOR",
+          "bank": "NA",
+          "head": "D27R0108",
+          "area": "Olivine Lighthouse Elevator",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0067_D27R0108.s",
+          "script_sha256": "54a98e6b11995e2de0cad05c4ab2f35479300f791ddaa6a9102c829424c5c6a7"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Pokémon Day Care",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "http_status": 200,
+          "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day_Care",
+          "http_status": 200,
+          "sha256": "f6b60515de7307b8e793097d285765c4419b1e90c3f6341a6910829eecf6c4e1"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+          "http_status": 200,
+          "sha256": "38be5f342ca9bca2faaf0aa98f5cfbf8a5156ff2baf6c4b27ab08e0df3c5f337"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_34_DAYCARE",
+          "bank": "NA",
+          "head": "R34R0101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0238_R34R0101.s",
+          "script_sha256": "e93fac12df487aea6d0d5c8acd65e60c3da75acff57be0eb0a295fbf2a34051d"
+        }
+      ],
+      "notes": [
+        "No fixed wild encounters inside the Day Care. Its backyard is not accessible in HGSS; Route 34 water encounters belong to Route 34."
+      ],
+      "reference_boundary": "The linked reference also covers surrounding Route 34, Route 39 or Route 22; its outdoor wild tables do not belong to these interiors. Use primary map encounter banks and each outdoor location’s own entry.",
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "S.S. Aqua",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ssaqua.shtml",
+          "http_status": 200,
+          "sha256": "bdaad65293238226d869c34230de617fae7db925107638767180ba2aa2109ff4"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/S.S._Aqua",
+          "http_status": 200,
+          "sha256": "82ab60176ed7c7a4c63eef6173c934143f49c8436ef4a7a2f4c8a477a5b2f9e9"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_SS_AQUA_OLIVINE_PORT_INTERIOR",
+          "bank": "NA",
+          "head": "P01R0101",
+          "area": "Ss Aqua Olivine Port Interior",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0152_P01R0101.s",
+          "script_sha256": "95998494abbaa0c8b2035890a694994ced5f5859f5f9d6759d659e56faa12154"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_1F",
+          "bank": "NA",
+          "head": "P01R0301",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0156_P01R0301.s",
+          "script_sha256": "62c4b58eff4fadc380130185822285dddb9a8dcbc29e97e43e908abca1d34baa"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_CAPTAIN_ROOM",
+          "bank": "NA",
+          "head": "P01R0302",
+          "area": "Ss Aqua Captain Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0157_P01R0302.s",
+          "script_sha256": "e7680ab1a544a19fe454dc8767d1bf660750c220069725f0d568fe2edc225a8d"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_1F_SOUTHEAST_ROOMS",
+          "bank": "NA",
+          "head": "P01R0303",
+          "area": "Ss Aqua 1F Southeast Rooms",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0158_P01R0303.s",
+          "script_sha256": "b50ee36e48a4a6878c28ad4d7803e00911df87316f9a333c318fad5ee57f5d2d"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_1F_SOUTHWEST_ROOMS",
+          "bank": "NA",
+          "head": "P01R0304",
+          "area": "Ss Aqua 1F Southwest Rooms",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0159_P01R0304.s",
+          "script_sha256": "0599ced06c2598a5687b6492d6f8f9512b3da2cca3d5f817918b0c8349bb378d"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_1F_NORTHEAST_ROOMS",
+          "bank": "NA",
+          "head": "P01R0305",
+          "area": "Ss Aqua 1F Northeast Rooms",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0160_P01R0305.s",
+          "script_sha256": "dbc19a7ee893eec4e845d1289d8eabe546a094742a665287a50e8b3a43af85e8"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_1F_NORTHWEST_ROOMS",
+          "bank": "NA",
+          "head": "P01R0306",
+          "area": "Ss Aqua 1F Northwest Rooms",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0161_P01R0306.s",
+          "script_sha256": "7edd17edf32ea49e2085d53a79048395e132a01d29436fac95dc3fe5f102a052"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_B1F",
+          "bank": "NA",
+          "head": "P01R0307",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0162_P01R0307.s",
+          "script_sha256": "503108de2846d877287d18a90c0a5561b9fa813ad2efecf4dd16f413143ef700"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_OLIVINE_PORT_EXTERIOR",
+          "bank": "NA",
+          "head": "P01R0102",
+          "area": "Ss Aqua Olivine Port Exterior",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0153_P01R0102.s",
+          "script_sha256": "9abf9fd5e54534d5b40d3bdc3cd662dd169d89bd83521fc128d19b37d0fb05d5"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
+          "bank": "NA",
+          "head": "P01R0103",
+          "area": "Ss Aqua Vermilion Port Interior",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0154_P01R0103.s",
+          "script_sha256": "4335c77181674bdaf82d615f1eb35f1be32619d7912789c33fa2bd5e8dbcc1ba"
+        },
+        {
+          "mapId": "MAP_SS_AQUA_VERMILION_PORT_EXTERIOR",
+          "bank": "NA",
+          "head": "P01R0104",
+          "area": "Ss Aqua Vermilion Port Exterior",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0155_P01R0104.s",
+          "script_sha256": "736a92dd6950a8c2b2a0359d802afc2c2aa6296886d43adb1f30ed5852e1b77c"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Victory Road",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/victoryroad.shtml",
+          "http_status": 200,
+          "sha256": "3f99da8b0f496330dc519eb66b014dc15401cbe1e8c3c864c8b7ba3614ba3af2"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Victory_Road_(Kanto)",
+          "http_status": 200,
+          "sha256": "0325e0bf9b99ece5d71ea049f2a43d56f2ea376513b91abd6095d97be9cbe5b2"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 29,
+      "maps": [
+        {
+          "mapId": "MAP_VICTORY_ROAD_1F",
+          "bank": "D43R0101",
+          "head": "D43R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_VICTORY_ROAD_2F",
+          "bank": "D43R0102",
+          "head": "D43R0102",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0109_D43R0102.s",
+          "script_sha256": "23f6e552208c07cf6239e6065404072e595496c8474e9d8da3c016a1d03ef680"
+        },
+        {
+          "mapId": "MAP_VICTORY_ROAD_3F",
+          "bank": "D43R0103",
+          "head": "D43R0103",
+          "area": "3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "script_sha256": "3e630cb7a203e14b49390c73053c82d4b373c6dc5a0f524c626f9c79f073825f"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Indigo Plateau",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/indigoplateau.shtml",
+          "http_status": 200,
+          "sha256": "c4c112aedcb90170b3b5c319f02c8f69eb8d5948411b96f9d9f641a3c6eee385"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Indigo_Plateau",
+          "http_status": 200,
+          "sha256": "7fdef151b5f05f60cdba9a8da7c9d5ce8864a0bba2a4db511a47aca24865f495"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_INDIGO_PLATEAU",
+          "bank": "NA",
+          "head": "T10",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0818_T10.s",
+          "script_sha256": "fe29198f8230e5222505f98da15c4f787fa5573be7c7c430364c95620e3860d4"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Mt. Silver",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mt.silver.shtml",
+          "http_status": 200,
+          "sha256": "d47b7accff4e7bf71fa2f54e07e4d12d8a01a890e61c80d03f85eb6d33f168fe"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver",
+          "http_status": 200,
+          "sha256": "613b87a09e82370ae2cd5175db32aa81ece27001946b6b200e7f11828591a626"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver_Cave",
+          "http_status": 200,
+          "sha256": "900aec2e542974407e1e01f84372e4294f074590d7db8e93108119b47a00eb6b"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 164,
+      "maps": [
+        {
+          "mapId": "MAP_MOUNT_SILVER",
+          "bank": "T31",
+          "head": "T31",
+          "area": "Outside",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0949_T31.s",
+          "script_sha256": "ff9c034436de28689ca4061f0584c98671dd80fb55dd3b070052ea6b4c340fbf"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_1F",
+          "bank": "D41R0101",
+          "head": "D41R0101",
+          "area": "Cave · 1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0105_D41R0101.s",
+          "script_sha256": "d788a13d88e2592e85c2118e338f9dce33e6b564fc1fe3caf15d76e69f7028a6"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "bank": "D41R0102",
+          "head": "D41R0102",
+          "area": "Upper mountainside",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+          "bank": "D41R0103",
+          "head": "D41R0103",
+          "area": "Lower mountainside",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER",
+          "bank": "D41R0104",
+          "head": "D41R0104",
+          "area": "Expert Belt chamber",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER",
+          "bank": "D41R0105",
+          "head": "D41R0105",
+          "area": "Moltres chamber",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0106_D41R0105.s",
+          "script_sha256": "244ea6b1bd461d6032ed76f4813721b9b27ca81112dfa15dd8dee37f17ae47e6"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_2F",
+          "bank": "D41R0106",
+          "head": "D41R0106",
+          "area": "Cave · 2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_3F",
+          "bank": "D41R0107",
+          "head": "D41R0107",
+          "area": "Cave · 3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s",
+          "script_sha256": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_CAVE_SUMMIT",
+          "bank": "NA",
+          "head": "D41R0108",
+          "area": "Mount Silver Cave Summit",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0107_D41R0108.s",
+          "script_sha256": "6fbed2d5095181940ff8a5477b6b2c62d48f00d5c51b96ce961a18c3e94d5af6"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T31PC0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0950_T31PC0101.s",
+          "script_sha256": "2254d181f9331941c878e2125d4d1e49e689088e318aa50a6586dec02143941a"
+        },
+        {
+          "mapId": "MAP_MOUNT_SILVER_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T31PC0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0951_T31PC0102.s",
+          "script_sha256": "d4094a2d371d54422e43b37bf8ad1c113bbf1cfa50dba31daaf355fb94b7d9fc"
+        }
+      ],
+      "notes": [
+        "Outside and each cave section have separate tables. Rock Climb is required to explore the mountain; Surf and Waterfall reach Moltres. No random encounters occur at the summit."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Route 26",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route26.shtml",
+          "http_status": 200,
+          "sha256": "4cfdc41b11ca724a60c6ea7a8a991cc0e2ceb971f9c4e7e31943515d3cfb466c"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26",
+          "http_status": 200,
+          "sha256": "8fac955379240c9870d570a66f29568d419d8f9122a4d31e2d385d36d46d0568"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 29,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 27",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route27.shtml",
+          "http_status": 200,
+          "sha256": "e45b91206211646b4fbd73f183e0f1078027051c836286cf58b3f9a737de1f57"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27",
+          "http_status": 200,
+          "sha256": "09f36db3f837252acdaac56b0c3989e8b2351fae225acc3322309ddfd6fb273e"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 30,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Route 28",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route28.shtml",
+          "http_status": 200,
+          "sha256": "ff1a4b957283b81668c8dbfa0c59ae2ad716ec3ac1f7c5f16ea800573785ca43"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28",
+          "http_status": 200,
+          "sha256": "5c4e22370f0cb40a8117616d4cdceb676b54880b36813668d88198d60fdeb859"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 26,
+      "route_audit": "atlas-route-audit.json",
+      "resolution": "Retain v0.25.41 audited, game-scoped route records unchanged; fresh source pages checked and eligible roaming species/levels now identified in route notes.",
+      "unresolved_wild_gaps": [],
+      "fresh_reference_comparisons_match_prior_audit": true
+    },
+    {
+      "location": "Tohjo Falls",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/tohjofalls.shtml",
+          "http_status": 200,
+          "sha256": "7ba08aac8a1230eb7c70f5e88e9c74b25c4e7e57638ad82115ba90b9306da8e3"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Tohjo_Falls",
+          "http_status": 200,
+          "sha256": "5a1ef761d8d211cdbab660f63f1a06b5cf2f7ea4649b25d5945570a1bf61b6ca"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 19,
+      "maps": [
+        {
+          "mapId": "MAP_TOHJO_FALLS",
+          "bank": "D45R0101",
+          "head": "D45R0101",
+          "area": "Tohjo Falls",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0113_D45R0101.s",
+          "script_sha256": "e6c2541bbc6115bd6009f11c65afd0f7dadd7b8baf35b68d4092a967fa3d1c88"
+        },
+        {
+          "mapId": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+          "bank": "NA",
+          "head": "D45R0102",
+          "area": "Tohjo Falls Hidden Room",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0114_D45R0102.s",
+          "script_sha256": "1518ce858c897d0c152f468a1e8d7e146741f1adfd78f7cb2ffe9d30b54fdabf"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Pokémon League Reception Gate",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",
+          "http_status": 200,
+          "sha256": "3275d6635b207e4063ca3e606bbef64e514903b927066452cf20f5d7e2a68b6d"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Reception_Gate",
+          "http_status": 200,
+          "sha256": "88cb290e6bc2236bada6ff5266289bd81beeac18ac121e34949823dd15637369"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+          "bank": "NA",
+          "head": "R22R0101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0213_R22R0101.s",
+          "script_sha256": "644f8f45f00c8817de531aab4e70cf2287621437fe24ffc05d904f3017403882"
+        }
+      ],
+      "notes": [],
+      "reference_boundary": "The linked reference also covers surrounding Route 34, Route 39 or Route 22; its outdoor wild tables do not belong to these interiors. Use primary map encounter banks and each outdoor location’s own entry.",
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Bellchime Trail",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/bellchimetrail.shtml",
+          "http_status": 200,
+          "sha256": "2a06283f01ea1dc676d162fac1ba98e2e9c4dea9857785eb902357b09246e6b0"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Bellchime_Trail",
+          "http_status": 200,
+          "sha256": "e0b70fda7909647c59e412a35586ffb2dbd53bde172c821741ed73af4e5428ca"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_BELLCHIME_TOWER",
+          "bank": "NA",
+          "head": "D17R1101",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0022_D17R1101.s",
+          "script_sha256": "60daecd82afe88941ebc02dcebffd93faf82fe55c4baa0a042e388a07b317e36"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Goldenrod Tunnel",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodunderground.shtml",
+          "http_status": 200,
+          "sha256": "3f213d5e792df7511f92f3f3539c87692ee4be7d95390d66747a5d664d9cf647"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Underground",
+          "http_status": 200,
+          "sha256": "02d6dcb656cb92766d425e8e1c16f38215aa7755bab99b060056545ec0f21b84"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_GOLDENROD_TUNNEL_1F",
+          "bank": "NA",
+          "head": "D37R0101",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0093_D37R0101.s",
+          "script_sha256": "4c4fb27bebe61651db6ea68dec1492c9ea9402a7325492d1c9de6c83ab617c95"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_TUNNEL_B1F",
+          "bank": "NA",
+          "head": "D37R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0094_D37R0102.s",
+          "script_sha256": "6d20d4e048fb4fc31fd4d7615103f5b3369363a511fb4b170d17a5b85e7dcf32"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_TUNNEL_B2F",
+          "bank": "NA",
+          "head": "D37R0104",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0096_D37R0104.s",
+          "script_sha256": "56ccddb64109521f7ce30ac96794fbfd8ba9f78cee7dfada146a366e3fd62a6f"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_TUNNEL_WAREHOUSE",
+          "bank": "NA",
+          "head": "D37R0105",
+          "area": "Goldenrod Tunnel Warehouse",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0097_D37R0105.s",
+          "script_sha256": "2eb9fceafe25beb555e6aa1018a840d555dfbde4ab6e106eedc67e546d693d58"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Team Rocket HQ",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/rockethideout.shtml",
+          "http_status": 200,
+          "sha256": "56dabf8fcc02586a40f8d3d5f345efb9412aaaacd8ccb4cda7d90a42e3e2e500"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_HQ",
+          "http_status": 200,
+          "sha256": "0eac1cee3a1d49eed44359dd5bdfe1c611f6b6e4744cf489ba65a4bbbadcaa69"
+        }
+      ],
+      "encounter_status": "verified",
+      "encounter_records": 4,
+      "maps": [
+        {
+          "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B1F",
+          "bank": "NA",
+          "head": "D35R0102",
+          "area": "B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0089_D35R0102.s",
+          "script_sha256": "a7ff463fe34b4488e405318e912dc1545e7574d71d0873439a6b2f2c3e053910"
+        },
+        {
+          "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B2F",
+          "bank": "NA",
+          "head": "D35R0103",
+          "area": "B2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0090_D35R0103.s",
+          "script_sha256": "a8323e004ec1ed081486f9ad88b7fcbef886d61ef269becf59f89f31505e7277"
+        },
+        {
+          "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B3F",
+          "bank": "NA",
+          "head": "D35R0104",
+          "area": "B3F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0091_D35R0104.s",
+          "script_sha256": "ec662dd67122f047f1848546664dd62b4cd326da95cdd2c06d8c831c6d6e8a83"
+        }
+      ],
+      "notes": [
+        "B1F trap tiles contain fixed Geodude, Voltorb and Koffing encounters. Each tile is exhausted after its encounter; the traps stop after the generator Electrode are dealt with.",
+        "Three level-23 Electrode on B2F are story interactions, not random cave encounters."
+      ],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Frontier Access",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/frontieraccess.shtml",
+          "http_status": 200,
+          "sha256": "9b91851299043669ef184b29ce351ea97b3e67f8adf9f66aa35705fdf760c7f4"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Frontier_Access",
+          "http_status": 200,
+          "sha256": "92fc7c05f71e5ed61c4eaf27e81b2413f6fd976291841486eb91c8436e16f5dd"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_BATTLE_FRONTIER_FRONTIER_ACCESS",
+          "bank": "NA",
+          "head": "D32R0102",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0081_D32R0102.s",
+          "script_sha256": "86ac6ba81415d5aec1a289d9d759c09c5d1099ed1b0966dcde039d0fa2fe636b"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Battle Frontier",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/battlefrontier.shtml",
+          "http_status": 200,
+          "sha256": "9b5f41161760ac83468baff91b49decebf753786451772e0866c90528b11f760"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)",
+          "http_status": 200,
+          "sha256": "1f54422e18850ab7e71d7bf7eb7d44c8f85553f6fad655efd35ba33e9ae04d4b"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_BATTLE_FRONTIER",
+          "bank": "NA",
+          "head": "D32",
+          "area": "",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0076_D32.s",
+          "script_sha256": "7d980a893493057fa053be9ceb519c371228bdfbc8f4eaaed0759d0f788283b3"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "MooMoo Farm",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "http_status": 200,
+          "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Moomoo_Farm",
+          "http_status": 200,
+          "sha256": "4b152c5fe44ea1165215b34cb5d4ab1a983757881323b6ad6b61208f3adadb2c"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_39_MOOMOO_FARM_HOUSE",
+          "bank": "NA",
+          "head": "R39R0101",
+          "area": "Route 39 Moomoo Farm House",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0250_R39R0101.s",
+          "script_sha256": "2abb6d5e096c2e53a9302eaa56fb92392269dfaa016c7290f1131111565a96c9"
+        },
+        {
+          "mapId": "MAP_ROUTE_39_MOOMOO_FARM_STABLE",
+          "bank": "NA",
+          "head": "R39R0201",
+          "area": "Route 39 Moomoo Farm Stable",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0251_R39R0201.s",
+          "script_sha256": "ac9a9c515beb54cef5bd05a921c2d4a54ddc9275d7c2fc95a517aca0ef54b673"
+        }
+      ],
+      "notes": [
+        "No fixed wild encounters inside the farm buildings. The surrounding grass/tree encounters are listed under Route 39."
+      ],
+      "reference_boundary": "The linked reference also covers surrounding Route 34, Route 39 or Route 22; its outdoor wild tables do not belong to these interiors. Use primary map encounter banks and each outdoor location’s own entry.",
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    },
+    {
+      "location": "Magnet Train Station",
+      "status": "reviewed",
+      "references": [
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+        },
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Magnet_Train",
+          "http_status": 200,
+          "sha256": "d00de3918ec1346502a7ce06321c1195c7e9659b592f21c846fbc572e0310b08"
+        }
+      ],
+      "encounter_status": "no-fixed-wild",
+      "encounter_records": 0,
+      "maps": [
+        {
+          "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F",
+          "bank": "NA",
+          "head": "T25R0501",
+          "area": "1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0893_T25R0501.s",
+          "script_sha256": "264c000ceb8c0a2c986e724a9a20b8b5bb30512c1b16f4a22659966d0f34317d"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F",
+          "bank": "NA",
+          "head": "T25R0502",
+          "area": "2F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0894_T25R0502.s",
+          "script_sha256": "13c882a0b40b483277902481c2cfbc324929121bf3426f8276383141e2b119fc"
+        },
+        {
+          "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F_EMPTY",
+          "bank": "NA",
+          "head": "T25R0503",
+          "area": "Goldenrod Magnet Train Station 2F Empty",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0895_T25R0503.s",
+          "script_sha256": "83dc1eede21506c677d2cec8c642805de14ebdb07ba686b98c8e2574ad69b788"
+        }
+      ],
+      "notes": [],
+      "deferred_reference_records": [],
+      "resolution": "Use actual SoulSilver map banks, version overrides and slot/replacement rules; include all applicable floors/methods, and explicitly classify locations with no fixed wild encounters. Reference gifts/trades and surrounding-area tables are distinguished from missing wild data.",
+      "unresolved_wild_gaps": []
+    }
+  ]
+}

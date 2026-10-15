@@ -1,0 +1,1401 @@
+{
+  "New Bark Town": {
+    "maps": [
+      {
+        "mapId": "MAP_NEW_BARK",
+        "bank": "T20",
+        "head": "T20",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Cherrygrove City": {
+    "maps": [
+      {
+        "mapId": "MAP_CHERRYGROVE",
+        "bank": "T21",
+        "head": "T21",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "Surf encounters are in the coast west of the city. Special Headbutt trees are reached with Surf and Rock Climb."
+    ],
+    "special": []
+  },
+  "Violet City": {
+    "maps": [
+      {
+        "mapId": "MAP_VIOLET",
+        "bank": "T22",
+        "head": "T22",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "Whiscash outbreaks apply to fishing, not the ordinary Surf table."
+    ],
+    "special": []
+  },
+  "Azalea Town": {
+    "maps": [
+      {
+        "mapId": "MAP_AZALEA",
+        "bank": "NA",
+        "head": "T23",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Goldenrod City": {
+    "maps": [
+      {
+        "mapId": "MAP_GOLDENROD",
+        "bank": "NA",
+        "head": "T25",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Ecruteak City": {
+    "maps": [
+      {
+        "mapId": "MAP_ECRUTEAK",
+        "bank": "T27",
+        "head": "T27",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "City encounters exclude Burned Tower, Bell Tower and Bellchime Trail, which have separate entries."
+    ],
+    "special": []
+  },
+  "Olivine City": {
+    "maps": [
+      {
+        "mapId": "MAP_OLIVINE",
+        "bank": "T26",
+        "head": "T26",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Cianwood City": {
+    "maps": [
+      {
+        "mapId": "MAP_CIANWOOD",
+        "bank": "T24",
+        "head": "T24",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "Rock Smash encounters are on the northern beach. The Suicune sighting here is not a catchable Suicune encounter."
+    ],
+    "special": []
+  },
+  "Mahogany Town": {
+    "maps": [
+      {
+        "mapId": "MAP_MAHOGANY",
+        "bank": "NA",
+        "head": "T28",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Blackthorn City": {
+    "maps": [
+      {
+        "mapId": "MAP_BLACKTHORN",
+        "bank": "T30",
+        "head": "T30",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Cliff Edge Gate": {
+    "maps": [
+      {
+        "mapId": "MAP_CLIFF_EDGE_GATE",
+        "bank": "D48R0101",
+        "head": "D48R0101",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "The lake is reached with Rock Climb; water encounters require access to that lake."
+    ],
+    "special": []
+  },
+  "Cliff Cave": {
+    "maps": [
+      {
+        "mapId": "MAP_CLIFF_CAVE",
+        "bank": "D50R0101",
+        "head": "D50R0101",
+        "area": "1F / 2F / B1F"
+      }
+    ],
+    "notes": [
+      "Walking and radio encounters share the 1F/2F/B1F table. Rock Smash encounters are on B1F."
+    ],
+    "special": []
+  },
+  "Embedded Tower": {
+    "maps": [
+      {
+        "mapId": "MAP_EMBEDDED_TOWER_GROUDON_ROOM",
+        "bank": "NA",
+        "head": "D52R0101",
+        "area": "Embedded Tower Groudon Room"
+      },
+      {
+        "mapId": "MAP_EMBEDDED_TOWER_KYOGRE_ROOM",
+        "bank": "NA",
+        "head": "D52R0102",
+        "area": "Embedded Tower Kyogre Room"
+      },
+      {
+        "mapId": "MAP_EMBEDDED_TOWER_RAYQUAZA_ROOM",
+        "bank": "NA",
+        "head": "D52R0103",
+        "area": "Embedded Tower Rayquaza Room"
+      }
+    ],
+    "notes": [
+      "Groudon is the SoulSilver Red Orb encounter. Rayquaza requires the Jade Orb after showing Professor Oak both a HeartGold-origin Kyogre and a SoulSilver-origin Groudon. Kyogre is not a SoulSilver encounter here."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Groudon",
+        "levels": [
+          50
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "red-orb"
+        ],
+        "area": "Groudon chamber",
+        "availability": "Stationary"
+      },
+      {
+        "method": "interaction",
+        "pokemon": "Rayquaza",
+        "levels": [
+          50
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "jade-orb"
+        ],
+        "area": "Rayquaza chamber",
+        "availability": "Stationary"
+      }
+    ]
+  },
+  "Dark Cave": {
+    "maps": [
+      {
+        "mapId": "MAP_DARK_CAVE_ROUTE_45_SIDE",
+        "bank": "D42R0101",
+        "head": "D42R0101",
+        "area": "Route 45 side"
+      },
+      {
+        "mapId": "MAP_DARK_CAVE_ROUTE_31_SIDE",
+        "bank": "D42R0102",
+        "head": "D42R0102",
+        "area": "Route 31 / Route 46 side"
+      }
+    ],
+    "notes": [
+      "The Route 31/46 side and Route 45 side have separate tables. Dunsparce outbreaks occur on the Route 31/46 side."
+    ],
+    "special": []
+  },
+  "Sprout Tower": {
+    "maps": [
+      {
+        "mapId": "MAP_SPROUT_TOWER_1F",
+        "bank": "NA",
+        "head": "D15R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_SPROUT_TOWER_2F",
+        "bank": "D15R0102",
+        "head": "D15R0102",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_SPROUT_TOWER_3F",
+        "bank": "D15R0103",
+        "head": "D15R0103",
+        "area": "3F"
+      }
+    ],
+    "notes": [
+      "Wild encounters occur on 2F and 3F, not 1F."
+    ],
+    "special": []
+  },
+  "Ruins of Alph": {
+    "maps": [
+      {
+        "mapId": "MAP_RUINS_OF_ALPH",
+        "bank": "D24R0101",
+        "head": "D24R0101",
+        "area": "Outside"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_ENTRANCE_FIRST_ROOM",
+        "bank": "NA",
+        "head": "D24R0202",
+        "area": "Ruins Of Alph Northeast Entrance First Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_HIDDEN_ROOM",
+        "bank": "NA",
+        "head": "D24R0203",
+        "area": "Ruins Of Alph Northeast Hidden Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_ENTRANCE_FIRST_ROOM",
+        "bank": "NA",
+        "head": "D24R0204",
+        "area": "Ruins Of Alph Southeast Entrance First Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL",
+        "bank": "D24R0205",
+        "head": "D24R0205",
+        "area": "Underground hall"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_ENTRANCE_FIRST_ROOM",
+        "bank": "NA",
+        "head": "D24R0206",
+        "area": "Ruins Of Alph Southwest Entrance First Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_HIDDEN_ROOM",
+        "bank": "NA",
+        "head": "D24R0207",
+        "area": "Ruins Of Alph Southwest Hidden Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_ENTRANCE_FIRST_ROOM",
+        "bank": "NA",
+        "head": "D24R0208",
+        "area": "Ruins Of Alph Northwest Entrance First Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_HIDDEN_ROOM",
+        "bank": "NA",
+        "head": "D24R0209",
+        "area": "Ruins Of Alph Northwest Hidden Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_HIDDEN_ROOM",
+        "bank": "NA",
+        "head": "D24R0210",
+        "area": "Ruins Of Alph Southeast Hidden Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+        "bank": "NA",
+        "head": "D24R0102",
+        "area": "Ruins Of Alph Research Center"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_HALL_ENTRANCE",
+        "bank": "NA",
+        "head": "D24R0211",
+        "area": "Ruins Of Alph Hall Entrance"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHEAST_ENTRANCE_SECOND_ROOM",
+        "bank": "NA",
+        "head": "D24R0212",
+        "area": "Ruins Of Alph Northeast Entrance Second Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHEAST_ENTRANCE_SECOND_ROOM",
+        "bank": "NA",
+        "head": "D24R0213",
+        "area": "Ruins Of Alph Southeast Entrance Second Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_NORTHWEST_ENTRANCE_SECOND_ROOM",
+        "bank": "NA",
+        "head": "D24R0214",
+        "area": "Ruins Of Alph Northwest Entrance Second Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_SOUTHWEST_ENTRANCE_SECOND_ROOM",
+        "bank": "NA",
+        "head": "D24R0215",
+        "area": "Ruins Of Alph Southwest Entrance Second Room"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_HALL_ENTRANCE_SINJOH_EVENT",
+        "bank": "D24R0217",
+        "head": "D24R0217",
+        "area": "Hall entrance",
+        "specialOnly": true
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL_SINJOH_EVENT",
+        "bank": "D24R0216",
+        "head": "D24R0216",
+        "area": "Underground hall",
+        "aliasOf": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL"
+      },
+      {
+        "mapId": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL_SINJOH_EVENT_2",
+        "bank": "D24R0218",
+        "head": "D24R0218",
+        "area": "Underground hall",
+        "aliasOf": "MAP_RUINS_OF_ALPH_UNDERGROUND_HALL"
+      }
+    ],
+    "notes": [
+      "Solve at least one tile puzzle to encounter Unown in the underground hall. Kabuto unlocks A–J; Omanyte K–Q; Aerodactyl R–V; Ho-Oh W–Z.",
+      "After all 26 letters are caught, all four tile puzzles and all four secret rooms are complete, and the researchers update the Unown Report, investigate the entrance panel to unlock ! and ? in the hall entrance. Unown Radio changes form selection, not the 100% species share.",
+      "Outside grass lies in the western enclosure reached through Union Cave; it is separate from the Unown hall."
+    ],
+    "special": [
+      {
+        "method": "walking",
+        "pokemon": "Unown (!)",
+        "levels": [
+          5
+        ],
+        "times": [],
+        "percent": 50,
+        "conditions": [
+          "unown-complete"
+        ],
+        "area": "Hall entrance"
+      },
+      {
+        "method": "walking",
+        "pokemon": "Unown (?)",
+        "levels": [
+          5
+        ],
+        "times": [],
+        "percent": 50,
+        "conditions": [
+          "unown-complete"
+        ],
+        "area": "Hall entrance"
+      }
+    ]
+  },
+  "Union Cave": {
+    "maps": [
+      {
+        "mapId": "MAP_UNION_CAVE_1F",
+        "bank": "D25R0101",
+        "head": "D25R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_UNION_CAVE_B1F",
+        "bank": "D25R0102",
+        "head": "D25R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_UNION_CAVE_B2F",
+        "bank": "D25R0103",
+        "head": "D25R0103",
+        "area": "B2F"
+      }
+    ],
+    "notes": [
+      "Lapras is a repeatable Friday interaction on B2F, reached using Surf; it is not a random walking or Surf encounter."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Lapras",
+        "levels": [
+          20
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "friday-lapras"
+        ],
+        "area": "B2F",
+        "availability": "Weekly"
+      }
+    ]
+  },
+  "Slowpoke Well": {
+    "maps": [
+      {
+        "mapId": "MAP_SLOWPOKE_WELL_ENTRANCE",
+        "bank": "NA",
+        "head": "D26R0101",
+        "area": "Entrance"
+      },
+      {
+        "mapId": "MAP_SLOWPOKE_WELL_B1F",
+        "bank": "D26R0102",
+        "head": "D26R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_SLOWPOKE_WELL_B2F",
+        "bank": "D26R0103",
+        "head": "D26R0103",
+        "area": "B2F"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Ilex Forest": {
+    "maps": [
+      {
+        "mapId": "MAP_ILEX_FOREST",
+        "bank": "D36R0101",
+        "head": "D36R0101",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "Use Headbutt on trees for the tree groups; the Headbutt tutor is in this forest. Event/gift Pokémon are not ordinary wild encounters."
+    ],
+    "special": []
+  },
+  "National Park": {
+    "maps": [
+      {
+        "mapId": "MAP_NATIONAL_PARK",
+        "bank": "D22R0101",
+        "head": "D22R0101",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "Bug-Catching Contest: Tuesdays, Thursdays and Saturdays, once per day, with a 20-minute limit. Contest species and levels change after obtaining the National Pokédex.",
+      "Ordinary park encounters and contest encounters are separate tables. Special Headbutt trees require Rock Climb."
+    ],
+    "special": []
+  },
+  "Burned Tower": {
+    "maps": [
+      {
+        "mapId": "MAP_BURNED_TOWER_1F",
+        "bank": "D18R0101",
+        "head": "D18R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_BURNED_TOWER_B1F",
+        "bank": "D18R0102",
+        "head": "D18R0102",
+        "area": "B1F"
+      }
+    ],
+    "notes": [
+      "Approaching the legendary beasts on B1F releases level-40 Raikou and Entei to roam eligible Johto routes. They cannot be caught by interacting with their basement sprites; Suicune follows its separate story."
+    ],
+    "special": []
+  },
+  "Bell Tower": {
+    "maps": [
+      {
+        "mapId": "MAP_BELL_TOWER_1F",
+        "bank": "NA",
+        "head": "D17R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_2F",
+        "bank": "D17R0102",
+        "head": "D17R0102",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_3F",
+        "bank": "D17R0103",
+        "head": "D17R0103",
+        "area": "3F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_4F",
+        "bank": "D17R0104",
+        "head": "D17R0104",
+        "area": "4F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_5F",
+        "bank": "D17R0105",
+        "head": "D17R0105",
+        "area": "5F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_6F",
+        "bank": "D17R0106",
+        "head": "D17R0106",
+        "area": "6F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_7F",
+        "bank": "D17R0107",
+        "head": "D17R0107",
+        "area": "7F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_8F",
+        "bank": "D17R0108",
+        "head": "D17R0108",
+        "area": "8F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_9F",
+        "bank": "D17R0109",
+        "head": "D17R0109",
+        "area": "9F"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_ROOF",
+        "bank": "NA",
+        "head": "D17R0110",
+        "area": "Bell Tower Roof"
+      },
+      {
+        "mapId": "MAP_BELL_TOWER_10F",
+        "bank": "D17R0112",
+        "head": "D17R0112",
+        "area": "10F"
+      }
+    ],
+    "notes": [
+      "The roof has the SoulSilver level-70 Ho-Oh encounter after obtaining the Rainbow Wing from the man in Pewter City. No wild encounters occur on 1F."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Ho-Oh",
+        "levels": [
+          70
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "rainbow-wing"
+        ],
+        "area": "Roof",
+        "availability": "Stationary"
+      }
+    ]
+  },
+  "Mt. Mortar": {
+    "maps": [
+      {
+        "mapId": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+        "bank": "D38R0101",
+        "head": "D38R0101",
+        "area": "1F · entrance"
+      },
+      {
+        "mapId": "MAP_MOUNT_MORTAR_1F_BACK",
+        "bank": "D38R0102",
+        "head": "D38R0102",
+        "area": "1F · back"
+      },
+      {
+        "mapId": "MAP_MOUNT_MORTAR_2F",
+        "bank": "D38R0103",
+        "head": "D38R0103",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_MOUNT_MORTAR_B1F",
+        "bank": "D38R0104",
+        "head": "D38R0104",
+        "area": "B1F"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Whirl Islands": {
+    "maps": [
+      {
+        "mapId": "MAP_WHIRL_ISLANDS_1F",
+        "bank": "D40R0101",
+        "head": "D40R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_WHIRL_ISLANDS_B1F",
+        "bank": "D40R0102",
+        "head": "D40R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_WHIRL_ISLANDS_B2F",
+        "bank": "D40R0104",
+        "head": "D40R0104",
+        "area": "B2F"
+      },
+      {
+        "mapId": "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE",
+        "bank": "NA",
+        "head": "D40R0107",
+        "area": "Lugia chamber"
+      },
+      {
+        "mapId": "MAP_WHIRL_ISLANDS_B3F",
+        "bank": "D40R0106",
+        "head": "D40R0106",
+        "area": "B3F"
+      }
+    ],
+    "notes": [
+      "Lugia is level 45 in SoulSilver, in its separate chamber after the Kimono Girls summon it using the Silver Wing and Tidal Bell. Surf and Whirlpool are needed to reach the chamber."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Lugia",
+        "levels": [
+          45
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "silver-wing-tidal-bell"
+        ],
+        "area": "Lugia chamber",
+        "availability": "Stationary"
+      }
+    ]
+  },
+  "Lake of Rage": {
+    "maps": [
+      {
+        "mapId": "MAP_LAKE_OF_RAGE",
+        "bank": "T29",
+        "head": "T29",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "The red Gyarados is a guaranteed shiny level-30 interaction in the lake; it is distinct from ordinary wild Gyarados."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Gyarados (shiny)",
+        "levels": [
+          30
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "red-gyarados"
+        ],
+        "area": "Lake",
+        "availability": "Story encounter"
+      }
+    ]
+  },
+  "Ice Path": {
+    "maps": [
+      {
+        "mapId": "MAP_ICE_PATH_1F",
+        "bank": "D39R0101",
+        "head": "D39R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_ICE_PATH_B1F",
+        "bank": "D39R0102",
+        "head": "D39R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_ICE_PATH_B2F",
+        "bank": "D39R0103",
+        "head": "D39R0103",
+        "area": "B2F"
+      },
+      {
+        "mapId": "MAP_ICE_PATH_B3F",
+        "bank": "D39R0104",
+        "head": "D39R0104",
+        "area": "B3F"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Dragon's Den": {
+    "maps": [
+      {
+        "mapId": "MAP_DRAGONS_DEN_ENTRANCE",
+        "bank": "NA",
+        "head": "D44R0101",
+        "area": "Dragons Den Entrance"
+      },
+      {
+        "mapId": "MAP_DRAGONS_DEN",
+        "bank": "D44R0102",
+        "head": "D44R0102",
+        "area": "Dragons Den"
+      },
+      {
+        "mapId": "MAP_DRAGONS_DEN_SHRINE",
+        "bank": "NA",
+        "head": "D44R0103",
+        "area": "Dragons Den Shrine"
+      }
+    ],
+    "notes": [
+      "The cave and water have wild encounters; the shrine does not have random encounters. The shrine’s Dratini is a gift, not a random wild encounter."
+    ],
+    "special": []
+  },
+  "Safari Zone Gate": {
+    "maps": [
+      {
+        "mapId": "MAP_SAFARI_ZONE_GATE",
+        "bank": "NA",
+        "head": "D47",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "These Headbutt encounters occur around Safari Zone Gate; the Safari Zone habitats have separate encounter tables."
+    ],
+    "special": []
+  },
+  "Pokéathlon Dome": {
+    "maps": [
+      {
+        "mapId": "MAP_POKEATHLON_DOME",
+        "bank": "NA",
+        "head": "D49",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Goldenrod Department Store": {
+    "maps": [
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_1F",
+        "bank": "NA",
+        "head": "T25R1001",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_2F",
+        "bank": "NA",
+        "head": "T25R1002",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_3F",
+        "bank": "NA",
+        "head": "T25R1003",
+        "area": "3F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_4F",
+        "bank": "NA",
+        "head": "T25R1004",
+        "area": "4F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_5F",
+        "bank": "NA",
+        "head": "T25R1005",
+        "area": "5F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_6F",
+        "bank": "NA",
+        "head": "T25R1006",
+        "area": "6F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_BASEMENT",
+        "bank": "NA",
+        "head": "D37R0103",
+        "area": "Goldenrod Department Store Basement"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_ELEVATOR",
+        "bank": "NA",
+        "head": "T25R1007",
+        "area": "Goldenrod Department Store Elevator"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Goldenrod Radio Tower": {
+    "maps": [
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_1F",
+        "bank": "NA",
+        "head": "D23R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_2F",
+        "bank": "NA",
+        "head": "D23R0102",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_3F",
+        "bank": "NA",
+        "head": "D23R0103",
+        "area": "3F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_4F",
+        "bank": "NA",
+        "head": "D23R0104",
+        "area": "4F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_5F",
+        "bank": "NA",
+        "head": "D23R0105",
+        "area": "5F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_OBSERVATION_DECK",
+        "bank": "NA",
+        "head": "D23R0106",
+        "area": "Goldenrod Radio Tower Observation Deck"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_RADIO_TOWER_ELEVATOR",
+        "bank": "NA",
+        "head": "D23R0107",
+        "area": "Goldenrod Radio Tower Elevator"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Olivine Lighthouse": {
+    "maps": [
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_1F",
+        "bank": "NA",
+        "head": "D27R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_2F",
+        "bank": "NA",
+        "head": "D27R0102",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_EXTERIOR",
+        "bank": "NA",
+        "head": "D27R0103",
+        "area": "Olivine Lighthouse Exterior"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_3F",
+        "bank": "NA",
+        "head": "D27R0104",
+        "area": "3F"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_4F",
+        "bank": "NA",
+        "head": "D27R0105",
+        "area": "4F"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_5F",
+        "bank": "NA",
+        "head": "D27R0106",
+        "area": "5F"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_LIGHT_ROOM",
+        "bank": "NA",
+        "head": "D27R0107",
+        "area": "Olivine Lighthouse Light Room"
+      },
+      {
+        "mapId": "MAP_OLIVINE_LIGHTHOUSE_ELEVATOR",
+        "bank": "NA",
+        "head": "D27R0108",
+        "area": "Olivine Lighthouse Elevator"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Pokémon Day Care": {
+    "maps": [
+      {
+        "mapId": "MAP_ROUTE_34_DAYCARE",
+        "bank": "NA",
+        "head": "R34R0101",
+        "area": ""
+      }
+    ],
+    "notes": [
+      "No fixed wild encounters inside the Day Care. Its backyard is not accessible in HGSS; Route 34 water encounters belong to Route 34."
+    ],
+    "special": []
+  },
+  "S.S. Aqua": {
+    "maps": [
+      {
+        "mapId": "MAP_SS_AQUA_OLIVINE_PORT_INTERIOR",
+        "bank": "NA",
+        "head": "P01R0101",
+        "area": "Ss Aqua Olivine Port Interior"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_1F",
+        "bank": "NA",
+        "head": "P01R0301",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_CAPTAIN_ROOM",
+        "bank": "NA",
+        "head": "P01R0302",
+        "area": "Ss Aqua Captain Room"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_1F_SOUTHEAST_ROOMS",
+        "bank": "NA",
+        "head": "P01R0303",
+        "area": "Ss Aqua 1F Southeast Rooms"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_1F_SOUTHWEST_ROOMS",
+        "bank": "NA",
+        "head": "P01R0304",
+        "area": "Ss Aqua 1F Southwest Rooms"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_1F_NORTHEAST_ROOMS",
+        "bank": "NA",
+        "head": "P01R0305",
+        "area": "Ss Aqua 1F Northeast Rooms"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_1F_NORTHWEST_ROOMS",
+        "bank": "NA",
+        "head": "P01R0306",
+        "area": "Ss Aqua 1F Northwest Rooms"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_B1F",
+        "bank": "NA",
+        "head": "P01R0307",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_OLIVINE_PORT_EXTERIOR",
+        "bank": "NA",
+        "head": "P01R0102",
+        "area": "Ss Aqua Olivine Port Exterior"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
+        "bank": "NA",
+        "head": "P01R0103",
+        "area": "Ss Aqua Vermilion Port Interior"
+      },
+      {
+        "mapId": "MAP_SS_AQUA_VERMILION_PORT_EXTERIOR",
+        "bank": "NA",
+        "head": "P01R0104",
+        "area": "Ss Aqua Vermilion Port Exterior"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Victory Road": {
+    "maps": [
+      {
+        "mapId": "MAP_VICTORY_ROAD_1F",
+        "bank": "D43R0101",
+        "head": "D43R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_VICTORY_ROAD_2F",
+        "bank": "D43R0102",
+        "head": "D43R0102",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_VICTORY_ROAD_3F",
+        "bank": "D43R0103",
+        "head": "D43R0103",
+        "area": "3F"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Indigo Plateau": {
+    "maps": [
+      {
+        "mapId": "MAP_INDIGO_PLATEAU",
+        "bank": "NA",
+        "head": "T10",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Mt. Silver": {
+    "maps": [
+      {
+        "mapId": "MAP_MOUNT_SILVER",
+        "bank": "T31",
+        "head": "T31",
+        "area": "Outside"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_1F",
+        "bank": "D41R0101",
+        "head": "D41R0101",
+        "area": "Cave · 1F"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+        "bank": "D41R0102",
+        "head": "D41R0102",
+        "area": "Upper mountainside"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+        "bank": "D41R0103",
+        "head": "D41R0103",
+        "area": "Lower mountainside"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER",
+        "bank": "D41R0104",
+        "head": "D41R0104",
+        "area": "Expert Belt chamber"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER",
+        "bank": "D41R0105",
+        "head": "D41R0105",
+        "area": "Moltres chamber"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_2F",
+        "bank": "D41R0106",
+        "head": "D41R0106",
+        "area": "Cave · 2F"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_3F",
+        "bank": "D41R0107",
+        "head": "D41R0107",
+        "area": "Cave · 3F"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_CAVE_SUMMIT",
+        "bank": "NA",
+        "head": "D41R0108",
+        "area": "Mount Silver Cave Summit"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_POKECENTER_1F",
+        "bank": "NA",
+        "head": "T31PC0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_MOUNT_SILVER_POKECENTER_B1F",
+        "bank": "NA",
+        "head": "T31PC0102",
+        "area": "B1F"
+      }
+    ],
+    "notes": [
+      "Outside and each cave section have separate tables. Rock Climb is required to explore the mountain; Surf and Waterfall reach Moltres. No random encounters occur at the summit."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Moltres",
+        "levels": [
+          50
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "moltres"
+        ],
+        "area": "Moltres chamber",
+        "availability": "Stationary"
+      }
+    ]
+  },
+  "Tohjo Falls": {
+    "maps": [
+      {
+        "mapId": "MAP_TOHJO_FALLS",
+        "bank": "D45R0101",
+        "head": "D45R0101",
+        "area": "Tohjo Falls"
+      },
+      {
+        "mapId": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+        "bank": "NA",
+        "head": "D45R0102",
+        "area": "Tohjo Falls Hidden Room"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Pokémon League Reception Gate": {
+    "maps": [
+      {
+        "mapId": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+        "bank": "NA",
+        "head": "R22R0101",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Bellchime Trail": {
+    "maps": [
+      {
+        "mapId": "MAP_BELLCHIME_TOWER",
+        "bank": "NA",
+        "head": "D17R1101",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Goldenrod Tunnel": {
+    "maps": [
+      {
+        "mapId": "MAP_GOLDENROD_TUNNEL_1F",
+        "bank": "NA",
+        "head": "D37R0101",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_TUNNEL_B1F",
+        "bank": "NA",
+        "head": "D37R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_TUNNEL_B2F",
+        "bank": "NA",
+        "head": "D37R0104",
+        "area": "B2F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_TUNNEL_WAREHOUSE",
+        "bank": "NA",
+        "head": "D37R0105",
+        "area": "Goldenrod Tunnel Warehouse"
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Team Rocket HQ": {
+    "maps": [
+      {
+        "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B1F",
+        "bank": "NA",
+        "head": "D35R0102",
+        "area": "B1F"
+      },
+      {
+        "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B2F",
+        "bank": "NA",
+        "head": "D35R0103",
+        "area": "B2F"
+      },
+      {
+        "mapId": "MAP_TEAM_ROCKET_HEADQUARTERS_B3F",
+        "bank": "NA",
+        "head": "D35R0104",
+        "area": "B3F"
+      }
+    ],
+    "notes": [
+      "B1F trap tiles contain fixed Geodude, Voltorb and Koffing encounters. Each tile is exhausted after its encounter; the traps stop after the generator Electrode are dealt with.",
+      "Three level-23 Electrode on B2F are story interactions, not random cave encounters."
+    ],
+    "special": [
+      {
+        "method": "interaction",
+        "pokemon": "Geodude",
+        "levels": [
+          21
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "trap-tiles"
+        ],
+        "area": "B1F",
+        "availability": "Fixed trap tiles"
+      },
+      {
+        "method": "interaction",
+        "pokemon": "Voltorb",
+        "levels": [
+          23
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "trap-tiles"
+        ],
+        "area": "B1F",
+        "availability": "Fixed trap tiles"
+      },
+      {
+        "method": "interaction",
+        "pokemon": "Koffing",
+        "levels": [
+          21
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "trap-tiles"
+        ],
+        "area": "B1F",
+        "availability": "Fixed trap tiles"
+      },
+      {
+        "method": "interaction",
+        "pokemon": "Electrode",
+        "levels": [
+          23
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "generator-electrode"
+        ],
+        "area": "B2F",
+        "availability": "Three story encounters"
+      }
+    ]
+  },
+  "Frontier Access": {
+    "maps": [
+      {
+        "mapId": "MAP_BATTLE_FRONTIER_FRONTIER_ACCESS",
+        "bank": "NA",
+        "head": "D32R0102",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "Battle Frontier": {
+    "maps": [
+      {
+        "mapId": "MAP_BATTLE_FRONTIER",
+        "bank": "NA",
+        "head": "D32",
+        "area": ""
+      }
+    ],
+    "notes": [],
+    "special": []
+  },
+  "MooMoo Farm": {
+    "maps": [
+      {
+        "mapId": "MAP_ROUTE_39_MOOMOO_FARM_HOUSE",
+        "bank": "NA",
+        "head": "R39R0101",
+        "area": "Route 39 Moomoo Farm House"
+      },
+      {
+        "mapId": "MAP_ROUTE_39_MOOMOO_FARM_STABLE",
+        "bank": "NA",
+        "head": "R39R0201",
+        "area": "Route 39 Moomoo Farm Stable"
+      }
+    ],
+    "notes": [
+      "No fixed wild encounters inside the farm buildings. The surrounding grass/tree encounters are listed under Route 39."
+    ],
+    "special": []
+  },
+  "Magnet Train Station": {
+    "maps": [
+      {
+        "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F",
+        "bank": "NA",
+        "head": "T25R0501",
+        "area": "1F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F",
+        "bank": "NA",
+        "head": "T25R0502",
+        "area": "2F"
+      },
+      {
+        "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F_EMPTY",
+        "bank": "NA",
+        "head": "T25R0503",
+        "area": "Goldenrod Magnet Train Station 2F Empty"
+      }
+    ],
+    "notes": [],
+    "special": []
+  }
+}
