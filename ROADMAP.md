@@ -193,3 +193,11 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Right-align numeric Moves and Training headers and values
 - [x] Validate with the 24 browser regressions
 - [ ] User acceptance of v0.25.34
+
+## Ribbon alignment and save gating — v0.25.35
+
+- [x] Align top ribbon link/action text vertically
+- [x] Keep only Overview available until a valid save has finished loading
+- [x] Guard direct view/section links and relock on reset or invalid replacement
+- [x] Validate with 26 browser checks
+- [ ] User acceptance of v0.25.35

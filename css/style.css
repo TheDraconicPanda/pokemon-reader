@@ -955,7 +955,7 @@ button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .app { width: min(1200px, calc(100% - 32px)); max-width: 1200px; margin: 0 auto; padding: 16px 0 48px; }
 .secondary-nav { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 8px; margin-bottom: 20px; }
-.secondary-nav a, .secondary-nav button { padding: 10px 8px; border: 0; border-radius: 0; text-decoration: none; min-height: 44px; color: var(--accent); background: transparent; font: inherit; }
+.secondary-nav a, .secondary-nav button { display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; box-sizing: border-box; padding: 10px 8px; border: 0; border-radius: 0; text-decoration: none; min-height: 44px; color: var(--accent); background: transparent; font: inherit; }
 .secondary-nav #theme-toggle { justify-self: end; border: 0; border-radius: 0; background: transparent; color: var(--accent); padding: 10px 8px; }
 .secondary-nav a:hover, .secondary-nav button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .dashboard-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
@@ -1085,3 +1085,5 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .hp-critical::-webkit-progress-bar { background: #c9364933; }
 
 .detail-table th:not(:first-child), .detail-table td { text-align: right; }
+
+.dashboard-nav a[aria-disabled="true"] { opacity: .5; cursor: not-allowed; background: transparent; color: var(--muted); }

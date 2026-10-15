@@ -204,16 +204,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.34<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.35<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.34");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.35");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -247,14 +247,16 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
   await until(() => evaluate(`document.querySelector('[data-view="overview"]')?.getAttribute('aria-current') === 'page'`), "Dashboard did not initialize");
   assert.equal(await evaluate(`document.documentElement.dataset.theme`), "dark");
+  await fixtureReader();
   for (const view of ["party", "storage", "pokedex", "collection", "overview"]) {
     await evaluate(`document.querySelector('[data-view="${view}"]').click()`);
     await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`), "View did not switch");
     assert.equal(await evaluate(`document.activeElement.id`), "view-heading");
     assert.equal(await evaluate(`Array.from(document.querySelectorAll('[data-reader-view]')).every(p => p.classList.contains('inactive-view') === (p.dataset.readerView !== '${view}'))`), true);
-    assert.equal(await evaluate(`document.querySelector('#view-empty').hidden`), view === "overview");
+    assert.equal(await evaluate(`document.querySelector('#view-empty').hidden`), true);
   }
   await evaluate(`document.querySelector('#theme-toggle').click()`);
+  await command("Fetch.disable");
   await command("Page.reload");
   await until(() => evaluate(`document.documentElement.dataset.theme === 'light'`), "Theme was not persisted");
   assert.equal(await evaluate(`document.querySelector('#theme-toggle').getAttribute('aria-pressed')`), "true");
@@ -272,7 +274,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -529,7 +531,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -685,4 +687,45 @@ test('Ordinary Pokémon hide unknown egg history and missing training values do 
   assert.deepEqual(await evaluate(`Array.from(document.querySelector('.training-section tbody tr:last-child').children,cell=>cell.textContent)`),['Total','—','—']);
   assert.equal(await evaluate(`document.querySelector('#pokemon-detail-content').textContent.includes('Location #9999')`),true,'Unknown IDs remain explicit');
   await command('Fetch.disable');
+});
+
+test('Reader views stay unavailable before loading, after invalid files, and after reset', async () => {
+  await command('Page.navigate',{url:baseURL+'/?gate-test=1#party'});
+  await until(() => evaluate(`document.querySelector('[data-view="overview"]')?.getAttribute('aria-current') === 'page'`),'Guard direct Party link');
+  for (const view of ['party','storage','pokedex','collection']) {
+    assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-disabled')`),'true');
+    assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').hasAttribute('href')`),false);
+    assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').tabIndex`),-1);
+    await evaluate(`document.querySelector('[data-view="${view}"]').click()`);
+    assert.equal(await evaluate(`document.querySelector('.app').dataset.view`),'overview');
+    await evaluate(`location.hash='${view}'`);
+    await until(() => evaluate(`location.hash === '#overview'`),'Guard direct view hash');
+  }
+  await evaluate(`location.hash='collection-details-info'`);
+  await until(() => evaluate(`location.hash === '#overview'`),'Guard section hash');
+  await fixtureReader();
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.dashboard-nav a')).every(link=>link.hasAttribute('href') && !link.hasAttribute('aria-disabled'))`),true);
+  await evaluate(`location.hash='party'`);
+  await until(() => evaluate(`document.querySelector('.app').dataset.view === 'party'`),'Loaded Party route');
+  await evaluate(`document.querySelector('#load-save').click()`);
+  await until(() => evaluate(`document.querySelector('.app').dataset.view === 'overview'`),'Reset returns to Overview');
+  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),4);
+  await uploadFixture({valid:false,game:'Not detected',activePartition:null,reason:'Invalid test save',party:[],save:null});
+  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),4);
+  await command('Fetch.disable');
+});
+
+test('Top ribbon links and actions share the same vertical alignment', async () => {
+  await command('Page.navigate',{url:baseURL+'/'});
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`),'Reader ready');
+  for (const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
+    const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
+    assert.ok(Math.max(...centers)-Math.min(...centers)<1,`Ribbon alignment at ${width}`);
+    const textCenters=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const range=document.createRange(); range.selectNodeContents(control); const rect=range.getBoundingClientRect(); return rect.y+rect.height/2;})`);
+    assert.ok(Math.max(...textCenters)-Math.min(...textCenters)<1,`Ribbon text alignment at ${width}`);
+    assert.equal(await evaluate(`Array.from(document.querySelector('.secondary-nav').children).every(control=>getComputedStyle(control).display.includes('flex') && getComputedStyle(control).alignItems==='center')`),true);
+    assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
 });

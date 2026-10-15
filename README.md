@@ -76,7 +76,7 @@ The iteration number is intended to make deployed builds easy to identify while 
 
 ## Reader dashboard redesign
 
-Reader **v0.25.34** completes the implementation of milestones B–F on the dashboard
+Reader **v0.25.35** completes the implementation of milestones B–F on the dashboard
 foundation. Atlas remains v0.25.27; Team Planner and the binary parser are unchanged.
 The user requested one integrated release followed by final user testing.
 
@@ -117,7 +117,7 @@ Metadata requests time out after eight seconds and fall back to explicit unavail
 labels. Binary decoding, ability/item/nature identification, PP/PP Ups, Hidden Power,
 regional registration logic, and evolution mechanics remain unchanged.
 
-`npm test` runs 24 browser tests covering Atlas and Planner regressions, Reader
+`npm test` runs 26 browser tests covering Atlas and Planner regressions, Reader
 invalid-save handling, routing/themes, synthetic parsed-save rendering/replacement,
 six-slot Party order, modal keyboard behavior, PC order/search, registration versus
 ownership, collection controls/pagination, metadata outages, theme contrast, loaded layouts at 320/390/768/1440px, reset/reload behavior, sticky ribbons, and
@@ -131,7 +131,7 @@ into an isolated temporary Chromium trust database using `certutil`, retaining T
 verification. Neither variable is required for the normal regression suite.
 
 Final user acceptance and real-save validation remain pending. On the existing
-GitHub Pages site, confirm v0.25.34, load a known SoulSilver save, compare trainer,
+GitHub Pages site, confirm v0.25.35, load a known SoulSilver save, compare trainer,
 Party, PC, registrations, and collection counts against the game, then replace the
 save and verify every view refreshes. Check both themes, mobile navigation, dialog
 scrolling/keyboard controls, PC search, and existing evolution export behavior.
@@ -175,3 +175,10 @@ nature modifier block while keeping its arrows left-aligned, and gives Moves
 
 Reader v0.25.34 puts nature percentages before their stat names (for example,
 ↑ +10% Attack) and right-aligns PP, PP Ups, IV, and EV headers and values.
+
+Reader v0.25.35 aligns the top ribbon text vertically. Only Overview is available
+until a valid save finishes loading; the other Reader links are dimmed and excluded
+from keyboard navigation. Direct view/section links fall back to Overview. Loading
+a new save or resetting relocks them. Team Planner and Atlas remain independent.
+The 26 browser checks include unloaded/invalid/reset route protection and ribbon
+text alignment at 320/390/768/1440px.

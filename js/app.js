@@ -3,7 +3,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.34";
+const APP_VERSION = "0.25.35";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -146,6 +146,7 @@ async function handleFile(file) {
       renderAlternateForms(enrichedParty, enrichedStorage);
     }
 
+    document.querySelector(".app").dataset.saveLoaded = String(result.valid);
     fileStatus.className = result.valid ? "status success" : "status error";
     fileStatus.textContent = result.reason;
   } catch (error) {
@@ -1443,6 +1444,7 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
   activeBoxNumber = 1;
   dexVisibleLimit = 40;

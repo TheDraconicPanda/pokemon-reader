@@ -8,11 +8,16 @@ const views = {
 const heading = document.querySelector('#view-heading');
 const panels = [...document.querySelectorAll('[data-reader-view]')];
 let activeView;
+const hasSave = () => document.querySelector(".app").dataset.saveLoaded === "true";
 function route(focus = false) {
   const requested = location.hash.slice(1);
   // Existing collection jump links keep their section context.
-  const section = document.getElementById(requested);
-  const view = Object.hasOwn(views, requested) ? requested : section?.dataset.readerView || 'overview';
+  let section = document.getElementById(requested);
+  let view = Object.hasOwn(views, requested) ? requested : section?.dataset.readerView || 'overview';
+  if (view !== "overview" && !hasSave()) {
+    view = "overview"; section = null;
+    history.replaceState(null, "", `${location.pathname}${location.search}#overview`);
+  }
   activeView = view;
   document.querySelector(".app").dataset.view = view;
   if (section?.dataset.readerView) section.querySelector("details")?.setAttribute("open", "");
@@ -30,13 +35,25 @@ function route(focus = false) {
   }
 }
 function updateState() {
+  const loaded = hasSave();
+  if (!loaded && activeView !== "overview") { route(); return; }
+  for (const link of document.querySelectorAll(".dashboard-nav [data-view]")) {
+    const disabled = link.dataset.view !== "overview" && !loaded;
+    if (disabled) {
+      link.setAttribute("aria-disabled", "true"); link.tabIndex = -1; link.removeAttribute("href");
+      link.title = "Load a save to open this view";
+    } else {
+      link.removeAttribute("aria-disabled"); link.removeAttribute("tabindex");
+      link.href = `#${link.dataset.view}`; link.removeAttribute("title");
+    }
+  }
+  for (const button of document.querySelectorAll(".summary-button")) button.disabled = !loaded;
   const empty = document.querySelector('#view-empty');
   const hideEmpty = activeView === 'overview' || panels.some(panel => panel.dataset.readerView === activeView && !panel.hidden);
   if (empty.hidden !== hideEmpty) empty.hidden = hideEmpty;
-  const loaded = !document.querySelector('#overview-summary').hidden;
   document.querySelector('#view-description').textContent = activeView === 'overview' && loaded ? 'Your party, collection, and Pokédex at a glance.' : views[activeView][1];
 }
-new MutationObserver(updateState).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden']});
+new MutationObserver(updateState).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden','data-save-loaded']});
 new MutationObserver(updateState).observe(document.querySelector('#file-status'), {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
 window.addEventListener('hashchange', () => route(true));
 const toggle = document.querySelector('#theme-toggle');
