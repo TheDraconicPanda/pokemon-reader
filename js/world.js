@@ -1,4 +1,5 @@
-import { locationEncounterReference, routeFeatures } from "./data/atlas-route-reference.js";
+import { locationEncounterReference } from "./data/atlas-route-reference.js";
+import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
 const ATLAS_GAME_ID = "soulsilver";
 import { ATLAS_LOCATIONS as LOCATIONS } from "./data/atlas-locations.js";
 import { mapsForLocation } from "./data/atlas-maps.js";
@@ -424,8 +425,7 @@ function renderLocations({ exactName = null } = {}) {
   const matches = LOCATIONS.filter((location) => {
     if (exactName !== null) return location.name === exactName;
     const matchesType = selectedType === "all" || location.type === selectedType;
-    const route = routeFeatures(ATLAS_GAME_ID, location.name);
-    const routeText = route ? [...route.npcs, ...route.trainers, ...route.items.map(item => `${item.name} ${item.location}`)].join(" ") : "";
+    const routeText = locationDetailSearchText(ATLAS_GAME_ID, location.name);
     const searchable = `${routeText} ${location.name} ${(location.aliases || []).join(" ")} ${location.region} ${location.details} ${location.landmarks.join(" ")} ${location.access.join(" ")} ${TYPE_LABELS[location.type]}`.toLowerCase();
     return matchesType && searchable.includes(query);
   });
@@ -472,23 +472,61 @@ function renderLocations({ exactName = null } = {}) {
       group.append(titleElement, itemsList);
       staticSection.append(group);
     }
-    const route = routeFeatures(ATLAS_GAME_ID, location.name);
-    if (route) {
-      for (const [title, lines] of [
-        ["Items & Apricorns", route.items.map(item => `${item.name} — ${item.location}`)],
-        ["NPCs & trainers", [...route.npcs, route.trainers.length ? `Trainers: ${route.trainers.join(", ")}.` : "No ordinary Trainer battles."]]
-      ]) {
+    const reference = locationDetails(ATLAS_GAME_ID, location.name);
+    if (reference) {
+      const isRoute = location.type === "route";
+      const describe = (entry) => {
+        const area = (entry.section || "").split(" · ").filter(part => !["Items", "Items & Apricorns", "Floors", "Rewards & services"].includes(part)).join(" · ");
+        return [entry.location, area, ...(entry.conditions || []).filter(condition => !(entry.location || "").toLowerCase().includes(condition.toLowerCase()))].filter(Boolean).join(" · ");
+      };
+      const groups = [
+        ["Items & Apricorns", "items", reference.items.filter(item => item.kind !== "machine")],
+        ["TMs & HMs", "machines", reference.items.filter(item => item.kind === "machine")],
+        ["Gifts & trades", "gifts", reference.gifts],
+        ["Shops & exchanges", "offers", reference.offers],
+        ["NPCs & trainers", "people", [...reference.services.map(item => ({...item, recordType: "service"})), ...reference.trainers.map(item => ({...item, recordType: "trainer"}))]]
+      ];
+      for (const [title, key, records] of groups) {
         const group = document.createElement("details");
-        group.className = "route-features";
+        group.className = "location-reference";
+        group.dataset.reference = key;
+        if (isRoute && ["items", "people"].includes(key)) group.classList.add("route-features");
         const summary = document.createElement("summary");
-        summary.textContent = title;
-        const entries = document.createElement("ul");
-        for (const line of lines) {
-          const item = document.createElement("li");
-          item.textContent = line;
-          entries.append(item);
+        summary.textContent = `${title} (${records.length})`;
+        group.append(summary);
+        if (!records.length) {
+          const note = document.createElement("p");
+          note.className = "reference-empty";
+          note.textContent = reference.emptyNotes[key === "machines" ? "items" : key] || "No records in this category in the reviewed SoulSilver references.";
+          group.append(note);
+        } else {
+          const entries = document.createElement("ul");
+          entries.className = "reference-entries";
+          for (const record of records) {
+            const item = document.createElement("li");
+            item.dataset.referenceId = record.id;
+            const name = document.createElement("strong");
+            name.textContent = record.name;
+            const detail = document.createElement("p");
+            if (key === "gifts") {
+              const level = /^\d+$/.test(record.level) ? `Lv. ${record.level}` : record.level;
+              detail.textContent = [record.kind === "egg" ? "Egg" : record.kind === "trade" ? "NPC trade" : record.kind === "prize" ? "Prize Pokémon" : record.kind === "event" ? "Event gift" : "Gift Pokémon", level, describe(record), record.availability].filter(Boolean).join(" · ");
+            } else if (key === "people") {
+              detail.textContent = [record.role === "ally" ? "Ally" : "", record.area, record.detail, ...(record.conditions || [])].filter(Boolean).join(" · ");
+            } else {
+              detail.textContent = [record.cost, describe(record)].filter(Boolean).join(" · ");
+            }
+            item.append(name, detail);
+            if (record.party?.length) {
+              const party = document.createElement("p");
+              party.className = "reference-party";
+              party.textContent = `Team: ${record.party.join("; ")}`;
+              item.append(party);
+            }
+            entries.append(item);
+          }
+          group.append(entries);
         }
-        group.append(summary, entries);
         staticSection.append(group);
       }
     }
@@ -497,7 +535,7 @@ function renderLocations({ exactName = null } = {}) {
     const sourcesHeading = document.createElement("summary");
     sourcesHeading.textContent = "Sources";
     const sourceList = document.createElement("ul");
-    for (const source of [...location.sources, ...(route?.sources || [])]) {
+    for (const source of [...location.sources, ...(reference?.sources || []).map(url => ({url, label: url.includes("github.com") ? "Game event reference" : `Reference · ${decodeURIComponent(url.split("/wiki/")[1] || "Location").replaceAll("_", " ")}`}))]) {
       const entry = document.createElement("li");
       const link = document.createElement("a");
       link.href = source.url;

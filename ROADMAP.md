@@ -344,8 +344,25 @@ Safari Zone data/mechanics and simulator remain milestones 4/5.
 - [x] Apply archive-host network change and verify actual HTTPS access
 - [x] Pass complete coverage and all 58 automated checks, including Reader/Planner regressions
 - [x] Review original images and mobile/desktop floor controls
-- [ ] User acceptance of the published outcome
+- [x] User accepted the published v0.25.43 outcome
 
 Publication follows the existing GitHub Pages workflow; verify the live version and
 artifact hashes before reporting deployment. See [coverage and evidence](docs/atlas-map-expansion.md).
 Next: structured location reference details (milestone 3); Safari Zone remains separate.
+
+
+## Structured location reference — v0.25.44
+
+- [x] Account for all 69 existing non-Safari locations with explicit game-scoped records
+- [x] Add item locations, hidden pickups, Apricorns, TMs/HMs and named/conditional rewards
+- [x] Add fixed gifts, Eggs, trades and SoulSilver prize Pokémon with eligibility conditions
+- [x] Add local playable trainer parties/variants and distinguish allies and facility pools
+- [x] Add NPC services and HGSS shop/exchange stock, including weekday/unlock restrictions
+- [x] Preserve existing route corrections, encounters, maps and Safari Zone data
+- [x] Record references, primary discrepancy resolutions and per-location coverage
+- [x] Pass 64 checks, including mobile/desktop UI and Reader/Planner regressions
+- [ ] User acceptance of the published v0.25.44 outcome
+
+See [coverage, evidence and limitations](docs/atlas-location-details.md). Publish via
+the existing Pages workflow and verify live release files before reporting deployment.
+Next after user validation: Safari Zone data/mechanics, followed by its simulator.

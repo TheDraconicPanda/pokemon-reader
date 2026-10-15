@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.43') && document.querySelector('.eyebrow').textContent.includes('v0.25.43'),
+    version: document.title.includes('v0.25.44') && document.querySelector('.eyebrow').textContent.includes('v0.25.44'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -998,5 +998,33 @@ test('all non-Safari location map choices render the matching catalogue view',as
     return {locations,views,failures};
   })()`);
   assert.equal(result.locations,69);assert.equal(result.views,150);assert.deepEqual(result.failures,[]);
+  assert.deepEqual(exceptions,[]);
+});
+
+test('structured location details expand, search and fit mobile without changing encounters',async()=>{
+  for(const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas();
+    const coverage=await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(c=>c.querySelector('h2').textContent!=='Safari Zone').map(c=>({name:c.querySelector('h2').textContent,count:c.querySelectorAll('.location-reference').length}))`);
+    assert.equal(coverage.length,69);assert.ok(coverage.every(c=>c.count===5));
+    await evaluate(`(()=>{const search=document.querySelector('#location-search');search.value='Primo';search.dispatchEvent(new Event('input'));})()`);
+    assert.ok((await evaluate(`Array.from(document.querySelectorAll('.location-card h2'),h=>h.textContent)`)).includes('Violet City'));
+    await evaluate(`(()=>{const s=document.querySelector('#location-search');s.value='Violet City';s.dispatchEvent(new Event('input'));const c=Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Violet City');c.querySelector('[data-reference="gifts"] summary').click();})()`);
+    let info=await evaluate(`(()=>{const c=Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Violet City');return {open:c.querySelector('[data-reference="gifts"]').open,text:c.querySelector('[data-reference="gifts"]').textContent,fits:document.documentElement.scrollWidth<=innerWidth};})()`);
+    assert.equal(info.open,true);assert.equal(info.fits,true);assert.match(info.text,/Togepi.*Egg.*Lv\. 1/);assert.match(info.text,/Bellsprout/);assert.match(info.text,/Primo/);
+    await atlas();
+    await evaluate(`Array.from(document.querySelectorAll('.connection-link')).find(b=>b.textContent==='Goldenrod Department Store').click()`);
+    const before=await evaluate(`document.querySelector('.location-encounters').textContent`);
+    await evaluate(`document.querySelectorAll('.location-reference summary').forEach(s=>s.click())`);
+    const state=await evaluate(`({text:document.querySelector('.location-card').textContent,unchanged:document.querySelector('.location-encounters').textContent,fit:document.documentElement.scrollWidth<=innerWidth,open:Array.from(document.querySelectorAll('.location-reference')).every(d=>d.open),touch:Array.from(document.querySelectorAll('.location-reference summary')).every(s=>s.getBoundingClientRect().height>=44),sources:Array.from(document.querySelectorAll('.location-sources a')).every(a=>a.href.startsWith('https://'))})`);
+    assert.equal(state.fit,true);assert.equal(state.open,true);assert.equal(state.touch,true);assert.equal(state.sources,true);assert.equal(state.unchanged,before);
+    assert.match(state.text,/Machop/);assert.match(state.text,/Sunday/);assert.match(state.text,/once per save/);assert.match(state.text,/TM70 \(Flash\)/);
+    if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)) {
+      await evaluate(`document.querySelector('[data-reference="gifts"]').scrollIntoView({block:'start'})`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'location-details-'+width+'.png'),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
   assert.deepEqual(exceptions,[]);
 });

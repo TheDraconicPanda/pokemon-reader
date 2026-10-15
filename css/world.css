@@ -202,3 +202,11 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 .map-controls button:disabled { opacity: 0.45; cursor: default; }
 .map-select:focus-visible, .map-controls button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
 .map-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.location-reference { min-width: 0; overflow-wrap: anywhere; }
+.location-reference summary { min-height: 44px; display: list-item; align-content: center; cursor: pointer; font-weight: 600; }
+.location-reference summary:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.reference-entries { padding-left: 1.2rem; }
+.reference-entries li { margin: 0.85rem 0; }
+.reference-entries p { margin: 0.25rem 0; }
+.reference-party, .reference-empty { font-size: 0.85rem; color: #475569; }

@@ -301,3 +301,16 @@ Islands' additional chamber screenshot is labelled as a reference view. Day Care
 and Magnet Train Station show explicitly labelled surroundings. See
 [coverage and validation](docs/atlas-map-expansion.md) and
 [asset provenance](assets/maps/README.md). User outcome acceptance remains pending.
+
+## Atlas location details — v0.25.44
+
+All 69 existing non-Safari locations now have structured, searchable reference
+sections for items/Apricorns, TMs/HMs, gifts/trades, shop exchanges and NPCs/trainers.
+The pass includes 686 item/reward entries, 22 gift/trade/prize Pokémon entries,
+371 shop offers, 156 service interactions and 370 trainer/team variants.
+Weekday, story, version, National-Dex and historical-event conditions are retained.
+The existing maps and encounter tables remain intact.
+
+See [scope, evidence and validation](docs/atlas-location-details.md). All 64 checks
+pass, including mobile UI and Reader/Planner regressions; user outcome acceptance
+remains pending. Safari Zone itself remains the next separate milestone.

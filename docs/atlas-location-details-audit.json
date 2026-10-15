@@ -1,0 +1,1554 @@
+{
+  "release": "0.25.44",
+  "reviewedOn": "2026-10-15",
+  "timezone": "America/Toronto",
+  "gameId": "soulsilver",
+  "excluded": [
+    "Safari Zone"
+  ],
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "counts": {
+    "items": 686,
+    "gifts": 22,
+    "offers": 371,
+    "services": 156,
+    "trainers": 370
+  },
+  "locations": {
+    "New Bark Town": {
+      "items": 31,
+      "gifts": 3,
+      "offers": 0,
+      "services": 2,
+      "trainers": 0
+    },
+    "Cherrygrove City": {
+      "items": 4,
+      "gifts": 0,
+      "offers": 21,
+      "services": 1,
+      "trainers": 3
+    },
+    "Violet City": {
+      "items": 27,
+      "gifts": 5,
+      "offers": 22,
+      "services": 2,
+      "trainers": 3
+    },
+    "Azalea Town": {
+      "items": 12,
+      "gifts": 0,
+      "offers": 22,
+      "services": 2,
+      "trainers": 8
+    },
+    "Goldenrod City": {
+      "items": 7,
+      "gifts": 4,
+      "offers": 10,
+      "services": 5,
+      "trainers": 5
+    },
+    "Ecruteak City": {
+      "items": 8,
+      "gifts": 0,
+      "offers": 22,
+      "services": 3,
+      "trainers": 11
+    },
+    "Olivine City": {
+      "items": 10,
+      "gifts": 2,
+      "offers": 23,
+      "services": 3,
+      "trainers": 2
+    },
+    "Cianwood City": {
+      "items": 14,
+      "gifts": 2,
+      "offers": 0,
+      "services": 4,
+      "trainers": 6
+    },
+    "Mahogany Town": {
+      "items": 2,
+      "gifts": 0,
+      "offers": 11,
+      "services": 2,
+      "trainers": 6
+    },
+    "Blackthorn City": {
+      "items": 5,
+      "gifts": 1,
+      "offers": 22,
+      "services": 3,
+      "trainers": 6
+    },
+    "Route 29": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 0
+    },
+    "Route 30": {
+      "items": 10,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 4
+    },
+    "Route 31": {
+      "items": 15,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 3
+    },
+    "Route 32": {
+      "items": 13,
+      "gifts": 0,
+      "offers": 0,
+      "services": 5,
+      "trainers": 13
+    },
+    "Route 33": {
+      "items": 2,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 4
+    },
+    "Route 34": {
+      "items": 15,
+      "gifts": 0,
+      "offers": 0,
+      "services": 5,
+      "trainers": 17
+    },
+    "Route 35": {
+      "items": 6,
+      "gifts": 1,
+      "offers": 0,
+      "services": 4,
+      "trainers": 14
+    },
+    "Route 36": {
+      "items": 10,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 4
+    },
+    "Route 37": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 4
+    },
+    "Route 38": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 9
+    },
+    "Route 39": {
+      "items": 9,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 4
+    },
+    "Route 40": {
+      "items": 4,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 4
+    },
+    "Route 41": {
+      "items": 2,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 10
+    },
+    "Route 42": {
+      "items": 9,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 6
+    },
+    "Route 43": {
+      "items": 4,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 11
+    },
+    "Route 44": {
+      "items": 9,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 13
+    },
+    "Route 45": {
+      "items": 10,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 12
+    },
+    "Route 46": {
+      "items": 4,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 6
+    },
+    "Route 47": {
+      "items": 6,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 0
+    },
+    "Route 48": {
+      "items": 1,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 0
+    },
+    "Cliff Edge Gate": {
+      "items": 1,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Cliff Cave": {
+      "items": 8,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Embedded Tower": {
+      "items": 0,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Dark Cave": {
+      "items": 21,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Sprout Tower": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 7
+    },
+    "Ruins of Alph": {
+      "items": 32,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 1
+    },
+    "Union Cave": {
+      "items": 15,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 12
+    },
+    "Slowpoke Well": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 4
+    },
+    "Ilex Forest": {
+      "items": 15,
+      "gifts": 1,
+      "offers": 0,
+      "services": 3,
+      "trainers": 0
+    },
+    "National Park": {
+      "items": 22,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 10
+    },
+    "Burned Tower": {
+      "items": 7,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 5
+    },
+    "Bell Tower": {
+      "items": 12,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Mt. Mortar": {
+      "items": 35,
+      "gifts": 1,
+      "offers": 0,
+      "services": 1,
+      "trainers": 4
+    },
+    "Whirl Islands": {
+      "items": 17,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Lake of Rage": {
+      "items": 14,
+      "gifts": 0,
+      "offers": 0,
+      "services": 3,
+      "trainers": 4
+    },
+    "Ice Path": {
+      "items": 12,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Dragon's Den": {
+      "items": 6,
+      "gifts": 1,
+      "offers": 0,
+      "services": 2,
+      "trainers": 7
+    },
+    "Safari Zone Gate": {
+      "items": 1,
+      "gifts": 0,
+      "offers": 10,
+      "services": 1,
+      "trainers": 0
+    },
+    "Pokéathlon Dome": {
+      "items": 5,
+      "gifts": 0,
+      "offers": 90,
+      "services": 3,
+      "trainers": 0
+    },
+    "Goldenrod Department Store": {
+      "items": 31,
+      "gifts": 1,
+      "offers": 54,
+      "services": 3,
+      "trainers": 0
+    },
+    "Goldenrod Radio Tower": {
+      "items": 20,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 16
+    },
+    "Olivine Lighthouse": {
+      "items": 7,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 13
+    },
+    "Pokémon Day Care": {
+      "items": 0,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 0
+    },
+    "S.S. Aqua": {
+      "items": 18,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 27
+    },
+    "Victory Road": {
+      "items": 23,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 3
+    },
+    "Indigo Plateau": {
+      "items": 1,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 13
+    },
+    "Mt. Silver": {
+      "items": 32,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 1
+    },
+    "Route 26": {
+      "items": 3,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 8
+    },
+    "Route 27": {
+      "items": 8,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 11
+    },
+    "Route 28": {
+      "items": 3,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Tohjo Falls": {
+      "items": 9,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 1
+    },
+    "Pokémon League Reception Gate": {
+      "items": 0,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Bellchime Trail": {
+      "items": 2,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Goldenrod Tunnel": {
+      "items": 10,
+      "gifts": 0,
+      "offers": 0,
+      "services": 4,
+      "trainers": 16
+    },
+    "Team Rocket HQ": {
+      "items": 13,
+      "gifts": 0,
+      "offers": 0,
+      "services": 2,
+      "trainers": 14
+    },
+    "Frontier Access": {
+      "items": 1,
+      "gifts": 0,
+      "offers": 22,
+      "services": 2,
+      "trainers": 0
+    },
+    "Battle Frontier": {
+      "items": 0,
+      "gifts": 0,
+      "offers": 42,
+      "services": 3,
+      "trainers": 5
+    },
+    "MooMoo Farm": {
+      "items": 8,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    },
+    "Magnet Train Station": {
+      "items": 0,
+      "gifts": 0,
+      "offers": 0,
+      "services": 1,
+      "trainers": 0
+    }
+  },
+  "references": [
+    {
+      "location": "New Bark Town",
+      "url": "https://www.serebii.net/pokearth/johto/newbarktown.shtml",
+      "status": 200,
+      "sha256": "8a12946997127b216072fb4298d78318f094335825014f474fedc0da13c928af"
+    },
+    {
+      "location": "New Bark Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/New_Bark_Town",
+      "status": 200,
+      "sha256": "b41b5bdc9a49fe7e82cb2aaf9cc33591ce7934987554aa02e21d86b4aa20d11b"
+    },
+    {
+      "location": "Cherrygrove City",
+      "url": "https://www.serebii.net/pokearth/johto/cherrygrovecity.shtml",
+      "status": 200,
+      "sha256": "f147257be40fd3ddd9f626576a3ec1ef37001db31308d29e816a4826d289153c"
+    },
+    {
+      "location": "Cherrygrove City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Cherrygrove_City",
+      "status": 200,
+      "sha256": "8a757816764fb2beb71ab3a092847908b69eb359738d41e15a29a9491d79c6f9"
+    },
+    {
+      "location": "Violet City",
+      "url": "https://www.serebii.net/pokearth/johto/violetcity.shtml",
+      "status": 200,
+      "sha256": "c8277f21288fdb93775aab04b0c32f797747ad1610b38f5ad555d345dc877fae"
+    },
+    {
+      "location": "Violet City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Violet_City",
+      "status": 200,
+      "sha256": "83f23aff3a7494afe503c801026d793761b502cfaf9d36b6f55b490e49fa574f"
+    },
+    {
+      "location": "Azalea Town",
+      "url": "https://www.serebii.net/pokearth/johto/azaleatown.shtml",
+      "status": 200,
+      "sha256": "0ceb1115cc0be5e7ffb31e82e7ceaab943244aaf2c268389c46bc73d9d4b8671"
+    },
+    {
+      "location": "Azalea Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Town",
+      "status": 200,
+      "sha256": "e80782c2e89e6f5a213df7f3a79f134e8ff492cbe8fa870c4ae4b7ed136bc51c"
+    },
+    {
+      "location": "Goldenrod City",
+      "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+      "status": 200,
+      "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+    },
+    {
+      "location": "Goldenrod City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City",
+      "status": 200,
+      "sha256": "5b61daabaa49959f5140dc025b5c381618a13a94c94c731502840bd6691eb253"
+    },
+    {
+      "location": "Ecruteak City",
+      "url": "https://www.serebii.net/pokearth/johto/ecruteakcity.shtml",
+      "status": 200,
+      "sha256": "2c711072cab71dcddaeda686a99dbf6f399fb0982784cd978df734d2ed5d6d0a"
+    },
+    {
+      "location": "Ecruteak City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_City",
+      "status": 200,
+      "sha256": "4cbaace8f664c8b7b3743a844e99cf30fde72e2b12dfe464a98618adea39bd54"
+    },
+    {
+      "location": "Olivine City",
+      "url": "https://www.serebii.net/pokearth/johto/olivinecity.shtml",
+      "status": 200,
+      "sha256": "7bac0256dfc70f52d74fe9f6dda8a1993dee762482428558a6c988d96eabb96a"
+    },
+    {
+      "location": "Olivine City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_City",
+      "status": 200,
+      "sha256": "b13908a6bbb07edd330b8e9e7c39729783a8b7fd6d8098dbf6c8e5c6162b05ac"
+    },
+    {
+      "location": "Cianwood City",
+      "url": "https://www.serebii.net/pokearth/johto/cianwoodcity.shtml",
+      "status": 200,
+      "sha256": "42f1ba0fb3190b663ab7d5ba27b6c892ff4ea8ca19caab2f6e09bceda587042d"
+    },
+    {
+      "location": "Cianwood City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_City",
+      "status": 200,
+      "sha256": "b0e17cfa7190b65b10d32b438aa1a99c130223eb8e19c8e5bf332530559d653e"
+    },
+    {
+      "location": "Mahogany Town",
+      "url": "https://www.serebii.net/pokearth/johto/mahoganytown.shtml",
+      "status": 200,
+      "sha256": "45758b263fd9c14f272846a0761c4356717bbf2d64712691b8523ce8e3096f49"
+    },
+    {
+      "location": "Mahogany Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Town",
+      "status": 200,
+      "sha256": "762b769f40fbd0f6c3e6632b35a95333934d62cef0568deca5ad341b3d548a5d"
+    },
+    {
+      "location": "Blackthorn City",
+      "url": "https://www.serebii.net/pokearth/johto/blackthorncity.shtml",
+      "status": 200,
+      "sha256": "625aa9139a330b086d095c46aad7b9d47e11439f6ec0dde54da01903aac0edf5"
+    },
+    {
+      "location": "Blackthorn City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City",
+      "status": 200,
+      "sha256": "320a536103a0fb5f81b16d7b8ed1cc2f039c570bf5fd81eea2a418709d624386"
+    },
+    {
+      "location": "Route 29",
+      "url": "https://www.serebii.net/pokearth/johto/route29.shtml",
+      "status": 200,
+      "sha256": "d3ea83f5ce9790d3f82ebaf94f98fa2fcb822c1233fe328a60c0fbc10de9bee5"
+    },
+    {
+      "location": "Route 29",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29",
+      "status": 200,
+      "sha256": "3471e1f60a91b88c805f46682ee651e00cc6d458ac0641dd7edde06da037ddff"
+    },
+    {
+      "location": "Route 30",
+      "url": "https://www.serebii.net/pokearth/johto/route30.shtml",
+      "status": 200,
+      "sha256": "7301f02da05bca93bd816044f51550eebef2b7169970e979a68ba0ad02281c88"
+    },
+    {
+      "location": "Route 30",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30",
+      "status": 200,
+      "sha256": "fa9a3fa9af4365e983a1bf40fa6be079ee4285e94298a609b328cb9eaecc31eb"
+    },
+    {
+      "location": "Route 31",
+      "url": "https://www.serebii.net/pokearth/johto/route31.shtml",
+      "status": 200,
+      "sha256": "1fce56b4c72293db0cecf70fbcd0356694bee5c676156be3c5a4573b1480ffb7"
+    },
+    {
+      "location": "Route 31",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31",
+      "status": 200,
+      "sha256": "79dce80c7c8c3a3502db9f1d4d73649e499ec084dd2e520a223c2c1617dc1dd9"
+    },
+    {
+      "location": "Route 32",
+      "url": "https://www.serebii.net/pokearth/johto/route32.shtml",
+      "status": 200,
+      "sha256": "b0a8a7c0a2bd1f9b5b9f8b09d7586905beb24dc31c236f5168cecd928f960afe"
+    },
+    {
+      "location": "Route 32",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32",
+      "status": 200,
+      "sha256": "02d8b318c08598015fdcafae6222f3c0ef16c969cc571bddc128d6a822f3f69d"
+    },
+    {
+      "location": "Route 33",
+      "url": "https://www.serebii.net/pokearth/johto/route33.shtml",
+      "status": 200,
+      "sha256": "4b2c9f070d03fdf3bb8fba86f50a067f6d9969d16498385e7a448f68c3e3422d"
+    },
+    {
+      "location": "Route 33",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33",
+      "status": 200,
+      "sha256": "bfa0f3601c36a85c428dd553c48f88795148168057506c1a3ccd33a15af67875"
+    },
+    {
+      "location": "Route 34",
+      "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+      "status": 200,
+      "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a"
+    },
+    {
+      "location": "Route 34",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+      "status": 200,
+      "sha256": "0ea989d3c27a9cf7db683c45053121b271f41956d90a433248ec029e1562796d"
+    },
+    {
+      "location": "Route 35",
+      "url": "https://www.serebii.net/pokearth/johto/route35.shtml",
+      "status": 200,
+      "sha256": "e00bddb963621697c77885ee4e53955fff27d1ff1095cc430363c7d51eb55495"
+    },
+    {
+      "location": "Route 35",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35",
+      "status": 200,
+      "sha256": "cc5e8fc2270540151daf73f7ffca6a0890dfcd82358b73a64e16e2fe41157dc0"
+    },
+    {
+      "location": "Route 36",
+      "url": "https://www.serebii.net/pokearth/johto/route36.shtml",
+      "status": 200,
+      "sha256": "3466cb6592205f4cfa64f8fec250ba417664f3f5ba4585a9217b999d3fa101c5"
+    },
+    {
+      "location": "Route 36",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36",
+      "status": 200,
+      "sha256": "4ac2fa5c6bd539efce148ea9a666f4d1ba1eb4ff3689d1392d851e2dc3b8e4cb"
+    },
+    {
+      "location": "Route 37",
+      "url": "https://www.serebii.net/pokearth/johto/route37.shtml",
+      "status": 200,
+      "sha256": "b826114918bb3999e0051c46bb21d0d247f64937f4dee794d33f882f0bcbe438"
+    },
+    {
+      "location": "Route 37",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37",
+      "status": 200,
+      "sha256": "3a37000af1344cb041cf83b1cc9c8cf003a70395e451a752f2314248d2351533"
+    },
+    {
+      "location": "Route 38",
+      "url": "https://www.serebii.net/pokearth/johto/route38.shtml",
+      "status": 200,
+      "sha256": "39ea805d6de800855abb8a0957a9bd65da808590f37949c360dcaca5dfcd7b48"
+    },
+    {
+      "location": "Route 38",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38",
+      "status": 200,
+      "sha256": "de434cb29e8525ac7edef61855bc6c200cbadddbbe3a482d412e440417e830a9"
+    },
+    {
+      "location": "Route 39",
+      "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+      "status": 200,
+      "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e"
+    },
+    {
+      "location": "Route 39",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39",
+      "status": 200,
+      "sha256": "3730731d0f9d58ab3353f5c979367c19a780b5659df478958b106b69971c4e55"
+    },
+    {
+      "location": "Route 40",
+      "url": "https://www.serebii.net/pokearth/johto/route40.shtml",
+      "status": 200,
+      "sha256": "89343a7709aa066be6b58e4dff11150a1cf6b9c16376180ad254c7184caad68d"
+    },
+    {
+      "location": "Route 40",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40",
+      "status": 200,
+      "sha256": "e08ac180797b68b8e910a51868713a0ab10d263eda7ba0543e00ef1c8ce20184"
+    },
+    {
+      "location": "Route 41",
+      "url": "https://www.serebii.net/pokearth/johto/route41.shtml",
+      "status": 200,
+      "sha256": "0c9a8d9cb940d53b69d804e5891af2b845b4b7be768a3f0cc68aeee02beb5649"
+    },
+    {
+      "location": "Route 41",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41",
+      "status": 200,
+      "sha256": "fc2871789e76315d5ba023c2642d276f6c09fc7ae2b3f5705dc958af6255ce59"
+    },
+    {
+      "location": "Route 42",
+      "url": "https://www.serebii.net/pokearth/johto/route42.shtml",
+      "status": 200,
+      "sha256": "669a405422d85864b768ff4f0de91a38c600ba4223d460067db955913ea3c427"
+    },
+    {
+      "location": "Route 42",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42",
+      "status": 200,
+      "sha256": "45c33beef7899f85a7af951b922ee3c1293015481dccb2fa0552ea9943ac4cc8"
+    },
+    {
+      "location": "Route 43",
+      "url": "https://www.serebii.net/pokearth/johto/route43.shtml",
+      "status": 200,
+      "sha256": "e65833fb176efffa30a80cd90a5cd62ac22c44bd39b1f69ed228f6271de8cf1c"
+    },
+    {
+      "location": "Route 43",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43",
+      "status": 200,
+      "sha256": "7a98ed56381ac38c7f10fda5ea6dc8edcab28c81a3c7607678a87d8b9c00f422"
+    },
+    {
+      "location": "Route 44",
+      "url": "https://www.serebii.net/pokearth/johto/route44.shtml",
+      "status": 200,
+      "sha256": "f4b1e86bdd37063e8380cad288c7ead9f092a1e9870f235a316f351fb799056c"
+    },
+    {
+      "location": "Route 44",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44",
+      "status": 200,
+      "sha256": "5d3c8f0cb1a4580afdf574a7e65722406e033e3b881d6e1cd8437d3ebd390ac0"
+    },
+    {
+      "location": "Route 45",
+      "url": "https://www.serebii.net/pokearth/johto/route45.shtml",
+      "status": 200,
+      "sha256": "7cdb6245c3ea292cd32d74a149019e9e40660796a2b522026e063e8a4e8cc456"
+    },
+    {
+      "location": "Route 45",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45",
+      "status": 200,
+      "sha256": "bbc4cfd7bb4669afc38032188eb20a15584717ad6d49221e3cea7e7fef958c7c"
+    },
+    {
+      "location": "Route 46",
+      "url": "https://www.serebii.net/pokearth/johto/route46.shtml",
+      "status": 200,
+      "sha256": "e328951b2121603712aad1c6fe4e9591a45aac5d24e725f8141c780fd30cbdd7"
+    },
+    {
+      "location": "Route 46",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46",
+      "status": 200,
+      "sha256": "eec315f280cef6673194d01663ea9611d5d82edb0462e042f29d091a6c86b8e2"
+    },
+    {
+      "location": "Route 47",
+      "url": "https://www.serebii.net/pokearth/johto/route47.shtml",
+      "status": 200,
+      "sha256": "209f3c6ef8afb16f3283e5d8b582c7d304e86ec582a4c5e99535776f87f93cc4"
+    },
+    {
+      "location": "Route 47",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47",
+      "status": 200,
+      "sha256": "c81c969465c0742a4dc7766be8176e0cf0873df6fdea88827479c21dda6dfadb"
+    },
+    {
+      "location": "Route 48",
+      "url": "https://www.serebii.net/pokearth/johto/route48.shtml",
+      "status": 200,
+      "sha256": "2edb97d32061e0a9223884866e8f3ae4e44aee4dc879ede94fe3171a6bba7596"
+    },
+    {
+      "location": "Route 48",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48",
+      "status": 200,
+      "sha256": "3ae825282adb7227464dd4838006d5cf8681464c852c599736e33e9628542698"
+    },
+    {
+      "location": "Cliff Edge Gate",
+      "url": "https://www.serebii.net/pokearth/johto/cliffedgegate.shtml",
+      "status": 200,
+      "sha256": "f3690ea16216a5be21d5eb79daccb48c00655e28e119a7b685029bc7c0b55f99"
+    },
+    {
+      "location": "Cliff Edge Gate",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Edge_Gate",
+      "status": 200,
+      "sha256": "c716ba17e24d09a3dd416089c46cf22d432ef5d095a25962b161005aa769267e"
+    },
+    {
+      "location": "Cliff Cave",
+      "url": "https://www.serebii.net/pokearth/johto/cliffcave.shtml",
+      "status": 200,
+      "sha256": "814165d1c11d52ae383fc701f259d5641ca991ff24fe1a06848ae9464102e849"
+    },
+    {
+      "location": "Cliff Cave",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Cave",
+      "status": 200,
+      "sha256": "0784c66a5d5c21641b19697d502e09629663aca17c597050e79b275efc38c448"
+    },
+    {
+      "location": "Embedded Tower",
+      "url": "https://www.serebii.net/pokearth/johto/embeddedtower.shtml",
+      "status": 200,
+      "sha256": "e505fe91007a8f25400a9543fd2f73e4575ee05d8a3f61f874d364a94354c793"
+    },
+    {
+      "location": "Embedded Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Embedded_Tower",
+      "status": 200,
+      "sha256": "74802a65b0469ce85f648a866bb3d8cde426494f521da2363c006fb6fc94b67c"
+    },
+    {
+      "location": "Dark Cave",
+      "url": "https://www.serebii.net/pokearth/johto/darkcave.shtml",
+      "status": 200,
+      "sha256": "37eca82d4740a585bc09688185cd3ba1d5e6c45ce3d2a06c673e2a7ca8ca624d"
+    },
+    {
+      "location": "Dark Cave",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Cave",
+      "status": 200,
+      "sha256": "680ab3ee640d9d358b4df623edf1db5d283eeb346088bb1045de698eafa37dd6"
+    },
+    {
+      "location": "Sprout Tower",
+      "url": "https://www.serebii.net/pokearth/johto/sprouttower.shtml",
+      "status": 200,
+      "sha256": "eebe371c59369fc241965e52fde0dcc3532bf47da52673652f1cb505cb1dbe9e"
+    },
+    {
+      "location": "Sprout Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Sprout_Tower",
+      "status": 200,
+      "sha256": "842edca3226756df9ee4dc9cf00abd92b056a52f6cd1c141f276d5fa4a63e793"
+    },
+    {
+      "location": "Ruins of Alph",
+      "url": "https://www.serebii.net/pokearth/johto/ruinsofalph.shtml",
+      "status": 200,
+      "sha256": "c9054a3415e3746518f8567070aeee14b0d72a9a95880fb5cfe5e3168d2343ae"
+    },
+    {
+      "location": "Ruins of Alph",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ruins_of_Alph",
+      "status": 200,
+      "sha256": "9c7bb887f0909e6b2ebc7164c5e6c984362f026604d59287f19b942c3a46fe5f"
+    },
+    {
+      "location": "Union Cave",
+      "url": "https://www.serebii.net/pokearth/johto/unioncave.shtml",
+      "status": 200,
+      "sha256": "83cb7b4b5278c5c42f0868c2e1d73c9e5a2b1d80bf5b543667c29c8dd3f0e41d"
+    },
+    {
+      "location": "Union Cave",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Union_Cave",
+      "status": 200,
+      "sha256": "d858552f59baf85d4cfa1d49dc09d5c073b7ea52057e02e36f590dd066d1dafe"
+    },
+    {
+      "location": "Slowpoke Well",
+      "url": "https://www.serebii.net/pokearth/johto/slowpokewell.shtml",
+      "status": 200,
+      "sha256": "8d8f91a2ecc1c5d633127e704d9fd0acd3c5e363f002aa6410caead9185c7e7c"
+    },
+    {
+      "location": "Slowpoke Well",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Slowpoke_Well",
+      "status": 200,
+      "sha256": "7e1b8f587e9fca43d978f2177c7b28a847e49ca37a2af6e54ef6caee474853af"
+    },
+    {
+      "location": "Ilex Forest",
+      "url": "https://www.serebii.net/pokearth/johto/ilexforest.shtml",
+      "status": 200,
+      "sha256": "6598245de4f142200820c6ab79f000881ed9b340d4025bebbbbedc4fd82ee7bd"
+    },
+    {
+      "location": "Ilex Forest",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ilex_Forest",
+      "status": 200,
+      "sha256": "c421219fc05645cf7a37d5817d92ad3a91a51c022b14395def11463b79324a4e"
+    },
+    {
+      "location": "National Park",
+      "url": "https://www.serebii.net/pokearth/johto/nationalpark.shtml",
+      "status": 200,
+      "sha256": "2312b7ea0a6c0c306e8718c435d7f739d12b9cbc7f6ba0b3e20cf5426c782246"
+    },
+    {
+      "location": "National Park",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/National_Park",
+      "status": 200,
+      "sha256": "8e8c3a1026a675d129ba9cc3ef5d7edfa1d5da77c35f0babfbcb661e7de91038"
+    },
+    {
+      "location": "Burned Tower",
+      "url": "https://www.serebii.net/pokearth/johto/burnedtower.shtml",
+      "status": 200,
+      "sha256": "efd2ba971b1ef03d422278ebd8196fad585efd668fa96dc16d37fd356fb9e946"
+    },
+    {
+      "location": "Burned Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Burned_Tower",
+      "status": 200,
+      "sha256": "eea57389c3d23df674058d393aa2af4686e5398423936367e59e1f2dc1bd2e06"
+    },
+    {
+      "location": "Bell Tower",
+      "url": "https://www.serebii.net/pokearth/johto/belltower.shtml",
+      "status": 200,
+      "sha256": "4b6ce0f58bae779542dd55ab3fb29c1595fc9082e459064fcc3079c271755b6a"
+    },
+    {
+      "location": "Bell Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Bell_Tower",
+      "status": 200,
+      "sha256": "a260acf4790258a8e39d97f71afbcb01fdb58731be5bd7e9b67fb8b45462a693"
+    },
+    {
+      "location": "Bell Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Pewter_City",
+      "status": 200,
+      "sha256": "ffbdb8b796cf2e690b3324dcb10a3c12d828f0fae8552fd22803446ec273148d"
+    },
+    {
+      "location": "Mt. Mortar",
+      "url": "https://www.serebii.net/pokearth/johto/mt.mortar.shtml",
+      "status": 200,
+      "sha256": "5ef68c5bec70fa6307f9d86c02c65f8df288e511ba5feafe39281de37e045ece"
+    },
+    {
+      "location": "Mt. Mortar",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Mortar",
+      "status": 200,
+      "sha256": "dfd86ee5823164c8f517be065560520ada21e40c8296b6f8d3cb6109ed26ce78"
+    },
+    {
+      "location": "Whirl Islands",
+      "url": "https://www.serebii.net/pokearth/johto/whirlislands.shtml",
+      "status": 200,
+      "sha256": "b0abba74118c82258e47280ff4c5774917199904dd25f3d695620606a04a6e75"
+    },
+    {
+      "location": "Whirl Islands",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands",
+      "status": 200,
+      "sha256": "f12ae1b85e5120aea3481e79b508ffb6f9ac2a66022e80ef5f80daa9b0e35a15"
+    },
+    {
+      "location": "Lake of Rage",
+      "url": "https://www.serebii.net/pokearth/johto/lakeofrage.shtml",
+      "status": 200,
+      "sha256": "329bed5c33937ca2eb20d2190712502c18319cb5fb17c5554e5152f0e07a9384"
+    },
+    {
+      "location": "Lake of Rage",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Lake_of_Rage",
+      "status": 200,
+      "sha256": "08179f7885d505066de8163ba2b047c82cb3706965802c4300ecfec7a981603c"
+    },
+    {
+      "location": "Ice Path",
+      "url": "https://www.serebii.net/pokearth/johto/icepath.shtml",
+      "status": 200,
+      "sha256": "678bb31ae51706e9493929debfe00aa04f77451bfb5332f33190f20147558646"
+    },
+    {
+      "location": "Ice Path",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ice_Path",
+      "status": 200,
+      "sha256": "c5a5084e004ba6619c78fcbb16af11b5c57dd7e82d842a3de9b71f11a00d9740"
+    },
+    {
+      "location": "Dragon's Den",
+      "url": "https://www.serebii.net/pokearth/johto/dragon'sden.shtml",
+      "status": 200,
+      "sha256": "867ede1233117e3f60e3c64abad138a45db206ceeee3cd41505ec7f13b3ee8b7"
+    },
+    {
+      "location": "Dragon's Den",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Dragon's_Den",
+      "status": 200,
+      "sha256": "7afe4255bf88850d3a3c6bbd3d7e71dfb9b41b67374bead4c7f925c006a8015d"
+    },
+    {
+      "location": "Safari Zone Gate",
+      "url": "https://www.serebii.net/pokearth/johto/safarizonegate.shtml",
+      "status": 200,
+      "sha256": "21cae0f4914189dd95d65ba3253e62500501eb63dd482f248faebd8db8192e5c"
+    },
+    {
+      "location": "Safari Zone Gate",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Safari_Zone_Gate",
+      "status": 200,
+      "sha256": "21f2124c13646536e5954737c792d0612ba4539b5fefd3a7c7c09c2e2abef223"
+    },
+    {
+      "location": "Pokéathlon Dome",
+      "url": "https://www.serebii.net/pokearth/johto/pokeathlondome.shtml",
+      "status": 200,
+      "sha256": "a5001f22fb9d40062fa689b60a23d66474bd7ab6fb2f61761d58990651c88c6c"
+    },
+    {
+      "location": "Pokéathlon Dome",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon_Dome",
+      "status": 200,
+      "sha256": "6141804561fdcb41531c70084c2ad913df6655fa9761b3ae0e6544304dcd016b"
+    },
+    {
+      "location": "Goldenrod Department Store",
+      "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+      "status": 200,
+      "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+    },
+    {
+      "location": "Goldenrod Department Store",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Department_Store",
+      "status": 200,
+      "sha256": "679f2611eef4d843a98fbb349c2b722b5915f934aa4ff6c610c90dcb26feb06c"
+    },
+    {
+      "location": "Goldenrod Radio Tower",
+      "url": "https://www.serebii.net/pokearth/johto/radiotower.shtml",
+      "status": 200,
+      "sha256": "41d523726ee098931e4a36c6fe51054f66f853dfac9acd19798cede103d657f1"
+    },
+    {
+      "location": "Goldenrod Radio Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Radio_Tower",
+      "status": 200,
+      "sha256": "d3142061f8fbcd58463674737140ef628bbde6a9762b4285698ba6f226e759a4"
+    },
+    {
+      "location": "Olivine Lighthouse",
+      "url": "https://www.serebii.net/pokearth/johto/shininglighthouse.shtml",
+      "status": 200,
+      "sha256": "27ce12192b5e902a04a3d86c2a8c4b06a307bb2825b56408195b8fc35984db7a"
+    },
+    {
+      "location": "Olivine Lighthouse",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Glitter_Lighthouse",
+      "status": 200,
+      "sha256": "3a8bd915d6b557831ce69bc3cb7da8e2bf44a3137de8264ffa54987861c890bd"
+    },
+    {
+      "location": "Pokémon Day Care",
+      "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+      "status": 200,
+      "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a"
+    },
+    {
+      "location": "Pokémon Day Care",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day_Care",
+      "status": 200,
+      "sha256": "b30f3af604a9fae90162ca3192e2672f29a3cfa9320777a57559ef6b83bfc6dd"
+    },
+    {
+      "location": "Pokémon Day Care",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+      "status": 200,
+      "sha256": "271fbaf5620ed7189a7cd7d42c262cfdd408c384d69c2a7f40fa7317e34535e5"
+    },
+    {
+      "location": "S.S. Aqua",
+      "url": "https://www.serebii.net/pokearth/johto/ssaqua.shtml",
+      "status": 200,
+      "sha256": "bdaad65293238226d869c34230de617fae7db925107638767180ba2aa2109ff4"
+    },
+    {
+      "location": "S.S. Aqua",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/S.S._Aqua",
+      "status": 200,
+      "sha256": "d3c4ec0ab87d911fd3dde95dd0bbeb05da7429ddc5fcaf94686803d3933bf9a1"
+    },
+    {
+      "location": "Victory Road",
+      "url": "https://www.serebii.net/pokearth/kanto/4th/victoryroad.shtml",
+      "status": 200,
+      "sha256": "3f99da8b0f496330dc519eb66b014dc15401cbe1e8c3c864c8b7ba3614ba3af2"
+    },
+    {
+      "location": "Victory Road",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Victory_Road_(Kanto)",
+      "status": 200,
+      "sha256": "ca7cecd758a479618b7fee3657bdfb12d4ab5cb70587f0ea142b515d2acdc616"
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://www.serebii.net/pokearth/kanto/4th/indigoplateau.shtml",
+      "status": 200,
+      "sha256": "c4c112aedcb90170b3b5c319f02c8f69eb8d5948411b96f9d9f641a3c6eee385"
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Indigo_Plateau",
+      "status": 200,
+      "sha256": "7017130431d5ab869293138a763706152af5195ba6c0e5cd2651218fb18ccbfd"
+    },
+    {
+      "location": "Mt. Silver",
+      "url": "https://www.serebii.net/pokearth/johto/mt.silver.shtml",
+      "status": 200,
+      "sha256": "d47b7accff4e7bf71fa2f54e07e4d12d8a01a890e61c80d03f85eb6d33f168fe"
+    },
+    {
+      "location": "Mt. Silver",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver",
+      "status": 200,
+      "sha256": "9da0a2aa03cf847d08c4dbf440ee3062153d8d0bd34b492c8eb92e6f4954df15"
+    },
+    {
+      "location": "Mt. Silver",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver_Cave",
+      "status": 200,
+      "sha256": "ee3204434887b8df3128929432e6574bc0ecd97f5739a59ca9df761fae1a705a"
+    },
+    {
+      "location": "Route 26",
+      "url": "https://www.serebii.net/pokearth/kanto/route26.shtml",
+      "status": 200,
+      "sha256": "4cfdc41b11ca724a60c6ea7a8a991cc0e2ceb971f9c4e7e31943515d3cfb466c"
+    },
+    {
+      "location": "Route 26",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26",
+      "status": 200,
+      "sha256": "077913437eb2c085a0d6a0bd7ec5171e4b6e21b8d9b598e299ac97f342ad83dd"
+    },
+    {
+      "location": "Route 27",
+      "url": "https://www.serebii.net/pokearth/kanto/route27.shtml",
+      "status": 200,
+      "sha256": "e45b91206211646b4fbd73f183e0f1078027051c836286cf58b3f9a737de1f57"
+    },
+    {
+      "location": "Route 27",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27",
+      "status": 200,
+      "sha256": "51ac78fd0bea908b5ac622ea30169b228fcdbe5002e4c972b79b6d392c0ea68c"
+    },
+    {
+      "location": "Route 28",
+      "url": "https://www.serebii.net/pokearth/kanto/route28.shtml",
+      "status": 200,
+      "sha256": "ff1a4b957283b81668c8dbfa0c59ae2ad716ec3ac1f7c5f16ea800573785ca43"
+    },
+    {
+      "location": "Route 28",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28",
+      "status": 200,
+      "sha256": "a9cf423e79edd9b5e93a217d8cfdc8221537325d4fc34d81a9dc139b7d003231"
+    },
+    {
+      "location": "Tohjo Falls",
+      "url": "https://www.serebii.net/pokearth/kanto/tohjofalls.shtml",
+      "status": 200,
+      "sha256": "7ba08aac8a1230eb7c70f5e88e9c74b25c4e7e57638ad82115ba90b9306da8e3"
+    },
+    {
+      "location": "Tohjo Falls",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Tohjo_Falls",
+      "status": 200,
+      "sha256": "33e89149a89bad508af85e220c333e8b8b00321a7a8ea24e38809e58f25b157d"
+    },
+    {
+      "location": "Pokémon League Reception Gate",
+      "url": "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",
+      "status": 200,
+      "sha256": "3275d6635b207e4063ca3e606bbef64e514903b927066452cf20f5d7e2a68b6d"
+    },
+    {
+      "location": "Pokémon League Reception Gate",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Reception_Gate",
+      "status": 200,
+      "sha256": "37927463026e62c6813b2a9f11002f4cf81f55b5262d415e7588987a1c9f053b"
+    },
+    {
+      "location": "Bellchime Trail",
+      "url": "https://www.serebii.net/pokearth/johto/bellchimetrail.shtml",
+      "status": 200,
+      "sha256": "2a06283f01ea1dc676d162fac1ba98e2e9c4dea9857785eb902357b09246e6b0"
+    },
+    {
+      "location": "Bellchime Trail",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Bellchime_Trail",
+      "status": 200,
+      "sha256": "d6b80e7208ca8dc6e717fcd38f7858891dd73d49243f879c422b18b00dd0fd76"
+    },
+    {
+      "location": "Goldenrod Tunnel",
+      "url": "https://www.serebii.net/pokearth/johto/goldenrodunderground.shtml",
+      "status": 200,
+      "sha256": "3f213d5e792df7511f92f3f3539c87692ee4be7d95390d66747a5d664d9cf647"
+    },
+    {
+      "location": "Goldenrod Tunnel",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Underground",
+      "status": 200,
+      "sha256": "54dd264f38fca84647046bd27375de69325f92f574b3844d1b949988aaaf9860"
+    },
+    {
+      "location": "Team Rocket HQ",
+      "url": "https://www.serebii.net/pokearth/johto/rockethideout.shtml",
+      "status": 200,
+      "sha256": "56dabf8fcc02586a40f8d3d5f345efb9412aaaacd8ccb4cda7d90a42e3e2e500"
+    },
+    {
+      "location": "Team Rocket HQ",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_HQ",
+      "status": 200,
+      "sha256": "0eac1cee3a1d49eed44359dd5bdfe1c611f6b6e4744cf489ba65a4bbbadcaa69"
+    },
+    {
+      "location": "Frontier Access",
+      "url": "https://www.serebii.net/pokearth/johto/frontieraccess.shtml",
+      "status": 200,
+      "sha256": "9b91851299043669ef184b29ce351ea97b3e67f8adf9f66aa35705fdf760c7f4"
+    },
+    {
+      "location": "Frontier Access",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Frontier_Access",
+      "status": 200,
+      "sha256": "3a54e270908e879e2ad08f1dd906662b1bf013c147fc4585c54b36d7e167937e"
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://www.serebii.net/pokearth/johto/battlefrontier.shtml",
+      "status": 200,
+      "sha256": "9b5f41161760ac83468baff91b49decebf753786451772e0866c90528b11f760"
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)",
+      "status": 200,
+      "sha256": "49d1e058baaba328b5cb719069e6a90c36fc686cbc8bd4be1f6002b49131cc15"
+    },
+    {
+      "location": "MooMoo Farm",
+      "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+      "status": 200,
+      "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e"
+    },
+    {
+      "location": "MooMoo Farm",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Moomoo_Farm",
+      "status": 200,
+      "sha256": "eb1b3377831c3554e2412d64ea5afece119ee0419d6ee8efff48b86ecf47cd67"
+    },
+    {
+      "location": "Magnet Train Station",
+      "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+      "status": 200,
+      "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb"
+    },
+    {
+      "location": "Magnet Train Station",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Magnet_Train",
+      "status": 200,
+      "sha256": "e598499369601d9a0c59c01b4ef88aeff62991a4f2d0d7f2a9fccc19df071f17"
+    },
+    {
+      "location": "Violet City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Violet_Gym",
+      "status": 200,
+      "sha256": "baca3010d465c37351906c288ced21b042655e14214224169344570c812cf135",
+      "supplement": true
+    },
+    {
+      "location": "Violet City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Primo",
+      "status": 200,
+      "sha256": "bf504b502df01d52e3628c9e26832fb9645ed77be2d8ee30f20a3ae54a56af55",
+      "supplement": true
+    },
+    {
+      "location": "Azalea Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Gym",
+      "status": 200,
+      "sha256": "f06081ab2bca13274e8a3ff8bd5dd2f5b2d7c31047e78ab6e108823bdc7e96a0",
+      "supplement": true
+    },
+    {
+      "location": "Goldenrod City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Gym",
+      "status": 200,
+      "sha256": "52f1972e0260dc91679c1a8f168d2c4fd5bfe4b1a23ba70cd85f73211a04a6b9",
+      "supplement": true
+    },
+    {
+      "location": "Goldenrod City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Game_Corner",
+      "status": 200,
+      "sha256": "d9abb9333c57eba6d59745f733b4ff0e0d9037650504e31f5aa67dfa27e3b6bc",
+      "supplement": true
+    },
+    {
+      "location": "Goldenrod City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City",
+      "status": 200,
+      "sha256": "a11537770f2a5c0a064849dff30ef71899241669eaf63c64acac6e6a22de89e3",
+      "supplement": true
+    },
+    {
+      "location": "Ecruteak City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_Gym",
+      "status": 200,
+      "sha256": "07a042801b47fea623c309f6c0db775a34359c117742b34a558b22b0f39d3cbb",
+      "supplement": true
+    },
+    {
+      "location": "Ecruteak City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_Dance_Theater",
+      "status": 200,
+      "sha256": "8f035d66e97b140fa9658643787f33a854ab9d260c6ae2eebea8748630ad2aac",
+      "supplement": true
+    },
+    {
+      "location": "Olivine City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_Gym",
+      "status": 200,
+      "sha256": "61aefe1a99e170c94d90e05b6d804958bff96d21ca2a4de919de6cb0d6abf194",
+      "supplement": true
+    },
+    {
+      "location": "Cianwood City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_Gym",
+      "status": 200,
+      "sha256": "ea8855a6cf545759d734a1a450753f6d8b66c0392758422f4a685e28141c4dc5",
+      "supplement": true
+    },
+    {
+      "location": "Mahogany Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Gym",
+      "status": 200,
+      "sha256": "e10ebab994275524a4252c7441cb91a69685b11101ebbb39c971270c59e51f67",
+      "supplement": true
+    },
+    {
+      "location": "Blackthorn City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_Gym",
+      "status": 200,
+      "sha256": "d48cdee2de444cb8abf34f09e52c8f647babc8ee740a0c1c07c1aa3359a95987",
+      "supplement": true
+    },
+    {
+      "location": "Sprout Tower",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Li",
+      "status": 200,
+      "sha256": "a000643b0a9a61e9f9177dd7ae65a25801a9fa24f6df0fd0da1778883f17747d",
+      "supplement": true
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Will",
+      "status": 200,
+      "sha256": "4ead066d6884c6e8b8f577cf175f9eb159d49e1db38d438c13cd006b1cfa7d63",
+      "supplement": true
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Koga",
+      "status": 200,
+      "sha256": "ea61dcf13464d151ebffeea3592ce9c165ce1fe7e751ddeda31b4f16d12caaec",
+      "supplement": true
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Bruno",
+      "status": 200,
+      "sha256": "c102930f45b8ca8c18bb15c091959d3029980b38c65d5dbe5540b0bd33e5460d",
+      "supplement": true
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Karen",
+      "status": 200,
+      "sha256": "3c5db7053d28c44018be0b91be02405061fcc51f5cb745d119c363be1b5539bb",
+      "supplement": true
+    },
+    {
+      "location": "Indigo Plateau",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Lance",
+      "status": 200,
+      "sha256": "614a4a0b74e25632b1e5f3d22c0b27e35d6eb11346740c36f3ddd3eec342809c",
+      "supplement": true
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Tower_%28Generation_IV%29",
+      "status": 200,
+      "sha256": "bda7be85425109e9bcaf7783c9125a829701f1a68af49df0df14e93ef4cf6bca",
+      "supplement": true
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Factory_%28Generation_IV%29",
+      "status": 200,
+      "sha256": "45a3b05e17434ff3225d2c5976c693876334ba14b1dec8261747d4845d061372",
+      "supplement": true
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Hall",
+      "status": 200,
+      "sha256": "626fa82f81e1ced5cd74d2f328086d3ff09ceec5cf38cdf2387da238e656a8c6",
+      "supplement": true
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Castle",
+      "status": 200,
+      "sha256": "ea8dcd625a37772bb21fec58660cf57926d1404e63191033aca48a098a218d39",
+      "supplement": true
+    },
+    {
+      "location": "Battle Frontier",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Arcade",
+      "status": 200,
+      "sha256": "ddd7cbd98b4a116c3b65e76769daee94cd1f1e449843f514cb8033ffcceb1dc7",
+      "supplement": true
+    },
+    {
+      "location": "New Bark Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Professor_Elm",
+      "status": 200,
+      "sha256": "19204aff1fd30b548961cc338851c73696d7984c24a70936a2837bcff92235d5",
+      "supplement": true
+    },
+    {
+      "location": "National Park",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Bug-Catching_Contest",
+      "status": 200,
+      "sha256": "67a538fe5746dc533f7f6bdca752f3dc24b3707490668d6d24777f07eab00fb6",
+      "supplement": true
+    },
+    {
+      "location": "New Bark Town",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mom_%28Johto%29",
+      "status": 200,
+      "sha256": "c11c705c5311b268463643421421607d9fe85ddb78a7b9c22915ae43a08fbdeb",
+      "supplement": true
+    },
+    {
+      "location": "Olivine City",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/In-game_trade",
+      "status": 200,
+      "sha256": "00479abf83dd366fec6376bd2fd8b19a394f0d8d543e4ba5a616c664b1c65ba0",
+      "supplement": true
+    }
+  ],
+  "decisions": [
+    "Retain the accepted route item descriptions and primary corrections; do not turn Route 26 Max Elixir back into PP Max.",
+    "Read rowspans and game cells; exclude HeartGold-only rewards, Generation II/Crystal stock, demo trainers and explicitly unused rematch parties.",
+    "Only local battles are imported from character pages. Distinguish Silver/Lance as allies and Clair/Lance or Ariana/Grunt as combined opponent sides.",
+    "Rival starter variants, rematch stages and weekday/time conditions remain separate records.",
+    "Rock Smash item results are not wild encounter slots. Repeated items in distinct rooms or services remain distinct.",
+    "National Park first prize uses the actual ten-item post-National-Dex pool, including Oval Stone, checked in src/overlay_bug_contest.c.",
+    "Cianwood safety Tentacool checks exactly one party member and 540 empty PC slots in scr_seq_0878_T24PC0101.s; no extra Day-Care restriction is invented.",
+    "HGSS Ruins inscriptions: Kabuto Escape Rope, Aerodactyl Flash, Ho-Oh anywhere in party, Omanyte use Water Stone; old Crystal-only requirements removed.",
+    "Goldenrod Sunday Return/Frustration is a one-time choice, not a weekly renewable gift. Crystal-only rooftop merchandise excluded.",
+    "Separate floor pickups from shop offers, lottery/contest prizes, delivered savings purchases and breeding services.",
+    "SoulSilver Game Corner awards Sandshrew, not Ekans; western/Korean Voltorb Flip and Japanese slot/ground-item differences labelled.",
+    "Historical event Pokémon requirements are explicit; no promise of a current distribution, event unlock tool or new Sinjoh/Kanto locations.",
+    "Fixed Frontier Brain milestones are represented, while generated opponent teams and rental pools remain linked facility references rather than invented fixed parties."
+  ]
+}
