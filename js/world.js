@@ -1,3 +1,4 @@
+import { mountEvTraining } from "./atlas-ev-training.js";
 import { locationEncounterReference } from "./data/atlas-route-reference.js";
 import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
 const ATLAS_GAME_ID = "soulsilver";
@@ -697,12 +698,7 @@ function renderLocations({ exactName = null } = {}) {
         const direction = connectionDirection(location.name, name);
         link.setAttribute("aria-label", `${direction === "other" ? "Go to" : direction}: ${name}`);
         link.addEventListener("click", () => {
-          searchInput.value = name;
-          typeSelect.value = "all";
-          renderLocations({ exactName: name });
-          const destination = list.querySelector("h2");
-          destination.focus({ preventScroll: true });
-          destination.scrollIntoView({ block: "start" });
+          openAtlasLocation(name);
         });
         groups[direction].append(link);
       }
@@ -721,6 +717,52 @@ function renderLocations({ exactName = null } = {}) {
   emptyMessage.hidden = matches.length !== 0;
 }
 
-searchInput.addEventListener("input", renderLocations);
-typeSelect.addEventListener("change", renderLocations);
-renderLocations({ exactName: "New Bark Town" });
+const atlasPanel = document.querySelector("#atlas-browser");
+const evPanel = document.querySelector("#ev-training");
+const browseLink = document.querySelector("#atlas-browse-link");
+const evFinder = mountEvTraining({panel: evPanel, onOpenLocation: openAtlasLocation});
+
+function openAtlasLocation(name, push = true, focus = true) {
+  if (!LOCATIONS.some(location => location.name === name)) name = "New Bark Town";
+  if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}`);
+  evPanel.hidden = true;
+  atlasPanel.hidden = false;
+  browseLink.hidden = true;
+  searchInput.value = name;
+  typeSelect.value = "all";
+  renderLocations({exactName: name});
+  if (focus) {
+    const destination = list.querySelector("h2");
+    destination.focus({preventScroll: true});
+    destination.scrollIntoView({block: "start"});
+  }
+}
+
+function showAtlasRoute(focus = true) {
+  if (location.hash === "#ev-training") {
+    atlasPanel.hidden = true;
+    evPanel.hidden = false;
+    browseLink.hidden = false;
+    evFinder.render();
+    if (focus) document.querySelector("#ev-training-title").focus();
+  } else if (location.hash.startsWith("#location=")) {
+    let name;
+    try { name = decodeURIComponent(location.hash.slice(10)); } catch { name = "New Bark Town"; }
+    openAtlasLocation(name, false, focus);
+  } else {
+    evPanel.hidden = true;
+    atlasPanel.hidden = false;
+    browseLink.hidden = true;
+    renderLocations({exactName: searchInput.value || "New Bark Town"});
+    if (focus) searchInput.focus();
+  }
+}
+function searchLocations() {
+  if (location.hash.startsWith("#location=")) history.replaceState(null, "", "#atlas");
+  renderLocations();
+}
+searchInput.addEventListener("input", searchLocations);
+typeSelect.addEventListener("change", searchLocations);
+window.addEventListener("hashchange", () => showAtlasRoute());
+window.addEventListener("popstate", () => showAtlasRoute());
+showAtlasRoute(false);

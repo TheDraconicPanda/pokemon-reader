@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.44') && document.querySelector('.eyebrow').textContent.includes('v0.25.44'),
+    version: document.title.includes('v0.25.45') && document.querySelector('.eyebrow').textContent.includes('v0.25.45'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -1026,5 +1026,71 @@ test('structured location details expand, search and fit mobile without changing
     }
   }
   await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('EV finder filters all six stats, prioritizes Surfing, and handles an empty method result on mobile',async()=>{
+  for(const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas({directory:false});
+    assert.equal(await evaluate(`getComputedStyle(document.querySelector('#ev-training')).display`),'none');
+    await evaluate(`document.querySelector('a[href="#ev-training"]').click()`);
+    await until(()=>evaluate(`!document.querySelector('#ev-training').hidden&&document.querySelector('.ev-result')`),'EV finder open');
+    assert.equal(await evaluate(`getComputedStyle(document.querySelector('#atlas-browser')).display`),'none');
+    assert.equal(await evaluate(`getComputedStyle(document.querySelector('#ev-training')).display`),'block');
+    assert.equal(await evaluate(`document.querySelector('.ev-result').getBoundingClientRect().width>document.querySelector('#ev-training').getBoundingClientRect().width-60`),true);
+    for(const stat of ['hp','attack','defense','spAttack','spDefense','speed']) {
+      await evaluate(`(()=>{const s=document.querySelector('#ev-stat');s.value='${stat}';s.dispatchEvent(new Event('change'));})()`);
+      const state=await evaluate(`({count:document.querySelectorAll('.ev-result').length,first:document.querySelector('.ev-result').dataset.method,text:document.querySelector('#ev-results').textContent,pure:Array.from(document.querySelectorAll('.ev-result')).every(c=>c.dataset.useful==='100'),fit:document.documentElement.scrollWidth<=innerWidth})`);
+      assert.ok(state.count>0,stat);assert.equal(state.pure,true);assert.equal(state.fit,true);
+      if(stat!=='defense')assert.equal(state.first,'surfing',stat);
+      if(stat==='spDefense')assert.match(state.text,/Tentacool.*1 Special Defense/);
+    }
+    await evaluate(`(()=>{document.querySelector('#ev-stat').value='defense';document.querySelector('#ev-method').value='surfing';document.querySelector('#ev-method').dispatchEvent(new Event('change'));})()`);
+    assert.match(await evaluate(`document.querySelector('#ev-result-count').textContent`),/No matching/);
+    assert.equal(await evaluate(`document.querySelector('#ev-more').hidden`),true);
+    await evaluate(`(()=>{document.querySelector('#ev-stat').value='speed';document.querySelector('#ev-method').value='surfing';document.querySelector('#ev-clean').checked=false;document.querySelector('#ev-clean').dispatchEvent(new Event('change'));})()`);
+    await evaluate(`(()=>{const more=document.querySelector('#ev-more');if(!more.hidden)more.click();})()`);
+    const mixed=await evaluate(`Array.from(document.querySelectorAll('.ev-result')).find(c=>c.dataset.location==='Lake of Rage')?.textContent`);
+    assert.match(mixed,/90% useful encounters · Mixed EVs/);assert.match(mixed,/Gyarados.*2 Attack/);
+    assert.match(mixed,/Other encounters/);
+    if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)) {
+      await evaluate(`document.querySelector('#ev-training-title').scrollIntoView({block:'start'})`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'ev-finder-'+width+'.png'),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('EV finder paginates and opens exact Atlas destinations while preserving filter state on return',async()=>{
+  await atlas({directory:false});
+  await evaluate(`document.querySelector('a[href="#ev-training"]').click()`);
+  await until(()=>evaluate(`!document.querySelector('#ev-training').hidden&&document.querySelector('.ev-result')`),'EV finder open');
+  const initial=await evaluate(`document.querySelectorAll('.ev-result').length`);
+  assert.equal(initial,12);
+  await evaluate(`document.querySelector('#ev-more').click()`);
+  assert.equal(await evaluate(`document.querySelectorAll('.ev-result').length`),24);
+  assert.equal(await evaluate(`document.activeElement===document.querySelectorAll('.ev-result h3')[12]`),true);
+  await evaluate(`(()=>{const s=document.querySelector('#ev-time');s.value='nite';s.dispatchEvent(new Event('change'));})()`);
+  const destination=await evaluate(`document.querySelector('.ev-result').dataset.location`);
+  await evaluate(`document.querySelector('.ev-open-location').click()`);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card h2'),h=>h.textContent)`),[destination]);
+  assert.equal(await evaluate(`document.querySelector('#ev-training').hidden`),true);
+  assert.equal(await evaluate(`document.activeElement===document.querySelector('.location-card h2')`),true);
+  assert.equal(await evaluate(`document.querySelector('#location-type').value`),'all');
+  await evaluate(`history.back()`);
+  await until(()=>evaluate(`!document.querySelector('#ev-training').hidden`),'Back to finder');
+  assert.equal(await evaluate(`document.querySelector('#ev-time').value`),'nite');
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#ev-training'});
+  await until(()=>evaluate(`document.querySelector('#ev-result-count')?.textContent.includes('matching training spots')`),'Direct EV training link');
+  assert.equal(await evaluate(`document.querySelector('#atlas-browser').hidden`),true);
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Violet%20City'});
+  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 70 locations'`),'Direct Atlas location');
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Violet City');
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=%E0%A4%A'});
+  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 70 locations'`),'Invalid deep link fallback');
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
   assert.deepEqual(exceptions,[]);
 });

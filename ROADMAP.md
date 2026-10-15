@@ -361,8 +361,32 @@ Next: structured location reference details (milestone 3); Safari Zone remains s
 - [x] Preserve existing route corrections, encounters, maps and Safari Zone data
 - [x] Record references, primary discrepancy resolutions and per-location coverage
 - [x] Pass 64 checks, including mobile/desktop UI and Reader/Planner regressions
-- [ ] User acceptance of the published v0.25.44 outcome
+- [x] User accepted the published v0.25.44 outcome
 
 See [coverage, evidence and limitations](docs/atlas-location-details.md). Publish via
 the existing Pages workflow and verify live release files before reporting deployment.
 Next after user validation: Safari Zone data/mechanics, followed by its simulator.
+
+
+## Updated Atlas/Safari tracks — 2026-10-15
+
+Safari Zone reference, progression switches and calculator will have their own
+chat and development track. Planned integration: north from Safari Zone Gate,
+direct tool access, and return to Atlas at the Gate. Separate Regional/National
+Pokédex and Baoba progression controls must reflect verified game unlocks.
+Safari work does not block the Atlas feature/visual work. No Safari extraction,
+mechanics changes, standalone tool or simulator is included in the EV finder.
+
+## EV training finder — v0.25.45
+
+- [x] Extract the pinned Generation IV base EV yields for all 493 species
+- [x] Score complete ordinary encounter tables by in-game time, floor/area and method
+- [x] Prioritize Surfing; show useful encounter percentages and expected base EV yield
+- [x] Default to 100% clean tables and expose mixed/unwanted encounters on request
+- [x] Add stat/time/method controls, requirements, species levels/yields and pagination
+- [x] Open exact Atlas destinations and preserve finder controls on return
+- [x] Pass all 72 source, browser/mobile and Reader/Planner regression checks
+- [ ] User acceptance of the published outcome
+
+The first release uses base yields, with no held-item/Pokérus calculator or
+progression filter. See [mechanics and validation](docs/atlas-ev-training.md).

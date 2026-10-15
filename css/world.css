@@ -210,3 +210,34 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 .reference-entries li { margin: 0.85rem 0; }
 .reference-entries p { margin: 0.25rem 0; }
 .reference-party, .reference-empty { font-size: 0.85rem; color: #475569; }
+
+.atlas-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.atlas-tool-link, .ev-open-location, .ev-more { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border: 1px solid #bfdbfe; border-radius: 0.55rem; padding: 0.6rem 0.85rem; background: #eff6ff; color: #1d4ed8; font: inherit; font-weight: 650; text-decoration: none; cursor: pointer; }
+.atlas-tool-link[hidden], .ev-more[hidden] { display: none; }
+.atlas-tool-link:focus-visible, .ev-open-location:focus-visible, .ev-more:focus-visible, .ev-access summary:focus-visible, .ev-assumptions summary:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.ev-training-panel h2 { margin-top: 0; }
+.ev-training-panel p { line-height: 1.55; overflow-wrap: anywhere; }
+.ev-controls { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+.ev-controls label { display: grid; gap: 0.4rem; font-weight: 650; min-width: 0; }
+.ev-controls .ev-checkbox { display: flex; align-items: center; grid-column: 1 / -1; min-height: 44px; gap: 0.6rem; }
+.ev-checkbox input { width: 20px; min-height: 20px; height: 20px; margin: 0; flex-shrink: 0; }
+.ev-assumptions { margin-bottom: 1rem; color: #475569; }
+.ev-assumptions summary, .ev-access summary { min-height: 44px; align-content: center; cursor: pointer; }
+.ev-results { display: grid; gap: 1rem; }
+.ev-result { padding: 1rem; border: 1px solid #dbe3ef; border-radius: 0.7rem; min-width: 0; }
+.ev-result h3 { margin: 0 0 0.35rem; font-size: 1.05rem; overflow-wrap: anywhere; }
+.ev-result h4 { margin: 0.85rem 0 0.35rem; font-size: 0.9rem; }
+.ev-result p { margin: 0.35rem 0; }
+.ev-method { color: #475569; }
+.ev-chance { color: #166534; font-weight: 700; }
+.ev-result ul { padding-left: 1.2rem; overflow-wrap: anywhere; }
+.ev-result li { margin: 0.5rem 0; }
+.ev-result li span { display: block; margin-top: 0.2rem; color: #475569; font-size: 0.9rem; }
+.ev-access { margin: 0.7rem 0; font-size: 0.9rem; }
+.ev-more { margin-top: 1rem; }
+@media (max-width: 600px) { .ev-controls { grid-template-columns: 1fr; } }
+
+.ev-chance.ev-mixed { color: #92400e; }
+/* The finder is a full-width view, independent of the Atlas search panel's grid. */
+.ev-training-panel { display: block; }
+.ev-training-panel[hidden], #atlas-browser[hidden] { display: none; }

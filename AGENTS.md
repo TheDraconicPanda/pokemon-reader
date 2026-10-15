@@ -44,6 +44,16 @@ The Atlas is a PokéEarth-inspired world reference for SoulSilver. The user revi
 6. **Add Kanto for full SoulSilver coverage.** Retain the existing border/endgame locations while expanding the second region.
 7. **Run the final integrated audit.** Verify accuracy, navigation, mobile usability and Reader/Planner regressions across the complete result.
 
+Subsequent user steering (2026-10-15): the published encounters, maps and structured
+location-reference milestones were accepted. Safari is to have its own chat and
+development track, with eventual Atlas entry/return through Safari Zone Gate and
+direct tool access; it must not block the remaining Atlas features or visual work.
+The current authorized Atlas milestone is an EV training finder: choose a stat,
+prioritize Surfing and 100%-useful encounter tables, show species EV yields,
+unwanted EVs and access conditions, and open the location directly in Atlas.
+Safari is excluded from this finder. Base yields come from Generation IV data;
+held-item/Pokérus calculators are later work, not part of this first version.
+
 Complete each agreed milestone before advancing. Publish validated milestones to the existing site for user outcome testing. Keep SoulSilver data/rules explicitly game-scoped and shared presentation separate, so future games do not silently inherit its locations, encounters or mechanics. Do not implement another game's support or refactor unrelated save logic as part of this work.
 
 Historical checkpoint from project planning: Atlas v0.25.16 was reported to have Safari Zone walking coverage complete, with water/fishing encounters and block-attraction requirements still pending; a later audit and simulator were planned, browser testing had not yet been completed, and some encounter levels still needed verification. Treat this as a lead to investigate, not as current verified repository state.

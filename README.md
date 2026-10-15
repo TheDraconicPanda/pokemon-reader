@@ -20,12 +20,13 @@ The application is intended to process save files locally in the browser wheneve
 
 ## Current Atlas priorities
 
-The agreed order (2026-10-15) is: complete/audit encounters throughout the existing
-Atlas except Safari Zone; expand maps and floor navigation; complete structured
-location details; complete Safari data/mechanics; build/audit its simulator; expand
-Kanto; then run the final integrated audit. Safari Zone Gate is included in normal
-location coverage. New datasets remain explicitly scoped by game, starting with
-SoulSilver. See ROADMAP.md for current completion status.
+The encounters, maps/floor navigation and structured location-detail milestones
+have been published and accepted. The next Atlas feature is an EV training finder
+with Surf-first recommendations. Safari Zone has its own development track and
+does not block remaining Atlas features or visual improvements. Its eventual tool
+will integrate through Safari Zone Gate and a direct link. Kanto expansion and the
+final integrated audit remain future work. New datasets stay explicitly scoped by
+game, starting with SoulSilver. See ROADMAP.md for completion status.
 
 ## Development approach
 
@@ -314,3 +315,18 @@ The existing maps and encounter tables remain intact.
 See [scope, evidence and validation](docs/atlas-location-details.md). All 64 checks
 pass, including mobile UI and Reader/Planner regressions; user outcome acceptance
 remains pending. Safari Zone itself remains the next separate milestone.
+
+## Atlas EV training finder — v0.25.45
+
+Use **EV Training** in Atlas to choose a stat, in-game time and encounter method.
+Surfing appears first; the default shows only tables with 100% clean EV encounters.
+Results include Pokémon, encounter percentages, levels, base EV yields, unwanted
+encounters and access notes. Open in Atlas goes directly to the location; returning
+keeps your finder controls. Direct link:
+https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#ev-training
+
+The finder uses the existing audited encounters and pinned Generation IV yields.
+Percentages describe encountered Pokémon, not the chance of an encounter per step.
+Safari is excluded. Held-item/Pokérus bonuses and progression filters are future
+work. All 72 checks pass; user outcome acceptance remains pending. See
+[calculation rules and validation](docs/atlas-ev-training.md).

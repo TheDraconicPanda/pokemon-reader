@@ -4,20 +4,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver PokéEarth — v0.25.44 · Pokémon Reader</title>
+  <title>SoulSilver PokéEarth — v0.25.45 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
 </head>
 <body>
   <main class="world-app">
     <header class="world-header">
       <a class="back-link" href="../">← Pokémon Reader</a>
-      <p class="eyebrow">POKÉMON READER · SOULSILVER REFERENCE · v0.25.44</p>
+      <p class="eyebrow">POKÉMON READER · SOULSILVER REFERENCE · v0.25.45</p>
       <h1>Johto PokéEarth</h1>
       <p>Start in New Bark Town and follow the compass connections below, or search to jump elsewhere. Explore Johto and the approaches to the Pokémon League and Mt. Silver. Each location includes landmarks, access notes, connections, and sources. Floors and related rooms are grouped under their main location. Connections include short gate passages; ledges and story conditions can restrict travel in either direction.</p>
-      <p>The static location guide has been cross-checked against SoulSilver references. Encounter tables and Safari mechanics remain incomplete: Safari records include walking encounters in all 12 areas, partial water/fishing coverage, and block-attracted encounters in 11 areas.</p>
+      <p>The static location guide has been cross-checked against SoulSilver references. Non-Safari encounters, maps and location details have been audited. Safari mechanics remain a separate project: Safari records include walking encounters in all 12 areas, partial water/fishing coverage, and block-attracted encounters in 11 areas.</p>
+      <nav class="atlas-tools" aria-label="Atlas tools">
+        <a href="#ev-training" class="atlas-tool-link">EV Training</a>
+        <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link" hidden>Browse Atlas</a>
+      </nav>
     </header>
 
-    <section class="world-panel" aria-label="Search locations">
+    <section class="world-panel ev-training-panel" id="ev-training" aria-labelledby="ev-training-title" hidden>
+      <h2 id="ev-training-title" tabindex="-1">EV training finder</h2>
+      <p>Choose a stat to find places to train in SoulSilver. Surfing spots come first. “100% useful” means every possible Pokémon in that encounter table awards the chosen EV; it does not mean a guaranteed encounter every step.</p>
+      <div class="ev-controls">
+        <label for="ev-stat">Train this stat
+          <select id="ev-stat">
+            <option value="hp">HP</option><option value="attack">Attack</option><option value="defense">Defense</option>
+            <option value="spAttack">Special Attack</option><option value="spDefense">Special Defense</option><option value="speed" selected>Speed</option>
+          </select>
+        </label>
+        <label for="ev-time">In-game time
+          <select id="ev-time"><option value="morn">Morning</option><option value="day" selected>Day</option><option value="nite">Night</option></select>
+        </label>
+        <label for="ev-method">Encounter method
+          <select id="ev-method">
+            <option value="all">All methods · Surfing first</option><option value="surfing">Surfing</option><option value="walking">Walking</option>
+            <option value="old_rod">Old Rod</option><option value="good_rod">Good Rod</option><option value="super_rod">Super Rod</option>
+            <option value="headbutt">Headbutt</option><option value="rock-smash">Rock Smash</option>
+          </select>
+        </label>
+        <label class="ev-checkbox" for="ev-clean"><input id="ev-clean" type="checkbox" checked> No unwanted EVs · 100% clean tables only</label>
+      </div>
+      <details class="ev-assumptions">
+        <summary>How to use these recommendations</summary>
+        <p>Defeat the listed Pokémon to earn their base EVs. In mixed tables, flee from other encounters; a Pokémon that also awards another stat is labelled. Averages count the chosen stat over all encounters, assuming you defeat the useful Pokémon.</p>
+        <p>These are ordinary tables with the radio off and no outbreak, Repel or encounter-altering lead ability. Special tree groups and Unown unlocks are labelled. Fishing and Rock Smash percentages are conditional on a Pokémon appearing. Roamers and one-time battles are excluded. Check the location notes for access and story requirements.</p>
+        <p>Base yields use SoulSilver’s Generation IV data. Held-item and Pokérus bonuses, EV caps, encounter speed and battle time are not included. Safari Zone is outside this finder.</p>
+        <p>Morning: 04:00–09:59 · Day: 10:00–19:59 · Night: 20:00–03:59, using the game clock.</p>
+        <a href="https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/poketool/personal/personal.json" target="_blank" rel="noopener noreferrer">Generation IV EV yield source</a>
+      </details>
+      <p id="ev-result-count" class="location-count" role="status"></p>
+      <div id="ev-results" class="ev-results"></div>
+      <button type="button" id="ev-more" class="ev-more" hidden>Show more spots</button>
+    </section>
+
+    <section class="world-panel" id="atlas-browser" aria-label="Search locations">
       <label class="search-label" for="location-search">Search locations
         <input id="location-search" type="search" placeholder="Try Violet City, Route 32, or cave…" autocomplete="off">
       </label>

@@ -1,0 +1,62 @@
+{
+  "release": "0.25.45",
+  "gameId": "soulsilver",
+  "reviewedOn": "2026-10-15",
+  "timezone": "America/Toronto",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "primaryFile": "files/poketool/personal/personal.json",
+  "primarySha256": "8efcb2a809186a8ba85eb9dd123f4d210e06444405b613f9aa04876f19567f29",
+  "references": [
+    {
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Effort_values",
+      "sha256": "ecb6573d6fcfb462bb371e4ece37eccb539825734efbd296a31244d9b82e67b3",
+      "status": 200
+    },
+    {
+      "url": "https://www.serebii.net/games/evs.shtml",
+      "sha256": "5c8f628ab0d8c8df03a934bfc541c27620be5f42f3a4f02f4e38688aec4d3237",
+      "status": 200
+    }
+  ],
+  "rules": [
+    "Use Generation IV species EV vectors, not current-generation API yields.",
+    "Score complete location/area/method/time tables; each must total 100%.",
+    "Exclude partial radio and swarm replacements, one-time encounters, roamers, contests and Safari.",
+    "Keep Headbutt group and Unown unlock conditions separate.",
+    "Default to every species yielding only the chosen stat; expose mixed tables explicitly on request.",
+    "Percentages are per encountered Pok\u00e9mon, not per step/cast/rock.",
+    "Average chosen EVs assumes defeating useful species and fleeing unwanted encounters.",
+    "Surfing first, followed by clean status, useful share, average chosen yield and minimum level.",
+    "No bonuses, EV-cap calculations or player progression filtering in this release."
+  ],
+  "validation": {
+    "tests": 72,
+    "realSaveOrInGameValidation": false,
+    "passed": 72,
+    "failed": 0,
+    "skipped": 0,
+    "viewports": [
+      320,
+      390,
+      1440
+    ],
+    "visualReview": [
+      "390px finder",
+      "1440px finder"
+    ],
+    "liveDeployment": "Verify after push; do not infer deployment from commit success."
+  },
+  "tablesByTime": {
+    "morn": 328,
+    "day": 328,
+    "nite": 328
+  },
+  "cleanDayRecommendations": {
+    "hp": 5,
+    "attack": 11,
+    "defense": 2,
+    "spAttack": 2,
+    "spDefense": 9,
+    "speed": 71
+  }
+}
