@@ -3,7 +3,7 @@
 > Historical v0.25.27 snapshot. Static implementation has since expanded to 70
 > location groups in v0.25.36; see [current static coverage](atlas-static-coverage.md).
 > This snapshot's missing fields and adjacency list describe the old implementation.
-> The full secondary-source content audit and Safari work remain pending.
+> The [secondary-source static audit](atlas-static-audit.md) is now recorded separately; Safari work remains pending.
 
 Assessment: 2026-10-14. Baseline: `b2dee6c6d40a9f6e58a0aef2f5009345dbbd6b52`, matching remote `main` at inspection. Working tree was clean on branch `work`; implementation branch: `feat/atlas-navigation-integrity`.
 

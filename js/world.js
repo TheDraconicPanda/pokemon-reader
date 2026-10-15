@@ -992,7 +992,7 @@ function renderLocations({ exactName = null } = {}) {
   const matches = LOCATIONS.filter((location) => {
     if (exactName !== null) return location.name === exactName;
     const matchesType = selectedType === "all" || location.type === selectedType;
-    const searchable = `${location.name} ${location.region} ${location.details} ${location.landmarks.join(" ")} ${location.access.join(" ")} ${TYPE_LABELS[location.type]}`.toLowerCase();
+    const searchable = `${location.name} ${(location.aliases || []).join(" ")} ${location.region} ${location.details} ${location.landmarks.join(" ")} ${location.access.join(" ")} ${TYPE_LABELS[location.type]}`.toLowerCase();
     return matchesType && searchable.includes(query);
   });
 

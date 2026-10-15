@@ -1,0 +1,2633 @@
+{
+  "release": "0.25.37",
+  "reviewed_on": "2026-10-14",
+  "timezone": "America/Toronto",
+  "scope": "Names, grouped static landmarks/features, movement/story conditions, and adjacency for all 70 Johto/border location groups. Not encounter tables, detailed Safari block mechanics, or all item/trainer inventories.",
+  "baseline_commit": "3c7fc4decd59f9cdfd18af4c02946bb1dfae3d89",
+  "locations": [
+    {
+      "location": "New Bark Town",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Elm's lab/home, western Route 29, and eastern Surf approach to Route 27.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/New_Bark_Town",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/New_Bark_Town",
+          "title": "New Bark Town - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "ca92e7725295f9a7a70fe3855ce812f46cd0eb822ad6cb6320f6255baed5b4f2",
+          "revision_id": 4642888
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/newbarktown.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/newbarktown.shtml",
+          "title": "Pokéarth - Johto - New Bark Town",
+          "http_status": 200,
+          "sha256": "8a12946997127b216072fb4298d78318f094335825014f474fedc0da13c928af",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Cherrygrove City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed the HGSS Running Shoes reward; added Rock Climb for the optional cliff beyond the offshore island.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cherrygrove_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Cherrygrove_City",
+          "title": "Cherrygrove City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "82d3ba23f38734c7451404d81d21d2041445e8390f11371420d8e4d39d276be1",
+          "revision_id": 4619945
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cherrygrovecity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/cherrygrovecity.shtml",
+          "title": "Pokéarth - Johto - Cherrygrove City",
+          "http_status": 200,
+          "sha256": "f147257be40fd3ddd9f626576a3ec1ef37001db31308d29e816a4826d289153c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Violet City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed all three route exits, school/trade house, and Sprout Tower; clarified Elder Li gate and Zephyr/Rock Smash permission.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Violet_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Violet_City",
+          "title": "Violet City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "d23ba6ee625e2a3ecd331260c34cc67680f9cc4d09c601097e6e90864a01c68e",
+          "revision_id": 4620543
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/violetcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/violetcity.shtml",
+          "title": "Pokéarth - Johto - Violet City",
+          "http_status": 200,
+          "sha256": "c8277f21288fdb93775aab04b0c32f797747ad1610b38f5ad555d345dc877fae",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Azalea Town",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Kurt, kiln, Gym, Well and west/east exits; made Bugsy/rival/Cut progression explicit.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Town",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Town",
+          "title": "Azalea Town - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "1a67b1eaa35c1dba5d0c180716e28d12018bd3bcdd59dce927a8e76f3379277a",
+          "revision_id": 4620533
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/azaleatown.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/azaleatown.shtml",
+          "title": "Pokéarth - Johto - Azalea Town",
+          "http_status": 200,
+          "sha256": "0ceb1115cc0be5e7ffb31e82e7ceaab943244aaf2c268389c46bc73d9d4b8671",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Goldenrod City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "notes": "Confirmed major facilities, Route 34/35 and train service; added Name Rater, friendship checker, Bill and Plain Badge/SquirtBottle access.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City",
+          "title": "Goldenrod City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "4228426818dd6fb0811e8b90706c9771a6686c3cdab5eea057222bcf46c72fcb",
+          "revision_id": 4554699
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "title": "Pokéarth - Johto - Goldenrod City",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Ecruteak City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed tower approach and three route exits; added the HGSS Surf reward and Burned Tower/Morty progression.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_City",
+          "title": "Ecruteak City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "65256cdf4a270c28baf86e2cc3aa20639ffc38f46e443ccba061b2ba82af2c60",
+          "revision_id": 4607360
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ecruteakcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/ecruteakcity.shtml",
+          "title": "Pokéarth - Johto - Ecruteak City",
+          "http_status": 200,
+          "sha256": "2c711072cab71dcddaeda686a99dbf6f399fb0982784cd978df734d2ed5d6d0a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Olivine City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed lighthouse, port, café, route exits and Jasmine's return after treating Amphy; no content change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_City",
+          "title": "Olivine City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "df83df6df4f27b1c400993ecc866afdd554284aeb2f2988bab71966d33c6e6d6",
+          "revision_id": 4620534
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/olivinecity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/olivinecity.shtml",
+          "title": "Pokéarth - Johto - Olivine City",
+          "http_status": 200,
+          "sha256": "7bac0256dfc70f52d74fe9f6dda8a1993dee762482428558a6c988d96eabb96a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Cianwood City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed pharmacy, Chuck, Cameron and Cliff Edge Gate; added Suicune/Eusine and Fist Badge/optional shore notes.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_City",
+          "title": "Cianwood City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "69f369f3300b34281232684777a77bb73435c2ae82151e39391c88b97248a6c0",
+          "revision_id": 4640565
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cianwoodcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/cianwoodcity.shtml",
+          "title": "Pokéarth - Johto - Cianwood City",
+          "http_status": 200,
+          "sha256": "42f1ba0fb3190b663ab7d5ba27b6c892ff4ea8ca19caab2f6e09bceda587042d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Mahogany Town",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Replaced a vague eastern story gate with the HGSS Radio Tower requirement; confirmed HQ/Gym/Whirlpool progression.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Town",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Town",
+          "title": "Mahogany Town - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "4b0f7e33369fccc7c7e8e30b421cbcfa8fbb82fcc40c037ad6201369adc8b627",
+          "revision_id": 4512694
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mahoganytown.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/mahoganytown.shtml",
+          "title": "Pokéarth - Johto - Mahogany Town",
+          "http_status": 200,
+          "sha256": "45758b263fd9c14f272846a0761c4356717bbf2d64712691b8523ce8e3096f49",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Blackthorn City",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed Den, Ice Path and Route 45; added the other house tutors and the elder/Rising Badge requirement.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City",
+          "title": "Blackthorn City - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "28e864b5f949233900f25b72fcc90d5232bd588a6eb492a7459446fb70865814",
+          "revision_id": 4580000
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/blackthorncity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/blackthorncity.shtml",
+          "title": "Pokéarth - Johto - Blackthorn City",
+          "http_status": 200,
+          "sha256": "625aa9139a330b086d095c46aad7b9d47e11439f6ec0dde54da01903aac0edf5",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 29",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed three adjacencies and one-way ledges; added optional Cut shortcuts without making Cut mandatory.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29",
+          "title": "Johto Route 29 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "af533c3c5997f0917b718cd99c232ec869bd9283065eb7ad466f738445757cd3",
+          "revision_id": 4614002
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route29.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route29.shtml",
+          "title": "Pokéarth - Johto - Route 29",
+          "http_status": 200,
+          "sha256": "d3ea83f5ce9790d3f82ebaf94f98fa2fcb822c1233fe328a60c0fbc10de9bee5",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 30",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed branches and houses; added the Mystery Egg delivery gate and optional Cut/Surf. Ruins of Alph is not adjacent.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30",
+          "title": "Johto Route 30 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "6077889049254574a0f7cdd80e0c1a173148dc1f6f2dc80660d0654b2f12650c",
+          "revision_id": 4614004
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route30.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route30.shtml",
+          "title": "Pokéarth - Johto - Route 30",
+          "http_status": 200,
+          "sha256": "7301f02da05bca93bd816044f51550eebef2b7169970e979a68ba0ad02281c88",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 31",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed Violet/Dark Cave/Route 30; added Kenya Mail delivery and optional Cut/Surf shortcuts.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31",
+          "title": "Johto Route 31 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "7ad8833694ba2dbaafd988f3437771b698b89f68b85a76ac27a5d9fd26e39e47",
+          "revision_id": 4619927
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route31.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route31.shtml",
+          "title": "Pokéarth - Johto - Route 31",
+          "http_status": 200,
+          "sha256": "1fce56b4c72293db0cecf70fbcd0356694bee5c676156be3c5a4573b1480ffb7",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 32",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Ruins/Union Cave gates, Old Rod and Egg gate; retained game-script Badge evidence and added optional move access.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32",
+          "title": "Johto Route 32 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "f809f76324509d95114dffe6265e471c403aed0ad32ec8f508f117f6d38b7f2d",
+          "revision_id": 4635786
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route32.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route32.shtml",
+          "title": "Pokéarth - Johto - Route 32",
+          "http_status": 200,
+          "sha256": "b0a8a7c0a2bd1f9b5b9f8b09d7586905beb24dc31c236f5168cecd928f960afe",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 33",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed both endpoints and always-raining HGSS conditions; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33",
+          "title": "Johto Route 33 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "e90bb0145ccf84f6f940c5814264be2a39501fc63b13a5f33f3fca458dd8a7e2",
+          "revision_id": 4619923
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route33.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route33.shtml",
+          "title": "Pokéarth - Johto - Route 33",
+          "http_status": 200,
+          "sha256": "4b2c9f070d03fdf3bb8fba86f50a067f6d9969d16498385e7a448f68c3e3422d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 34",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Ilex/Goldenrod/Day Care and the Surf-only coastal side area; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+          "title": "Johto Route 34 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "b07b2765d9ea64fb4344c0fee51a4d14815da7f8c6d7e164fe3d8b4962990dbc",
+          "revision_id": 4614006
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "title": "Pokéarth - Johto - Route 34",
+          "http_status": 200,
+          "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 35",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "notes": "Added the omitted Cut shortcut to Route 36, Kenya Mail event and pond access; confirmed shared park/Dome gate.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35",
+          "title": "Johto Route 35 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "f8dc195046b71810be4b911e9a13239b094ee510d4fc264aa23465ebeed167d8",
+          "revision_id": 4630618
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route35.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route35.shtml",
+          "title": "Pokéarth - Johto - Route 35",
+          "http_status": 200,
+          "sha256": "e00bddb963621697c77885ee4e53955fff27d1ff1095cc430363c7d51eb55495",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 36",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access",
+        "connections"
+      ],
+      "notes": "Added the reciprocal Route 35 shortcut with Cut; confirmed Sudowoodo/SquirtBottle/Plain Badge and other junctions.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36",
+          "title": "Johto Route 36 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "dc1cc358c8069ea285dfde05f710163bc75eb88c3c14a0b737a29f5ca680830e",
+          "revision_id": 4647046
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route36.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route36.shtml",
+          "title": "Pokéarth - Johto - Route 36",
+          "http_status": 200,
+          "sha256": "3466cb6592205f4cfa64f8fec250ba417664f3f5ba4585a9217b999d3fa101c5",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 37",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Route 36/Ecruteak; added the north-to-south restriction on the eastern Apricorn path.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37",
+          "title": "Johto Route 37 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "efa2af1cd84d15ab0caa3807d87ab5eb4ff13a2b86c4841223fce671affc5c81",
+          "revision_id": 4595818
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route37.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route37.shtml",
+          "title": "Pokéarth - Johto - Route 37",
+          "http_status": 200,
+          "sha256": "b826114918bb3999e0051c46bb21d0d247f64937f4dee794d33f882f0bcbe438",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 38",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed east-west alignment and Route 39; added the raised section reached with Rock Climb from Route 39.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38",
+          "title": "Johto Route 38 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "06c3fe3f481550bee9c69fbb6f79af9d7867a1696eaeef57d1236ef77f58dc31",
+          "revision_id": 4614008
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route38.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route38.shtml",
+          "title": "Pokéarth - Johto - Route 38",
+          "http_status": 200,
+          "sha256": "39ea805d6de800855abb8a0957a9bd65da808590f37949c360dcaca5dfcd7b48",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 39",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Corrected Route 38's junction direction to east; added optional Rock Climb connection to the raised Route 38 area.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39",
+          "title": "Johto Route 39 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "2d619d47a0f8bc03c10eaa9adbd2d9e1304d2b1a84f39a88e0ca51120b1fad6f",
+          "revision_id": 4214704
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "title": "Pokéarth - Johto - Route 39",
+          "http_status": 200,
+          "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 40",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Corrected Frontier Access gate direction to north; confirmed Surf crossing and Hall of Fame access.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40",
+          "title": "Johto Route 40 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "2ce9d0e0ab2a01e8ca81570038d7a6f82f5fa8da15101c18e0cb0584892d2800",
+          "revision_id": 4214712
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route40.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route40.shtml",
+          "title": "Pokéarth - Johto - Route 40",
+          "http_status": 200,
+          "sha256": "89343a7709aa066be6b58e4dff11150a1cf6b9c16376180ad254c7184caad68d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 41",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Surf crossing and Whirlpool island approaches; neither the main Cianwood crossing nor the card requires a Lugia event.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41",
+          "title": "Johto Route 41 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "0fbd81b58a93d6f65dd4890b31e6f6b13d75e570c6a4d10a24f3fdd7f1d963e7",
+          "revision_id": 4214705
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route41.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route41.shtml",
+          "title": "Pokéarth - Johto - Route 41",
+          "http_status": 200,
+          "sha256": "0c9a8d9cb940d53b69d804e5891af2b845b4b7be768a3f0cc68aeee02beb5649",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 42",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed three Mt. Mortar entrances; clarified the cave alternative to Surf, Cut grove and optional Rock Climb; added Suicune.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42",
+          "title": "Johto Route 42 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "59067700fefdb1a6bc9da0168a478b70ae7fa384ba49c9dbcecbf02e8f33207d",
+          "revision_id": 4615369
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route42.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route42.shtml",
+          "title": "Pokéarth - Johto - Route 42",
+          "http_status": 200,
+          "sha256": "669a405422d85864b768ff4f0de91a38c600ba4223d460067db955913ea3c427",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 43",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed alternative grass/toll paths; specified the 1,000-Pokédollar toll and optional Surf approach.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43",
+          "title": "Johto Route 43 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "a00c0b7fac9752357367c8b1fe020b696b0a1b860095e3a0fb04c00daf040363",
+          "revision_id": 4634585
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route43.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route43.shtml",
+          "title": "Pokéarth - Johto - Route 43",
+          "http_status": 200,
+          "sha256": "e65833fb176efffa30a80cd90a5cd62ac22c44bd39b1f69ed228f6271de8cf1c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 44",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Specified the HGSS Radio Tower gate and Surf-only grass area; retained Ice Path adjacency.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44",
+          "title": "Johto Route 44 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "994afd23cf456ee73d111ecf26c0c87cf9b8dd4cd2876d18562b3f7a7f8e6c25",
+          "revision_id": 4634893
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route44.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route44.shtml",
+          "title": "Pokéarth - Johto - Route 44",
+          "http_status": 200,
+          "sha256": "f4b1e86bdd37063e8380cad288c7ead9f092a1e9870f235a316f351fb799056c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 45",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed southbound-only descent; distinguished the non-Surfable river from the southern pond.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45",
+          "title": "Johto Route 45 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "f5475981b62ec0dddb8cf4f4930eb954e32ad0b5ec5efb57e12d09f25bafd9a0",
+          "revision_id": 4596265
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route45.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route45.shtml",
+          "title": "Pokéarth - Johto - Route 45",
+          "http_status": 200,
+          "sha256": "7cdb6245c3ea292cd32d74a149019e9e40660796a2b522026e063e8a4e8cc456",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 46",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed early lower access and ledges; added the HGSS Strength condition for reaching the upper part via Dark Cave.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46",
+          "title": "Johto Route 46 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "d3f263427054c5d73069c05c5029222a0fb9edd6872aacd77faf3deaa054fb7b",
+          "revision_id": 4476708
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route46.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route46.shtml",
+          "title": "Pokéarth - Johto - Route 46",
+          "http_status": 200,
+          "sha256": "e328951b2121603712aad1c6fe4e9591a45aac5d24e725f8141c780fd30cbdd7",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 47",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added the lighthouse opening condition and Surf/Waterfall grass access; confirmed cave and Embedded Tower routes.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47",
+          "title": "Johto Route 47 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "2848c2c7715f3eaee79cdafe218b020413ea86e76f3ca767a3dd1973809c3fdf",
+          "revision_id": 4615370
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route47.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route47.shtml",
+          "title": "Pokéarth - Johto - Route 47",
+          "http_status": 200,
+          "sha256": "209f3c6ef8afb16f3283e5d8b582c7d304e86ec582a4c5e99535776f87f93cc4",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 48",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed linear Route 47/Safari Gate connection and grass; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48",
+          "title": "Johto Route 48 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "71f6b7bd88f927667ca612e2c7c791f7be6ac87566034a48a2d56b64758e167f",
+          "revision_id": 4615371
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route48.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route48.shtml",
+          "title": "Pokťarth - Johto - Route 48",
+          "http_status": 200,
+          "sha256": "2edb97d32061e0a9223884866e8f3ae4e44aee4dc879ede94fe3171a6bba7596",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Cliff Edge Gate",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added the Amphy construction gate and clarified that Rock Climb/Surf concern optional lower pond exploration.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Edge_Gate",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Edge_Gate",
+          "title": "Cliff Edge Gate - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "9851259d70be360ab44c1028c62fbd00b3a750553a96715cbb28b9cb9ebf003a",
+          "revision_id": 4380498
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cliffedgegate.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/cliffedgegate.shtml",
+          "title": "Pokéarth - Johto - Cliff Edge Gate",
+          "http_status": 200,
+          "sha256": "f3690ea16216a5be21d5eb79daccb48c00655e28e119a7b685029bc7c0b55f99",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Cliff Cave",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks"
+      ],
+      "notes": "Confirmed three-level Route 47 exits; added National Pokédex requirement for lower-floor breakable rocks.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Cave",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Cave",
+          "title": "Cliff Cave - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "67400841f8d0348539a691cebdddd3452e8d89c7a286e1173bbbe0ce9c0d0163",
+          "revision_id": 4549882
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/cliffcave.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/cliffcave.shtml",
+          "title": "Pokéarth - Johto - Cliff Cave",
+          "http_status": 200,
+          "sha256": "814165d1c11d52ae383fc701f259d5641ca991ff24fe1a06848ae9464102e849",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Embedded Tower",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Expanded SoulSilver Red Orb requirements and restricted Jade Orb eligibility to both Embedded Tower-origin legendaries.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Embedded_Tower",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Embedded_Tower",
+          "title": "Embedded Tower - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "4c8a527eff27c05302d6bb08563bbe98c9b018081d48db6cf424dadd9ff54926",
+          "revision_id": 4382430
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/embeddedtower.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/embeddedtower.shtml",
+          "title": "Pokéarth - Johto - Embedded Tower",
+          "http_status": 200,
+          "sha256": "e505fe91007a8f25400a9543fd2f73e4575ee05d8a3f61f874d364a94354c793",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Dark Cave",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added the missing HGSS Strength requirement and south-to-Route-45 ledge restriction; Flash is visibility aid, not a programmatic entry gate.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Cave",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Cave",
+          "title": "Dark Cave - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "e3ece68b511e6a18cd19a9ba28826d108aad6c73d3bf396940c4acdbf30f4d81",
+          "revision_id": 4576658
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/darkcave.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/darkcave.shtml",
+          "title": "Pokéarth - Johto - Dark Cave",
+          "http_status": 200,
+          "sha256": "37eca82d4740a585bc09688185cd3ba1d5e6c45ce3d2a06c673e2a7ca8ca624d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Sprout Tower",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Made Elder Li/Falkner progression explicit and kept the HGSS reward TM70 distinct from Generation II HM05.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Sprout_Tower",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Sprout_Tower",
+          "title": "Sprout Tower - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "5ec0d8351904ad9ed47a45b7d4dabbbdd946eb46310648ab7ce5191d79c906aa",
+          "revision_id": 4471047
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/sprouttower.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/sprouttower.shtml",
+          "title": "Pokéarth - Johto - Sprout Tower",
+          "http_status": 200,
+          "sha256": "eebe371c59369fc241965e52fde0dcc3532bf47da52673652f1cb505cb1dbe9e",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Ruins of Alph",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Routes 32/36 and Union Cave; spelled out Surf/Strength approaches and version-correct hidden-room triggers.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ruins_of_Alph",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Ruins_of_Alph",
+          "title": "Ruins of Alph - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "52e3e13af0e6f6695a5c78448b9b6dbf39935124e8a0f2582a554ddd05157823",
+          "revision_id": 4633235
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ruinsofalph.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/ruinsofalph.shtml",
+          "title": "Pokéarth - Johto - Ruins of Alph",
+          "http_status": 200,
+          "sha256": "c9054a3415e3746518f8567070aeee14b0d72a9a95880fb5cfe5e3168d2343ae",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Union Cave",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks"
+      ],
+      "notes": "Confirmed main passage and Alph branches; added the Friday B2F Lapras landmark without changing encounter tables.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Union_Cave",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Union_Cave",
+          "title": "Union Cave - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "9979a2a8941e465466f44f0277f823145d66686ef10f4d546b49a03588236f1b",
+          "revision_id": 4619925
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/unioncave.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/unioncave.shtml",
+          "title": "Pokéarth - Johto - Union Cave",
+          "http_status": 200,
+          "sha256": "83cb7b4b5278c5c42f0868c2e1d73c9e5a2b1d80bf5b543667c29c8dd3f0e41d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Slowpoke Well",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Kurt/Rocket incident, Azalea entrance and Surf/Strength lower-floor access; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Slowpoke_Well",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Slowpoke_Well",
+          "title": "Slowpoke Well - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "d8617528351a70558d1696ab941dd7e9383b99f5751cf6f232586b8cba919f65",
+          "revision_id": 4635501
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/slowpokewell.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/slowpokewell.shtml",
+          "title": "Pokéarth - Johto - Slowpoke Well",
+          "http_status": 200,
+          "sha256": "8d8f91a2ecc1c5d633127e704d9fd0acd3c5e363f002aa6410caead9185c7e7c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Ilex Forest",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed two Farfetch'd event, Headbutt tutor, shrine, Cut/Hive Badge and endpoints; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ilex_Forest",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Ilex_Forest",
+          "title": "Ilex Forest - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "1850713764e20c676648bbb1cd94d15d34ea8e7ab5f71a689b889b5b836819c3",
+          "revision_id": 4630526
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ilexforest.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/ilexforest.shtml",
+          "title": "Pokéarth - Johto - Ilex Forest",
+          "http_status": 200,
+          "sha256": "6598245de4f142200820c6ab79f000881ed9b340d4025bebbbbedc4fd82ee7bd",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "National Park",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Corrected shared gate wording from north to south; confirmed contest days and added optional Rock Climb area.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/National_Park",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/National_Park",
+          "title": "National Park - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "0b4219af66300f2fa08e6ad342d6d1aa5af198cc0e791499169c7104ad1c63db",
+          "revision_id": 4476697
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/nationalpark.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/nationalpark.shtml",
+          "title": "Pokéarth - Johto - National Park",
+          "http_status": 200,
+          "sha256": "2312b7ea0a6c0c306e8718c435d7f739d12b9cbc7f6ba0b3e20cf5426c782246",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Burned Tower",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed two floors and beast event; clarified rival/Morty progression and optional Strength/Rock Smash.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Burned_Tower",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Burned_Tower",
+          "title": "Burned Tower - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "1d3307c12d69606b20bef3dafe699d900743f7b7c4e664961bcda817bfa9a463",
+          "revision_id": 4561046
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/burnedtower.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/burnedtower.shtml",
+          "title": "Pokéarth - Johto - Burned Tower",
+          "http_status": 200,
+          "sha256": "efd2ba971b1ef03d422278ebd8196fad585efd668fa96dc16d37fd356fb9e946",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Bell Tower",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Kept SoulSilver's Rainbow Wing and specified Pewter source; excluded HeartGold-only Clear Bell requirement.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Bell_Tower",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Bell_Tower",
+          "title": "Bell Tower - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "ce0622ff79c97917ae2deebebe0c70f7e786ed0c79f92d842d5ee584cb52622f",
+          "revision_id": 4513125
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/belltower.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/belltower.shtml",
+          "title": "Pokéarth - Johto - Bell Tower",
+          "http_status": 200,
+          "sha256": "4b6ce0f58bae779542dd55ab3fb29c1595fc9082e459064fcc3079c271755b6a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Mt. Mortar",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed entrances, cave sections and Kiyo; specified Tyrogue/empty slot and optional Rock Climb; excluded Generation II Flash requirement.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Mortar",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Mortar",
+          "title": "Mt. Mortar - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "9fdcdf9d765f2aea06fe62a1f3091f6f627fb9b801365688f8580a573706274c",
+          "revision_id": 4509931
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mt.mortar.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/mt.mortar.shtml",
+          "title": "Pokéarth - Johto - Mt. Mortar",
+          "http_status": 200,
+          "sha256": "5ef68c5bec70fa6307f9d86c02c65f8df288e511ba5feafe39281de37e045ece",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Whirl Islands",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Surf/Whirlpool/visibility and SoulSilver Silver Wing/Tidal Bell; used the northeastern chamber approach from Bulbapedia, not Serebii's contradictory southeastern sentence.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands",
+          "title": "Whirl Islands - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "0541d923495ae532978aaac00bfec4c825470fdf2246a11324b7f11d17a389d0",
+          "revision_id": 4615440
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/whirlislands.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/whirlislands.shtml",
+          "title": "Pokéarth - Johto - Whirl Islands",
+          "http_status": 200,
+          "sha256": "b0abba74118c82258e47280ff4c5774917199904dd25f3d695620606a04a6e75",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Lake of Rage",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added the post-transmitter Wednesday low-water condition and outer Cut maze to verified Gyarados/Lance landmarks.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Lake_of_Rage",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Lake_of_Rage",
+          "title": "Lake of Rage - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "086855f4674eaf8bbef1a0b935471898454dc3586452b4d5a320b917d477e9ee",
+          "revision_id": 4634586
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/lakeofrage.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/lakeofrage.shtml",
+          "title": "Pokéarth - Johto - Lake of Rage",
+          "http_status": 200,
+          "sha256": "329bed5c33937ca2eb20d2190712502c18319cb5fb17c5554e5152f0e07a9384",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Ice Path",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Clarified mandatory HM07 pickup versus learning/using Waterfall, retained Strength puzzle and all four floors, and noted optional Rock Smash.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Ice_Path",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Ice_Path",
+          "title": "Ice Path - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "8c7415e0c5099b5e8c3e661e91d5d2cb9d95623eb4cea5a6f81385e5a1d7b23b",
+          "revision_id": 4625227
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/icepath.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/icepath.shtml",
+          "title": "Pokéarth - Johto - Ice Path",
+          "http_status": 200,
+          "sha256": "678bb31ae51706e9493929debfe00aa04f77451bfb5332f33190f20147558646",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Dragon's Den",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Confirmed Clair entry and Surf/Whirlpool; clarified elder quiz/Rising Badge and first-answer ExtremeSpeed reward.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Dragon's_Den",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Dragon%27s_Den",
+          "title": "Dragon's Den - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "23df08e0e6ed21aeb86978e075486218db875814ca37833b4c030c2eac70acef",
+          "revision_id": 4587224
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/dragon'sden.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/dragon'sden.shtml",
+          "title": "Pokéarth - Johto - Dragon's Den",
+          "http_status": 200,
+          "sha256": "867ede1233117e3f60e3c64abad138a45db206ceeee3cd41505ec7f13b3ee8b7",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Safari Zone Gate",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Route 48, reception, bazaar and Pokémon Center; no change needed.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Safari_Zone_Gate",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Safari_Zone_Gate",
+          "title": "Safari Zone Gate - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "1db75ca6c85ba2e6bcd8c48e29f8e5d7b286309b56a0cc7bee3416eccd1ef368",
+          "revision_id": 4386703
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/safarizonegate.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/safarizonegate.shtml",
+          "title": "Pokéarth - Johto - Safari Zone Gate",
+          "http_status": 200,
+          "sha256": "21cae0f4914189dd95d65ba3253e62500501eb63dd482f248faebd8db8192e5c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Safari Zone",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Amphy opening, fee, 30 Balls, six-of-twelve layout and no step limit; added National Dex block-unlock condition only. Encounter/block calculations remain unaudited.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Safari_Zone",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Safari_Zone",
+          "title": "Johto Safari Zone - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "17e40ed2e0b63f9fb3232d734a5feba80b1ac0312c681e2d3bc762227aa867e3",
+          "revision_id": 4630353
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/safarizone.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/safarizone.shtml",
+          "title": "Pokéarth - Johto - Safari Zone",
+          "http_status": 200,
+          "sha256": "5231b1de689c9f90bb37d3afb79f98a9979781bdf22f6bc3b912cdccaf940626",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Pokéathlon Dome",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added missing Whitney gate and Apricorn Box condition; confirmed shared gate and sports/reward services.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon_Dome",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon_Dome",
+          "title": "Pokéathlon Dome - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "98a71e977088abd25810c1a301fb30e8debc9fee2a7f982132f56dad0181bdf6",
+          "revision_id": 4617761
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/pokeathlondome.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/pokeathlondome.shtml",
+          "title": "Pokéarth - Johto - Pokeathlon Dome",
+          "http_status": 200,
+          "sha256": "a5001f22fb9d40062fa689b60a23d66474bd7ab6fb2f61761d58990651c88c6c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Goldenrod Department Store",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "connections"
+      ],
+      "notes": "Confirmed entrance and warehouse linkage; added floor service categories and HGSS sixth-floor raffle without copying Gen II-only Mystery Gift details.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Department_Store",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Department_Store",
+          "title": "Goldenrod Department Store - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "ab7f1b1f72ea0ec96e66df13c949e4ad0f734a54fdb9e8a2cb374bb08dba1862",
+          "revision_id": 4642935
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "title": "Pokéarth - Johto - Goldenrod City",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Goldenrod Radio Tower",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Expanded Basement Key/Director/Card Key chain and SoulSilver Silver Wing award; confirmed post-seventh-Badge takeover.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Radio_Tower",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Radio_Tower",
+          "title": "Goldenrod Radio Tower - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "46944a143645a3ff5ae872a54815354b9159621e4fcee8835df9e936ce91031c",
+          "revision_id": 4637059
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/radiotower.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/radiotower.shtml",
+          "title": "Pokéarth - Johto - Radio Tower",
+          "http_status": 200,
+          "sha256": "41d523726ee098931e4a36c6fe51054f66f853dfac9acd19798cede103d657f1",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Olivine Lighthouse",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed SecretPotion/Jasmine incident; added the elevator shortcut unlocked after first speaking to Jasmine.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Glitter_Lighthouse",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_Lighthouse",
+          "title": "Olivine Lighthouse - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "b32a5c59c02f2e9fdde612b59e15ce47ef5c88540997d41a9d79c1ec12282060",
+          "revision_id": 4587275
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/shininglighthouse.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/shininglighthouse.shtml",
+          "title": "Pokéarth - Johto - Shining Lighthouse",
+          "http_status": 200,
+          "sha256": "27ce12192b5e902a04a3d86c2a8c4b06a307bb2825b56408195b8fc35984db7a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Pokémon Day Care",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks"
+      ],
+      "notes": "Confirmed Route 34 and Johto couple contact; specified two slots and compatible-pair Egg service using Johto Route 34 reference in addition to the generic Day Care article.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day_Care",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day_Care",
+          "title": "Pokémon Day Care - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "361b081963534ed13e06ea993463ebe6dcd0d6951d77f6ebd7586aaaedb1fa32",
+          "revision_id": 4387268
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "title": "Pokéarth - Johto - Route 34",
+          "http_status": 200,
+          "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "S.S. Aqua",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Ticket and directional sailing days; added initial granddaughter quest versus later cabin-bed arrival.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/S.S._Aqua",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/S.S._Aqua",
+          "title": "S.S. Aqua - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "588f496b56534aad89679cbce6d38d6aa1094cc735ac7c2b216516c43d1f1323",
+          "revision_id": 4616450
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/ssaqua.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/ssaqua.shtml",
+          "title": "Pokéarth - Johto - SS Aqua",
+          "http_status": 200,
+          "sha256": "bdaad65293238226d869c34230de617fae7db925107638767180ba2aa2109ff4",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Victory Road",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks"
+      ],
+      "notes": "Used Kanto and HGSS-specific pages rather than disambiguation/Let's Go; confirmed Strength and rival, excluded ordinary trainers and Moltres.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Victory_Road_(Kanto)",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Victory_Road_(Kanto)",
+          "title": "Victory Road (Kanto) - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "2de2659b75ec5e84214a8dd0f68f66e84f0009a5b351efe38a6d0d1a45ad4044",
+          "revision_id": 4546049
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/victoryroad.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/4th/victoryroad.shtml",
+          "title": "Pokéarth - Kanto - Victory Road",
+          "http_status": 200,
+          "sha256": "3f99da8b0f496330dc519eb66b014dc15401cbe1e8c3c864c8b7ba3614ba3af2",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Indigo Plateau",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Used the HGSS Serebii page; confirmed Victory Road entry, lobby services and consecutive Elite Four/Champion challenge.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Indigo_Plateau",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Indigo_Plateau",
+          "title": "Indigo Plateau - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "884a70c972a4c97db07632c7af969cdca9c70fae667cb27d62641d059ba9081c",
+          "revision_id": 4590787
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/indigoplateau.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/4th/indigoplateau.shtml",
+          "title": "Pokéarth - Kanto - Indigo Plateau",
+          "http_status": 200,
+          "sha256": "c4c112aedcb90170b3b5c319f02c8f69eb8d5948411b96f9d9f641a3c6eee385",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Mt. Silver",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Kept grouped exterior/cave scope and all-16-Badge access; checked the separate cave article and excluded Gen II Flash requirement.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver",
+          "title": "Mt. Silver - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "56a0b7402583839d9bb6c3a6f071113219eb6c32b70e5bf67e7600961a2b6d0c",
+          "revision_id": 4561043
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/mt.silver.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/mt.silver.shtml",
+          "title": "Pokéarth - Johto - Mt. Silver",
+          "http_status": 200,
+          "sha256": "d47b7accff4e7bf71fa2f54e07e4d12d8a01a890e61c80d03f85eb6d33f168fe",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 26",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed houses and Reception Gate; added healing and the one-way return shortcuts.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26",
+          "title": "Kanto Route 26 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "cca05d51fd90bc6a266789b649e42dc0b72853c58390015bc6fc31654b5129a9",
+          "revision_id": 4534887
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route26.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/route26.shtml",
+          "title": "Pokéarth - Kanto - Route 26",
+          "http_status": 200,
+          "sha256": "4cfdc41b11ca724a60c6ea7a8a991cc0e2ceb971f9c4e7e31943515d3cfb466c",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 27",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Added HGSS Elm Master Ball and mascot-story departure gates plus optional Whirlpool islands; retained Surf/Tohjo Waterfall distinction.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27",
+          "title": "Kanto Route 27 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "bdccc79a639277d37fe99f8483facb135ed01ab072f10e8f14501741f9c6999d",
+          "revision_id": 4534888
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route27.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/route27.shtml",
+          "title": "Pokéarth - Kanto - Route 27",
+          "http_status": 200,
+          "sha256": "e45b91206211646b4fbd73f183e0f1078027051c836286cf58b3f9a737de1f57",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Route 28",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Reception Gate/Mt. Silver and all-16-Badge access; added optional Cut celebrity path and Surf.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28",
+          "title": "Kanto Route 28 - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "10e10c26702168274c4a06de264eb25e13c7c698f2672d6a8812985a49271a4f",
+          "revision_id": 4534889
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route28.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/route28.shtml",
+          "title": "Pokéarth - Kanto - Route 28",
+          "http_status": 200,
+          "sha256": "ff1a4b957283b81668c8dbfa0c59ae2ad716ec3ac1f7c5f16ea800573785ca43",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Tohjo Falls",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks"
+      ],
+      "notes": "Confirmed Surf/Waterfall and both Route 27 portals; added the explicitly event-only Giovanni room context.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Tohjo_Falls",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Tohjo_Falls",
+          "title": "Tohjo Falls - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "a20778c836d09a835cceff732a9f9e303a9a804e76391084d69333910d39e68d",
+          "revision_id": 4534886
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/tohjofalls.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/tohjofalls.shtml",
+          "title": "Pokéarth - Kanto - Tohjo Falls",
+          "http_status": 200,
+          "sha256": "7ba08aac8a1230eb7c70f5e88e9c74b25c4e7e57638ad82115ba90b9306da8e3",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Pokémon League Reception Gate",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed four-way junction and Badge gates; added HGSS Viridian-visit eastern unlock instead of Gen II Snorlax rule.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Reception_Gate",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Reception_Gate",
+          "title": "Pokémon League Reception Gate - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "b54930956270945b9e5dc55b98180f2d0d0c7f1ad63787a72986cbb4a3835ab8",
+          "revision_id": 4632424
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",
+          "title": "Pokéarth - Kanto - Route 22",
+          "http_status": 200,
+          "sha256": "3275d6635b207e4063ca3e606bbef64e514903b927066452cf20f5d7e2a68b6d",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Bellchime Trail",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Confirmed Barrier Station/Bell Tower endpoints and autumn trees; no change needed. Rematch schedules were not added from conflicting source prose.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Bellchime_Trail",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Bellchime_Trail",
+          "title": "Bellchime Trail - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "92f75b8189dbbe5c5f213e6ca6c3fa80c2df14a5897ca71752121cb59db20b43",
+          "revision_id": 4549841
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/bellchimetrail.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/bellchimetrail.shtml",
+          "title": "Pokéarth - Johto - Bellchime Trail",
+          "http_status": 200,
+          "sha256": "2a06283f01ea1dc676d162fac1ba98e2e9c4dea9857785eb902357b09246e6b0",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Goldenrod Tunnel",
+      "previous_name": "Goldenrod Underground",
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "name",
+        "details"
+      ],
+      "notes": "Changed canonical name to HGSS Goldenrod Tunnel with the former name searchable; confirmed shops, photo activity and basement/warehouse connection.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Underground",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Tunnel",
+          "title": "Goldenrod Tunnel - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "c1e33d4a8691545d7dc8a86b4b91faeff59712cdc477f124ed6b5ee04a4ebf56",
+          "revision_id": 4632948
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodunderground.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/goldenrodunderground.shtml",
+          "title": "Pokéarth - Johto - Goldenrod Underground",
+          "http_status": 200,
+          "sha256": "3f213d5e792df7511f92f3f3539c87692ee4be7d95390d66747a5d664d9cf647",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Team Rocket HQ",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed three basements, passwords and Lance; added HM05 Whirlpool reward and Glacier Badge permission.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_HQ",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_HQ",
+          "title": "Team Rocket HQ - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "1a02249eb4e5e73bd4ffa24adce907a3dcd5f2d55f9f81580a7756e86e8d86f8",
+          "revision_id": 4626328
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/rockethideout.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/rockethideout.shtml",
+          "title": "Pokéarth - Johto - Rocket Hideout",
+          "http_status": 200,
+          "sha256": "56dabf8fcc02586a40f8d3d5f345efb9412aaaacd8ccb4cda7d90a42e3e2e500",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Frontier Access",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "landmarks",
+        "access"
+      ],
+      "notes": "Corrected its Route 40 gate direction to north; confirmed Hall of Fame gate and added BP move-tutor house.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Frontier_Access",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Frontier_Access",
+          "title": "Frontier Access - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "2669a4b1e1702d38020cb05b767ee6e025e60227ffbeb5247403e5f024c15288",
+          "revision_id": 4386632
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/frontieraccess.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/frontieraccess.shtml",
+          "title": "Pokéarth - Johto - Frontier Access",
+          "http_status": 200,
+          "sha256": "9b91851299043669ef184b29ce351ea97b3e67f8adf9f66aa35705fdf760c7f4",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Battle Frontier",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "confirmed",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [],
+      "notes": "Used the Generation IV article instead of disambiguation; confirmed all five Johto facilities and Frontier Access/Hall of Fame scope.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)",
+          "title": "Battle Frontier (Generation IV) - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "4edb00d6b9beaf5ff6618bcfdaca43a7aa3947f482f2a279e11d3cf8a0584a5d",
+          "revision_id": 4633021
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/battlefrontier.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/battlefrontier.shtml",
+          "title": "Pokéarth - Johto - Battle Frontier",
+          "http_status": 200,
+          "sha256": "9b5f41161760ac83468baff91b49decebf753786451772e0866c90528b11f760",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "MooMoo Farm",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed Route 39, Milk and healing event; resolved five-versus-seven source discrepancy using pinned game script's seven-feed flag chain and added Seal Case.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Moomoo_Farm",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Moomoo_Farm",
+          "title": "Moomoo Farm - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "e6b48dfb8a0e54cd24075f066d0a25dd91a4c9a81bc7ab3ebe62a9f1a1b2f51e",
+          "revision_id": 4366185
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "title": "Pokéarth - Johto - Route 39",
+          "http_status": 200,
+          "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e",
+          "revision_id": null
+        }
+      ]
+    },
+    {
+      "location": "Magnet Train Station",
+      "previous_name": null,
+      "status": "reviewed",
+      "result": "corrected",
+      "checked": [
+        "name",
+        "summary",
+        "landmarks",
+        "access",
+        "connections"
+      ],
+      "changed_fields": [
+        "access"
+      ],
+      "notes": "Confirmed stations, restored Power Plant and Pass; added Copycat Lost Item source and independence from ship sailing days.",
+      "references": [
+        {
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Magnet_Train",
+          "canonical_url": "https://bulbapedia.bulbagarden.net/wiki/Magnet_Train",
+          "title": "Magnet Train - Bulbapedia, the community-driven Pokémon encyclopedia",
+          "http_status": 200,
+          "sha256": "6ea2ce4bc0422647423f4cd84a2bc4ef08c6ba6f573be97668a5e876794f4b5b",
+          "revision_id": 4542923
+        },
+        {
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "canonical_url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml",
+          "title": "Pokéarth - Johto - Goldenrod City",
+          "http_status": 200,
+          "sha256": "9c9769d664f3c65f5c68adc5883f3c2e4b491c5cf19619b508a3c8c3378b29cb",
+          "revision_id": null
+        }
+      ]
+    }
+  ],
+  "supplementary_references": [
+    {
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver_Cave",
+      "title": "Mt. Silver Cave - Bulbapedia, the community-driven Pokémon encyclopedia",
+      "sha256": "a2ddacc16a28225d854f572145cd96445646414cd03ab56757800a6c417cec48"
+    },
+    {
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Pewter_City",
+      "title": "Pewter City - Bulbapedia, the community-driven Pokémon encyclopedia",
+      "sha256": "328729228c1633aba8182fc7a125acf19fb677ebe2fd6c8dbd3323a6fe2b33b9"
+    }
+  ],
+  "source_discrepancies": [
+    {
+      "topic": "Moomoo berry count",
+      "decision": "Seven Oran Berries for HGSS, matching Bulbapedia and the game script; Serebii Route 39 says five.",
+      "primary_evidence": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/script/scr_seq/scr_seq_0251_R39R0201.s",
+      "detail": "The script consumes one Oran Berry per feed, sets flags 0A9, 0AC, 0AD, 0AE, 0AF, 0B0 on feeds 1–6, then healed flag 0AA on feed 7."
+    },
+    {
+      "topic": "Whirl Islands chamber approach",
+      "decision": "Bulbapedia identifies the northeastern island; Serebii general description says southeastern. The guide uses northeastern and retains the independent Silver Wing/Tidal Bell checks.",
+      "evidence": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands"
+    },
+    {
+      "topic": "Ice Path floors and HM07",
+      "decision": "Four floors (1F/B1F/B2F/B3F), supported by Bulbapedia and pinned map IDs; Serebii prose calls it three-levelled. Picking up HM07 is mandatory in HGSS; teaching/using it is not necessary to exit."
+    },
+    {
+      "topic": "Flash in Mt. Silver and Mt. Mortar",
+      "decision": "Do not carry Generation II cave-darkness statements into HGSS. Both relevant HGSS cave descriptions explicitly distinguish the lit remakes."
+    },
+    {
+      "topic": "Kanto Serebii default editions",
+      "decision": "Victory Road, Indigo Plateau, and Route 22 references explicitly use /4th/ pages, avoiding the default Let’s Go descriptions."
+    },
+    {
+      "topic": "Goldenrod name",
+      "decision": "Canonical HGSS location name is Goldenrod Tunnel. Goldenrod Underground remains a searchable alias and source-site label."
+    }
+  ]
+}

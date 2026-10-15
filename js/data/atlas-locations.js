@@ -1,5 +1,5 @@
 // Johto location groups and the League/Mt. Silver approaches.
-// Sources pinned to pret/pokeheartgold e3f671ad1d060140c587f925f4ab8ec3596f62b9.
+// Primary sources pinned to pret/pokeheartgold e3f671ad1d060140c587f925f4ab8ec3596f62b9.
 // Encounter tables remain in world.js; this module contains static information only.
 export const ATLAS_LOCATIONS = Object.freeze([
   {
@@ -21,6 +21,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/newbarktown.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/New_Bark_Town"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/057_T20.json"
       },
@@ -40,7 +48,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_NEW_BARK",
       "MAP_ROUTE_27"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Cherrygrove City",
@@ -53,13 +65,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Route 29 is east and Route 30 leads north",
-      "Surf opens the offshore part of the coast"
+      "Surf opens the offshore part of the coast",
+      "Rock Climb reaches the cliff beyond the offshore island; it is not needed to visit the city"
     ],
     "connections": [
       "Route 29",
       "Route 30"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/cherrygrovecity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Cherrygrove_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/064_T21.json"
@@ -80,7 +101,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_CHERRYGROVE",
       "MAP_CHERRYGROVE_GUIDE_GENT_HOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Violet City",
@@ -93,7 +118,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Routes 31, 32, and 36 connect through the city and its gates",
-      "Sprout Tower is reached from within the city"
+      "Sprout Tower is reached from within the city",
+      "Defeat Elder Li in Sprout Tower before challenging Falkner; the Zephyr Badge permits Rock Smash outside battle"
     ],
     "connections": [
       "Route 31",
@@ -102,6 +128,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Sprout Tower"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/violetcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Violet_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/070_T22.json"
@@ -122,7 +156,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_VIOLET",
       "MAP_VIOLET_GYM"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Azalea Town",
@@ -135,7 +173,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Arrive from Route 33",
-      "Resolve the Slowpoke Well incident before challenging the Gym and continuing the story west"
+      "Resolve the Slowpoke Well incident before challenging the Gym and continuing the story west",
+      "Defeat Bugsy and the rival before the Ilex Forest progression; the Hive Badge permits Cut outside battle"
     ],
     "connections": [
       "Route 33",
@@ -143,6 +182,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Slowpoke Well"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/azaleatown.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Azalea_Town"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/071_T23.json"
@@ -163,7 +210,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_AZALEA",
       "MAP_AZALEA_KURT_HOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Goldenrod City",
@@ -172,21 +223,31 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Large city with the Goldenrod Gym, Department Store, and Radio Tower.",
     "landmarks": [
       "Whitney's Normal-type Gym, Department Store, Radio Tower, and Underground",
-      "Bike Shop, Flower Shop, Game Corner, Global Terminal, and Magnet Train station"
+      "Bike Shop, Flower Shop, Game Corner, Global Terminal, and Magnet Train station",
+      "Name Rater, friendship checker, and Bill's house provide additional Pokémon services"
     ],
     "access": [
       "Route 34 is south and Route 35 is north",
-      "Train travel is a separate service requiring the restored service and a Pass"
+      "Train travel is a separate service requiring the restored service and a Pass",
+      "Whitney's Plain Badge permits Strength outside battle and is required to obtain the SquirtBottle"
     ],
     "connections": [
       "Route 34",
       "Route 35",
       "Goldenrod Department Store",
       "Goldenrod Radio Tower",
-      "Goldenrod Underground",
+      "Goldenrod Tunnel",
       "Magnet Train Station"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/073_T25.json"
@@ -212,7 +273,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_GOLDENROD",
       "MAP_GOLDENROD_FLOWER_SHOP",
       "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Ecruteak City",
@@ -221,11 +286,13 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Home of the Ecruteak Gym and the towers tied to Johto's legends.",
     "landmarks": [
       "Morty's Ghost-type Gym, Burned Tower, and Dance Theater",
-      "Barrier Station leads toward Bellchime Trail and Bell Tower"
+      "Barrier Station leads toward Bellchime Trail and Bell Tower",
+      "Rescuing the Kimono Girl from the Rocket Grunt in the Dance Theater earns HM03 Surf"
     ],
     "access": [
       "Routes 37, 38, and 42 lead south, west, and east",
-      "The Barrier Station checks the Fog Badge before letting the player toward the tower"
+      "The Barrier Station checks the Fog Badge before letting the player toward the tower",
+      "Awaken the legendary beasts in Burned Tower before challenging Morty; the Fog Badge permits Surf outside battle"
     ],
     "connections": [
       "Route 37",
@@ -235,6 +302,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Bellchime Trail"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/ecruteakcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Ecruteak_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/075_T27.json"
@@ -260,7 +335,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_ECRUTEAK",
       "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION",
       "MAP_ECRUTEAK_DANCE_THEATER"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Olivine City",
@@ -283,6 +362,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/olivinecity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Olivine_City"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/074_T26.json"
       },
@@ -302,7 +389,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_OLIVINE",
       "MAP_OLIVINE_LIGHTHOUSE_LIGHT_ROOM"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Cianwood City",
@@ -311,17 +402,27 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Coastal town reached by crossing the sea west of Olivine.",
     "landmarks": [
       "Chuck's Fighting-type Gym, the pharmacy, and Cameron's house",
-      "Chuck's wife gives HM02 Fly after the Gym victory"
+      "Chuck's wife gives HM02 Fly after the Gym victory",
+      "Suicune and Eusine appear in the northern part of town after the Burned Tower event"
     ],
     "access": [
       "Cross Route 41 using Surf",
-      "Cliff Edge Gate is the entrance to the Route 47 corridor"
+      "Cliff Edge Gate is the entrance to the Route 47 corridor",
+      "The Fist Badge permits Fly outside battle; Rock Smash is used for optional shore exploration"
     ],
     "connections": [
       "Route 41",
       "Cliff Edge Gate"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/cianwoodcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Cianwood_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/072_T24.json"
@@ -342,7 +443,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_CIANWOOD",
       "MAP_CIANWOOD_PHARMACY"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Mahogany Town",
@@ -355,7 +460,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Routes 42, 43, and 44 connect west, north, and east",
-      "Story progress controls Gym access and the eastern road, not merely buying a RageCandyBar"
+      "Clear the local Team Rocket HQ to challenge Pryce; the Glacier Badge permits Whirlpool outside battle",
+      "The eastern road opens after the Goldenrod Radio Tower takeover is resolved, not merely after buying a RageCandyBar"
     ],
     "connections": [
       "Route 42",
@@ -364,6 +470,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Team Rocket HQ"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/mahoganytown.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Mahogany_Town"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/084_T28.json"
@@ -384,7 +498,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_MAHOGANY",
       "MAP_MAHOGANY_SOUVENIR_SHOP"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Blackthorn City",
@@ -393,11 +511,13 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Northern Johto city with the Blackthorn Gym and Dragon's Den.",
     "landmarks": [
       "Clair's Dragon-type Gym and Dragon's Den",
-      "Move Deleter and Move Reminder share a house"
+      "Move Deleter and Move Reminder share a house",
+      "The Move Deleter/Reminder house also contains Draco Meteor and first-partner Pokémon move tutors"
     ],
     "access": [
       "Ice Path is the approach from Route 44",
-      "Route 45 descends south, while the Den entrance is behind the Gym"
+      "Route 45 descends south, while the Den entrance is behind the Gym",
+      "Defeat Clair and complete the Dragon's Den elder's test to receive the Rising Badge and use Waterfall outside battle"
     ],
     "connections": [
       "Route 45",
@@ -405,6 +525,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Dragon's Den"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/blackthorncity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Blackthorn_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/086_T30.json"
@@ -420,7 +548,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_BLACKTHORN"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 29",
@@ -433,7 +565,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Travel west from New Bark or east from Cherrygrove",
-      "Ledges affect which paths can be taken in each direction"
+      "Ledges affect which paths can be taken in each direction",
+      "Cut opens optional shortcuts; the main route remains walkable without it"
     ],
     "connections": [
       "New Bark Town",
@@ -441,6 +574,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 46"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route29.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/030_R29.json"
@@ -456,7 +597,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_29"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 30",
@@ -469,13 +614,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Cherrygrove is south and Route 31 continues toward Violet",
-      "There is no Ruins of Alph entrance on this route"
+      "The western path is initially blocked until the Mystery Egg has been delivered to Professor Elm",
+      "Cut links the two branches; Surf opens pond exploration. There is no Ruins of Alph entrance here"
     ],
     "connections": [
       "Cherrygrove City",
       "Route 31"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route30.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/031_R30.json"
@@ -491,7 +645,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_30"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 31",
@@ -500,11 +658,13 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Connects Route 30 with Violet City.",
     "landmarks": [
       "Western entrance to Dark Cave",
-      "Gatehouse leading into Violet City"
+      "Gatehouse leading into Violet City",
+      "Destination for the Kenya/Spearow Mail delivery from the Route 35 gate"
     ],
     "access": [
       "Continue from Route 30 to Violet",
-      "Dark Cave is a separate optional branch rather than the required route through to the city"
+      "Dark Cave is a separate optional branch rather than the required route through to the city",
+      "Cut opens shortcuts and Surf permits pond exploration; neither is needed for the main route to Violet"
     ],
     "connections": [
       "Violet City",
@@ -512,6 +672,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Dark Cave"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route31.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/032_R31.json"
@@ -527,7 +695,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_31"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 32",
@@ -540,7 +712,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "The southern route is gated by the Zephyr Badge and receiving Elm's Egg",
-      "Union Cave is the onward route to Route 33 and Azalea"
+      "Union Cave is the onward route to Route 33 and Azalea",
+      "Cut, Surf, and Rock Smash open optional exploration beyond the main walking route"
     ],
     "connections": [
       "Violet City",
@@ -548,6 +721,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Ruins of Alph"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route32.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/033_R32.json"
@@ -568,7 +749,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_32",
       "MAP_ROUTE_32_POKECENTER_1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 33",
@@ -589,6 +774,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route33.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/034_R33.json"
       },
@@ -603,7 +796,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_33"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 34",
@@ -625,6 +822,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route34.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/035_R34.json"
       },
@@ -639,7 +844,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_34"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 35",
@@ -648,18 +857,29 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "North of Goldenrod City, leading toward the National Park area.",
     "landmarks": [
       "Gatehouse shared with National Park and Pokéathlon Dome",
-      "Grass and a pond beside the main path"
+      "Grass and a pond beside the main path",
+      "Webster at the Goldenrod gate entrusts Kenya with Mail for delivery on Route 31"
     ],
     "access": [
       "Goldenrod is reached through the southern gate",
-      "The northern gate branches toward the park and the Dome"
+      "The northern gate branches toward the park and the Dome",
+      "A separate northeastern shortcut connects directly to Route 36 and requires Cut; Surf opens the pond"
     ],
     "connections": [
       "Goldenrod City",
       "National Park",
-      "Pokéathlon Dome"
+      "Pokéathlon Dome",
+      "Route 36"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route35.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/036_R35.json"
@@ -675,7 +895,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_35"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 36",
@@ -688,15 +912,25 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "After earning Whitney's Plain Badge, obtain the SquirtBottle from Goldenrod's Flower Shop to resolve the Sudowoodo blockage",
-      "Route 37 continues north toward Ecruteak"
+      "Route 37 continues north toward Ecruteak",
+      "The southwestern path connects directly to Route 35; Cut is required on that shortcut"
     ],
     "connections": [
       "Violet City",
       "National Park",
       "Route 37",
-      "Ruins of Alph"
+      "Ruins of Alph",
+      "Route 35"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route36.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/037_R36.json"
@@ -717,7 +951,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_36",
       "MAP_GOLDENROD_FLOWER_SHOP"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 37",
@@ -730,13 +968,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Connects Route 36 and Ecruteak",
-      "The Route 36 Sudowoodo event controls the earlier through-route"
+      "The Route 36 Sudowoodo event controls the earlier through-route",
+      "The eastern Apricorn-tree path is traversed north to south because of a ledge"
     ],
     "connections": [
       "Ecruteak City",
       "Route 36"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route37.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/038_R37.json"
@@ -752,7 +999,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_37"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 38",
@@ -765,13 +1016,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Connects Ecruteak with Route 39",
-      "Olivine is reached by continuing south along Route 39"
+      "Olivine is reached by continuing south along Route 39",
+      "A separate raised area is reached by using Rock Climb from Route 39; lower ledges also restrict travel direction"
     ],
     "connections": [
       "Ecruteak City",
       "Route 39"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route38.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/039_R38.json"
@@ -787,7 +1047,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_38"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 39",
@@ -799,8 +1063,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Baoba introduces the Safari Zone project here"
     ],
     "access": [
-      "Route 38 is north and Olivine is south",
-      "The farm is a side visit, not a passage to a different route"
+      "Route 38 joins from the east and Olivine is south",
+      "Rock Climb reaches the raised Route 38 side area; the farm itself is reached normally from Route 39"
     ],
     "connections": [
       "Olivine City",
@@ -808,6 +1072,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MooMoo Farm"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route39.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/040_R39.json"
@@ -828,7 +1100,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_39",
       "MAP_ROUTE_39_MOOMOO_FARM_HOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 40",
@@ -841,7 +1117,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Surf is required to continue south into Route 41",
-      "The western gate leads through Frontier Access, not straight into a battle facility"
+      "The northern gate leads through Frontier Access after entering the Hall of Fame, not directly into a battle facility"
     ],
     "connections": [
       "Olivine City",
@@ -849,6 +1125,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Frontier Access"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route40.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/091_W40.json"
@@ -869,7 +1153,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_40",
       "MAP_ROUTE_40_BATTLE_FRONTIER_GATEHOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 41",
@@ -891,6 +1179,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route41.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/092_W41.json"
       },
@@ -905,7 +1201,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_41"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 42",
@@ -914,11 +1214,12 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Connects Ecruteak City, Mt. Mortar, and the Mahogany area.",
     "landmarks": [
       "Three entrances to the Mt. Mortar cave system",
-      "Water and an Apricorn grove along the road"
+      "Water and an Apricorn grove along the road",
+      "Suicune can be encountered near the Apricorn grove after its Cianwood appearance"
     ],
     "access": [
-      "Connects Ecruteak and Mahogany",
-      "Surf permits the water crossing, while Mt. Mortar provides a cave branch"
+      "Connects Ecruteak and Mahogany; use Surf across the lakes or the Mt. Mortar passage",
+      "Cut opens the Apricorn grove and Rock Climb is used for optional cliff exploration"
     ],
     "connections": [
       "Ecruteak City",
@@ -926,6 +1227,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Mt. Mortar"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route42.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/041_R42.json"
@@ -941,7 +1250,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_42"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 43",
@@ -953,14 +1266,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Gatehouse associated with Team Rocket's toll during the incident"
     ],
     "access": [
-      "The grass route provides an alternative to the toll gate",
-      "Continue north to reach the lake"
+      "The grass route avoids Team Rocket's 1,000-Pokédollar gate toll during the incident",
+      "Continue north to reach the lake; Surf opens an optional path toward its western side"
     ],
     "connections": [
       "Mahogany Town",
       "Lake of Rage"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route43.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/042_R43.json"
@@ -976,7 +1297,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_43"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 44",
@@ -988,14 +1313,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Eastern approach from Mahogany toward Blackthorn"
     ],
     "access": [
-      "Mahogany's eastern road is story-gated",
-      "Enter Ice Path to continue to Blackthorn"
+      "The road from Mahogany opens after Team Rocket is defeated at Goldenrod Radio Tower",
+      "Enter Ice Path to continue to Blackthorn; Surf is required to reach the isolated grass between the ponds"
     ],
     "connections": [
       "Mahogany Town",
       "Ice Path"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route44.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/043_R44.json"
@@ -1011,7 +1344,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_44"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 45",
@@ -1024,7 +1361,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Southbound ledges make the descent one-way along parts of the road",
-      "Continue toward Route 46 and the early Johto routes"
+      "Continue toward Route 46 and the early Johto routes",
+      "The central river is not Surfable; the small pond near the southern end is separate"
     ],
     "connections": [
       "Blackthorn City",
@@ -1032,6 +1370,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 46"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route45.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/044_R45.json"
@@ -1047,7 +1393,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_45"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 46",
@@ -1060,7 +1410,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Ledges separate the upper and lower sections",
-      "The lower section can be visited early from Route 29, but it is not an unrestricted uphill shortcut to Blackthorn"
+      "The lower section can be visited early from Route 29, but it is not an unrestricted uphill shortcut to Blackthorn",
+      "The upper section can also be reached through Dark Cave, where Strength is required in HeartGold/SoulSilver"
     ],
     "connections": [
       "Route 29",
@@ -1068,6 +1419,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Dark Cave"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route46.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/045_R46.json"
@@ -1083,7 +1442,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_46"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 47",
@@ -1096,7 +1459,9 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Enter through Cliff Edge Gate from Cianwood",
-      "Cliff Cave changes elevation, while Surf and Rock Climb are required for the Embedded Tower approach"
+      "Cliff Cave changes elevation, while Surf and Rock Climb are required for the Embedded Tower approach",
+      "The corridor opens after the SecretPotion is delivered to Jasmine at the lighthouse",
+      "Surf and Waterfall are required to reach the route's tall-grass area from the lower shoreline"
     ],
     "connections": [
       "Cliff Edge Gate",
@@ -1105,6 +1470,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 48"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route47.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/146_R47.json"
@@ -1125,7 +1498,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_47",
       "MAP_CLIFF_EDGE_GATE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 48",
@@ -1146,6 +1523,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route48.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/147_R48.json"
       },
@@ -1160,7 +1545,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_48"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Cliff Edge Gate",
@@ -1172,14 +1561,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Lower lake as an optional exploration area"
     ],
     "access": [
-      "Use this gate to leave Cianwood for Route 47",
-      "Rock Climb is needed to reach the lower lake"
+      "Construction blocks passage until Amphy has been healed at Olivine Lighthouse",
+      "The main path then connects Cianwood to Route 47; Rock Climb and Surf are used to explore the lower pond"
     ],
     "connections": [
       "Cianwood City",
       "Route 47"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/cliffedgegate.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Edge_Gate"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/250_D48R0101.json"
@@ -1200,7 +1597,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_CLIFF_EDGE_GATE",
       "MAP_ROUTE_47"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Cliff Cave",
@@ -1209,7 +1610,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Small multi-level cave connecting the different cliff levels of Route 47.",
     "landmarks": [
       "Multi-level cave inside the Route 47 cliffs",
-      "Separate exits onto different elevations of the same route"
+      "Separate exits onto different elevations of the same route",
+      "Breakable rocks on the bottom floor appear after obtaining the National Pokédex"
     ],
     "access": [
       "All outdoor exits return to Route 47",
@@ -1219,6 +1621,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 47"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/cliffcave.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Cliff_Cave"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/313_D50R0101.json"
@@ -1234,7 +1644,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_CLIFF_CAVE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Embedded Tower",
@@ -1247,12 +1661,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Reach the entrance using Surf and Rock Climb on Route 47",
-      "Legendary access is a postgame event with additional orb requirements, not an ordinary walking encounter"
+      "After defeating Red and receiving a Kanto first partner from Oak, Mr. Pokémon gives SoulSilver's Red Orb for Groudon",
+      "For Rayquaza, show Oak both a Kyogre and a Groudon originating from Embedded Tower to receive the Jade Orb; this requires trading between versions"
     ],
     "connections": [
       "Route 47"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/embeddedtower.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Embedded_Tower"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/476_D52R0101.json"
@@ -1268,7 +1691,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_EMBEDDED_TOWER_GROUDON_ROOM"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Dark Cave",
@@ -1280,8 +1707,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Entrances at Routes 31, 45, and 46"
     ],
     "access": [
-      "Flash helps visibility",
-      "Surf and Rock Smash are needed for parts of the cave, so an entrance does not guarantee unrestricted traversal to every exit"
+      "Flash improves visibility; Surf, Strength, and Rock Smash are used in different parts of the cave",
+      "Ledges prevent reaching Route 45 from the southern side; the three entrances are not an unrestricted shortcut to Blackthorn"
     ],
     "connections": [
       "Route 31",
@@ -1289,6 +1716,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 46"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/darkcave.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Cave"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/169_D42R0102.json"
@@ -1305,7 +1740,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_DARK_CAVE_ROUTE_31_SIDE",
       "MAP_DARK_CAVE_ROUTE_45_SIDE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Sprout Tower",
@@ -1318,12 +1757,20 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Enter from Violet City",
-      "Completing the tower is part of the early Violet Gym progression"
+      "Defeat Elder Li on the third floor before challenging Falkner; the reward is TM70 Flash, not Generation II's HM05"
     ],
     "connections": [
       "Violet City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/sprouttower.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Sprout_Tower"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/107_D15R0101.json"
@@ -1349,7 +1796,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_SPROUT_TOWER_1F",
       "MAP_SPROUT_TOWER_3F",
       "MAP_VIOLET_GYM"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Ruins of Alph",
@@ -1361,8 +1812,9 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Unown research and the Unown Report"
     ],
     "access": [
-      "Outdoor gates connect to Routes 32 and 36",
-      "Some chambers are approached through Union Cave and require exploration moves"
+      "Outdoor gates connect to Routes 32 and 36; Surf reaches the southern chamber and Union Cave approaches",
+      "Surf and Strength are needed to reach the southwestern puzzle chamber through Union Cave",
+      "Hidden-room triggers are Escape Rope, Flash, Ho-Oh anywhere in the party, and selecting Use on a Water Stone while facing its inscription; these are separate chamber conditions"
     ],
     "connections": [
       "Route 32",
@@ -1370,6 +1822,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Union Cave"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/ruinsofalph.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Ruins_of_Alph"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/110_D24R0101.json"
@@ -1395,7 +1855,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_RUINS_OF_ALPH",
       "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
       "MAP_UNION_CAVE_1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Union Cave",
@@ -1404,7 +1868,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Cave between Route 32 and Route 33.",
     "landmarks": [
       "Main 1F passage, B1F, and B2F",
-      "Side exits lead toward isolated Ruins of Alph chambers"
+      "Side exits lead toward isolated Ruins of Alph chambers",
+      "A special Lapras appears on B2F on Fridays"
     ],
     "access": [
       "The main walking route connects Routes 32 and 33",
@@ -1416,6 +1881,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Ruins of Alph"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/unioncave.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Union_Cave"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/096_D25R0101.json"
@@ -1441,7 +1914,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_UNION_CAVE_1F",
       "MAP_UNION_CAVE_B1F",
       "MAP_UNION_CAVE_B2F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Slowpoke Well",
@@ -1460,6 +1937,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Azalea Town"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/slowpokewell.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Slowpoke_Well"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/111_D26R0101.json"
@@ -1485,7 +1970,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_SLOWPOKE_WELL_ENTRANCE",
       "MAP_SLOWPOKE_WELL_B1F",
       "MAP_SLOWPOKE_WELL_B2F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Ilex Forest",
@@ -1506,6 +1995,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/ilexforest.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Ilex_Forest"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/114_D36R0101.json"
       },
@@ -1520,7 +2017,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ILEX_FOREST"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "National Park",
@@ -1529,11 +2030,12 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Park between Routes 35 and 36; hosts the Bug-Catching Contest.",
     "landmarks": [
       "Bug-Catching Contest grounds and surrounding paths",
-      "Northern gate area shared with the Pokéathlon approach"
+      "Southern gate area shared with the Route 35/Pokéathlon approach"
     ],
     "access": [
-      "Connects Routes 35 and 36 through gates",
-      "The Bug-Catching Contest runs on Tuesday, Thursday, and Saturday"
+      "Connects Routes 35 and 36 through gates; the southern shared gate also leads toward Pokéathlon Dome",
+      "The Bug-Catching Contest runs on Tuesday, Thursday, and Saturday",
+      "Rock Climb opens the optional northeastern upper area"
     ],
     "connections": [
       "Route 35",
@@ -1541,6 +2043,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Pokéathlon Dome"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/nationalpark.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/National_Park"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/093_D22R0101.json"
@@ -1561,7 +2071,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_NATIONAL_PARK",
       "MAP_ROUTE_35_NATIONAL_PARK_POKEATHALON_GATEHOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Burned Tower",
@@ -1574,12 +2088,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Enter from Ecruteak City",
-      "The basement event advances the local story and is separate from random wild encounters"
+      "The basement event advances the local story and is separate from random wild encounters",
+      "Defeat the rival and trigger the basement beast event to return Morty to his Gym; Strength and Rock Smash serve optional exploration"
     ],
     "connections": [
       "Ecruteak City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/burnedtower.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Burned_Tower"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/005_D18R0101.json"
@@ -1600,7 +2123,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_BURNED_TOWER_1F",
       "MAP_BURNED_TOWER_B1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Bell Tower",
@@ -1613,12 +2140,24 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Approach through Ecruteak's Barrier Station and Bellchime Trail",
-      "The Rainbow Wing is needed to ascend, and SoulSilver obtains it during the Kanto portion of the game"
+      "In SoulSilver, an old man in Pewter City gives the Rainbow Wing needed to ascend; the Clear Bell requirement belongs to HeartGold"
     ],
     "connections": [
       "Bellchime Trail"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/belltower.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Bell_Tower"
+      },
+      {
+        "label": "Supporting location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Pewter_City"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/108_D17R0101.json"
@@ -1639,7 +2178,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_BELL_TOWER_1F",
       "MAP_BELL_TOWER_10F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Mt. Mortar",
@@ -1651,13 +2194,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Kiyo's training area in the deeper cave"
     ],
     "access": [
-      "Surf, Waterfall, and Strength open deeper routes",
-      "The Kiyo reward requires space in the party"
+      "Surf, Waterfall, and Strength open deeper routes; Rock Climb reaches additional areas",
+      "Defeating Kiyo earns a Tyrogue, but an empty party slot is required to receive it",
+      "Unlike Gold/Silver, this cave is already lit in HeartGold/SoulSilver; Flash is not required"
     ],
     "connections": [
       "Route 42"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/mt.mortar.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Mortar"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/116_D38R0101.json"
@@ -1675,7 +2227,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_MOUNT_MORTAR_1F_ENTRANCE",
       "MAP_MOUNT_MORTAR_1F_BACK",
       "MAP_MOUNT_MORTAR_B1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Whirl Islands",
@@ -1687,13 +2243,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Lugia's chamber below the waterfall basin"
     ],
     "access": [
-      "Surf and Whirlpool are needed for the island approaches, and Flash helps underground",
-      "SoulSilver's Lugia story also requires the Silver Wing and Tidal Bell events"
+      "Surf and Whirlpool are needed for the island approaches; Flash improves visibility underground",
+      "SoulSilver's Lugia story requires the Silver Wing and Tidal Bell events; the chamber route starts from the northeastern island"
     ],
     "connections": [
       "Route 41"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/whirlislands.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Whirl_Islands"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/118_D40R0101.json"
@@ -1710,7 +2274,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_WHIRL_ISLANDS_1F",
       "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Lake of Rage",
@@ -1723,12 +2291,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Reach the lake from Route 43",
-      "Surf reaches the Gyarados and water areas, while the outer paths have additional tree obstacles"
+      "Surf reaches the Gyarados and water areas, while the outer paths have additional tree obstacles",
+      "After Team Rocket's transmitter is shut down, Wednesday brings lower water and different accessible paths; Cut is used around the outer maze"
     ],
     "connections": [
       "Route 43"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/lakeofrage.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Lake_of_Rage"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/085_T29.json"
@@ -1744,7 +2321,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_LAKE_OF_RAGE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Ice Path",
@@ -1756,14 +2337,23 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "HM07 Waterfall is found on the route through the cave"
     ],
     "access": [
-      "Connects Route 44 to Blackthorn City",
-      "Strength is needed for the boulder puzzles, but learning Waterfall is not required just to exit the cave"
+      "Connects Route 44 to Blackthorn City; Strength is needed for the boulder puzzles",
+      "In HeartGold/SoulSilver an NPC prevents progress until HM07 Waterfall is picked up, but teaching or using Waterfall is not needed to exit",
+      "Rock Smash is used for optional item exploration; the cave has 1F and three basement floors"
     ],
     "connections": [
       "Blackthorn City",
       "Route 44"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/icepath.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Ice_Path"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/117_D39R0101.json"
@@ -1784,7 +2374,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ICE_PATH_1F",
       "MAP_ICE_PATH_B1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Dragon's Den",
@@ -1793,16 +2387,26 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Sacred dragon location behind Blackthorn City.",
     "landmarks": [
       "Lake, shrine, and the elder's challenge",
-      "Clair's post-battle Badge event"
+      "Clair's post-battle Badge event",
+      "The elder can award a Dratini; correct first answers give it ExtremeSpeed"
     ],
     "access": [
       "Enter behind Blackthorn Gym after defeating Clair",
-      "Surf and Whirlpool are needed to reach the shrine"
+      "Surf and Whirlpool are needed to reach the shrine",
+      "Complete the elder's quiz to receive the Rising Badge and unlock Waterfall outside battle"
     ],
     "connections": [
       "Blackthorn City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/dragon'sden.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Dragon's_Den"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/239_D44R0102.json"
@@ -1823,7 +2427,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_DRAGONS_DEN",
       "MAP_DRAGONS_DEN_SHRINE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Safari Zone Gate",
@@ -1844,6 +2452,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/safarizonegate.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Safari_Zone_Gate"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/168_D47.json"
       },
@@ -1858,7 +2474,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_SAFARI_ZONE_GATE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Safari Zone",
@@ -1871,12 +2491,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "After healing the lighthouse Ampharos, Baoba calls to announce the opening; enter from Safari Zone Gate",
-      "Catching visits cost 500 Pokédollars and use Safari Balls; customization unlocks through later tests"
+      "Catching visits cost 500 Pokédollars and use Safari Balls; customization unlocks through later tests",
+      "The entry fee supplies 30 Safari Balls with no step/time limit; six of the twelve areas are active at once",
+      "Block arrangement additionally requires the National Pokédex and Baoba's later unlock; this static note does not certify encounter/block tables"
     ],
     "connections": [
       "Safari Zone Gate"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/safarizone.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Safari_Zone"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/167_D47R0101.json"
@@ -1901,7 +2531,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_SAFARI_ZONE_ENTRANCE_INTERIOR",
       "MAP_SAFARI_ZONE_01"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Pokéathlon Dome",
@@ -1913,14 +2547,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Performance-based activities rather than standard Pokémon battles"
     ],
     "access": [
-      "Reached through the shared gate north of Route 35",
-      "National Park's gate area connects to the same approach"
+      "The shared gate north of Route 35 connects this area with National Park",
+      "The area is locked until Whitney has been defeated; an Apricorn Box is needed to receive the Apriblender"
     ],
     "connections": [
       "Route 35",
       "National Park"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/pokeathlondome.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon_Dome"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/251_D49.json"
@@ -1936,7 +2578,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_POKEATHLON_DOME"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Goldenrod Department Store",
@@ -1945,7 +2591,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Multi-floor shop in Goldenrod City.",
     "landmarks": [
       "Multi-floor shop with stairs, elevator, and basement",
-      "Different floors sell different categories of supplies"
+      "Different floors sell different categories of supplies",
+      "2F supplies, 3F battle items, 4F vitamins, 5F TMs, and a 6F atrium with a daily raffle"
     ],
     "access": [
       "Main entrance is in Goldenrod City",
@@ -1953,9 +2600,17 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "connections": [
       "Goldenrod City",
-      "Goldenrod Underground"
+      "Goldenrod Tunnel"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Department_Store"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/184_T25R1001.json"
@@ -1976,7 +2631,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_GOLDENROD_DEPARTMENT_STORE_1F",
       "MAP_GOLDENROD_TUNNEL_WAREHOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Goldenrod Radio Tower",
@@ -1989,12 +2648,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Enter from Goldenrod City",
-      "Upper floors are story-restricted, and the Underground rescue is part of resolving the takeover"
+      "Upper floors are story-restricted, and the Underground rescue is part of resolving the takeover",
+      "The takeover follows the seventh Johto Badge: the Basement Key leads to the Director, whose Card Key opens the upper tower",
+      "Resolving the takeover awards the Silver Wing in SoulSilver and opens the road east of Mahogany"
     ],
     "connections": [
       "Goldenrod City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/radiotower.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Radio_Tower"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/109_D23R0101.json"
@@ -2015,7 +2684,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_GOLDENROD_RADIO_TOWER_1F",
       "MAP_GOLDENROD_RADIO_TOWER_5F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Olivine Lighthouse",
@@ -2028,12 +2701,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Climb through the lighthouse to reach Jasmine",
-      "Bring the SecretPotion from Cianwood's pharmacy to resolve the incident and return Jasmine to her Gym"
+      "Bring the SecretPotion from Cianwood's pharmacy to resolve the incident and return Jasmine to her Gym",
+      "The elevator shortcut to the light room opens after first speaking with Jasmine"
     ],
     "connections": [
       "Olivine City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/shininglighthouse.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Glitter_Lighthouse"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/112_D27R0101.json"
@@ -2054,7 +2736,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_OLIVINE_LIGHTHOUSE_1F",
       "MAP_OLIVINE_LIGHTHOUSE_LIGHT_ROOM"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Pokémon Day Care",
@@ -2063,7 +2749,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Located on Route 34, south of Goldenrod City.",
     "landmarks": [
       "Pokémon care and compatible-pair Egg service",
-      "Day-Care couple and Pokégear contact"
+      "Day-Care couple and Pokégear contact",
+      "Two Pokémon can be deposited for experience gain; a compatible pair can produce an Egg"
     ],
     "access": [
       "The entrance is on Route 34",
@@ -2073,6 +2760,18 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 34"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route34.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Day_Care"
+      },
+      {
+        "label": "Supporting location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/302_R34R0101.json"
@@ -2088,7 +2787,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_34_DAYCARE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "S.S. Aqua",
@@ -2101,12 +2804,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "The ship is a post-League service and an S.S. Ticket is required for boarding",
-      "After the first voyage, departures from Olivine are Monday and Friday, while return departures from Vermilion are Wednesday and Sunday"
+      "After the first voyage, departures from Olivine are Monday and Friday, while return departures from Vermilion are Wednesday and Sunday",
+      "The first voyage involves finding the missing granddaughter; on later trips, sleep in the cabin bed to complete the crossing"
     ],
     "connections": [
       "Olivine City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/ssaqua.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/S.S._Aqua"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/278_P01R0301.json"
@@ -2132,7 +2844,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_SS_AQUA_1F",
       "MAP_SS_AQUA_OLIVINE_PORT_INTERIOR",
       "MAP_SS_AQUA_VERMILION_PORT_INTERIOR"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Victory Road",
@@ -2141,7 +2857,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Final route through the caves before the Indigo Plateau.",
     "landmarks": [
       "Multi-floor cave on the approach to Indigo Plateau",
-      "Rival battle near the northern exit"
+      "Rival battle near the northern exit",
+      "No ordinary Trainers remain in the HeartGold/SoulSilver cave; Moltres is at Mt. Silver, not here"
     ],
     "access": [
       "Enter through the Pokémon League Reception Gate after the Johto Badge check",
@@ -2153,6 +2870,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/4th/victoryroad.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Victory_Road_(Kanto)"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/121_D43R0101.json"
       },
@@ -2163,7 +2888,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_VICTORY_ROAD_1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Indigo Plateau",
@@ -2176,12 +2905,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Reached from Victory Road",
-      "The League challenge follows the Elite Four rooms before the Champion"
+      "The League challenge follows the Elite Four rooms before the Champion",
+      "The Elite Four and Champion are a consecutive challenge; returning to the lobby for healing is not possible mid-challenge"
     ],
     "connections": [
       "Victory Road"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/4th/indigoplateau.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Indigo_Plateau"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/055_T10.json"
@@ -2197,7 +2935,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_INDIGO_PLATEAU"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Mt. Silver",
@@ -2210,12 +2952,25 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Reach the exterior west from Route 28 after Oak grants access for earning all 16 Badges",
-      "Rock Climb is needed for the summit route, while Surf and Waterfall open water branches"
+      "Rock Climb is needed for the summit route, while Surf and Waterfall open water branches",
+      "Flash is not needed to light the HeartGold/SoulSilver cave; Mt. Silver here groups the exterior and Mt. Silver Cave"
     ],
     "connections": [
       "Route 28"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/mt.silver.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver"
+      },
+      {
+        "label": "Supporting location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Mt._Silver_Cave"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/087_T31.json"
@@ -2246,7 +3001,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_MOUNT_SILVER_CAVE_1F",
       "MAP_MOUNT_SILVER_CAVE_SUMMIT",
       "MAP_PALLET_TOWN_OAKS_LAB"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 26",
@@ -2259,13 +3018,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Route 27 is south",
-      "The northern gate checks the eight Johto Badges before allowing passage toward Victory Road"
+      "The northern gate checks the eight Johto Badges before allowing passage toward Victory Road",
+      "Southbound ledges provide faster return paths; the rest house heals the party"
     ],
     "connections": [
       "Route 27",
       "Pokémon League Reception Gate"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/route26.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/027_R26.json"
@@ -2281,7 +3049,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_26"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 27",
@@ -2294,7 +3066,9 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Surf east from New Bark Town",
-      "Waterfall is needed to traverse Tohjo Falls and continue along the League approach"
+      "Waterfall is needed to traverse Tohjo Falls and continue along the League approach",
+      "After obtaining eight Johto Badges, receive Elm's Master Ball and complete the Kimono Girls/Lugia story event before leaving New Bark for the League",
+      "Whirlpool reaches optional islands; it is separate from Waterfall needed inside Tohjo Falls"
     ],
     "connections": [
       "New Bark Town",
@@ -2302,6 +3076,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Tohjo Falls"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/route27.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/028_R27.json"
@@ -2317,7 +3099,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_27"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Route 28",
@@ -2330,13 +3116,22 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Reach it through the Pokémon League Reception Gate after the Mt. Silver access event",
-      "The route leads to the Mt. Silver exterior rather than directly to Indigo Plateau"
+      "The route leads to the Mt. Silver exterior rather than directly to Indigo Plateau",
+      "Cut opens the path to the secluded celebrity's house; Surf is used for optional water exploration"
     ],
     "connections": [
       "Pokémon League Reception Gate",
       "Mt. Silver"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/route28.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/029_R28.json"
@@ -2352,7 +3147,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_ROUTE_28"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Tohjo Falls",
@@ -2361,7 +3160,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Waterfall cave forming the passage through Route 27.",
     "landmarks": [
       "Twin waterfalls in a cave on Route 27",
-      "Optional hidden room behind a waterfall"
+      "Optional hidden room behind a waterfall",
+      "The normally empty hidden room is used for the event-Celebi time-travel battle with Giovanni"
     ],
     "access": [
       "Both public entrances return to Route 27",
@@ -2371,6 +3171,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Route 27"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/tohjofalls.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Tohjo_Falls"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/123_D45R0101.json"
@@ -2382,7 +3190,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_TOHJO_FALLS"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Pokémon League Reception Gate",
@@ -2395,7 +3207,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Eight Johto Badges open the way north to Victory Road",
-      "The westward Mt. Silver route opens after Oak's all-16-Badges authorization, and Route 22 is beyond this Johto directory's eastern scope"
+      "The westward Mt. Silver route opens after Oak's all-16-Badges authorization, and Route 22 is beyond this Johto directory's eastern scope",
+      "The eastern Route 22 guard moves after the player first visits Viridian City in HeartGold/SoulSilver, not after the Generation II Snorlax condition"
     ],
     "connections": [
       "Route 26",
@@ -2403,6 +3216,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Victory Road"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/kanto/4th/route22.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_League_Reception_Gate"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/270_R22R0101.json"
@@ -2423,7 +3244,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
       "MAP_PALLET_TOWN_OAKS_LAB"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Bellchime Trail",
@@ -2444,6 +3269,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/bellchimetrail.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Bellchime_Trail"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/004_D17R1101.json"
       },
@@ -2458,13 +3291,17 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_BELLCHIME_TOWER"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
-    "name": "Goldenrod Underground",
+    "name": "Goldenrod Tunnel",
     "type": "facility",
     "region": "Johto",
-    "details": "Underground shopping passage and story basements beneath Goldenrod.",
+    "details": "Goldenrod Tunnel, also known as the Goldenrod Underground: shopping passage and story basements beneath the city.",
     "landmarks": [
       "Underground passage with Haircut Brothers and rotating services",
       "Dress-up photo activity and basement/warehouse story sections"
@@ -2478,6 +3315,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Goldenrod Department Store"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/goldenrodunderground.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Goldenrod_Underground"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/192_D37R0102.json"
@@ -2503,7 +3348,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_GOLDENROD_TUNNEL_B1F",
       "MAP_GOLDENROD_TUNNEL_B2F",
       "MAP_GOLDENROD_TUNNEL_WAREHOUSE"
-    ]
+    ],
+    "aliases": [
+      "Goldenrod Underground"
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Team Rocket HQ",
@@ -2516,12 +3368,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Lance reveals the entrance during the Lake of Rage investigation",
-      "Clear the headquarters as part of the Mahogany story"
+      "Clear the headquarters as part of the Mahogany story",
+      "Lance awards HM05 Whirlpool after the generator is shut down; Pryce's Glacier Badge is required to use it outside battle"
     ],
     "connections": [
       "Mahogany Town"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/rockethideout.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_HQ"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/233_D35R0102.json"
@@ -2547,7 +3408,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "MAP_TEAM_ROCKET_HEADQUARTERS_B1F",
       "MAP_TEAM_ROCKET_HEADQUARTERS_B2F",
       "MAP_TEAM_ROCKET_HEADQUARTERS_B3F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Frontier Access",
@@ -2556,10 +3421,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "details": "Visitor area between Route 40 and the Battle Frontier.",
     "landmarks": [
       "Approach area with services for Battle Frontier visitors",
-      "Gate to the five battle facilities"
+      "Gate to the five battle facilities",
+      "Move Tutors in the southwestern house teach moves in exchange for Battle Points"
     ],
     "access": [
-      "Enter through the western Route 40 gate after the Hall of Fame progression",
+      "Enter through the northern Route 40 gate after entering the Hall of Fame",
       "Continue through the northern gate to the Battle Frontier"
     ],
     "connections": [
@@ -2567,6 +3433,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
       "Battle Frontier"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/frontieraccess.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Frontier_Access"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/367_D32R0102.json"
@@ -2587,7 +3461,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_BATTLE_FRONTIER_FRONTIER_ACCESS",
       "MAP_ROUTE_40_BATTLE_FRONTIER_GATEHOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Battle Frontier",
@@ -2607,6 +3485,14 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "sources": [
       {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/battlefrontier.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)"
+      },
+      {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/243_D32.json"
       },
@@ -2621,7 +3507,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_BATTLE_FRONTIER"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "MooMoo Farm",
@@ -2634,12 +3524,20 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Both the farmhouse and stable are reached from Route 39",
-      "Feed Miltank Oran Berries to restore its health"
+      "After speaking to the owner, feed Moomoo seven Oran Berries to restore her health; speak to the children for the Seal Case"
     ],
     "connections": [
       "Route 39"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/route39.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Moomoo_Farm"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/202_R39R0201.json"
@@ -2660,7 +3558,11 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "mapIds": [
       "MAP_ROUTE_39_MOOMOO_FARM_STABLE",
       "MAP_ROUTE_39_MOOMOO_FARM_HOUSE"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   },
   {
     "name": "Magnet Train Station",
@@ -2673,12 +3575,21 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Service must be restored through the Kanto Power Plant story",
-      "A Magnet Train Pass is required to board"
+      "A Magnet Train Pass is required to board",
+      "Return Copycat's Lost Item from Vermilion to obtain the Pass; the restored service runs independently of the S.S. Aqua sailing days"
     ],
     "connections": [
       "Goldenrod City"
     ],
     "sources": [
+      {
+        "label": "Serebii location reference",
+        "url": "https://www.serebii.net/pokearth/johto/goldenrodcity.shtml"
+      },
+      {
+        "label": "Bulbapedia location reference",
+        "url": "https://bulbapedia.bulbagarden.net/wiki/Magnet_Train"
+      },
       {
         "label": "Map entrances",
         "url": "https://github.com/pret/pokeheartgold/blob/e3f671ad1d060140c587f925f4ab8ec3596f62b9/files/fielddata/eventdata/zone_event/190_T25R0501.json"
@@ -2694,6 +3605,10 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "mapIds": [
       "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F"
-    ]
+    ],
+    "audit": {
+      "scope": "static location information",
+      "reviewed_on": "2026-10-14"
+    }
   }
 ]);

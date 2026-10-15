@@ -211,10 +211,31 @@ test("all Atlas locations display static information, sources, and mobile layout
   assert.deepEqual(exceptions, []);
 });
 
+test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", async () => {
+  await atlas();
+  const result = await evaluate(`(() => {
+    const search = document.querySelector('#location-search');
+    const find = (name) => Array.from(document.querySelectorAll('.location-card')).find(card => card.querySelector('h2').textContent === name);
+    const route = find('Route 35');
+    const shortcut = Array.from(route.querySelectorAll('.connection-link')).find(link => link.textContent === 'Route 36');
+    shortcut.click();
+    const destination = document.querySelector('.location-card h2').textContent;
+    const access = document.querySelector('.location-static').textContent;
+    search.value = 'Goldenrod Underground'; search.dispatchEvent(new Event('input'));
+    const tunnel = find('Goldenrod Tunnel');
+    return { destination, cut: access.includes('Cut'), alias: Boolean(tunnel), sources: Array.from(tunnel.querySelectorAll('.location-sources a'), a => a.href) };
+  })()`);
+  assert.equal(result.destination, "Route 36");
+  assert.equal(result.cut, true);
+  assert.equal(result.alias, true);
+  assert.ok(result.sources.some((url) => url.startsWith("https://www.serebii.net/")));
+  assert.ok(result.sources.some((url) => url.startsWith("https://bulbapedia.bulbagarden.net/")));
+});
+
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.36') && document.querySelector('.eyebrow').textContent.includes('v0.25.36'),
+    version: document.title.includes('v0.25.37') && document.querySelector('.eyebrow').textContent.includes('v0.25.37'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -222,16 +243,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.36<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.37<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.36");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.37");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -276,7 +297,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
   await evaluate(`document.querySelector('#theme-toggle').click()`);
   await command("Fetch.disable");
   await command("Page.reload");
-  await until(() => evaluate(`document.documentElement.dataset.theme === 'light'`), "Theme was not persisted");
+  await until(() => evaluate(`document.documentElement?.dataset.theme === 'light' && document.readyState === 'complete' && document.querySelector('#theme-toggle')?.getAttribute('aria-pressed') === 'true'`), "Theme was not persisted");
   assert.equal(await evaluate(`document.querySelector('#theme-toggle').getAttribute('aria-pressed')`), "true");
   for (const width of [320, 390, 768, 1440]) {
     await command("Emulation.setDeviceMetricsOverride", {width, height: 900, deviceScaleFactor:1, mobile:width < 800});
@@ -292,7 +313,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -549,7 +570,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -735,7 +756,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);

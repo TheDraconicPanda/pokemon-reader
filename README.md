@@ -56,15 +56,17 @@ new version is live. No separate preview host or repository is required.
 
 ## Current Atlas checkpoint
 
-**v0.25.36:** 70 grouped locations with landmarks, access/progression notes, sources,
-and corrected connections. Coverage includes Johto Routes 29–48 and the League/Mt.
-Silver approaches on Routes 26–28. City interiors and dungeon floors are grouped
-under their parent locations. Encounter tables and Safari mechanics are unchanged.
+**v0.25.37:** all 70 grouped Johto/border locations have been checked against
+Serebii and Bulbapedia for static names, landmarks, access/story conditions and
+connections. Corrections include the Route 35–36 Cut shortcut and missing HGSS
+story gates. Goldenrod Tunnel retains “Goldenrod Underground” as a search alias.
+Every card links the reference sites under Sources.
 
-The static information was assembled using pinned game map, event, and message
-data. The full Serebii/Bulbapedia content audit is the next step and remains pending.
-See [static coverage and online test steps](docs/atlas-static-coverage.md) and the
-[historical assessment](docs/atlas-assessment.md).
+See the [full audit and online test checklist](docs/atlas-static-audit.md) and
+[machine-readable coverage ledger](docs/atlas-static-audit.json). The independent
+static audit is complete for this scope; user validation of the published result
+is pending. Encounter tables and Safari block mechanics are unchanged and still
+need their own completion/audit before simulator work.
 
 ## Versioning
 

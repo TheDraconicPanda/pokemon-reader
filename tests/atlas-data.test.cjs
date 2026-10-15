@@ -23,8 +23,13 @@ test("all 70 location groups have static information and pinned sources", async 
     assert.ok(entry.sources.length >= 2);
     for (const source of entry.sources) {
       assert.ok(source.label.trim());
-      assert.match(source.url, /^https:\/\/github\.com\/pret\/pokeheartgold\/blob\/e3f671ad1d060140c587f925f4ab8ec3596f62b9\/files\//);
+      const url = new URL(source.url);
+      assert.equal(url.protocol, "https:");
+      assert.ok(["github.com", "www.serebii.net", "bulbapedia.bulbagarden.net"].includes(url.hostname));
+      if (url.hostname === "github.com") assert.match(url.pathname, /^\/pret\/pokeheartgold\/blob\/e3f671ad1d060140c587f925f4ab8ec3596f62b9\/files\//);
     }
+    assert.ok(entry.sources.some((source) => source.url.startsWith("https://www.serebii.net/pokearth/")));
+    assert.ok(entry.sources.some((source) => source.url.startsWith("https://bulbapedia.bulbagarden.net/wiki/")));
   }
 });
 
@@ -59,11 +64,42 @@ test("corrected junctions retain their gates and remove misleading shortcuts", a
     ["Route 34", "Ilex Forest"], ["Cianwood City", "Cliff Edge Gate"],
     ["Violet City", "Sprout Tower"], ["Ecruteak City", "Bellchime Trail"],
     ["Mt. Silver", "Route 28"], ["Route 40", "Frontier Access"],
-    ["New Bark Town", "Route 27"]
+    ["New Bark Town", "Route 27"], ["Route 35", "Route 36"]
   ]) assert.ok(data.get(from).includes(to), `${from} → ${to}`);
   for (const [from, to] of [
     ["Route 30", "Ruins of Alph"], ["Cianwood City", "Route 47"],
     ["Route 47", "Safari Zone"], ["Goldenrod City", "Pokémon Day Care"],
     ["Mt. Silver", "Indigo Plateau"], ["Ecruteak City", "Bell Tower"]
   ]) assert.equal(data.get(from).includes(to), false, `${from} must not bypass ${to}'s approach`);
+});
+
+test("the static audit accounts for every location with two reviewed reference sites", async () => {
+  const data = await locations();
+  const audit = JSON.parse(await readFile(path.join(__dirname, "../docs/atlas-static-audit.json"), "utf8"));
+  assert.equal(audit.release, "0.25.37");
+  assert.equal(audit.locations.length, data.length);
+  assert.deepEqual(audit.locations.map((row) => row.location).sort(), data.map((row) => row.name).sort());
+  for (const row of audit.locations) {
+    assert.equal(row.status, "reviewed");
+    assert.deepEqual(row.checked, ["name", "summary", "landmarks", "access", "connections"]);
+    assert.ok(row.notes.length > 30);
+    assert.deepEqual(row.references.map((ref) => ref.source).sort(), ["bulbapedia", "serebii"]);
+    for (const ref of row.references) {
+      assert.equal(ref.http_status, 200);
+      assert.match(ref.sha256, /^[a-f0-9]{64}$/);
+      assert.ok(ref.title.trim());
+    }
+  }
+});
+
+test("audited HGSS gates and the Tunnel alias remain represented", async () => {
+  const data = new Map((await locations()).map((entry) => [entry.name, entry]));
+  assert.deepEqual(data.get("Goldenrod Tunnel").aliases, ["Goldenrod Underground"]);
+  for (const [name, pattern] of [
+    ["Route 30", /Mystery Egg/], ["Route 35", /Route 36.*Cut/],
+    ["Route 47", /SecretPotion.*Jasmine/], ["Dark Cave", /Strength/],
+    ["Pokéathlon Dome", /Whitney/], ["Lake of Rage", /transmitter.*Wednesday/],
+    ["Ice Path", /picked up.*teaching or using Waterfall/],
+    ["MooMoo Farm", /seven Oran Berries/], ["Mt. Silver", /Flash is not needed/]
+  ]) assert.match(data.get(name).access.join(" "), pattern, name);
 });

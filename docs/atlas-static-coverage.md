@@ -1,5 +1,9 @@
 # Static Atlas coverage — v0.25.36
 
+> Historical step 1 snapshot. The subsequent full static audit is recorded in
+> [v0.25.37 audit results](atlas-static-audit.md), which supersede this snapshot's
+> pending statuses and its original adjacency wording.
+
 ## Scope and acceptance
 
 Step 1 implements a static guide for the existing Johto Atlas and the League/Mt.
