@@ -132,3 +132,30 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 .encounter-entry { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.2rem 0.8rem; padding: 0.4rem 0.55rem; background: #f9fafb; border-radius: 0.4rem; font-size: 0.8rem; }
 .encounter-name { font-weight: 650; }
 .encounter-info { color: #4b5563; }
+
+/* Navigation precedes encounters so its position is independent of table length. */
+.connection-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas: ". north ." "west current east" ". south ." "other other other";
+  align-items: center;
+  gap: 0.65rem;
+}
+.compass-north { grid-area: north; }
+.compass-west { grid-area: west; }
+.compass-east { grid-area: east; }
+.compass-south { grid-area: south; }
+.compass-other { grid-area: other; border-top: 1px solid #e5e7eb; padding-top: 0.65rem; }
+.compass-current { grid-area: current; text-align: center; font-weight: 700; overflow-wrap: anywhere; }
+.direction-label { display: block; font-size: 0.75rem; color: #4b5563; margin-bottom: 0.3rem; }
+.connection-link { min-height: 44px; max-width: 100%; overflow-wrap: anywhere; border-radius: 0.5rem; }
+.connection-links > div:not(.compass-other) { text-align: center; }
+.compass-other .connection-link { margin: 0 0.3rem 0.3rem 0; }
+.location-card h2 { scroll-margin-top: 1rem; }
+@media (max-width: 480px) {
+  .world-app { width: calc(100% - 1rem); }
+  .world-panel { padding: 0.65rem; }
+  .location-card { padding: 0.65rem; }
+  .connection-links { gap: 0.35rem; }
+  .connection-link { padding: 0.35rem; }
+}

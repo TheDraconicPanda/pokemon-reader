@@ -231,3 +231,16 @@ Phase 6 or authorize advancing to Safari mechanics/simulation before the audit.
 
 This completes the scoped static-content audit, not the encounter/mechanics audit,
 full Kanto coverage, or all of Phase 6. No simulator work has begun.
+
+## Atlas navigation first milestone — v0.25.38
+
+- [x] Open New Bark Town on each fresh Atlas visit
+- [x] Arrange overland links by compass direction above static information and encounters
+- [x] Preserve other connections, all 70 records, search/type filters, and encounter tables
+- [x] Focus and scroll to the destination heading after navigation
+- [x] Validate mobile/desktop geometry, exact destinations, and Reader/Planner regressions
+- [ ] Publish and confirm the deployed Atlas version
+- [ ] User acceptance on the existing Pages site
+
+Map artwork and a separate encounter block are deferred. No encounter filters are
+needed for this milestone. See [assessment and acceptance criteria](docs/atlas-navigation.md).

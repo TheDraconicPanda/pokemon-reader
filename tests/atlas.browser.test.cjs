@@ -50,10 +50,11 @@ async function evaluate(expression) {
   return response.result.value;
 }
 
-async function atlas() {
+async function atlas({ directory = true } = {}) {
   await command("Page.navigate", { url: `${baseURL}/pokedex-earth/` });
-  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '70 of 70 locations'`),
+  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '1 of 70 locations'`),
     "Atlas did not finish rendering");
+  if (directory) await evaluate(`document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
 }
 
 before(async () => {
@@ -235,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.37') && document.querySelector('.eyebrow').textContent.includes('v0.25.37'),
+    version: document.title.includes('v0.25.38') && document.querySelector('.eyebrow').textContent.includes('v0.25.38'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -767,4 +768,32 @@ test('Top ribbon links and actions share the same vertical alignment', async () 
     assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
   }
   await command('Emulation.clearDeviceMetricsOverride');
+});
+
+test('Atlas starts in New Bark, uses compass positions, and keeps navigation before long encounters', async () => {
+  await atlas({directory:false});
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card h2'),h=>h.textContent)`),['New Bark Town']);
+  assert.equal(await evaluate(`document.querySelector('.compass-west button').textContent`),'Route 29');
+  assert.equal(await evaluate(`document.querySelector('.compass-east button').textContent`),'Route 27');
+  await evaluate(`document.querySelector('.compass-west button').click()`);
+  assert.equal(await evaluate(`document.activeElement.textContent`),'Route 29');
+  assert.deepEqual(await evaluate(`['north','east','west'].map(d=>document.querySelector('.compass-'+d+' button').textContent)`),['Route 46','New Bark Town','Cherrygrove City']);
+  for (const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    const compass = await evaluate(`(() => {
+      const r = c => document.querySelector(c).getBoundingClientRect();
+      const north=r('.compass-north'), west=r('.compass-west'), east=r('.compass-east'), current=r('.compass-current');
+      return north.bottom <= current.top && west.right <= current.left && east.left >= current.right;
+    })()`);
+    assert.equal(compass,true,`Compass placement at ${width}`);
+    await evaluate(`(() => { const search=document.querySelector('#location-search');search.value='Safari Zone Gate';search.dispatchEvent(new Event('input'));Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Safari Zone Gate').querySelector('.compass-north button').click(); })()`);
+    const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('.location-connections').getBoundingClientRect().bottom,encounters:document.querySelector('.location-encounters').getBoundingClientRect().top,button:document.querySelector('.connection-link').getBoundingClientRect().bottom,rows:document.querySelectorAll('.encounter-entry').length})`);
+    assert.equal(layout.overflow,false); assert.equal(layout.heading,'Safari Zone');
+    assert.ok(layout.nav<=layout.encounters); assert.ok(layout.button<=844); assert.equal(layout.rows,269);
+    assert.equal(await evaluate(`document.querySelector('.location-connections').getBoundingClientRect().bottom <= document.querySelector('.location-static').getBoundingClientRect().top`),true);
+    await evaluate(`document.querySelector('#location-search').value='New Bark Town';document.querySelector('#location-search').dispatchEvent(new Event('input'));document.querySelector('.compass-west button').click()`);
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  await atlas({directory:false});
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
 });

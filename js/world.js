@@ -1,5 +1,67 @@
 import { ATLAS_LOCATIONS as LOCATIONS } from "./data/atlas-locations.js";
 
+// Explicit orientation for existing overland links. Unresolved links and interiors
+// remain available under Other connections; never infer direction from list order.
+const COMPASS_PAIRS = [
+  ["New Bark Town", "Route 29", "west"],
+  ["New Bark Town", "Route 27", "east"],
+  ["Route 27", "Route 26", "east"],
+  ["Route 26", "Pokémon League Reception Gate", "north"],
+  ["Pokémon League Reception Gate", "Victory Road", "north"],
+  ["Victory Road", "Indigo Plateau", "north"],
+  ["Pokémon League Reception Gate", "Route 28", "west"],
+  ["Route 28", "Mt. Silver", "west"],
+  ["Route 34", "Ilex Forest", "south"],
+  ["Route 35", "Route 36", "north"],
+  ["Route 40", "Frontier Access", "north"],
+  ["Frontier Access", "Battle Frontier", "north"],
+  ["Cianwood City", "Cliff Edge Gate", "west"],
+  ["Cliff Edge Gate", "Route 47", "west"],
+  ["Route 29", "Cherrygrove City", "west"],
+  ["Route 29", "Route 46", "north"],
+  ["Cherrygrove City", "Route 30", "north"],
+  ["Route 30", "Route 31", "north"],
+  ["Route 31", "Violet City", "west"],
+  ["Violet City", "Route 32", "south"],
+  ["Violet City", "Route 36", "west"],
+  ["Route 32", "Union Cave", "south"],
+  ["Union Cave", "Route 33", "south"],
+  ["Route 33", "Azalea Town", "west"],
+  ["Azalea Town", "Ilex Forest", "west"],
+  ["Route 34", "Goldenrod City", "north"],
+  ["Goldenrod City", "Route 35", "north"],
+  ["Route 35", "National Park", "north"],
+  ["National Park", "Route 36", "east"],
+  ["Route 36", "Route 37", "north"],
+  ["Route 37", "Ecruteak City", "north"],
+  ["Ecruteak City", "Route 38", "west"],
+  ["Route 38", "Route 39", "west"],
+  ["Route 39", "Olivine City", "south"],
+  ["Olivine City", "Route 40", "west"],
+  ["Route 40", "Route 41", "south"],
+  ["Route 41", "Cianwood City", "west"],
+  ["Ecruteak City", "Route 42", "east"],
+  ["Route 42", "Mahogany Town", "east"],
+  ["Mahogany Town", "Route 43", "north"],
+  ["Route 43", "Lake of Rage", "north"],
+  ["Mahogany Town", "Route 44", "east"],
+  ["Route 44", "Ice Path", "east"],
+  ["Ice Path", "Blackthorn City", "south"],
+  ["Blackthorn City", "Route 45", "south"],
+  ["Route 45", "Route 46", "south"],
+  ["Route 47", "Route 48", "north"],
+  ["Route 48", "Safari Zone Gate", "north"],
+  ["Safari Zone Gate", "Safari Zone", "north"]
+];
+const OPPOSITE = { north: "south", south: "north", east: "west", west: "east" };
+function connectionDirection(source, target) {
+  for (const [from, to, direction] of COMPASS_PAIRS) {
+    if (source === from && target === to) return direction;
+    if (source === to && target === from) return OPPOSITE[direction];
+  }
+  return "other";
+}
+
 const ROUTE_32_ENCOUNTERS = Object.freeze([
   { method: "Walking", pokemon: "Rattata", levels: "4–6", times: "Morning", rarity: "Common" },
   { method: "Walking", pokemon: "Rattata", levels: "6", times: "Morning", rarity: "Rare" },
@@ -1006,6 +1068,7 @@ function renderLocations({ exactName = null } = {}) {
     const text = document.createElement("div");
     const heading = document.createElement("h2");
     heading.textContent = location.name;
+    heading.tabIndex = -1;
     const details = document.createElement("p");
     details.textContent = `${location.region} · ${location.details}`;
     text.append(heading, details);
@@ -1049,10 +1112,6 @@ function renderLocations({ exactName = null } = {}) {
     }
     sources.append(sourcesHeading, sourceList);
     staticSection.append(sources);
-    card.append(staticSection);
-
-    const encounterSection = renderEncounters(location.name);
-    if (encounterSection) card.append(encounterSection);
 
     const connectedNames = location.connections.filter((name) =>
       LOCATIONS.some((candidate) => candidate.name === name)
@@ -1064,22 +1123,47 @@ function renderLocations({ exactName = null } = {}) {
       label.textContent = "Connected locations";
       const links = document.createElement("div");
       links.className = "connection-links";
+      const groups = {};
+      for (const direction of ["north", "west", "east", "south", "other"]) {
+        const group = document.createElement("div");
+        group.className = `compass-${direction}`;
+        const caption = document.createElement("span");
+        caption.className = "direction-label";
+        caption.textContent = direction === "other" ? "Other connections" : direction[0].toUpperCase() + direction.slice(1);
+        group.append(caption);
+        groups[direction] = group;
+      }
+      const current = document.createElement("span");
+      current.className = "compass-current";
+      current.textContent = location.name;
+      links.append(current);
       for (const name of connectedNames) {
         const link = document.createElement("button");
         link.type = "button";
         link.className = "connection-link";
         link.textContent = name;
+        const direction = connectionDirection(location.name, name);
+        link.setAttribute("aria-label", `${direction === "other" ? "Go to" : direction}: ${name}`);
         link.addEventListener("click", () => {
           searchInput.value = name;
           typeSelect.value = "all";
           renderLocations({ exactName: name });
+          const destination = list.querySelector("h2");
+          destination.focus({ preventScroll: true });
+          destination.scrollIntoView({ block: "start" });
         });
-        links.append(link);
+        groups[direction].append(link);
+      }
+      for (const group of Object.values(groups)) {
+        if (group.querySelector("button")) links.append(group);
       }
       connections.append(label, links);
       card.append(connections);
     }
 
+    card.append(staticSection);
+    const encounterSection = renderEncounters(location.name);
+    if (encounterSection) card.append(encounterSection);
     list.append(card);
   }
 
@@ -1088,4 +1172,4 @@ function renderLocations({ exactName = null } = {}) {
 
 searchInput.addEventListener("input", renderLocations);
 typeSelect.addEventListener("change", renderLocations);
-renderLocations();
+renderLocations({ exactName: "New Bark Town" });

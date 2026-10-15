@@ -186,3 +186,19 @@ from keyboard navigation. Direct view/section links fall back to Overview. Loadi
 a new save or resetting relocks them. Team Planner and Atlas remain independent.
 The 26 browser checks include unloaded/invalid/reset route protection and ribbon
 text alignment at 320/390/768/1440px.
+
+## Atlas navigation — v0.25.38
+
+Atlas opens New Bark Town on every fresh visit. Existing overland connections
+surround the current location in north/east/south/west positions, above static
+information and encounters. Interior and unassigned connections remain in an
+Other connections group. These are reference links: access notes still describe
+story gates, Surf requirements, and one-way ledges. Clicking a destination moves
+focus and scrolls to its heading. Manual search and location-type filtering remain
+available; clearing them opens the complete 70-location directory.
+
+Reader remains v0.25.37 and Team Planner is unchanged from the fetched deployment
+baseline. No encounter filters, map artwork, or encounter data changes are included.
+`npm test` now includes default-entry, compass geometry, destination focus, and
+navigation-before-content checks at 320/390/768/1440px. Publication and user
+acceptance are tracked in [the navigation milestone](docs/atlas-navigation.md).
