@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.42') && document.querySelector('.eyebrow').textContent.includes('v0.25.42'),
+    version: document.title.includes('v0.25.43') && document.querySelector('.eyebrow').textContent.includes('v0.25.43'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -914,5 +914,89 @@ test('whole Atlas distinguishes verified empty locations and exposes city and ca
     }
   }
   await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('every exported map decodes in a real browser at its declared dimensions',async()=>{
+  await atlas({directory:false});
+  const result=await evaluate(`(async()=>{
+    const {mapsForLocation}=await import('/js/data/atlas-maps.js');
+    const names=Array.from(document.querySelectorAll('.connection-link'),b=>b.textContent);
+    const {ATLAS_LOCATIONS}=await import('/js/data/atlas-locations.js');
+    const unique=new Map(ATLAS_LOCATIONS.flatMap(l=>mapsForLocation('soulsilver',l.name)).map(m=>[m.file,m]));
+    const failures=[];
+    for(const map of unique.values()) {
+      const image=new Image();image.src='/assets/maps/'+map.file;
+      try {await image.decode();if(image.naturalWidth!==map.width||image.naturalHeight!==map.height)failures.push(map.file+': dimensions');}
+      catch {failures.push(map.file+': decode');}
+    }
+    return {count:unique.size,failures};
+  })()`);
+  assert.ok(result.count>100);assert.deepEqual(result.failures,[]);
+});
+
+test('map and floor controls preserve encounters, update sources, and recover after an image failure',async()=>{
+  for(const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas();
+    // Follow a real connection to open exactly Ice Path, rather than a broad search result.
+    await evaluate(`Array.from(document.querySelectorAll('.connection-link')).find(b=>b.textContent==='Ice Path').click()`);
+    const before=await evaluate(`document.querySelector('.location-encounters').textContent`);
+    await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0`),'Ice Path map load');
+    for(const index of [1,2,3,0]) {
+      await evaluate(`(()=>{const select=document.querySelector('.map-select');select.focus();select.value='${index}';select.dispatchEvent(new Event('change'));})()`);
+      await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0`),'Floor map load');
+      const state=await evaluate(`({label:document.querySelector('.map-select').selectedOptions[0].textContent,alt:document.querySelector('.location-map').alt,caption:document.querySelector('.compass-current figcaption').textContent,source:document.querySelector('.location-sources a[href*="archives.bulbagarden.net"]').href,href:document.querySelector('.location-map-link').href,announcement:document.querySelector('.map-announcement').textContent,focused:document.activeElement===document.querySelector('.map-select'),text:document.querySelector('.location-encounters').textContent,fits:document.documentElement.scrollWidth<=innerWidth})`);
+      const floor=['1F','B1F','B2F','B3F'][index];
+      assert.equal(state.label,floor);assert.ok(state.alt.includes(floor));assert.ok(state.caption.includes(floor));
+      assert.ok(state.source.includes('Ice_Path_'+floor+'_HGSS.png'));assert.ok(state.href.includes('ice-path-'+floor.toLowerCase()));
+      assert.equal(state.focused,true);assert.equal(state.fits,true);assert.equal(state.text,before);
+      assert.ok(state.announcement.includes(floor));
+    }
+    assert.equal(await evaluate(`document.querySelector('.map-controls button').disabled`),true);
+    await evaluate(`document.querySelector('.map-controls button:last-child').click()`);
+    assert.equal(await evaluate(`document.querySelector('.map-select').value`),'1');
+    await evaluate(`document.querySelector('.location-map').src='/missing-floor-map.png'`);
+    await until(()=>evaluate(`document.querySelector('.location-map-link').hidden`),'Floor fallback');
+    await evaluate(`document.querySelector('.map-controls button:last-child').click()`);
+    await until(()=>evaluate(`!document.querySelector('.location-map-link').hidden&&document.querySelector('.location-map').naturalWidth>0`),'Recover after changing floors');
+    assert.equal(await evaluate(`document.querySelector('.map-select').value`),'2');
+    assert.equal(await evaluate(`document.querySelector('.location-encounters').textContent`),before);
+    if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)) {
+      await evaluate(`document.querySelector('.location-card h2').scrollIntoView({block:'start'})`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'ice-path-floors-'+width+'.png'),Buffer.from(shot.data,'base64'));
+    }
+    await evaluate(`document.querySelector('.connection-link').click()`);
+    assert.notEqual(await evaluate(`document.querySelector('.location-card h2').textContent`),'Ice Path');
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('all non-Safari location map choices render the matching catalogue view',async()=>{
+  await atlas();
+  const result=await evaluate(`(async()=>{
+    const {mapsForLocation}=await import('/js/data/atlas-maps.js');
+    const failures=[];let views=0;let locations=0;
+    for(const card of document.querySelectorAll('.location-card')) {
+      const name=card.querySelector('h2').textContent;
+      const maps=mapsForLocation('soulsilver',name);
+      if(name==='Safari Zone') {if(maps.length)failures.push(name+': excluded');continue;}
+      locations++;
+      const select=card.querySelector('.map-select');
+      if(!maps.length||!!select!==(maps.length>1))failures.push(name+': controls');
+      for(const [index,map] of maps.entries()) {
+        if(select){select.value=String(index);select.dispatchEvent(new Event('change'));}
+        views++;
+        const image=card.querySelector('.location-map');
+        const source=card.querySelector('.location-sources a[href*="archives.bulbagarden.net"]');
+        if(!image?.src.endsWith('/'+map.file)||source?.href!==new URL(map.source,location.href).href)
+          failures.push(name+': '+map.label);
+      }
+    }
+    return {locations,views,failures};
+  })()`);
+  assert.equal(result.locations,69);assert.equal(result.views,150);assert.deepEqual(result.failures,[]);
   assert.deepEqual(exceptions,[]);
 });

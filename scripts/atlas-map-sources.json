@@ -1,0 +1,1730 @@
+{
+  "gameId": "soulsilver",
+  "upstream_revision": "7840506be21bc5636f8d3d92b93266e202e6d63b",
+  "archives": {
+    "Johto": "66d1999b51d35144f539a5847e79aebdd2a526e6e645ccd0b2f4cda55c04bff6",
+    "Kanto": "050a5a8272217b49388ee90b033c1ee99bbab88454c96eacdb7e2c84475a1ae7"
+  },
+  "locations": {
+    "New Bark Town": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "New_Bark_Town_HGSS.png",
+        "archive": "Johto",
+        "layer": 1,
+        "width": 493,
+        "height": 397,
+        "existing": {
+          "file": "new-bark-town.png",
+          "width": 493,
+          "height": 397,
+          "source": "https://archives.bulbagarden.net/wiki/File:New_Bark_Town_HGSS.png",
+          "layer": 1,
+          "sha256": "4d602e3d8820365395411f78c28726e7c760120aebd2df1f2eed9fef8ca8d4b0"
+        },
+        "file": "new-bark-town.png"
+      }
+    ],
+    "Cherrygrove City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Cherrygrove_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 6,
+        "width": 1034,
+        "height": 370,
+        "existing": {
+          "file": "cherrygrove-city.png",
+          "width": 1034,
+          "height": 370,
+          "source": "https://archives.bulbagarden.net/wiki/File:Cherrygrove_City_HGSS.png",
+          "layer": 6,
+          "sha256": "5f3dff40889ad1b40d3be91e05a8eac50ec4dd2f5d8d7af7f10a26164574fbf5"
+        },
+        "file": "cherrygrove-city.png"
+      }
+    ],
+    "Violet City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Violet_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 24,
+        "width": 1024,
+        "height": 1152,
+        "existing": {
+          "file": "violet-city.png",
+          "width": 1024,
+          "height": 1152,
+          "source": "https://archives.bulbagarden.net/wiki/File:Violet_City_HGSS.png",
+          "layer": 24,
+          "sha256": "a6fea01a668fb4a85086abe89ecbbed33fb51c27da0dbb7fdad5b67640ec7f7a"
+        },
+        "file": "violet-city.png"
+      }
+    ],
+    "Azalea Town": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Azalea_Town_HGSS.png",
+        "archive": "Johto",
+        "layer": 57,
+        "width": 932,
+        "height": 508,
+        "file": "azalea-town-hgss.png"
+      }
+    ],
+    "Goldenrod City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Goldenrod_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 87,
+        "width": 1330,
+        "height": 885,
+        "file": "goldenrod-city-hgss.png"
+      }
+    ],
+    "Ecruteak City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Ecruteak_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 129,
+        "width": 1032,
+        "height": 785,
+        "file": "ecruteak-city-hgss.png"
+      }
+    ],
+    "Olivine City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Olivine_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 161,
+        "width": 1035,
+        "height": 858,
+        "file": "olivine-city-hgss.png"
+      }
+    ],
+    "Cianwood City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Cianwood_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 183,
+        "width": 550,
+        "height": 671,
+        "file": "cianwood-city-hgss.png"
+      }
+    ],
+    "Mahogany Town": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Mahogany_Town_HGSS.png",
+        "archive": "Johto",
+        "layer": 217,
+        "width": 567,
+        "height": 412,
+        "file": "mahogany-town-hgss.png"
+      }
+    ],
+    "Blackthorn City": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Blackthorn_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 240,
+        "width": 887,
+        "height": 792,
+        "file": "blackthorn-city-hgss.png"
+      }
+    ],
+    "Route 26": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Kanto_Route_26_HGSS.png",
+        "archive": "Johto",
+        "layer": 442,
+        "width": 512,
+        "height": 2118,
+        "file": "kanto-route-26-hgss.png"
+      }
+    ],
+    "Route 27": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Kanto_Route_27_HGSS.png",
+        "archive": "Johto",
+        "layer": 440,
+        "width": 3152,
+        "height": 480,
+        "file": "kanto-route-27-hgss.png"
+      }
+    ],
+    "Route 28": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Kanto_Route_28_HGSS.png",
+        "archive": "Kanto",
+        "layer": 339,
+        "width": 992,
+        "height": 448,
+        "file": "kanto-route-28-hgss.png"
+      }
+    ],
+    "Route 29": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_29_HGSS.png",
+        "archive": "Johto",
+        "layer": 2,
+        "width": 1581,
+        "height": 558,
+        "existing": {
+          "file": "route-29.png",
+          "width": 1581,
+          "height": 558,
+          "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_29_HGSS.png",
+          "layer": 2,
+          "sha256": "8836a1576262df52bff455588479b03d74d141c76852510e7d82262b7c5b2be7"
+        },
+        "file": "route-29.png"
+      }
+    ],
+    "Route 30": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_30_HGSS.png",
+        "archive": "Johto",
+        "layer": 7,
+        "width": 563,
+        "height": 1196,
+        "existing": {
+          "file": "route-30.png",
+          "width": 563,
+          "height": 1196,
+          "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_30_HGSS.png",
+          "layer": 7,
+          "sha256": "19ec8a05639d41002db0b811d5a64dd0b778abfed84dedd3ff6a5a45d1f9aa4c"
+        },
+        "file": "route-30.png"
+      }
+    ],
+    "Route 31": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_31_HGSS.png",
+        "archive": "Johto",
+        "layer": 15,
+        "width": 1012,
+        "height": 472,
+        "existing": {
+          "file": "route-31.png",
+          "width": 1012,
+          "height": 472,
+          "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_31_HGSS.png",
+          "layer": 15,
+          "sha256": "99e3967eb2ff03600f3df404817dc887e55ad26e8e109d6d3a5c2c1ee2aba758"
+        },
+        "file": "route-31.png"
+      }
+    ],
+    "Route 32": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_32_HGSS.png",
+        "archive": "Johto",
+        "layer": 25,
+        "width": 490,
+        "height": 2000,
+        "file": "johto-route-32-hgss.png"
+      }
+    ],
+    "Route 33": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_33_HGSS.png",
+        "archive": "Johto",
+        "layer": 31,
+        "width": 528,
+        "height": 463,
+        "file": "johto-route-33-hgss.png"
+      }
+    ],
+    "Route 34": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_34_HGSS.png",
+        "archive": "Johto",
+        "layer": 58,
+        "width": 600,
+        "height": 1235,
+        "file": "johto-route-34-hgss.png"
+      }
+    ],
+    "Route 35": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_35_HGSS.png",
+        "archive": "Johto",
+        "layer": 88,
+        "width": 560,
+        "height": 796,
+        "file": "johto-route-35-hgss.png"
+      }
+    ],
+    "Route 36": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_36_HGSS.png",
+        "archive": "Johto",
+        "layer": 91,
+        "width": 1295,
+        "height": 470,
+        "file": "johto-route-36-hgss.png"
+      }
+    ],
+    "Route 37": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_37_HGSS.png",
+        "archive": "Johto",
+        "layer": 95,
+        "width": 553,
+        "height": 454,
+        "file": "johto-route-37-hgss.png"
+      }
+    ],
+    "Route 38": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_38_HGSS.png",
+        "archive": "Johto",
+        "layer": 134,
+        "width": 1077,
+        "height": 513,
+        "file": "johto-route-38-hgss.png"
+      }
+    ],
+    "Route 39": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_39_HGSS.png",
+        "archive": "Johto",
+        "layer": 136,
+        "width": 608,
+        "height": 883,
+        "file": "johto-route-39-hgss.png"
+      }
+    ],
+    "Route 40": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_40_HGSS.png",
+        "archive": "Johto",
+        "layer": 165,
+        "width": 592,
+        "height": 789,
+        "file": "johto-route-40-hgss.png"
+      }
+    ],
+    "Route 41": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_41_HGSS.png",
+        "archive": "Johto",
+        "layer": 167,
+        "width": 1040,
+        "height": 808,
+        "file": "johto-route-41-hgss.png"
+      }
+    ],
+    "Route 42": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_42_HGSS.png",
+        "archive": "Johto",
+        "layer": 215,
+        "width": 1534,
+        "height": 395,
+        "file": "johto-route-42-hgss.png"
+      }
+    ],
+    "Route 43": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_43_HGSS.png",
+        "archive": "Johto",
+        "layer": 218,
+        "width": 608,
+        "height": 834,
+        "file": "johto-route-43-hgss.png"
+      }
+    ],
+    "Route 44": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_44_HGSS.png",
+        "archive": "Johto",
+        "layer": 236,
+        "width": 1550,
+        "height": 490,
+        "file": "johto-route-44-hgss.png"
+      }
+    ],
+    "Route 45": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_45_HGSS.png",
+        "archive": "Johto",
+        "layer": 242,
+        "width": 511,
+        "height": 1976,
+        "file": "johto-route-45-hgss.png"
+      }
+    ],
+    "Route 46": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_46_HGSS.png",
+        "archive": "Johto",
+        "layer": 243,
+        "width": 601,
+        "height": 797,
+        "file": "johto-route-46-hgss.png"
+      }
+    ],
+    "Route 47": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_47_HGSS.png",
+        "archive": "Johto",
+        "layer": 184,
+        "width": 1441,
+        "height": 953,
+        "file": "johto-route-47-hgss.png"
+      }
+    ],
+    "Route 48": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Johto_Route_48_HGSS.png",
+        "archive": "Johto",
+        "layer": 185,
+        "width": 767,
+        "height": 542,
+        "file": "johto-route-48-hgss.png"
+      }
+    ],
+    "Cliff Edge Gate": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Cliff_Edge_Gate_HGSS.png",
+        "archive": "Johto",
+        "layer": 187,
+        "width": 605,
+        "height": 527,
+        "file": "cliff-edge-gate-hgss.png"
+      }
+    ],
+    "Cliff Cave": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Cliff_Cave_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 195,
+        "width": 238,
+        "height": 147,
+        "file": "cliff-cave-1f-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Cliff_Cave_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 196,
+        "width": 222,
+        "height": 196,
+        "file": "cliff-cave-2f-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Cliff_Cave_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 197,
+        "width": 190,
+        "height": 220,
+        "file": "cliff-cave-b1f-hgss.png"
+      }
+    ],
+    "Embedded Tower": [
+      {
+        "id": "groudon-chamber",
+        "label": "Groudon chamber",
+        "image": "Embedded_Tower_Groudon_HGSS.png",
+        "file": "embedded-tower-groudon-hgss.png",
+        "original_required": true,
+        "original_sha256": "d5a5dd9b3514816db2e20330fec17a2f91130fe59d69a578d02d1ed7d9384749",
+        "width": 304,
+        "height": 504,
+        "original_url": "https://archives.bulbagarden.net/media/upload/6/69/Embedded_Tower_Groudon_HGSS.png"
+      },
+      {
+        "id": "rayquaza-chamber",
+        "label": "Rayquaza chamber",
+        "image": "Embedded_Tower_Rayquaza_HGSS.png",
+        "file": "embedded-tower-rayquaza-hgss.png",
+        "original_required": true,
+        "original_sha256": "cbbd97af7507ef8c9aa37406debf241a8bfcd4794bbcf5505df2c7deb8b4e5b1",
+        "width": 304,
+        "height": 504,
+        "original_url": "https://archives.bulbagarden.net/media/upload/c/c5/Embedded_Tower_Rayquaza_HGSS.png"
+      }
+    ],
+    "Dark Cave": [
+      {
+        "id": "route-31-route-46-side",
+        "label": "Route 31 / Route 46 side",
+        "image": "Dark_Cave_1_HGSS.png",
+        "archive": "Johto",
+        "layer": 266,
+        "width": 1088,
+        "height": 832,
+        "file": "dark-cave-1-hgss.png"
+      },
+      {
+        "id": "route-45-side",
+        "label": "Route 45 side",
+        "image": "Dark_Cave_2_HGSS.png",
+        "archive": "Johto",
+        "layer": 267,
+        "width": 1088,
+        "height": 800,
+        "file": "dark-cave-2-hgss.png"
+      }
+    ],
+    "Sprout Tower": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Sprout_Tower_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 286,
+        "width": 384,
+        "height": 352,
+        "file": "sprout-tower-1f-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Sprout_Tower_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 287,
+        "width": 384,
+        "height": 352,
+        "file": "sprout-tower-2f-hgss.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Sprout_Tower_3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 288,
+        "width": 384,
+        "height": 352,
+        "file": "sprout-tower-3f-hgss.png"
+      }
+    ],
+    "Ruins of Alph": [
+      {
+        "id": "outside",
+        "label": "Outside",
+        "image": "Ruins_of_Alph_Outside_HGSS.png",
+        "archive": "Johto",
+        "layer": 32,
+        "width": 624,
+        "height": 832,
+        "file": "ruins-of-alph-outside-hgss.png"
+      },
+      {
+        "id": "hall-entrance",
+        "label": "Hall entrance",
+        "image": "Ruins_of_Alph_Entrance_HGSS.png",
+        "file": "ruins-of-alph-entrance-hgss.png",
+        "original_required": true,
+        "original_sha256": "e7d107578405ee77f3a8d8e177d3156b8d73fb6bdeb60fdf37393e98f25bc46d",
+        "width": 208,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/7/75/Ruins_of_Alph_Entrance_HGSS.png"
+      },
+      {
+        "id": "underground-hall",
+        "label": "Underground hall",
+        "image": "Ruins_of_Alph_Interior_HGSS.png",
+        "file": "ruins-of-alph-interior-hgss.png",
+        "original_required": true,
+        "original_sha256": "c9342172023dc0d20a2bcc6d54c4dedebfe8e7f299eea7b6d884dbfc80dc8edc",
+        "width": 464,
+        "height": 592,
+        "original_url": "https://archives.bulbagarden.net/media/upload/1/1d/Ruins_of_Alph_Interior_HGSS.png"
+      },
+      {
+        "id": "puzzle-rooms-shared-layout",
+        "label": "Puzzle rooms · shared layout",
+        "image": "Ruins_of_Alph_Puzzle_HGSS.png",
+        "file": "ruins-of-alph-puzzle-hgss.png",
+        "original_required": true,
+        "original_sha256": "7d28a68a1b02a7d0371463cf6f4925a1d4ce509994eb73b1cb6dad9784e5c5a2",
+        "width": 176,
+        "height": 240,
+        "original_url": "https://archives.bulbagarden.net/media/upload/d/d1/Ruins_of_Alph_Puzzle_HGSS.png"
+      },
+      {
+        "id": "secret-rooms-shared-layout",
+        "label": "Secret rooms · shared layout",
+        "image": "Ruins_of_Alph_Item_HGSS.png",
+        "file": "ruins-of-alph-item-hgss.png",
+        "original_required": true,
+        "original_sha256": "1d7f45aebb3c5e71d8e77ac637c01612cfcbd1565da73c606d119adcd75b4adc",
+        "width": 173,
+        "height": 240,
+        "original_url": "https://archives.bulbagarden.net/media/upload/0/04/Ruins_of_Alph_Item_HGSS.png"
+      },
+      {
+        "id": "research-center",
+        "label": "Research center",
+        "image": "Ruins_of_Alph_Research_Center_HGSS.png",
+        "file": "ruins-of-alph-research-center-hgss.png",
+        "original_required": true,
+        "original_sha256": "a3355b61804066be01b03e95e84a556de0c083500c9f4b518cbc1b73b970db40",
+        "width": 181,
+        "height": 162,
+        "original_url": "https://archives.bulbagarden.net/media/upload/5/58/Ruins_of_Alph_Research_Center_HGSS.png"
+      }
+    ],
+    "Union Cave": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Union_Cave_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 33,
+        "width": 544,
+        "height": 962,
+        "file": "union-cave-1f-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Union_Cave_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 34,
+        "width": 576,
+        "height": 832,
+        "file": "union-cave-b1f-hgss.png"
+      },
+      {
+        "id": "b2f",
+        "label": "B2F",
+        "image": "Union_Cave_B2F_HGSS.png",
+        "file": "union-cave-b2f-hgss.png",
+        "original_required": true,
+        "original_sha256": "c2dda5378e06a1d3209e5044d4a410e8997e01e61a3499c1c4746d5e69ea13fe",
+        "width": 640,
+        "height": 744,
+        "original_url": "https://archives.bulbagarden.net/media/upload/b/bb/Union_Cave_B2F_HGSS.png"
+      }
+    ],
+    "Slowpoke Well": [
+      {
+        "id": "entrance",
+        "label": "Entrance",
+        "image": "Slowpoke_Well_entrance_HGSS.png",
+        "file": "slowpoke-well-entrance-hgss.png",
+        "original_required": true,
+        "original_sha256": "d1fd24e927287d9f646c086cf7dcc5cf3c90b9681ea74f177eb662d5d6892193",
+        "width": 240,
+        "height": 272,
+        "original_url": "https://archives.bulbagarden.net/media/upload/e/e8/Slowpoke_Well_entrance_HGSS.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Slowpoke_Well_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 60,
+        "width": 574,
+        "height": 476,
+        "file": "slowpoke-well-b1f-hgss.png"
+      },
+      {
+        "id": "b2f",
+        "label": "B2F",
+        "image": "Slowpoke_Well_B2F_HGSS.png",
+        "file": "slowpoke-well-b2f-hgss.png",
+        "original_required": true,
+        "original_sha256": "b943e013ae386a66f6e0611cece1137b9230776a0258c2238926eb562adaa247",
+        "width": 593,
+        "height": 452,
+        "original_url": "https://archives.bulbagarden.net/media/upload/0/09/Slowpoke_Well_B2F_HGSS.png"
+      }
+    ],
+    "Ilex Forest": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Ilex_Forest_HGSS.png",
+        "archive": "Johto",
+        "layer": 59,
+        "width": 836,
+        "height": 968,
+        "file": "ilex-forest-hgss.png"
+      }
+    ],
+    "National Park": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "National_Park_HGSS.png",
+        "archive": "Johto",
+        "layer": 97,
+        "width": 1206,
+        "height": 1062,
+        "file": "national-park-hgss.png"
+      }
+    ],
+    "Burned Tower": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Burned_Tower_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 294,
+        "width": 352,
+        "height": 309,
+        "file": "burned-tower-1f-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Burned_Tower_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 295,
+        "width": 336,
+        "height": 300,
+        "file": "burned-tower-b1f-hgss.png"
+      }
+    ],
+    "Bell Tower": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Bell_Tower_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 401,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-1f-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Bell_Tower_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 402,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-2f-hgss.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Bell_Tower_3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 403,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-3f-hgss.png"
+      },
+      {
+        "id": "4f",
+        "label": "4F",
+        "image": "Bell_Tower_4F_HGSS.png",
+        "archive": "Johto",
+        "layer": 404,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-4f-hgss.png"
+      },
+      {
+        "id": "5f",
+        "label": "5F",
+        "image": "Bell_Tower_5F_HGSS.png",
+        "archive": "Johto",
+        "layer": 405,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-5f-hgss.png"
+      },
+      {
+        "id": "6f",
+        "label": "6F",
+        "image": "Bell_Tower_6F_HGSS.png",
+        "archive": "Johto",
+        "layer": 406,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-6f-hgss.png"
+      },
+      {
+        "id": "7f",
+        "label": "7F",
+        "image": "Bell_Tower_7F_HGSS.png",
+        "archive": "Johto",
+        "layer": 407,
+        "width": 384,
+        "height": 352,
+        "file": "bell-tower-7f-hgss.png"
+      },
+      {
+        "id": "8f",
+        "label": "8F",
+        "image": "Bell_Tower_8F_HGSS.png",
+        "archive": "Johto",
+        "layer": 408,
+        "width": 384,
+        "height": 384,
+        "file": "bell-tower-8f-hgss.png"
+      },
+      {
+        "id": "9f",
+        "label": "9F",
+        "image": "Bell_Tower_9F_HGSS.png",
+        "archive": "Johto",
+        "layer": 409,
+        "width": 384,
+        "height": 384,
+        "file": "bell-tower-9f-hgss.png"
+      },
+      {
+        "id": "10f",
+        "label": "10F",
+        "image": "Bell_Tower_10F_HGSS.png",
+        "archive": "Johto",
+        "layer": 410,
+        "width": 384,
+        "height": 384,
+        "file": "bell-tower-10f-hgss.png"
+      },
+      {
+        "id": "roof",
+        "label": "Roof",
+        "image": "Bell_Tower_Summit_HGSS.png",
+        "file": "bell-tower-summit-hgss.png",
+        "original_required": true,
+        "original_sha256": "0277691a601022accb8ec0f1c8c4812ee9081e2b7eda4655d9ac31127a12c7fe",
+        "width": 448,
+        "height": 574,
+        "original_url": "https://archives.bulbagarden.net/media/upload/f/f1/Bell_Tower_Summit_HGSS.png"
+      }
+    ],
+    "Mt. Mortar": [
+      {
+        "id": "1f-entrance",
+        "label": "1F · entrance",
+        "image": "Mt_Mortar_Entrance_HGSS.png",
+        "archive": "Johto",
+        "layer": 214,
+        "width": 1424,
+        "height": 820,
+        "file": "mt-mortar-entrance-hgss.png"
+      },
+      {
+        "id": "1f-back",
+        "label": "1F · back",
+        "image": "Mt_Mortar_Lower_Cave_HGSS.png",
+        "archive": "Johto",
+        "layer": 427,
+        "width": 1200,
+        "height": 1080,
+        "file": "mt-mortar-lower-cave-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Mt_Mortar_Upper_Cave_HGSS.png",
+        "archive": "Johto",
+        "layer": 426,
+        "width": 912,
+        "height": 660,
+        "file": "mt-mortar-upper-cave-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Mt_Mortar_Basement_HGSS.png",
+        "archive": "Johto",
+        "layer": 428,
+        "width": 960,
+        "height": 948,
+        "file": "mt-mortar-basement-hgss.png"
+      }
+    ],
+    "Whirl Islands": [
+      {
+        "id": "1f-nw",
+        "label": "1F · NW",
+        "image": "Whirl_Islands_1F_NW_HGSS.png",
+        "archive": "Johto",
+        "layer": 151,
+        "width": 204,
+        "height": 146,
+        "file": "whirl-islands-1f-nw-hgss.png"
+      },
+      {
+        "id": "1f-ne",
+        "label": "1F · NE",
+        "image": "Whirl_Islands_1F_NE_HGSS.png",
+        "archive": "Johto",
+        "layer": 150,
+        "width": 445,
+        "height": 307,
+        "file": "whirl-islands-1f-ne-hgss.png"
+      },
+      {
+        "id": "1f-sw",
+        "label": "1F · SW",
+        "image": "Whirl_Islands_1F_SW_HGSS.png",
+        "archive": "Johto",
+        "layer": 152,
+        "width": 476,
+        "height": 170,
+        "file": "whirl-islands-1f-sw-hgss.png"
+      },
+      {
+        "id": "1f-se",
+        "label": "1F · SE",
+        "image": "Whirl_Islands_1F_SE_HGSS.png",
+        "archive": "Johto",
+        "layer": 155,
+        "width": 268,
+        "height": 270,
+        "file": "whirl-islands-1f-se-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Whirl_Islands_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 153,
+        "width": 1088,
+        "height": 736,
+        "file": "whirl-islands-b1f-hgss.png"
+      },
+      {
+        "id": "b2f",
+        "label": "B2F",
+        "image": "Whirl_Islands_B2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 154,
+        "width": 432,
+        "height": 794,
+        "file": "whirl-islands-b2f-hgss.png"
+      },
+      {
+        "id": "b3f",
+        "label": "B3F · chamber reference view",
+        "image": "Whirl_Islands_B3F_HGSS.png",
+        "file": "whirl-islands-b3f-hgss.png",
+        "original_required": true,
+        "original_sha256": "5a21c16ae06d416a38a0e7259f5468bfa496b8f6deb8314b942b24b8eb0c480b",
+        "width": 240,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/7/74/Whirl_Islands_B3F_HGSS.png"
+      },
+      {
+        "id": "lugia-chamber",
+        "label": "Lugia chamber",
+        "image": "Whirl_Islands_B3F_Lugia_HGSS.png",
+        "file": "whirl-islands-b3f-lugia-hgss.png",
+        "original_required": true,
+        "original_sha256": "e607f3c6757169a59faf53bdce19a28fe9015bb382eb5d1c36042a2e82dd2a17",
+        "width": 544,
+        "height": 640,
+        "original_url": "https://archives.bulbagarden.net/media/upload/0/0f/Whirl_Islands_B3F_Lugia_HGSS.png"
+      }
+    ],
+    "Lake of Rage": [
+      {
+        "id": "normal-water-level",
+        "label": "Normal water level",
+        "image": "Lake_of_Rage_HGSS_wet.png",
+        "archive": "Johto",
+        "layer": 219,
+        "width": 1309,
+        "height": 929,
+        "file": "lake-of-rage-hgss-wet.png"
+      },
+      {
+        "id": "low-water-wednesday-after-rocket-hq",
+        "label": "Low water · Wednesday after Rocket HQ",
+        "image": "Lake_of_Rage_HGSS_dry.png",
+        "file": "lake-of-rage-hgss-dry.png",
+        "original_required": true,
+        "original_sha256": "17673bc214941979b7f20c8188f776c3c5118a964439c2285ae674bd4bbfc674",
+        "width": 1309,
+        "height": 929,
+        "original_url": "https://archives.bulbagarden.net/media/upload/1/17/Lake_of_Rage_HGSS_dry.png"
+      }
+    ],
+    "Ice Path": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Ice_Path_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 275,
+        "width": 896,
+        "height": 768,
+        "file": "ice-path-1f-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Ice_Path_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 276,
+        "width": 544,
+        "height": 640,
+        "file": "ice-path-b1f-hgss.png"
+      },
+      {
+        "id": "b2f",
+        "label": "B2F",
+        "image": "Ice_Path_B2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 277,
+        "width": 992,
+        "height": 384,
+        "file": "ice-path-b2f-hgss.png"
+      },
+      {
+        "id": "b3f",
+        "label": "B3F",
+        "image": "Ice_Path_B3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 278,
+        "width": 512,
+        "height": 224,
+        "file": "ice-path-b3f-hgss.png"
+      }
+    ],
+    "Dragon's Den": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Dragons_Den_HGSS.png",
+        "archive": "Johto",
+        "layer": 241,
+        "width": 929,
+        "height": 766,
+        "file": "dragons-den-hgss.png"
+      }
+    ],
+    "Safari Zone Gate": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Safari_Zone_Gate.png",
+        "archive": "Johto",
+        "layer": 186,
+        "width": 655,
+        "height": 476,
+        "file": "safari-zone-gate.png"
+      }
+    ],
+    "Pokéathlon Dome": [
+      {
+        "id": "outside",
+        "label": "Outside",
+        "image": "Pokéathlon_Dome_HGSS.png",
+        "archive": "Johto",
+        "layer": 99,
+        "width": 768,
+        "height": 736,
+        "file": "pok-athlon-dome-hgss.png"
+      },
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Pokéathlon_Dome_1F_HGSS.png",
+        "file": "pok-athlon-dome-1f-hgss.png",
+        "original_required": true,
+        "original_sha256": "3260c2d944a5dbdd56869e02ce26d06b16660b673416e395e56048a99b20361f",
+        "width": 800,
+        "height": 352,
+        "original_url": "https://archives.bulbagarden.net/media/upload/0/0a/Pok%C3%A9athlon_Dome_1F_HGSS.png"
+      },
+      {
+        "id": "2f-entrance",
+        "label": "2F · entrance",
+        "image": "Pokéathlon_Dome_2F_Entrance_HGSS.png",
+        "file": "pok-athlon-dome-2f-entrance-hgss.png",
+        "original_required": true,
+        "original_sha256": "5e704284599a173f8a3e5a796595be5dceefe83ac5bc95916a26a26ffee9f4e3",
+        "width": 112,
+        "height": 272,
+        "original_url": "https://archives.bulbagarden.net/media/upload/2/2c/Pok%C3%A9athlon_Dome_2F_Entrance_HGSS.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Pokéathlon_Dome_2F_HGSS.png",
+        "file": "pok-athlon-dome-2f-hgss.png",
+        "original_required": true,
+        "original_sha256": "ec80118f3c9726bf667f1e4d32613563f4a6e9cd3fa6d6a5a26a29e61b42bf56",
+        "width": 720,
+        "height": 312,
+        "original_url": "https://archives.bulbagarden.net/media/upload/3/3e/Pok%C3%A9athlon_Dome_2F_HGSS.png"
+      },
+      {
+        "id": "b1f-solidarity",
+        "label": "B1F · Solidarity",
+        "image": "Pokéathlon_Dome_B1F_Solidarity_HGSS.png",
+        "file": "pok-athlon-dome-b1f-solidarity-hgss.png",
+        "original_required": true,
+        "original_sha256": "e8faf34502e5da65633869d0c3b7280153d6791335e13fd9fb8ba8beb0afca4e",
+        "width": 272,
+        "height": 208,
+        "original_url": "https://archives.bulbagarden.net/media/upload/b/b9/Pok%C3%A9athlon_Dome_B1F_Solidarity_HGSS.png"
+      },
+      {
+        "id": "b1f-trust",
+        "label": "B1F · Trust",
+        "image": "Pokéathlon_Dome_B1F_Trust_HGSS.png",
+        "file": "pok-athlon-dome-b1f-trust-hgss.png",
+        "original_required": true,
+        "original_sha256": "023e155c8e7306c14f49a8d31fd2cb2781312bcc5c603dae7e57839e0d381ce6",
+        "width": 272,
+        "height": 224,
+        "original_url": "https://archives.bulbagarden.net/media/upload/f/f7/Pok%C3%A9athlon_Dome_B1F_Trust_HGSS.png"
+      },
+      {
+        "id": "b1f-potential",
+        "label": "B1F · Potential",
+        "image": "Pokéathlon_Dome_B1F_Potential_HGSS.png",
+        "file": "pok-athlon-dome-b1f-potential-hgss.png",
+        "original_required": true,
+        "original_sha256": "b3b23a70f29aa0c26035c3c4b69dc23c61e6f767276db0de1410b24905f267b5",
+        "width": 240,
+        "height": 224,
+        "original_url": "https://archives.bulbagarden.net/media/upload/a/ae/Pok%C3%A9athlon_Dome_B1F_Potential_HGSS.png"
+      },
+      {
+        "id": "b1f-friendship",
+        "label": "B1F · Friendship",
+        "image": "Pokéathlon_Dome_B1F_Friendship_HGSS.png",
+        "file": "pok-athlon-dome-b1f-friendship-hgss.png",
+        "original_required": true,
+        "original_sha256": "b314499aa3fa63b3acdf7b2b35c04c8dc189f6d6f465e7dc25e82e9d1c9a656f",
+        "width": 240,
+        "height": 224,
+        "original_url": "https://archives.bulbagarden.net/media/upload/f/f0/Pok%C3%A9athlon_Dome_B1F_Friendship_HGSS.png"
+      }
+    ],
+    "Goldenrod Department Store": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Goldenrod_Department_Store_1F_HGSS.png",
+        "file": "goldenrod-department-store-1f-hgss.png",
+        "original_required": true,
+        "original_sha256": "661335cdd80de0a72d5d399d4dcc6218a45a55502dda59500cec6d20382fb0d6",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/f/f0/Goldenrod_Department_Store_1F_HGSS.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Goldenrod_Department_Store_2F_HGSS.png",
+        "file": "goldenrod-department-store-2f-hgss.png",
+        "original_required": true,
+        "original_sha256": "3cfb9e06f1e2bba22a3dbfde80f26529ebbedc334d473aa405920eb244e28700",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/7/79/Goldenrod_Department_Store_2F_HGSS.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Goldenrod_Department_Store_3F_HGSS.png",
+        "file": "goldenrod-department-store-3f-hgss.png",
+        "original_required": true,
+        "original_sha256": "eb5ea4bbf41f322cf01cadf849de41c7c1cbbe6dd1a3937da7eb39fa82a4ccf1",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/b/bc/Goldenrod_Department_Store_3F_HGSS.png"
+      },
+      {
+        "id": "4f",
+        "label": "4F",
+        "image": "Goldenrod_Department_Store_4F_HGSS.png",
+        "file": "goldenrod-department-store-4f-hgss.png",
+        "original_required": true,
+        "original_sha256": "87e49643298872afad91e2673e1051420073cd833410b3a05dda7c5a17915d46",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/4/49/Goldenrod_Department_Store_4F_HGSS.png"
+      },
+      {
+        "id": "5f",
+        "label": "5F",
+        "image": "Goldenrod_Department_Store_5F_HGSS.png",
+        "file": "goldenrod-department-store-5f-hgss.png",
+        "original_required": true,
+        "original_sha256": "1e3cbc17640143108d8d2cf6f75f313b304384b5e8be6e64fe5b733b06fde1b3",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/8/82/Goldenrod_Department_Store_5F_HGSS.png"
+      },
+      {
+        "id": "6f",
+        "label": "6F",
+        "image": "Goldenrod_Department_Store_6F_HGSS.png",
+        "file": "goldenrod-department-store-6f-hgss.png",
+        "original_required": true,
+        "original_sha256": "bea3887cf076bdb22dcf79f36c91043d1ce39e022c1b3ae2aa19ecabf6fcfc13",
+        "width": 384,
+        "height": 192,
+        "original_url": "https://archives.bulbagarden.net/media/upload/e/eb/Goldenrod_Department_Store_6F_HGSS.png"
+      },
+      {
+        "id": "basement",
+        "label": "Basement",
+        "image": "Goldenrod_Department_Store_Basement_HGSS.png",
+        "archive": "Johto",
+        "layer": 98,
+        "width": 448,
+        "height": 316,
+        "file": "goldenrod-department-store-basement-hgss.png"
+      }
+    ],
+    "Goldenrod Radio Tower": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Goldenrod_Radio_Tower_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 365,
+        "width": 432,
+        "height": 192,
+        "file": "goldenrod-radio-tower-1f-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Goldenrod_Radio_Tower_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 359,
+        "width": 432,
+        "height": 192,
+        "file": "goldenrod-radio-tower-2f-hgss.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Goldenrod_Radio_Tower_3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 360,
+        "width": 432,
+        "height": 192,
+        "file": "goldenrod-radio-tower-3f-hgss.png"
+      },
+      {
+        "id": "4f",
+        "label": "4F",
+        "image": "Goldenrod_Radio_Tower_4F_HGSS.png",
+        "archive": "Johto",
+        "layer": 361,
+        "width": 432,
+        "height": 192,
+        "file": "goldenrod-radio-tower-4f-hgss.png"
+      },
+      {
+        "id": "5f",
+        "label": "5F",
+        "image": "Goldenrod_Radio_Tower_5F_HGSS.png",
+        "archive": "Johto",
+        "layer": 362,
+        "width": 368,
+        "height": 216,
+        "file": "goldenrod-radio-tower-5f-hgss.png"
+      },
+      {
+        "id": "observation-deck",
+        "label": "Observation deck",
+        "image": "Goldenrod_Radio_Tower_Observation_Deck_HGSS.png",
+        "archive": "Johto",
+        "layer": 363,
+        "width": 304,
+        "height": 272,
+        "file": "goldenrod-radio-tower-observation-deck-hgss.png"
+      }
+    ],
+    "Olivine Lighthouse": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Glitter_Lighthouse_1F_HGSS.png",
+        "file": "glitter-lighthouse-1f-hgss.png",
+        "original_required": true,
+        "original_sha256": "92985247f82730d01350a904af72e2cc670373bae91de1fb3a946ad0c10263fa",
+        "width": 240,
+        "height": 224,
+        "original_url": "https://archives.bulbagarden.net/media/upload/5/55/Glitter_Lighthouse_1F_HGSS.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Glitter_Lighthouse_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 305,
+        "width": 240,
+        "height": 222,
+        "file": "glitter-lighthouse-2f-hgss.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Glitter_Lighthouse_3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 307,
+        "width": 263,
+        "height": 238,
+        "file": "glitter-lighthouse-3f-hgss.png"
+      },
+      {
+        "id": "4f",
+        "label": "4F",
+        "image": "Glitter_Lighthouse_4F_HGSS.png",
+        "archive": "Johto",
+        "layer": 308,
+        "width": 263,
+        "height": 235,
+        "file": "glitter-lighthouse-4f-hgss.png"
+      },
+      {
+        "id": "5f",
+        "label": "5F",
+        "image": "Glitter_Lighthouse_5F_HGSS.png",
+        "archive": "Johto",
+        "layer": 309,
+        "width": 263,
+        "height": 235,
+        "file": "glitter-lighthouse-5f-hgss.png"
+      },
+      {
+        "id": "6f",
+        "label": "6F",
+        "image": "Glitter_Lighthouse_6F_HGSS.png",
+        "archive": "Johto",
+        "layer": 310,
+        "width": 309,
+        "height": 272,
+        "file": "glitter-lighthouse-6f-hgss.png"
+      },
+      {
+        "id": "3f-balcony",
+        "label": "3F · balcony",
+        "image": "Glitter_Lighthouse_3F_Balcony_HGSS.png",
+        "archive": "Johto",
+        "layer": 306,
+        "width": 314,
+        "height": 274,
+        "file": "glitter-lighthouse-3f-balcony-hgss.png"
+      }
+    ],
+    "Pokémon Day Care": [
+      {
+        "id": "route-34-surroundings",
+        "label": "Route 34 · surroundings",
+        "image": "Johto_Route_34_HGSS.png",
+        "archive": "Johto",
+        "layer": 58,
+        "width": 600,
+        "height": 1235,
+        "file": "johto-route-34-hgss.png"
+      }
+    ],
+    "S.S. Aqua": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "SS_Aqua_1F_HGSS.png",
+        "archive": "Kanto",
+        "layer": 11,
+        "width": 912,
+        "height": 288,
+        "file": "ss-aqua-1f-hgss.png"
+      },
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "SS_Aqua_B1F_HGSS.png",
+        "archive": "Kanto",
+        "layer": 10,
+        "width": 1056,
+        "height": 288,
+        "file": "ss-aqua-b1f-hgss.png"
+      }
+    ],
+    "Victory Road": [
+      {
+        "id": "1f",
+        "label": "1F",
+        "image": "Victory_Road_1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 443,
+        "width": 692,
+        "height": 787,
+        "file": "victory-road-1f-hgss.png"
+      },
+      {
+        "id": "2f",
+        "label": "2F",
+        "image": "Victory_Road_2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 444,
+        "width": 1094,
+        "height": 498,
+        "file": "victory-road-2f-hgss.png"
+      },
+      {
+        "id": "3f",
+        "label": "3F",
+        "image": "Victory_Road_3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 445,
+        "width": 1052,
+        "height": 566,
+        "file": "victory-road-3f-hgss.png"
+      }
+    ],
+    "Indigo Plateau": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Indigo_Plateau_HGSS.png",
+        "archive": "Johto",
+        "layer": 447,
+        "width": 480,
+        "height": 391,
+        "file": "indigo-plateau-hgss.png"
+      }
+    ],
+    "Mt. Silver": [
+      {
+        "id": "outside",
+        "label": "Outside",
+        "image": "Mt._Silver_Exterior_HGSS.png",
+        "archive": "Kanto",
+        "layer": 340,
+        "width": 512,
+        "height": 448,
+        "file": "mt-silver-exterior-hgss.png"
+      },
+      {
+        "id": "cave-1f",
+        "label": "Cave · 1F",
+        "image": "Mt._Silver_1F_HGSS.png",
+        "archive": "Kanto",
+        "layer": 346,
+        "width": 1024,
+        "height": 896,
+        "file": "mt-silver-1f-hgss.png"
+      },
+      {
+        "id": "cave-2f",
+        "label": "Cave · 2F",
+        "image": "Mt._Silver_2F_HGSS.png",
+        "archive": "Kanto",
+        "layer": 347,
+        "width": 704,
+        "height": 544,
+        "file": "mt-silver-2f-hgss.png"
+      },
+      {
+        "id": "cave-3f",
+        "label": "Cave · 3F",
+        "image": "Mt._Silver_3F_HGSS.png",
+        "archive": "Kanto",
+        "layer": 348,
+        "width": 832,
+        "height": 416,
+        "file": "mt-silver-3f-hgss.png"
+      },
+      {
+        "id": "lower-mountainside",
+        "label": "Lower mountainside",
+        "image": "Mt._Silver_Lower_Mountainside_HGSS.png",
+        "archive": "Kanto",
+        "layer": 349,
+        "width": 416,
+        "height": 630,
+        "file": "mt-silver-lower-mountainside-hgss.png"
+      },
+      {
+        "id": "upper-mountainside",
+        "label": "Upper mountainside",
+        "image": "Mt._Silver_Upper_Mountainside_HGSS.png",
+        "archive": "Kanto",
+        "layer": 351,
+        "width": 896,
+        "height": 883,
+        "file": "mt-silver-upper-mountainside-hgss.png"
+      },
+      {
+        "id": "expert-belt-chamber",
+        "label": "Expert Belt chamber",
+        "image": "Mt._Silver_Expert_Belt_HGSS.png",
+        "archive": "Kanto",
+        "layer": 353,
+        "width": 224,
+        "height": 192,
+        "file": "mt-silver-expert-belt-hgss.png"
+      },
+      {
+        "id": "moltres-chamber",
+        "label": "Moltres chamber",
+        "image": "Mt._Silver_Moltres_HGSS.png",
+        "archive": "Kanto",
+        "layer": 352,
+        "width": 384,
+        "height": 352,
+        "file": "mt-silver-moltres-hgss.png"
+      },
+      {
+        "id": "summit",
+        "label": "Summit",
+        "image": "Mt._Silver_Summit_HGSS.png",
+        "archive": "Kanto",
+        "layer": 350,
+        "width": 640,
+        "height": 480,
+        "file": "mt-silver-summit-hgss.png"
+      }
+    ],
+    "Tohjo Falls": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Tohjo_Falls_HGSS.png",
+        "archive": "Johto",
+        "layer": 441,
+        "width": 700,
+        "height": 424,
+        "file": "tohjo-falls-hgss.png"
+      }
+    ],
+    "Pokémon League Reception Gate": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Pokémon_League_Reception_Gate_HGSS.png",
+        "file": "pok-mon-league-reception-gate-hgss.png",
+        "original_required": true,
+        "original_sha256": "667f2f5690dd8fd6c8920595d5b85d254dddcb0ab0b9409b7efb06aaee875209",
+        "width": 352,
+        "height": 300,
+        "original_url": "https://archives.bulbagarden.net/media/upload/4/4f/Pok%C3%A9mon_League_Reception_Gate_HGSS.png"
+      }
+    ],
+    "Bellchime Trail": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Bellchime_Trail_HGSS.png",
+        "archive": "Johto",
+        "layer": 141,
+        "width": 640,
+        "height": 320,
+        "file": "bellchime-trail-hgss.png"
+      }
+    ],
+    "Goldenrod Tunnel": [
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Goldenrod_Tunnel_HGSS.png",
+        "archive": "Johto",
+        "layer": 96,
+        "width": 432,
+        "height": 462,
+        "file": "goldenrod-tunnel-hgss.png"
+      },
+      {
+        "id": "b2f-switch-puzzle",
+        "label": "B2F · switch puzzle",
+        "image": "Goldenrod_Tunnel_Basement_HGSS.png",
+        "archive": "Johto",
+        "layer": 358,
+        "width": 480,
+        "height": 208,
+        "file": "goldenrod-tunnel-basement-hgss.png"
+      },
+      {
+        "id": "underground-warehouse",
+        "label": "Underground warehouse",
+        "image": "Underground_Warehouse_HGSS.png",
+        "archive": "Johto",
+        "layer": 364,
+        "width": 496,
+        "height": 304,
+        "file": "underground-warehouse-hgss.png"
+      }
+    ],
+    "Team Rocket HQ": [
+      {
+        "id": "b1f",
+        "label": "B1F",
+        "image": "Rocket_Hideout_B1F_HGSS.png",
+        "archive": "Johto",
+        "layer": 320,
+        "width": 781,
+        "height": 432,
+        "file": "rocket-hideout-b1f-hgss.png"
+      },
+      {
+        "id": "b2f",
+        "label": "B2F",
+        "image": "Rocket_Hideout_B2F_HGSS.png",
+        "archive": "Johto",
+        "layer": 321,
+        "width": 784,
+        "height": 416,
+        "file": "rocket-hideout-b2f-hgss.png"
+      },
+      {
+        "id": "b3f",
+        "label": "B3F",
+        "image": "Rocket_Hideout_B3F_HGSS.png",
+        "archive": "Johto",
+        "layer": 322,
+        "width": 786,
+        "height": 417,
+        "file": "rocket-hideout-b3f-hgss.png"
+      }
+    ],
+    "Frontier Access": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "image": "Frontier_Access_HGSS.png",
+        "archive": "Johto",
+        "layer": 168,
+        "width": 424,
+        "height": 394,
+        "file": "frontier-access-hgss.png"
+      }
+    ],
+    "Battle Frontier": [
+      {
+        "id": "grounds",
+        "label": "Grounds · shared Platinum/HGSS layout",
+        "image": "Battle_Frontier_Pt.png",
+        "file": "battle-frontier-grounds.png",
+        "original_required": true,
+        "verification": "https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)#Geography",
+        "original_sha256": "5c1d6e3391dbd09ada1229d6bab1a313faaa8c8cc0252a5d10d9f0b69fffc448",
+        "width": 1537,
+        "height": 932,
+        "original_url": "https://archives.bulbagarden.net/media/upload/8/8b/Battle_Frontier_Pt.png"
+      }
+    ],
+    "MooMoo Farm": [
+      {
+        "id": "outside",
+        "label": "Outside",
+        "image": "MooMoo_Farm_HGSS.png",
+        "file": "moomoo-farm-hgss.png",
+        "original_required": true,
+        "original_sha256": "0ba1f2791e83c542d7805227461fbd67a170863a94ff8035f260ab804f501715",
+        "width": 275,
+        "height": 501,
+        "original_url": "https://archives.bulbagarden.net/media/upload/6/69/MooMoo_Farm_HGSS.png"
+      },
+      {
+        "id": "house",
+        "label": "House",
+        "image": "MooMoo_Farm_House_HGSS.png",
+        "file": "moomoo-farm-house-hgss.png",
+        "original_required": true,
+        "original_sha256": "237da3aeadfd88253cb199c048fb407688e2de286301c9fb2c0d0963935d178e",
+        "width": 208,
+        "height": 144,
+        "original_url": "https://archives.bulbagarden.net/media/upload/c/c7/MooMoo_Farm_House_HGSS.png"
+      },
+      {
+        "id": "barn",
+        "label": "Barn",
+        "image": "MooMoo_Farm_Barn_HGSS.png",
+        "file": "moomoo-farm-barn-hgss.png",
+        "original_required": true,
+        "original_sha256": "1a0e2db8c88e33ccdc47fdf1e43a7c00f94e2b442e17c96bbcaf527f55eaec01",
+        "width": 320,
+        "height": 144,
+        "original_url": "https://archives.bulbagarden.net/media/upload/3/37/MooMoo_Farm_Barn_HGSS.png"
+      }
+    ],
+    "Magnet Train Station": [
+      {
+        "id": "goldenrod-city-station-surroundings",
+        "label": "Goldenrod City · station surroundings",
+        "image": "Goldenrod_City_HGSS.png",
+        "archive": "Johto",
+        "layer": 87,
+        "width": 1330,
+        "height": 885,
+        "file": "goldenrod-city-hgss.png"
+      }
+    ]
+  }
+}

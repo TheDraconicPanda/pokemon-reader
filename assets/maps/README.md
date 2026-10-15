@@ -1,33 +1,66 @@
-# Opening-area HeartGold/SoulSilver maps
+# HeartGold/SoulSilver map assets
 
-Six original location-image layers, exported losslessly as PNG without resizing,
-redrawing, or compositing the Ironmon trainer/item/portal overlays. North is up.
-The complete images retain their original aspect ratios and any embedded credits.
+The catalogue supplies 150 area/floor views across the 69 existing non-Safari
+locations, using 148 unique PNG files. Safari Zone itself remains a separate
+project. See `docs/atlas-map-coverage.json` for the generated coverage report.
 
-Source archive: [HGSSIronmonMap](https://github.com/kelseyyoung/HGSSIronmonMap/blob/7840506be21bc5636f8d3d92b93266e202e6d63b/src/assets/mapFiles/Johto.zip),
-pinned to `7840506be21bc5636f8d3d92b93266e202e6d63b`.
-The archive contains `Johto/Johto.xcf`; named layers identify the Bulbagarden images.
-The asset manifest in `js/data/atlas-maps.js` records original file-page references,
-layer indices, dimensions, and exported-file hashes. The New Bark source page
-identifies its image as a HeartGold/SoulSilver game screenshot.
+## Sources and reproduction
 
-The upstream software is MIT licensed; its license is retained in
-`SOURCE-LICENSE.txt`. Pokémon artwork remains copyrighted by Nintendo, The Pokémon
-Company, and Game Freak. The upstream software license does not transfer ownership
-of game artwork. Bulbagarden describes these game screenshots as fair-use images.
-These maps are used as location references in this personal, non-commercial tool,
-consistent with the existing badge-artwork treatment.
+Original image layers are exported losslessly from the pinned
+[HGSSIronmonMap](https://github.com/kelseyyoung/HGSSIronmonMap/tree/7840506be21bc5636f8d3d92b93266e202e6d63b)
+archives at revision `7840506be21bc5636f8d3d92b93266e202e6d63b`:
 
-Reproduction: ImageMagick 6 `convert 'Johto.xcf[LAYER]' +repage OUTPUT.png`.
-Export only the six named original-image layers, not combined layout/overlay layers.
-The six-file total is approximately 0.85 MiB. Images are served locally from the
-existing Pages site; rendering does not depend on remote image hosts.
+- `src/assets/mapFiles/Johto.zip` → `Johto/Johto.xcf`
+- `src/assets/mapFiles/Kanto.zip` → `Kanto/Kanto.xcf`
 
-| Location | Source image | XCF layer |
-| --- | --- | ---: |
-| New Bark Town | [New_Bark_Town_HGSS.png](https://archives.bulbagarden.net/wiki/File:New_Bark_Town_HGSS.png) | 1 |
-| Route 29 | [Johto_Route_29_HGSS.png](https://archives.bulbagarden.net/wiki/File:Johto_Route_29_HGSS.png) | 2 |
-| Cherrygrove City | [Cherrygrove_City_HGSS.png](https://archives.bulbagarden.net/wiki/File:Cherrygrove_City_HGSS.png) | 6 |
-| Route 30 | [Johto_Route_30_HGSS.png](https://archives.bulbagarden.net/wiki/File:Johto_Route_30_HGSS.png) | 7 |
-| Route 31 | [Johto_Route_31_HGSS.png](https://archives.bulbagarden.net/wiki/File:Johto_Route_31_HGSS.png) | 15 |
-| Violet City | [Violet_City_HGSS.png](https://archives.bulbagarden.net/wiki/File:Violet_City_HGSS.png) | 24 |
+The Kanto archive supplies the already-scoped Route 28, Mt. Silver and S.S. Aqua
+maps; this does not add Kanto locations or encounters to the Atlas.
+
+`scripts/atlas-map-sources.json` records archive checksums, original source image
+names, selected layers, labels and required originals. The generated, game-scoped
+manifest is `js/data/games/soulsilver/maps.js`; it records file-page source URLs,
+PNG hashes and dimensions for every exported view. Ecruteak's original-image layer
+is named "Ecruteak City" in the archive and is explicitly matched to the
+`Ecruteak_City_HGSS.png` reference. Dark Cave's side labels and Mt. Mortar's floor
+labels are checked against the HGSS layout tables on their Bulbapedia articles.
+
+The 33 direct originals are recorded with source URLs, dimensions and SHA-256
+hashes in `docs/atlas-map-originals.json`. The provisional Battle Frontier artwork
+was rejected after inspection. Its replacement is `Battle_Frontier_Pt.png`,
+explicitly labelled as the shared Platinum/HGSS grounds layout: the
+[Generation IV Battle Frontier reference](https://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_IV)#Geography)
+confirms both regions' facilities and appearance are identical. The separate
+HGSS Frontier Access map is retained. Whirl Islands includes the full Lugia
+chamber plan plus a labelled B3F chamber reference view.
+
+Using Python 3 and ImageMagick 6, with the two archives downloaded into a directory:
+
+```sh
+python scripts/build-atlas-maps.py /path/to/archive-directory
+```
+
+The complete build requires verified original PNGs in `originals/` and their
+recorded checksums. It fails if required images or provenance are absent. The
+`--available-only` option is for unfinished local preparation and reports all
+omitted views; it is not a complete/releasable build.
+
+Archive exports use only individual original-image layers. Trainer/item/portal overlays,
+combined atlas layouts and unrelated games are not substituted. Export preserves
+complete images, aspect ratios and embedded credits. Map plans retain north-up
+orientation; the additional B3F chamber screenshot is explicitly labelled as a
+reference view. New
+exports omit volatile PNG date/time chunks. The six previously published opening
+maps retain their exact bytes and hashes.
+
+The Day Care and Magnet Train Station use explicitly labelled Route 34/Goldenrod
+surroundings maps rather than pretending those are interior floor plans. Multi-area
+locations use labelled floor/area choices. Images are hosted locally on the existing
+Pages site; the application does not fetch remote images at runtime.
+
+## Rights and credits
+
+The upstream software's MIT license remains in `SOURCE-LICENSE.txt`. Pokémon
+artwork remains copyrighted by Nintendo, The Pokémon Company and Game Freak;
+the software license does not transfer ownership of game artwork. Bulbagarden
+identifies these game images as fair use. Original file-page links remain available
+in Atlas Sources and follow the selected floor. Embedded image credits are retained.

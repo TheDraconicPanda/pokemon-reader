@@ -1,7 +1,7 @@
 import { locationEncounterReference, routeFeatures } from "./data/atlas-route-reference.js";
 const ATLAS_GAME_ID = "soulsilver";
 import { ATLAS_LOCATIONS as LOCATIONS } from "./data/atlas-locations.js";
-import { ATLAS_MAPS } from "./data/atlas-maps.js";
+import { mapsForLocation } from "./data/atlas-maps.js";
 
 // Explicit orientation for existing overland links. Unresolved links and interiors
 // remain available under Other connections; never infer direction from list order.
@@ -525,10 +525,13 @@ function renderLocations({ exactName = null } = {}) {
         sourceList.append(entry);
       }
     }
-    const map = ATLAS_MAPS[location.name];
+    const maps = mapsForLocation(ATLAS_GAME_ID, location.name);
+    const map = maps[0];
+    let mapSourceLink;
     if (map) {
       const entry = document.createElement("li");
       const link = document.createElement("a");
+      mapSourceLink = link;
       link.href = map.source;
       link.textContent = "HGSS map image · Bulbagarden Archives";
       link.target = "_blank";
@@ -561,38 +564,90 @@ function renderLocations({ exactName = null } = {}) {
       }
       const current = document.createElement("figure");
       current.className = "compass-current";
-      const map = ATLAS_MAPS[location.name];
       const caption = document.createElement("figcaption");
       caption.textContent = location.name;
-      if (map) {
+      if (maps.length) {
         links.classList.add("has-map");
         const mapLink = document.createElement("a");
         mapLink.className = "location-map-link";
-        mapLink.href = `../assets/maps/${map.file}`;
         mapLink.target = "_blank";
         mapLink.rel = "noopener noreferrer";
-        mapLink.setAttribute("aria-label", `Open full-size ${location.name} map in a new tab`);
-        const image = document.createElement("img");
-        image.className = "location-map";
-        image.alt = `${location.name} outdoor map in HeartGold and SoulSilver; north is up`;
-        image.width = map.width;
-        image.height = map.height;
-        image.decoding = "async";
-        image.loading = matches.length === 1 ? "eager" : "lazy";
-        const hint = document.createElement("span");
-        hint.className = "map-hint";
-        hint.textContent = "Open full-size map";
-        mapLink.append(image, hint);
         const fallback = document.createElement("p");
         fallback.className = "map-hint";
-        fallback.textContent = "Map unavailable. Use the connections to continue.";
+        fallback.textContent = "Map unavailable. Choose another map or use the connections to continue.";
         fallback.hidden = true;
-        image.addEventListener("error", () => {
-          mapLink.hidden = true;
-          fallback.hidden = false;
-        }, { once: true });
-        image.src = mapLink.href;
-        current.append(mapLink, fallback);
+        const announcement = document.createElement("span");
+        announcement.className = "map-announcement";
+        announcement.setAttribute("role", "status");
+        let activeImage;
+        let selection;
+        let previous;
+        let next;
+        function showMap(index, userSelected = false) {
+          const selected = maps[index];
+          const description = `${location.name} · ${selected.label}`;
+          const image = document.createElement("img");
+          activeImage = image;
+          image.className = "location-map";
+          image.alt = selected.label.includes("reference view")
+            ? `${description} in HeartGold and SoulSilver`
+            : `${description} map in HeartGold and SoulSilver; north is up`;
+          image.width = selected.width;
+          image.height = selected.height;
+          image.decoding = "async";
+          image.loading = userSelected || matches.length === 1 ? "eager" : "lazy";
+          mapLink.href = `../assets/maps/${selected.file}`;
+          mapLink.setAttribute("aria-label", `Open full-size ${description} map in a new tab`);
+          const hint = document.createElement("span");
+          hint.className = "map-hint";
+          hint.textContent = "Open full-size map";
+          mapLink.replaceChildren(image, hint);
+          mapLink.hidden = false;
+          fallback.hidden = true;
+          caption.textContent = selected.label === "Overview" ? location.name : description;
+          if (mapSourceLink) mapSourceLink.href = selected.source;
+          if (selection) {
+            selection.value = String(index);
+            previous.disabled = index === 0;
+            next.disabled = index === maps.length - 1;
+          }
+          image.addEventListener("error", () => {
+            if (activeImage !== image) return;
+            mapLink.hidden = true;
+            fallback.hidden = false;
+            announcement.textContent = `${description}: map unavailable.`;
+          }, { once: true });
+          image.src = mapLink.href;
+          if (userSelected) announcement.textContent = `Showing ${description}.`;
+        }
+        if (maps.length > 1) {
+          const controls = document.createElement("div");
+          controls.className = "map-controls";
+          const label = document.createElement("label");
+          label.textContent = "Map / area";
+          selection = document.createElement("select");
+          selection.className = "map-select";
+          selection.setAttribute("aria-label", `${location.name} map or floor`);
+          for (const [index, map] of maps.entries()) {
+            const option = document.createElement("option");
+            option.value = String(index);
+            option.textContent = map.label;
+            selection.append(option);
+          }
+          label.append(selection);
+          previous = document.createElement("button");
+          next = document.createElement("button");
+          for (const [button, text, offset] of [[previous, "Previous map", -1], [next, "Next map", 1]]) {
+            button.type = "button";
+            button.textContent = text;
+            button.addEventListener("click", () => showMap(Number(selection.value) + offset, true));
+          }
+          selection.addEventListener("change", () => showMap(Number(selection.value), true));
+          controls.append(label, previous, next);
+          current.append(controls);
+        }
+        current.append(mapLink, fallback, announcement);
+        showMap(0);
       }
       current.append(caption);
       links.append(current);

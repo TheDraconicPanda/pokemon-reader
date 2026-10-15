@@ -286,3 +286,18 @@ Validation: **53 checks passed**, with no failures or skips, including Reader/Pl
 regressions and phone/desktop Atlas checks. Cherrygrove and National Park mobile
 screenshots were reviewed. Reader remains v0.25.37; Team Planner is unchanged.
 User acceptance and independent in-game validation of Atlas v0.25.42 remain pending.
+
+
+## Atlas maps and floor navigation — v0.25.43
+
+All 69 existing non-Safari locations now have map references: 150 labelled
+area/floor views from 148 locally hosted PNGs. Multi-floor locations offer a
+selector and Previous/Next controls; the image, full-size link and source change
+together. Encounter information and compass connections remain available.
+The opening six maps retain their original bytes. Safari Zone itself is excluded.
+
+Battle Frontier grounds explicitly use the shared Platinum/HGSS layout; Whirl
+Islands' additional chamber screenshot is labelled as a reference view. Day Care
+and Magnet Train Station show explicitly labelled surroundings. See
+[coverage and validation](docs/atlas-map-expansion.md) and
+[asset provenance](assets/maps/README.md). User outcome acceptance remains pending.

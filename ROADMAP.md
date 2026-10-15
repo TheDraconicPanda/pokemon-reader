@@ -328,8 +328,24 @@ adding other games or changing the SoulSilver-first scope.
 - [x] Preserve audited route data and all Safari Zone records unchanged
 - [x] Record [full source evidence and coverage](docs/atlas-encounter-audit.md)
 - [x] Complete automated checks and phone/desktop visual review (53 checks)
-- [ ] User acceptance and independent in-game validation
+- [x] User accepted the published v0.25.42 outcome
+- [ ] Independent in-game validation remains distinct from automated/reference checks
 
 Next: verified map expansion and floor navigation. Structured gift/egg/trade,
 item and Trainer reference details are milestone 3, not wild encounter gaps.
 Safari Zone data/mechanics and simulator remain milestones 4/5.
+
+
+## Maps and floor navigation — v0.25.43
+
+- [x] Cover all 69 existing non-Safari locations with 150 labelled map/area views
+- [x] Verify 148 unique PNGs, pinned archive layers and 33 direct source originals
+- [x] Add game-scoped lookup, floor/area selection, full-size/source updates and recovery
+- [x] Apply archive-host network change and verify actual HTTPS access
+- [x] Pass complete coverage and all 58 automated checks, including Reader/Planner regressions
+- [x] Review original images and mobile/desktop floor controls
+- [ ] User acceptance of the published outcome
+
+Publication follows the existing GitHub Pages workflow; verify the live version and
+artifact hashes before reporting deployment. See [coverage and evidence](docs/atlas-map-expansion.md).
+Next: structured location reference details (milestone 3); Safari Zone remains separate.
