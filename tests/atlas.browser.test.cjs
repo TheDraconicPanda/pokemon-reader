@@ -204,16 +204,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.33<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.34<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.33");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.34");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -272,7 +272,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -516,7 +516,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
   await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
   await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Nature details');
-  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent.includes('Attack +10%') && document.querySelector('.nature-down').textContent.includes('Special Attack −10%')`),true);
+  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent.includes('+10% Attack') && document.querySelector('.nature-down').textContent.includes('−10% Special Attack')`),true);
   await evaluate(`document.querySelector('#pokemon-detail-close').click(); location.hash='storage'`);
   await until(() => evaluate(`document.querySelector('[data-view="storage"]').getAttribute('aria-current') === 'page'`),'Storage route');
   await evaluate(`document.querySelector('#box-grid .pokemon-detail-button').click()`);
@@ -529,7 +529,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.33'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.34'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -639,14 +639,15 @@ test('Detail header, borderless tables, totals and conditional history match par
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Detailed record');
   assert.equal(await evaluate(`document.querySelectorAll('#pokemon-detail-content h2').length`),0,'Name only in dialog title');
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.detail-icons [role="img"]'),icon=>icon.getAttribute('aria-label'))`),['Shiny Pokémon','Egg']);
-  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent`),'↑ Attack +10%');
-  assert.equal(await evaluate(`document.querySelector('.nature-down').textContent`),'↓ Special Attack −10%');
+  assert.equal(await evaluate(`document.querySelector('.nature-up').textContent`),'↑ +10% Attack');
+  assert.equal(await evaluate(`document.querySelector('.nature-down').textContent`),'↓ −10% Special Attack');
   assert.equal(await evaluate(`Math.abs(document.querySelector('.nature-up').getBoundingClientRect().x - document.querySelector('.nature-down').getBoundingClientRect().x) < 1 && document.querySelector('.nature-down').getBoundingClientRect().y > document.querySelector('.nature-up').getBoundingClientRect().y`),true,'Nature modifiers must be two rows, not two columns');
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.moves-section thead th'),cell=>cell.textContent)`),['Name','PP','PP Ups']);
   assert.deepEqual(await evaluate(`Array.from(document.querySelector('.moves-section tbody tr').children,cell=>cell.textContent)`),['Pound','20/49','2']);
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.training-section thead th'),cell=>cell.textContent)`),['Stat','IV','EV']);
   assert.deepEqual(await evaluate(`Array.from(document.querySelector('.training-section tbody tr:last-child').children,cell=>cell.textContent)`),['Total','171','21']);
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.detail-table td')).borderTopWidth`),'0px');
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.detail-table th:not(:first-child), .detail-table td')).every(cell => getComputedStyle(cell).textAlign === 'right')`),true,'Numeric headers and values align right');
   assert.equal(await evaluate(`Math.abs(document.querySelector('.nature-modifiers').getBoundingClientRect().right - document.querySelector('.nature-modifiers').parentElement.getBoundingClientRect().right) < 1`),true,'Nature block right alignment');
   for (const section of ['moves-section','training-section']) {
     const widths=await evaluate(`Array.from(document.querySelectorAll('.${section} thead th'),cell=>cell.getBoundingClientRect().width)`);

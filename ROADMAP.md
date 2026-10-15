@@ -186,3 +186,10 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Remove move slot column and use 70%/15%/15% columns for Moves and Training
 - [x] Validate with the 24 browser regressions
 - [ ] User acceptance of v0.25.33
+
+## Detail number alignment — v0.25.34
+
+- [x] Put nature percentages before stat names, keeping arrow colors and alignment
+- [x] Right-align numeric Moves and Training headers and values
+- [x] Validate with the 24 browser regressions
+- [ ] User acceptance of v0.25.34

@@ -1083,3 +1083,5 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .detail-icons [aria-label="Egg"] { grid-row: 2; }
 .hp-critical { background: #c9364933; }
 .hp-critical::-webkit-progress-bar { background: #c9364933; }
+
+.detail-table th:not(:first-child), .detail-table td { text-align: right; }
