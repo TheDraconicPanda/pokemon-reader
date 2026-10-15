@@ -58,7 +58,7 @@
 - [x] Fix exact connected-location selection and Safari Zone Gate return navigation (v0.25.27)
 - [x] Add Chromium regression checks for all existing connection buttons and search/filter behavior
 - [x] Record the current 58-location inventory and unresolved coverage in [the Atlas assessment](docs/atlas-assessment.md)
-- [ ] Complete static location details and access/landmark coverage for the agreed Atlas inventory
+- [x] Implement static landmarks/access content for 70 grouped Johto and border locations (v0.25.36); independent full-content audit and user validation remain pending
 - [ ] Audit every static location against SoulSilver references and record source evidence
 - [x] Define initial location data model
 - [x] Build searchable directory foundation
@@ -132,7 +132,7 @@
 - [ ] Test trade-item consumption and party stat recalculation in-game or in an emulator
 - [ ] Expand only after the first writes are validated
 
-## Reader UI redesign — Atlas development temporarily paused
+## Reader UI redesign — implemented; Atlas work resumed
 
 - [x] A: implement dashboard shell, five-view routing, responsive navigation, and persistent themes (Reader v0.25.28); automated checks pass
 - [x] A: visual direction accepted by the user; real-save validation remains part of final acceptance
@@ -201,3 +201,18 @@ part of the redesign; real-save correctness and evolution validation remain pend
 - [x] Guard direct view/section links and relock on reset or invalid replacement
 - [x] Validate with 26 browser checks
 - [ ] User acceptance of v0.25.35
+
+
+## Atlas static guide — v0.25.36
+
+- [x] Preserve Reader updates through v0.25.35 and resume Atlas on a feature branch
+- [x] Add static features, access conditions, and pinned game-data sources for all 70 location groups
+- [x] Add the missing League/Mt. Silver approaches and major facilities, and correct named connections
+- [x] Extend search to static features/access and test all 154 connected-location buttons
+- [x] Keep all existing encounter tables unchanged; Reader/Planner regressions pass
+- [ ] Complete the separate per-location Serebii/Bulbapedia content audit
+- [ ] User tests the published v0.25.36 result when available
+
+See [static coverage](docs/atlas-static-coverage.md) for the explicit scope, complete
+inventory, source revision, and remaining audit boundary. This does not complete
+Phase 6 or authorize advancing to Safari mechanics/simulation before the audit.

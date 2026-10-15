@@ -52,7 +52,7 @@ async function evaluate(expression) {
 
 async function atlas() {
   await command("Page.navigate", { url: `${baseURL}/pokedex-earth/` });
-  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '58 of 58 locations'`),
+  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '70 of 70 locations'`),
     "Atlas did not finish rendering");
 }
 
@@ -132,9 +132,9 @@ test("Atlas renders the existing inventory and every connection has a destinatio
     name: card.querySelector('h2').textContent,
     connections: Array.from(card.querySelectorAll('.connection-link'), link => link.textContent)
   }))`);
-  assert.equal(cards.length, 58);
+  assert.equal(cards.length, 70);
   const names = new Set(cards.map((card) => card.name));
-  assert.equal(names.size, 58);
+  assert.equal(names.size, 70);
   for (let route = 29; route <= 48; route++) assert.ok(names.has(`Route ${route}`));
   for (const card of cards) for (const target of card.connections) {
     assert.ok(names.has(target), `${card.name} links to missing ${target}`);
@@ -185,18 +185,36 @@ test("manual search, type filters, empty state, and reset still work", async () 
     type.value = 'all'; type.dispatchEvent(new Event('change'));
     return { searchResults, empty, routes, reset: names().length, emptyHidden: document.querySelector('#empty-message').hidden };
   })()`);
-  assert.deepEqual(result.searchResults, ["Route 47", "Route 48", "Safari Zone Gate", "Safari Zone"]);
+  assert.deepEqual(result.searchResults, ["Route 39", "Route 47", "Route 48", "Safari Zone Gate", "Safari Zone"]);
   assert.equal(result.empty, true);
-  assert.equal(result.routes.length, 20);
+  assert.equal(result.routes.length, 23);
   assert.ok(result.routes.every((name) => /^Route \d+$/.test(name)));
-  assert.equal(result.reset, 58);
+  assert.equal(result.reset, 70);
   assert.equal(result.emptyHidden, true);
+});
+
+test("all Atlas locations display static information, sources, and mobile layouts", async () => {
+  await atlas();
+  const result = await evaluate(`(() => {
+    const cards = Array.from(document.querySelectorAll('.location-card'));
+    const complete = cards.every(card => card.querySelectorAll('.location-static h3').length === 2 && card.querySelectorAll('.location-static > div li').length >= 4 && card.querySelectorAll('.location-sources a').length >= 2);
+    const sources = cards[0].querySelector('.location-sources');
+    sources.querySelector('summary').click();
+    return { complete, sourcesOpen: sources.open };
+  })()`);
+  assert.deepEqual(result, { complete: true, sourcesOpen: true });
+  await evaluate(`(() => { const input = document.querySelector('#location-search'); input.value = 'Waterfall'; input.dispatchEvent(new Event('input')); })()`);
+  assert.ok((await evaluate(`Array.from(document.querySelectorAll('.location-card h2'), h => h.textContent)`)).includes("Tohjo Falls"));
+  await command("Emulation.setDeviceMetricsOverride", { width: 375, height: 812, deviceScaleFactor: 1, mobile: true });
+  assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`), true);
+  await command("Emulation.clearDeviceMetricsOverride");
+  assert.deepEqual(exceptions, []);
 });
 
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.27') && document.querySelector('.eyebrow').textContent.includes('v0.25.27'),
+    version: document.title.includes('v0.25.36') && document.querySelector('.eyebrow').textContent.includes('v0.25.36'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -204,16 +222,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 38);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.35<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.36<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.35");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.36");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -274,7 +292,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -531,7 +549,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -717,7 +735,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.35'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.36'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);

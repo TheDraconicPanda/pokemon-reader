@@ -1,5 +1,10 @@
 # Atlas assessment and coverage checklist
 
+> Historical v0.25.27 snapshot. Static implementation has since expanded to 70
+> location groups in v0.25.36; see [current static coverage](atlas-static-coverage.md).
+> This snapshot's missing fields and adjacency list describe the old implementation.
+> The full secondary-source content audit and Safari work remain pending.
+
 Assessment: 2026-10-14. Baseline: `b2dee6c6d40a9f6e58a0aef2f5009345dbbd6b52`, matching remote `main` at inspection. Working tree was clean on branch `work`; implementation branch: `feat/atlas-navigation-integrity`.
 
 ## Verified repository state
@@ -133,7 +138,7 @@ Acceptance criteria:
 - [x] Align main-page HTML, JavaScript title/version, and Atlas labels at v0.25.27. The package's historical npm version is not the application release label.
 - [x] Record the full inventory and unresolved content audit; correct the Atlas introduction's outdated five-area block-coverage wording.
 - [x] Provide a repeatable browser test command and inspect the diff.
-- [ ] User validates the published result at the existing Atlas URL when available.
+- [x] User reported the v0.25.27 Atlas working; content was not audited.
 - [x] Standing authorization recorded: commit, integrate, and publish completed validated milestones, then notify the user.
 
 Validation: `npm test` runs six Chromium browser tests. It verifies the 58-location inventory, existing route coverage, all connection destinations, all 122 connection clicks, search/filter/reset behavior, representative encounter rendering, consistent version labels, main save-reader initialization and invalid-save rejection, Planner checklist persistence and tab switching, and absence of uncaught JavaScript exceptions during these flows. These checks do not validate encounter accuracy or real-save parsing/evolution.

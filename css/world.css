@@ -65,6 +65,12 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
   white-space: nowrap;
 }
 .empty-message { color: #6b7280; padding: 1rem 0; }
+.location-static { grid-column: 1 / -1; display: grid; gap: 0.75rem; }
+.location-static h3 { margin: 0; font-size: 0.9rem; color: #374151; }
+.location-static ul { margin: 0.35rem 0 0; padding-left: 1.25rem; font-size: 0.85rem; line-height: 1.55; color: #4b5563; }
+.location-sources { font-size: 0.8rem; overflow-wrap: anywhere; }
+.location-sources summary { cursor: pointer; color: #1d4ed8; }
+.location-sources a { color: #1d4ed8; }
 @media (min-width: 640px) {
   .world-panel { padding: 1.5rem; }
   .world-panel { display: grid; grid-template-columns: minmax(0, 1fr) 14rem; column-gap: 1rem; }

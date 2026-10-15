@@ -56,13 +56,15 @@ new version is live. No separate preview host or repository is required.
 
 ## Current Atlas checkpoint
 
-**v0.25.27:** connection navigation fixes and browser regression checks. The Atlas
-contains 58 location entries and all Johto Routes 29–48, but static content and
-reference audits remain incomplete. Safari data includes walking records in all
-12 areas and block records in 11; encounter accuracy is still under review.
+**v0.25.36:** 70 grouped locations with landmarks, access/progression notes, sources,
+and corrected connections. Coverage includes Johto Routes 29–48 and the League/Mt.
+Silver approaches on Routes 26–28. City interiors and dungeon floors are grouped
+under their parent locations. Encounter tables and Safari mechanics are unchanged.
 
-See the [Atlas assessment and coverage checklist](docs/atlas-assessment.md) for
-the full location inventory, known gaps, validation results, and review steps.
+The static information was assembled using pinned game map, event, and message
+data. The full Serebii/Bulbapedia content audit is the next step and remains pending.
+See [static coverage and online test steps](docs/atlas-static-coverage.md) and the
+[historical assessment](docs/atlas-assessment.md).
 
 ## Versioning
 
