@@ -52,8 +52,9 @@ links, Route 29 compass geometry, focus, no horizontal overflow, and navigation
 visibility before Safari content at 320/390/768/1440px. Real-save and gameplay
 validation are not claimed by these UI checks.
 
-Publication follows these passing checks on the existing Pages deployment branch.
-User acceptance remains pending. On the existing
+Published commit `2c09073` to `origin/main` using a normal fast-forward push.
+The GitHub Pages status API and public-site fetch both returned HTTP 403 from
+this environment, so live deployment is unconfirmed. User acceptance remains pending. On the existing
 site, confirm Atlas v0.25.38, follow Route 29 west toward Cherrygrove, check the north
 branch to Route 46, and search Safari Zone Gate then enter Safari Zone. Confirm
 navigation appears before content, with no scroll through encounters needed to

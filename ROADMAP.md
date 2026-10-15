@@ -239,7 +239,8 @@ full Kanto coverage, or all of Phase 6. No simulator work has begun.
 - [x] Preserve other connections, all 70 records, search/type filters, and encounter tables
 - [x] Focus and scroll to the destination heading after navigation
 - [x] Validate mobile/desktop geometry, exact destinations, and Reader/Planner regressions
-- [ ] Publish and confirm the deployed Atlas version
+- [x] Publish validated Atlas v0.25.38 to the existing deployment branch (`2c09073`)
+- [ ] Confirm the deployed Atlas version (status API and public-site checks returned 403)
 - [ ] User acceptance on the existing Pages site
 
 Map artwork and a separate encounter block are deferred. No encounter filters are
