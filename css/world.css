@@ -182,3 +182,15 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 @media (max-width: 639px) {
   .connection-links.has-map { grid-template-columns: minmax(4rem, 1fr) minmax(0, 2fr) minmax(4rem, 1fr); }
 }
+
+.route-features {
+  min-width: 0;
+  border-top: 1px solid var(--border, #d7e2eb);
+  padding-top: 0.7rem;
+}
+.route-features summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.route-features ul { padding-left: 1.2rem; }
+.route-features li { margin: 0.5rem 0; overflow-wrap: anywhere; }

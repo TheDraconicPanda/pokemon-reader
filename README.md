@@ -233,3 +233,25 @@ unchanged. No encounter filters were added. The 37-check suite covers asset
 integrity, image loading, all six journey steps and compass layout at
 320/390/768/1440px, failed-image recovery, and existing Atlas/Reader/Planner behavior.
 User acceptance of this map milestone remains pending.
+
+
+## Atlas route reference — v0.25.41
+
+All 23 existing numbered routes (26–48) now have SoulSilver encounters checked
+against Serebii, Bulbapedia and pinned game data. The six missing route tables
+(26–31) are added; older route tables are corrected. Routes also have expandable
+Items & Apricorns and NPCs & trainers sections, including hidden items, daily
+trees, weekday gifts, phone contacts and access conditions. Search includes these
+features. The six opening maps and compass layout are preserved.
+
+The route reference contains 519 encounter records and 158 item/Apricorn records.
+Rates and discrete level sets follow the actual SoulSilver slot rules; Headbutt
+groups, radio prerequisites, outbreaks, Kenya and Sudowoodo are distinguished.
+See the [route audit](docs/atlas-route-audit.md) for coverage, disagreements and
+evidence. Data is explicitly scoped to SoulSilver so future games cannot silently
+inherit its records. Other locations and Safari mechanics remain outside this
+audit; Reader remains v0.25.37 and Team Planner is unchanged.
+
+Validation: 43 automated checks pass, covering route content/distributions, game
+isolation, mobile/desktop presentation and Reader/Planner regressions. User
+acceptance and real-game validation of the published result remain pending.

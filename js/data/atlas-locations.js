@@ -1,6 +1,6 @@
 // Johto location groups and the League/Mt. Silver approaches.
 // Primary sources pinned to pret/pokeheartgold e3f671ad1d060140c587f925f4ab8ec3596f62b9.
-// Encounter tables remain in world.js; this module contains static information only.
+// Route encounters/features are game-scoped under games/soulsilver; other encounter tables remain in world.js.
 export const ATLAS_LOCATIONS = Object.freeze([
   {
     "name": "New Bark Town",

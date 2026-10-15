@@ -236,13 +236,13 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.40') && document.querySelector('.eyebrow').textContent.includes('v0.25.40'),
+    version: document.title.includes('v0.25.41') && document.querySelector('.eyebrow').textContent.includes('v0.25.41'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
   assert.equal(result.version, true);
   assert.equal(result.safari, 269);
-  assert.equal(result.route32, 38);
+  assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
   assert.match(html, /<title>Pokémon Reader — v0\.25\.37<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
@@ -802,7 +802,7 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
 test('Atlas separates overview and encounters for every location at mobile and desktop widths', async () => {
   await atlas();
   const baseline = await evaluate(`Array.from(document.querySelectorAll('.location-card'), card => ({name:card.querySelector('h2').textContent,entries:Array.from(card.querySelectorAll('.encounter-entry'),row=>row.textContent)}))`);
-  assert.equal(baseline.filter(location=>location.entries.length).length,25);
+  assert.equal(baseline.filter(location=>location.entries.length).length,31);
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
     assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(card => {
@@ -857,4 +857,34 @@ test('opening journey maps load between compass controls and retain mobile navig
   await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0`),'Return to loaded map');
   await command('Emulation.clearDeviceMetricsOverride');
   assert.deepEqual(exceptions,[]);
+});
+
+test('all 23 routes expose encounters and expandable items/NPCs on phones and desktop', async () => {
+  await atlas();
+  for (const width of [320, 390, 1440]) {
+    await command('Emulation.setDeviceMetricsOverride', {width,height:844,deviceScaleFactor:1,mobile:width<800});
+    const result = await evaluate(`(() => {
+      const routes = Array.from(document.querySelectorAll('.location-card')).filter(card => /^Route \\d+$/.test(card.querySelector('h2').textContent));
+      const missing = routes.filter(card => !card.querySelector('.encounter-entry') || card.querySelectorAll('.route-features').length !== 2).map(card => card.querySelector('h2').textContent);
+      const route29 = routes.find(card => card.querySelector('h2').textContent === 'Route 29');
+      for (const details of route29.querySelectorAll('.route-features')) details.querySelector('summary').click();
+      return {count:routes.length,missing,text:route29.textContent,visible:Array.from(route29.querySelectorAll('.route-features')).every(details=>details.open),fits:document.documentElement.scrollWidth<=innerWidth};
+    })()`);
+    assert.equal(result.count, 23);
+    assert.deepEqual(result.missing, []);
+    for (const pattern of [/Pidgey/, /Sentret/, /Hoothoot/, /Ledyba/, /Grn Apricorn/, /Tuscany/, /TwistedSpoon/, /Shock Ribbon/]) assert.match(result.text, pattern);
+    assert.equal(result.visible, true);
+    assert.equal(result.fits, true, `Route details fit ${width}px`);
+    if (process.env.ATLAS_SCREENSHOT_DIR && width !== 320) {
+      await evaluate(`Array.from(document.querySelectorAll('.location-card')).find(card=>card.querySelector('h2').textContent==='Route 29').scrollIntoView({block:'start'})`);
+      const shot = await command('Page.captureScreenshot', {format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR, `route-29-features-${width}.png`), Buffer.from(shot.data, 'base64'));
+    }
+    // Close before the next width so the next click exercises opening again.
+    await evaluate(`document.querySelectorAll('.route-features').forEach(details=>details.open=false)`);
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  await evaluate(`document.querySelector('#location-search').value='Tuscany';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`), 'Route 29');
+  assert.deepEqual(exceptions, []);
 });

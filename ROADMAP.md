@@ -270,3 +270,25 @@ part of these layout checks.
 
 This is the first map milestone; remaining locations retain their text compass.
 No interior/floor selector, encounter filter, Reader, or Planner changes are included.
+
+
+## Atlas existing-route audit — v0.25.41
+
+User priority: complete the encounters and useful route features already present
+in Atlas before resuming Safari Zone mechanics. This supersedes the immediate
+next-step order for this milestone.
+
+- [x] Audit all 23 existing numbered routes (26–48) against both reference sites
+- [x] Resolve encounter discrepancies using pinned SoulSilver game data/rules
+- [x] Add missing tables for Routes 26–31 and replace older route tables
+- [x] Cover applicable walking, Surf, rods, Headbutt groups, radio and outbreaks
+- [x] Include Kenya/Sudowoodo gifts/interactions and their conditions
+- [x] Add route items, Apricorns, useful NPC interactions and trainer identities
+- [x] Keep new reference data game-scoped for future multi-game support
+- [x] Validate method/time distributions, content, mobile layout and regressions (43 checks)
+- [ ] User confirms the deployed v0.25.41 outcome; real-game validation remains pending
+
+See [route audit and scope](docs/atlas-route-audit.md). Other location encounter
+tables, full Kanto coverage, remaining maps and trainer party/strategy data are
+not completed by this milestone. Safari Zone data/mechanics remain the next
+planned technical milestone after this route work is accepted.

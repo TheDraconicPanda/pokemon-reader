@@ -1,0 +1,1368 @@
+{
+  "release": "0.25.41",
+  "gameId": "soulsilver",
+  "reviewed_on": "2026-10-15",
+  "scope": "Existing numbered routes 26–48: encounters, items/Apricorns, useful NPC interactions and trainer identities/conditions.",
+  "primary_revision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "primary_rules": [
+    "src/field/encounter_check.c",
+    "src/field/headbutt.c",
+    "src/unk_02097F6C.c"
+  ],
+  "routes": [
+    {
+      "location": "Route 26",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 26,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route26.shtml",
+          "http_status": 200,
+          "sha256": "4cfdc41b11ca724a60c6ea7a8a991cc0e2ceb971f9c4e7e31943515d3cfb466c"
+        },
+        {
+          "route": 26,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_26",
+          "http_status": 200,
+          "sha256": "8fac955379240c9870d570a66f29568d419d8f9122a4d31e2d385d36d46d0568"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/027_R26.json",
+          "sha256": "2c4b7984c97953f3db3e5355d2fa87b0f235f42c704dc1c9e15498ac1c68ccb5"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0218_R26.s",
+          "sha256": "6e23ac99e73a5c4ad1eefeaebb2c6500be29a40bb80f598e1719e99a6f16f60e"
+        }
+      ],
+      "encounter_records": 29,
+      "item_records": 3,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Doduo reference levels 28 - 30; game level set 28,30",
+        "Morning: Raticate reference levels 28 - 30; game level set 28,30",
+        "Day: Doduo reference levels 28 - 30; game level set 28,30",
+        "Day: Raticate reference levels 28 - 30; game level set 28,30",
+        "Night: Raticate reference 50%; game 60%",
+        "Night: Doduo reference 5%; game 10%",
+        "Standard Surfing: Tentacool reference levels 25 - 30; game level set 25,30",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Tentacool reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Chinchou reference 7%; game 20%",
+        "Good Rod: Shellder reference 3%; game 10%",
+        "Super Rod: Chinchou reference 60%; game 40%",
+        "Super Rod: Tentacruel reference 7%; game 20%",
+        "Super Rod: Lanturn reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "walking  Raticate nite: reference Lv [28] 65%; game Lv [28] 60%",
+        "walking  Doduo nite: reference Lv [28, 30] 5%; game Lv [30] 10%",
+        "surfing  Tentacool morn: reference Lv [25, 26, 27, 28, 29, 30] 90%; game Lv [25, 30] 90%",
+        "surfing  Tentacool day: reference Lv [25, 26, 27, 28, 29, 30] 90%; game Lv [25, 30] 90%",
+        "surfing  Tentacool nite: reference Lv [25, 26, 27, 28, 29, 30] 90%; game Lv [25, 30] 90%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 27",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 27,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route27.shtml",
+          "http_status": 200,
+          "sha256": "e45b91206211646b4fbd73f183e0f1078027051c836286cf58b3f9a737de1f57"
+        },
+        {
+          "route": 27,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_27",
+          "http_status": 200,
+          "sha256": "191f451692ab6cc1df7f95590219f43ccba0cfec9c757e3b20b501f005f723fa"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/028_R27.json",
+          "sha256": "e5ec8980cbe06233bc999ca647a3225ea93e0cb482de8d1eb5f27b78eacfb80a"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0221_R27.s",
+          "sha256": "cc18b25a46cb286e41ef0b1e2e36076ca668c1c7eb2abd82ac232c449c21ba30"
+        }
+      ],
+      "encounter_records": 30,
+      "item_records": 8,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Doduo reference levels 28 - 30; game level set 28,30",
+        "Day: Doduo reference levels 28 - 30; game level set 28,30",
+        "Night: Quagsire reference levels 28 - 30; game level set 28,30",
+        "Standard Surfing: Tentacool reference levels 15 - 20; game level set 15,20",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Tentacool reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Chinchou reference 7%; game 20%",
+        "Good Rod: Shellder reference 3%; game 10%",
+        "Super Rod: Chinchou reference 60%; game 40%",
+        "Super Rod: Tentacruel reference 7%; game 20%",
+        "Super Rod: Lanturn reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Tentacool morn: reference Lv [15, 16, 17, 18, 19, 20] 90%; game Lv [15, 20] 90%",
+        "surfing  Tentacool day: reference Lv [15, 16, 17, 18, 19, 20] 90%; game Lv [15, 20] 90%",
+        "surfing  Tentacool nite: reference Lv [15, 16, 17, 18, 19, 20] 90%; game Lv [15, 20] 90%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 28",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 28,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/kanto/route28.shtml",
+          "http_status": 200,
+          "sha256": "ff1a4b957283b81668c8dbfa0c59ae2ad716ec3ac1f7c5f16ea800573785ca43"
+        },
+        {
+          "route": 28,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_28",
+          "http_status": 200,
+          "sha256": "0a7bebfcab60787efedf1b6c9c933c925906dc0ddaa4722268d83ddd4cce01d0"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/029_R28.json",
+          "sha256": "f50e227da04074ad55713495f39b6e765afc6fa3e9ae30b50d1c491bfcb04aff"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0223_R28.s",
+          "sha256": "05e88f620f894a50c915d0d234d4ee091dab45c2ee37064369498c273b493172"
+        }
+      ],
+      "encounter_records": 26,
+      "item_records": 3,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Night: Rapidash reference levels 41 - 43; game level set 41,43",
+        "Standard Surfing: Poliwag reference levels 35 - 40; game level set 35,40",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Poliwag morn: reference Lv [35, 36, 37, 38, 39, 40] 90%; game Lv [35, 40] 90%",
+        "surfing  Poliwag day: reference Lv [35, 36, 37, 38, 39, 40] 90%; game Lv [35, 40] 90%",
+        "surfing  Poliwag nite: reference Lv [35, 36, 37, 38, 39, 40] 90%; game Lv [35, 40] 90%",
+        "good_rod  Magikarp morn: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp day: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp nite: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Poliwag morn: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag day: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag nite: reference Lv [20] 40%; game Lv [20] 60%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 29",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 29,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route29.shtml",
+          "http_status": 200,
+          "sha256": "d3ea83f5ce9790d3f82ebaf94f98fa2fcb822c1233fe328a60c0fbc10de9bee5"
+        },
+        {
+          "route": 29,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_29",
+          "http_status": 200,
+          "sha256": "5842835135f535abb6a3cff1040c6bb243e351709a985db555f8d20c060afd00"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/030_R29.json",
+          "sha256": "3b8e4c64e3e39faa653f1a13d35a7bd33d83104b458135a7bc8c503b34e5bf52"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0225_R29.s",
+          "sha256": "99769147cac2f33518877592af9c4741a47cfbf9df32ebd3c43a59af25c4f1a6"
+        }
+      ],
+      "encounter_records": 16,
+      "item_records": 5,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Day: Sentret reference levels 2 - 3; game level set 2,3,4",
+        "Day: Rattata reference levels 4 - 4; game level set 2",
+        "Night: Rattata reference levels 2 - 4; game level set 2,4"
+      ],
+      "bulbapedia_differences": [
+        "walking  Rattata day: reference Lv [4] 5%; game Lv [2] 5%",
+        "walking  Sentret day: reference Lv [2, 3] 40%; game Lv [2, 3, 4] 40%",
+        "walking hoenn-sound Plusle morn: reference Lv [3] 20%; game Lv [2, 3] 20%",
+        "walking hoenn-sound Plusle day: reference Lv [3] 20%; game Lv [2, 3] 20%",
+        "walking hoenn-sound Plusle nite: reference Lv [3] 20%; game Lv [2, 3] 20%",
+        "walking hoenn-sound Minun morn: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking hoenn-sound Minun day: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking hoenn-sound Minun nite: reference Lv [2, 3] 20%; game Lv [3] 20%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 30",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 30,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route30.shtml",
+          "http_status": 200,
+          "sha256": "7301f02da05bca93bd816044f51550eebef2b7169970e979a68ba0ad02281c88"
+        },
+        {
+          "route": 30,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_30",
+          "http_status": 200,
+          "sha256": "f54cc3c7b681faadf18204f3c402db1f751b4944e8fc71cae928e5318d2a5ae4"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/031_R30.json",
+          "sha256": "d0f9db991521e09d3888c737e1821585cf9b65a806364c4a0fc926dec9637e0b"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0227_R30.s",
+          "sha256": "dd374368f787813f72ddb6bbc6d3281fd789634e4d5cacc2fa33e07a52871290"
+        }
+      ],
+      "encounter_records": 27,
+      "item_records": 10,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Radio Pokémon: Buizel reference levels 2 - 3; game level set 3",
+        "Standard Surfing: Poliwhirl reference levels 15 - 32; game level set 15,16,17,18,19,20,21,22,23,24,25,32",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Poliwhirl morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "surfing  Poliwhirl day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "surfing  Poliwhirl nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "good_rod  Poliwag morn: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag day: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag nite: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Magikarp morn: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp day: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp nite: reference Lv [20] 60%; game Lv [20] 40%",
+        "walking hoenn-sound Whismur morn: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking hoenn-sound Whismur day: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking hoenn-sound Whismur nite: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking sinnoh-sound Buizel morn: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking sinnoh-sound Buizel day: reference Lv [2, 3] 20%; game Lv [3] 20%",
+        "walking sinnoh-sound Buizel nite: reference Lv [2, 3] 20%; game Lv [3] 20%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 31",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 31,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route31.shtml",
+          "http_status": 200,
+          "sha256": "1fce56b4c72293db0cecf70fbcd0356694bee5c676156be3c5a4573b1480ffb7"
+        },
+        {
+          "route": 31,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_31",
+          "http_status": 200,
+          "sha256": "5b4e328d8153d52a47860da32c85db509792197ad39da7d5aa66bb7ffdbf2028"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/032_R31.json",
+          "sha256": "4d47366b9deb36a9d56cc0871ff40087897d9cfe69e1058f4d5dc247738a7c7b"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0230_R31.s",
+          "sha256": "9221aa50052d18edab25da4b95def3ff8d9e3cc402a638e64dfebb6d6695772f"
+        }
+      ],
+      "encounter_records": 28,
+      "item_records": 15,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Radio Pokémon: Whismur reference levels 3 - 4; game level set 4",
+        "Standard Surfing: Poliwhirl reference levels 15 - 32; game level set 15,16,17,18,19,20,21,22,23,24,25,32",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Poliwhirl morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "surfing  Poliwhirl day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "surfing  Poliwhirl nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 32] 10%",
+        "good_rod  Poliwag morn: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag day: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag nite: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Magikarp morn: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp day: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp nite: reference Lv [20] 60%; game Lv [20] 40%",
+        "walking hoenn-sound Whismur morn: reference Lv [3, 4] 20%; game Lv [4] 20%",
+        "walking hoenn-sound Whismur day: reference Lv [3, 4] 20%; game Lv [4] 20%",
+        "walking hoenn-sound Whismur nite: reference Lv [3, 4] 20%; game Lv [4] 20%",
+        "walking sinnoh-sound Buizel morn: reference Lv [3, 4] 20%; game Lv [4] 20%",
+        "walking sinnoh-sound Buizel day: reference Lv [3, 4] 20%; game Lv [4] 20%",
+        "walking sinnoh-sound Buizel nite: reference Lv [3, 4] 20%; game Lv [4] 20%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 32",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 32,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route32.shtml",
+          "http_status": 200,
+          "sha256": "b0a8a7c0a2bd1f9b5b9f8b09d7586905beb24dc31c236f5168cecd928f960afe"
+        },
+        {
+          "route": 32,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_32",
+          "http_status": 200,
+          "sha256": "416f563669d42121d1f58e0ed4c4708bb5117826d05b5c2ea4e14b1b45f703d3"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/033_R32.json",
+          "sha256": "d582571acfa81c46953981e1aa81d5bca1e2fb863b673a7425d4b3a31e61c2ac"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0232_R32.s",
+          "sha256": "858df95685a5ef40f7a80dfe57d945e2696b0aa70c6937513c26c3c1520057b2"
+        }
+      ],
+      "encounter_records": 33,
+      "item_records": 13,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Day: Rattata reference levels 4 - 6; game level set 4,6",
+        "Radio Pokémon: Whismur reference levels 4 - 6; game level set 4,6",
+        "Radio Pokémon: Buizel reference levels 4 - 6; game level set 4,6",
+        "Standard Surfing: Tentacruel reference levels 15 - 36; game level set 15,16,17,18,19,20,21,22,23,24,25,36",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Tentacool reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Tentacool reference 38%; game 55%",
+        "Good Rod: Qwilfish reference 2%; game 5%",
+        "Super Rod: Tentacool reference 90%; game 70%",
+        "Super Rod: Magikarp reference 7%; game 20%",
+        "Super Rod: Qwilfish reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "walking  Rattata day: reference Lv [4, 5, 6] 10%; game Lv [4, 6] 10%",
+        "surfing  Tentacruel morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 36] 10%",
+        "surfing  Tentacruel day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 36] 10%",
+        "surfing  Tentacruel nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 36] 10%",
+        "good_rod swarm Qwilfish morn: reference Lv [20] 55%; game Lv [20] 65%",
+        "good_rod swarm Qwilfish day: reference Lv [20] 55%; game Lv [20] 65%",
+        "good_rod swarm Qwilfish nite: reference Lv [20] 55%; game Lv [20] 65%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 33",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 33,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route33.shtml",
+          "http_status": 200,
+          "sha256": "4b2c9f070d03fdf3bb8fba86f50a067f6d9969d16498385e7a448f68c3e3422d"
+        },
+        {
+          "route": 33,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_33",
+          "http_status": 200,
+          "sha256": "d2cd0e109d7a2d0eff2ed8b7578f82b6072fcfcf6c37b81b1918d18d876d8221"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/034_R33.json",
+          "sha256": "728e51e4e842945d00f98d30b38bfa5e646cd93f52adb8d4ce608b49b0914cb9"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0236_R33.s",
+          "sha256": "22bc2629a8dd599e235231a5b140e406f8a6b331e331aa6cec868d8db50f6b79"
+        }
+      ],
+      "encounter_records": 16,
+      "item_records": 2,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Hoppip reference levels 6 - 8; game level set 6,8",
+        "Day: Hoppip reference levels 6 - 8; game level set 6,8",
+        "Day: Rattata reference levels 4 - 6; game level set 4,6"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 34",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 34,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route34.shtml",
+          "http_status": 200,
+          "sha256": "7b094cdfdab854a5169708da6806f7b36537dfc6545fe02aea92848cadce639a"
+        },
+        {
+          "route": 34,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_34",
+          "http_status": 200,
+          "sha256": "749cd7a2fffb784321840496609165b5661ea6a823ab10af42f920c081f7f7ed"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/035_R34.json",
+          "sha256": "2f7361064c6e493f92162e923f60bdf99a442961625da594a931453b0010b4fe"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0237_R34.s",
+          "sha256": "b213f315e6aa9e5dd684402775cc45417d98fcd4c2d9cb01aac34884c6b087bb"
+        }
+      ],
+      "encounter_records": 27,
+      "item_records": 15,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Tentacruel reference levels 15 - 29; game level set 15,16,17,18,19,20,21,22,23,24,25,29",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Krabby reference 5%; game 15%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Tentacruel morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 29] 10%",
+        "surfing  Tentacruel day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 29] 10%",
+        "surfing  Tentacruel nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 29] 10%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 35",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 35,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route35.shtml",
+          "http_status": 200,
+          "sha256": "e00bddb963621697c77885ee4e53955fff27d1ff1095cc430363c7d51eb55495"
+        },
+        {
+          "route": 35,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_35",
+          "http_status": 200,
+          "sha256": "0925022c5376bfa851849065d1428b21782c0767013c684595d25d5f2862fe4d"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/036_R35.json",
+          "sha256": "e4d393eb2b0e6a184102e0752142990bef634b239347ebd88bbbe85d6d5582b8"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0240_R35.s",
+          "sha256": "ab5b042eb4393a43ab1e97beab7088a171db313fa361a20b15032257209a2814"
+        }
+      ],
+      "encounter_records": 28,
+      "item_records": 6,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Psyduck reference levels 5 - 20; game level set 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+        "Standard Surfing: Golduck reference levels 10 - 20; game level set 15,16,17,18,19,20,21,22,23,24,25,31",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Golduck morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 31] 10%",
+        "surfing  Golduck day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 31] 10%",
+        "surfing  Golduck nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] 10%; game Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 31] 10%",
+        "good_rod  Poliwag morn: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag day: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Poliwag nite: reference Lv [20] 40%; game Lv [20] 60%",
+        "good_rod  Magikarp morn: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp day: reference Lv [20] 60%; game Lv [20] 40%",
+        "good_rod  Magikarp nite: reference Lv [20] 60%; game Lv [20] 40%",
+        "headbutt tree-a Exeggcute morn: reference Lv [9, 10] 20%; game Lv [10, 11] 20%",
+        "headbutt tree-a Exeggcute day: reference Lv [9, 10] 20%; game Lv [10, 11] 20%",
+        "headbutt tree-a Exeggcute nite: reference Lv [9, 10] 20%; game Lv [10, 11] 20%",
+        "headbutt tree-a Hoothoot morn: reference Lv [9, 10] 50%; game Lv [10, 11] 50%",
+        "headbutt tree-a Hoothoot day: reference Lv [9, 10] 50%; game Lv [10, 11] 50%",
+        "headbutt tree-a Hoothoot nite: reference Lv [9, 10] 50%; game Lv [10, 11] 50%",
+        "headbutt tree-a Pineco morn: reference Lv [9, 10] 30%; game Lv [10, 11] 30%",
+        "headbutt tree-a Pineco day: reference Lv [9, 10] 30%; game Lv [10, 11] 30%",
+        "headbutt tree-a Pineco nite: reference Lv [9, 10] 30%; game Lv [10, 11] 30%",
+        "headbutt tree-b Exeggcute morn: reference Lv [10, 11] 20%; game Lv [13, 14] 20%",
+        "headbutt tree-b Exeggcute day: reference Lv [10, 11] 20%; game Lv [13, 14] 20%",
+        "headbutt tree-b Exeggcute nite: reference Lv [10, 11] 20%; game Lv [13, 14] 20%",
+        "headbutt tree-b Hoothoot morn: reference Lv [10, 11] 50%; game Lv [13, 14] 50%",
+        "headbutt tree-b Hoothoot day: reference Lv [10, 11] 50%; game Lv [13, 14] 50%",
+        "headbutt tree-b Hoothoot nite: reference Lv [10, 11] 50%; game Lv [13, 14] 50%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 36",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 36,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route36.shtml",
+          "http_status": 200,
+          "sha256": "3466cb6592205f4cfa64f8fec250ba417664f3f5ba4585a9217b999d3fa101c5"
+        },
+        {
+          "route": 36,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_36",
+          "http_status": 200,
+          "sha256": "b565668c69819bf61b1a30929f53b2684eabfac3ac5c1a36dc1b3fc759be88bd"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/037_R36.json",
+          "sha256": "7d8d4b0d3ed3009449275a2cc7927c05d31adfc4ab9f884af946742d72ca9981"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0243_R36.s",
+          "sha256": "1ecd8c44f0869de4c943aee8afb3151dfde852e3ae10da5bec9100223a57c35a"
+        }
+      ],
+      "encounter_records": 20,
+      "item_records": 10,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Pidgey reference levels 12 - 15; game level set 12,15",
+        "Day: Nidoran♀ reference levels 12 - 13; game level set 12",
+        "Day: Nidoran♂ reference levels 12 - 13; game level set 12",
+        "Day: Pidgey reference levels 12 - 13; game level set 13",
+        "Day: Vulpix reference levels 13 - 15; game level set 13,15",
+        "Night: Hoothoot reference levels 13 - 15; game level set 13,15"
+      ],
+      "bulbapedia_differences": [
+        "walking  Nidoran♀ day: reference Lv [12, 13] 30%; game Lv [12] 30%",
+        "walking  Nidoran♀ nite: reference Lv [12, 13] 30%; game Lv [12] 30%",
+        "walking  Nidoran♂ day: reference Lv [12, 13] 30%; game Lv [12] 30%",
+        "walking  Nidoran♂ nite: reference Lv [12, 13] 30%; game Lv [12] 30%",
+        "walking  Vulpix day: reference Lv [13, 14, 15] 15%; game Lv [13, 15] 15%",
+        "walking  Hoothoot nite: reference Lv [13, 14, 15] 25%; game Lv [13, 15] 25%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 37",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 37,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route37.shtml",
+          "http_status": 200,
+          "sha256": "b826114918bb3999e0051c46bb21d0d247f64937f4dee794d33f882f0bcbe438"
+        },
+        {
+          "route": 37,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_37",
+          "http_status": 200,
+          "sha256": "f99e9821f12725209d70e31d84832d0a7249710dc28eef5d77ce49c8b534aecc"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/038_R37.json",
+          "sha256": "3eb286ac39d92cacbf02cff1b756724fc653a97f5e23f372b5e00903bff88665"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0246_R37.s",
+          "sha256": "8a8f5355b6352215966e9562b4b7f92af5166cf82374adda95f49bd9cd0dd35e"
+        }
+      ],
+      "encounter_records": 17,
+      "item_records": 5,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Ledyba reference levels 13 - 15; game level set 13,15",
+        "Day: Pidgey reference levels 13 - 15; game level set 13,15",
+        "Night: Hoothoot reference levels 13 - 15; game level set 13,15",
+        "Radio Pokémon: Plusle reference levels 13 - 15; game level set 13,15",
+        "Radio Pokémon: Shinx reference levels 13 - 15; game level set 13,15"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 38",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 38,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route38.shtml",
+          "http_status": 200,
+          "sha256": "39ea805d6de800855abb8a0957a9bd65da808590f37949c360dcaca5dfcd7b48"
+        },
+        {
+          "route": 38,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_38",
+          "http_status": 200,
+          "sha256": "58ca3474630c7bcbc112dd8ef14ffac742d2bb2424b974fcf24e57e74b12f2ef"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/039_R38.json",
+          "sha256": "d51d047b7b93906ca6fa7a7455e284df4c084b5bb0448da7287d5a2b207a796e"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0247_R38.s",
+          "sha256": "85d15a26bba42cd44896a632b78193ac2267dac11761ec09b634b9e3e0e871d3"
+        }
+      ],
+      "encounter_records": 20,
+      "item_records": 5,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Swarm Pokémon: Snubbull reference levels 13 - 16; game level set 16"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 39",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 39,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route39.shtml",
+          "http_status": 200,
+          "sha256": "c067d262f7888a184ed8854b66399927039c4f3c87e9b6b18f36fe48a1706d7e"
+        },
+        {
+          "route": 39,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_39",
+          "http_status": 200,
+          "sha256": "b3e15e2c564b7ffd9c182fc08651a4447cc1f4b4e317128ab5742375fb420d98"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/040_R39.json",
+          "sha256": "8b7c182fe14502a5b41d0a2dae14a44e99a0f8c54b91693f416d25f2b4bb3c20"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0249_R39.s",
+          "sha256": "273e45383e6bf5244fe302a8558a2b33133c0df6f282304a8bb25f014f814d37"
+        }
+      ],
+      "encounter_records": 16,
+      "item_records": 9,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Night: Magnemite reference 10%; game 20%"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 40",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 40,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route40.shtml",
+          "http_status": 200,
+          "sha256": "89343a7709aa066be6b58e4dff11150a1cf6b9c16376180ad254c7184caad68d"
+        },
+        {
+          "route": 40,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_40",
+          "http_status": 200,
+          "sha256": "8ed2c8dda2090e6cf494f6c5271e08a3fbd6a693004f2d2ad1b73d32f3faac10"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/091_W40.json",
+          "sha256": "9ac2113174ecf1ee95d12191af8502f071e115a149efdea320f1f5037d24f116"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0962_W40.s",
+          "sha256": "cea8e2646d8c767badce3966325792dca19068c0543db1aee21f3467ea90d51a"
+        }
+      ],
+      "encounter_records": 12,
+      "item_records": 4,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Tentacruel reference levels 15 - 29; game level set 15,16,17,18,19,20,21,22,23,24,25",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Krabby reference 5%; game 15%"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 41",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 41,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route41.shtml",
+          "http_status": 200,
+          "sha256": "0c9a8d9cb940d53b69d804e5891af2b845b4b7be768a3f0cc68aeee02beb5649"
+        },
+        {
+          "route": 41,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_41",
+          "http_status": 200,
+          "sha256": "1876cb67ec4d9f54342e15ec4049ded2c116fbb4ec2b6b33560ee9cbb10c58b7"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/092_W41.json",
+          "sha256": "53e9d475ea717029afdface5e72af657181a1b79bce71b6e0fd269c625afdf73"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0964_W41.s",
+          "sha256": "1d37486fb36f5dae2890da8315518dc1a23c951f6aa64d52be13018948881c40"
+        }
+      ],
+      "encounter_records": 12,
+      "item_records": 2,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Tentacool reference levels 15 - 25; game level set 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+        "Standard Surfing: Tentacool reference 60%; game 90%",
+        "Standard Surfing: Tentacruel reference 40%; game 10%",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Tentacool reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Chinchou reference 7%; game 20%",
+        "Good Rod: Shellder reference 3%; game 10%",
+        "Super Rod: Chinchou reference 60%; game 40%",
+        "Super Rod: Tentacruel reference 7%; game 20%",
+        "Super Rod: Lanturn reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Tentacool morn: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%; game Lv [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%",
+        "surfing  Tentacool day: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%; game Lv [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%",
+        "surfing  Tentacool nite: reference Lv [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%; game Lv [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] 90%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 42",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 42,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route42.shtml",
+          "http_status": 200,
+          "sha256": "669a405422d85864b768ff4f0de91a38c600ba4223d460067db955913ea3c427"
+        },
+        {
+          "route": 42,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_42",
+          "http_status": 200,
+          "sha256": "6d169277c8055c0987e883b8a336cc4a4397a2037e823f567391b33e239c3f02"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/041_R42.json",
+          "sha256": "c5b9be309bfd25c69471fecf6a1caf58409dd361604d8f2b3b234e4e493e38b7"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0252_R42.s",
+          "sha256": "db99d29ec0c9ee7915fded120e3c3b273198d3c360f86da21d890c925707d925"
+        }
+      ],
+      "encounter_records": 22,
+      "item_records": 9,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Mareep reference levels 13 - 15; game level set 13,15",
+        "Morning: Spearow reference levels 14 - 16; game level set 14,16",
+        "Morning: Flaaffy reference levels 15 - 17; game level set 15,17",
+        "Day: Mareep reference levels 13 - 15; game level set 13,15",
+        "Day: Spearow reference levels 14 - 16; game level set 14,16",
+        "Day: Flaaffy reference levels 15 - 17; game level set 15,17",
+        "Night: Mareep reference levels 13 - 15; game level set 13,15",
+        "Night: Zubat reference levels 14 - 16; game level set 14,16",
+        "Night: Flaaffy reference levels 15 - 17; game level set 15,17",
+        "Radio Pokémon: Linoone reference levels 14 - 14; game level set 15",
+        "Radio Pokémon: Bidoof reference levels 14 - 14; game level set 15",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Goldeen reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Goldeen reference 40%; game 60%",
+        "Super Rod: Goldeen reference 90%; game 70%",
+        "Super Rod: Magikarp reference 7%; game 20%",
+        "Super Rod: Seaking reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "walking hoenn-sound Linoone morn: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking hoenn-sound Linoone day: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking hoenn-sound Linoone nite: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking hoenn-sound Whismur morn: reference Lv [13, 15] 20%; game Lv [13, 14] 20%",
+        "walking hoenn-sound Whismur day: reference Lv [13, 15] 20%; game Lv [13, 14] 20%",
+        "walking hoenn-sound Whismur nite: reference Lv [13, 15] 20%; game Lv [13, 14] 20%",
+        "walking sinnoh-sound Bidoof morn: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking sinnoh-sound Bidoof day: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking sinnoh-sound Bidoof nite: reference Lv [14] 20%; game Lv [15] 20%",
+        "walking sinnoh-sound Buizel morn: reference Lv [13, 15] 20%; game Lv [13, 14] 20%",
+        "walking sinnoh-sound Buizel day: reference Lv [13, 15] 20%; game Lv [13, 14] 20%",
+        "walking sinnoh-sound Buizel nite: reference Lv [13, 15] 20%; game Lv [13, 14] 20%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 43",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 43,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route43.shtml",
+          "http_status": 200,
+          "sha256": "e65833fb176efffa30a80cd90a5cd62ac22c44bd39b1f69ed228f6271de8cf1c"
+        },
+        {
+          "route": 43,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_43",
+          "http_status": 200,
+          "sha256": "de9953bb0cc8cbefdce148d71a782eb5cffb0053f49ebc004fb13dc894723912"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/042_R43.json",
+          "sha256": "bc4c393a7c9dceb3f7c31ded07ace1a8fe89ab070a3126a570f33a483fa7bb00"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0254_R43.s",
+          "sha256": "c791e0dedef92debb33790f97e6bbb318b061defb759d029bfb7ed4721bb4587"
+        }
+      ],
+      "encounter_records": 27,
+      "item_records": 4,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Night: Venonat reference levels 15 - 17; game level set 15,17",
+        "Standard Surfing: Magikarp reference levels 5 - 50; game level set 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,50",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [
+        "surfing  Magikarp morn: reference Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50] 100%; game Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 50] 100%",
+        "surfing  Magikarp day: reference Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50] 100%; game Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 50] 100%",
+        "surfing  Magikarp nite: reference Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50] 100%; game Lv [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 50] 100%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 44",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 44,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route44.shtml",
+          "http_status": 200,
+          "sha256": "f4b1e86bdd37063e8380cad288c7ead9f092a1e9870f235a316f351fb799056c"
+        },
+        {
+          "route": 44,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_44",
+          "http_status": 200,
+          "sha256": "1bf7c5f2450cfe9a53e9058027a7a0faebeffe1e0e71f4785d4ae4859d085ba7"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/043_R44.json",
+          "sha256": "d79e0bd568821ab586e614e385e886637fdf9bdd6ffeec38e2dab21c4e998e9c"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0257_R44.s",
+          "sha256": "f8ed5f9de2d7a9aad950f583480c490b01d258b24390ec18e9554e06bd1d0938"
+        }
+      ],
+      "encounter_records": 26,
+      "item_records": 9,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Poliwag reference levels 10 - 25; game level set 15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
+        "Standard Surfing: Poliwhirl reference levels 15 - 32; game level set 20,21,22,23,24,25,26,27,28,29,30",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 38%; game 55%",
+        "Good Rod: Remoraid reference 2%; game 5%",
+        "Super Rod: Poliwag reference 90%; game 70%",
+        "Super Rod: Magikarp reference 7%; game 20%",
+        "Super Rod: Remoraid reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 45",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 45,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route45.shtml",
+          "http_status": 200,
+          "sha256": "7cdb6245c3ea292cd32d74a149019e9e40660796a2b522026e063e8a4e8cc456"
+        },
+        {
+          "route": 45,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_45",
+          "http_status": 200,
+          "sha256": "3e429f142ba93244f52826764951886411425115cb46a2bc49e4a15bdc9afd93"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/044_R45.json",
+          "sha256": "f19ea25f76ba2595c2ab1e726d6d4db8c209229adee6327f92b9bc694c6b6dab"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0258_R45.s",
+          "sha256": "1e1cee8837c83a5b921d0b283850b5336d25dd495bb38092ef840674e1a400e9"
+        }
+      ],
+      "encounter_records": 21,
+      "item_records": 10,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Standard Surfing: Magikarp reference levels 2 - 20; game level set 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Poliwag reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Poliwag reference 40%; game 60%",
+        "Super Rod: Poliwag reference 93%; game 80%",
+        "Super Rod: Magikarp reference 7%; game 20%"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 46",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 46,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route46.shtml",
+          "http_status": 200,
+          "sha256": "e328951b2121603712aad1c6fe4e9591a45aac5d24e725f8141c780fd30cbdd7"
+        },
+        {
+          "route": 46,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_46",
+          "http_status": 200,
+          "sha256": "4c98d5431838b95a2e9c382efcf665b908492404a5caecb7b8a7fdaeb59e5fba"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/045_R46.json",
+          "sha256": "f9fa96c51d5c2bc8a685b32c5c69a13b16ea4404896fcc4ce46070d11f851d54"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0259_R46.s",
+          "sha256": "0cd8dd80666c9a2951572bd9e4844e505fb03a83c2a34ab1ce3f4b34371d7ba9"
+        }
+      ],
+      "encounter_records": 13,
+      "item_records": 4,
+      "reference_species_coverage": "All SoulSilver species listed on both route references are represented, except the unsupported Serebii Route 46 Ekans entry.",
+      "serebii_differences": [
+        "Morning: Rattata reference levels 2 - 4; game level set 2,4",
+        "Day: Rattata reference levels 2 - 4; game level set 2,4",
+        "Night: Rattata reference levels 2 - 4; game level set 2,4",
+        "Headbutt Pokémon: Ekans not supported by the game’s corresponding table"
+      ],
+      "bulbapedia_differences": [],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 47",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 47,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route47.shtml",
+          "http_status": 200,
+          "sha256": "209f3c6ef8afb16f3283e5d8b582c7d304e86ec582a4c5e99535776f87f93cc4"
+        },
+        {
+          "route": 47,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_47",
+          "http_status": 200,
+          "sha256": "7a934a572381ec2ed4577e621bb2730765948898163287cd255489d3a8e126ae"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/146_R47.json",
+          "sha256": "43581c5055ae78a977060ee3db14b00bae55286515a59cb8900019bb781c3994"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0260_R47.s",
+          "sha256": "5070640dd83022ed9f3bbe12f6199e3507a1cb7166f5a70fdab4d95870bc1f79"
+        }
+      ],
+      "encounter_records": 35,
+      "item_records": 6,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Ditto reference levels 31 - 40; game level set 31,32,33,34,40",
+        "Morning: Raticate reference levels 31 - 33; game level set 31,33",
+        "Day: Ditto reference levels 31 - 40; game level set 31,32,33,34,40",
+        "Day: Raticate reference levels 31 - 33; game level set 31,33",
+        "Night: Ditto reference levels 31 - 40; game level set 31,32,33,34,40",
+        "Night: Raticate reference levels 31 - 33; game level set 31,33",
+        "Old Rod: Magikarp reference 95%; game 85%",
+        "Old Rod: Tentacool reference 5%; game 15%",
+        "Good Rod: Magikarp reference 60%; game 40%",
+        "Good Rod: Chinchou reference 7%; game 20%",
+        "Good Rod: Shellder reference 3%; game 10%",
+        "Super Rod: Chinchou reference 60%; game 40%",
+        "Super Rod: Tentacruel reference 7%; game 20%",
+        "Super Rod: Lanturn reference 3%; game 10%"
+      ],
+      "bulbapedia_differences": [
+        "walking  Raticate morn: reference Lv [31, 32, 33] 5%; game Lv [31, 33] 5%",
+        "walking  Raticate day: reference Lv [31, 32, 33] 5%; game Lv [31, 33] 5%",
+        "walking  Raticate nite: reference Lv [31, 32, 33] 5%; game Lv [31, 33] 5%",
+        "walking  Ditto morn: reference Lv [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] 41%; game Lv [31, 32, 33, 34, 40] 41%",
+        "walking  Ditto day: reference Lv [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] 41%; game Lv [31, 32, 33, 34, 40] 41%",
+        "walking  Ditto nite: reference Lv [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] 41%; game Lv [31, 32, 33, 34, 40] 41%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    },
+    {
+      "location": "Route 48",
+      "status": "reviewed",
+      "references": [
+        {
+          "route": 48,
+          "source": "serebii",
+          "url": "https://www.serebii.net/pokearth/johto/route48.shtml",
+          "http_status": 200,
+          "sha256": "2edb97d32061e0a9223884866e8f3ae4e44aee4dc879ede94fe3171a6bba7596"
+        },
+        {
+          "route": 48,
+          "source": "bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Johto_Route_48",
+          "http_status": 200,
+          "sha256": "cd75493ef0f9186085205f2d738f495ec974b9cedb45776b3eb7de61f2352425"
+        }
+      ],
+      "primary_evidence": [
+        {
+          "path": "files/fielddata/encountdata/gs_enc_data.json",
+          "sha256": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1"
+        },
+        {
+          "path": "files/arc/headbutt.json",
+          "sha256": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d"
+        },
+        {
+          "path": "files/fielddata/eventdata/zone_event/147_R48.json",
+          "sha256": "b6a071df3f734644d6f9f62d048a1e2a0fccf3650eab2fb95e43a24e4b7d0224"
+        },
+        {
+          "path": "files/fielddata/script/scr_seq/scr_seq_0261_R48.s",
+          "sha256": "6e2de9fd4c6f41287a590cc15efc4a98612f6b670368eb0d1c85fd7556a2fc80"
+        }
+      ],
+      "encounter_records": 18,
+      "item_records": 1,
+      "reference_species_coverage": "All SoulSilver species listed on both route references represented.",
+      "serebii_differences": [
+        "Morning: Tauros reference levels 20 - 20; game level set 20,24",
+        "Morning: Gloom reference levels 22 - 24; game level set 22,24",
+        "Morning: Hoppip reference levels 20 - 20; game level set 20,22",
+        "Morning: Vulpix reference levels 21 - 21; game level set 21,22",
+        "Day: Tauros reference levels 20 - 20; game level set 20,24",
+        "Day: Gloom reference levels 22 - 24; game level set 22,24",
+        "Day: Hoppip reference levels 20 - 20; game level set 20,22",
+        "Day: Vulpix reference levels 21 - 21; game level set 21,22",
+        "Night: Vulpix reference levels 21 - 25; game level set 21,22,24",
+        "Night: Tauros reference levels 20 - 20; game level set 20,24",
+        "Night: Gloom reference levels 22 - 24; game level set 22,24",
+        "Night: Hoppip reference levels 20 - 20; game level set 20,22",
+        "Radio Pokémon: Minun reference levels 22 - 24; game level set 22,24",
+        "Radio Pokémon: Shinx reference levels 20 - 24; game level set 20,21,22,24"
+      ],
+      "bulbapedia_differences": [
+        "walking sinnoh-sound Shinx morn: reference Lv [20, 21, 22, 23, 24] 40%; game Lv [20, 21, 22, 24] 40%",
+        "walking sinnoh-sound Shinx day: reference Lv [20, 21, 22, 23, 24] 40%; game Lv [20, 21, 22, 24] 40%",
+        "walking sinnoh-sound Shinx nite: reference Lv [20, 21, 22, 23, 24] 40%; game Lv [20, 21, 22, 24] 40%"
+      ],
+      "resolution": "Use pinned SoulSilver encounter slots and actual selection/replacement rules. Display precise level sets instead of filling gaps in reference ranges. Percentages are conditional species shares, not step/bite/tree activation rates. Features use HGSS/SoulSilver entries; Gen II, demo-only and HeartGold-only records excluded."
+    }
+  ]
+}
