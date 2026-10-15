@@ -216,3 +216,20 @@ filters are included. Reader stays v0.25.37 and Team Planner is unchanged.
 All 35 automated checks pass, including separate accessible blocks for all 70
 locations at 320/390/768/1440px, unchanged encounter counts, every connection,
 and Reader/Planner regressions. User review of the published layout is pending.
+
+## Atlas opening-area maps — v0.25.40
+
+Maps now sit between compass controls for New Bark Town, Route 29, Cherrygrove
+City, Routes 30–31, and Violet City. Previews preserve north-up orientation and
+aspect ratio within a bounded height; select a map to open the full-size local PNG
+in a new tab. Other locations keep the text compass. A failed image leaves a
+readable fallback and functioning navigation. Source links appear under Sources;
+[asset provenance and credits](assets/maps/README.md) record the pinned archive.
+
+This milestone covers six outdoor maps only. Additional locations and interior
+floors need their own verified assets; the Atlas does not yet have full map
+coverage. Reader v0.25.37, Team Planner, static data, and encounter tables are
+unchanged. No encounter filters were added. The 37-check suite covers asset
+integrity, image loading, all six journey steps and compass layout at
+320/390/768/1440px, failed-image recovery, and existing Atlas/Reader/Planner behavior.
+User acceptance of this map milestone remains pending.

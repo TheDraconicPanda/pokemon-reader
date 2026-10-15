@@ -1,4 +1,5 @@
 import { ATLAS_LOCATIONS as LOCATIONS } from "./data/atlas-locations.js";
+import { ATLAS_MAPS } from "./data/atlas-maps.js";
 
 // Explicit orientation for existing overland links. Unresolved links and interiors
 // remain available under Other connections; never infer direction from list order.
@@ -1122,6 +1123,17 @@ function renderLocations({ exactName = null } = {}) {
       entry.append(link);
       sourceList.append(entry);
     }
+    const map = ATLAS_MAPS[location.name];
+    if (map) {
+      const entry = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = map.source;
+      link.textContent = "HGSS map image · Bulbagarden Archives";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      entry.append(link);
+      sourceList.append(entry);
+    }
     sources.append(sourcesHeading, sourceList);
     staticSection.append(sources);
 
@@ -1145,9 +1157,42 @@ function renderLocations({ exactName = null } = {}) {
         group.append(caption);
         groups[direction] = group;
       }
-      const current = document.createElement("span");
+      const current = document.createElement("figure");
       current.className = "compass-current";
-      current.textContent = location.name;
+      const map = ATLAS_MAPS[location.name];
+      const caption = document.createElement("figcaption");
+      caption.textContent = location.name;
+      if (map) {
+        links.classList.add("has-map");
+        const mapLink = document.createElement("a");
+        mapLink.className = "location-map-link";
+        mapLink.href = `../assets/maps/${map.file}`;
+        mapLink.target = "_blank";
+        mapLink.rel = "noopener noreferrer";
+        mapLink.setAttribute("aria-label", `Open full-size ${location.name} map in a new tab`);
+        const image = document.createElement("img");
+        image.className = "location-map";
+        image.alt = `${location.name} outdoor map in HeartGold and SoulSilver; north is up`;
+        image.width = map.width;
+        image.height = map.height;
+        image.decoding = "async";
+        image.loading = matches.length === 1 ? "eager" : "lazy";
+        const hint = document.createElement("span");
+        hint.className = "map-hint";
+        hint.textContent = "Open full-size map";
+        mapLink.append(image, hint);
+        const fallback = document.createElement("p");
+        fallback.className = "map-hint";
+        fallback.textContent = "Map unavailable. Use the connections to continue.";
+        fallback.hidden = true;
+        image.addEventListener("error", () => {
+          mapLink.hidden = true;
+          fallback.hidden = false;
+        }, { once: true });
+        image.src = mapLink.href;
+        current.append(mapLink, fallback);
+      }
+      current.append(caption);
       links.append(current);
       for (const name of connectedNames) {
         const link = document.createElement("button");

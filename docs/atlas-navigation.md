@@ -84,3 +84,40 @@ user acceptance of this layout remain unconfirmed. Test v0.25.39 at
 https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/ : check New Bark's
 missing-data message, Route 32's two blocks, Safari Zone's long encounter section,
 and compass navigation on mobile. Map artwork and encounter filters remain deferred.
+
+
+## Follow-up: opening-area map milestone — v0.25.40
+
+The user accepted the separated blocks and selected location maps next. Baseline:
+`9eff0cc`. First map coverage is explicitly six outdoor locations: New Bark Town,
+Route 29, Cherrygrove City, Route 30, Route 31, and Violet City. Existing text
+compasses remain for the other 64 location groups; this is not full map coverage.
+
+Each map replaces the center name-only area, with the name retained as its caption.
+North/east/south/west controls remain around it; links model location orientation,
+not precise exit coordinates or unrestricted travel. No compass directions or
+adjacency records changed. Previews contain the complete image with preserved
+aspect ratio and height no greater than 260px. Selecting the image opens its
+full-size local PNG in a new tab. Alternative text, focus indicators, source links,
+and a failed-load message keep it usable with keyboard or missing assets.
+
+The public HGSSIronmonMap archive contains named original-image layers for the
+opening locations. Only those layers were exported; combined route/trainer/item
+layers were excluded. All six images were visually inspected. Attribution,
+archive revision, original Bulbagarden image names, dimensions, layer indices,
+and hashes are recorded in assets/maps and js/data/atlas-maps.js. No external
+image requests or new runtime dependencies are needed.
+
+Validation: 37 automated data/browser checks, including all six image assets,
+actual image loads and compass placement on the full opening journey at
+320/390/768/1440px, failed-image request/recovery, all existing connections,
+encounter counts, search/type filtering, overview separation, and Reader/Planner
+regressions. Mobile and desktop screenshots were also inspected. Reader and
+Team Planner implementation files, encounter arrays, and static location data
+remain unchanged. Real-save and gameplay validation are not claimed.
+
+Publication targets the existing Pages branch after final validation. User map
+acceptance remains pending. Confirm v0.25.40 on the existing Atlas URL, follow
+New Bark → Route 29 → Cherrygrove → Route 30 → Route 31 → Violet, and open a
+full-size map. Check mobile usability and the transition from Violet to Route 32,
+which currently retains the text compass. Additional maps remain future work.

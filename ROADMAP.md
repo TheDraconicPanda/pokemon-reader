@@ -252,9 +252,21 @@ needed for this milestone. See [assessment and acceptance criteria](docs/atlas-n
 - [x] Keep compass controls and compact static information together above encounters
 - [x] Preserve encounter records and identify locations with data not yet added
 - [x] Validate responsive separation and all Reader/Planner/Atlas regressions (35 checks)
-- [ ] Confirm live deployment and user acceptance of v0.25.39
+- [x] User confirmed v0.25.39 looks good on the existing site
 
 Publication uses the existing deployment branch and Pages site. Map artwork is a
 later milestone; encounter filtering remains deferred. Reader and Team Planner
 implementation files are unchanged. Real-save and game-data validation are not
 part of these layout checks.
+
+## Atlas opening-area maps — v0.25.40
+
+- [x] Add six outdoor maps from New Bark through Violet inside the compass layout
+- [x] Provide full-size local image links, source credits, and failed-image fallback
+- [x] Preserve all 70 locations and every existing connection/encounter record
+- [x] Validate assets, six-step navigation, mobile/desktop layout, and regressions (37 checks)
+- [ ] Confirm live deployment and user acceptance of v0.25.40
+- [ ] Expand verified map coverage beyond the six opening locations in a later milestone
+
+This is the first map milestone; remaining locations retain their text compass.
+No interior/floor selector, encounter filter, Reader, or Planner changes are included.

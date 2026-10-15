@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.39') && document.querySelector('.eyebrow').textContent.includes('v0.25.39'),
+    version: document.title.includes('v0.25.40') && document.querySelector('.eyebrow').textContent.includes('v0.25.40'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -817,6 +817,44 @@ test('Atlas separates overview and encounters for every location at mobile and d
     assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
   }
   assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card'), card => ({name:card.querySelector('h2').textContent,entries:Array.from(card.querySelectorAll('.encounter-entry'),row=>row.textContent)}))`),baseline);
+  await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('opening journey maps load between compass controls and retain mobile navigation', async () => {
+  for (const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas({directory:false});
+    for (const [name,direction] of [['New Bark Town','west'],['Route 29','west'],['Cherrygrove City','north'],['Route 30','north'],['Route 31','west'],['Violet City',null]]) {
+      await until(()=>evaluate(`document.querySelector('.location-map')?.complete && document.querySelector('.location-map').naturalWidth > 0`),`${name} map load at ${width}`);
+      const state=await evaluate(`(() => {
+        const img=document.querySelector('.location-map'), current=document.querySelector('.compass-current');
+        const r=current.getBoundingClientRect();
+        return {name:document.querySelector('.location-card h2').textContent,overflow:document.documentElement.scrollWidth>innerWidth,
+          imageHeight:img.getBoundingClientRect().height,link:img.parentElement.href,target:img.parentElement.target,
+          alt:img.alt,source:!!document.querySelector('.location-sources a[href*="archives.bulbagarden.net"]'),
+          placed:Array.from(document.querySelectorAll('.connection-links > div:not(.compass-other)')).every(group=>{
+            const g=group.getBoundingClientRect();
+            return group.classList.contains('compass-north') ? g.bottom <= r.top : group.classList.contains('compass-south') ? g.top >= r.bottom : group.classList.contains('compass-west') ? g.right <= r.left : g.left >= r.right;
+          })};
+      })()`);
+      assert.equal(state.name,name); assert.equal(state.overflow,false); assert.ok(state.imageHeight<=260);
+      assert.equal(state.target,'_blank'); assert.ok(state.link.startsWith(baseURL+'/assets/maps/'));
+      assert.ok(state.alt.includes(name)); assert.equal(state.source,true); assert.equal(state.placed,true);
+      if (process.env.ATLAS_SCREENSHOT_DIR && [390,1440].includes(width) && ['New Bark Town','Route 29','Route 30'].includes(name)) {
+        await evaluate(`document.querySelector('.location-card h2').scrollIntoView({block:'start'})`);
+        const shot=await command('Page.captureScreenshot',{format:'png'});
+        await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`${name.replaceAll(' ','-')}-${width}.png`),Buffer.from(shot.data,'base64'));
+      }
+      if (direction) await evaluate(`document.querySelector('.compass-${direction} button').click()`);
+    }
+  }
+  // A real failed asset request must retain the location and usable route controls.
+  await evaluate(`document.querySelector('.location-map').src='/missing-atlas-map.png'`);
+  await until(()=>evaluate(`document.querySelector('.location-map-link').hidden && !document.querySelector('.compass-current p').hidden`),'Missing map fallback');
+  await evaluate(`document.querySelector('.compass-east button').click()`);
+  assert.equal(await evaluate(`document.activeElement.textContent`),'Route 31');
+  await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0`),'Return to loaded map');
   await command('Emulation.clearDeviceMetricsOverride');
   assert.deepEqual(exceptions,[]);
 });

@@ -166,3 +166,19 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
   .location-static { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .location-sources { grid-column: 1 / -1; }
 }
+
+/* A bounded map keeps route controls reachable for tall and wide locations. */
+.compass-current { margin: 0; min-width: 0; }
+.location-map-link { display: block; color: #1d4ed8; text-decoration: none; }
+.location-map-link:hover .map-hint { text-decoration: underline; }
+.location-map-link:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.location-map { display: block; width: 100%; height: clamp(130px, 24vw, 260px); object-fit: contain; background: #f3f4f6; border-radius: 0.4rem; }
+.map-hint { display: block; font-size: 0.75rem; font-weight: 500; margin: 0.35rem 0; }
+.compass-current [hidden] { display: none; }
+@media (min-width: 640px) {
+  .connection-links { grid-template-columns: 7rem minmax(0, 1fr) 7rem; }
+}
+
+@media (max-width: 639px) {
+  .connection-links.has-map { grid-template-columns: minmax(4rem, 1fr) minmax(0, 2fr) minmax(4rem, 1fr); }
+}
