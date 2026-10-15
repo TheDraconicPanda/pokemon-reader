@@ -999,11 +999,18 @@ const SAFARI_ZONE_ENCOUNTERS = Object.freeze([
 
 function renderEncounters(locationName) {
   const encounters = locationName === "Route 32" ? ROUTE_32_ENCOUNTERS : locationName === "Union Cave" ? UNION_CAVE_ENCOUNTERS : locationName === "Route 33" ? ROUTE_33_ENCOUNTERS : locationName === "Azalea Town" ? AZALEA_TOWN_ENCOUNTERS : locationName === "Route 34" ? ROUTE_34_ENCOUNTERS : locationName === "Route 35" ? ROUTE_35_ENCOUNTERS : locationName === "Route 36" ? ROUTE_36_ENCOUNTERS : locationName === "Route 37" ? ROUTE_37_ENCOUNTERS : locationName === "Route 38" ? ROUTE_38_ENCOUNTERS : locationName === "Route 39" ? ROUTE_39_ENCOUNTERS : locationName === "Route 40" ? ROUTE_40_ENCOUNTERS : locationName === "Route 41" ? ROUTE_41_ENCOUNTERS : locationName === "Route 42" ? ROUTE_42_ENCOUNTERS : locationName === "Route 43" ? ROUTE_43_ENCOUNTERS : locationName === "Route 44" ? ROUTE_44_ENCOUNTERS : locationName === "Route 45" ? ROUTE_45_ENCOUNTERS : locationName === "Route 46" ? ROUTE_46_ENCOUNTERS : locationName === "Route 47" ? ROUTE_47_ENCOUNTERS : locationName === "Route 48" ? ROUTE_48_ENCOUNTERS : locationName === "Cliff Edge Gate" ? CLIFF_EDGE_GATE_ENCOUNTERS : locationName === "Cliff Cave" ? CLIFF_CAVE_ENCOUNTERS : locationName === "Embedded Tower" ? EMBEDDED_TOWER_ENCOUNTERS : locationName === "Safari Zone Gate" ? SAFARI_ZONE_GATE_ENCOUNTERS : locationName === "Safari Zone" ? SAFARI_ZONE_ENCOUNTERS : locationName === "Whirl Islands" ? WHIRL_ISLANDS_ENCOUNTERS : null;
-  if (!encounters) return null;
   const section = document.createElement("section");
   section.className = "location-encounters";
-  const heading = document.createElement("strong");
+  section.setAttribute("aria-label", `${locationName} encounters`);
+  const heading = document.createElement("h3");
   heading.textContent = "Wild Pokémon · SoulSilver";
+  if (!encounters) {
+    const message = document.createElement("p");
+    message.className = "encounter-note";
+    message.textContent = "Encounter data has not been added for this location yet.";
+    section.append(heading, message);
+    return section;
+  }
   const note = document.createElement("p");
   note.className = "encounter-note";
   note.textContent = locationName === "Union Cave" ? "Encounter tables are separated by floor (1F, B1F, B2F). Percentages are shown where listed by the reference; Radio encounters require the matching broadcast, and Lapras appears as a special Friday encounter on B2F." : locationName === "Route 33" ? "Route 33 is a short, rainy route. Walking encounters vary by time of day; Radio encounters require the matching broadcast, and Headbutt encounters vary by tree group." : locationName === "Azalea Town" ? "Headbutt encounters are listed for SoulSilver; the reference does not provide exact rates or levels for these tree encounters." : locationName === "Route 34" ? "Walking, Surfing, fishing, Headbutt, Radio, and swarm encounters are shown for SoulSilver. Radio and swarm entries require their respective conditions." : locationName === "Route 35" ? "Walking encounters vary by time of day; surfing, fishing, Headbutt tree groups, Radio broadcasts, and Yanma swarms have separate entries." : locationName === "Route 36" ? "SoulSilver walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, Headbutt details are not fully listed by the reference, and Sudowoodo is a special level 20 interaction." : locationName === "Route 37" ? "SoulSilver walking encounters vary by time of day; Headbutt entries vary by tree group, while Plusle and Minun require Hoenn Sound and Shinx requires Sinnoh Sound." : locationName === "Route 38" ? "Walking encounters vary by time of day. Headbutt entries include regular tree groups and a special tree reached with Rock Climb; Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, and Snubbull appears during a swarm." : locationName === "Route 39" ? "Walking encounters vary by time of day; Headbutt encounters vary by tree group, and Plusle, Minun, and Shinx require the matching radio broadcast." : locationName === "Route 40" ? "This sea route has Surfing encounters and fishing tables. Good Rod and Super Rod species vary by time of day; Route 40 has no separate walking encounter table." : locationName === "Route 41" ? "This sea route surrounds the Whirl Islands. SoulSilver Surfing and fishing encounters are listed here; access into the islands requires Whirlpool." : locationName === "Route 42" ? "Walking encounters vary by time of day; Radio encounters require the matching broadcast. Headbutt encounter rates and levels are not specified in the reference." : locationName === "Route 43" ? "Walking encounters vary by time of day; Radio and Headbutt entries are conditional. The route also has Surfing and fishing tables." : locationName === "Route 44" ? "Walking, Radio, Headbutt, Surfing, fishing, and Remoraid swarm encounters are listed. Headbutt rates and levels are not specified in the reference." : locationName === "Route 45" ? "SoulSilver walking encounters, Radio species, Swablu swarms, Headbutt, Surfing, and fishing are listed. Headbutt rates and levels are not specified by the reference." : locationName === "Route 46" ? "Walking encounters vary by time of day. Plusle and Minun require Hoenn Sound, Shinx requires Sinnoh Sound, and Headbutt rates and levels are not specified by the reference." : locationName === "Route 47" ? "Route 47 has multiple terrain levels. Surfing and fishing encounters are shown alongside walking, Radio, swarm, and separate Headbutt areas; Headbutt rates and levels are not specified." : locationName === "Route 48" ? "Walking encounters vary by time of day; Radio Pokémon require Hoenn or Sinnoh Sound. Headbutt rates and levels are not specified by the reference." : locationName === "Cliff Edge Gate" ? "Water encounters are in the small lake; the lake is accessible after obtaining Rock Climb." : locationName === "Cliff Cave" ? "Encounter coverage combines the shared 1F/2F/B1F walking and Radio tables. Rock Smash encounters occur on B1F; verify floor-specific details in the later accuracy audit." : locationName === "Embedded Tower" ? "These are stationary legendary encounters, not random wild encounters. Groudon is the SoulSilver orb encounter; Rayquaza requires both Groudon and Kyogre." : locationName === "Safari Zone Gate" ? "SoulSilver Headbutt species are listed; the reference does not provide encounter rates or levels for these tree encounters." : locationName === "Safari Zone" ? "Standard walking coverage spans all 12 areas. Block-attracted encounters are being added area by area; water/fishing coverage and encounter levels still need a full accuracy audit." : locationName === "Whirl Islands" ? "Encounter tables are grouped by floor. Radio species require the matching broadcast; Lugia is a special story encounter in the bottom chamber, not a normal wild encounter." : "Rarity labels are shown instead of percentages where the reference lists categories rather than exact rates. Sound-based encounters require the matching radio broadcast; swarm encounters are conditional.";
@@ -1013,7 +1020,7 @@ function renderEncounters(locationName) {
   for (const method of methods) {
     const group = document.createElement("div");
     group.className = "encounter-method";
-    const methodHeading = document.createElement("h3");
+    const methodHeading = document.createElement("h4");
     methodHeading.textContent = method;
     const entries = document.createElement("div");
     entries.className = "encounter-entries";
@@ -1064,11 +1071,16 @@ function renderLocations({ exactName = null } = {}) {
   for (const location of matches) {
     const card = document.createElement("article");
     card.className = "location-card";
+    const overview = document.createElement("section");
+    overview.className = "location-overview";
 
     const text = document.createElement("div");
     const heading = document.createElement("h2");
     heading.textContent = location.name;
     heading.tabIndex = -1;
+    heading.id = `location-${LOCATIONS.indexOf(location)}`;
+    card.setAttribute("aria-labelledby", heading.id);
+    overview.setAttribute("aria-labelledby", heading.id);
     const details = document.createElement("p");
     details.textContent = `${location.region} · ${location.details}`;
     text.append(heading, details);
@@ -1077,7 +1089,7 @@ function renderLocations({ exactName = null } = {}) {
     badge.className = "location-type";
     badge.textContent = TYPE_LABELS[location.type];
 
-    card.append(text, badge);
+    overview.append(text, badge);
 
     const staticSection = document.createElement("section");
     staticSection.className = "location-static";
@@ -1158,12 +1170,11 @@ function renderLocations({ exactName = null } = {}) {
         if (group.querySelector("button")) links.append(group);
       }
       connections.append(label, links);
-      card.append(connections);
+      overview.append(connections);
     }
 
-    card.append(staticSection);
-    const encounterSection = renderEncounters(location.name);
-    if (encounterSection) card.append(encounterSection);
+    overview.append(staticSection);
+    card.append(overview, renderEncounters(location.name));
     list.append(card);
   }
 

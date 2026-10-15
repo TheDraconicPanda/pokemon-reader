@@ -202,3 +202,17 @@ baseline. No encounter filters, map artwork, or encounter data changes are inclu
 `npm test` now includes default-entry, compass geometry, destination focus, and
 navigation-before-content checks at 320/390/768/1440px. Publication and user
 acceptance are tracked in [the navigation milestone](docs/atlas-navigation.md).
+
+## Atlas overview and encounters — v0.25.39
+
+Every location now has an overview block (name, compass navigation, landmarks,
+access notes, and sources) followed by a separate encounter block. Static notes
+use two columns on wider screens and stack on mobile. Locations without encounter
+tables explicitly say their data has not been added; this does not claim there are
+no wild Pokémon there. All existing encounter records, search/filter behavior,
+and the New Bark starting location remain intact. No map artwork or encounter
+filters are included. Reader stays v0.25.37 and Team Planner is unchanged.
+
+All 35 automated checks pass, including separate accessible blocks for all 70
+locations at 320/390/768/1440px, unchanged encounter counts, every connection,
+and Reader/Planner regressions. User review of the published layout is pending.

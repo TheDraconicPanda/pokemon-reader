@@ -41,8 +41,9 @@ input, select {
 }
 input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 .location-count { color: #6b7280; font-size: 0.9rem; margin: 0.25rem 0 0.85rem; }
-.location-list { display: grid; gap: 0.65rem; }
-.location-card {
+.location-list { display: grid; gap: 1.5rem; }
+.location-card { display: grid; gap: 0.75rem; min-width: 0; }
+.location-overview {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.75rem;
@@ -78,7 +79,7 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
   .location-count, .location-list, .empty-message { grid-column: 1 / -1; }
 }
 @media (max-width: 480px) {
-  .location-card { grid-template-columns: 1fr; }
+  .location-overview { grid-template-columns: 1fr; }
   .location-type { justify-self: start; }
 }
 
@@ -119,15 +120,16 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 
 
 .location-encounters {
-  grid-column: 1 / -1;
-  border-top: 1px solid #d1d5db;
-  padding-top: 0.85rem;
-  margin-top: 0.2rem;
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.65rem;
+  background: #fff;
 }
-.location-encounters > strong { display: block; font-size: 0.95rem; }
+.location-encounters > h3 { margin: 0; font-size: 0.95rem; }
 .encounter-note { margin: 0.35rem 0 0.8rem; color: #6b7280; font-size: 0.78rem; line-height: 1.45; }
 .encounter-method { margin-top: 0.75rem; }
-.encounter-method h3 { margin: 0 0 0.35rem; font-size: 0.85rem; color: #374151; }
+.encounter-method h4 { margin: 0 0 0.35rem; font-size: 0.85rem; color: #374151; }
 .encounter-entries { display: grid; gap: 0.3rem; }
 .encounter-entry { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.2rem 0.8rem; padding: 0.4rem 0.55rem; background: #f9fafb; border-radius: 0.4rem; font-size: 0.8rem; }
 .encounter-name { font-weight: 650; }
@@ -155,7 +157,12 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 @media (max-width: 480px) {
   .world-app { width: calc(100% - 1rem); }
   .world-panel { padding: 0.65rem; }
-  .location-card { padding: 0.65rem; }
+  .location-overview, .location-encounters { padding: 0.65rem; }
   .connection-links { gap: 0.35rem; }
   .connection-link { padding: 0.35rem; }
+}
+
+@media (min-width: 640px) {
+  .location-static { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .location-sources { grid-column: 1 / -1; }
 }

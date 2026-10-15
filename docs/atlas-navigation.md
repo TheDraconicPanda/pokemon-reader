@@ -59,3 +59,28 @@ site, confirm Atlas v0.25.38, follow Route 29 west toward Cherrygrove, check the
 branch to Route 46, and search Safari Zone Gate then enter Safari Zone. Confirm
 navigation appears before content, with no scroll through encounters needed to
 leave. Next candidate: map artwork within the navigation block, encounters below.
+
+
+## Follow-up: overview and encounter blocks — v0.25.39
+
+The user accepted the navigation improvement and authorized this follow-up.
+Baseline: `99c6d40`. Each article now groups two separately bordered sections:
+a named overview with the existing compass and static information, followed by a
+named encounter section. Landmarks and access notes share two columns at 640px and
+above; mobile stacks them. Encounter headings now use h3, with methods at h4.
+Locations without tables say data has not been added, without asserting the game
+has no encounters. Search results retain each location's two blocks together.
+
+Acceptance checks passed: 35 data/browser tests, all 70 location groups separated
+at 320/390/768/1440px, all 25 populated encounter tables retained, Route 32's 38 and
+Safari Zone's 269 rows preserved, every connection usable, search/filter/alias and
+New Bark default behavior retained, destination focus and compass geometry retained,
+and Reader/Planner regressions passing. Diff review confirms no encounter arrays,
+static location data, Reader, or Planner implementation files changed. Synthetic
+Reader checks do not validate real-save parsing or gameplay data.
+
+Publication targets the existing `main` deployment branch. Live deployment and
+user acceptance of this layout remain unconfirmed. Test v0.25.39 at
+https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/ : check New Bark's
+missing-data message, Route 32's two blocks, Safari Zone's long encounter section,
+and compass navigation on mobile. Map artwork and encounter filters remain deferred.

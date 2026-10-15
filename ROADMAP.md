@@ -241,7 +241,20 @@ full Kanto coverage, or all of Phase 6. No simulator work has begun.
 - [x] Validate mobile/desktop geometry, exact destinations, and Reader/Planner regressions
 - [x] Publish validated Atlas v0.25.38 to the existing deployment branch (`2c09073`)
 - [ ] Confirm the deployed Atlas version (status API and public-site checks returned 403)
-- [ ] User acceptance on the existing Pages site
+- [x] User accepted the navigation improvement on the existing Pages site
 
 Map artwork and a separate encounter block are deferred. No encounter filters are
 needed for this milestone. See [assessment and acceptance criteria](docs/atlas-navigation.md).
+
+## Atlas overview and encounters — v0.25.39
+
+- [x] Separate the overview and encounters into distinct blocks for all 70 locations
+- [x] Keep compass controls and compact static information together above encounters
+- [x] Preserve encounter records and identify locations with data not yet added
+- [x] Validate responsive separation and all Reader/Planner/Atlas regressions (35 checks)
+- [ ] Confirm live deployment and user acceptance of v0.25.39
+
+Publication uses the existing deployment branch and Pages site. Map artwork is a
+later milestone; encounter filtering remains deferred. Reader and Team Planner
+implementation files are unchanged. Real-save and game-data validation are not
+part of these layout checks.

@@ -236,7 +236,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.38') && document.querySelector('.eyebrow').textContent.includes('v0.25.38'),
+    version: document.title.includes('v0.25.39') && document.querySelector('.eyebrow').textContent.includes('v0.25.39'),
     safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
     route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
   })`);
@@ -796,4 +796,27 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
   await command('Emulation.clearDeviceMetricsOverride');
   await atlas({directory:false});
   assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
+});
+
+
+test('Atlas separates overview and encounters for every location at mobile and desktop widths', async () => {
+  await atlas();
+  const baseline = await evaluate(`Array.from(document.querySelectorAll('.location-card'), card => ({name:card.querySelector('h2').textContent,entries:Array.from(card.querySelectorAll('.encounter-entry'),row=>row.textContent)}))`);
+  assert.equal(baseline.filter(location=>location.entries.length).length,25);
+  for (const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(card => {
+      const overview=card.querySelector('.location-overview');
+      const encounters=card.querySelector('.location-encounters');
+      return !overview || encounters.parentElement!==card || overview.parentElement!==card ||
+        !overview.contains(card.querySelector('.location-connections')) || !overview.contains(card.querySelector('.location-static')) ||
+        overview.contains(encounters) || overview.getBoundingClientRect().bottom+8>encounters.getBoundingClientRect().top ||
+        !card.getAttribute('aria-labelledby') || !encounters.getAttribute('aria-label') ||
+        (encounters.querySelectorAll('.encounter-entry').length===0 && !encounters.textContent.includes('not been added'));
+    }).map(card=>card.querySelector('h2').textContent)`),[],`Separate accessible blocks at ${width}`);
+    assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
+  }
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('.location-card'), card => ({name:card.querySelector('h2').textContent,entries:Array.from(card.querySelectorAll('.encounter-entry'),row=>row.textContent)}))`),baseline);
+  await command('Emulation.clearDeviceMetricsOverride');
+  assert.deepEqual(exceptions,[]);
 });
