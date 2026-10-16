@@ -478,9 +478,7 @@ function renderLocations({ exactName = null } = {}) {
     heading.id = `location-${LOCATIONS.indexOf(location)}`;
     card.setAttribute("aria-labelledby", heading.id);
     overview.setAttribute("aria-labelledby", heading.id);
-    const details = document.createElement("p");
-    details.textContent = `${location.region} · ${location.details}`;
-    text.append(heading, details);
+    text.append(heading);
 
     const badge = document.createElement("span");
     badge.className = "location-type";
@@ -491,7 +489,7 @@ function renderLocations({ exactName = null } = {}) {
     const staticSection = document.createElement("section");
     staticSection.className = "location-static";
     staticSection.setAttribute("aria-label", `${location.name} location information`);
-    for (const [title, items] of [["Landmarks & features", location.landmarks], ["Access & progression", location.access]]) {
+    for (const [title, items] of [["Landmarks & features", location.landmarks]]) {
       const group = document.createElement("div");
       const titleElement = document.createElement("h3");
       titleElement.textContent = title;
@@ -634,8 +632,7 @@ function renderLocations({ exactName = null } = {}) {
       }
       const current = document.createElement("figure");
       current.className = "compass-current";
-      const caption = document.createElement("figcaption");
-      caption.textContent = location.name;
+      current.setAttribute("aria-labelledby", heading.id);
       if (maps.length) {
         links.classList.add("has-map");
         const mapLink = document.createElement("a");
@@ -674,7 +671,6 @@ function renderLocations({ exactName = null } = {}) {
           mapLink.replaceChildren(image, hint);
           mapLink.hidden = false;
           fallback.hidden = true;
-          caption.textContent = selected.label === "Overview" ? location.name : description;
           if (mapSourceLink) mapSourceLink.href = selected.source;
           if (selection) {
             selection.value = String(index);
@@ -719,7 +715,6 @@ function renderLocations({ exactName = null } = {}) {
         current.append(mapLink, fallback, announcement);
         showMap(0);
       }
-      current.append(caption);
       links.append(current);
       for (const name of connectedNames) {
         const link = document.createElement("button");

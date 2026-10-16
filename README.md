@@ -395,3 +395,14 @@ and see the location count. Collapsing search keeps its values and results;
 following a connection still opens its exact destination. Game data is unchanged.
 All 76 automated checks pass, including collapsed search, route travel, feature
 order and layouts at 320/390/1440px. User outcome acceptance is pending.
+
+## Atlas location presentation cleanup — v0.25.50
+
+All 70 Atlas locations use the compact layout: the location heading replaces the
+repeated region/summary line, Landmarks & features remains, and the separate
+Access & progression block is omitted. Map links no longer repeat the location
+name beneath them. Floor/area selectors, image alternative text, full-size map
+link labels, connections, reference details and encounter conditions remain.
+Underlying summaries and access notes are unchanged and remain searchable.
+Automated checks cover the full location inventory, floor selection, search,
+route travel and Reader/Planner regressions. User outcome acceptance is pending.

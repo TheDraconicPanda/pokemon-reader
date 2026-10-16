@@ -436,3 +436,10 @@ No encounter, map, reference, EV or Safari datasets change in this milestone.
 - [x] Preserve route travel, search results, themes and Reader/Planner behaviour
 - [x] Validate 76 automated checks, including phone/desktop navigation
 - [ ] User outcome acceptance on the existing Pages site
+
+## Atlas location presentation cleanup — v0.25.50
+
+- [x] Remove repeated summary and Access & progression blocks across all locations
+- [x] Remove duplicate map captions while preserving accessible names and floor controls
+- [x] Preserve game data, searchable access notes, references and encounter conditions
+- [ ] User outcome acceptance on the existing Pages site

@@ -199,7 +199,7 @@ test("all Atlas locations display static information, sources, and mobile layout
   await atlas();
   const result = await evaluate(`(() => {
     const cards = Array.from(document.querySelectorAll('.location-card'));
-    const complete = cards.every(card => card.querySelectorAll('.location-static h3').length === 2 && card.querySelectorAll('.location-static > div li').length >= 4 && card.querySelectorAll('.location-sources a').length >= 2);
+    const complete = cards.every(card => card.querySelectorAll('.location-static h3').length === 1 && card.querySelectorAll('.location-static > div li').length >= 1 && !card.querySelector('.location-overview > div > p') && !card.querySelector('.compass-current figcaption') && card.querySelectorAll('.location-sources a').length >= 2);
     const sources = cards[0].querySelector('.location-sources');
     sources.querySelector('summary').click();
     return { complete, sourcesOpen: sources.open };
@@ -222,10 +222,11 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
     const shortcut = Array.from(route.querySelectorAll('.connection-link')).find(link => link.textContent === 'Route 36');
     shortcut.click();
     const destination = document.querySelector('.location-card h2').textContent;
-    const access = document.querySelector('.location-static').textContent;
+    search.value = 'Cut'; search.dispatchEvent(new Event('input'));
+    const cut = Boolean(find('Route 36'));
     search.value = 'Goldenrod Underground'; search.dispatchEvent(new Event('input'));
     const tunnel = find('Goldenrod Tunnel');
-    return { destination, cut: access.includes('Cut'), alias: Boolean(tunnel), sources: Array.from(tunnel.querySelectorAll('.location-sources a'), a => a.href) };
+    return { destination, cut, alias: Boolean(tunnel), sources: Array.from(tunnel.querySelectorAll('.location-sources a'), a => a.href) };
   })()`);
   assert.equal(result.destination, "Route 36");
   assert.equal(result.cut, true);
@@ -237,7 +238,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.49') && document.querySelector('.eyebrow').textContent.includes('v0.25.49'),
+    version: document.title.includes('v0.25.50') && document.querySelector('.eyebrow').textContent.includes('v0.25.50'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -947,9 +948,9 @@ test('map and floor controls preserve encounters, update sources, and recover af
     for(const index of [1,2,3,0]) {
       await evaluate(`(()=>{const select=document.querySelector('.map-select');select.focus();select.value='${index}';select.dispatchEvent(new Event('change'));})()`);
       await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0`),'Floor map load');
-      const state=await evaluate(`({label:document.querySelector('.map-select').selectedOptions[0].textContent,alt:document.querySelector('.location-map').alt,caption:document.querySelector('.compass-current figcaption').textContent,source:document.querySelector('.location-sources a[href*="archives.bulbagarden.net"]').href,href:document.querySelector('.location-map-link').href,announcement:document.querySelector('.map-announcement').textContent,focused:document.activeElement===document.querySelector('.map-select'),text:document.querySelector('.location-encounters').textContent,fits:document.documentElement.scrollWidth<=innerWidth})`);
+      const state=await evaluate(`({label:document.querySelector('.map-select').selectedOptions[0].textContent,alt:document.querySelector('.location-map').alt,source:document.querySelector('.location-sources a[href*="archives.bulbagarden.net"]').href,href:document.querySelector('.location-map-link').href,announcement:document.querySelector('.map-announcement').textContent,focused:document.activeElement===document.querySelector('.map-select'),text:document.querySelector('.location-encounters').textContent,fits:document.documentElement.scrollWidth<=innerWidth})`);
       const floor=['1F','B1F','B2F','B3F'][index];
-      assert.equal(state.label,floor);assert.ok(state.alt.includes(floor));assert.ok(state.caption.includes(floor));
+      assert.equal(state.label,floor);assert.ok(state.alt.includes(floor));
       assert.ok(state.source.includes('Ice_Path_'+floor+'_HGSS.png'));assert.ok(state.href.includes('ice-path-'+floor.toLowerCase()));
       assert.equal(state.focused,true);assert.equal(state.fits,true);assert.equal(state.text,before);
       assert.ok(state.announcement.includes(floor));

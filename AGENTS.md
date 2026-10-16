@@ -115,3 +115,8 @@ Atlas v0.25.49: region cards omit game names; Johto feature cards are ordered
 Navigation, Safari, EV Training. Navigation search/type controls and location
 count live inside the closed-by-default Search locations disclosure. Route
 connections remain the primary travel controls outside that disclosure.
+
+Atlas v0.25.50: location cards omit the repeated region/summary line, the separate
+Access & progression block, and map location-name captions. Keep Landmarks &
+features, accessible map labels, floor controls, reference/encounter conditions,
+and the underlying searchable summary/access data.
