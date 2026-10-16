@@ -381,3 +381,17 @@ Johto tools may still stack on smaller screens. Game data is unchanged.
 All 75 automated checks pass, including shared-menu navigation, theme persistence,
 320/390/1440px region layout and Reader/Planner regressions. Phone and desktop
 screenshots were reviewed in both themes. User outcome acceptance is pending.
+
+## Compact Atlas navigation — v0.25.49
+
+Region cards show the region, generation and availability without game names.
+Johto's feature cards are ordered Navigation, Safari (planned), then EV Training.
+The Johto toolbar shortcut also uses the shorter region name; the Johto heading
+still identifies SoulSilver.
+
+Navigation opens with search collapsed, leaving route connections as the main
+travel controls. Expand Search locations to use the search field and type filter
+and see the location count. Collapsing search keeps its values and results;
+following a connection still opens its exact destination. Game data is unchanged.
+All 76 automated checks pass, including collapsed search, route travel, feature
+order and layouts at 320/390/1440px. User outcome acceptance is pending.

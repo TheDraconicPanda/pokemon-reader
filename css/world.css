@@ -265,3 +265,15 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2p
 
 /* Region selection stays in generation pairs at every screen width. */
 .region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Connections are the primary navigation; search is an optional disclosure. */
+#atlas-browser { display: block; }
+#atlas-browser[hidden] { display: none; }
+.location-search-panel { margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.location-search-panel > summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 650; }
+.location-search-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.location-search-controls { display: grid; gap: 0 1rem; padding-top: 0.75rem; }
+.location-search-controls > .location-count { grid-column: 1 / -1; }
+@media (min-width: 640px) {
+  .location-search-controls { grid-template-columns: minmax(0, 1fr) 14rem; }
+}

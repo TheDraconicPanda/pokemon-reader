@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.25.48 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.25.49 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <script src="../js/app-shell.js"></script>
@@ -13,11 +13,11 @@
   <main class="world-app">
     <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.48</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.49</p>
       <h1>Pokémon Atlas</h1>
       <nav class="atlas-tools" id="johto-tool-nav" aria-label="Johto · SoulSilver tools" hidden>
         <a href="#home" class="atlas-tool-link">Regions</a>
-        <a href="#johto" class="atlas-tool-link">Johto · SoulSilver</a>
+        <a href="#johto" class="atlas-tool-link">Johto</a>
         <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link">Navigation</a>
         <a href="#ev-training" class="atlas-tool-link">EV Training</a>
       </nav>
@@ -27,10 +27,10 @@
       <h2 id="atlas-home-title" tabindex="-1">Choose a region</h2>
       <p>Explore the Pokémon world. Regions are ordered by their first appearance.</p>
       <div class="atlas-card-grid region-grid" aria-label="Regions">
-        <button class="atlas-feature-card" disabled><strong>Kanto</strong><span>Generation I</span><span>FireRed / LeafGreen · Planned</span></button>
-        <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>SoulSilver · Available</span></a>
-        <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Emerald · Planned</span></button>
-        <button class="atlas-feature-card" disabled><strong>Sinnoh</strong><span>Generation IV</span><span>Platinum · Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Kanto</strong><span>Generation I</span><span>Planned</span></button>
+        <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>Available</span></a>
+        <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Sinnoh</strong><span>Generation IV</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Unova</strong><span>Generation V</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Kalos</strong><span>Generation VI</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Alola</strong><span>Generation VII</span><span>Planned</span></button>
@@ -41,9 +41,9 @@
       <h2 id="johto-home-title" tabindex="-1">Johto · SoulSilver</h2>
       <p>Explore Johto and the existing approaches to the Pokémon League and Mt. Silver. Browse maps, Pokémon encounters, items, gifts, trades and Trainers, or find a place to train EVs.</p>
       <div class="atlas-card-grid" aria-label="Johto features">
-        <a href="#ev-training" class="atlas-feature-card"><strong>EV Training</strong><span>Choose a stat and find training spots, with Surfing first.</span></a>
         <a href="#atlas" class="atlas-feature-card"><strong>Navigation</strong><span>Start in New Bark Town, follow connections or search for a location.</span></a>
         <button class="atlas-feature-card" disabled><strong>Safari</strong><span>Dedicated area guide and calculator · Planned</span></button>
+        <a href="#ev-training" class="atlas-feature-card"><strong>EV Training</strong><span>Choose a stat and find training spots, with Surfing first.</span></a>
       </div>
       <details class="atlas-about"><summary>About the Johto guide</summary>
         <p>Floors and related rooms are grouped under their main location. Ledges, HMs and story progress can restrict travel. Non-Safari encounters, maps and location details have been audited against SoulSilver references; source links are available at each location. Full Kanto coverage remains planned.</p>
@@ -87,20 +87,25 @@
       <button type="button" id="ev-more" class="ev-more" hidden>Show more spots</button>
     </section>
 
-    <section class="world-panel" id="atlas-browser" aria-label="Search locations" hidden>
-      <label class="search-label" for="location-search">Search locations
-        <input id="location-search" type="search" placeholder="Try Violet City, Route 32, or cave…" autocomplete="off">
-      </label>
-      <label class="filter-label" for="location-type">Location type
-        <select id="location-type">
-          <option value="all">All locations</option>
-          <option value="town">Towns &amp; cities</option>
-          <option value="route">Routes</option>
-          <option value="landmark">Caves &amp; landmarks</option>
-          <option value="facility">Buildings &amp; facilities</option>
-        </select>
-      </label>
-      <p id="location-count" class="location-count" aria-live="polite">Loading locations…</p>
+    <section class="world-panel" id="atlas-browser" aria-label="Location navigation" hidden>
+      <details class="location-search-panel" id="location-search-panel">
+        <summary>Search locations</summary>
+        <div class="location-search-controls">
+          <label class="search-label" for="location-search">Search locations
+            <input id="location-search" type="search" placeholder="Try Violet City, Route 32, or cave…" autocomplete="off">
+          </label>
+          <label class="filter-label" for="location-type">Location type
+            <select id="location-type">
+              <option value="all">All locations</option>
+              <option value="town">Towns &amp; cities</option>
+              <option value="route">Routes</option>
+              <option value="landmark">Caves &amp; landmarks</option>
+              <option value="facility">Buildings &amp; facilities</option>
+            </select>
+          </label>
+          <p id="location-count" class="location-count" aria-live="polite">Loading locations…</p>
+        </div>
+      </details>
       <div id="location-list" class="location-list"></div>
       <p id="empty-message" class="empty-message" hidden>No locations match that search.</p>
     </section>

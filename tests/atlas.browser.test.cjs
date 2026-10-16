@@ -237,7 +237,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.48') && document.querySelector('.eyebrow').textContent.includes('v0.25.48'),
+    version: document.title.includes('v0.25.49') && document.querySelector('.eyebrow').textContent.includes('v0.25.49'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -1225,6 +1225,31 @@ test('Shared menu keeps themes across tools and region pairs fit phones and desk
       await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='atlas'`),'Return to Atlas');
       assert.equal(await evaluate('document.documentElement.dataset.theme'),theme==='dark'?'light':'dark');
     }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+
+test('Compact Atlas cards and optional search preserve connection-first navigation', async () => {
+  for (const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas({directory:false});
+    const initial=await evaluate(`({closed:!document.querySelector('#location-search-panel').open,count:document.querySelector('#location-search-panel').contains(document.querySelector('#location-count')),inputVisible:document.querySelector('#location-search').getBoundingClientRect().height>0 && document.querySelector('#location-search').checkVisibility(),location:document.querySelector('.location-card h2').textContent,fit:document.documentElement.scrollWidth<=innerWidth})`);
+    assert.equal(initial.closed,true);assert.equal(initial.count,true);assert.equal(initial.inputVisible,false);assert.equal(initial.location,'New Bark Town');assert.equal(initial.fit,true);
+    await evaluate(`document.querySelector('.compass-west button').click()`);
+    assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Route 29');
+    await evaluate(`document.querySelector('#location-search-panel summary').click();document.querySelector('#location-search').value='Cherrygrove City';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+    assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Cherrygrove City');
+    assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'3 of 70 locations');
+    await evaluate(`document.querySelector('#location-search-panel summary').click();document.querySelector('.compass-north button').click()`);
+    assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Route 30');
+    assert.equal(await evaluate(`document.querySelector('#location-search-panel').open`),false);
+    await evaluate(`location.hash='home'`);
+    await until(()=>evaluate(`!document.querySelector('#atlas-home').hidden`),'Region cards');
+    assert.equal(await evaluate(`/SoulSilver|Emerald|Platinum|FireRed|LeafGreen/.test(document.querySelector('#atlas-home .region-grid').textContent)`),false);
+    await evaluate(`location.hash='johto'`);
+    await until(()=>evaluate(`!document.querySelector('#johto-home').hidden`),'Johto cards');
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('#johto-home .atlas-feature-card strong')].map(e=>e.textContent)`),['Navigation','Safari','EV Training']);
   }
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

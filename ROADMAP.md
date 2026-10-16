@@ -427,3 +427,12 @@ will follow user review of these landings.
 - [ ] User outcome acceptance on the existing Pages site
 
 No encounter, map, reference, EV or Safari datasets change in this milestone.
+
+## Compact Atlas navigation — v0.25.49
+
+- [x] Remove game names from region cards and shorten the Johto shortcut
+- [x] Order Johto feature cards Navigation, Safari, EV Training
+- [x] Collapse Navigation search/type controls and location count by default
+- [x] Preserve route travel, search results, themes and Reader/Planner behaviour
+- [x] Validate 76 automated checks, including phone/desktop navigation
+- [ ] User outcome acceptance on the existing Pages site

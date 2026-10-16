@@ -110,3 +110,8 @@ Load the shell script in the head so Reader's existing Load Save listener can
 attach to its button. Preserve `pokemon-reader-theme`, pre-render theme selection,
 cross-tab updates, and Reader's reset behaviour. Other tools link Load Save to
 Reader `#overview`. Region selection must stay two columns even at 320px.
+
+Atlas v0.25.49: region cards omit game names; Johto feature cards are ordered
+Navigation, Safari, EV Training. Navigation search/type controls and location
+count live inside the closed-by-default Search locations disclosure. Route
+connections remain the primary travel controls outside that disclosure.
