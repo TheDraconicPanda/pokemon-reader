@@ -386,7 +386,17 @@ mechanics changes, standalone tool or simulator is included in the EV finder.
 - [x] Add stat/time/method controls, requirements, species levels/yields and pagination
 - [x] Open exact Atlas destinations and preserve finder controls on return
 - [x] Pass all 72 source, browser/mobile and Reader/Planner regression checks
-- [ ] User acceptance of the published outcome
+- [x] User accepted the published EV finder
 
 The first release uses base yields, with no held-item/Pokérus calculator or
 progression filter. See [mechanics and validation](docs/atlas-ev-training.md).
+
+## Atlas encounter sections — v0.25.46
+
+- [x] User accepted the EV training finder (v0.25.45)
+- [x] Separate walking encounters into collapsible Morning / Day / Night views
+- [x] Separate Surfing, Fishing, Headbutt and other encounter methods
+- [x] Retain all source records, floor/area labels, probabilities and conditions
+- [x] Keep current encounter placement; layout decisions are the next visual step
+- [x] Pass all 73 checks and review mobile/desktop presentation
+- [ ] User acceptance of the published outcome

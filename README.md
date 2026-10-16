@@ -330,3 +330,16 @@ Percentages describe encountered Pokémon, not the chance of an encounter per st
 Safari is excluded. Held-item/Pokérus bonuses and progression filters are future
 work. All 72 checks pass; user outcome acceptance remains pending. See
 [calculation rules and validation](docs/atlas-ev-training.md).
+
+## Atlas encounter sections — v0.25.46
+
+Pokémon lists now use collapsed sections throughout Atlas: Morning, Day and Night
+walking encounters, plus Surfing, Fishing and Headbutt. Rock Smash, contests and
+special encounters retain separate sections where present. Floors, tree groups,
+rod types and conditional entries remain labelled inside their section. An all-day
+walking record appears in all three applicable time views; encounter data and rates
+are unchanged. Placement remains below the location overview pending the next
+visual-design step. Safari receives the presentation change only, not a data audit.
+
+All 73 automated checks pass, including encounter coverage, time grouping, EV
+Training and Reader/Planner regressions. User outcome acceptance is pending.

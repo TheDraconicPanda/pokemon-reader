@@ -236,9 +236,9 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.45') && document.querySelector('.eyebrow').textContent.includes('v0.25.45'),
-    safari: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry').length,
-    route32: Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry').length
+    version: document.title.includes('v0.25.46') && document.querySelector('.eyebrow').textContent.includes('v0.25.46'),
+    safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
+    route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
   assert.equal(result.version, true);
   assert.equal(result.safari, 269);
@@ -787,7 +787,7 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
     })()`);
     assert.equal(compass,true,`Compass placement at ${width}`);
     await evaluate(`(() => { const search=document.querySelector('#location-search');search.value='Safari Zone Gate';search.dispatchEvent(new Event('input'));Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Safari Zone Gate').querySelector('.compass-north button').click(); })()`);
-    const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('.location-connections').getBoundingClientRect().bottom,encounters:document.querySelector('.location-encounters').getBoundingClientRect().top,button:document.querySelector('.connection-link').getBoundingClientRect().bottom,rows:document.querySelectorAll('.encounter-entry').length})`);
+    const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('.location-connections').getBoundingClientRect().bottom,encounters:document.querySelector('.location-encounters').getBoundingClientRect().top,button:document.querySelector('.connection-link').getBoundingClientRect().bottom,rows:new Set(Array.from(document.querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size})`);
     assert.equal(layout.overflow,false); assert.equal(layout.heading,'Safari Zone');
     assert.ok(layout.nav<=layout.encounters); assert.ok(layout.button<=844); assert.equal(layout.rows,269);
     assert.equal(await evaluate(`document.querySelector('.location-connections').getBoundingClientRect().bottom <= document.querySelector('.location-static').getBoundingClientRect().top`),true);
@@ -891,7 +891,7 @@ test('all 23 routes expose encounters and expandable items/NPCs on phones and de
 
 test('whole Atlas distinguishes verified empty locations and exposes city and cave encounters', async () => {
   await atlas();
-  const cards = await evaluate(`Array.from(document.querySelectorAll('.location-card'),card=>({name:card.querySelector('h2').textContent,text:card.querySelector('.location-encounters').textContent,rows:card.querySelectorAll('.encounter-entry').length}))`);
+  const cards = await evaluate(`Array.from(document.querySelectorAll('.location-card'),card=>({name:card.querySelector('h2').textContent,text:card.querySelector('.location-encounters').textContent,rows:new Set(Array.from(card.querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size}))`);
   assert.equal(cards.length,70);
   assert.equal(cards.filter(c=>c.rows===0).length,16);
   assert.ok(cards.every(c=>!c.text.includes('not been added')));
@@ -1093,4 +1093,53 @@ test('EV finder paginates and opens exact Atlas destinations while preserving fi
   await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 70 locations'`),'Invalid deep link fallback');
   assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
   assert.deepEqual(exceptions,[]);
+});
+
+test('all Atlas encounter records remain available in collapsed time and method sections',async()=>{
+  await atlas();
+  const result=await evaluate(`(async()=>{
+    const {locationEncounterReference}=await import('/js/data/atlas-route-reference.js');
+    const failures=[];
+    for(const card of document.querySelectorAll('.location-card')){
+      const name=card.querySelector('h2').textContent;
+      const rows=Array.from(card.querySelectorAll('.encounter-entry'));
+      const ids=[...new Set(rows.map(r=>Number(r.dataset.encounterIndex)))].sort((a,b)=>a-b);
+      const expected=locationEncounterReference('soulsilver',name)?.encounters.length??(name==='Safari Zone'?269:0);
+      if(ids.length!==expected)failures.push(name+': source count');
+      if(ids.some((id,index)=>id!==index))failures.push(name+': missing source row');
+      for(const row of rows){
+        const section=row.closest('.encounter-section');
+        if(!section||section.open)failures.push(name+': disclosure');
+        const time=row.querySelector('.encounter-info').textContent.toLowerCase();
+        const key=section?.dataset.encounterSection;
+        if(['morning','day','night'].includes(key)&&!time.includes(key)&&!time.includes('all times')&&!time.includes('any time'))failures.push(name+': wrong time');
+        const method=row.closest('.encounter-method').querySelector('h4').textContent;
+        if(key==='fishing'&&!/Rod/.test(method))failures.push(name+': wrong fishing method');
+        if(key==='surfing'&&!method.includes('Surfing'))failures.push(name+': wrong Surf method');
+        if(key==='headbutt'&&!method.includes('Headbutt'))failures.push(name+': wrong Headbutt method');
+      }
+    }
+    const route=Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Route 29');
+    const morning=route.querySelector('[data-encounter-section="morning"]').textContent;
+    const night=route.querySelector('[data-encounter-section="night"]').textContent;
+    return {failures,morning,night};
+  })()`);
+  assert.deepEqual(result.failures,[]);assert.match(result.morning,/Pidgey/);assert.ok(!result.morning.includes('Hoothoot'));assert.match(result.night,/Hoothoot/);assert.ok(!result.night.includes('Pidgey'));
+  for(const width of [320,390,1440]){
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas();
+    await evaluate(`Array.from(document.querySelectorAll('.connection-link')).find(b=>b.textContent==='Violet City').click()`);
+    for(const key of ['surfing','fishing','headbutt']){
+      await evaluate(`document.querySelector('[data-encounter-section="${key}"] summary').click()`);
+      assert.equal(await evaluate(`document.querySelector('[data-encounter-section="${key}"]').open`),true);
+    }
+    assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+    assert.equal(await evaluate(`Array.from(document.querySelectorAll('.encounter-section > summary')).every(s=>s.getBoundingClientRect().height>=44)`),true);
+    if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)){
+      await evaluate(`document.querySelector('.location-encounters').scrollIntoView({block:'start'})`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'encounter-sections-'+width+'.png'),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

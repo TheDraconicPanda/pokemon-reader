@@ -241,3 +241,8 @@ input:focus, select:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 /* The finder is a full-width view, independent of the Atlas search panel's grid. */
 .ev-training-panel { display: block; }
 .ev-training-panel[hidden], #atlas-browser[hidden] { display: none; }
+
+.encounter-section { margin-top: 0.65rem; border-top: 1px solid #e5e7eb; min-width: 0; }
+.encounter-section > summary { min-height: 44px; align-content: center; padding: 0.4rem 0; cursor: pointer; font-size: 0.9rem; font-weight: 650; overflow-wrap: anywhere; }
+.encounter-section > summary:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.encounter-section > .encounter-method { margin-bottom: 0.7rem; }

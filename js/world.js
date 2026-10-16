@@ -1,3 +1,4 @@
+import { encounterSections } from "./atlas-encounter-sections.js";
 import { mountEvTraining } from "./atlas-ev-training.js";
 import { locationEncounterReference } from "./data/atlas-route-reference.js";
 import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
@@ -381,28 +382,38 @@ function renderEncounters(locationName) {
     section.append(detail);
   }
 
-  const methods = [...new Set(encounters.map((entry) => entry.method))];
-  for (const method of methods) {
-    const group = document.createElement("div");
-    group.className = "encounter-method";
-    const methodHeading = document.createElement("h4");
-    methodHeading.textContent = method;
-    const entries = document.createElement("div");
-    entries.className = "encounter-entries";
-    for (const encounter of encounters.filter((entry) => entry.method === method)) {
-      const row = document.createElement("div");
-      row.className = "encounter-entry";
-      const name = document.createElement("span");
-      name.className = "encounter-name";
-      name.textContent = encounter.pokemon;
-      const info = document.createElement("span");
-      info.className = "encounter-info";
-      info.textContent = `Lv. ${encounter.levels} · ${encounter.times}${encounter.rate ? ` · ${encounter.rate}` : ` · ${encounter.rarity}`}`;
-      row.append(name, info);
-      entries.append(row);
+  for (const bucket of encounterSections(encounters)) {
+    const disclosure = document.createElement("details");
+    disclosure.className = "encounter-section";
+    disclosure.dataset.encounterSection = bucket.id;
+    const summary = document.createElement("summary");
+    summary.textContent = `${bucket.title} (${bucket.entries.length})`;
+    disclosure.append(summary);
+    const methods = [...new Set(bucket.entries.map(({encounter}) => encounter.method))];
+    for (const method of methods) {
+      const group = document.createElement("div");
+      group.className = "encounter-method";
+      const methodHeading = document.createElement("h4");
+      methodHeading.textContent = method;
+      const entries = document.createElement("div");
+      entries.className = "encounter-entries";
+      for (const {encounter, index} of bucket.entries.filter(({encounter}) => encounter.method === method)) {
+        const row = document.createElement("div");
+        row.className = "encounter-entry";
+        row.dataset.encounterIndex = String(index);
+        const name = document.createElement("span");
+        name.className = "encounter-name";
+        name.textContent = encounter.pokemon;
+        const info = document.createElement("span");
+        info.className = "encounter-info";
+        info.textContent = `Lv. ${encounter.levels} · ${encounter.times}${encounter.rate ? ` · ${encounter.rate}` : ` · ${encounter.rarity}`}`;
+        row.append(name, info);
+        entries.append(row);
+      }
+      group.append(methodHeading, entries);
+      disclosure.append(group);
     }
-    group.append(methodHeading, entries);
-    section.append(group);
+    section.append(disclosure);
   }
   return section;
 }
