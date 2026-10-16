@@ -406,3 +406,20 @@ link labels, connections, reference details and encounter conditions remain.
 Underlying summaries and access notes are unchanged and remain searchable.
 Automated checks cover the full location inventory, floor selection, search,
 route travel and Reader/Planner regressions. User outcome acceptance is pending.
+
+## Atlas compass navigation — v0.25.51
+
+Location travel uses a reserved four-direction compass around the map. North and
+south slots keep their height even without exits; west/east slots stay beside
+the map. Subtle theme-aware arrows sit behind destination buttons, replacing the
+visible cardinal headings. Arrows on empty slots are decoration, not controls.
+Destination buttons retain directional accessible names and keyboard focus styles.
+Floor/area controls sit above the compass so they do not displace the side buttons
+relative to the map. Other connections remain a separate labelled group.
+No connections, travel requirements or game data change. HM indicators remain a
+future step requiring verified per-connection requirements. User acceptance of
+the compass appearance is pending on the existing Pages site.
+
+All 77 automated checks pass, including compass slot geometry, accessible names,
+320/390/1440px layouts, route travel, floor changes and Reader/Planner regressions.
+Phone and desktop screenshots were reviewed before publication.

@@ -443,3 +443,13 @@ No encounter, map, reference, EV or Safari datasets change in this milestone.
 - [x] Remove duplicate map captions while preserving accessible names and floor controls
 - [x] Preserve game data, searchable access notes, references and encounter conditions
 - [ ] User outcome acceptance on the existing Pages site
+
+## Atlas compass navigation — v0.25.51
+
+- [x] Reserve north/west/east/south slots around the map, including empty directions
+- [x] Use theme-aware arrow backgrounds and destination-only button text
+- [x] Keep accessible direction labels, floor navigation and other connections
+- [x] Place floor controls above the compass to keep side buttons aligned with the map
+- [ ] User outcome acceptance of the compass layout
+
+HM travel indicators are a separate verified connection-data task.

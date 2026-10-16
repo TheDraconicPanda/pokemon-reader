@@ -624,15 +624,20 @@ function renderLocations({ exactName = null } = {}) {
       for (const direction of ["north", "west", "east", "south", "other"]) {
         const group = document.createElement("div");
         group.className = `compass-${direction}`;
-        const caption = document.createElement("span");
-        caption.className = "direction-label";
-        caption.textContent = direction === "other" ? "Other connections" : direction[0].toUpperCase() + direction.slice(1);
-        group.append(caption);
+        if (direction === "other") {
+          const caption = document.createElement("span");
+          caption.className = "direction-label";
+          caption.textContent = "Other connections";
+          group.append(caption);
+        } else {
+          group.classList.add("compass-direction");
+        }
         groups[direction] = group;
       }
       const current = document.createElement("figure");
       current.className = "compass-current";
       current.setAttribute("aria-labelledby", heading.id);
+      let mapControls;
       if (maps.length) {
         links.classList.add("has-map");
         const mapLink = document.createElement("a");
@@ -710,7 +715,7 @@ function renderLocations({ exactName = null } = {}) {
           }
           selection.addEventListener("change", () => showMap(Number(selection.value), true));
           controls.append(label, previous, next);
-          current.append(controls);
+          mapControls = controls;
         }
         current.append(mapLink, fallback, announcement);
         showMap(0);
@@ -729,9 +734,11 @@ function renderLocations({ exactName = null } = {}) {
         groups[direction].append(link);
       }
       for (const group of Object.values(groups)) {
-        if (group.querySelector("button")) links.append(group);
+        if (!group.classList.contains("compass-other") || group.querySelector("button")) links.append(group);
       }
-      connections.append(label, links);
+      connections.append(label);
+      if (mapControls) connections.append(mapControls);
+      connections.append(links);
       overview.append(connections);
     }
 

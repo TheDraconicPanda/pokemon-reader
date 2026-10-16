@@ -120,3 +120,8 @@ Atlas v0.25.50: location cards omit the repeated region/summary line, the separa
 Access & progression block, and map location-name captions. Keep Landmarks &
 features, accessible map labels, floor controls, reference/encounter conditions,
 and the underlying searchable summary/access data.
+
+Atlas v0.25.51 reserves all four compass slots around the map, with decorative
+arrows behind destination-only buttons. Retain directional accessible labels.
+Keep floor controls above the compass and unclassified links under Other
+connections. Do not infer HM requirements from compass direction or map imagery.

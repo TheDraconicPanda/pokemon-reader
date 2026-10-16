@@ -238,7 +238,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.50') && document.querySelector('.eyebrow').textContent.includes('v0.25.50'),
+    version: document.title.includes('v0.25.51') && document.querySelector('.eyebrow').textContent.includes('v0.25.51'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -1251,6 +1251,21 @@ test('Compact Atlas cards and optional search preserve connection-first navigati
     await evaluate(`location.hash='johto'`);
     await until(()=>evaluate(`!document.querySelector('#johto-home').hidden`),'Johto cards');
     assert.deepEqual(await evaluate(`[...document.querySelectorAll('#johto-home .atlas-feature-card strong')].map(e=>e.textContent)`),['Navigation','Safari','EV Training']);
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+
+test('Compass reserves every direction with decorative arrows and accessible destination names', async () => {
+  for (const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await atlas({directory:false});
+    const state=await evaluate(`({slots:document.querySelectorAll('.compass-direction').length,labels:document.querySelectorAll('.compass-direction .direction-label').length,empty:document.querySelector('.compass-north').children.length,north:document.querySelector('.compass-north').getBoundingClientRect().height,south:document.querySelector('.compass-south').getBoundingClientRect().height,arrow:getComputedStyle(document.querySelector('.compass-north'),'::before').clipPath,west:document.querySelector('.compass-west button').getAttribute('aria-label'),fit:document.documentElement.scrollWidth<=innerWidth})`);
+    assert.equal(state.slots,4);assert.equal(state.labels,0);assert.equal(state.empty,0);
+    assert.equal(state.north,76);assert.equal(state.south,76);assert.match(state.arrow,/polygon/);assert.equal(state.west,'west: Route 29');assert.equal(state.fit,true);
+    await evaluate(`document.querySelector('.compass-west button').click()`);
+    assert.equal(await evaluate(`document.querySelector('.compass-north').getBoundingClientRect().height`),state.north);
+    assert.equal(await evaluate(`document.querySelector('.compass-south').getBoundingClientRect().height`),state.south);
   }
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });
