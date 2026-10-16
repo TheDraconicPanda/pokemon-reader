@@ -4,22 +4,51 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver PokéEarth — v0.25.46 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.25.47 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
 </head>
 <body>
   <main class="world-app">
-    <header class="world-header">
+    <header class="world-header atlas-header">
       <a class="back-link" href="../">← Pokémon Reader</a>
-      <p class="eyebrow">POKÉMON READER · SOULSILVER REFERENCE · v0.25.46</p>
-      <h1>Johto PokéEarth</h1>
-      <p>Start in New Bark Town and follow the compass connections below, or search to jump elsewhere. Explore Johto and the approaches to the Pokémon League and Mt. Silver. Each location includes landmarks, access notes, connections, and sources. Floors and related rooms are grouped under their main location. Connections include short gate passages; ledges and story conditions can restrict travel in either direction.</p>
-      <p>The static location guide has been cross-checked against SoulSilver references. Non-Safari encounters, maps and location details have been audited. Safari mechanics remain a separate project: Safari records include walking encounters in all 12 areas, partial water/fishing coverage, and block-attracted encounters in 11 areas.</p>
-      <nav class="atlas-tools" aria-label="Atlas tools">
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.47</p>
+      <h1>Pokémon Atlas</h1>
+      <nav class="atlas-tools" id="johto-tool-nav" aria-label="Johto · SoulSilver tools" hidden>
+        <a href="#home" class="atlas-tool-link">Regions</a>
+        <a href="#johto" class="atlas-tool-link">Johto · SoulSilver</a>
+        <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link">Navigation</a>
         <a href="#ev-training" class="atlas-tool-link">EV Training</a>
-        <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link" hidden>Browse Atlas</a>
       </nav>
     </header>
+
+    <section class="world-panel atlas-landing" id="atlas-home" aria-labelledby="atlas-home-title">
+      <h2 id="atlas-home-title" tabindex="-1">Choose a region</h2>
+      <p>Explore the Pokémon world. Regions are ordered by their first appearance.</p>
+      <div class="atlas-card-grid" aria-label="Regions">
+        <button class="atlas-feature-card" disabled><strong>Kanto</strong><span>Generation I</span><span>FireRed / LeafGreen · Planned</span></button>
+        <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>SoulSilver · Available</span></a>
+        <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Emerald · Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Sinnoh</strong><span>Generation IV</span><span>Platinum · Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Unova</strong><span>Generation V</span><span>Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Kalos</strong><span>Generation VI</span><span>Planned</span></button>
+        <button class="atlas-feature-card" disabled><strong>Alola</strong><span>Generation VII</span><span>Planned</span></button>
+      </div>
+    </section>
+
+    <section class="world-panel atlas-landing" id="johto-home" aria-labelledby="johto-home-title" hidden>
+      <h2 id="johto-home-title" tabindex="-1">Johto · SoulSilver</h2>
+      <p>Explore Johto and the existing approaches to the Pokémon League and Mt. Silver. Browse maps, Pokémon encounters, items, gifts, trades and Trainers, or find a place to train EVs.</p>
+      <div class="atlas-card-grid" aria-label="Johto features">
+        <a href="#ev-training" class="atlas-feature-card"><strong>EV Training</strong><span>Choose a stat and find training spots, with Surfing first.</span></a>
+        <a href="#atlas" class="atlas-feature-card"><strong>Navigation</strong><span>Start in New Bark Town, follow connections or search for a location.</span></a>
+        <button class="atlas-feature-card" disabled><strong>Safari</strong><span>Dedicated area guide and calculator · Planned</span></button>
+      </div>
+      <details class="atlas-about"><summary>About the Johto guide</summary>
+        <p>Floors and related rooms are grouped under their main location. Ledges, HMs and story progress can restrict travel. Non-Safari encounters, maps and location details have been audited against SoulSilver references; source links are available at each location. Full Kanto coverage remains planned.</p>
+        <p>Encounter percentages are species shares within the listed method, time and area after an encounter starts. Radio entries require the matching broadcast after the National Pokédex; outbreak entries require the announced outbreak and replace normal slots. Headbutt groups depend on the tree and Trainer ID; special trees require Rock Climb.</p>
+        <p>Safari's existing Atlas entry has partial water/fishing and block coverage. Its dedicated guide, progression controls and calculator will be developed separately.</p>
+      </details>
+    </section>
 
     <section class="world-panel ev-training-panel" id="ev-training" aria-labelledby="ev-training-title" hidden>
       <h2 id="ev-training-title" tabindex="-1">EV training finder</h2>
@@ -56,7 +85,7 @@
       <button type="button" id="ev-more" class="ev-more" hidden>Show more spots</button>
     </section>
 
-    <section class="world-panel" id="atlas-browser" aria-label="Search locations">
+    <section class="world-panel" id="atlas-browser" aria-label="Search locations" hidden>
       <label class="search-label" for="location-search">Search locations
         <input id="location-search" type="search" placeholder="Try Violet City, Route 32, or cave…" autocomplete="off">
       </label>

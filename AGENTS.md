@@ -87,3 +87,16 @@ At meaningful checkpoints, report:
 ## First task when resuming work
 
 Before feature implementation, inspect the current Git state, README.md, ROADMAP.md, project instructions, Atlas routes/locations, Safari Zone implementation, and available tests. Report a concise status separating verified completed work, incomplete work, defects, and future work. Then identify the next focused milestone with explicit acceptance criteria and begin it on a feature branch. Do not rewrite existing code or advance phases based on assumptions.
+
+
+## Atlas navigation presentation (2026-10-16)
+
+The root Atlas URL opens the region landing, ordered by region debut generation
+(Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola). Only Johto/SoulSilver is enabled;
+future region/game cards must not fall back to its dataset. The Johto landing owns
+the summary and feature cards (Navigation, EV Training, future Safari). Keep
+Navigation compact; general introductions do not belong above each route.
+Preserve `#atlas`, `#ev-training` and `#location=...` direct links. Clock ranges live
+in walking section titles; legendary requirements and contextual notes remain
+inside relevant disclosures. Do not remove conditions or alter game data for a
+presentation change. Safari remains its own development track.

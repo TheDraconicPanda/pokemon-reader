@@ -343,3 +343,22 @@ visual-design step. Safari receives the presentation change only, not a data aud
 
 All 73 automated checks pass, including encounter coverage, time grouping, EV
 Training and Reader/Planner regressions. User outcome acceptance is pending.
+
+## Atlas region and tool landings — v0.25.47
+
+Atlas now opens with region cards in debut-generation order: Kanto, Johto, Hoenn,
+Sinnoh, Unova, Kalos and Alola. Johto is available for SoulSilver; other regions
+are clearly marked as planned and cannot open SoulSilver content accidentally.
+The Johto landing has Navigation, EV Training and a disabled future Safari card.
+Its summary and expandable guide information replace the long tool introduction
+that previously appeared above every Navigation view.
+
+Navigation and EV Training retain their direct links (`#atlas`, `#ev-training`),
+and `#location=...` links still open the exact location. Region and Johto home
+links support browser Back/Forward. Walking section titles now include the game
+clock ranges, and redundant walking-row time text is removed. Legendary encounters
+and roaming requirements have a dedicated disclosure; other contextual notes
+remain available in their own disclosure. Repeated tool-wide encounter/Repel prose
+is removed from location views. Encounter, map, reference and EV datasets remain
+unchanged. All 74 automated checks pass, including phone/desktop presentation and
+Reader/Planner regressions. User outcome acceptance remains pending.

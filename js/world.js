@@ -357,7 +357,7 @@ function renderEncounters(locationName) {
   section.className = "location-encounters";
   section.setAttribute("aria-label", `${locationName} encounters`);
   const heading = document.createElement("h3");
-  heading.textContent = reference ? "Pokémon encounters · SoulSilver" : "Wild Pokémon · SoulSilver";
+  heading.textContent = "Pokémon encounters";
   if (!encounters || encounters.length === 0) {
     const message = document.createElement("p");
     message.className = "encounter-note";
@@ -371,24 +371,29 @@ function renderEncounters(locationName) {
     }
     return section;
   }
-  const note = document.createElement("p");
-  note.className = "encounter-note";
-  note.textContent = reference ? "Rates are species shares within the listed method, time and area after an encounter starts; abilities and Repel can affect results. Morning: 04:00–09:59; day: 10:00–19:59; night: 20:00–03:59. Radio entries require the matching broadcast after the National Pokédex. Outbreak entries require today’s announced outbreak. Headbutt groups depend on the tree and Trainer ID; special trees require Rock Climb. Conditional species replace normal encounter slots." : "Standard walking coverage spans all 12 areas. Block-attracted encounters are being added area by area; water/fishing coverage and encounter levels still need a full accuracy audit.";
-  section.append(heading, note);
-  for (const text of reference?.notes || []) {
-    const detail = document.createElement("p");
-    detail.className = "encounter-note";
-    detail.textContent = text;
-    section.append(detail);
+  section.append(heading);
+  const sourceNotes = reference?.notes || ["Safari encounters still require their dedicated data/mechanics audit."];
+  const legendaryNotes = sourceNotes.filter(text => /Roaming Pokémon:|legendary beasts|Ho-Oh encounter|Lugia is level/.test(text));
+  const otherNotes = sourceNotes.filter(text => !legendaryNotes.includes(text));
+  const buckets = encounterSections(encounters);
+  if (legendaryNotes.length && !buckets.some(bucket => bucket.id === "legendary")) {
+    buckets.push({id:"legendary",title:"Legendary encounters",entries:[]});
   }
-
-  for (const bucket of encounterSections(encounters)) {
+  for (const bucket of buckets) {
     const disclosure = document.createElement("details");
     disclosure.className = "encounter-section";
     disclosure.dataset.encounterSection = bucket.id;
     const summary = document.createElement("summary");
-    summary.textContent = `${bucket.title} (${bucket.entries.length})`;
+    summary.textContent = bucket.entries.length ? `${bucket.title} (${bucket.entries.length})` : bucket.title;
     disclosure.append(summary);
+    if (bucket.id === "legendary") {
+      for (const text of legendaryNotes) {
+        const note = document.createElement("p");
+        note.className = "encounter-note";
+        note.textContent = text;
+        disclosure.append(note);
+      }
+    }
     const methods = [...new Set(bucket.entries.map(({encounter}) => encounter.method))];
     for (const method of methods) {
       const group = document.createElement("div");
@@ -401,12 +406,13 @@ function renderEncounters(locationName) {
         const row = document.createElement("div");
         row.className = "encounter-entry";
         row.dataset.encounterIndex = String(index);
+        row.dataset.encounterTimes = encounter.times;
         const name = document.createElement("span");
         name.className = "encounter-name";
         name.textContent = encounter.pokemon;
         const info = document.createElement("span");
         info.className = "encounter-info";
-        info.textContent = `Lv. ${encounter.levels} · ${encounter.times}${encounter.rate ? ` · ${encounter.rate}` : ` · ${encounter.rarity}`}`;
+        info.textContent = [`Lv. ${encounter.levels}`, ...(["morning", "day", "night"].includes(bucket.id) ? [] : [encounter.times]), encounter.rate || encounter.rarity].filter(Boolean).join(" · ");
         row.append(name, info);
         entries.append(row);
       }
@@ -414,6 +420,20 @@ function renderEncounters(locationName) {
       disclosure.append(group);
     }
     section.append(disclosure);
+  }
+  if (otherNotes.length) {
+    const notes = document.createElement("details");
+    notes.className = "encounter-section encounter-notes";
+    const summary = document.createElement("summary");
+    summary.textContent = "Location encounter notes";
+    notes.append(summary);
+    for (const text of otherNotes) {
+      const note = document.createElement("p");
+      note.className = "encounter-note";
+      note.textContent = text;
+      notes.append(note);
+    }
+    section.append(notes);
   }
   return section;
 }
@@ -730,15 +750,19 @@ function renderLocations({ exactName = null } = {}) {
 
 const atlasPanel = document.querySelector("#atlas-browser");
 const evPanel = document.querySelector("#ev-training");
-const browseLink = document.querySelector("#atlas-browse-link");
+const homePanel = document.querySelector("#atlas-home");
+const johtoPanel = document.querySelector("#johto-home");
+const toolNav = document.querySelector("#johto-tool-nav");
+function setAtlasView(panel) {
+  for (const view of [homePanel, johtoPanel, atlasPanel, evPanel]) view.hidden = view !== panel;
+  toolNav.hidden = panel === homePanel;
+}
 const evFinder = mountEvTraining({panel: evPanel, onOpenLocation: openAtlasLocation});
 
 function openAtlasLocation(name, push = true, focus = true) {
   if (!LOCATIONS.some(location => location.name === name)) name = "New Bark Town";
   if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}`);
-  evPanel.hidden = true;
-  atlasPanel.hidden = false;
-  browseLink.hidden = true;
+  setAtlasView(atlasPanel);
   searchInput.value = name;
   typeSelect.value = "all";
   renderLocations({exactName: name});
@@ -751,21 +775,20 @@ function openAtlasLocation(name, push = true, focus = true) {
 
 function showAtlasRoute(focus = true) {
   if (location.hash === "#ev-training") {
-    atlasPanel.hidden = true;
-    evPanel.hidden = false;
-    browseLink.hidden = false;
+    setAtlasView(evPanel);
     evFinder.render();
     if (focus) document.querySelector("#ev-training-title").focus();
   } else if (location.hash.startsWith("#location=")) {
     let name;
     try { name = decodeURIComponent(location.hash.slice(10)); } catch { name = "New Bark Town"; }
     openAtlasLocation(name, false, focus);
+  } else if (location.hash === "#atlas") {
+    const name = LOCATIONS.some(location => location.name === searchInput.value) ? searchInput.value : "New Bark Town";
+    openAtlasLocation(name, false, focus);
   } else {
-    evPanel.hidden = true;
-    atlasPanel.hidden = false;
-    browseLink.hidden = true;
-    renderLocations({exactName: searchInput.value || "New Bark Town"});
-    if (focus) searchInput.focus();
+    const johto = location.hash === "#johto";
+    setAtlasView(johto ? johtoPanel : homePanel);
+    if (focus) document.querySelector(johto ? "#johto-home-title" : "#atlas-home-title").focus();
   }
 }
 function searchLocations() {

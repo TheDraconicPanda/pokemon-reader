@@ -50,11 +50,12 @@ async function evaluate(expression) {
   return response.result.value;
 }
 
+let atlasVisit = 0;
 async function atlas({ directory = true } = {}) {
-  await command("Page.navigate", { url: `${baseURL}/pokedex-earth/` });
+  await command("Page.navigate", { url: `${baseURL}/pokedex-earth/?test=${++atlasVisit}#atlas` });
   await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '1 of 70 locations'`),
     "Atlas did not finish rendering");
-  if (directory) await evaluate(`document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+  if (directory) await evaluate(`document.querySelector('#location-search').value='';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
 }
 
 before(async () => {
@@ -236,7 +237,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.46') && document.querySelector('.eyebrow').textContent.includes('v0.25.46'),
+    version: document.title.includes('v0.25.47') && document.querySelector('.eyebrow').textContent.includes('v0.25.47'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -1110,7 +1111,7 @@ test('all Atlas encounter records remain available in collapsed time and method 
       for(const row of rows){
         const section=row.closest('.encounter-section');
         if(!section||section.open)failures.push(name+': disclosure');
-        const time=row.querySelector('.encounter-info').textContent.toLowerCase();
+        const time=row.dataset.encounterTimes.toLowerCase();
         const key=section?.dataset.encounterSection;
         if(['morning','day','night'].includes(key)&&!time.includes(key)&&!time.includes('all times')&&!time.includes('any time'))failures.push(name+': wrong time');
         const method=row.closest('.encounter-method').querySelector('h4').textContent;
@@ -1140,6 +1141,38 @@ test('all Atlas encounter records remain available in collapsed time and method 
       const shot=await command('Page.captureScreenshot',{format:'png'});
       await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'encounter-sections-'+width+'.png'),Buffer.from(shot.data,'base64'));
     }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Atlas opens on ordered region cards, Johto leads to its tools, and navigation has contextual encounter notes',async()=>{
+  for(const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await command('Page.navigate',{url:baseURL+'/pokedex-earth/'});
+    await until(()=>evaluate(`document.querySelector('#atlas-home')&&!document.querySelector('#atlas-home').hidden`),'Atlas landing');
+    const home=await evaluate(`({names:Array.from(document.querySelectorAll('#atlas-home .atlas-feature-card strong'),s=>s.textContent),disabled:Array.from(document.querySelectorAll('#atlas-home button')).every(b=>b.disabled),visible:getComputedStyle(document.querySelector('#atlas-home')).display,navHidden:getComputedStyle(document.querySelector('#atlas-browser')).display,summary:document.querySelector('.world-header').textContent,fit:document.documentElement.scrollWidth<=innerWidth,johtoOnscreen:document.querySelector('#atlas-home a').getBoundingClientRect().bottom<innerHeight})`);
+    assert.deepEqual(home.names,['Kanto','Johto','Hoenn','Sinnoh','Unova','Kalos','Alola']);assert.equal(home.disabled,true);assert.equal(home.navHidden,'none');assert.equal(home.fit,true);assert.equal(home.johtoOnscreen,true);
+    assert.ok(!home.summary.includes('Start in New Bark'));
+    await evaluate(`document.querySelector('#atlas-home a[href="#johto"]').click()`);
+    await until(()=>evaluate(`!document.querySelector('#johto-home').hidden`),'Johto landing');
+    assert.equal(await evaluate(`document.querySelector('#johto-home button').disabled`),true);
+    if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)){
+      await evaluate(`scrollTo(0,0)`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'johto-landing-'+width+'.png'),Buffer.from(shot.data,'base64'));
+    }
+    await evaluate(`document.querySelector('#johto-home a[href="#atlas"]').click()`);
+    await until(()=>evaluate(`!document.querySelector('#atlas-browser').hidden`),'Johto navigation');
+    assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
+    await evaluate(`document.querySelector('.compass-west button').click()`);
+    const walking=await evaluate(`({title:document.querySelector('[data-encounter-section="morning"] summary').textContent,topNotes:document.querySelectorAll('.location-encounters > .encounter-note').length,legend:document.querySelector('[data-encounter-section="legendary"]').textContent,rows:document.querySelector('[data-encounter-section="morning"] .encounter-info').textContent,fit:document.documentElement.scrollWidth<=innerWidth})`);
+    assert.match(walking.title,/04:00–09:59/);assert.equal(walking.topNotes,0);assert.match(walking.legend,/Raikou.*Entei/);assert.ok(!walking.rows.includes('Morning'));assert.equal(walking.fit,true);
+    await evaluate(`document.querySelector('#location-search').value='Bell Tower';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+    const bell=await evaluate(`Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Bell Tower').querySelector('[data-encounter-section="legendary"]').textContent`);
+    assert.match(bell,/Ho-Oh/);assert.match(bell,/Rainbow Wing/);assert.match(bell,/70/);
+    await evaluate(`document.querySelector('#johto-tool-nav a[href="#home"]').click()`);
+    await until(()=>evaluate(`!document.querySelector('#atlas-home').hidden`),'Back to regions');
+    assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
   }
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

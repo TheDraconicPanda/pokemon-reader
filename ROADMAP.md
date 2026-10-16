@@ -400,3 +400,18 @@ progression filter. See [mechanics and validation](docs/atlas-ev-training.md).
 - [x] Keep current encounter placement; layout decisions are the next visual step
 - [x] Pass all 73 checks and review mobile/desktop presentation
 - [ ] User acceptance of the published outcome
+
+## Region and tool landings — v0.25.47
+
+- [x] Region cards ordered by debut generation, with only Johto/SoulSilver enabled
+- [x] Johto landing with summary, Navigation, EV Training and planned Safari entry
+- [x] Compact Navigation header with direct links and browser history retained
+- [x] Move walking clock ranges into section titles; remove repeated walking-row times
+- [x] Keep legendary/roaming requirements inside their dedicated encounter disclosure
+- [x] Preserve other contextual encounter notes without repeating tool-wide prose
+- [x] Keep all game datasets unchanged and verify all 74 tests plus mobile/desktop views
+- [ ] User acceptance of the published outcome
+
+Other region cards are placeholders, not implemented games or complete regional
+coverage. Safari remains a separate project. Further Atlas placement/visual choices
+will follow user review of these landings.
