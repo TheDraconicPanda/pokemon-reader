@@ -415,3 +415,15 @@ progression filter. See [mechanics and validation](docs/atlas-ev-training.md).
 Other region cards are placeholders, not implemented games or complete regional
 coverage. Safari remains a separate project. Further Atlas placement/visual choices
 will follow user review of these landings.
+
+## Shared application menu and themes — Atlas v0.25.48
+
+- [x] Share one menu implementation between Reader, Team Planner and Atlas
+- [x] Preserve Reader's Load Save reset and link other tools to Reader Overview
+- [x] Reuse the saved theme across all tools and synchronise open tabs
+- [x] Theme Atlas and Planner surfaces, controls and text in light/dark palettes
+- [x] Keep region selection in two generation-ordered columns, including phones
+- [x] Pass 75 automated checks and review light/dark phone/desktop screenshots
+- [ ] User outcome acceptance on the existing Pages site
+
+No encounter, map, reference, EV or Safari datasets change in this milestone.

@@ -100,3 +100,13 @@ Preserve `#atlas`, `#ev-training` and `#location=...` direct links. Clock ranges
 in walking section titles; legendary requirements and contextual notes remain
 inside relevant disclosures. Do not remove conditions or alter game data for a
 presentation change. Safari remains its own development track.
+
+## Shared application shell
+
+Reader, Team Planner and Atlas use `<app-menu tool="reader|planner|atlas">` from
+`js/app-shell.js` and shared theme/menu styling in `css/app-shell.css`. Keep this
+one implementation; do not duplicate tool menus or add per-tool theme storage.
+Load the shell script in the head so Reader's existing Load Save listener can
+attach to its button. Preserve `pokemon-reader-theme`, pre-render theme selection,
+cross-tab updates, and Reader's reset behaviour. Other tools link Load Save to
+Reader `#overview`. Region selection must stay two columns even at 320px.

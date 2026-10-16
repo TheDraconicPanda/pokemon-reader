@@ -1,0 +1,34 @@
+:root {
+  color-scheme: dark;
+  --background: #142033; --surface: #1c2a40; --elevated: #26354d;
+  --text: #f5f7fa; --muted: #b4c2d4; --border: #40516b;
+  --accent: #7db8ff; --success: #7ed9b1; --error: #ffabab;
+  --soft-accent: #233b59; --warning: #ffd18a;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f5f7fb; --surface: #fff; --elevated: #edf2f9;
+  --text: #17243a; --muted: #52637b; --border: #cbd5e1;
+  --accent: #285fae; --success: #166534; --error: #b91c1c;
+  --soft-accent: #eff6ff; --warning: #92400e;
+}
+app-menu { display: block; }
+.secondary-nav {
+  display: grid; grid-template-columns: auto auto auto minmax(0, 1fr);
+  align-items: center; gap: 8px; margin-bottom: 20px;
+}
+.secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1.4; box-sizing: border-box; padding: 10px 8px;
+  border: 0; border-radius: 0; text-decoration: none; min-height: 44px;
+  color: var(--accent); background: transparent; font: inherit; cursor: pointer;
+}
+.secondary-nav #theme-toggle { justify-self: end; }
+.secondary-nav a:hover, .secondary-nav button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.secondary-nav :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 800px) {
+  .secondary-nav { gap: 4px; }
+  .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle {
+    padding: 8px 6px; font-size: 12px; white-space: nowrap;
+  }
+}

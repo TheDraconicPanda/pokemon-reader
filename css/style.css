@@ -935,18 +935,6 @@ dd {
 }
 
 /* Reader dashboard foundation */
-:root {
-  color-scheme: dark;
-  --background: #142033; --surface: #1c2a40; --elevated: #26354d;
-  --text: #f5f7fa; --muted: #b4c2d4; --border: #40516b;
-  --accent: #7db8ff; --success: #7ed9b1; --error: #ffabab;
-}
-:root[data-theme="light"] {
-  color-scheme: light;
-  --background: #f5f7fb; --surface: #fff; --elevated: #edf2f9;
-  --text: #17243a; --muted: #52637b; --border: #cbd5e1;
-  --accent: #285fae; --success: #166534; --error: #b91c1c;
-}
 [hidden], .inactive-view { display: none !important; }
 a { color: var(--accent); }
 button, input, select { font: inherit; }
@@ -954,10 +942,6 @@ button, select { min-height: 44px; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .app { width: min(1200px, calc(100% - 32px)); max-width: 1200px; margin: 0 auto; padding: 16px 0 48px; }
-.secondary-nav { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 8px; margin-bottom: 20px; }
-.secondary-nav a, .secondary-nav button { display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; box-sizing: border-box; padding: 10px 8px; border: 0; border-radius: 0; text-decoration: none; min-height: 44px; color: var(--accent); background: transparent; font: inherit; }
-.secondary-nav #theme-toggle { justify-self: end; border: 0; border-radius: 0; background: transparent; color: var(--accent); padding: 10px 8px; }
-.secondary-nav a:hover, .secondary-nav button:hover { text-decoration: underline; text-underline-offset: 4px; }
 .dashboard-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
 .dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; color: var(--muted); text-decoration: none; text-align: center; }
 .dashboard-nav a[aria-current], .dashboard-nav a:hover { background: var(--elevated); color: var(--accent); }
@@ -975,8 +959,6 @@ button { cursor: pointer; }
 .skip-link:focus { top: 12px; }
 .app > *, dd, .party-item > div { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 800px) {
-  .secondary-nav { gap: 4px; }
-  .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle { padding: 8px 6px; font-size: 12px; white-space: nowrap; }
   .dashboard-nav { gap: 4px; padding: 4px; grid-template-columns: minmax(0, 53fr) minmax(0, 44fr) minmax(0, 55fr) minmax(0, 50fr) minmax(0, 60fr); }
   .dashboard-nav a { font-size: 11px; padding: 10px 1px; overflow-wrap: normal; }
   .card { padding: 16px; }

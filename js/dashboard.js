@@ -56,18 +56,4 @@ function updateState() {
 new MutationObserver(updateState).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden','data-save-loaded']});
 new MutationObserver(updateState).observe(document.querySelector('#file-status'), {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
 window.addEventListener('hashchange', () => route(true));
-const toggle = document.querySelector('#theme-toggle');
-let theme = 'dark';
-try { if (localStorage.getItem('pokemon-reader-theme') === 'light') theme = 'light'; } catch {}
-function applyTheme() {
-  document.documentElement.dataset.theme = theme;
-  toggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
-  toggle.setAttribute('aria-pressed', String(theme === 'light'));
-}
-toggle.addEventListener('click', () => {
-  theme = theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('pokemon-reader-theme', theme); } catch {}
-  applyTheme();
-});
-applyTheme();
 route();

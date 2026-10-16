@@ -362,3 +362,22 @@ remain available in their own disclosure. Repeated tool-wide encounter/Repel pro
 is removed from location views. Encounter, map, reference and EV datasets remain
 unchanged. All 74 automated checks pass, including phone/desktop presentation and
 Reader/Planner regressions. User outcome acceptance remains pending.
+
+## Shared theme and navigation — Atlas v0.25.48
+
+Reader, Team Planner and Atlas now render the same `<app-menu>` component from
+`js/app-shell.js`, styled by `css/app-shell.css`. The menu order is Load Save,
+Team Planner, Atlas, then the theme switch. From another tool, Load Save opens
+Reader's Overview; within Reader it retains the existing reset/upload behaviour.
+
+All three tools use the existing `pokemon-reader-theme` preference. The saved
+choice is applied before page content renders, retained across navigation, and
+synchronised between open tabs in the same browser. Dark is the default when no
+preference is saved. Theme preferences are browser-specific. Atlas and Planner
+surfaces, inputs, cards and text support both palettes. Region cards remain in
+two columns on phones and desktop, pairing Generations I/II, III/IV and V/VI.
+Johto tools may still stack on smaller screens. Game data is unchanged.
+
+All 75 automated checks pass, including shared-menu navigation, theme persistence,
+320/390/1440px region layout and Reader/Planner regressions. Phone and desktop
+screenshots were reviewed in both themes. User outcome acceptance is pending.

@@ -237,7 +237,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.47') && document.querySelector('.eyebrow').textContent.includes('v0.25.47'),
+    version: document.title.includes('v0.25.48') && document.querySelector('.eyebrow').textContent.includes('v0.25.48'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -1173,6 +1173,58 @@ test('Atlas opens on ordered region cards, Johto leads to its tools, and navigat
     await evaluate(`document.querySelector('#johto-tool-nav a[href="#home"]').click()`);
     await until(()=>evaluate(`!document.querySelector('#atlas-home').hidden`),'Back to regions');
     assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Shared menu keeps themes across tools and region pairs fit phones and desktop', async () => {
+  for (const width of [320,390,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    for (const theme of ['light','dark']) {
+      await atlas();
+      await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));location.hash='home'`);
+      await until(()=>evaluate(`!document.querySelector('#atlas-home').hidden`),'Regions');
+      const pairs=await evaluate(`(() => {
+        const cards=[...document.querySelectorAll('#atlas-home .atlas-feature-card')].map(c=>c.getBoundingClientRect());
+        return cards[0].top===cards[1].top && cards[2].top===cards[3].top && cards[4].top===cards[5].top && cards[0].left===cards[2].left && cards[1].left>cards[0].left;
+      })()`);
+      assert.equal(pairs,true);
+      for (const [tool,selector] of [['atlas',null],['planner','.secondary-nav a[href*="team-planner/"]'],['reader','#load-save']]) {
+        if(selector) {
+          await evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);
+          await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')===${JSON.stringify(tool)}`),'Shared menu navigation');
+        }
+        const state=await evaluate(`({theme:document.documentElement.dataset.theme,labels:[...document.querySelector('.secondary-nav').children].map(c=>c.textContent),fit:document.documentElement.scrollWidth<=innerWidth,hash:location.hash})`);
+        assert.equal(state.theme,theme);assert.equal(state.fit,true);
+        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas',theme==='dark'?'Light mode':'Dark mode']);
+        if(tool==='reader')assert.equal(state.hash,'#overview');
+        if(process.env.ATLAS_SCREENSHOT_DIR && width!==320){
+          await evaluate('scrollTo(0,0)');
+          const shot=await command('Page.captureScreenshot',{format:'png'});
+          await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`shared-${tool}-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+        }
+      }
+      // Location disclosures and the EV finder also use the selected palette.
+      await evaluate(`document.querySelector('.secondary-nav a[href*="pokedex-earth/"]').click()`);
+      await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='atlas'`),'Atlas themed views');
+      for (const view of ['location=Cherrygrove%20City','ev-training']) {
+        await evaluate(`location.hash=${JSON.stringify(view)}`);
+        await until(()=>evaluate(view==='ev-training' ? `!document.querySelector('#ev-training').hidden` : `document.querySelector('.location-card h2')?.textContent==='Cherrygrove City'`),'Themed Atlas view');
+        assert.equal(await evaluate('document.documentElement.dataset.theme'),theme);
+        assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);
+        if(process.env.ATLAS_SCREENSHOT_DIR && width===390){
+          await evaluate(`document.querySelector('${view==='ev-training'?'#ev-training':'.location-encounters'}').scrollIntoView();document.querySelector('[data-encounter-section="surfing"]')?.setAttribute('open','')`);
+          const shot=await command('Page.captureScreenshot',{format:'png'});
+          await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`shared-${view==='ev-training'?'ev':'encounters'}-${theme}.png`),Buffer.from(shot.data,'base64'));
+        }
+      }
+      await evaluate(`document.querySelector('#load-save').click()`);
+      await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='reader'`),'Reader theme change');
+      // Reader changes the preference; Atlas picks it up on navigation.
+      await evaluate(`document.querySelector('#theme-toggle').click();document.querySelector('.secondary-nav a[href*="pokedex-earth/"]').click()`);
+      await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='atlas'`),'Return to Atlas');
+      assert.equal(await evaluate('document.documentElement.dataset.theme'),theme==='dark'?'light':'dark');
+    }
   }
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

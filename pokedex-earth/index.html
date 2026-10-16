@@ -4,14 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.25.47 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.25.48 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
+  <link rel="stylesheet" href="../css/app-shell.css">
+  <script src="../js/app-shell.js"></script>
 </head>
 <body>
   <main class="world-app">
+    <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <a class="back-link" href="../">← Pokémon Reader</a>
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.47</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.48</p>
       <h1>Pokémon Atlas</h1>
       <nav class="atlas-tools" id="johto-tool-nav" aria-label="Johto · SoulSilver tools" hidden>
         <a href="#home" class="atlas-tool-link">Regions</a>
@@ -24,7 +26,7 @@
     <section class="world-panel atlas-landing" id="atlas-home" aria-labelledby="atlas-home-title">
       <h2 id="atlas-home-title" tabindex="-1">Choose a region</h2>
       <p>Explore the Pokémon world. Regions are ordered by their first appearance.</p>
-      <div class="atlas-card-grid" aria-label="Regions">
+      <div class="atlas-card-grid region-grid" aria-label="Regions">
         <button class="atlas-feature-card" disabled><strong>Kanto</strong><span>Generation I</span><span>FireRed / LeafGreen · Planned</span></button>
         <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>SoulSilver · Available</span></a>
         <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Emerald · Planned</span></button>
