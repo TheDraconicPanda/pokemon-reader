@@ -1,3 +1,5 @@
+import { EV_KEYS, TEAM_FAMILIES, snapshotSave, rememberSave, readSavedSnapshot } from '../../js/planner-save.js';
+import { detectSoulSilver } from '../../js/saves/soulsilver.js';
 "use strict";
 
 const STORAGE_KEY = "pokemon-reader-soulsilver-team-planner-v1";
@@ -36,6 +38,9 @@ const EV_LOCATIONS = {
 const $ = (selector) => document.querySelector(selector);
 const defaultState = () => ({ version:1, ready:{}, moves:{}, hmDone:{}, evDone:{}, benchNotes:{} });
 let state = loadState();
+let saveSnapshot = readSavedSnapshot();
+let selections = {};
+let saveRevision = 0;
 
 function loadState() {
   try {
@@ -125,10 +130,35 @@ function renderEvs() {
     const card = document.createElement("article"); card.className = "ev-card";
     const title = document.createElement("h3"); title.textContent = pokemon.name;
     const target = document.createElement("p"); target.textContent = "Target: " + pokemon.evs.map(([stat, value]) => stat + " " + value).join(" · ");
+    card.append(title, target);
     const grid = document.createElement("div"); grid.className = "ev-checks";
-    pokemon.evs.forEach(([stat, value]) => grid.append(checked(pokemon.id + ":" + stat, stat + " " + value, stat + " — " + value + " EVs target reached", "evDone")));
+    const matches = (saveSnapshot?.pokemon || []).filter(p => TEAM_FAMILIES[pokemon.id].includes(p.speciesId));
+    const match = matches.find(p => p.id === selections[pokemon.id]) || (matches.length === 1 ? matches[0] : null);
+    if (matches.length > 1) {
+      const label = document.createElement('label'); label.textContent = 'Choose saved Pokémon: ';
+      const select = document.createElement('select'); select.setAttribute('aria-label', 'Saved Pokémon for ' + pokemon.name);
+      select.add(new Option('Choose a Pokémon', ''));
+      matches.forEach(p => select.add(new Option(`${p.nickname || 'Species ' + p.speciesId} · ${p.location}`, p.id)));
+      select.value = match?.id || '';
+      select.addEventListener('change', () => { selections[pokemon.id] = select.value; renderEvs(); updateSummary(); });
+      label.append(select); card.append(label);
+    }
+    if (match) {
+      const current = document.createElement('p'); current.className = 'ev-current';
+      current.textContent = 'Current: ' + Object.entries(EV_KEYS).map(([stat, key]) => `${stat} ${match.evs[key]}`).join(' · ') + ` · Total ${Object.values(match.evs).reduce((sum, n) => sum + n, 0)} / 510`;
+      card.append(current);
+    } else if (saveSnapshot) {
+      const note = document.createElement('p'); note.textContent = matches.length ? 'Choose a Pokémon to refresh these targets.' : 'No matching Pokémon in this save; manual progress retained.'; card.append(note);
+    }
+    pokemon.evs.forEach(([stat, value]) => {
+      const key = pokemon.id + ':' + stat;
+      if (match) state.evDone[key] = match.evs[EV_KEYS[stat]] >= value;
+      const line = checked(key, stat, match ? `${stat} — ${match.evs[EV_KEYS[stat]]} / ${value} EVs · ${Math.max(0, value - match.evs[EV_KEYS[stat]])} remaining` : `${stat} — ${value} EVs target reached`, 'evDone');
+      line.querySelector('input').disabled = Boolean(match);
+      grid.append(line);
+    });
     const location = document.createElement("p"); location.className = "small muted"; location.style.marginTop = ".8rem"; location.textContent = "Training reference: " + [...new Set(pokemon.evs.map(([stat]) => EV_LOCATIONS[stat]))].join("; ");
-    card.append(title, target, grid, location); list.append(card);
+    card.append(grid, location); list.append(card);
   });
 }
 function renderBench() {
@@ -187,3 +217,27 @@ $("#confirm-reset").addEventListener("click", () => {
   saveState(); renderAll();
 });
 renderAll();
+
+function showSaveStatus() {
+  $('#ev-save-status').textContent = saveSnapshot ? `EVs from ${saveSnapshot.name}. Reload your latest save after training.` : 'No save loaded. Manual progress is available.';
+}
+$('#ev-save-file').addEventListener('change', async event => {
+  const file = event.target.files?.[0]; event.target.value = '';
+  if (!file) return;
+  const revision = ++saveRevision;
+  try {
+    const result = detectSoulSilver(await file.arrayBuffer());
+    if (revision !== saveRevision) return;
+    const snapshot = snapshotSave(result, file.name);
+    saveSnapshot = snapshot; selections = {};
+    const stored = rememberSave(snapshot);
+    renderAll(); saveState(); showSaveStatus();
+    if (!stored) $('#ev-save-status').textContent += ' Session storage unavailable; keep this page open.';
+  } catch {
+    if (revision === saveRevision) $('#ev-save-status').textContent = 'Could not read a valid SoulSilver save. Previous EV values retained.';
+  }
+});
+window.addEventListener('pageshow', () => {
+  saveSnapshot = readSavedSnapshot(); renderAll(); showSaveStatus();
+});
+showSaveStatus();

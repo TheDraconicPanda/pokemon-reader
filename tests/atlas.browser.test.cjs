@@ -246,16 +246,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.37<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.52<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.37");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.52");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -316,7 +316,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture()) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), 'Reader did not initialize');
   await uploadFixture(data);
 }
 async function uploadFixture(data) {
@@ -573,7 +573,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -759,7 +759,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.37'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1268,4 +1268,31 @@ test('Compass reserves every direction with decorative arrows and accessible des
     assert.equal(await evaluate(`document.querySelector('.compass-south').getBoundingClientRect().height`),state.south);
   }
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Planner refreshes actual EVs from Reader snapshots and handles ambiguous matches', async () => {
+  const data = fixture();
+  Object.assign(data.party[0], { speciesId:116, isEgg:false, evs:{hp:4, attack:0, defense:0, specialAttack:252, specialDefense:0, speed:120} });
+  await fixtureReader(data);
+  assert.equal(await evaluate(`JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')).pokemon[0].evs.speed`),120);
+  await command('Fetch.disable');
+  await command('Page.navigate', {url:`${baseURL}/team-planner/`});
+  await until(()=>evaluate(`document.querySelector('.ev-current')?.textContent.includes('Speed 120')`),'Saved EVs did not reach Planner');
+  assert.equal(await evaluate(`document.getElementById('kingdra:Special Attack').checked`),true);
+  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
+  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').disabled`),true);
+  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').parentElement.textContent.includes('132 remaining')`),true);
+  await evaluate(`const snapshot=JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')); snapshot.pokemon[0].evs.speed=252; sessionStorage.setItem('pokemon-reader-planner-save-v1',JSON.stringify(snapshot));`);
+  await command('Page.reload');
+  await until(()=>evaluate(`document.getElementById('kingdra:Speed')?.checked`),'New save did not update completion');
+  await evaluate(`const snapshot=JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')); snapshot.pokemon.push({...snapshot.pokemon[0],id:'other',evs:{...snapshot.pokemon[0].evs,speed:0}});sessionStorage.setItem('pokemon-reader-planner-save-v1',JSON.stringify(snapshot));`);
+  await command('Page.reload');
+  await until(()=>evaluate(`Boolean(document.querySelector('[aria-label="Saved Pokémon for Kingdra"]'))`),'Duplicate choice missing');
+  assert.equal(await evaluate(`document.querySelector('.ev-current') === null`),true);
+  await evaluate(`const select=document.querySelector('[aria-label="Saved Pokémon for Kingdra"]');select.value='other';select.dispatchEvent(new Event('change'));`);
+  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
+  await evaluate(`const files=new DataTransfer();files.items.add(new File([new Uint8Array(12)],'invalid.sav'));const input=document.querySelector('#ev-save-file');input.files=files.files;input.dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#ev-save-status').textContent.includes('Previous EV values retained')`),'Invalid replacement did not report failure');
+  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
+  await evaluate(`sessionStorage.removeItem('pokemon-reader-planner-save-v1')`);
 });

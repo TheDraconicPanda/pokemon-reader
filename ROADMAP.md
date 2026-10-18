@@ -453,3 +453,18 @@ No encounter, map, reference, EV or Safari datasets change in this milestone.
 - [ ] User outcome acceptance of the compass layout
 
 HM travel indicators are a separate verified connection-data task.
+
+
+## Team Planner save EV refresh — v0.25.52
+
+Reader shares a minimal EV snapshot with Planner in session storage for the current
+tab. Planner also accepts SoulSilver saves directly. Matching party/PC Pokémon,
+including earlier evolutions and excluding eggs, show all current EVs, totals,
+remaining target values and automatic completion. Duplicate matches require a
+selection; unmatched members retain manual progress. Planned targets stay fixed.
+Invalid Planner uploads preserve previous values. Raw saves are never persisted
+or uploaded. Reload the latest save after training.
+
+All 78 automated checks pass, including Reader/Atlas/Planner regressions and
+EV snapshot refresh, duplicate selection and invalid replacement. Publication
+pending; real-save and user validation pending.

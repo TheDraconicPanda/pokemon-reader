@@ -6,7 +6,10 @@ A standalone, plain HTML/CSS/JavaScript feature hosted inside the Pokémon Reade
 - Tracks party readiness, final move goals, exploration HMs, EV targets, and optional postgame candidates.
 - Saves progress to browser local storage.
 - Supports JSON export/import for backup or moving progress to another browser.
-- Does not read, upload, or modify save files.
+- Reads SoulSilver saves locally to refresh EVs; never uploads or modifies them.
+- Reuses the Reader EV snapshot in the current tab, or accepts a save in EV training.
+- Matches evolution families in party/PC; duplicate matches require selection.
+- Shows all current EVs and remaining targets; unmatched Pokémon keep manual progress.
 
 ## Open
 

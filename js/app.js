@@ -1,9 +1,10 @@
+import { snapshotSave, rememberSave, forgetSave } from './planner-save.js';
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.37";
+const APP_VERSION = "0.25.52";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -116,6 +117,8 @@ async function handleFile(file) {
     currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
     currentSaveFileName = file.name || "pokemon-save.sav";
     currentActivePartition = result.valid ? result.activePartition : null;
+
+    if (result.valid) rememberSave(snapshotSave(result, currentSaveFileName));
 
     if (result.save) {
       const { trainer } = result.save;
@@ -1444,6 +1447,7 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
+  forgetSave();
   document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
   activeBoxNumber = 1;

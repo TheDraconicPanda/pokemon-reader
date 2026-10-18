@@ -423,3 +423,18 @@ the compass appearance is pending on the existing Pages site.
 All 77 automated checks pass, including compass slot geometry, accessible names,
 320/390/1440px layouts, route travel, floor changes and Reader/Planner regressions.
 Phone and desktop screenshots were reviewed before publication.
+
+
+## Team Planner save EV refresh — v0.25.52
+
+Reader shares a minimal EV snapshot with Planner in session storage for the current
+tab. Planner also accepts SoulSilver saves directly. Matching party/PC Pokémon,
+including earlier evolutions and excluding eggs, show all current EVs, totals,
+remaining target values and automatic completion. Duplicate matches require a
+selection; unmatched members retain manual progress. Planned targets stay fixed.
+Invalid Planner uploads preserve previous values. Raw saves are never persisted
+or uploaded. Reload the latest save after training.
+
+All 78 automated checks pass, including Reader/Atlas/Planner regressions and
+EV snapshot refresh, duplicate selection and invalid replacement. Publication
+pending; real-save and user validation pending.
