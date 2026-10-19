@@ -75,10 +75,13 @@ Neither is the proposed independent reference encyclopedia.
 1. **Profiles/persistence:** IndexedDB, validated decoded snapshots, refresh
    restoration, profile switching/duplicate handling, preserved legacy Planner data,
    storage failure and invalid-save safety, evolution export separation.
-   **Implemented in v0.25.53; publication/real-save/user acceptance pending.**
+   **Implemented in v0.25.53; live version confirmed and next milestone authorized
+   by the user. Broader real-save/in-game correctness is not independently verified.**
 2. **Planner:** multiple independent plans, explicit adventure association, safe
    migration/import/export, party-first matching, durable PID/OT identity links,
-   missing/ambiguous states, actual move/nature/evolution/EV progress. Pending.
+   missing/ambiguous states, actual move/nature/evolution/EV progress.
+   **Implemented in v0.25.54; focused user acceptance pending.** See
+   [Planner implementation and exact acceptance checklist](planner-integration.md).
 3. **Atlas/shared data:** full caught flags, authentic small ball markers, scoped
    species IDs, preserved conditions and verified data provenance. Pending.
 4. **Reference Pokédex/cards:** complete game-specific numbered list/search jump,
@@ -117,6 +120,11 @@ Legacy migration is an idempotent transactional copy of the original v1 JSON and
 its exact raw string, not an active Planner storage switch. It neither deletes nor
 rewrites the original key nor associates Mando with a newly loaded trainer. The
 multi-plan UI/goal model and applying post-migration edits are milestone 2.
+
+That description records the v0.25.53 foundation. Milestone 2 activates the latest
+legacy browser state into independent schema-2 planners; the preserved original
+key and original/activation migration copies remain unchanged afterward. See the
+Planner document for current migration/import behavior.
 
 There are no supported Safari snapshot values yet. PC current HP, battle stats and
 status remain unavailable. The parser's scoped Pokédex arrays are preserved;

@@ -1,243 +1,258 @@
-import { EV_KEYS, TEAM_FAMILIES, snapshotSave, rememberSave, readSavedSnapshot } from '../../js/planner-save.js';
-import { detectSoulSilver } from '../../js/saves/soulsilver.js';
-"use strict";
+import { EV_KEYS } from '../../js/planner-save.js';
+import { listProfiles, getActiveProfile, selectProfile, clearActiveProfile, subscribeAdventureChanges } from '../../js/adventures.js';
+import { initializePlanners, listPlanners, storePlanner, choosePlanner, preferredPlanner } from '../../js/planner-store.js';
+import { defaultProgress, defaultGoals, newPlanner, normalizeProgress, memberProgress, reconcilePlanner, savedPokemon, linkPokemon, importPlannerBackup, speciesName, natureName, moveName } from '../../js/planner-model.js';
 
-const STORAGE_KEY = "pokemon-reader-soulsilver-team-planner-v1";
-const TEAM = [
-  { id:"kingdra", name:"Kingdra", origin:"Horsea", role:"Special attacker and water traversal", ability:"Swift Swim", nature:"Modest (+Special Attack, −Attack; preferred) · Timid (+Speed, −Attack; alternative)", moves:[["Surf","Final set · locked"],["Ice Beam","Coverage"],["Dragon Pulse","Clair's TM59 reward"],["Rain Dance","Final set · weather control"]], temporary:["Whirlpool"], evs:[["Special Attack",252],["Speed",252],["HP",4]], note:"Whirlpool temporarily replaces Rain Dance during exploration." },
-  { id:"typhlosion", name:"Typhlosion", origin:"Cyndaquil", role:"Fast special attacker; answers Venusaur", ability:"Blaze", nature:"Timid (+Speed, −Attack; preferred) · Modest (+Special Attack, −Attack; alternative)", moves:[["Flamethrower","Priority 1"],["Focus Blast","Coverage"],["Dig","Coverage"],["Fourth move — undecided","Choose before locking the final set"]], temporary:["Cut"], evs:[["Special Attack",252],["Speed",252],["HP",4]], note:"Cut is a sacrifice/navigation move. Shadow Ball was discussed but is not locked in." },
-  { id:"machamp", name:"Machamp", origin:"Machop", role:"Physical attacker; Fighting coverage for Snorlax", ability:"No Guard", nature:"Adamant (+Attack, −Special Attack)", moves:[["DynamicPunch","Fighting STAB · preferred"],["Stone Edge","Postgame TM71 · 80 BP"],["Payback","Coverage"],["Fourth move — undecided","Choose one distinct move; Cross Chop is an alternative to DynamicPunch, not an extra slot"]], temporary:["Rock Climb","Strength"], evs:[["Attack",252],["HP",252],["Special Defense",4]], note:"No Guard makes Rock Climb reliable during exploration. Both HMs are temporary." },
-  { id:"dragonite", name:"Dragonite", origin:"Dratini", role:"Physical setup sweeper; answers Pikachu", ability:"Inner Focus", nature:"Adamant (+Attack, −Special Attack; preferred) · Jolly (+Speed, −Special Attack; alternative)", moves:[["Dragon Dance","Teach as Dragonair at level 53"],["Earthquake","TM26 reserved"],["Dragon Claw","TM02 · Route 27"],["Fly","Final set · locked"]], temporary:["Waterfall"], evs:[["Attack",252],["Speed",252],["HP",4]], note:"Waterfall is exploration-only. Dragon Dance should be learned before evolving Dragonair at level 55." },
-  { id:"ampharos", name:"Ampharos", origin:"Mareep", role:"Special Electric coverage; answers Lapras and Blastoise", ability:"Static", nature:"Modest (+Special Attack, −Attack)", moves:[["Thunderbolt","Repeatable Game Corner TM"],["Signal Beam","Coverage"],["Focus Blast","Coverage"],["Thunder Wave","Utility"]], temporary:[], evs:[["Special Attack",252],["HP",252],["Defense",4]], note:"No HM assigned." },
-  { id:"gengar", name:"Gengar", origin:"Gastly", role:"Fast special attacker and broad coverage", ability:"Levitate", nature:"Timid (+Speed, −Attack; preferred) · Modest (+Special Attack, −Attack; alternative)", moves:[["Shadow Ball","TM30 reserved"],["Sludge Bomb","TM36 · Route 43"],["Focus Blast","Coverage"],["Thunderbolt","Repeatable Game Corner TM"]], temporary:["Rock Smash"], evs:[["Special Attack",252],["Speed",252],["HP",4]], note:"Rock Smash is temporary. Trading is available for the evolution." }
-];
-const HMS = [
-  { move:"Surf", owner:"Kingdra", status:"Final set", why:"Strong special STAB; remains in the Red configuration." },
-  { move:"Whirlpool", owner:"Kingdra", status:"Temporary", why:"Exploration access; replace Rain Dance while travelling." },
-  { move:"Fly", owner:"Dragonite", status:"Final set", why:"Travel convenience; planned to remain in the final set." },
-  { move:"Waterfall", owner:"Dragonite", status:"Temporary", why:"Exploration access; remove for Red." },
-  { move:"Rock Climb", owner:"Machamp", status:"Temporary", why:"No Guard removes its accuracy concern in this plan; remove for Red." },
-  { move:"Strength", owner:"Machamp", status:"Temporary", why:"Useful exploration move; remove for Red." },
-  { move:"Cut", owner:"Typhlosion", status:"Temporary", why:"Sacrifice/navigation slot; remove for Red." },
-  { move:"Rock Smash", owner:"Gengar", status:"Temporary", why:"Exploration access; remove for Red." },
-  { move:"Flash", owner:"Unassigned", status:"Situational", why:"Not assigned; only teach if a specific route requires it." }
-];
-const BENCH = [
-  { id:"metagross", name:"Metagross", role:"Durable physical attacker with Steel typing.", note:"Potentially overlaps Dragonite/Machamp. Beldum acquisition is awkward; Meteor Mash is learned by Metang at level 48." },
-  { id:"roserade", name:"Roserade", role:"Special Grass/Poison specialist.", note:"Budew evolves through daytime friendship; evolve Roselia with a Shiny Stone after learning any desired pre-evolution moves." },
-  { id:"electivire", name:"Electivire", role:"Physical Electric coverage.", note:"Competes with Ampharos for the Electric role. Electabuzz evolves by trading while holding an Electirizer." }
-];
-const EV_LOCATIONS = {
-  "HP":"Slowpoke Well (Slowpoke)",
-  "Attack":"Route 42 surfing (Goldeen / Seaking)",
-  "Defense":"Route 45 (Geodude / Graveler)",
-  "Special Attack":"Route 35 grass (Psyduck / Golduck)",
-  "Special Defense":"Surf Route 27 (Tentacool / Tentacruel)",
-  "Speed":"Sprout Tower daytime or Diglett's Cave (Rattata / Diglett)"
-};
-const $ = (selector) => document.querySelector(selector);
-const defaultState = () => ({ version:1, ready:{}, moves:{}, hmDone:{}, evDone:{}, benchNotes:{} });
-let state = loadState();
-let saveSnapshot = readSavedSnapshot();
-let selections = {};
-let saveRevision = 0;
+const $ = selector => document.querySelector(selector);
+let plan=null, profile=null, plans=[], profiles=[], persistent=true, queue=Promise.resolve(), revision=0, refreshTimer;
 
-function loadState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultState();
-    const parsed = JSON.parse(raw);
-    return parsed && parsed.version === 1 ? { ...defaultState(), ...parsed } : defaultState();
-  } catch { return defaultState(); }
-}
-function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    $("#save-status").textContent = "Saved in this browser";
-  } catch {
-    $("#save-status").textContent = "Browser storage unavailable — export a backup";
-  }
-  updateSummary();
-}
-function checked(key, label, text, group) {
-  const input = document.createElement("input");
-  input.type = "checkbox";
-  input.checked = Boolean(state[group]?.[key]);
-  input.addEventListener("change", () => {
-    state[group][key] = input.checked;
-    saveState();
-    renderAll();
+function message(text) { $('#save-status').textContent=text; }
+function run(action) {
+  queue=queue.then(async()=>{
+    const focused=document.activeElement?.id;
+    $('.app').setAttribute('aria-busy','true');
+    try { await action(); }
+    catch(error) { if(plan)render();message(error.message+' Export a backup before refreshing if you have unsaved changes.'); }
+    finally { $('.app').setAttribute('aria-busy','false'); if(focused) document.getElementById(focused)?.focus(); }
   });
-  input.id = key;
-  const wrapper = document.createElement("label");
-  wrapper.className = "checkline";
-  wrapper.htmlFor = key;
-  wrapper.append(input, document.createTextNode(text || label));
-  return wrapper;
+  return queue;
+}
+async function commit(next) {
+  const updated=persistent ? await storePlanner(next,{adventureId:profile?.id || null}) : next;
+  plan=updated;
+  plans=plans.filter(p=>p.id!==plan.id).concat(plan);
+  render();
+  message(persistent ? 'Saved in this browser' : 'Session only — browser storage unavailable; export a backup');
+}
+function mutate(action) {
+  const id=plan?.id;
+  return run(async()=>{ if(!plan || plan.id!==id)throw new Error('Planner selection changed. Please repeat the edit on the selected plan.');const next=structuredClone(plan);action(next);await commit(reconcilePlanner(next,profile)); });
+}
+
+async function refreshContext(preferredId=null) {
+  const current=++revision;
+  const selected=await getActiveProfile();
+  const allProfiles=await listProfiles();
+  const allPlans=await listPlanners();
+  const preferred=await preferredPlanner(selected?.id || null);
+  if(current!==revision)return;
+  profile=selected;profiles=allProfiles;plans=allPlans;
+  const associated=plans.filter(p=>profile && p.adventureId===profile.id);
+  const unassociated=plans.filter(p=>p.adventureId===null);
+  const available=associated.concat(unassociated);
+  plan=available.find(p=>p.id===preferredId) || (associated.length===1 ? associated[0] : associated.length>1 ? associated.find(p=>p.id===preferred) : unassociated.find(p=>p.id===preferred) || (unassociated.length===1 ? unassociated[0] : null)) || null;
+  if(plan) {
+    const reconciled=reconcilePlanner(plan,profile);
+    if(JSON.stringify(reconciled.links)!==JSON.stringify(plan.links)) {
+      plan=await storePlanner(reconciled,{adventureId:profile?.id || null});
+      plans=plans.filter(p=>p.id!==plan.id).concat(plan);
+    }
+  }
+  render();
+  if(!plan)message('Choose a planner; existing adventures and plans are preserved.');
+  else message('Saved in this browser');
+}
+function checked(key,text,group,actual=null) {
+  const label=document.createElement('label');label.className='checkline';
+  const input=document.createElement('input');input.type='checkbox';input.id=key;
+  input.checked=actual===null ? Boolean(plan.state[group]?.[key]) : actual;
+  input.disabled=actual!==null;
+  input.addEventListener('change',()=>{const value=input.checked;mutate(next=>{next.state[group][key]=value;});});
+  label.htmlFor=input.id;label.append(input,document.createTextNode(text));return label;
+}
+function paragraph(text,className='small muted') {const p=document.createElement('p');p.className=className;p.textContent=text;return p;}
+function tracking(member,context='team') {
+  const progress=memberProgress(plan,member,profile);
+  const box=document.createElement('div');box.className='pokemon-tracking';box.dataset.linkStatus=progress.status;
+  if(!profile || plan.adventureId!==profile.id) {
+    box.append(paragraph('Manual progress. Associate this plan with an adventure to track saved Pokémon.'));
+    return box;
+  }
+  const label=document.createElement('label');label.textContent='Choose saved Pokémon: ';
+  const select=document.createElement('select');select.id=`${context}-pokemon-${member.id}`;
+  select.setAttribute('aria-label',`${context==='team'?'Saved':'EV'} Pokémon for ${member.name}`);
+  select.add(new Option('Choose a Pokémon',''));
+  select.add(new Option('Use manual progress','manual'));
+  const groups=new Map();
+  for(const candidate of progress.candidates) {
+    const groupName=candidate.recordKind==='party' ? 'Party' : 'PC';
+    if(!groups.has(groupName)){const group=document.createElement('optgroup');group.label=groupName;groups.set(groupName,group);select.append(group);}
+    groups.get(groupName).append(new Option(`${candidate.nickname || speciesName(candidate.speciesId)} · ${speciesName(candidate.speciesId)} · ${candidate.location}`,candidate.token));
+  }
+  select.value=progress.actual?.token || (plan.links[member.id]?.manual ? 'manual' : '');
+  select.addEventListener('change',()=>{
+    const token=select.value;
+    mutate(next=>{
+      if(token==='manual')next.links[member.id]={manual:true};
+      else if(token) {
+        const pokemon=savedPokemon(profile).find(p=>p.token===token);
+        if(!pokemon)throw new Error('That Pokémon is no longer in this snapshot.');
+        linkPokemon(next,member.id,pokemon,profile);
+      } else delete next.links[member.id];
+    });
+  });
+  label.append(select);box.append(label);
+  if(progress.actual) {
+    const actual=progress.actual;
+    box.append(paragraph(`Current: ${actual.nickname || speciesName(actual.speciesId)} · ${speciesName(actual.speciesId)} · ${actual.location}${actual.level ? ' · Level '+actual.level : ''}`,'actual-pokemon'));
+    box.append(paragraph(`Evolution: ${progress.evolved ? 'Target reached' : 'Target: '+speciesName(member.speciesId)} · Nature: ${natureName(actual.natureId)} (${progress.nature ? 'matches goal' : 'does not match goal'})`));
+    box.append(paragraph('Current moves: '+actual.moves.filter(move=>move.id).map(move=>moveName(move.id)).join(' · ')));
+  } else if(progress.linked) {
+    box.append(paragraph(progress.status==='ambiguous' ? 'Multiple Pokémon share this identity. Choose the intended Pokémon for this snapshot.' : 'Not found in latest save. Association preserved.','link-status'));
+    if(progress.lastKnown)box.append(paragraph(`Last known: ${progress.lastKnown.nickname || speciesName(progress.lastKnown.speciesId)} · ${speciesName(progress.lastKnown.speciesId)} · ${progress.lastKnown.location} · ${natureName(progress.lastKnown.natureId)} · ${plan.links[member.id].lastSeenAt}`));
+  } else {
+    box.append(paragraph(progress.candidates.length ? 'Choose a saved Pokémon. PC candidates are never assigned automatically.' : 'No matching party Pokémon. Manual progress is available.'));
+  }
+  return box;
 }
 function renderTeam() {
-  const grid = $("#team-grid");
-  grid.replaceChildren();
-  for (const pokemon of TEAM) {
-    const card = document.createElement("article");
-    card.className = "team-card";
-    const complete = Boolean(state.ready[pokemon.id]);
-    const head = document.createElement("div"); head.className = "card-head";
-    const titles = document.createElement("div");
-    const h = document.createElement("h3"); h.textContent = pokemon.name;
-    const species = document.createElement("p"); species.className = "species"; species.textContent = "Started as " + pokemon.origin;
-    titles.append(h, species);
-    const pill = document.createElement("span"); pill.className = "status-pill" + (complete ? " done" : ""); pill.textContent = complete ? "Ready" : "Planned";
-    head.append(titles, pill);
-    const role = document.createElement("p"); role.className = "role"; role.textContent = pokemon.role;
-    const meta = document.createElement("p"); meta.className = "small"; meta.innerHTML = "<strong>Ability:</strong> " + pokemon.ability + " &nbsp; <strong>Nature:</strong> " + pokemon.nature;
-    const moveBox = document.createElement("div"); moveBox.className = "moves";
-    const mh = document.createElement("h4"); mh.textContent = "Final move priorities";
-    moveBox.append(mh);
-    pokemon.moves.forEach(([move, detail], i) => {
-      const row = document.createElement("div"); row.className = "move" + (move.includes("undecided") ? " unsettled" : "");
-      const priority = document.createElement("span"); priority.className = "priority"; priority.textContent = String(i + 1) + ".";
-      const name = document.createElement("span"); name.textContent = move;
-      const info = document.createElement("small"); info.textContent = detail;
-      row.append(priority, name, info); moveBox.append(row);
-      const key = pokemon.id + ":" + i;
-      const line = checked(key, move, "Learned / confirmed: " + move, "moves");
-      line.classList.add("small");
-      moveBox.append(line);
+  const grid=$('#team-grid');grid.replaceChildren();
+  for(const member of plan.goals.team) {
+    const progress=memberProgress(plan,member,profile);
+    const card=document.createElement('article');card.className='team-card';card.dataset.member=member.id;
+    const head=document.createElement('div');head.className='card-head';
+    const titles=document.createElement('div');const title=document.createElement('h3');title.textContent=member.name;
+    titles.append(title,paragraph('Started as '+member.origin,'species'));
+    const pill=document.createElement('span');pill.className='status-pill'+(plan.state.ready[member.id]?' done':'');pill.textContent=plan.state.ready[member.id]?'Ready (manual)':'Planned';head.append(titles,pill);
+    card.append(head,paragraph(member.role,'role'),paragraph('Planned ability: '+member.ability+' · Planned nature: '+member.nature,'small'),tracking(member));
+    const moves=document.createElement('div');moves.className='moves';
+    const heading=document.createElement('h4');heading.textContent='Final move priorities';moves.append(heading);
+    member.moves.forEach(([move,detail],i)=>{
+      const row=document.createElement('div');row.className='move'+(member.moveIds[i]===null?' unsettled':'');
+      const number=document.createElement('span');number.className='priority';number.textContent=(i+1)+'.';
+      const name=document.createElement('span');name.textContent=move;const info=document.createElement('small');info.textContent=detail;
+      row.append(number,name,info);moves.append(row);
+      const text=progress.linked ? (progress.actual ? (progress.moves[i]?'Currently learned: ':'Not currently learned: ')+move : 'Unavailable in latest save: '+move) : 'Manual completion: '+move;
+      moves.append(checked(member.id+':'+i,text,'moves',progress.linked ? progress.moves[i] : null));
     });
-    const chips = document.createElement("div"); chips.className = "hm-chips";
-    for (const move of pokemon.temporary) { const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = "Temporary HM: " + move; chips.append(chip); }
-    const note = document.createElement("p"); note.className = "small muted"; note.textContent = pokemon.note;
-    card.append(head, role, meta, moveBox);
-    if (pokemon.temporary.length) card.append(chips);
-    card.append(note, checked(pokemon.id, pokemon.name, "Mark " + pokemon.name + " ready for the final team", "ready"));
+    card.append(moves);
+    if(member.temporary.length)card.append(paragraph('Temporary HMs: '+member.temporary.join(' · '),'small'));
+    card.append(paragraph(member.note),checked(member.id,'Mark '+member.name+' ready for the final team (manual)','ready'));
     grid.append(card);
   }
 }
 function renderHms() {
-  const list = $("#hm-list"); list.replaceChildren();
-  HMS.forEach((hm, i) => {
-    const row = document.createElement("article"); row.className = "hm-row";
-    const name = document.createElement("div"); const title = document.createElement("h3"); title.textContent = hm.move; const status = document.createElement("p"); status.textContent = hm.status; name.append(title, status);
-    const info = document.createElement("div"); const owner = document.createElement("div"); owner.className = "hm-owner"; owner.textContent = hm.owner; const why = document.createElement("p"); why.textContent = hm.why; info.append(owner, why);
-    const done = checked("hm:" + i, hm.move, hm.status === "Temporary" ? "HM taught / handled" : "Confirmed", "hmDone");
-    row.append(name, info, done); list.append(row);
+  const list=$('#hm-list');list.replaceChildren();
+  plan.goals.hms.forEach((hm,i)=>{
+    const member=plan.goals.team.find(p=>p.id===hm.ownerId);
+    const progress=member && memberProgress(plan,member,profile);
+    const learned=progress?.actual?.moves.some(move=>move.id===hm.moveId) || false;
+    const row=document.createElement('article');row.className='hm-row';row.dataset.hm=hm.move;
+    const name=document.createElement('div');const title=document.createElement('h3');title.textContent=hm.move;name.append(title,paragraph(hm.status));
+    const details=document.createElement('div');details.append(paragraph(hm.owner,'hm-owner'),paragraph(hm.why));
+    const status=progress?.linked ? progress.actual ? `${learned?'Currently knows':'Does not currently know'} ${hm.move} · ${progress.actual.nickname || speciesName(progress.actual.speciesId)} · ${progress.actual.location}${progress.actual.recordKind==='storage'?' (in PC, outside the travelling party)':''}` : 'Linked Pokémon not found or ambiguous in latest save.' : 'Manual confirmation; no saved Pokémon linked to this owner.';
+    details.append(paragraph(status,'hm-actual'));
+    row.append(name,details,checked('hm:'+i,progress?.linked ? 'Currently learned' : hm.status==='Temporary'?'HM taught / handled (manual)':'Confirmed (manual)','hmDone',progress?.linked ? learned : null));list.append(row);
   });
 }
 function renderEvs() {
-  const list = $("#ev-list"); list.replaceChildren();
-  TEAM.forEach(pokemon => {
-    const card = document.createElement("article"); card.className = "ev-card";
-    const title = document.createElement("h3"); title.textContent = pokemon.name;
-    const target = document.createElement("p"); target.textContent = "Target: " + pokemon.evs.map(([stat, value]) => stat + " " + value).join(" · ");
-    card.append(title, target);
-    const grid = document.createElement("div"); grid.className = "ev-checks";
-    const matches = (saveSnapshot?.pokemon || []).filter(p => TEAM_FAMILIES[pokemon.id].includes(p.speciesId));
-    const match = matches.find(p => p.id === selections[pokemon.id]) || (matches.length === 1 ? matches[0] : null);
-    if (matches.length > 1) {
-      const label = document.createElement('label'); label.textContent = 'Choose saved Pokémon: ';
-      const select = document.createElement('select'); select.setAttribute('aria-label', 'Saved Pokémon for ' + pokemon.name);
-      select.add(new Option('Choose a Pokémon', ''));
-      matches.forEach(p => select.add(new Option(`${p.nickname || 'Species ' + p.speciesId} · ${p.location}`, p.id)));
-      select.value = match?.id || '';
-      select.addEventListener('change', () => { selections[pokemon.id] = select.value; renderEvs(); updateSummary(); });
-      label.append(select); card.append(label);
+  const list=$('#ev-list');list.replaceChildren();
+  for(const member of plan.goals.team) {
+    const progress=memberProgress(plan,member,profile);
+    const actual=progress.actual;
+    const card=document.createElement('article');card.className='ev-card';card.dataset.member=member.id;
+    const title=document.createElement('h3');title.textContent=member.name;card.append(title,paragraph('Target: '+member.evs.map(([stat,n])=>`${stat} ${n}`).join(' · ')),tracking(member,'ev'));
+    const observed=actual || progress.lastKnown;
+    if(observed)card.append(paragraph((actual?'Current: ':'Last known (not found or ambiguous): ')+Object.entries(EV_KEYS).map(([stat,key])=>`${stat} ${observed.evs[key]}`).join(' · ')+` · Total ${Object.values(observed.evs).reduce((n,v)=>n+v,0)} / 510`,actual?'ev-current':'ev-last-known'));
+    const grid=document.createElement('div');grid.className='ev-checks';
+    for(const [stat,target] of member.evs) {
+      const current=actual?.evs[EV_KEYS[stat]];
+      const text=actual ? `${stat} — ${current} / ${target} EVs · ${Math.max(0,target-current)} remaining${current>target?' · '+(current-target)+' over target':''}` : progress.linked ? `${stat} — ${target} EVs target; current value unavailable` : `${stat} — ${target} EVs target reached (manual)`;
+      grid.append(checked(member.id+':'+stat,text,'evDone',progress.linked ? actual ? current>=target : false : null));
     }
-    if (match) {
-      const current = document.createElement('p'); current.className = 'ev-current';
-      current.textContent = 'Current: ' + Object.entries(EV_KEYS).map(([stat, key]) => `${stat} ${match.evs[key]}`).join(' · ') + ` · Total ${Object.values(match.evs).reduce((sum, n) => sum + n, 0)} / 510`;
-      card.append(current);
-    } else if (saveSnapshot) {
-      const note = document.createElement('p'); note.textContent = matches.length ? 'Choose a Pokémon to refresh these targets.' : 'No matching Pokémon in this save; manual progress retained.'; card.append(note);
-    }
-    pokemon.evs.forEach(([stat, value]) => {
-      const key = pokemon.id + ':' + stat;
-      if (match) state.evDone[key] = match.evs[EV_KEYS[stat]] >= value;
-      const line = checked(key, stat, match ? `${stat} — ${match.evs[EV_KEYS[stat]]} / ${value} EVs · ${Math.max(0, value - match.evs[EV_KEYS[stat]])} remaining` : `${stat} — ${value} EVs target reached`, 'evDone');
-      line.querySelector('input').disabled = Boolean(match);
-      grid.append(line);
-    });
-    const location = document.createElement("p"); location.className = "small muted"; location.style.marginTop = ".8rem"; location.textContent = "Training reference: " + [...new Set(pokemon.evs.map(([stat]) => EV_LOCATIONS[stat]))].join("; ");
-    card.append(grid, location); list.append(card);
-  });
+    card.append(grid);list.append(card);
+  }
 }
 function renderBench() {
-  const list = $("#bench-list"); list.replaceChildren();
-  BENCH.forEach(candidate => {
-    const card = document.createElement("article"); card.className = "bench-card";
-    const title = document.createElement("h3"); title.textContent = candidate.name;
-    const role = document.createElement("p"); role.textContent = candidate.role;
-    const note = document.createElement("p"); note.textContent = candidate.note;
-    card.append(title, role, note, checked(candidate.id, candidate.name, "Keep as a candidate to revisit", "benchNotes")); list.append(card);
-  });
+  const grid=$('#bench-list');grid.replaceChildren();
+  for(const candidate of plan.goals.bench) {
+    const card=document.createElement('article');card.className='bench-card';const title=document.createElement('h3');title.textContent=candidate.name;
+    card.append(title,paragraph(candidate.role),paragraph(candidate.note),checked(candidate.id,'Keep as a candidate to revisit','benchNotes'));grid.append(card);
+  }
 }
 function updateSummary() {
-  const partyReady = TEAM.filter(p => state.ready[p.id]).length;
-  const moveGoals = TEAM.reduce((n,p) => n + p.moves.filter((_,i) => state.moves[p.id + ":" + i]).length,0);
-  const moveTotal = TEAM.reduce((n,p) => n + p.moves.length,0);
-  const evTotal = TEAM.reduce((n,p) => n + p.evs.length,0);
-  const evDone = TEAM.reduce((n,p) => n + p.evs.filter(([stat]) => state.evDone[p.id + ":" + stat]).length,0);
-  $("#party-count").textContent = partyReady + " / 6 ready";
-  $("#party-meter").style.width = (partyReady/6*100) + "%";
-  $("#move-count").textContent = moveGoals + " / " + moveTotal + " complete";
-  $("#move-meter").style.width = (moveGoals/moveTotal*100) + "%";
-  $("#ev-count").textContent = evDone + " / " + evTotal + " targets";
-  $("#ev-meter").style.width = (evDone/evTotal*100) + "%";
-}
-function renderAll() { renderTeam(); renderHms(); renderEvs(); renderBench(); updateSummary(); }
-document.querySelectorAll(".tab").forEach(button => button.addEventListener("click", () => {
-  document.querySelectorAll(".tab").forEach(tab => tab.classList.toggle("active", tab === button));
-  document.querySelectorAll(".panel").forEach(panel => {
-    const active = panel.id === "panel-" + button.dataset.tab;
-    panel.hidden = !active; panel.classList.toggle("active", active);
-  });
-}));
-$("#export-btn").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify({ app:"Pokemon Reader SoulSilver Team Planner", exportedAt:new Date().toISOString(), state }, null, 2)], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href = url; a.download = "soulsilver-team-planner-backup.json"; a.click(); URL.revokeObjectURL(url);
-  $("#save-status").textContent = "Backup exported";
-});
-$("#import-file").addEventListener("change", async event => {
-  const [file] = event.target.files || [];
-  if (!file) return;
-  try {
-    const parsed = JSON.parse(await file.text());
-    const imported = parsed.state || parsed;
-    if (imported.version !== 1 || typeof imported !== "object") throw new Error("Unrecognized backup");
-    state = { ...defaultState(), ...imported };
-    saveState(); renderAll(); $("#save-status").textContent = "Backup imported";
-  } catch { $("#save-status").textContent = "Could not import: select a planner JSON backup"; }
-  event.target.value = "";
-});
-$("#reset-btn").addEventListener("click", () => $("#confirm-dialog").showModal());
-$("#confirm-reset").addEventListener("click", () => {
-  state = defaultState();
-  try { localStorage.removeItem(STORAGE_KEY); } catch {}
-  saveState(); renderAll();
-});
-renderAll();
-
-function showSaveStatus() {
-  $('#ev-save-status').textContent = saveSnapshot ? `EVs from ${saveSnapshot.name}. Reload your latest save after training.` : 'No save loaded. Manual progress is available.';
-}
-$('#ev-save-file').addEventListener('change', async event => {
-  const file = event.target.files?.[0]; event.target.value = '';
-  if (!file) return;
-  const revision = ++saveRevision;
-  try {
-    const result = detectSoulSilver(await file.arrayBuffer());
-    if (revision !== saveRevision) return;
-    const snapshot = snapshotSave(result, file.name);
-    saveSnapshot = snapshot; selections = {};
-    const stored = rememberSave(snapshot);
-    renderAll(); saveState(); showSaveStatus();
-    if (!stored) $('#ev-save-status').textContent += ' Session storage unavailable; keep this page open.';
-  } catch {
-    if (revision === saveRevision) $('#ev-save-status').textContent = 'Could not read a valid SoulSilver save. Previous EV values retained.';
+  let moves=0,totalMoves=0,evs=0,totalEvs=0;
+  const ready=plan.goals.team.filter(p=>plan.state.ready[p.id]).length;
+  for(const member of plan.goals.team) {
+    const progress=memberProgress(plan,member,profile);
+    totalMoves+=member.moves.length;totalEvs+=member.evs.length;
+    moves+=member.moves.filter((_,i)=>progress.linked ? progress.moves[i] : plan.state.moves[member.id+':'+i]).length;
+    evs+=member.evs.filter(([stat,target])=>progress.linked ? progress.actual && progress.actual.evs[EV_KEYS[stat]]>=target : plan.state.evDone[member.id+':'+stat]).length;
   }
+  $('#party-count').textContent=`${ready} / 6 ready`;$('#party-meter').style.width=(ready/6*100)+'%';
+  $('#move-count').textContent=`${moves} / ${totalMoves} complete`;$('#move-meter').style.width=(moves/totalMoves*100)+'%';
+  $('#ev-count').textContent=`${evs} / ${totalEvs} targets`;$('#ev-meter').style.width=(evs/totalEvs*100)+'%';
+}
+function renderControls() {
+  const adventure=$('#planner-adventure');adventure.replaceChildren(new Option('Reference / no adventure',''));
+  profiles.forEach(p=>adventure.add(new Option(`${p.snapshot.trainer.name} · SoulSilver · ${p.snapshot.trainer.trainerId} · ${p.id.slice(0,8)}`,p.id)));
+  adventure.value=profile?.id || '';adventure.disabled=!persistent;
+  const select=$('#planner-select');select.replaceChildren(new Option('Choose a planner',''));
+  plans.filter(p=>p.adventureId===null || p.adventureId===profile?.id).forEach(p=>select.add(new Option(p.name+(p.adventureId?'':' · reference plan'),p.id)));
+  select.value=plan?.id || '';
+  $('#associate-plan').hidden=!plan || !profile || plan.adventureId!==null;
+  $('#associate-plan').textContent='Use this plan for '+(profile?.snapshot.trainer.name || 'this adventure');
+  $('#planner-empty').hidden=Boolean(plan);
+  for(const id of ['export-btn','rename-plan','reset-btn'])$("#"+id).disabled=!plan;
+  $('#planner-context').textContent=profile ? `Adventure: ${profile.snapshot.trainer.name} · Latest save: ${new Date(profile.snapshot.loadedAt).toLocaleString()}${plan && plan.adventureId!==profile.id?' · This plan is not associated yet.':''}` : 'Reference mode. Plans work without a save; manual checklists remain available.';
+  $('#ev-save-status').textContent=profile && plan?.adventureId===profile.id ? `Using ${profile.snapshot.fileName} from ${new Date(profile.snapshot.loadedAt).toLocaleString()}. All Planner tabs use this adventure; no second upload is needed.` : 'No adventure associated with this plan. Manual progress is available.';
+}
+function render() {
+  renderControls();
+  for(const panel of document.querySelectorAll('.panel'))panel.classList.toggle('no-plan',!plan);
+  if(!plan){
+    for(const id of ['team-grid','hm-list','ev-list','bench-list'])$('#'+id).replaceChildren();
+    for(const section of ['party','move','ev']){$('#'+section+'-count').textContent='Choose a planner';$('#'+section+'-meter').style.width='0%';}
+    return;
+  }
+  renderTeam();renderHms();renderEvs();renderBench();updateSummary();
+}
+$('#planner-adventure').addEventListener('change',event=>{const id=event.target.value;run(async()=>{if(id)await selectProfile(id);else await clearActiveProfile();await refreshContext();});});
+$('#planner-select').addEventListener('change',event=>{const id=event.target.value;if(id)run(async()=>{if(persistent){await choosePlanner(id,profile?.id || null);await refreshContext(id);}else{plan=plans.find(p=>p.id===id);render();}});});
+$('#associate-plan').addEventListener('click',()=>mutate(next=>{if(next.adventureId!==null)throw new Error('This plan is already associated.');next.adventureId=profile.id;}));
+for(const button of document.querySelectorAll('.tab'))button.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab===button));
+  document.querySelectorAll('.panel').forEach(panel=>{panel.hidden=panel.id!=='panel-'+button.dataset.tab;panel.classList.toggle('active',!panel.hidden);});
+  history.replaceState(null,'','#'+button.dataset.tab);
 });
-window.addEventListener('pageshow', () => {
-  saveSnapshot = readSavedSnapshot(); renderAll(); showSaveStatus();
+function planDialog(mode) {
+  $('#plan-dialog').dataset.mode=mode;$('#plan-dialog').dataset.planner=plan?.id || '';$('#plan-dialog-title').textContent=mode==='rename'?'Rename planner':'Create planner';
+  $('#plan-name').value=mode==='rename'?plan.name:'';$('#plan-dialog').showModal();$('#plan-name').focus();
+}
+$('#new-plan').addEventListener('click',()=>planDialog('new'));
+$('#rename-plan').addEventListener('click',()=>planDialog('rename'));
+$('#plan-form').addEventListener('submit',event=>{
+  if(event.submitter?.value==='cancel')return;
+  event.preventDefault();const name=$('#plan-name').value.trim();if(!name)return;
+  if($('#plan-dialog').dataset.mode==='rename' && $('#plan-dialog').dataset.planner!==plan?.id){message('Planner selection changed. Close this dialog and select the planner you want to rename.');return;}
+  const mode=$('#plan-dialog').dataset.mode;$('#plan-dialog').close();
+  if(mode==='rename')mutate(next=>{next.name=name;});
+  else run(async()=>{const created=newPlanner(name,profile?.id || null,plan?.goals || defaultGoals());await commit(reconcilePlanner(created,profile));});
 });
-showSaveStatus();
+$('#export-btn').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify({app:'Pokemon Reader Team Planner',version:2,exportedAt:new Date().toISOString(),planner:plan},null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='soulsilver-team-planner-backup.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message('Backup exported');
+});
+$('#import-file').addEventListener('change',event=>{
+  const file=event.target.files?.[0];event.target.value='';if(!file)return;
+  run(async()=>{const imported=importPlannerBackup(JSON.parse(await file.text()),null);await commit(imported);message('Backup imported as a separate reference plan. Existing plans are preserved; associate it explicitly to track an adventure.');});
+});
+$('#reset-btn').addEventListener('click',()=>$('#confirm-dialog').showModal());
+$('#confirm-reset').addEventListener('click',()=>mutate(next=>{next.state=defaultProgress();}));
+function scheduleRefresh() {
+  if(!persistent)return;
+  clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>{if(persistent)run(()=>refreshContext());},50);
+}
+window.addEventListener('pageshow',scheduleRefresh);
+window.addEventListener('focus',scheduleRefresh);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')scheduleRefresh();});
+subscribeAdventureChanges(scheduleRefresh);
+run(async()=>{
+  try{await initializePlanners();await refreshContext();}
+  catch(error){
+    persistent=false;profile=null;profiles=[];
+    let state=defaultProgress();try{const raw=localStorage.getItem('pokemon-reader-soulsilver-team-planner-v1');if(raw)state=normalizeProgress(JSON.parse(raw));}catch{}
+    plan=newPlanner('SoulSilver / Mando (session only)',null,defaultGoals(),state);plans=[plan];render();message(`Planner storage unavailable: ${error.message} Original data is preserved; export session changes as a backup.`);
+  }
+  const tab=document.querySelector(`.tab[data-tab="${['team','hms','evs','bench'].includes(location.hash.slice(1))?location.hash.slice(1):'team'}"]`);tab.click();
+});

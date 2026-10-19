@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver Team Planner — v0.25.53</title>
+  <title>SoulSilver Team Planner — v0.25.54</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <script src="../js/app-shell.js"></script>
@@ -13,9 +13,9 @@
   <main class="app">
     <app-menu tool="planner"></app-menu>
     <header class="hero">
-      <p class="eyebrow">POKÉMON READER · SEPARATE FEATURE</p>
-      <h1>SoulSilver Team Planner <small>v0.25.53</small></h1>
-      <p>Track the team plan, exploration HMs, final moves, EV goals, and postgame options. Load a SoulSilver save to refresh current EVs.</p>
+      <p class="eyebrow">POKÉMON READER · TEAM PLANNER</p>
+      <h1>SoulSilver Team Planner <small>v0.25.54</small></h1>
+      <p>Keep your desired team separate from actual save progress. Linked Pokémon update moves, HMs, evolution, nature and EVs from your latest Adventure Profile.</p>
       <div class="toolbar">
         <span id="save-status" class="save-status" aria-live="polite">Progress saves in this browser</span>
         <button id="export-btn" class="button secondary" type="button">Export backup</button>
@@ -23,6 +23,22 @@
         <button id="reset-btn" class="button danger" type="button">Reset progress</button>
       </div>
     </header>
+
+    <section class="card planner-controls" aria-labelledby="planner-controls-title">
+      <h2 id="planner-controls-title">Your planners</h2>
+      <div class="planner-selectors">
+        <label>Adventure<select id="planner-adventure"><option value="">Reference / no adventure</option></select></label>
+        <label>Planner<select id="planner-select"><option value="">Choose a planner</option></select></label>
+      </div>
+      <div class="toolbar">
+        <button id="associate-plan" class="button" type="button" hidden>Use this plan for this adventure</button>
+        <button id="new-plan" class="button" type="button">New planner</button>
+        <button id="rename-plan" class="button secondary" type="button">Rename planner</button>
+      </div>
+      <p id="planner-context" role="status"></p>
+      <p class="small muted">Your original Mando plan is preserved. Associate it once with the correct adventure, or create a separate planner. New planners copy the selected goals with fresh manual checklists and Pokémon associations.</p>
+    </section>
+    <p id="planner-empty" class="card" hidden>Choose a planner above, or create one. Multiple planners are kept separate.</p>
 
     <section class="summary-grid" aria-label="Progress summary">
       <article class="summary-card"><span>Party</span><strong id="party-count">0 / 6 ready</strong><div class="meter"><span id="party-meter"></span></div></article>
@@ -50,7 +66,7 @@
 
     <section id="panel-evs" class="panel" hidden>
       <div class="section-heading"><div><h2>EV training</h2><p>Targets stay fixed; loaded saves update current EVs and completion. Without a matching Pokémon, use the manual checklist. Generation IV allows 510 total EVs and 255 per stat; 252 is the usual effective target.</p></div></div>
-      <label class="button secondary file-button" for="ev-save-file">Load save for EVs<input id="ev-save-file" type="file" accept=".sav,.dsv,application/octet-stream"></label>
+      <p class="small muted">To refresh progress, use Load Save in Reader. The latest successful load supplies every Planner tab.</p>
       <p id="ev-save-status" role="status">No save loaded.</p>
       <div id="ev-list" class="stack"></div>
       <p class="small muted">EVs already earned during the story count toward these targets. Load a newer save to refresh progress. Save files are read locally and never modified.</p>
@@ -62,9 +78,10 @@
       <article class="card note"><h3>Current decision</h3><p>Keep the planned main six. Revisit a replacement only if a concrete gap appears; Metagross, Roserade, and Electivire remain optional candidates.</p></article>
     </section>
 
-    <footer><p>Standalone planner · Progress stays in this browser unless you export a backup. No save file is uploaded or edited.</p></footer>
+    <footer><p>Adventure-linked and reference planners · Progress stays in this browser unless you export a backup. No save file is uploaded or edited.</p></footer>
   </main>
-  <dialog id="confirm-dialog"><form method="dialog"><h2>Reset planner progress?</h2><p>This clears the checklist and EV completion marks stored in this browser. Export a backup first if you want to keep them.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button id="confirm-reset" class="button danger" value="confirm">Reset progress</button></div></form></dialog>
+  <dialog id="plan-dialog" aria-labelledby="plan-dialog-title"><form id="plan-form" method="dialog"><h2 id="plan-dialog-title">Create planner</h2><label>Planner name<input id="plan-name" required maxlength="100" autocomplete="off"></label><div class="dialog-actions"><button class="button secondary" value="cancel" formnovalidate>Cancel</button><button class="button" value="confirm">Save planner</button></div></form></dialog>
+  <dialog id="confirm-dialog"><form method="dialog"><h2>Reset this planner's manual progress?</h2><p>This clears only this plan's manual checklists. Desired goals, Pokémon associations, actual save progress and other plans are preserved.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button id="confirm-reset" class="button danger" value="confirm">Reset progress</button></div></form></dialog>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

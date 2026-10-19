@@ -1,22 +1,22 @@
-# SoulSilver Team Planner
+# SoulSilver Team Planner — v0.25.54
 
-A standalone, plain HTML/CSS/JavaScript feature hosted inside the Pokémon Reader repository at `/team-planner/`.
+Plain HTML/CSS/JavaScript Planner at `/team-planner/`, integrated with optional
+Adventure Profiles from Reader. Main team, HM plan and EV training use the same
+linked Pokémon and latest decoded save; no second upload is needed in Planner.
 
-- Does not depend on or change the save-file reader's JavaScript.
-- Tracks party readiness, final move goals, exploration HMs, EV targets, and optional postgame candidates.
-- Saves progress to browser local storage.
-- Supports JSON export/import for backup or moving progress to another browser.
-- Reads SoulSilver saves locally to refresh EVs; never uploads or modifies them.
-- Reuses the Reader EV snapshot in the current tab, or accepts a save in EV training.
-- Matches evolution families in party/PC; duplicate matches require selection.
-- Shows all current EVs and remaining targets; unmatched Pokémon keep manual progress.
+Desired moves/natures/evolution/EV targets stay separate from observed progress.
+A unique party evolution-family match can be selected automatically. PC-only and
+ambiguous matches require selection. Persistent PID/OT identity links follow
+party/PC transfers and evolution, and preserve labelled last-known values when a
+Pokémon is missing. Without a save, reference plans keep manual checklists.
 
-## Open
+Supports multiple named planners per adventure, separate adventures, and v1/v2
+JSON backup import. Original v1 browser data is retained; migration activates the
+latest copy once. Imported backups become separate reference plans and require
+explicit adventure association. Export a backup before clearing browser/site data.
 
-On GitHub Pages: `https://thedraconicpanda.github.io/pokemon-reader/team-planner/`
+Open: https://thedraconicpanda.github.io/pokemon-reader/team-planner/
 
-The page links back to the existing Pokémon Reader. A link from the main landing page can be added as a small navigation enhancement after the feature is verified.
-
-## Notes
-
-The tracker deliberately marks Typhlosion's fourth move and Machamp's fourth move as undecided because those slots were not finalized in planning. It does not silently turn tentative suggestions into locked decisions.
+See [implementation, migration and exact user checks](../docs/planner-integration.md).
+The existing undecided fourth moves remain undecided. No save binary is uploaded,
+persisted or edited by Planner. Atlas caught indicators are a later milestone.

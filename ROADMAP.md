@@ -14,18 +14,22 @@ See [architecture and acceptance gates](docs/application-integration.md).
   selection and separate-adventure creation, lossless legacy Planner migration copy
 - [x] Keep original binaries transient; separate evolution exports from loaded progress
 - [x] Pass all 88 automated checks, including browser transactions and Pages path
-- [ ] Milestone 1 publication verification and real-save/user acceptance
-- [ ] Milestone 2: multiple planners, migration activation, durable Pokémon identity,
+- [x] Milestone 1 live version confirmed by user; next milestone authorized
+- [x] Milestone 2 implementation (v0.25.54): multiple planners, migration activation, durable Pokémon identity,
   party-first/manual-PC association and actual move/nature/evolution/EV progress
+- [x] Milestone 2: all 104 automated checks pass; linked phone/desktop views reviewed
+- [ ] Milestone 2 publication verification and focused real-save/user acceptance
 - [ ] Milestone 3: shared game-specific data and full caught flags in Atlas
 - [ ] Milestone 4: independent Generation IV reference Pokédex and shared cards/links
 - [ ] Milestone 5: Safari mini Atlas with manual layout and Gate return
 - [ ] Milestone 6: integrated navigation/mobile/accessibility/data regression and docs
 
 Do not mark later milestones complete based on the profile foundation. Existing
-Planner browser data remains authoritative until milestone 2. No personal save
-has been used for validation in this chat. Reader, Atlas and Planner display the
-same v0.25.53 release label for this integration checkpoint.
+Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
+after migration activation. No personal save has been used for automated validation
+in this chat. Reader, Atlas and Planner display the same v0.25.54 release label.
+See [the focused Planner test checklist](docs/planner-integration.md); later Atlas,
+reference Pokédex and Safari requirements are outside this release's acceptance.
 
 ## Phase 0 — Project foundation
 - [x] Create GitHub repository

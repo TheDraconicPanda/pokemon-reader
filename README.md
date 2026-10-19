@@ -2,7 +2,31 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
-## Adventure integration — v0.25.53
+## Planner integration — v0.25.54
+
+Planner now uses Reader's persisted Adventure Profile across Main team, HM plan
+and EV training. Associate your existing Mando plan once using **Use this plan for
+[trainer]**. Unique party matches include earlier evolutions; PC-only or ambiguous
+matches require a choice. Links persist through evolution, party/PC transfers and
+refresh. Current moves/HMs, nature, evolution and EV progress never rewrite goals.
+Missing Pokémon retain labelled last-known values, without counting them as current
+completion. The extra EV save-upload control has been removed.
+
+Multiple named planners and adventures are stored independently. The latest v1
+Planner data is activated once, while its original key/raw migration copy remains
+intact. v1/v2 JSON import creates a separate reference plan. Reference tools and
+manual planning still work without a save.
+
+See the [precise release checklist, migration details and source verification](docs/planner-integration.md).
+All 104 automated checks pass, including Reader/Atlas regressions and mobile,
+cross-tab, migration and storage-failure coverage.
+Atlas caught indicators, the reference Pokédex and Safari mini Atlas are later
+milestones. No real-save or in-game validation is claimed by automated checks.
+
+## Adventure integration — v0.25.53 (foundation)
+
+The following records the first milestone. Planner storage and integration now
+follow the v0.25.54 behavior above.
 
 The first integration milestone adds optional **Adventure Profiles**. Successfully
 decoded SoulSilver saves store trainer, Party, all PC slots and Pokédex progress in

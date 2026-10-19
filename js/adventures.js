@@ -112,6 +112,25 @@ const valueOf = request => new Promise((resolve, reject) => {
   request.onsuccess = () => resolve(request.result);
   request.onerror = () => reject(request.error);
 });
+export { transaction as adventureTransaction, valueOf as idbValue };
+
+let changes = null;
+if (typeof window !== 'undefined' && typeof BroadcastChannel !== 'undefined') {
+  try { changes = new BroadcastChannel('pokemon-reader-adventures'); } catch { /* Focus/pageshow refresh remains available when channels are denied. */ }
+}
+export function notifyAdventureChange() {
+  try { changes?.postMessage('updated'); } catch { /* A committed snapshot remains valid if notification fails. */ }
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event('adventurechange'));
+}
+export function subscribeAdventureChanges(callback) {
+  changes?.addEventListener('message', callback);
+  window.addEventListener('adventurechange', callback);
+  return () => { changes?.removeEventListener('message', callback); window.removeEventListener('adventurechange', callback); };
+}
+export async function clearActiveProfile() {
+  await transaction(['settings'], 'readwrite', tx => { tx.objectStore('settings').delete('activeAdventure'); });
+  notifyAdventureChange();
+}
 async function transaction(names, mode, operation) {
   const db = await database();
   try {
@@ -146,18 +165,20 @@ export async function getActiveProfile() {
   });
 }
 export async function selectProfile(id) {
-  return transaction(['profiles','settings'], 'readwrite', async tx => {
+  const profile = await transaction(['profiles','settings'], 'readwrite', async tx => {
     const profile = await valueOf(tx.objectStore('profiles').get(id));
     requireValue(profile, 'Adventure no longer exists.');
     validateSnapshot(profile.snapshot);
     tx.objectStore('settings').put({key:'activeAdventure', id});
     return profile;
   });
+  notifyAdventureChange();
+  return profile;
 }
 export async function persistSnapshot(snapshot, {profileId = null, newAdventure = false} = {}) {
   validateSnapshot(snapshot);
   snapshot = createSnapshot(snapshotResult(snapshot), snapshot.fileName, snapshot.loadedAt);
-  return transaction(['profiles','settings'], 'readwrite', async tx => {
+  const profile = await transaction(['profiles','settings'], 'readwrite', async tx => {
     const store = tx.objectStore('profiles');
     const matches = await valueOf(store.index('trainerKey').getAll(trainerKey(snapshot)));
     let profile = profileId ? matches.find(p => p.id === profileId) : null;
@@ -177,6 +198,8 @@ export async function persistSnapshot(snapshot, {profileId = null, newAdventure 
     tx.objectStore('settings').put({key:'activeAdventure', id:updated.id});
     return updated;
   });
+  notifyAdventureChange();
+  return profile;
 }
 
 // This first milestone creates a lossless, unassociated migration copy. The

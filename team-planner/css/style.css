@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 :root { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--text); background: var(--background); }
 body { margin: 0; min-width: 320px; }
-button, input { font: inherit; }
+button, input, select { font: inherit; }
 button, .button { cursor: pointer; }
 .app { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; padding: 1.5rem 0 3rem; }
 .hero { padding: 1rem 0 1.5rem; }
@@ -76,3 +76,17 @@ dialog h2 { margin-top: 0; }
 @media (max-width: 560px) { .app { width: calc(100% - 1rem); padding-top: .7rem; } .summary-grid { grid-template-columns: 1fr; } .summary-card { padding: .8rem; } .summary-card strong { margin-bottom: .45rem; } .save-status { flex-basis: 100%; } .ev-checks { grid-template-columns: 1fr; } .move { grid-template-columns: 1.2rem 1fr; } .move small { grid-column: 2; text-align: left; } }
 
 dialog { background: var(--surface); color: var(--text); }
+.planner-controls h2 { margin-top: 0; }
+.planner-selectors { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; }
+.planner-selectors label, .pokemon-tracking label { display: block; min-width: 0; }
+.planner-controls select, .pokemon-tracking select, #plan-name { display: block; width: 100%; min-width: 0; max-width: 100%; margin: .4rem 0; padding: .6rem; border-radius: .4rem; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+.pokemon-tracking { padding: .7rem; margin: .8rem 0; border: 1px solid var(--border); border-radius: .6rem; background: var(--elevated); overflow-wrap: anywhere; }
+.pokemon-tracking p { margin: .4rem 0; }
+.actual-pokemon, .hm-actual { font-size: .9rem; font-weight: 650; }
+.link-status { color: var(--warning); font-weight: 650; }
+.ev-last-known { color: var(--muted); }
+.team-card, .ev-card { min-width: 0; overflow-wrap: anywhere; }
+.panel.no-plan { display: none; }
+.checkline:has(input:disabled) { color: var(--text); }
+.file-button:focus-within, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media(max-width:560px) { .planner-selectors { grid-template-columns: 1fr; } }

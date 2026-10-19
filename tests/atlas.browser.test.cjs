@@ -251,7 +251,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.53') && document.querySelector('.eyebrow').textContent.includes('v0.25.53'),
+    version: document.title.includes('v0.25.54') && document.querySelector('.eyebrow').textContent.includes('v0.25.54'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -259,16 +259,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.53<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.54<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.53");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.54");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -285,7 +285,7 @@ test("Planner checklist persists and tabs work independently of Atlas", async ()
   await command("Page.navigate", { url: `${baseURL}/team-planner/` });
   await until(() => evaluate(`document.querySelectorAll('.team-card').length === 6`), "Planner did not render its team");
   await evaluate(`document.querySelector('#kingdra').click()`);
-  assert.equal(await evaluate(`document.querySelector('#party-count').textContent`), "1 / 6 ready");
+  await until(()=>evaluate(`document.querySelector('#party-count').textContent === '1 / 6 ready'`), "Planner edit did not persist");
   await command("Page.reload");
   await until(() => evaluate(`document.querySelector('#party-count')?.textContent === '1 / 6 ready'`), "Planner did not restore progress");
   assert.equal(await evaluate(`document.querySelector('#kingdra').checked`), true);
@@ -329,7 +329,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -587,7 +587,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -773,7 +773,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1284,33 +1284,6 @@ test('Compass reserves every direction with decorative arrows and accessible des
   await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });
 
-test('Planner refreshes actual EVs from Reader snapshots and handles ambiguous matches', async () => {
-  const data = fixture();
-  Object.assign(data.party[0], { speciesId:116, isEgg:false, evs:{hp:4, attack:0, defense:0, specialAttack:252, specialDefense:0, speed:120} });
-  await fixtureReader(data);
-  assert.equal(await evaluate(`JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')).pokemon[0].evs.speed`),120);
-  await command('Fetch.disable');
-  await command('Page.navigate', {url:`${baseURL}/team-planner/`});
-  await until(()=>evaluate(`document.querySelector('.ev-current')?.textContent.includes('Speed 120')`),'Saved EVs did not reach Planner');
-  assert.equal(await evaluate(`document.getElementById('kingdra:Special Attack').checked`),true);
-  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
-  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').disabled`),true);
-  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').parentElement.textContent.includes('132 remaining')`),true);
-  await evaluate(`const snapshot=JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')); snapshot.pokemon[0].evs.speed=252; sessionStorage.setItem('pokemon-reader-planner-save-v1',JSON.stringify(snapshot));`);
-  await command('Page.reload');
-  await until(()=>evaluate(`document.getElementById('kingdra:Speed')?.checked`),'New save did not update completion');
-  await evaluate(`const snapshot=JSON.parse(sessionStorage.getItem('pokemon-reader-planner-save-v1')); snapshot.pokemon.push({...snapshot.pokemon[0],id:'other',evs:{...snapshot.pokemon[0].evs,speed:0}});sessionStorage.setItem('pokemon-reader-planner-save-v1',JSON.stringify(snapshot));`);
-  await command('Page.reload');
-  await until(()=>evaluate(`Boolean(document.querySelector('[aria-label="Saved Pokémon for Kingdra"]'))`),'Duplicate choice missing');
-  assert.equal(await evaluate(`document.querySelector('.ev-current') === null`),true);
-  await evaluate(`const select=document.querySelector('[aria-label="Saved Pokémon for Kingdra"]');select.value='other';select.dispatchEvent(new Event('change'));`);
-  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
-  await evaluate(`const files=new DataTransfer();files.items.add(new File([new Uint8Array(12)],'invalid.sav'));const input=document.querySelector('#ev-save-file');input.files=files.files;input.dispatchEvent(new Event('change'));`);
-  await until(()=>evaluate(`document.querySelector('#ev-save-status').textContent.includes('Previous EV values retained')`),'Invalid replacement did not report failure');
-  assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
-  await evaluate(`sessionStorage.removeItem('pokemon-reader-planner-save-v1')`);
-});
-
 test('Adventure restores decoded Reader views after refresh and retains valid data after invalid replacement', async () => {
   await fixtureReader();
   assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).listProfiles()).length)()`),1);
@@ -1437,4 +1410,232 @@ test('Evolution export downloads constructed save bytes without replacing loaded
   assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
   assert.equal(await evaluate(`globalThis.__parseCount`),1,'Export must not implicitly reload the generated file');
   await command('Fetch.disable');
+});
+
+async function openLinkedPlanner(data) {
+  await fixtureReader(data);
+  await command('Fetch.disable');
+  await command('Page.navigate',{url:baseURL+'/team-planner/'});
+  await until(()=>evaluate(`document.querySelectorAll('.team-card').length===6&&document.querySelector('#associate-plan')&&!document.querySelector('#associate-plan').hidden`),'Existing reference plan was not offered for explicit association');
+  await evaluate(`document.querySelector('#associate-plan').click()`);
+  await until(()=>evaluate(`document.querySelector('#associate-plan').hidden&&document.querySelector('#ev-save-status').textContent.includes('Using')`),'Plan did not associate');
+}
+async function plannerSave(data) {
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');const active=await api.getActiveProfile();await api.persistSnapshot(api.createSnapshot(${JSON.stringify(data)},'updated.sav'),{profileId:active.id});})()`);
+}
+function plannedParty() {
+  const data=fixture();const p=data.party[0];
+  data.party=[
+    {...structuredClone(p),slot:1,speciesId:68,nickname:'Machamp partner',personality:101,natureId:3,moves:[{id:223},{id:70},{id:431},{id:0}],evs:{hp:252,attack:252,defense:0,speed:0,specialAttack:0,specialDefense:4}},
+    {...structuredClone(p),slot:2,speciesId:148,nickname:'Mordecai',personality:102,natureId:3,moves:[{id:349},{id:89},{id:337},{id:0}]},
+    {...structuredClone(p),slot:3,speciesId:94,nickname:'Gengar partner',personality:103,natureId:10,moves:[{id:247},{id:188},{id:411},{id:85}]}
+  ];return data;
+}
+async function currentPlan(expression='plan') {
+  return evaluate(`(async()=>{const store=await import('/js/planner-store.js');const plan=(await store.listPlanners()).find(p=>p.id===document.querySelector('#planner-select').value);return ${expression};})()`);
+}
+async function createPlanner(name) {
+  await evaluate(`document.querySelector('#new-plan').click();document.querySelector('#plan-name').value=${JSON.stringify(name)};document.querySelector('#plan-form').requestSubmit(document.querySelector('#plan-form button[value="confirm"]'));`);
+  await until(()=>evaluate(`document.querySelector('#planner-select').selectedOptions[0]?.textContent===${JSON.stringify(name)}`),'New planner did not save');
+}
+
+test('Planner uses Reader profile for current moves, HMs, nature, evolution and EVs without a second upload',async()=>{
+  const data=plannedParty();await openLinkedPlanner(data);
+  assert.equal(await evaluate(`document.querySelector('#ev-save-file')`),null);
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-machamp').value`),'party:1');
+  assert.equal(await evaluate(`document.querySelector('[data-member="dragonite"] .actual-pokemon').textContent.includes('Dragonair')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-member="dragonite"] .pokemon-tracking').textContent.includes('Target: Dragonite')`),true);
+  assert.equal(await evaluate(`document.getElementById('dragonite:3').checked`),false,'Dragonair does not know Fly');
+  assert.equal(await evaluate(`document.getElementById('gengar:0').checked`),true);
+  assert.equal(await evaluate(`document.getElementById('hm:4').checked`),true,'Rock Climb should use linked Machamp');
+  assert.equal(await evaluate(`document.getElementById('hm:5').checked`),true,'Strength should use linked Machamp');
+  assert.equal(await evaluate(`document.getElementById('machamp:Attack').checked`),true);
+  assert.equal(await evaluate(`document.getElementById('machamp:Attack').disabled`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .pokemon-tracking').textContent.includes('Adamant (matches goal)')`),true);
+  const before=await currentPlan('JSON.stringify({goals:plan.goals,state:plan.state})');
+  data.party[2].moves=[{id:1},{id:0},{id:0},{id:0}];await plannerSave(data);
+  await until(()=>evaluate(`!document.getElementById('gengar:0').checked`),'Forgotten move remained learned');
+  assert.equal(await currentPlan('JSON.stringify({goals:plan.goals,state:plan.state})'),before,'Observations must not rewrite desired or manual values');
+  await command('Page.reload');
+  await until(()=>evaluate(`document.querySelector('#team-pokemon-machamp')?.value==='party:1'`),'Association did not survive refresh');
+  assert.equal(await evaluate(`document.getElementById('hm:5').checked`),true);
+});
+
+test('Planner follows a linked individual through evolution, PC transfer and missing saves without stealing another candidate',async()=>{
+  const data=plannedParty();data.party[0].speciesId=67;await openLinkedPlanner(data);
+  const original=await currentPlan('plan.links.machamp.identity');
+  const pokemon=data.party.shift();pokemon.speciesId=68;pokemon.recordKind='storage';pokemon.slot=1;
+  data.storage.boxes[5].pokemon[0]=pokemon;await plannerSave(data);
+  await until(()=>evaluate(`document.querySelector('#team-pokemon-machamp').value==='storage:6:1'`),'Linked Pokémon did not follow PC transfer');
+  assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .pokemon-tracking').textContent.includes('Target reached')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-hm="Strength"] .hm-actual').textContent.includes('in PC')`),true);
+  assert.deepEqual(await currentPlan('plan.links.machamp.identity'),original);
+  data.storage.boxes[5].pokemon[0]={slot:1,empty:true};
+  data.party.push({...structuredClone(pokemon),slot:4,recordKind:'party',personality:999,nickname:'Different Machamp'});
+  await plannerSave(data);
+  await until(()=>evaluate(`document.querySelector('[data-member="machamp"] .link-status')?.textContent.includes('Not found')`),'Missing link was silently reassigned');
+  assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .ev-last-known').textContent.includes('Attack 252')`),true);
+  assert.equal(await evaluate(`document.getElementById('machamp:Attack').checked`),false,'Last-known values are not current completion');
+  assert.deepEqual(await currentPlan('plan.links.machamp.identity'),original);
+  await evaluate(`var select=document.querySelector('#team-pokemon-machamp');select.value='party:4';select.dispatchEvent(new Event('change'));`);
+  await until(()=>currentPlan('plan.links.machamp.identity.personality===999'),'Manual reassignment did not persist');
+});
+
+test('Planner requires explicit PC-only and ambiguous party choices; manual mode stays manual after refresh',async()=>{
+  const data=fixture();Object.assign(data.storage.boxes[0].pokemon[4],{speciesId:116,personality:300,natureId:15});
+  data.party=[{...structuredClone(data.party[0]),speciesId:66,slot:1,personality:301},{...structuredClone(data.party[0]),speciesId:67,slot:2,personality:302}];
+  await openLinkedPlanner(data);
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').value`),'');
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-machamp').value`),'');
+  assert.equal(await currentPlan('Boolean(plan.links.kingdra || plan.links.machamp)'),false);
+  await evaluate(`var select=document.querySelector('#team-pokemon-kingdra');select.value='storage:1:5';select.dispatchEvent(new Event('change'));`);
+  await until(()=>currentPlan('Boolean(plan.links.kingdra?.identity)'),'Explicit PC link missing');
+  assert.equal(await evaluate(`document.querySelector('#ev-pokemon-kingdra').value`),'storage:1:5');
+  await evaluate(`var select=document.querySelector('#team-pokemon-machamp');select.value='party:2';select.dispatchEvent(new Event('change'));`);
+  await until(()=>currentPlan('plan.links.machamp?.identity.personality===302'),'Ambiguous selection missing');
+  await evaluate(`var select=document.querySelector('#team-pokemon-machamp');select.value='manual';select.dispatchEvent(new Event('change'));`);
+  await until(()=>currentPlan('plan.links.machamp?.manual===true'),'Manual mode missing');
+  await command('Page.reload');
+  await until(()=>evaluate(`document.querySelector('#team-pokemon-machamp')?.value==='manual'`),'Manual mode lost after refresh');
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').value`),'storage:1:5');
+});
+
+test('Multiple planners and adventures retain separate progress, restore selections and request a choice when ambiguous',async()=>{
+  await openLinkedPlanner(plannedParty());const first=await currentPlan('plan.id');
+  await evaluate(`document.querySelector('#kingdra').click()`);
+  await until(()=>currentPlan('plan.state.ready.kingdra===true'),'First plan progress not saved');
+  await createPlanner('Alternate team');const second=await currentPlan('plan.id');assert.notEqual(first,second);
+  assert.equal(await evaluate(`document.querySelector('#kingdra').checked`),false);
+  await evaluate(`var select=document.querySelector('#planner-select');select.value=${JSON.stringify(first)};select.dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#kingdra').checked`),'First plan progress lost');
+  const a=await evaluate(`document.querySelector('#planner-adventure').value`);
+  const bData=plannedParty();bData.save.trainer.trainerId=900;bData.save.trainer.name='Another adventure';
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');await api.persistSnapshot(api.createSnapshot(${JSON.stringify(bData)},'another.sav'));})()`);
+  await until(()=>evaluate(`document.querySelector('#planner-context').textContent.includes('Another adventure')&& !document.querySelector('#planner-empty').hidden`),'Unrelated adventure reused a planner');
+  const b=await evaluate(`document.querySelector('#planner-adventure').value`);
+  await createPlanner('Another adventure plan');
+  await evaluate(`var select=document.querySelector('#planner-adventure');select.value=${JSON.stringify(a)};select.dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#planner-select').value===${JSON.stringify(first)}`),'Remembered planner selection missing');
+  assert.equal(await evaluate(`document.querySelector('#kingdra').checked`),true);
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');await api.adventureTransaction(['settings'],'readwrite',tx=>tx.objectStore('settings').delete('activePlanner:'+${JSON.stringify(a)}));await api.selectProfile(${JSON.stringify(b)});})()`);
+  await until(()=>evaluate(`document.querySelector('#planner-select').selectedOptions[0]?.textContent==='Another adventure plan'`),'Only associated planner not selected automatically');
+  await evaluate(`var select=document.querySelector('#planner-adventure');select.value=${JSON.stringify(a)};select.dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`!document.querySelector('#planner-empty').hidden`),'Multiple planners should require a selection when none is saved');
+  assert.equal(await evaluate(`document.querySelectorAll('#planner-select option').length`),3);
+});
+
+test('Planner activates the latest v1 data once, preserves raw backups, and imports as separate plans',async()=>{
+  await command('Page.navigate',{url:baseURL+'/'});
+  await until(()=>evaluate(`Boolean(document.querySelector('#app-version'))`),'Reader ready for migration');
+  const raw=JSON.stringify({version:1,ready:{kingdra:true},moves:{'gengar:0':true},hmDone:{'hm:4':true},evDone:{'machamp:Attack':true},benchNotes:{metagross:true},custom:'preserved'});
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');localStorage.setItem(api.LEGACY_PLANNER_KEY,JSON.stringify({version:1,ready:{}}));await api.preserveLegacyPlanner();localStorage.setItem(api.LEGACY_PLANNER_KEY,${JSON.stringify(raw)});})()`);
+  await command('Page.navigate',{url:baseURL+'/team-planner/'});
+  await until(()=>evaluate(`document.querySelector('#kingdra')?.checked`),'Latest legacy data was not activated');
+  assert.equal(await currentPlan('plan.state.custom'),'preserved');
+  assert.equal(await evaluate(`document.getElementById('hm:4').checked`),true);
+  assert.equal(await evaluate(`localStorage.getItem('pokemon-reader-soulsilver-team-planner-v1')`),raw);
+  await evaluate(`document.querySelector('#kingdra').click()`);
+  await until(()=>currentPlan('plan.state.ready.kingdra===false'),'Migrated plan edit not saved');
+  await command('Page.reload');
+  await until(()=>evaluate(`document.querySelector('#kingdra')&&!document.querySelector('#kingdra').checked`),'Old v1 data overwrote a newer plan');
+  const original=await currentPlan('plan.id');
+  await evaluate(`globalThis.__exported=null;URL.createObjectURL=blob=>{globalThis.__exported=blob;return 'blob:test';};HTMLAnchorElement.prototype.click=function(){};document.querySelector('#export-btn').click();`);
+  const exported=await evaluate(`(async()=>JSON.parse(await globalThis.__exported.text()))()`);
+  assert.equal(exported.version,2);assert.equal(exported.planner.id,original);
+  await evaluate(`var transfer=new DataTransfer();transfer.items.add(new File([${JSON.stringify(JSON.stringify(exported))}],'backup.json',{type:'application/json'}));document.querySelector('#import-file').files=transfer.files;document.querySelector('#import-file').dispatchEvent(new Event('change'));`);
+  await pause(150);
+  await until(()=>currentPlan(`plan.id!==${JSON.stringify(original)}`),'v2 backup import failed: '+await evaluate(`document.querySelector('#save-status').textContent`));
+  assert.notEqual(await currentPlan('plan.id'),original);assert.equal(await currentPlan('plan.adventureId'),null);
+  const count=await evaluate(`(async()=>(await(await import('/js/planner-store.js')).listPlanners()).length)()`);
+  await evaluate(`var transfer=new DataTransfer();transfer.items.add(new File(['{"version":99}'],'invalid.json'));document.querySelector('#import-file').files=transfer.files;document.querySelector('#import-file').dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#save-status').textContent.includes('Unrecognized')`),'Invalid backup was not rejected');
+  assert.equal(await evaluate(`(async()=>(await(await import('/js/planner-store.js')).listPlanners()).length)()`),count);
+});
+
+test('Planner concurrent edits and failed transactions preserve persisted goals and manual progress',async()=>{
+  await openLinkedPlanner(plannedParty());
+  const result=await evaluate(`(async()=>{const api=await import('/js/planner-store.js');const original=(await api.listPlanners())[0];const first=structuredClone(original);first.state.ready.kingdra=true;await api.storePlanner(first);let conflict=false;try{await api.storePlanner(original);}catch{conflict=true;}const before=JSON.stringify((await api.listPlanners())[0]);const put=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(value){if(this.name==='settings')throw new DOMException('Quota full','QuotaExceededError');return put.call(this,value);};let rejected=false;try{const latest=(await api.listPlanners())[0];latest.state.ready.kingdra=false;await api.storePlanner(latest);}catch{rejected=true;}finally{IDBObjectStore.prototype.put=put;}return {conflict,rejected,preserved:before===JSON.stringify((await api.listPlanners())[0])};})()`);
+  assert.deepEqual(result,{conflict:true,rejected:true,preserved:true});
+});
+
+test('Linked Planner views fit phones and desktop in both themes and retain section navigation',async()=>{
+  const data=plannedParty();data.party[0].nickname='A long but valid nickname';await openLinkedPlanner(data);
+  for(const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    for(const theme of ['light','dark']) {
+      await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));`);
+      for(const tab of ['team','hms','evs','bench']) {
+        await evaluate(`document.querySelector('[data-tab="${tab}"]').click();document.querySelector('#panel-${tab}').scrollIntoView();`);
+        assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${width} ${theme} ${tab}`);
+        assert.equal(await evaluate(`location.hash`),'#'+tab);
+        if(process.env.PLANNER_SCREENSHOT_DIR && [390,1440].includes(width) && tab!=='bench') {
+          const shot=await command('Page.captureScreenshot',{format:'png'});
+          await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,`planner-${theme}-${width}-${tab}.png`),Buffer.from(shot.data,'base64'));
+        }
+      }
+    }
+  }
+  await command('Page.reload');
+  await until(()=>evaluate(`document.querySelector('#panel-bench')?.hidden===false&&document.querySelectorAll('.bench-card').length===3`),'Planner section was not restored');
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Planner receives profile updates from another browser tab through the shared channel',async()=>{
+  const data=plannedParty();await openLinkedPlanner(data);
+  const target=await command('Target.createTarget',{url:baseURL+'/pokedex-earth/'});
+  try {
+    const pages=await (await fetch(`http://${new URL(socket.url).host}/json/list`)).json();
+    const other=new WebSocket(pages.find(page=>page.id===target.targetId).webSocketDebuggerUrl);
+    await new Promise((resolve,reject)=>{other.addEventListener('open',resolve,{once:true});other.addEventListener('error',reject,{once:true});});
+    data.party[0].moves=[{id:1},{id:0},{id:0},{id:0}];
+    const response=await new Promise((resolve,reject)=>{
+      const timer=setTimeout(()=>reject(new Error('Other tab timed out')),10000);
+      other.addEventListener('message',event=>{const message=JSON.parse(event.data);if(message.id===1){clearTimeout(timer);resolve(message);}});
+      other.send(JSON.stringify({id:1,method:'Runtime.evaluate',params:{expression:`(async()=>{const api=await import('/js/adventures.js');const profile=await api.getActiveProfile();await api.persistSnapshot(api.createSnapshot(${JSON.stringify(data)},'other-tab.sav'),{profileId:profile.id});return true;})()`,awaitPromise:true,returnByValue:true}}));
+    });
+    other.close();assert.equal(response.result?.exceptionDetails,undefined);
+    await until(()=>evaluate(`!document.getElementById('hm:5').checked`),'Other-tab update did not refresh HM progress');
+    assert.equal(await evaluate(`document.getElementById('machamp:0').checked`),false);
+  } finally {await command('Target.closeTarget',{targetId:target.targetId});}
+});
+
+test('Planner storage denial preserves existing data and provides manual session progress and export',async()=>{
+  await fixtureReader();await command('Fetch.disable');
+  const before=await evaluate(`(async()=>JSON.stringify(await(await import('/js/adventures.js')).getActiveProfile()))()`);
+  await command('Page.enable');
+  const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`globalThis.__plannerOriginalOpen=indexedDB.open;indexedDB.open=()=>{throw new DOMException('Storage denied','SecurityError');};`});
+  try {
+    await command('Page.navigate',{url:baseURL+'/team-planner/'});
+    await pause(200);
+    await until(()=>evaluate(`document.querySelectorAll('.team-card').length===6&&document.querySelector('#save-status').textContent.includes('storage unavailable')`),'Session fallback unavailable: '+await evaluate(`JSON.stringify({cards:document.querySelectorAll('.team-card').length,status:document.querySelector('#save-status')?.textContent,injected:Boolean(globalThis.__plannerOriginalOpen)})`));
+    const checked=await evaluate(`document.querySelector('#kingdra').checked`);
+    await evaluate(`document.querySelector('#kingdra').click()`);
+    await until(()=>evaluate(`document.querySelector('#kingdra').checked===${!checked}`),'Manual session edit did not work');
+    assert.equal(await evaluate(`document.querySelector('#save-status').textContent.includes('Session only')`),true);
+    await evaluate(`globalThis.__backup=null;URL.createObjectURL=blob=>{globalThis.__backup=blob;return 'blob:test';};HTMLAnchorElement.prototype.click=function(){};document.querySelector('#export-btn').click();`);
+    assert.equal(await evaluate(`(async()=>JSON.parse(await globalThis.__backup.text()).version)()`),2);
+  } finally {
+    await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+    await evaluate(`indexedDB.open=globalThis.__plannerOriginalOpen`);
+  }
+  assert.equal(await evaluate(`(async()=>JSON.stringify(await(await import('/js/adventures.js')).getActiveProfile()))()`),before);
+});
+
+test('Reader and Planner tolerate denied BroadcastChannel access while retaining saved progress',async()=>{
+  const data=plannedParty();await fixtureReader(data);await command('Fetch.disable');
+  await command('Page.enable');
+  const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`globalThis.__originalChannel=BroadcastChannel;globalThis.BroadcastChannel=class{constructor(){throw new DOMException('Channel denied','SecurityError');}};`});
+  try {
+    await command('Page.navigate',{url:baseURL+'/team-planner/'});
+    await until(()=>evaluate(`document.querySelectorAll('.team-card').length===6&&!document.querySelector('#associate-plan').hidden`),'Denied channel prevented Planner initialization');
+    await evaluate(`document.querySelector('#associate-plan').click()`);
+    await until(()=>evaluate(`document.getElementById('hm:5').checked`),'Profile tracking unavailable without a channel');
+    data.party[0].moves=[{id:1},{id:0},{id:0},{id:0}];await plannerSave(data);
+    await until(()=>evaluate(`!document.getElementById('hm:5').checked`),'Local notification failed with channel denied');
+    await command('Page.navigate',{url:baseURL+'/'});
+    await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Reader could not restore with channel denied');
+  } finally {
+    await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+    await evaluate(`globalThis.BroadcastChannel=globalThis.__originalChannel`);
+  }
 });
