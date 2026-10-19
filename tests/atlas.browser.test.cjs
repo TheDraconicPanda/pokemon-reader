@@ -255,7 +255,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.57') && document.querySelector('.eyebrow').textContent.includes('v0.25.57'),
+    version: document.title.includes('v0.25.58') && document.querySelector('.eyebrow').textContent.includes('v0.25.58'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -263,16 +263,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.57<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.58<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.57");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.58");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -333,7 +333,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -591,7 +591,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -777,7 +777,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1888,4 +1888,48 @@ test('Pokédex evolution paths place requirements above inline arrows, matchups 
  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:false});
  await referenceDex('#species=470&scope=national');assert.equal(await evaluate(`document.querySelector('#reference-detail').scrollWidth<=document.querySelector('#reference-detail').clientWidth`),true);
  await command('Emulation.clearDeviceMetricsOverride');
+});
+
+test('Horsea round trip through Atlas closes back onto Horsea in the reference list',async()=>{
+ await command('Emulation.setDeviceMetricsOverride',{width:390,height:740,deviceScaleFactor:1,mobile:false});
+ await referenceDex('','/pokemon-reader');
+ await evaluate(`document.querySelector('#species-search').value='Horsea';document.querySelector('#reference-search').requestSubmit();document.querySelector('[data-species-id="116"]').click()`);
+ const atlasLink=await evaluate(`[...document.querySelectorAll('.reference-locations a')].find(a=>a.textContent.includes('Whirl Islands')).href`);
+ await command('Page.navigate',{url:atlasLink});
+ await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Whirl Islands'`),'Whirl Islands destination');
+ await evaluate(`[...document.querySelectorAll('.encounter-name')].find(a=>new URLSearchParams(new URL(a.href).hash.slice(1)).get('species')==='116').click()`);
+ await until(()=>evaluate(`document.querySelector('#reference-detail')?.open&&document.querySelector('#reference-title').textContent==='Horsea'`),'Atlas Horsea card');
+ await evaluate(`document.querySelector('#reference-close').click()`);
+ await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Closed linked Horsea card');
+ const result=await evaluate(`(() => {const list=document.querySelector('#species-list'),row=document.querySelector('#species-116'),a=list.getBoundingClientRect(),b=row.getBoundingClientRect();return {visible:b.top>=a.top&&b.bottom<=a.bottom,highlight:row.classList.contains('search-match'),focused:document.activeElement.dataset.speciesId,offset:list.scrollTop,pageY:scrollY,path:location.pathname};})()`);
+ assert.equal(result.visible,true);assert.equal(result.highlight,true);assert.equal(result.focused,'116');assert.ok(result.offset>0);assert.equal(result.pageY,0);assert.equal(result.path,'/pokemon-reader/pokedex/');
+ await command('Emulation.clearDeviceMetricsOverride');
+});
+test('direct species and form links reveal their base species on Close or Escape, including the end of the list',async()=>{
+ for(const {key,id} of [{key:116,id:116},{key:493,id:493},{key:496,id:386}]){
+  // No explicit scope: out-of-regional entries must choose a list containing the species.
+  await referenceDex(`#species=${key}`);
+  assert.equal(await evaluate(`document.querySelector('#reference-detail').open`),true);
+  if(key===493){
+   await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  }else await evaluate(`document.querySelector('#reference-close').click()`);
+  await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Closed direct card');
+  const visible=await evaluate(`(() => {const list=document.querySelector('#species-list'),row=document.querySelector('#species-${id}'),a=list.getBoundingClientRect(),b=row.getBoundingClientRect();return b.top>=a.top&&b.bottom<=a.bottom&&row.classList.contains('search-match')&&document.activeElement.dataset.speciesId==='${id}';})()`);
+  assert.equal(visible,true,`Linked species ${id} is visible and focused`);
+ }
+ // A regular regional browse can inspect a relative outside the regional Dex.
+ // Its saved history must keep the original regional offset on Forward/Close.
+ await referenceDex('#scope=regional');
+ await evaluate(`document.querySelector('#species-search').value='Eevee';document.querySelector('#reference-search').requestSubmit()`);
+ const originalY=await evaluate(`document.querySelector('#species-list').scrollTop`);
+ await evaluate(`document.querySelector('[data-species-id="133"]').click();[...document.querySelectorAll('.evolution-stage')].find(n=>n.textContent==='Leafeon').click();document.querySelector('#reference-close').click()`);
+ await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Close regional family card');
+ await evaluate(`history.forward()`);
+ await until(()=>evaluate(`document.querySelector('#reference-detail').open&&document.querySelector('#reference-title').textContent==='Leafeon'`),'Forward to outside-regional family card');
+ assert.equal(await evaluate(`document.querySelector('#reference-scope').value`),'regional');
+ await evaluate(`document.querySelector('#reference-close').click()`);
+ await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Close restored family card');
+ assert.equal(await evaluate(`document.querySelector('#species-list').scrollTop`),originalY);
+
 });

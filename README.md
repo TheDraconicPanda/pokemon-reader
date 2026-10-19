@@ -2,7 +2,7 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
-## Reference Pokédex — v0.25.57
+## Reference Pokédex — v0.25.58
 
 Use **Pokédex** in the shared menu for the standalone SoulSilver species reference,
 with or without a save. Johto/National numbered lists show local HGSS sprites and
@@ -29,10 +29,14 @@ Species locations retain relevant encounter/access conditions without unrelated
 legendary narratives: Horsea no longer inherits Lugia’s Whirl Islands notes.
 Atlas’s own location notes and the TM/HM table remain intact.
 
+v0.25.58 fixes Atlas-to-Pokédex returns: a directly linked species card positions
+and highlights its species in the list before opening. Close/Escape returns to
+that row. Normal in-list cards still restore their original browse position.
+
 See [sources, limitations and the focused online checklist](docs/reference-pokedex.md).
-All **127 automated checks pass**, including Reader/Planner/Atlas regressions,
-keyboard/history behavior and mobile layouts. Online user acceptance remains
-pending after publication. Safari mini Atlas is the
+All **129 automated checks pass**, including Reader/Planner/Atlas regressions,
+keyboard/history behavior and mobile layouts. The v0.25.57 visual changes were
+accepted by the user; online acceptance of the link-position fix remains pending. Safari mini Atlas is the
 next milestone after this one is validated.
 
 ## Atlas caught registrations — v0.25.55

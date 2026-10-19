@@ -103,21 +103,43 @@ function restoreList() {
   opener?.focus({preventScroll:true});list.scrollTo({top:listY,behavior:'instant'});
 }
 function route() {
-  const params=new URLSearchParams(location.hash.slice(1));const desired=params.get('scope')==='national'?'national':'regional';
+  const params=new URLSearchParams(location.hash.slice(1));
+  const key=Number(params.get('species')), record=species(key);
+  const outsideRegion=record&&!history.state?.referenceDetail&&!data().regional.includes(record.id);
+  const desired=params.get('scope')==='national'||outsideRegion?'national':'regional';
   if(desired!==scope){scope=desired;renderList();}
-  const key=Number(params.get('species'));
-  if(key&&species(key)){if(!dialog.open){listY=history.state?.listY??list.scrollTop;opener=list.querySelector(`[data-species-id="${species(key).id}"]`);}renderDetail(key);if(!dialog.open)dialog.showModal();}
-  else restoreList();
+  if(record) {
+    if(!dialog.open) {
+      if(history.state?.referenceDetail) {
+        // Back/Forward and reload retain the original browse position.
+        listY=history.state.listY;
+        opener=list.querySelector(`[data-species-id="${record.id}"]`);
+      } else {
+        // An Atlas/direct link has no previous list position in this document.
+        // Establish its destination before opening, so Close/Escape reveals it.
+        opener=revealSpecies(record.id);
+        listY=list.scrollTop;
+        status.textContent=`${record.name} · National #${String(record.id).padStart(3,'0')}`;
+      }
+    }
+    renderDetail(key);if(!dialog.open)dialog.showModal();
+  } else restoreList();
 }
 document.querySelector('#reference-close').addEventListener('click',closeDetail);
 dialog.addEventListener('cancel',event=>{event.preventDefault();closeDetail();});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDetail();}});
 window.addEventListener('popstate',route);window.addEventListener('hashchange',route);
 scopeSelect.addEventListener('change',()=>{scope=scopeSelect.value;history.replaceState(null,'',`#scope=${scope}`);renderList();status.textContent='Search keeps the surrounding species in view.';});
+function revealSpecies(id) {
+  for(const old of list.querySelectorAll('.search-match'))old.classList.remove('search-match');
+  const row=document.querySelector(`#species-${id}`);
+  row.classList.add('search-match');
+  list.scrollTo({top:row.offsetTop,behavior:'instant'});
+  return row.querySelector('button');
+}
 function jump(id) {
   if(!document.querySelector(`#species-${id}`)){scope='national';history.replaceState(null,'','#scope=national');renderList();}
-  for(const old of list.querySelectorAll('.search-match'))old.classList.remove('search-match');
-  const row=document.querySelector(`#species-${id}`);row.classList.add('search-match');list.scrollTo({top:row.offsetTop,behavior:'instant'});row.querySelector('button').focus({preventScroll:true});
+  revealSpecies(id).focus({preventScroll:true});
   status.textContent=`${species(id).name} · National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':'Johto'} order; surrounding species remain visible.`;
 }
 const normalize=s=>s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9♀♂]/g,'');

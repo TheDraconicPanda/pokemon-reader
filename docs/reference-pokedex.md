@@ -1,4 +1,4 @@
-# SoulSilver reference Pokédex — v0.25.57
+# SoulSilver reference Pokédex — v0.25.58
 
 This independent reference at `pokedex/` works without a save. Reader's registration
 Pokédex, Collection, profile persistence and Planner goals retain their existing
@@ -15,6 +15,11 @@ responsibilities. The shared menu labels this tool **Pokédex**; its page headin
   Search jumps to a name or **National** number, preserving all neighbors.
   Partial-name matches have a Next button. Searching a species outside the regional
   list switches to National order explicitly. Search never filters rows away.
+- Atlas/direct species links position and highlight their species in the list
+  before opening the card. Closing or pressing Escape reveals that row and focuses
+  its button. Alternate-form links reveal the base species; an out-of-regional
+  target switches to National order. Ordinary in-list cards and their saved history
+  continue restoring the original browse offset.
 - Search highlights and keyboard outlines stay clipped inside the list. Native
   modal details preserve the list pane’s scroll offset and focus. Close/Escape/Back returns
   to the list; Forward reopens a card. Direct `#species=147&scope=national` links
@@ -125,31 +130,24 @@ mechanics, list/search/history/focus, form/type/item/stat controls, exact Atlas
 links, denied profile storage, local sprites, repository paths and both themes
 at 320/390/768/1440px. Phone and desktop card screenshots were inspected.
 
-`npm test`: **127 passed, 0 failed, 0 skipped** on Node 24 / Chromium 154.
+`npm test`: **129 passed, 0 failed, 0 skipped** on Node 24 / Chromium 154.
 `git diff --check` passed. Publication is to the existing main/Pages deployment
 branch; the live result requires online confirmation.
-Online user acceptance is pending after publication; pushing alone does not prove
-Pages is live.
+The user accepted the v0.25.57 visual changes. Online acceptance of the v0.25.58
+link-position fix remains pending; pushing alone does not prove Pages is live.
 
 ## Focused online checklist
 
-This v0.25.57 checklist addresses the user's Pokédex feedback; the initial v0.25.56
-milestone remains implemented and its TM/HM table is unchanged.
+For v0.25.58, repeat just the reported round trip:
 
-1. Open `pokedex/`. The banner/title/intro are gone. Menu and search share the top
-   block. Scroll the list or jump to Horsea; neither menu nor search should move,
-   and no selection border should extend beside the search. Close a card and verify
-   the same list position returns.
-2. Open Horsea’s evolution section: **Horsea → Seadra → Kingdra** is one line,
-   with **Level 32** and **Trade holding Dragon Scale** above their arrows. On a
-   phone, slide the evolution line sideways as needed. Branched families have one
-   line per path.
-3. Open Dragonite’s type matchups: reduced damage/immunity is **green**, ×2 is
-   **yellow**, and Ice ×4 is **red**. ×1 stays neutral. Check either theme.
-4. Open **Horsea → SoulSilver locations → Whirl Islands**: the same six encounter
-   rows remain; Lugia/Kimono Girls/Silver Wing/Tidal Bell narrative is absent.
-   Lugia’s own card still has its conditions.
+1. Search **Horsea** in Pokédex and open its card.
+2. Follow **SoulSilver locations → Whirl Islands → Open in Atlas**.
+3. Select **Horsea** in an Atlas encounter table, then close its reference card.
+4. The list should show and highlight **Horsea**, with its neighboring species
+   still present. The menu/search stays stationary.
 
-Safari mini Atlas and its manual layout remain next. No complete profile/Planner/
-Atlas revalidation is requested unless a regression is observed. User acceptance
-of these refinements remains pending after publication.
+Browser regressions cover this full journey at phone width under the Pages base
+path, direct links without an explicit scope, alternate forms, the final species
+in the list, Close/Escape, and preservation of ordinary browse/Back/Forward offsets.
+No broader profile/Planner/Atlas retest is requested unless a regression appears.
+Safari mini Atlas remains the next milestone after this fix is validated.
