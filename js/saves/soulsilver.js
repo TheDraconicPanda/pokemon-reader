@@ -444,6 +444,15 @@ function readPokedex(data, activePartition) {
   let caughtCount = 0;
   const caughtSpecies = [];
   const seenSpecies = [];
+  const allCaughtSpecies = [];
+  const allSeenSpecies = [];
+  for (let speciesId = 1; speciesId <= 493; speciesId++) {
+    const bit = speciesId - 1;
+    const byteOffset = offset + 4 + (bit >> 3);
+    const mask = 1 << (bit & 7);
+    if (data[byteOffset] & mask) allCaughtSpecies.push(speciesId);
+    if (data[byteOffset + regionSize] & mask) allSeenSpecies.push(speciesId);
+  }
 
   for (const speciesId of species) {
     const bit = speciesId - 1;
@@ -472,6 +481,8 @@ function readPokedex(data, activePartition) {
     speciesIds: species,
     caughtSpecies,
     seenSpecies,
+    allCaughtSpecies,
+    allSeenSpecies,
   };
 }
 

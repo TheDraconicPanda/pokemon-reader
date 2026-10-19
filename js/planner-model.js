@@ -1,6 +1,7 @@
 import { TEAM, HMS, BENCH } from './planner-defaults.js';
 import { TEAM_FAMILIES, EV_KEYS } from './planner-save.js';
-import { PLANNER_REFERENCE as REFERENCE } from './data/games/soulsilver/planner-reference.js';
+import { gameReference } from './data/game-reference.js';
+const REFERENCE = gameReference('soulsilver');
 
 export const defaultProgress = () => ({version:1, ready:{}, moves:{}, hmDone:{}, evDone:{}, benchNotes:{}});
 export const speciesName = id => REFERENCE.species[id] || `Species #${id}`;

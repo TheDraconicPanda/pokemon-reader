@@ -122,6 +122,10 @@ before(async () => {
 
 // Profiles persist across page navigation within a test; tests start independently.
 beforeEach(async () => {
+  // Dispose the previous app before clearing IDB. A pending reload or background
+  // refresh must not reopen the old database while the next case starts.
+  await command('Page.navigate',{url:baseURL+'/tests/fixtures/reset.html'});
+  await until(()=>evaluate(`document.body?.dataset.testReset==='ready'`),'Test reset document did not load');
   await evaluate(`location.origin === '${new URL(baseURL).origin}' ? new Promise((resolve,reject) => {
     const request=indexedDB.deleteDatabase('pokemon-reader-adventures');
     request.onsuccess=()=>resolve(true); request.onerror=()=>reject(request.error);
@@ -251,7 +255,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.54') && document.querySelector('.eyebrow').textContent.includes('v0.25.54'),
+    version: document.title.includes('v0.25.55') && document.querySelector('.eyebrow').textContent.includes('v0.25.55'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -259,16 +263,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.54<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.55<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.54");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.55");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -329,7 +333,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -587,7 +591,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -773,7 +777,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.54'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1637,5 +1641,101 @@ test('Reader and Planner tolerate denied BroadcastChannel access while retaining
   } finally {
     await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
     await evaluate(`globalThis.BroadcastChannel=globalThis.__originalChannel`);
+  }
+});
+
+function atlasCaughtFixture() {
+  const data=fixture();data.party[0].speciesId=161; // Owned Sentret is not registered caught.
+  data.save.pokedex={nationalDex:false,speciesIds:[19,161,163],seenSpecies:[19,161,163],caughtSpecies:[19],speciesCount:3,seenCount:3,caughtCount:1,seenPercent:100,caughtPercent:100/3,allCaughtSpecies:[19,129,387,493],allSeenSpecies:[19,129,161,163,387,493]};
+  return data;
+}
+async function caughtAtlas(data=atlasCaughtFixture(),locationName='Route 29') {
+  await fixtureReader(data);await command('Fetch.disable');
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location='+encodeURIComponent(locationName)});
+  await until(()=>evaluate(`document.querySelector('#atlas-save-status')?.textContent.includes('Test Trainer')&&document.querySelector('.location-card h2')?.textContent===${JSON.stringify(locationName)}`),'Atlas profile context not ready');
+}
+
+test('Atlas caught markers use registration rather than ownership or Seen flags and retain every encounter record',async()=>{
+  await caughtAtlas();
+  const result=await evaluate(`(async()=>{const api=await import('/js/data/atlas-route-reference.js');const rows=[...document.querySelectorAll('.encounter-entry')];return {
+    caught:rows.filter(row=>row.querySelector('[data-species-id="19"]')).every(row=>Boolean(row.querySelector('.caught-indicator'))),
+    ownedOnly:rows.filter(row=>row.querySelector('[data-species-id="161"]')).some(row=>Boolean(row.querySelector('.caught-indicator'))),
+    seenOnly:rows.filter(row=>row.querySelector('[data-species-id="163"]')).some(row=>Boolean(row.querySelector('.caught-indicator'))),
+    records:new Set(rows.map(row=>row.dataset.encounterIndex)).size,
+    expected:api.locationEncounterReference('soulsilver','Route 29').encounters.length,
+    accessible:[...document.querySelectorAll('.caught-indicator')].every(icon=>icon.alt==='Registered caught'&&icon.width===12&&icon.height===12),
+    mapped:rows.every(row=>Boolean(row.querySelector('[data-species-id]')))
+  };})()`);
+  assert.equal(result.caught,true);assert.equal(result.ownedOnly,false);assert.equal(result.seenOnly,false);
+  assert.equal(result.records,result.expected);assert.equal(result.accessible,true);assert.equal(result.mapped,true);
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Safari%20Zone'});
+  await until(()=>evaluate(`document.querySelector('[data-species-id="19"] .caught-indicator')`),'Existing Safari records lack caught markers');
+  assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(row=>row.dataset.encounterIndex)).size`),269);
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#ev-training'});
+  await until(()=>evaluate(`Boolean(document.querySelector('#ev-results [data-species-id="129"] .caught-indicator'))`),'EV finder did not share caught markers');
+  assert.equal(await evaluate(`document.querySelectorAll('select[id*="caught"],input[id*="caught"]').length`),0);
+});
+
+test('Atlas updates profile markers in place, preserving open encounters, floor, focus and navigation',async()=>{
+  await caughtAtlas(atlasCaughtFixture(),'Union Cave');
+  await evaluate(`globalThis.__caughtLocation=document.querySelector('.location-card');document.querySelector('.encounter-section').open=true;var floor=document.querySelector('.map-select');floor.selectedIndex=1;floor.dispatchEvent(new Event('change'));floor.focus();scrollTo(0,200);`);
+  const before=await evaluate(`({hash:location.hash,scroll:scrollY,floor:document.querySelector('.map-select').value,focus:document.activeElement.className})`);
+  const data=atlasCaughtFixture();data.save.trainer.name='Other adventure';data.save.trainer.trainerId=901;
+  data.save.pokedex.caughtSpecies=[];data.save.pokedex.caughtCount=0;data.save.pokedex.caughtPercent=0;data.save.pokedex.allCaughtSpecies=[];
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');await api.persistSnapshot(api.createSnapshot(${JSON.stringify(data)},'other.sav'),{newAdventure:true});})()`);
+  await until(()=>evaluate(`document.querySelector('#atlas-save-status').textContent.includes('Other adventure')`),'Profile switch did not update Atlas');
+  assert.equal(await evaluate(`document.querySelectorAll('.caught-indicator').length`),0);
+  assert.equal(await evaluate(`document.querySelector('.location-card')===globalThis.__caughtLocation`),true,'Profile changes must not rebuild location controls');
+  assert.equal(await evaluate(`document.querySelector('.encounter-section').open`),true);
+  assert.deepEqual(await evaluate(`({hash:location.hash,scroll:scrollY,floor:document.querySelector('.map-select').value,focus:document.activeElement.className})`),before);
+  await evaluate(`(async()=>{const api=await import('/js/adventures.js');await api.clearActiveProfile();})()`);
+  await until(()=>evaluate(`document.querySelector('#atlas-save-status').hidden`),'Reference mode did not clear profile context');
+  assert.equal(await evaluate(`document.querySelectorAll('.caught-indicator').length`),0);
+  assert.equal(await evaluate(`document.querySelectorAll('.encounter-entry').length>0`),true);
+});
+
+test('Atlas restores older scoped snapshots and preserves their valid markers after an invalid replacement',async()=>{
+  const data=atlasCaughtFixture();delete data.save.pokedex.allCaughtSpecies;delete data.save.pokedex.allSeenSpecies;
+  await caughtAtlas(data);
+  assert.equal(await evaluate(`document.querySelector('#atlas-save-status').textContent.includes('Reload your save')`),true);
+  assert.equal(await evaluate(`Boolean(document.querySelector('[data-species-id="19"] .caught-indicator'))`),true);
+  await command('Page.reload');
+  await until(()=>evaluate(`Boolean(document.querySelector('[data-species-id="19"] .caught-indicator'))`),'Older profile markers did not restore');
+  assert.equal(await evaluate(`(async()=>{const api=await import('/js/adventures.js');const old=await api.getActiveProfile();try{await api.persistSnapshot({...old.snapshot,pokedex:{...old.snapshot.pokedex,allCaughtSpecies:[494]}});return false;}catch{return true;}})()`),true);
+  assert.equal(await evaluate(`Boolean(document.querySelector('[data-species-id="19"] .caught-indicator'))`),true);
+});
+
+test('Caught icons decode locally and Atlas layouts fit phones/desktop in both themes beneath the Pages path',async()=>{
+  await caughtAtlas();
+  await command('Page.navigate',{url:baseURL+'/pokemon-reader/pokedex-earth/#location=Route%2029'});
+  await until(()=>evaluate(`Boolean(document.querySelector('.caught-indicator'))`),'Pages path lost caught indicators');
+  assert.equal(await evaluate(`(async()=>{const img=document.querySelector('.caught-indicator');await img.decode();return new URL(img.src).pathname;})()`),'/pokemon-reader/assets/icons/caught-gen4.svg');
+  for(const width of [320,390,768,1440]) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    for(const theme of ['light','dark']) {
+      await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));document.querySelector('.encounter-section').open=true;document.querySelector('.location-encounters').scrollIntoView();`);
+      assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${width} ${theme}`);
+      if(process.env.CAUGHT_SCREENSHOT_DIR && [390,1440].includes(width)) {
+        const shot=await command('Page.captureScreenshot',{format:'png'});
+        await require('node:fs/promises').writeFile(path.join(process.env.CAUGHT_SCREENSHOT_DIR,`caught-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+      }
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Atlas remains usable without a save or when profile storage is denied',async()=>{
+  await atlas({directory:false});
+  assert.equal(await evaluate(`document.querySelectorAll('.caught-indicator').length`),0);
+  await command('Page.enable');
+  const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`globalThis.__caughtOriginalOpen=indexedDB.open;indexedDB.open=()=>{throw new DOMException('Storage denied','SecurityError');};`});
+  try {
+    await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Route%2032'});
+    await until(()=>evaluate(`document.querySelector('#atlas-save-status')?.textContent.includes('unavailable')&&document.querySelectorAll('.encounter-entry').length>0`),'Atlas reference blocked by profile storage failure');
+    assert.equal(await evaluate(`document.querySelectorAll('.caught-indicator').length`),0);
+    assert.equal(await evaluate(`document.querySelectorAll('.connection-link').length>0`),true);
+  } finally {
+    await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
+    await evaluate(`indexedDB.open=globalThis.__caughtOriginalOpen`);
   }
 });

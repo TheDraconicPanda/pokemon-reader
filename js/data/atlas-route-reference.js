@@ -1,6 +1,7 @@
 import { SOULSILVER_LOCATION_ENCOUNTERS } from './games/soulsilver/location-encounters.js';
 import { SOULSILVER_ROUTE_ENCOUNTERS } from './games/soulsilver/route-encounters.js';
 import { SOULSILVER_ROUTE_FEATURES } from './games/soulsilver/route-features.js';
+import { speciesIdForName } from './game-reference.js';
 
 // Explicit game selection keeps future versions from inheriting SoulSilver data.
 const REFERENCES = new Map([["soulsilver", { encounters: SOULSILVER_ROUTE_ENCOUNTERS.routes, features: SOULSILVER_ROUTE_FEATURES.routes, locations: SOULSILVER_LOCATION_ENCOUNTERS.locations }]]);
@@ -34,13 +35,14 @@ export function routeEncounters(gameId, name) {
   const encounters = REFERENCES.get(gameId)?.encounters;
   const rows = encounters && Object.hasOwn(encounters, name) ? encounters[name] : null;
   if (!rows) return null;
-  return rows.map(formatEncounter);
+  return rows.map(row=>formatEncounter(row,gameId));
 }
 
-function formatEncounter(row) {
+function formatEncounter(row,gameId) {
   return {
     method: [row.area, METHODS[row.method], ...row.conditions.map(condition => CONDITIONS[condition])].filter(Boolean).join(' · '),
     pokemon: row.pokemon,
+    speciesId: speciesIdForName(gameId,row.pokemon),
     levels: formatLevels(row.levels),
     times: !row.times.length || row.times.length === 3 ? 'All times' : row.times.map(time => TIMES[time]).join(', '),
     rate: row.availability || (row.percent === null ? 'One-time' : `${row.percent}%`)
@@ -61,5 +63,5 @@ export function locationEncounterReference(gameId, name) {
   }
   if (!Object.hasOwn(game.locations, name)) return null;
   const reference = game.locations[name];
-  return { ...reference, encounters: reference.encounters.map(formatEncounter) };
+  return { ...reference, encounters: reference.encounters.map(row=>formatEncounter(row,gameId)) };
 }

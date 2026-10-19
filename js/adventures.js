@@ -44,6 +44,11 @@ export function validateSnapshot(snapshot) {
   requireValue(dex.speciesCount === dex.speciesIds.length && dex.seenCount === dex.seenSpecies.length && dex.caughtCount === dex.caughtSpecies.length, 'Inconsistent Pokédex counts.');
   requireValue(typeof dex.nationalDex === 'boolean' && dex.speciesCount > 0 && [dex.seenPercent,dex.caughtPercent].every(p => Number.isFinite(p) && p >= 0 && p <= 100), 'Incomplete Pokédex summary.');
   requireValue([...dex.seenSpecies,...dex.caughtSpecies].every(id => dex.speciesIds.includes(id)), 'Registration outside the selected Pokédex scope.');
+  for (const [full,scoped] of [['allCaughtSpecies','caughtSpecies'],['allSeenSpecies','seenSpecies']]) {
+    if(dex[full]===undefined)continue; // v0.25.53/54 snapshots remain restorable.
+    requireValue(Array.isArray(dex[full]) && dex[full].every(id=>uint(id,493)&&id>0) && new Set(dex[full]).size===dex[full].length,'Invalid full Pokédex flags.');
+    requireValue(dex[full].filter(id=>dex.speciesIds.includes(id)).length===dex[scoped].length && dex[scoped].every(id=>dex[full].includes(id)),'Full and scoped Pokédex flags disagree.');
+  }
   return snapshot;
 }
 

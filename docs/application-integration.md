@@ -80,10 +80,12 @@ Neither is the proposed independent reference encyclopedia.
 2. **Planner:** multiple independent plans, explicit adventure association, safe
    migration/import/export, party-first matching, durable PID/OT identity links,
    missing/ambiguous states, actual move/nature/evolution/EV progress.
-   **Implemented in v0.25.54; focused user acceptance pending.** See
+   **Implemented in v0.25.54; user reported it looks good and authorized advancing.** See
    [Planner implementation and exact acceptance checklist](planner-integration.md).
 3. **Atlas/shared data:** full caught flags, authentic small ball markers, scoped
-   species IDs, preserved conditions and verified data provenance. Pending.
+   species IDs, preserved conditions and verified data provenance.
+   **Implemented in v0.25.55; focused user acceptance pending.** See
+   [caught registrations, shared data and exact acceptance checks](atlas-caught.md).
 4. **Reference Pokédex/cards:** complete game-specific numbered list/search jump,
    all requested Gen IV sections, evolution-wide TM/HM table, exact Atlas links,
    preserved scroll/focus and existing Reader presentation. Pending.

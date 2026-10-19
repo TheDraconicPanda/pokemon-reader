@@ -2,6 +2,27 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Atlas caught registrations — v0.25.55
+
+Atlas encounter species and EV Training results now show a small Poké Ball when
+registered caught in the active Adventure Profile. Markers use Pokédex flags;
+Seen status and party/PC ownership do not determine them. Navigation, encounter
+conditions and the generic no-save Atlas remain supported.
+
+Reload your latest save once in Reader to add full 493-species registration flags
+to an older profile. Existing Reader counts and Planner data stay intact. Older
+regional snapshots retain known caught markers and display a reload hint.
+Profile changes update markers without resetting open encounters or map floors.
+
+Shared SoulSilver identifiers and audited EV yields now serve Planner and Atlas;
+all 1,653 existing encounter names resolve to species IDs. Safari's existing
+records are preserved unchanged. All **113 automated checks pass**, including
+Reader/Planner regressions, mobile themes and Pages paths. Real-save acceptance
+remains pending. See the [focused Atlas checklist and compatibility notes](docs/atlas-caught.md).
+
+The independent reference Pokédex is the next integration milestone; Safari mini
+Atlas remains later work.
+
 ## Planner integration — v0.25.54
 
 Planner now uses Reader's persisted Adventure Profile across Main team, HM plan

@@ -10,7 +10,7 @@ const el = (tag,text,className) => {
 };
 const yieldText = yields => Object.entries(yields).filter(([,value])=>value).map(([key,value])=>`${value} ${EV_STATS[key]}`).join(' + ')+' EVs';
 
-export function mountEvTraining({panel,onOpenLocation}) {
+export function mountEvTraining({panel,onOpenLocation,decorateSpecies=node=>node}) {
   const stat=panel.querySelector('#ev-stat');
   const time=panel.querySelector('#ev-time');
   const method=panel.querySelector('#ev-method');
@@ -41,7 +41,7 @@ export function mountEvTraining({panel,onOpenLocation}) {
         const entries=el('ul');
         for(const row of rows) {
           const item=el('li');
-          item.append(el('strong',`${row.pokemon} · ${row.percent}%`),el('span',`Lv. ${formatLevels(row.levels)} · ${yieldText(row.yields)}${row.unwanted&&row.targetYield?' · Also awards unwanted EVs':''}`));
+          item.append(decorateSpecies(el('strong',`${row.pokemon} · ${row.percent}%`),row.pokemon),el('span',`Lv. ${formatLevels(row.levels)} · ${yieldText(row.yields)}${row.unwanted&&row.targetYield?' · Also awards unwanted EVs':''}`));
           entries.append(item);
         }
         section.append(entries);
