@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.60') && document.querySelector('.eyebrow').textContent.includes('v0.25.60'),
+    version: document.title.includes('v0.25.61') && document.querySelector('.eyebrow').textContent.includes('v0.25.61'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.60<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.61<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.60");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.61");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2138,4 +2138,38 @@ test('Safari maps follow all twelve area identities, open full size, fit both th
  }finally{
   await command('Fetch.disable');await command('Emulation.clearDeviceMetricsOverride');safariMapFixture=null;safariMapFailure=false;
  }
+});
+test('Safari shows only its short title above the map and repeated compass travel preserves the viewport',async()=>{
+ safariMapFixture=(await readFile(path.join(root,'assets/maps/violet-city.png'))).toString('base64');
+ await command('Fetch.enable',{patterns:[{urlPattern:'https://archives.bulbagarden.net/media/upload/*'}]});
+ try {
+  for(const width of [390,1440]){
+   await command('Emulation.setDeviceMetricsOverride',{width,height:650,deviceScaleFactor:1,mobile:false});
+   await safariVisit('#safari=4');
+   await until(()=>evaluate(`document.querySelector('.safari-map')?.naturalWidth>0`),'Initial map');
+   const layout=await evaluate(`(()=>{const p=document.querySelector('#safari-mini-atlas');return {title:p.querySelector('h2').textContent,first:p.children[1].id,sourceInEditor:!!p.querySelector('#safari-layout-editor #safari-layout-source'),mapBeforeGrid:!!(p.querySelector('#safari-compass').compareDocumentPosition(p.querySelector('#safari-area-grid'))&Node.DOCUMENT_POSITION_FOLLOWING)};})()`);
+   assert.deepEqual(layout,{title:'Safari Zone',first:'safari-compass',sourceInEditor:true,mapBeforeGrid:true});
+   await evaluate(`window.scrollTo(0,scrollY+document.querySelector('#safari-compass').getBoundingClientRect().top-20)`);
+   const baseline=await evaluate(`({y:scrollY,top:document.querySelector('.safari-map-frame').getBoundingClientRect().top,height:document.querySelector('.safari-map-frame').getBoundingClientRect().height})`);
+   assert.ok(baseline.y>0,'Test actually starts scrolled');
+   for(const direction of ['north','east','south','west','north','west','south','east']){
+    await evaluate(`document.querySelector('[data-safari-direction="${direction}"]').click()`);
+    await until(()=>evaluate(`document.querySelector('.safari-map')?.naturalWidth>0`),'Next map');
+    await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+    const now=await evaluate(`({y:scrollY,top:document.querySelector('.safari-map-frame').getBoundingClientRect().top,height:document.querySelector('.safari-map-frame').getBoundingClientRect().height})`);
+    assert.ok(Math.abs(now.y-baseline.y)<=1,`${width} ${direction}: scroll changed ${baseline.y} -> ${now.y}`);
+    assert.ok(Math.abs(now.top-baseline.top)<=1,'Map stays in the same viewport position');
+    assert.ok(Math.abs(now.height-baseline.height)<=1,'Preview reserves the same height');
+   }
+   safariMapFailure=true;
+   await evaluate(`document.querySelector('[data-safari-direction="north"]').click();const image=document.querySelector('.safari-map');image.src+='?testImageFailure=${width}'`);
+   await until(()=>evaluate(`document.querySelector('.safari-map-link').hidden`),'Image error');
+   assert.ok(Math.abs(await evaluate(`scrollY`)-baseline.y)<=1,'Image error does not jump');
+   assert.ok(Math.abs(await evaluate(`document.querySelector('.safari-map-frame').getBoundingClientRect().height`)-baseline.height)<=1,'Image failure preserves preview space');
+   safariMapFailure=false;
+   if(process.env.SAFARI_SCREENSHOT_DIR){
+    const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SCREENSHOT_DIR,`safari-scroll-${width}.png`),Buffer.from(shot.data,'base64'));
+   }
+  }
+ }finally{await command('Fetch.disable');await command('Emulation.clearDeviceMetricsOverride');safariMapFixture=null;safariMapFailure=false;}
 });

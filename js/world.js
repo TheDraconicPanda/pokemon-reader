@@ -417,7 +417,8 @@ const safariAtlas=mountSafariAtlas({gameId:ATLAS_GAME_ID,panel:safariPanel,
   onOpenPosition:position=>openSafariPosition(position),onExit:()=>openAtlasLocation('Safari Zone Gate')});
 function openSafariPosition(position=4,push=true,focus=true) {
   if(push)history.pushState(null,'',`#safari=${position}`);
-  setAtlasView(safariPanel);safariAtlas.render(position,{focus});
+  const preserveScroll=!safariPanel.hidden;
+  setAtlasView(safariPanel);safariAtlas.render(position,{focus,preserveScroll});
 }
 
 function openAtlasLocation(name, push = true, focus = true) {

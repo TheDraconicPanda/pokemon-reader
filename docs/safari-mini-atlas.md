@@ -1,9 +1,33 @@
-# SoulSilver Safari mini Atlas — v0.25.60
+# SoulSilver Safari mini Atlas — v0.25.61
 
 This milestone integrates the Safari reference into Atlas without the separate
 calculator or new binary-save research. Reader/Pokédex navigation was accepted by
 the user before this milestone began. Safari remains within Atlas, not another
 main-menu destination.
+
+## Navigation refinements (v0.25.61)
+
+The user accepted the maps and requested a compact heading and stable travel.
+The visible section title is **Safari Zone**. The map/compass appears first, then
+the six area buttons. Example/manual context and active-adventure details remain
+available inside the closed-by-default manual layout editor.
+
+Travel within the open Safari panel focuses the new area heading without
+scrolling, then restores the existing viewport. Entering from another Atlas view
+brings the Safari title into view. The map frame reserves a constant aspect ratio
+for loading, successful and failed images, avoiding late layout shifts. The
+scroll regression uses repeated cardinal moves on phone and desktop and checks
+both viewport/map position and failed-image space. Its failure request uses a
+unique test-only URL so a cached successful PNG cannot mask the error case.
+
+Full v0.25.61 regression: **143 passed, 0 failed, 0 skipped**. Phone/desktop
+fixture and error-state screenshots were inspected. The update is pushed for
+Pages deployment; live confirmation and focused scroll acceptance remain pending.
+
+Manual layout remains appropriate: the in-game Area Customizer unlocks with
+Baoba’s second challenge and supports rearranging/replacing the active areas;
+there are ten possible initial layouts. The app does not yet decode this state.
+Source: [Johto Safari Zone — areas and challenges](https://bulbapedia.bulbagarden.net/wiki/Johto_Safari_Zone#Challenges).
 
 ## Area maps (v0.25.60)
 
@@ -190,12 +214,12 @@ calculator, object planning or automatic progression filtering is expected yet.
 Only this Safari integration needs focused acceptance; existing tools already ran
 through automated regressions.
 
-## Focused map checklist (v0.25.60)
+## Focused user checklist (v0.25.61)
 
-1. Open Atlas’s Safari view and confirm **v0.25.60**. Each selected area should
-   show its own terrain map in the center of the compass.
-2. Select the map to open it full size. If you change an area in the manual
-   layout, its preview should change to the new area too.
+1. Confirm **v0.25.61**. Safari should show **Safari Zone**, the map/compass, then
+   the area buttons. Example/adventure context is inside **Set manual area layout**.
+2. Scroll to a comfortable map position, then use several arrows in succession.
+   The map and arrows should stay in the same viewport position, including while
+   an image loads. There should be no repeated scroll back to the area buttons.
 
-Online image loading is the remaining manual check; no broad feature retest is
-requested. Existing navigation/manual-layout acceptance remains recorded.
+The previous map/navigation acceptance remains recorded; no broad retest is needed.

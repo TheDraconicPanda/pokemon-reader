@@ -2,6 +2,19 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Safari navigation refinements — v0.25.61
+
+The Safari page now begins with **Safari Zone**, followed by the map/compass and
+then the six area buttons. The example/adventure context lives inside the manual
+layout editor. Moving between areas preserves the viewport; loading or failing
+maps reserve the same space so arrows stay in place.
+
+The in-game Area Customizer becomes available with Baoba’s second challenge.
+Manual layouts mirror that arrangement because the app does not decode it yet;
+starting arrangements also vary. See [Safari notes](docs/safari-mini-atlas.md).
+All **143 automated checks pass**, including repeated arrow travel on phone and
+desktop. Pushed for Pages deployment; live confirmation remains pending.
+
 ## Safari area maps — v0.25.60
 
 All twelve Safari areas now show their original HGSS reference map between the
@@ -13,9 +26,9 @@ These images load online from Bulbagarden Archives. A failed image leaves a
 source link and usable navigation. They show reference terrain, without a save
 position or placed-block overlay. The existing locally bundled Atlas maps remain
 unchanged. Workspace networking prevented downloading these additional originals;
-live image loading needs the focused online check in [Safari notes](docs/safari-mini-atlas.md).
+the user subsequently reported that the maps look great. See [Safari notes](docs/safari-mini-atlas.md).
 All **142 automated checks pass**; rendering fixtures cover both themes and
-320/390/768/1440px widths. Pushed for Pages deployment; live confirmation pending.
+320/390/768/1440px widths. The user accepted this map release.
 
 ## Safari mini Atlas — v0.25.59
 

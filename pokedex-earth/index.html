@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.25.60 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.25.61 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/safari.css">
   <link rel="stylesheet" href="../css/app-shell.css">
@@ -14,7 +14,7 @@
   <main class="world-app">
     <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.60</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.61</p>
       <h1>Pokémon Atlas</h1>
       <p id="atlas-save-status" class="atlas-save-status" role="status" hidden></p>
       <nav class="atlas-tools" id="johto-tool-nav" aria-label="Johto · SoulSilver tools" hidden>
@@ -91,13 +91,12 @@
     </section>
 
     <section class="world-panel" id="safari-mini-atlas" aria-labelledby="safari-title" hidden>
-      <h2 id="safari-title" tabindex="-1">Safari Zone mini Atlas</h2>
-      <p id="safari-layout-source" class="safari-context" role="status"></p>
-      <details class="safari-limits"><summary>Manual layout and reference limits</summary>
-        <p>Safari area arrangement and Baoba progression are not read from your save yet. Match the six areas below to your game; changes here do not change your save.</p>
-        <p>Encounter data is the existing reference and still needs its dedicated Safari audit. Time, block and day requirements remain visible, but this guide does not calculate or filter what your current Safari can attract.</p>
-      </details>
+      <h2 id="safari-title" tabindex="-1">Safari Zone</h2>
+      <nav id="safari-compass" aria-label="Adjacent Safari areas"></nav>
+      <nav id="safari-area-grid" aria-label="Safari area positions · north is up"></nav>
       <details id="safari-layout-editor"><summary>Set manual area layout</summary>
+        <p id="safari-layout-source" class="safari-context" role="status"></p>
+        <p>Baoba’s second challenge unlocks the in-game Area Customizer, which lets you rearrange or replace the six areas. Starting layouts can also differ. This app uses a manual layout until it can read yours from the save.</p>
         <form id="safari-layout-form">
           <p>North is up. Choose six different areas. Choosing an area already on the grid swaps the two positions.</p>
           <div id="safari-layout-fields"></div>
@@ -106,8 +105,10 @@
         </form>
       </details>
       <p id="safari-layout-status" role="status"></p>
-      <nav id="safari-area-grid" aria-label="Safari area positions · north is up"></nav>
-      <nav id="safari-compass" aria-label="Adjacent Safari areas"></nav>
+      <details class="safari-limits"><summary>Manual layout and reference limits</summary>
+        <p>Safari area arrangement and Baoba progression are not read from your save yet. Match the six areas to your game; changes here do not change your save.</p>
+        <p>Encounter data is the existing reference and still needs its dedicated Safari audit. Time, block and day requirements remain visible, but this guide does not calculate or filter what your current Safari can attract.</p>
+      </details>
       <div id="safari-encounters"></div>
       <details class="safari-sources"><summary>Sources and coverage</summary>
         <p>The three-column, two-row layout and south-center entrance are verified against HGSS source. The initial example is one possible starting arrangement, not your decoded layout.</p>

@@ -93,7 +93,8 @@ Neither is the proposed independent reference encyclopedia.
 5. **Safari mini Atlas:** verified six-position navigation, manual arrangement,
    existing encounter records, caught indicators and Gate return; no calculator or
    guessed binary layout. Navigation in v0.25.59 accepted by the user; v0.25.60
-   adds online area maps. Validation and online image checks are tracked in [the Safari milestone](safari-mini-atlas.md).
+   adds online area maps (accepted), followed by v0.25.61 scroll/layout refinements.
+   Validation and focused online checks are tracked in [the Safari milestone](safari-mini-atlas.md).
 6. **Integration regression:** shared menu, history/base-path/mobile/accessibility,
    consistent versions, README/ROADMAP and real-save acceptance checklist. Pending.
 

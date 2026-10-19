@@ -24,7 +24,8 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
     save.disabled=busy||!loaded;
     panel.dataset.safariReady=String(loaded);
   }
-  function render(nextPosition=position,{focus=false}={}) {
+  function render(nextPosition=position,{focus=false,preserveScroll=false}={}) {
+    const previousScroll={left:window.scrollX,top:window.scrollY};
     position=safariNeighbors(gameId,nextPosition)?nextPosition:game.entrancePosition;
     if(panel.hidden){showSource();return;}
     compass.classList.add('connection-links','has-map');
@@ -58,20 +59,23 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
       const image=node('img',undefined,'location-map safari-map');
       image.width=map.width;image.height=map.height;image.alt=`${map.name} area map · Pokémon HeartGold and SoulSilver · north is up`;
       image.referrerPolicy='no-referrer';image.decoding='async';
+      const frame=node('div',undefined,'safari-map-frame');
       const status=node('p','Loading online map…','safari-map-status');status.setAttribute('role','status');
       image.addEventListener('load',()=>{status.hidden=true;});
       image.addEventListener('error',()=>{link.hidden=true;status.hidden=false;status.textContent='Map unavailable. Try the source link below.';});
       link.append(image,node('span','Open full-size map ↗','map-hint'));
       const credit=node('a',`Map: Bulbagarden Archives${map.contributor?' · '+map.contributor:''}`,'safari-map-credit');
       credit.href=map.sourceUrl;credit.target='_blank';credit.rel='noopener noreferrer';
-      current.append(link,status,credit);image.src=map.imageUrl;
+      frame.append(link,status);current.append(frame,credit);image.src=map.imageUrl;
     }
     compass.append(current);
     const rows=safariAreaEncounters(gameId,areas[position]);
     const section=renderAtlasEncounters({gameId,locationName:areaName(areas[position]),encounters:rows,notes:[],decorateSpecies});
     const count=node('p',`${rows.length} existing reference records · Safari data audit pending · not filtered by your blocks, aging or progression`,'safari-reference-count');
     encounters.replaceChildren(count,section);showSource();
-    if(focus){heading.focus({preventScroll:true});heading.scrollIntoView({block:'center'});}
+    if(focus)heading.focus({preventScroll:true});
+    if(preserveScroll)window.scrollTo({...previousScroll,behavior:'instant'});
+    else if(focus)panel.querySelector('#safari-title').scrollIntoView({block:'start'});
   }
   function fillEditor() {
     fields.replaceChildren();
