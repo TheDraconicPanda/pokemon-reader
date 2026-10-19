@@ -61,3 +61,20 @@ test('all 505 bundled HGSS sprites match the pinned asset manifest',async()=>{
   const b=fs.readFileSync(path.join(__dirname,`../assets/pokemon/hgss/${p.sprite}.png`));assert.equal(b.subarray(1,4).toString(),'PNG');assert.equal(crypto.createHash('sha256').update(b).digest('hex'),manifest.files[p.sprite]);
  }
 });
+
+test('species cards exclude unrelated Atlas narratives but preserve scoped legendary, form and encounter conditions',async()=>{
+ const {speciesLocations}=await load();
+ const at=(id,name)=>speciesLocations('soulsilver',id).find(l=>l.location===name);
+ const horsea=at(116,'Whirl Islands');assert.equal(horsea.details.length,6);assert.deepEqual(horsea.notes,[]);
+ assert.ok(horsea.details.some(t=>t.includes('B2F · Surfing')&&t.includes('60%')));
+ assert.match(at(249,'Whirl Islands').notes.join(' '),/Lugia is level 45.*Silver Wing and Tidal Bell/);
+ assert.deepEqual(at(19,'Route 29').notes,[]);assert.match(at(243,'Route 29').details.join(' '),/Roaming.*Burned Tower/);
+ assert.match(at(201,'Ruins of Alph').notes.join(' '),/26 letters/);
+ assert.match(at(131,'Union Cave').notes.join(' '),/Friday/);
+ assert.doesNotMatch(at(383,'Embedded Tower').notes.join(' '),/Rayquaza/);
+ assert.match(at(384,'Embedded Tower').notes.join(' '),/Jade Orb/);
+ assert.match(at(129,'Cliff Edge Gate').notes.join(' '),/Rock Climb/);
+ assert.match(at(101,'Team Rocket HQ').notes.join(' '),/Electrode/);
+ assert.doesNotMatch(at(101,'Team Rocket HQ').notes.join(' '),/Koffing/);
+ for(let id=1;id<=493;id++)for(const group of speciesLocations('soulsilver',id))assert.ok(group.notes.every(n=>typeof n==='string'&&n.length));
+});

@@ -47,12 +47,24 @@ function renderDetail(key,referenceType=null) {
   if(p.id===479&&key!==479)note(content,'In Generation IV, all Rotom appliance forms remain Electric/Ghost. Changing appliances teaches Overheat, Hydro Pump, Blizzard, Air Slash or Leaf Storm respectively; these form-change moves are separate from the level-up list.');
   const ability=section('Abilities');for(const id of p.abilities){ability.append(node('h3',data().abilities[id].name),node('p',data().abilities[id].description));}note(ability,'Available HGSS abilities; no hidden abilities in Generation IV.');
   const ev=section('EV yield');ev.append(node('p',p.evYield.map((v,i)=>v?`${v} ${STAT_LABELS[i]}`:null).filter(Boolean).join(' · ')||'None'));note(ev,'Base yield per defeated Pokémon, before held items or Pokérus.');
-  const types=section('Type matchups');const grid=node('div',undefined,'type-grid');for(const {type,multiplier} of typeMultipliers(gameId,p.types)){const row=node('div');row.append(typeBadges([type]),node('strong',`×${multiplier}`));grid.append(row);}types.append(grid);note(types,'Incoming damage by type, before abilities, items and battle effects. Generation IV: Steel resists Ghost and Dark; no Fairy type.');
+  const types=section('Type matchups');const grid=node('div',undefined,'type-grid');for(const {type,multiplier} of typeMultipliers(gameId,p.types)){const row=node('div',undefined,multiplier>=4?'matchup-severe':multiplier>1?'matchup-weak':multiplier<1?'matchup-reduced':'matchup-neutral');row.dataset.type=type;row.dataset.multiplier=multiplier;row.append(typeBadges([type]),node('strong',`×${multiplier}`));grid.append(row);}types.append(grid);note(types,'Incoming damage by type, before abilities, items and battle effects. Generation IV: Steel resists Ghost and Dark; no Fairy type.');
   const items=section('Wild held items');const itemResults=node('p');const label=node('label'),check=node('input');check.type='checkbox';check.id='compound-eyes';label.append(check,document.createTextNode(' Lead Pokémon has Compound Eyes'));const update=()=>itemResults.textContent=heldItems(p,check.checked).map(r=>`${r.name}: ${r.percent}%`).join(' · ');check.addEventListener('change',update);update();items.append(itemResults,label);note(items,'Normal wild item rolls. These odds do not establish that this species is catchable in SoulSilver; gifts, trades and scripted encounters may use fixed items.');
   const family=evolutionFamily(gameId,p.id),evolutions=data().evolutions.filter(e=>family.includes(e.from));
-  const evo=section('Evolution family');const familyLinks=node('div');for(const id of family)familyLinks.append(speciesButton(id));evo.append(familyLinks);
-  if(!evolutions.length)evo.append(node('p','No evolution in Generation IV.'));
-  const edges=node('ul',undefined,'evolution-list');for(const edge of evolutions){const li=node('li');li.append(speciesButton(edge.from),document.createTextNode(' → '),speciesButton(edge.to),node('span',evolutionRequirement(edge)));edges.append(li);}evo.append(edges);
+  const evo=section('Evolution family');
+  if(!evolutions.length) { evo.append(speciesButton(p.id),node('p','No evolution in Generation IV.')); }
+  else {
+    const scroll=node('div',undefined,'evolution-scroll');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Evolution paths');
+    const paths=[];
+    const walk=(id,path)=>{const children=evolutions.filter(e=>e.from===id);if(!children.length)paths.push(path);else for(const edge of children)walk(edge.to,[...path,edge]);};
+    for(const root of family.filter(id=>!evolutions.some(e=>e.to===id)))walk(root,[]);
+    const stage=id=>{const b=speciesButton(id);b.className='evolution-stage';b.replaceChildren();const img=node('img');img.src=hgssSprite(id);img.alt='';img.width=48;img.height=48;b.append(img,node('span',species(id).name,'evolution-stage-name'));return b;};
+    for(const path of paths) {
+      const line=node('div',undefined,'evolution-chain');line.append(stage(path[0].from));
+      for(const edge of path){const link=node('div',undefined,'evolution-link');const arrow=node('span','→','evolution-arrow');arrow.setAttribute('aria-hidden','true');link.append(node('span',evolutionRequirement(edge),'evolution-requirement'),arrow);line.append(link,stage(edge.to));}
+      scroll.append(line);
+    }
+    evo.append(scroll);
+  }
   if(p.id===489||p.id===490)note(evo,'Phione and Manaphy do not evolve into one another. Breeding Manaphy or Phione with Ditto produces Phione.');
   const locations=section('SoulSilver locations');locations.classList.add('reference-locations');note(locations,'Current Atlas coverage: Johto and existing League/Mt. Silver approaches. Full Kanto, Pokéwalker and event/distribution coverage are not included. Safari records retain their pending-audit label.');
   const records=speciesLocations(gameId,p.id);if(!records.length)locations.append(node('p','No location recorded in the current Atlas coverage. This does not mean unavailable in SoulSilver. Check this evolution family and external sources below.'));
@@ -75,7 +87,7 @@ function renderDetail(key,referenceType=null) {
 }
 function openSpecies(key,replace=false) {
   if(!species(key))return;
-  if(!dialog.open){opener=document.activeElement;listY=scrollY;}
+  if(!dialog.open){opener=document.activeElement;listY=list.scrollTop;}
   const hash=`#species=${key}&scope=${scope}`;
   // One history entry per open detail, so Back returns to the original list.
   if(dialog.open||replace)history.replaceState(history.state,'',hash);
@@ -88,13 +100,13 @@ function closeDetail() {
 }
 function restoreList() {
   if(dialog.open)dialog.close();currentKey=null;
-  opener?.focus({preventScroll:true});window.scrollTo({top:listY,behavior:'instant'});
+  opener?.focus({preventScroll:true});list.scrollTo({top:listY,behavior:'instant'});
 }
 function route() {
   const params=new URLSearchParams(location.hash.slice(1));const desired=params.get('scope')==='national'?'national':'regional';
   if(desired!==scope){scope=desired;renderList();}
   const key=Number(params.get('species'));
-  if(key&&species(key)){if(!dialog.open){listY=history.state?.listY||scrollY;opener=list.querySelector(`[data-species-id="${species(key).id}"]`);}renderDetail(key);if(!dialog.open)dialog.showModal();}
+  if(key&&species(key)){if(!dialog.open){listY=history.state?.listY??list.scrollTop;opener=list.querySelector(`[data-species-id="${species(key).id}"]`);}renderDetail(key);if(!dialog.open)dialog.showModal();}
   else restoreList();
 }
 document.querySelector('#reference-close').addEventListener('click',closeDetail);
@@ -105,7 +117,7 @@ scopeSelect.addEventListener('change',()=>{scope=scopeSelect.value;history.repla
 function jump(id) {
   if(!document.querySelector(`#species-${id}`)){scope='national';history.replaceState(null,'','#scope=national');renderList();}
   for(const old of list.querySelectorAll('.search-match'))old.classList.remove('search-match');
-  const row=document.querySelector(`#species-${id}`);row.classList.add('search-match');row.scrollIntoView({block:'start',behavior:'instant'});row.querySelector('button').focus({preventScroll:true});
+  const row=document.querySelector(`#species-${id}`);row.classList.add('search-match');list.scrollTo({top:row.offsetTop,behavior:'instant'});row.querySelector('button').focus({preventScroll:true});
   status.textContent=`${species(id).name} · National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':'Johto'} order; surrounding species remain visible.`;
 }
 const normalize=s=>s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9♀♂]/g,'');

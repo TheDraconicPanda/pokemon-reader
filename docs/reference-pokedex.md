@@ -1,4 +1,4 @@
-# SoulSilver reference Pokédex — v0.25.56
+# SoulSilver reference Pokédex — v0.25.57
 
 This independent reference at `pokedex/` works without a save. Reader's registration
 Pokédex, Collection, profile persistence and Planner goals retain their existing
@@ -9,10 +9,14 @@ responsibilities. The shared menu labels this tool **Pokédex**; its page headin
 
 - Johto HGSS order has 256 species; National order has 493. Compact numbered rows
   show bundled HGSS sprites, names and historical types.
-- Sticky search jumps to a name or **National** number, preserving all neighbors.
+- Menu and search share a stationary top block. The separate species list is the
+  only scrolling page block; the introductory banner/title/description are omitted
+  visually (the page retains a screen-reader heading and versioned browser title).
+  Search jumps to a name or **National** number, preserving all neighbors.
   Partial-name matches have a Next button. Searching a species outside the regional
   list switches to National order explicitly. Search never filters rows away.
-- Native modal details preserve list scroll and focus. Close/Escape/Back returns
+- Search highlights and keyboard outlines stay clipped inside the list. Native
+  modal details preserve the list pane’s scroll offset and focus. Close/Escape/Back returns
   to the list; Forward reopens a card. Direct `#species=147&scope=national` links
   work under the repository's Pages path. Evolution/form changes reuse the current
   modal history entry. Closing a direct link stays in the reference tool.
@@ -20,6 +24,10 @@ responsibilities. The shared menu labels this tool **Pokédex**; its page headin
   type multipliers, wild held items with optional Compound Eyes odds, evolution
   family and conditions, covered Atlas locations, level-up moves, evolution-wide
   TM/HM compatibility, tutor moves/costs, Egg moves, base stats and level 1–100 ranges.
+- Evolution paths use one horizontal line per branch, with the requirement above
+  each arrow. Long paths scroll inside their own detail region on narrow screens.
+  Matchup cells are green below ×1 (including immunity), yellow above ×1, red at
+  ×4, and neutral at ×1; numeric multipliers remain visible in both themes.
 - Machine columns identify **direct** compatibility per stage; retained moves from
   earlier stages are not mislabeled as machine compatibility. Dratini/Dragonair
   cannot use HM02 Fly; Dragonite can. Alternative Wormadam cloaks get separate
@@ -90,7 +98,13 @@ effects; these are not a battle damage calculator.
 ## Location limits retained
 
 Locations reuse audited Atlas encounter and gift/trade records, retaining method,
-floor/area, time, level, rate and conditions. Moving Raikou/Entei/Latios entries
+floor/area, time, level, rate and conditions. The reference adapter explicitly scopes
+special narrative notes by species, while preserving shared access/method notes.
+It never blanket-copies a location's story to every species: Horsea’s six Whirl
+Islands rows exclude Lugia's conditions; Lugia retains them. Unown form rules,
+Lapras’s Friday encounter, roaming requirements and shared Rock Climb access
+remain. Mixed legendary notes (Embedded Tower) are split by species. Atlas’s own
+location notes and all underlying encounter records are unchanged. Moving Raikou/Entei/Latios entries
 are labeled roaming with story requirements, not added to normal walking tables.
 Safari reuses its existing 269 records with an explicit pending-audit label; this
 release does not claim that its mechanics are complete.
@@ -111,7 +125,7 @@ mechanics, list/search/history/focus, form/type/item/stat controls, exact Atlas
 links, denied profile storage, local sprites, repository paths and both themes
 at 320/390/768/1440px. Phone and desktop card screenshots were inspected.
 
-`npm test`: **124 passed, 0 failed, 0 skipped** on Node 24 / Chromium 154.
+`npm test`: **127 passed, 0 failed, 0 skipped** on Node 24 / Chromium 154.
 `git diff --check` passed. Publication is to the existing main/Pages deployment
 branch; the live result requires online confirmation.
 Online user acceptance is pending after publication; pushing alone does not prove
@@ -119,20 +133,23 @@ Pages is live.
 
 ## Focused online checklist
 
-1. Confirm **v0.25.56**, then use **Pokédex** in the shared menu. No save upload
-   is needed. Johto starts with Chikorita; National starts with Bulbasaur.
-2. Search **Dratini** and press Jump. Its neighboring rows remain visible. Open
-   it, then close: return to the same row/scroll position.
-3. Open **TM/HM compatibility across evolutions**. HM02 Fly should show
-   Dratini **—**, Dragonair **—**, Dragonite **✓**. Try another detail section;
-   ability, EV yield, moves and stat ranges should be populated.
-4. Search **Chikorita**, expand **SoulSilver locations → New Bark Town**, then
-   open Atlas. It must open New Bark Town directly. At Route 29, select an encounter
-   name: the matching reference species card should open.
-5. On a phone or narrow window, check search stays reachable and a wide machine
-   table scrolls within its card. Escape/Close returns to the list; theme follows
-   the shared setting.
+This v0.25.57 checklist addresses the user's Pokédex feedback; the initial v0.25.56
+milestone remains implemented and its TM/HM table is unchanged.
 
-Only this reference milestone needs focused validation. Safari mini Atlas and its
-manual layout remain next; no repeat of the complete profile/Planner/Atlas
-acceptance checklist is requested unless a regression is observed.
+1. Open `pokedex/`. The banner/title/intro are gone. Menu and search share the top
+   block. Scroll the list or jump to Horsea; neither menu nor search should move,
+   and no selection border should extend beside the search. Close a card and verify
+   the same list position returns.
+2. Open Horsea’s evolution section: **Horsea → Seadra → Kingdra** is one line,
+   with **Level 32** and **Trade holding Dragon Scale** above their arrows. On a
+   phone, slide the evolution line sideways as needed. Branched families have one
+   line per path.
+3. Open Dragonite’s type matchups: reduced damage/immunity is **green**, ×2 is
+   **yellow**, and Ice ×4 is **red**. ×1 stays neutral. Check either theme.
+4. Open **Horsea → SoulSilver locations → Whirl Islands**: the same six encounter
+   rows remain; Lugia/Kimono Girls/Silver Wing/Tidal Bell narrative is absent.
+   Lugia’s own card still has its conditions.
+
+Safari mini Atlas and its manual layout remain next. No complete profile/Planner/
+Atlas revalidation is requested unless a regression is observed. User acceptance
+of these refinements remains pending after publication.

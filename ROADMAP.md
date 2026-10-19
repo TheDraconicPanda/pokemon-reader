@@ -27,14 +27,16 @@ See [architecture and acceptance gates](docs/application-integration.md).
   primary HGSS data, shared presentation and exact Atlas species/location links
 - [x] Milestone 4: all 124 checks pass; phone/desktop cards reviewed; 1,972 move-list
   comparisons match primary HGSS records
-- [ ] Milestone 4 online user acceptance after publication
+- [x] Milestone 4 refinements (v0.25.57): list-only scrolling, inline evolution
+  paths, matchup colors and species-scoped location notes; all 127 checks pass
+- [ ] Milestone 4 revised online user acceptance after publication
 - [ ] Milestone 5: Safari mini Atlas with manual layout and Gate return
 - [ ] Milestone 6: integrated navigation/mobile/accessibility/data regression and docs
 
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.56 release label.
+in this chat. Reader, Atlas and Planner display the same v0.25.57 release label.
 See [the focused reference Pokédex checklist](docs/reference-pokedex.md). Safari
 mini Atlas remains the next milestone.
 

@@ -255,7 +255,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.56') && document.querySelector('.eyebrow').textContent.includes('v0.25.56'),
+    version: document.title.includes('v0.25.57') && document.querySelector('.eyebrow').textContent.includes('v0.25.57'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -263,16 +263,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.56<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.57<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.56");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.57");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -333,7 +333,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -591,7 +591,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -777,7 +777,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.57'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1762,7 +1762,8 @@ test('reference Pokédex is save-independent, keeps full numbered neighbors on s
 test('reference cards preserve list scroll/focus and Back/Forward/escape, and show exact evolution-stage Fly compatibility',async()=>{
  await referenceDex('#scope=national');
  await evaluate(`document.querySelector('#species-search').value='147';document.querySelector('#reference-search').requestSubmit()`);
- const before=await evaluate(`({y:scrollY,focused:document.activeElement.dataset.speciesId})`);
+ const before=await evaluate(`({y:document.querySelector('#species-list').scrollTop,focused:document.activeElement.dataset.speciesId})`);
+ assert.ok(before.y>0,'Jump must scroll the list');
  await evaluate(`document.querySelector('[data-species-id="147"]').click()`);
  assert.equal(await evaluate(`document.querySelector('#reference-detail').open`),true);
  assert.equal(await evaluate(`document.querySelector('#reference-title').textContent`),'Dratini');
@@ -1771,12 +1772,12 @@ test('reference cards preserve list scroll/focus and Back/Forward/escape, and sh
  assert.equal(await evaluate(`document.querySelectorAll('#reference-content .type-grid>div').length`),17);
  await evaluate(`document.querySelector('#reference-close').click()`);
  await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Closed card');
- assert.deepEqual(await evaluate(`({y:scrollY,focused:document.activeElement.dataset.speciesId})`),before);
+ assert.deepEqual(await evaluate(`({y:document.querySelector('#species-list').scrollTop,focused:document.activeElement.dataset.speciesId})`),before);
  await evaluate(`history.forward()`);await until(()=>evaluate(`document.querySelector('#reference-detail').open`),'Forward card');
  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
  await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Escape closes');
- assert.equal(await evaluate('scrollY'),before.y);
+ assert.equal(await evaluate(`document.querySelector('#species-list').scrollTop`),before.y);
 });
 test('reference direct links include HGSS ability/item/form/type/stats and all move sections with live controls',async()=>{
  await referenceDex('#species=25&scope=national');
@@ -1827,13 +1828,13 @@ test('reference browsing works with denied profile storage, local sprites and re
   assert.match(await evaluate(`document.querySelector('#load-save').href`),/\/pokemon-reader\/#overview$/);
  }finally{await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});}
 });
-test('reference list and card fit phone/tablet/desktop themes, with keyboard-contained dialogs and sticky search',async()=>{
+test('reference list and card fit phone/tablet/desktop themes, with keyboard-contained dialogs and a stationary menu/search block',async()=>{
  for(const theme of ['dark','light'])for(const width of [320,390,768,1440]){
   await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
   await referenceDex('#scope=national','/pokemon-reader');
-  await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'));scrollTo(0,1500)`);
+  await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'));document.querySelector('#species-list').scrollTop=1500`);
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`List width ${width}`);
-  assert.ok(Math.abs(await evaluate(`document.querySelector('.dex-jump').getBoundingClientRect().top`))<=1);
+  assert.equal(await evaluate(`scrollY===0 && document.querySelector('#species-list').scrollTop===1500 && document.querySelector('.reference-top').getBoundingClientRect().bottom<=document.querySelector('#species-list').getBoundingClientRect().top`),true,'Only the list scrolls below the menu/search');
   await evaluate(`document.querySelector('[data-species-id="149"]').click()`);
   const fit=await evaluate(`(() => {const d=document.querySelector('#reference-detail'),r=d.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&d.scrollWidth<=d.clientWidth})()`);
   assert.equal(fit,true,`Card width ${width} ${theme}`);
@@ -1846,5 +1847,45 @@ test('reference list and card fit phone/tablet/desktop themes, with keyboard-con
    await require('node:fs/promises').writeFile(path.join(process.env.POKEDEX_SCREENSHOT_DIR,`pokedex-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
   }
  }
+ await command('Emulation.clearDeviceMetricsOverride');
+});
+
+test('Pokédex search highlights stay inside the scrolling list while the menu/search stays stationary',async()=>{
+ await command('Emulation.setDeviceMetricsOverride',{width:390,height:740,deviceScaleFactor:1,mobile:false});
+ await referenceDex('#scope=national');
+ const top=await evaluate(`document.querySelector('.reference-top').getBoundingClientRect().toJSON()`);
+ await evaluate(`document.querySelector('#species-search').value='Horsea';document.querySelector('#reference-search').requestSubmit()`);
+ await until(()=>evaluate(`document.querySelector('.search-match img').complete&&document.querySelector('.search-match img').naturalWidth>0`),'Visible list sprite loads after nested scrolling');
+ const state=await evaluate(`(() => {const list=document.querySelector('#species-list'),r=list.getBoundingClientRect(),row=document.querySelector('.search-match').getBoundingClientRect();return {top:document.querySelector('.reference-top').getBoundingClientRect().toJSON(),windowY:scrollY,listY:list.scrollTop,listBottom:r.bottom,rowY:row.top,listYStart:r.top,hasHeader:!!document.querySelector('.app-header'),pageFits:document.documentElement.scrollHeight<=innerHeight,highlightOutline:getComputedStyle(document.querySelector('.search-match')).outlineStyle};})()`);
+ assert.equal(state.top.top,top.top);assert.equal(state.windowY,0);assert.ok(state.listY>0);assert.ok(state.rowY>=state.listYStart);assert.ok(state.listBottom<=740);assert.equal(state.pageFits,true);assert.equal(state.hasHeader,false);assert.equal(state.highlightOutline,'none');
+ if(process.env.POKEDEX_SCREENSHOT_DIR){const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.POKEDEX_SCREENSHOT_DIR,'pokedex-list-390.png'),Buffer.from(shot.data,'base64'));}
+ await evaluate(`document.querySelector('#species-list').scrollTop+=1200`);
+ assert.deepEqual(await evaluate(`document.querySelector('.reference-top').getBoundingClientRect().toJSON()`),state.top);
+ assert.equal(await evaluate(`scrollY`),0);
+ await command('Emulation.clearDeviceMetricsOverride');
+});
+test('Pokédex evolution paths place requirements above inline arrows, matchups use requested colors, and Horsea excludes Lugia notes',async()=>{
+ for(const theme of ['dark','light']){
+  await referenceDex('#species=149&scope=national');
+  await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'))`);
+  const colors=await evaluate(`(() => {const css=getComputedStyle(document.documentElement),grid=document.querySelector('.type-grid');return [...grid.children].map(n=>({type:n.dataset.type,mult:Number(n.dataset.multiplier),color:getComputedStyle(n.querySelector('strong')).color,expected:css.getPropertyValue(Number(n.dataset.multiplier)>=4?'--error':Number(n.dataset.multiplier)>1?'--warning':Number(n.dataset.multiplier)<1?'--success':'--text').trim()}));})()`);
+  for(const row of colors){const expected=await evaluate(`(() => {const n=document.createElement('span');n.style.color=${JSON.stringify(row.expected)};document.body.append(n);const c=getComputedStyle(n).color;n.remove();return c;})()`);assert.equal(row.color,expected,`${theme} ${row.type} ×${row.mult}`);}
+  assert.equal(colors.find(c=>c.type==='ice').mult,4);assert.equal(colors.find(c=>c.type==='ground').mult,0);
+  const evo=await evaluate(`(() => {const chain=document.querySelector('.evolution-chain');return {stages:[...chain.querySelectorAll('.evolution-stage-name')].map(n=>n.textContent),requirements:[...chain.querySelectorAll('.evolution-requirement')].map(n=>n.textContent),above:[...chain.querySelectorAll('.evolution-link')].every(n=>n.querySelector('.evolution-requirement').getBoundingClientRect().bottom<=n.querySelector('.evolution-arrow').getBoundingClientRect().top),rows:document.querySelectorAll('.evolution-chain').length};})()`);
+  assert.deepEqual(evo,{stages:['Dratini','Dragonair','Dragonite'],requirements:['Level 30','Level 55'],above:true,rows:1});
+  await referenceDex('#species=116&scope=national');
+  const horsea=await evaluate(`(() => {const d=[...document.querySelectorAll('.reference-locations details')].find(n=>n.querySelector('summary').textContent==='Whirl Islands');return d.textContent})()`);
+  assert.doesNotMatch(horsea,/Lugia|Kimono|Silver Wing|Tidal Bell/);assert.match(horsea,/B2F · Surfing · Lv. 15–25 · All times · 60%/);
+  if(process.env.POKEDEX_SCREENSHOT_DIR){
+   await evaluate(`document.querySelector('.evolution-scroll').closest('details').scrollIntoView({block:'start'})`);
+   const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.POKEDEX_SCREENSHOT_DIR,`pokedex-evolution-${theme}.png`),Buffer.from(shot.data,'base64'));
+  }
+ }
+ // Branches remain individually readable rather than becoming false linear evolutions.
+ await referenceDex('#species=133&scope=national');assert.equal(await evaluate(`document.querySelectorAll('.evolution-chain').length`),7);
+ assert.equal(await evaluate(`[...document.querySelectorAll('.evolution-chain')].every(n=>n.querySelectorAll('.evolution-stage').length===2)`),true);
+ // Long external-game requirements stay above arrows inside the horizontal region.
+ await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:false});
+ await referenceDex('#species=470&scope=national');assert.equal(await evaluate(`document.querySelector('#reference-detail').scrollWidth<=document.querySelector('#reference-detail').clientWidth`),true);
  await command('Emulation.clearDeviceMetricsOverride');
 });

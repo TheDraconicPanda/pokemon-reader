@@ -58,6 +58,37 @@ export function heldItems(record,compoundEyes=false) {
   if(common&&common===rare)return [{name:common,percent:100}];
   return [{name:common||'No item',percent:compoundEyes?60:50},{name:rare||'No item',percent:compoundEyes?20:5},{name:'No item',percent:compoundEyes?20:45}].reduce((list,row)=>{const found=list.find(x=>x.name===row.name);if(found)found.percent+=row.percent;else list.push({...row});return list;},[]);
 }
+// General Atlas narratives describe a whole location. Only explicitly scoped
+// species notes belong on a species card; never infer relevance from shared geography.
+const SPECIES_NOTE_INDICES = {
+  'Violet City': {340:[0]}, 'Dark Cave': {206:[0]},
+  'Ruins of Alph': {201:[0,1]}, 'Union Cave': {131:[0]},
+  'Bell Tower': {250:[0]}, 'Whirl Islands': {249:[0]},
+  'Lake of Rage': {130:[0]}, "Dragon's Den": {147:[0]},
+  'Mt. Silver': {146:[0]},
+  'Team Rocket HQ': {74:[0],100:[0],109:[0],101:[1]},
+};
+const SHARED_LOCATION_NOTE_INDICES = {
+  'Cherrygrove City':[0], 'Ecruteak City':[0], 'Cliff Edge Gate':[0],
+  'Cliff Cave':[0], 'Sprout Tower':[0], 'Ilex Forest':[0],
+  'National Park':[1], 'Safari Zone Gate':[0],
+};
+function speciesLocationNotes(reference,location,id,method) {
+  if(location==='Embedded Tower') {
+    // The original note combines two separate legendary requirements.
+    if(id===383)return ['Groudon is the SoulSilver Red Orb encounter.'];
+    if(id===384)return ['Rayquaza requires the Jade Orb after showing Professor Oak both a HeartGold-origin Kyogre and a SoulSilver-origin Groudon.'];
+    return [];
+  }
+  const notes=(SHARED_LOCATION_NOTE_INDICES[location]||[]).map(index=>reference.notes[index]);
+  notes.push(...(SPECIES_NOTE_INDICES[location]?.[id]||[]).map(index=>reference.notes[index]));
+  if(location==='Cianwood City'&&method.includes('Rock Smash'))notes.push('Rock Smash encounters are on the northern beach.');
+  if(location==='Dark Cave'&&id!==206)notes.push('The Route 31/46 side and Route 45 side have separate tables.');
+  if(location==='Ruins of Alph'&&id!==201)notes.push(reference.notes[2]);
+  if(location==='National Park'&&method.includes('Bug-Catching Contest'))notes.push(reference.notes[0]);
+  if(location==='Mt. Silver'&&id!==146)notes.push('Outside and each cave section have separate tables. Rock Climb is required to explore the mountain. No random encounters occur at the summit.');
+  return notes;
+}
 const locationsCache=new Map();
 export function speciesLocations(gameId,id) {
   if(!pokedexReference(gameId))return [];
@@ -66,7 +97,7 @@ export function speciesLocations(gameId,id) {
     const add=(id,location,detail,notes=[])=>{if(!id)return; if(!bySpecies.has(id))bySpecies.set(id,[]); const rows=bySpecies.get(id); let group=rows.find(g=>g.location===location);if(!group){group={location,details:[],notes:[]};rows.push(group);} if(!group.details.includes(detail))group.details.push(detail);for(const note of notes)if(!group.notes.includes(note))group.notes.push(note);};
     for(const location of ATLAS_LOCATIONS) {
       const reference=locationEncounterReference(gameId,location.name);
-      for(const row of reference?.encounters||[])add(row.speciesId,location.name,`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rate}`,reference.notes||[]);
+      for(const row of reference?.encounters||[])add(row.speciesId,location.name,`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rate}`,speciesLocationNotes(reference,location.name,row.speciesId,row.method));
       for(const row of locationDetails(gameId,location.name)?.gifts||[])add(speciesIdForName(gameId,row.name),location.name,[row.kind,row.location,row.level?`Lv. ${row.level}`:'',...row.conditions,row.availability].filter(Boolean).join(' · '));
     }
     for(const row of SOULSILVER_SAFARI_ENCOUNTERS)add(speciesIdForName(gameId,row.pokemon),'Safari Zone',`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rarity}`,['Existing Safari records: encounter/block mechanics audit remains pending.']);

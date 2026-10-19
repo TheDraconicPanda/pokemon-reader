@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Reference Pokédex — v0.25.56 · Pokémon Reader</title>
+  <title>Reference Pokédex — v0.25.57 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/pokedex.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <script src="../js/app-shell.js"></script>
 </head>
-<body>
+<body class="reference-page">
 <main class="app reference-app">
+  <h1 class="reference-page-title">Reference Pokédex</h1>
+  <div class="reference-top">
   <app-menu tool="pokedex"></app-menu>
-  <header class="app-header"><p>POKÉMON READER · v0.25.56</p><h1>Reference Pokédex</h1><p>Species reference for SoulSilver · Generation IV. No save needed.</p></header>
   <section class="dex-jump" aria-label="Pokédex navigation">
     <div class="reference-selectors">
       <label>Game <select id="reference-game"><option value="soulsilver">SoulSilver</option></select></label>
@@ -22,8 +23,8 @@
     <form id="reference-search"><label for="species-search">Jump to a name or National number</label><div class="jump-controls"><input id="species-search" type="search" autocomplete="off" placeholder="e.g. Dratini or 147"><button type="submit">Jump</button><button id="next-match" type="button" hidden>Next</button></div></form>
     <p id="reference-status" role="status">Search keeps the surrounding species in view.</p>
   </section>
-  <ol id="species-list" class="species-list" aria-label="SoulSilver Pokédex"></ol>
-  <footer><p>Reference data uses HGSS mechanics. <a href="../docs/reference-pokedex.md">Sources and coverage</a></p></footer>
+  </div>
+  <ol id="species-list" class="species-list" aria-label="SoulSilver Pokédex" tabindex="0"></ol>
 </main>
 <dialog id="reference-detail" class="pokemon-detail-dialog" aria-labelledby="reference-title">
   <div class="pokemon-detail-dialog-header"><h2 id="reference-title"></h2><button id="reference-close" class="pokemon-detail-close" type="button" aria-label="Close species details">Close</button></div>
