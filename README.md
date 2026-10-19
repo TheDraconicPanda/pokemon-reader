@@ -2,6 +2,21 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Safari area maps — v0.25.60
+
+All twelve Safari areas now show their original HGSS reference map between the
+compass controls. Maps follow area identity when you change the manual layout;
+select a map to open the original full-size image. Source credits are linked
+beneath each preview. Existing six-position navigation was accepted by the user.
+
+These images load online from Bulbagarden Archives. A failed image leaves a
+source link and usable navigation. They show reference terrain, without a save
+position or placed-block overlay. The existing locally bundled Atlas maps remain
+unchanged. Workspace networking prevented downloading these additional originals;
+live image loading needs the focused online check in [Safari notes](docs/safari-mini-atlas.md).
+All **142 automated checks pass**; rendering fixtures cover both themes and
+320/390/768/1440px widths. Pushed for Pages deployment; live confirmation pending.
+
 ## Safari mini Atlas — v0.25.59
 
 Go north from **Safari Zone Gate**, or use Atlas’s Johto **Safari** link, to browse
@@ -22,7 +37,7 @@ filter is added. The original all-twelve-area reference remains available.
 See [source verification, storage behavior and the focused online checklist](docs/safari-mini-atlas.md).
 All **140 automated checks pass**, including existing-tool regressions, layout
 persistence/isolation, cross-tab updates, storage failures and mobile themes.
-Live deployment confirmation and online Safari acceptance remain pending.
+The user accepted the Safari navigation and requested maps for each area.
 The user accepted v0.25.58 Pokédex navigation before this milestone began.
 
 ## Reference Pokédex — v0.25.58

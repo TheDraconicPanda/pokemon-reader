@@ -1,3 +1,4 @@
+import { SOULSILVER_SAFARI_MAPS } from './games/soulsilver/safari-maps.js';
 import { SOULSILVER_SAFARI_REFERENCE } from './games/soulsilver/safari-reference.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS } from './games/soulsilver/safari-encounters.js';
 export const SAFARI_POSITIONS=['Northwest','North center','Northeast','Southwest','South center','Southeast'];
@@ -24,4 +25,8 @@ export function swapSafariArea(gameId,areas,position,areaId) {
   const updated=[...areas],other=updated.indexOf(areaId);
   if(other!==-1)updated[other]=updated[position];
   updated[position]=areaId;return updated;
+}
+
+export function safariAreaMap(gameId,areaId) {
+  return gameId==='soulsilver'?SOULSILVER_SAFARI_MAPS.find(map=>map.areaId===areaId)||null:null;
 }

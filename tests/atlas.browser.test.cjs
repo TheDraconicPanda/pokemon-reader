@@ -16,6 +16,7 @@ const pending = new Map();
 const exceptions = [];
 let browserLog = "";
 let apiUnavailable = false;
+let safariMapFixture=null, safariMapFailure=false;
 
 async function until(operation, message) {
   const deadline = Date.now() + 15000;
@@ -107,6 +108,10 @@ before(async () => {
     }
     if (message.method === "Fetch.requestPaused") {
       const { requestId, request } = message.params;
+      if (safariMapFixture && request.url.startsWith('https://archives.bulbagarden.net/media/upload/')) {
+        command('Fetch.fulfillRequest',{requestId,responseCode:safariMapFailure?503:200,responseHeaders:[{name:'Content-Type',value:'image/png'}],body:safariMapFailure?'':safariMapFixture}).catch(error=>browserLog+=error.message);
+        return;
+      }
       let body;
       if (request.url.includes('/js/saves/soulsilver.js')) body = 'export function detectSoulSilver() { globalThis.__parseCount = (globalThis.__parseCount || 0) + 1; return structuredClone(globalThis.__readerFixture); }';
       else if (request.url.includes('pokemon-species?')) body = JSON.stringify({results:[{name:'pikachu',url:'https://pokeapi.co/api/v2/pokemon-species/25/'},{name:'eevee',url:'https://pokeapi.co/api/v2/pokemon-species/133/'},{name:'chikorita',url:'https://pokeapi.co/api/v2/pokemon-species/152/'}]});
@@ -262,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.59') && document.querySelector('.eyebrow').textContent.includes('v0.25.59'),
+    version: document.title.includes('v0.25.60') && document.querySelector('.eyebrow').textContent.includes('v0.25.60'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -270,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.59<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.60<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.59");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.60");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -340,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -598,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -784,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.60'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2094,4 +2099,43 @@ test('Safari layout updates from another browser tab preserve scope and prevent 
   assert.deepEqual(await evaluate(`(async()=>{const s=await import('/js/safari-store.js');return(await s.loadSafariLayout('soulsilver')).areas;})()`),[10,7,1,5,3,6]);
   assert.equal(await evaluate(`location.hash`),'#safari=0');
  }finally{await command('Target.closeTarget',{targetId:target.targetId});}
+});
+
+// A local PNG exercises decoding/layout deterministically; it is not presented as
+// a downloaded Safari map. Original image URLs are checked independently above.
+test('Safari maps follow all twelve area identities, open full size, fit both themes and recover from image errors',async()=>{
+ safariMapFixture=(await readFile(path.join(root,'assets/maps/violet-city.png'))).toString('base64');
+ await command('Fetch.enable',{patterns:[{urlPattern:'https://archives.bulbagarden.net/media/upload/*'}]});
+ try {
+  await safariVisit('#safari=0','/pokemon-reader');
+  const {safariReference,safariAreaMap}=await import('../js/data/safari-reference.js');
+  for(const area of safariReference('soulsilver').areas){
+   await editSafari(0,area.id);
+   await until(()=>evaluate(`document.querySelector('.safari-map')?.naturalWidth>0&&document.querySelector('.safari-map-status').hidden`),'Map fixture did not decode');
+   const expected=safariAreaMap('soulsilver',area.id);
+   const shown=await evaluate(`(()=>{const i=document.querySelector('.safari-map'),a=i.closest('a');return {src:i.src,href:a.href,alt:i.alt,target:a.target,rel:a.rel,referrer:i.referrerPolicy,source:document.querySelector('.safari-map-credit').href};})()`);
+   assert.equal(shown.src,expected.imageUrl);assert.equal(shown.href,expected.imageUrl);
+   assert.ok(shown.alt.startsWith(area.name+' area map'));assert.equal(shown.target,'_blank');assert.match(shown.rel,/noopener/);assert.equal(shown.referrer,'no-referrer');assert.equal(shown.source,expected.sourceUrl);
+  }
+  for(const theme of ['light','dark'])for(const width of [320,390,768,1440]){
+   await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
+   await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'))`);
+   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}`);
+   assert.equal(await evaluate(`(()=>{const r=document.querySelector('.safari-map').getBoundingClientRect();return r.width>100&&r.right<=innerWidth&&r.height>0;})()`),true);
+   assert.equal(await evaluate(`document.querySelectorAll('#safari-compass>.compass-direction').length`),4);
+   if(process.env.SAFARI_SCREENSHOT_DIR&&[390,1440].includes(width)){
+    await evaluate(`document.querySelector('#safari-area-title').scrollIntoView({block:'center'})`);
+    const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SCREENSHOT_DIR,`safari-map-fixture-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+   }
+  }
+  safariMapFailure=true;await editSafari(0,0);
+  await until(()=>evaluate(`document.querySelector('.safari-map-link').hidden&&document.querySelector('.safari-map-status').textContent.includes('unavailable')`),'Missing-map fallback');
+  assert.ok(await evaluate(`document.querySelector('.safari-map-credit').href.includes('Plains')`));
+  await evaluate(`document.querySelector('[data-safari-direction="east"]').click()`);
+  await until(()=>evaluate(`location.hash==='#safari=1'`),'Navigation survives image failure');
+  safariMapFailure=false;await evaluate(`document.querySelector('[data-safari-direction="west"]').click()`);
+  await until(()=>evaluate(`location.hash==='#safari=0'&&document.querySelector('.safari-map').naturalWidth>0&&!document.querySelector('.safari-map-link').hidden&&document.querySelector('.safari-map-status').hidden`),'Fresh area retries map after failure');
+ }finally{
+  await command('Fetch.disable');await command('Emulation.clearDeviceMetricsOverride');safariMapFixture=null;safariMapFailure=false;
+ }
 });

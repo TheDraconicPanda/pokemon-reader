@@ -1,9 +1,44 @@
-# SoulSilver Safari mini Atlas — v0.25.59
+# SoulSilver Safari mini Atlas — v0.25.60
 
 This milestone integrates the Safari reference into Atlas without the separate
 calculator or new binary-save research. Reader/Pokédex navigation was accepted by
 the user before this milestone began. Safari remains within Atlas, not another
 main-menu destination.
+
+## Area maps (v0.25.60)
+
+The user accepted the v0.25.59 navigation and requested maps for every area.
+`js/data/games/soulsilver/safari-maps.js` identifies twelve distinct original HGSS
+images on Bulbagarden Archives. The game-scoped `safariAreaMap` lookup uses area
+ID, not grid position; swapping/replacing a manual area updates its map and
+encounters together. Other games receive no Safari map fallback.
+
+The preview sits between the existing compass controls and opens the original
+PNG in a new tab. A linked source credit remains below it. Image loads send no
+referrer. There is a loading message and an error fallback; failed images never
+remove navigation, encounters or the source link. Revisiting an area retries.
+The maps are reference terrain, not overlays of player position or placed blocks.
+
+These twelve images are **online dependencies**, unlike the existing 148 local
+Atlas PNGs. Web references resolved all twelve original image URLs, and eleven
+file-description pages identified HGSS area imagery by Jdthebud (2014). Marshland's
+original image resolved, but its description page was inaccessible to the research
+tool. Pokémon game-image rights remain with their respective owners; accessible
+source pages mark these screenshots as fair use, not an open asset license.
+No copyrighted images are newly bundled in this release.
+
+The workspace's enforced HTTP allowlist excludes `archives.bulbagarden.net`.
+Granting general network permission did not change that policy: the download
+returned HTTP 403. The browser tests therefore use a clearly identified existing
+local PNG fixture to check loading, sizing and failure recovery. They do not
+establish live original-image decoding, offline availability, or permission from
+the source to redistribute. Original image availability must be checked online.
+The existing local Atlas map manifest, counts and source audits remain unchanged.
+
+The v0.25.60 full suite passes **142 tests, 0 failures, 0 skipped**. Map fixture
+rendering and error-state screenshots were inspected on phone and desktop. These
+are presentation checks, not screenshots of downloaded Safari originals. The
+update is pushed for Pages deployment; live confirmation remains pending.
 
 ## Entry, navigation and reference behavior
 
@@ -137,7 +172,7 @@ use distinct query strings and reload markers to wait for the fresh document.
 Safari layout has been independently validated. Pushing to the existing deployment
 branch is not proof the live Pages build is ready; online user acceptance follows.
 
-## Focused user checklist
+## Previous navigation checklist (accepted by user)
 
 1. Confirm **v0.25.59** in Atlas. Open **Safari Zone Gate** and go north. Expect a
    six-area mini Atlas, with **Peak** at the entrance in the labeled example.
@@ -154,3 +189,13 @@ The layout is manual in this version; loading a save does not auto-fill it. No
 calculator, object planning or automatic progression filtering is expected yet.
 Only this Safari integration needs focused acceptance; existing tools already ran
 through automated regressions.
+
+## Focused map checklist (v0.25.60)
+
+1. Open Atlas’s Safari view and confirm **v0.25.60**. Each selected area should
+   show its own terrain map in the center of the compass.
+2. Select the map to open it full size. If you change an area in the manual
+   layout, its preview should change to the new area too.
+
+Online image loading is the remaining manual check; no broad feature retest is
+requested. Existing navigation/manual-layout acceptance remains recorded.

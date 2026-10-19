@@ -1,5 +1,5 @@
 import { getActiveProfile,subscribeAdventureChanges,notifyAdventureChange } from './adventures.js';
-import { safariReference,safariAreaEncounters,safariNeighbors,swapSafariArea,SAFARI_POSITIONS } from './data/safari-reference.js';
+import { safariReference,safariAreaMap,safariAreaEncounters,safariNeighbors,swapSafariArea,SAFARI_POSITIONS } from './data/safari-reference.js';
 import { loadSafariLayout,saveSafariLayout } from './safari-store.js';
 import { renderAtlasEncounters } from './atlas-encounters.js';
 const node=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
@@ -27,7 +27,7 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
   function render(nextPosition=position,{focus=false}={}) {
     position=safariNeighbors(gameId,nextPosition)?nextPosition:game.entrancePosition;
     if(panel.hidden){showSource();return;}
-    compass.classList.add('connection-links');
+    compass.classList.add('connection-links','has-map');
     grid.replaceChildren();
     for(let i=0;i<6;i++) {
       const b=node('button',undefined,'safari-area-button');b.type='button';b.dataset.safariPosition=i;
@@ -49,7 +49,24 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
     }
     const current=node('div',undefined,'compass-current safari-current');
     const heading=node('h3',areaName(areas[position]));heading.id='safari-area-title';heading.tabIndex=-1;
-    current.append(heading,node('p',SAFARI_POSITIONS[position]));compass.append(current);
+    current.append(heading,node('p',SAFARI_POSITIONS[position]));
+    const map=safariAreaMap(gameId,areas[position]);
+    if(map) {
+      const link=node('a',undefined,'location-map-link safari-map-link');
+      link.href=map.imageUrl;link.target='_blank';link.rel='noopener noreferrer';
+      link.setAttribute('aria-label',`Open full-size ${map.name} HGSS map in a new tab`);
+      const image=node('img',undefined,'location-map safari-map');
+      image.width=map.width;image.height=map.height;image.alt=`${map.name} area map · Pokémon HeartGold and SoulSilver · north is up`;
+      image.referrerPolicy='no-referrer';image.decoding='async';
+      const status=node('p','Loading online map…','safari-map-status');status.setAttribute('role','status');
+      image.addEventListener('load',()=>{status.hidden=true;});
+      image.addEventListener('error',()=>{link.hidden=true;status.hidden=false;status.textContent='Map unavailable. Try the source link below.';});
+      link.append(image,node('span','Open full-size map ↗','map-hint'));
+      const credit=node('a',`Map: Bulbagarden Archives${map.contributor?' · '+map.contributor:''}`,'safari-map-credit');
+      credit.href=map.sourceUrl;credit.target='_blank';credit.rel='noopener noreferrer';
+      current.append(link,status,credit);image.src=map.imageUrl;
+    }
+    compass.append(current);
     const rows=safariAreaEncounters(gameId,areas[position]);
     const section=renderAtlasEncounters({gameId,locationName:areaName(areas[position]),encounters:rows,notes:[],decorateSpecies});
     const count=node('p',`${rows.length} existing reference records · Safari data audit pending · not filtered by your blocks, aging or progression`,'safari-reference-count');
@@ -118,6 +135,6 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
   subscribeAdventureChanges(refresh);window.addEventListener('focus',refresh);window.addEventListener('pageshow',refresh);
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
   render();refresh();
-  function hide(){grid.replaceChildren();compass.replaceChildren();compass.classList.remove('connection-links');encounters.replaceChildren();}
+  function hide(){grid.replaceChildren();compass.replaceChildren();compass.classList.remove('connection-links','has-map');encounters.replaceChildren();}
   return {render,refresh,hide};
 }

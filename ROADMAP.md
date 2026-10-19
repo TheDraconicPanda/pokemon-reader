@@ -37,13 +37,16 @@ See [architecture and acceptance gates](docs/application-integration.md).
   manual layouts, shared encounters/caught markers and Gate return
 - [x] Milestone 5: all 140 checks pass; phone/desktop layouts reviewed; original
   269 encounter records and all twelve area partitions verified unchanged
-- [ ] Milestone 5 online focused user acceptance after publication
+- [x] Milestone 5: user accepted Safari navigation and requested individual area maps
+- [x] v0.25.60: twelve online original HGSS area maps, full-size/source links and failure fallback
+- [x] v0.25.60: all 142 automated checks pass; image-fixture phone/desktop and error-state layouts inspected
+- [ ] v0.25.60: online map-loading and visual acceptance
 - [ ] Milestone 6: integrated navigation/mobile/accessibility/data regression and docs
 
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.59 release label.
+in this chat. Reader, Atlas and Planner display the same v0.25.60 release label.
 See [the focused Safari checklist](docs/safari-mini-atlas.md). Integration-wide
 polish/regression remains next; the separate Safari calculator is still postponed.
 

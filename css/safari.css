@@ -34,3 +34,10 @@
 
 .safari-mini-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--accent); font-size: .85rem; }
 .safari-mini-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Keep the original compass, with a useful preview at narrow widths. */
+#safari-compass.has-map { grid-template-columns: minmax(3.5rem,1fr) minmax(0,4fr) minmax(3.5rem,1fr); }
+.safari-map-link { margin-top: .6rem; }
+.safari-map { width: 100%; max-width: 496px; height: auto; aspect-ratio: 496 / 384; margin-inline: auto; }
+.safari-map-credit { display: inline-block; font-size: .7rem; font-weight: 400; line-height: 1.4; }
+.safari-map-status { font-weight: 400; }

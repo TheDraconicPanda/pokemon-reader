@@ -64,3 +64,10 @@ artwork remains copyrighted by Nintendo, The Pokémon Company and Game Freak;
 the software license does not transfer ownership of game artwork. Bulbagarden
 identifies these game images as fair use. Original file-page links remain available
 in Atlas Sources and follow the selected floor. Embedded image credits are retained.
+
+## Safari area maps (v0.25.60)
+
+The twelve Safari mini Atlas maps are online original-image references in
+`js/data/games/soulsilver/safari-maps.js`, not files in this archive. Their linked
+Bulbagarden file pages carry source credits. See `docs/safari-mini-atlas.md` for
+availability/testing limits. Existing local asset counts and checksums are unchanged.

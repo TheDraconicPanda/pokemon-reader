@@ -35,3 +35,17 @@ test('manual layouts require six distinct area IDs and swapping preserves caller
  assert.equal(validateSafariLayout(record,'soulsilver',null),record);
  assert.throws(()=>validateSafariLayout(record,'soulsilver','other'));assert.throws(()=>validateSafariLayout({...record,schemaVersion:2},'soulsilver',null));
 });
+test('Safari map references cover the twelve exact area IDs without leaking into other games',async()=>{
+ const {safariReference,safariAreaMap}=await api();const urls=new Set();
+ for(const area of safariReference('soulsilver').areas){
+  const map=safariAreaMap('soulsilver',area.id);
+  assert.equal(map.name,area.name);assert.equal(map.width,496);assert.equal(map.height,384);
+  assert.equal(map.contributor,area.id===8?null:'Jdthebud');
+  const file=`Johto_Safari_Zone_${area.name.replaceAll(' ','_')}_HGSS.png`;
+  assert.equal(new URL(map.imageUrl).hostname,'archives.bulbagarden.net');
+  assert.ok(map.imageUrl.endsWith('/'+file));assert.ok(map.sourceUrl.endsWith('File:'+file));urls.add(map.imageUrl);
+ }
+ assert.equal(urls.size,12);
+ for(const game of ['heartgold','other',null])assert.equal(safariAreaMap(game,0),null);
+ for(const id of [-1,12,'0',null])assert.equal(safariAreaMap('soulsilver',id),null);
+});
