@@ -88,11 +88,12 @@ Neither is the proposed independent reference encyclopedia.
    [caught registrations, shared data and exact acceptance checks](atlas-caught.md).
 4. **Reference Pokédex/cards:** complete game-specific numbered list/search jump,
    all requested Gen IV sections, evolution-wide TM/HM table, exact Atlas links,
-   preserved scroll/focus and existing Reader presentation. Implemented in v0.25.56;
-   online user acceptance pending. See [reference data and focused checks](reference-pokedex.md).
+   preserved scroll/focus and existing Reader presentation. Implemented in v0.25.56,
+   refined through v0.25.58; user reported navigation is perfect and authorized advancing. See [reference data and focused checks](reference-pokedex.md).
 5. **Safari mini Atlas:** verified six-position navigation, manual arrangement,
    existing encounter records, caught indicators and Gate return; no calculator or
-   guessed binary layout. Pending.
+   guessed binary layout. Implemented in v0.25.59; validation/publication and online
+   user acceptance tracked in [the Safari milestone](safari-mini-atlas.md).
 6. **Integration regression:** shared menu, history/base-path/mobile/accessibility,
    consistent versions, README/ROADMAP and real-save acceptance checklist. Pending.
 

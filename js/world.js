@@ -1,7 +1,8 @@
 import { SOULSILVER_SAFARI_ENCOUNTERS as SAFARI_ZONE_ENCOUNTERS } from './data/games/soulsilver/safari-encounters.js';
 import { mountCaughtIndicators } from './caught-indicators.js';
 import { speciesIdForName } from './data/game-reference.js';
-import { encounterSections } from "./atlas-encounter-sections.js";
+import { renderAtlasEncounters } from "./atlas-encounters.js";
+import { mountSafariAtlas } from "./safari-atlas.js";
 import { mountEvTraining } from "./atlas-ev-training.js";
 import { locationEncounterReference } from "./data/atlas-route-reference.js";
 import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
@@ -74,93 +75,11 @@ function connectionDirection(source, target) {
 
 
 function renderEncounters(locationName) {
-  const reference = locationEncounterReference(ATLAS_GAME_ID, locationName);
-  const encounters = reference ? reference.encounters : locationName === "Safari Zone" ? SAFARI_ZONE_ENCOUNTERS : null;
-  const section = document.createElement("section");
-  section.className = "location-encounters";
-  section.setAttribute("aria-label", `${locationName} encounters`);
-  const heading = document.createElement("h3");
-  heading.textContent = "Pokémon encounters";
-  if (!encounters || encounters.length === 0) {
-    const message = document.createElement("p");
-    message.className = "encounter-note";
-    message.textContent = reference?.status === "no-fixed-wild" ? "No fixed wild encounters at this location. Gifts, trades and Trainer battles are separate from wild encounters." : "Encounter data has not been added for this location yet.";
-    section.append(heading, message);
-    for (const text of reference?.notes || []) {
-      const detail = document.createElement("p");
-      detail.className = "encounter-note";
-      detail.textContent = text;
-      section.append(detail);
-    }
-    return section;
-  }
-  section.append(heading);
-  const sourceNotes = reference?.notes || ["Safari encounters still require their dedicated data/mechanics audit."];
-  const legendaryNotes = sourceNotes.filter(text => /Roaming Pokémon:|legendary beasts|Ho-Oh encounter|Lugia is level/.test(text));
-  const otherNotes = sourceNotes.filter(text => !legendaryNotes.includes(text));
-  const buckets = encounterSections(encounters);
-  if (legendaryNotes.length && !buckets.some(bucket => bucket.id === "legendary")) {
-    buckets.push({id:"legendary",title:"Legendary encounters",entries:[]});
-  }
-  for (const bucket of buckets) {
-    const disclosure = document.createElement("details");
-    disclosure.className = "encounter-section";
-    disclosure.dataset.encounterSection = bucket.id;
-    const summary = document.createElement("summary");
-    summary.textContent = bucket.entries.length ? `${bucket.title} (${bucket.entries.length})` : bucket.title;
-    disclosure.append(summary);
-    if (bucket.id === "legendary") {
-      for (const text of legendaryNotes) {
-        const note = document.createElement("p");
-        note.className = "encounter-note";
-        note.textContent = text;
-        disclosure.append(note);
-      }
-    }
-    const methods = [...new Set(bucket.entries.map(({encounter}) => encounter.method))];
-    for (const method of methods) {
-      const group = document.createElement("div");
-      group.className = "encounter-method";
-      const methodHeading = document.createElement("h4");
-      methodHeading.textContent = method;
-      const entries = document.createElement("div");
-      entries.className = "encounter-entries";
-      for (const {encounter, index} of bucket.entries.filter(({encounter}) => encounter.method === method)) {
-        const row = document.createElement("div");
-        row.className = "encounter-entry";
-        row.dataset.encounterIndex = String(index);
-        row.dataset.encounterTimes = encounter.times;
-        const name = document.createElement("a");
-        name.href = `../pokedex/#species=${encounter.speciesId ?? speciesIdForName(ATLAS_GAME_ID,encounter.pokemon)}&scope=national`;
-        name.className = "encounter-name";
-        name.textContent = encounter.pokemon;
-        caughtIndicators.decorate(name,encounter.speciesId ?? speciesIdForName(ATLAS_GAME_ID,encounter.pokemon));
-        const info = document.createElement("span");
-        info.className = "encounter-info";
-        info.textContent = [`Lv. ${encounter.levels}`, ...(["morning", "day", "night"].includes(bucket.id) ? [] : [encounter.times]), encounter.rate || encounter.rarity].filter(Boolean).join(" · ");
-        row.append(name, info);
-        entries.append(row);
-      }
-      group.append(methodHeading, entries);
-      disclosure.append(group);
-    }
-    section.append(disclosure);
-  }
-  if (otherNotes.length) {
-    const notes = document.createElement("details");
-    notes.className = "encounter-section encounter-notes";
-    const summary = document.createElement("summary");
-    summary.textContent = "Location encounter notes";
-    notes.append(summary);
-    for (const text of otherNotes) {
-      const note = document.createElement("p");
-      note.className = "encounter-note";
-      note.textContent = text;
-      notes.append(note);
-    }
-    section.append(notes);
-  }
-  return section;
+  const reference=locationEncounterReference(ATLAS_GAME_ID,locationName);
+  return renderAtlasEncounters({gameId:ATLAS_GAME_ID,locationName,
+    encounters:reference?reference.encounters:locationName==='Safari Zone'?SAFARI_ZONE_ENCOUNTERS:null,
+    status:reference?.status,notes:reference?.notes||['Safari encounters still require their dedicated data/mechanics audit.'],
+    decorateSpecies:(node,id)=>caughtIndicators.decorate(node,id)});
 }
 
 const searchInput = document.querySelector("#location-search");
@@ -210,6 +129,9 @@ function renderLocations({ exactName = null } = {}) {
     badge.textContent = TYPE_LABELS[location.type];
 
     overview.append(text, badge);
+    if(location.name==='Safari Zone') {
+      const mini=document.createElement('a');mini.href='#safari';mini.textContent='Open Safari mini Atlas';mini.className='safari-mini-link';text.append(mini);
+    }
 
     const staticSection = document.createElement("section");
     staticSection.className = "location-static";
@@ -454,7 +376,8 @@ function renderLocations({ exactName = null } = {}) {
         const direction = connectionDirection(location.name, name);
         link.setAttribute("aria-label", `${direction === "other" ? "Go to" : direction}: ${name}`);
         link.addEventListener("click", () => {
-          openAtlasLocation(name);
+          if(location.name==='Safari Zone Gate'&&name==='Safari Zone')openSafariPosition();
+          else openAtlasLocation(name);
         });
         groups[direction].append(link);
       }
@@ -480,12 +403,22 @@ const evPanel = document.querySelector("#ev-training");
 const homePanel = document.querySelector("#atlas-home");
 const johtoPanel = document.querySelector("#johto-home");
 const toolNav = document.querySelector("#johto-tool-nav");
+const safariPanel = document.querySelector("#safari-mini-atlas");
 function setAtlasView(panel) {
-  for (const view of [homePanel, johtoPanel, atlasPanel, evPanel]) view.hidden = view !== panel;
+  if(panel!==safariPanel)safariAtlas.hide();
+  for (const view of [homePanel, johtoPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
   toolNav.hidden = panel === homePanel;
 }
 const caughtIndicators = mountCaughtIndicators({gameId:ATLAS_GAME_ID,root:document.querySelector('.world-app'),status:document.querySelector('#atlas-save-status')});
 const evFinder = mountEvTraining({panel: evPanel, onOpenLocation: openAtlasLocation,decorateSpecies:(node,name)=>caughtIndicators.decorate(node,speciesIdForName(ATLAS_GAME_ID,name))});
+
+const safariAtlas=mountSafariAtlas({gameId:ATLAS_GAME_ID,panel:safariPanel,
+  decorateSpecies:(node,id)=>caughtIndicators.decorate(node,id),
+  onOpenPosition:position=>openSafariPosition(position),onExit:()=>openAtlasLocation('Safari Zone Gate')});
+function openSafariPosition(position=4,push=true,focus=true) {
+  if(push)history.pushState(null,'',`#safari=${position}`);
+  setAtlasView(safariPanel);safariAtlas.render(position,{focus});
+}
 
 function openAtlasLocation(name, push = true, focus = true) {
   if (!LOCATIONS.some(location => location.name === name)) name = "New Bark Town";
@@ -502,7 +435,10 @@ function openAtlasLocation(name, push = true, focus = true) {
 }
 
 function showAtlasRoute(focus = true) {
-  if (location.hash === "#ev-training") {
+  if(location.hash==='#safari'||location.hash.startsWith('#safari=')) {
+    const value=location.hash==='#safari'?4:Number(location.hash.slice(8));
+    openSafariPosition(value,false,focus);
+  } else if (location.hash === "#ev-training") {
     setAtlasView(evPanel);
     evFinder.render();
     if (focus) document.querySelector("#ev-training-title").focus();

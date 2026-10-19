@@ -133,8 +133,9 @@ at 320/390/768/1440px. Phone and desktop card screenshots were inspected.
 `npm test`: **129 passed, 0 failed, 0 skipped** on Node 24 / Chromium 154.
 `git diff --check` passed. Publication is to the existing main/Pages deployment
 branch; the live result requires online confirmation.
-The user accepted the v0.25.57 visual changes. Online acceptance of the v0.25.58
-link-position fix remains pending; pushing alone does not prove Pages is live.
+The user accepted the v0.25.57 visual changes and reported v0.25.58 navigation
+is perfect, authorizing the next milestone. This confirms user acceptance of the
+link-position fix; it does not establish independent in-game data validation.
 
 ## Focused online checklist
 
@@ -150,4 +151,5 @@ Browser regressions cover this full journey at phone width under the Pages base
 path, direct links without an explicit scope, alternate forms, the final species
 in the list, Close/Escape, and preservation of ordinary browse/Back/Forward offsets.
 No broader profile/Planner/Atlas retest is requested unless a regression appears.
-Safari mini Atlas remains the next milestone after this fix is validated.
+This navigation checklist is user-accepted. The Safari mini Atlas is implemented
+in v0.25.59; its focused checks are in [the Safari milestone](safari-mini-atlas.md).

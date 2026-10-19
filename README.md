@@ -2,6 +2,29 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Safari mini Atlas — v0.25.59
+
+Go north from **Safari Zone Gate**, or use Atlas’s Johto **Safari** link, to browse
+six areas in a verified three-column, two-row layout. Compass controls move between
+neighbors; the entrance south of the bottom-center area returns to the Gate.
+
+**Set manual area layout** mirrors your game’s six areas. Saved layouts stay
+separate for each adventure and reference mode. The initial arrangement is labeled
+as an example: Safari layout/progression is not decoded from saves. Nothing here
+changes the in-game arrangement. Storage failures keep session-only editing usable
+and preserve committed layouts, Reader profiles and Planner data.
+
+Area encounters reuse the main Atlas display, caught markers and reference
+Pokédex links. All 269 existing Safari records remain unchanged and explicitly
+pending their own mechanics/data audit; no block/aging calculator or progression
+filter is added. The original all-twelve-area reference remains available.
+
+See [source verification, storage behavior and the focused online checklist](docs/safari-mini-atlas.md).
+All **140 automated checks pass**, including existing-tool regressions, layout
+persistence/isolation, cross-tab updates, storage failures and mobile themes.
+Live deployment confirmation and online Safari acceptance remain pending.
+The user accepted v0.25.58 Pokédex navigation before this milestone began.
+
 ## Reference Pokédex — v0.25.58
 
 Use **Pokédex** in the shared menu for the standalone SoulSilver species reference,
@@ -35,8 +58,8 @@ that row. Normal in-list cards still restore their original browse position.
 
 See [sources, limitations and the focused online checklist](docs/reference-pokedex.md).
 All **129 automated checks pass**, including Reader/Planner/Atlas regressions,
-keyboard/history behavior and mobile layouts. The v0.25.57 visual changes were
-accepted by the user; online acceptance of the link-position fix remains pending. Safari mini Atlas is the
+keyboard/history behavior and mobile layouts. The user accepted the visual refinements and reported v0.25.58 navigation is
+perfect; the reference Pokédex milestone is user-validated. Safari mini Atlas is the
 next milestone after this one is validated.
 
 ## Atlas caught registrations — v0.25.55

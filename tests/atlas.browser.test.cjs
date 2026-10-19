@@ -81,8 +81,10 @@ before(async () => {
     }
   }
   browser = spawn(process.env.CHROMIUM_PATH || "chromium", [
+    // Independent cases delete IDB: do not freeze a previous app document with
+    // an in-flight database close inside the back/forward cache.
     "--headless", "--no-sandbox", "--no-first-run", "--disable-extensions",
-    "--disable-gpu", "--disable-dev-shm-usage", "--remote-debugging-port=0",
+    "--disable-gpu", "--disable-dev-shm-usage", "--disable-features=BackForwardCache", "--remote-debugging-port=0",
     `--user-data-dir=${profile}`, "about:blank"
   ], { stdio: ["ignore", "ignore", "pipe"], env:{...process.env,HOME:profile} });
   browser.on("error", (error) => { browserLog += error.message; });
@@ -178,6 +180,11 @@ test("every connection opens exactly its destination and clears the type filter"
       const link = Array.from(card.querySelectorAll('.connection-link')).find(l => l.textContent === target);
       type.value = 'route';
       link.click();
+      if(source==='Safari Zone Gate'&&target==='Safari Zone') {
+        if(document.querySelector('#safari-mini-atlas').hidden||document.querySelector('#safari-area-title')?.textContent!=='Peak')failures.push({source,target,miniAtlas:false});
+        document.querySelector('[data-safari-direction="south"]').click();
+        continue;
+      }
       const shown = Array.from(document.querySelectorAll('.location-card h2'), h => h.textContent);
       if (shown.length !== 1 || shown[0] !== target || type.value !== 'all' || search.value !== target) {
         failures.push({ source, target, shown });
@@ -255,7 +262,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.58') && document.querySelector('.eyebrow').textContent.includes('v0.25.58'),
+    version: document.title.includes('v0.25.59') && document.querySelector('.eyebrow').textContent.includes('v0.25.59'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -263,16 +270,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.58<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.59<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.58");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.59");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -333,7 +340,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -591,7 +598,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -777,7 +784,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.58'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.59'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -807,10 +814,10 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
     })()`);
     assert.equal(compass,true,`Compass placement at ${width}`);
     await evaluate(`(() => { const search=document.querySelector('#location-search');search.value='Safari Zone Gate';search.dispatchEvent(new Event('input'));Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Safari Zone Gate').querySelector('.compass-north button').click(); })()`);
-    const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('.location-connections').getBoundingClientRect().bottom,encounters:document.querySelector('.location-encounters').getBoundingClientRect().top,button:document.querySelector('.connection-link').getBoundingClientRect().bottom,rows:new Set(Array.from(document.querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size})`);
-    assert.equal(layout.overflow,false); assert.equal(layout.heading,'Safari Zone');
-    assert.ok(layout.nav<=layout.encounters); assert.ok(layout.button<=844); assert.equal(layout.rows,269);
-    assert.equal(await evaluate(`document.querySelector('.location-connections').getBoundingClientRect().bottom <= document.querySelector('.location-static').getBoundingClientRect().top`),true);
+    const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('#safari-compass').getBoundingClientRect().bottom,encounters:document.querySelector('#safari-encounters').getBoundingClientRect().top,rows:new Set(Array.from(document.querySelectorAll('#safari-encounters .encounter-entry'),r=>r.dataset.encounterIndex)).size})`);
+    assert.equal(layout.overflow,false); assert.equal(layout.heading,'Peak');
+    assert.ok(layout.nav<=layout.encounters); assert.equal(layout.rows,20);
+    await evaluate(`document.querySelector('[data-safari-direction="south"]').click()`);
     await evaluate(`document.querySelector('#location-search').value='New Bark Town';document.querySelector('#location-search').dispatchEvent(new Event('input'));document.querySelector('.compass-west button').click()`);
   }
   await command('Emulation.clearDeviceMetricsOverride');
@@ -1174,7 +1181,7 @@ test('Atlas opens on ordered region cards, Johto leads to its tools, and navigat
     assert.ok(!home.summary.includes('Start in New Bark'));
     await evaluate(`document.querySelector('#atlas-home a[href="#johto"]').click()`);
     await until(()=>evaluate(`!document.querySelector('#johto-home').hidden`),'Johto landing');
-    assert.equal(await evaluate(`document.querySelector('#johto-home button').disabled`),true);
+    assert.equal(await evaluate(`document.querySelector('#johto-home a[href="#safari"]').getAttribute('href')`),'#safari');
     if(process.env.ATLAS_SCREENSHOT_DIR&&[390,1440].includes(width)){
       await evaluate(`scrollTo(0,0)`);
       const shot=await command('Page.captureScreenshot',{format:'png'});
@@ -1932,4 +1939,159 @@ test('direct species and form links reveal their base species on Close or Escape
  await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Close restored family card');
  assert.equal(await evaluate(`document.querySelector('#species-list').scrollTop`),originalY);
 
+});
+
+let safariVisitNumber=0;
+async function safariVisit(hash='#safari',prefix='') {
+ await command('Page.navigate',{url:baseURL+prefix+'/pokedex-earth/?safariTest='+(++safariVisitNumber)+hash});
+ await until(()=>evaluate(`document.querySelector('#safari-mini-atlas')?.dataset.safariReady==='true'&&!document.querySelector('#safari-mini-atlas').hidden&&!!document.querySelector('#safari-area-title')`),'Safari mini Atlas ready');
+}
+async function editSafari(position,area,{save=true}={}) {
+ await evaluate(`document.querySelector('#safari-layout-editor').open=true`);
+ await until(()=>evaluate(`document.querySelectorAll('#safari-layout-fields select').length===6`),'Manual layout fields');
+ await evaluate(`(() => {const select=document.querySelector('[data-safari-edit-position="${position}"]');select.value='${area}';select.dispatchEvent(new Event('change'));})()`);
+ if(save){await evaluate(`document.querySelector('#safari-layout-form').requestSubmit()`);await until(()=>evaluate(`!document.querySelector('#safari-layout-editor').open&&!document.querySelector('#safari-layout-save').disabled`),'Manual layout saved/applied');}
+}
+test('Safari Gate north enters the mini Atlas, all adjacent links preserve orientation and south-center exits back to Gate',async()=>{
+ await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Safari%20Zone%20Gate'});
+ await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Safari Zone Gate'`),'Safari Gate');
+ await evaluate(`document.querySelector('.compass-north button').click()`);
+ await until(()=>evaluate(`!document.querySelector('#safari-mini-atlas').hidden&&document.querySelector('#safari-mini-atlas').dataset.safariReady==='true'`),'Gate north mini Atlas');
+ assert.equal(await evaluate(`document.querySelector('#safari-area-title').textContent`),'Peak');
+ assert.match(await evaluate(`document.querySelector('#safari-layout-source').textContent`),/Example layout.*no active adventure/);
+ const all=await evaluate(`(() => {const failures=[];for(let i=0;i<6;i++){
+  document.querySelector('[data-safari-position="'+i+'"]').click();
+  const col=i%3,row=Math.floor(i/3),expected={north:row?i-3:null,east:col<2?i+1:null,south:row===0?i+3:i===4?'gate':null,west:col?i-1:null};
+  for(const [direction,target]of Object.entries(expected)){
+   const button=document.querySelector('[data-safari-direction="'+direction+'"]');
+   if(target===null){if(button)failures.push(i+direction+':unexpected');continue;}
+   if(!button){failures.push(i+direction+':missing');continue;}
+   if(target==='gate')continue;
+   button.click();if(location.hash!=='#safari='+target)failures.push(i+direction+':wrong');
+   document.querySelector('[data-safari-position="'+i+'"]').click();
+  }
+ }return failures;})()`);
+ assert.deepEqual(all,[]);
+ await evaluate(`document.querySelector('[data-safari-position="4"]').click();document.querySelector('[data-safari-direction="south"]').click()`);
+ assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Safari Zone Gate');
+ assert.equal(await evaluate(`document.querySelector('#safari-mini-atlas').hidden`),true);
+ await evaluate(`history.back()`);await until(()=>evaluate(`!document.querySelector('#safari-mini-atlas').hidden`),'Back to mini Atlas');
+ assert.equal(await evaluate(`document.querySelector('#safari-area-title').textContent`),'Peak');
+ assert.equal(await evaluate(`document.querySelectorAll('.secondary-nav a[href*="safari"]').length`),0,'Safari stays inside Atlas');
+});
+test('manual Safari layout swaps positions, persists separately per adventure and preserves original saves and Planner storage',async()=>{
+ await safariVisit();
+ await evaluate(`localStorage.setItem('pokemon-reader-soulsilver-team-planner-v1','original planner contents')`);
+ await editSafari(0,2); // Reference layout: Savannah, not an assumed save layout.
+ assert.equal(await evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent`),'Savannah');
+ await evaluate(`window.__beforeSafariReload=true`);await command('Page.reload');await until(()=>evaluate(`!window.__beforeSafariReload&&document.querySelector('#safari-mini-atlas')?.dataset.safariReady==='true'&&document.querySelector('[data-safari-position="0"] strong')?.textContent==='Savannah'`),'Manual reference layout persisted');
+ const first=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return(await a.persistSnapshot(a.createSnapshot(${JSON.stringify(fixture('Alpha'))},'alpha.sav'),{newAdventure:true})).id})()`);
+ await until(()=>evaluate(`document.querySelector('#safari-layout-source').textContent.includes('Alpha')&&document.querySelector('[data-safari-position="0"] strong').textContent==='Plains'`),'Independent first adventure layout');
+ const original=await evaluate(`(async()=>JSON.stringify(await(await import('/js/adventures.js')).getActiveProfile()))()`);
+ await editSafari(0,10);
+ assert.equal(await evaluate(`(async()=>JSON.stringify(await(await import('/js/adventures.js')).getActiveProfile()))()`),original);
+ const second=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return(await a.persistSnapshot(a.createSnapshot(${JSON.stringify(fixture('Beta'))},'beta.sav'),{newAdventure:true})).id})()`);
+ assert.notEqual(first,second);
+ await until(()=>evaluate(`document.querySelector('#safari-layout-source').textContent.includes('Beta')&&document.querySelector('[data-safari-position="0"] strong').textContent==='Plains'`),'Independent second adventure layout');
+ await editSafari(0,3); // Peak already at entrance: swapping should move Plains there.
+ assert.equal(await evaluate(`document.querySelector('[data-safari-position="4"] strong').textContent`),'Plains');
+ assert.equal(await evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent`),'Peak');
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');await a.selectProfile(${JSON.stringify(first)});})()`);
+ await until(()=>evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent==='Mountain'`),'First layout restored');
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');await a.clearActiveProfile();})()`);
+ await until(()=>evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent==='Savannah'`),'Reference layout remains separate');
+ assert.equal(await evaluate(`localStorage.getItem('pokemon-reader-soulsilver-team-planner-v1')`),'original planner contents');
+ const saved=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return a.adventureTransaction(['settings'],'readonly',tx=>a.idbValue(tx.objectStore('settings').getAll()));})()`);
+ assert.equal(saved.filter(r=>r.key.startsWith('safariManualLayout:')).length,3);
+});
+test('Safari area browsing preserves every existing encounter and condition across all twelve areas with direct species links',async()=>{
+ await safariVisit('#safari=0');
+ const {safariReference,safariAreaEncounters}=await import('../js/data/safari-reference.js');
+ for(const area of safariReference('soulsilver').areas){
+  await editSafari(0,area.id);
+  const expected=safariAreaEncounters('soulsilver',area.id);
+  const result=await evaluate(`({name:document.querySelector('#safari-area-title').textContent,indices:[...new Set([...document.querySelectorAll('#safari-encounters .encounter-entry')].map(n=>Number(n.dataset.encounterIndex)))].sort((a,b)=>a-b),text:document.querySelector('#safari-encounters').textContent})`);
+  assert.equal(result.name,area.name);assert.deepEqual(result.indices,expected.map(r=>r.sourceIndex));
+  for(const row of expected){assert.ok(result.text.includes(row.rarity));assert.ok(result.text.includes(row.levels));}
+ }
+ assert.match(await evaluate(`document.querySelector('#safari-encounters .encounter-name').href`),/\/pokedex\/#species=\d+&scope=national$/);
+ await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Safari%20Zone'});
+ await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Safari Zone'`),'Preserved all-area Safari reference');
+ assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(n=>n.dataset.encounterIndex)).size`),269);
+});
+test('Safari uses shared caught registrations and refreshes an updated save without resetting the current area or open encounters',async()=>{
+ const data=atlasCaughtFixture();await fixtureReader(data);await command('Fetch.disable');await safariVisit('#safari=0');
+ await until(()=>evaluate(`document.querySelector('#safari-encounters [data-species-id="19"] .caught-indicator')`),'Safari caught Rattata');
+ await evaluate(`document.querySelector('#safari-encounters details').open=true;window.__safariSection=document.querySelector('#safari-encounters details')`);
+ data.save.pokedex.allCaughtSpecies=[];data.save.pokedex.caughtSpecies=[];data.save.pokedex.caughtCount=0;data.save.pokedex.caughtPercent=0;
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');const p=await a.getActiveProfile();await a.persistSnapshot(a.createSnapshot(${JSON.stringify(data)},'new.sav'),{profileId:p.id});})()`);
+ await until(()=>evaluate(`!document.querySelector('#safari-encounters .caught-indicator')`),'Caught markers refresh');
+ assert.equal(await evaluate(`window.__safariSection===document.querySelector('#safari-encounters details')&&window.__safariSection.open`),true);
+ assert.equal(await evaluate(`document.querySelector('#safari-area-title').textContent`),'Plains');
+});
+test('Safari storage transactions reject stale and wrong-adventure edits without replacing a committed layout',async()=>{
+ await safariVisit();
+ const result=await evaluate(`(async()=>{const s=await import('/js/safari-store.js');const a=[0,7,1,5,3,6];const outcomes=await Promise.allSettled([s.saveSafariLayout('soulsilver',null,a,0),s.saveSafariLayout('soulsilver',null,[2,7,1,5,3,6],0)]);const saved=await s.loadSafariLayout('soulsilver');return {ok:outcomes.filter(o=>o.status==='fulfilled').length,errors:outcomes.filter(o=>o.status==='rejected').map(o=>o.reason.message),saved};})()`);
+ assert.equal(result.ok,1);assert.match(result.errors[0],/another tab/);assert.equal(result.saved.revision,1);
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');await a.persistSnapshot(a.createSnapshot(${JSON.stringify(fixture())},'profile.sav'),{newAdventure:true});})()`);
+ const rejected=await evaluate(`(async()=>{const s=await import('/js/safari-store.js');try{await s.saveSafariLayout('soulsilver',null,[11,7,1,5,3,6],1);return false;}catch(e){return e.message;}})()`);
+ assert.match(rejected,/active adventure changed/);
+ assert.deepEqual(await evaluate(`(async()=>await(await import('/js/safari-store.js')).loadSafariLayout('soulsilver'))()`),result.saved);
+});
+test('Safari reference stays usable with denied storage and manual session changes preserve stored data',async()=>{
+ await safariVisit();await editSafari(0,10);
+ // A quota failure during a write also retains the last committed record.
+ await evaluate(`globalThis.__safariOriginalPut=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(value,...args){if(this.name==='settings'&&value.key?.startsWith('safariManualLayout:'))throw new DOMException('Quota','QuotaExceededError');return globalThis.__safariOriginalPut.call(this,value,...args);}`);
+ try {
+  await editSafari(0,11);
+  assert.match(await evaluate(`document.querySelector('#safari-layout-source').textContent`),/session only/);
+  assert.deepEqual(await evaluate(`(async()=>{const s=await import('/js/safari-store.js');return(await s.loadSafariLayout('soulsilver')).areas;})()`),[10,7,1,5,3,6]);
+ }finally{await evaluate(`IDBObjectStore.prototype.put=globalThis.__safariOriginalPut`);}
+ await command('Page.enable');
+ const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`globalThis.__safariOriginalOpen=indexedDB.open;indexedDB.open=()=>{throw new DOMException('Denied','SecurityError')}`});
+ try {
+  await safariVisit();assert.match(await evaluate(`document.querySelector('#safari-layout-status').textContent`),/storage is unavailable/);
+  await editSafari(0,11);assert.equal(await evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent`),'Desert');
+  assert.match(await evaluate(`document.querySelector('#safari-layout-source').textContent`),/session only/);
+  await evaluate(`indexedDB.open=globalThis.__safariOriginalOpen`);
+  assert.deepEqual(await evaluate(`(async()=>{const s=await import('/js/safari-store.js');return(await s.loadSafariLayout('soulsilver')).areas;})()`),[10,7,1,5,3,6]);
+ }finally{await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});}
+});
+test('Safari mini Atlas keeps a true 3×2 grid, four compass slots, themes and repository paths at phone/tablet/desktop sizes',async()=>{
+ for(const theme of ['dark','light'])for(const width of [320,390,768,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
+  await safariVisit('#safari','/pokemon-reader');
+  await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'))`);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}`);
+  const geometry=await evaluate(`(() => {const r=[...document.querySelectorAll('[data-safari-position]')].map(n=>n.getBoundingClientRect());return r[0].top===r[1].top&&r[1].top===r[2].top&&r[3].top===r[4].top&&r[4].top===r[5].top&&r[0].left===r[3].left&&r[0].left<r[1].left&&r[1].left<r[2].left&&r[3].top>r[0].bottom;})()`);
+  assert.equal(geometry,true);assert.equal(await evaluate(`document.querySelectorAll('#safari-compass>.compass-direction').length`),4);
+  await editSafari(0,11,{save:false});
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,'Manual editor fits');
+  await evaluate(`document.querySelector('#safari-layout-cancel').click()`);
+  assert.equal(await evaluate(`document.querySelector('#load-save').href.endsWith('/pokemon-reader/#overview')`),true);
+  if(process.env.SAFARI_SCREENSHOT_DIR&&[390,1440].includes(width)){
+   await evaluate(`document.querySelector('#safari-area-title').scrollIntoView({block:'center'})`);
+   const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SCREENSHOT_DIR,`safari-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+ }
+ await command('Emulation.clearDeviceMetricsOverride');
+});
+
+test('Safari layout updates from another browser tab preserve scope and prevent stale editor overwrite',async()=>{
+ await safariVisit('#safari=0');await editSafari(0,11,{save:false});
+ const target=await command('Target.createTarget',{url:baseURL+'/tests/fixtures/reset.html'});
+ try {
+  const pages=await (await fetch(`http://${new URL(socket.url).host}/json/list`)).json();
+  const other=new WebSocket(pages.find(page=>page.id===target.targetId).webSocketDebuggerUrl);
+  await new Promise((resolve,reject)=>{other.addEventListener('open',resolve,{once:true});other.addEventListener('error',reject,{once:true});});
+  const response=await new Promise((resolve,reject)=>{
+   const timer=setTimeout(()=>reject(new Error('Other-tab Safari update timed out')),10000);
+   other.addEventListener('message',event=>{const m=JSON.parse(event.data);if(m.id===1){clearTimeout(timer);resolve(m);}});
+   other.send(JSON.stringify({id:1,method:'Runtime.evaluate',params:{expression:`(async()=>{const a=await import('/js/adventures.js');const s=await import('/js/safari-store.js');await s.saveSafariLayout('soulsilver',null,[10,7,1,5,3,6],0);a.notifyAdventureChange();return true;})()`,awaitPromise:true,returnByValue:true}}));
+  });other.close();assert.equal(response.result?.exceptionDetails,undefined);
+  await until(()=>evaluate(`document.querySelector('[data-safari-position="0"] strong').textContent==='Mountain'&&!document.querySelector('#safari-layout-editor').open`),'Other-tab manual layout did not refresh');
+  assert.match(await evaluate(`document.querySelector('#safari-layout-status').textContent`),/unsaved edits were not applied/);
+  assert.deepEqual(await evaluate(`(async()=>{const s=await import('/js/safari-store.js');return(await s.loadSafariLayout('soulsilver')).areas;})()`),[10,7,1,5,3,6]);
+  assert.equal(await evaluate(`location.hash`),'#safari=0');
+ }finally{await command('Target.closeTarget',{targetId:target.targetId});}
 });

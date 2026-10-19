@@ -1,0 +1,36 @@
+#safari-mini-atlas { display: block; }
+#safari-mini-atlas[hidden] { display: none; }
+#safari-mini-atlas > h2 { margin-top: 0; }
+#safari-mini-atlas p { line-height: 1.5; overflow-wrap: anywhere; }
+.safari-context, .safari-reference-count, .safari-position, .safari-area-button small { color: var(--muted); font-size: .85rem; }
+.safari-limits { margin-bottom: 1rem; }
+#safari-layout-editor { padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; }
+#safari-layout-editor summary { cursor: pointer; font-weight: 650; }
+#safari-layout-fields, #safari-area-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+#safari-layout-fields label { min-width: 0; display: grid; gap: 6px; font-size: .8rem; }
+#safari-layout-fields select { padding-inline: 5px; }
+#safari-mini-atlas button { font: inherit; color: var(--accent); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; min-height: 44px; padding: 8px; }
+#safari-layout-save, #safari-layout-cancel { margin-top: 10px; }
+#safari-layout-status { color: var(--warning); font-size: .85rem; }
+#safari-area-grid { margin-block: 1rem; }
+.safari-area-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; overflow-wrap: anywhere; min-width: 0; }
+#safari-area-grid [aria-current="location"] { border: 2px solid var(--accent); background: var(--soft-accent); color: var(--text); }
+.safari-area-button small { font-size: .7rem; }
+#safari-compass { margin: 12px 0; }
+.safari-current { align-self: center; padding: 6px; }
+.safari-current h3 { margin: 0; font-size: 1rem; }
+.safari-current p { margin: .35rem 0 0; font-size: .75rem; color: var(--muted); }
+#safari-mini-atlas a { color: var(--accent); }
+#safari-mini-atlas :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.safari-sources { margin-top: 1rem; }
+@media(max-width: 450px) {
+  #safari-mini-atlas { padding: 10px; }
+  #safari-layout-fields, #safari-area-grid { gap: 5px; }
+  #safari-layout-fields select, .safari-area-button { font-size: .75rem; }
+  #safari-area-grid .safari-area-button { padding: 8px 3px; }
+  .safari-position { font-size: .7rem; }
+  #safari-compass .connection-link { font-size: .75rem; padding: 6px 3px; }
+}
+
+.safari-mini-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--accent); font-size: .85rem; }
+.safari-mini-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }

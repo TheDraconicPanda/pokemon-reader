@@ -32,16 +32,20 @@ See [architecture and acceptance gates](docs/application-integration.md).
 - [x] Milestone 4 visual refinements accepted by user; Atlas return-position bug reported
 - [x] v0.25.58: linked cards reveal their species when closed; ordinary browse
   positions remain preserved; all 129 checks pass
-- [ ] Milestone 4 Atlas return-position fix online user acceptance
-- [ ] Milestone 5: Safari mini Atlas with manual layout and Gate return
+- [x] Milestone 4: user reported navigation is perfect and authorized advancing
+- [x] Milestone 5 implementation (v0.25.59): verified 3×2 navigation, per-adventure
+  manual layouts, shared encounters/caught markers and Gate return
+- [x] Milestone 5: all 140 checks pass; phone/desktop layouts reviewed; original
+  269 encounter records and all twelve area partitions verified unchanged
+- [ ] Milestone 5 online focused user acceptance after publication
 - [ ] Milestone 6: integrated navigation/mobile/accessibility/data regression and docs
 
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.58 release label.
-See [the focused reference Pokédex checklist](docs/reference-pokedex.md). Safari
-mini Atlas remains the next milestone.
+in this chat. Reader, Atlas and Planner display the same v0.25.59 release label.
+See [the focused Safari checklist](docs/safari-mini-atlas.md). Integration-wide
+polish/regression remains next; the separate Safari calculator is still postponed.
 
 ## Phase 0 — Project foundation
 - [x] Create GitHub repository
