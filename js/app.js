@@ -1,3 +1,4 @@
+import { hgssSprite, typeBadges } from './species-presentation.js';
 import { snapshotSave, rememberSave } from './planner-save.js';
 import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persistSnapshot, selectProfile, preserveLegacyPlanner, trainerKey } from './adventures.js';
 import { detectSoulSilver } from "./saves/soulsilver.js";
@@ -5,7 +6,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.55";
+const APP_VERSION = "0.25.56";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -1397,15 +1398,11 @@ pokemonDetailDialog.addEventListener("click", (event) => {
 });
 
 function pokemonSprite(pokemon) {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/${pokemon.shiny ? "shiny/" : ""}${pokemon.speciesId}.png`;
+  return hgssSprite(pokemon.speciesId, pokemon.shiny);
 }
 
 function appendTypeBadges(container, pokemon, showMarkers = true) {
-  const types = document.createElement("div"); types.className = "type-badges";
-  for (const type of pokemon.types || []) {
-    const badge = document.createElement("span"); badge.className = `type-badge type-${type}`;
-    badge.textContent = formatPokemonName(type); types.append(badge);
-  }
+  const types = typeBadges(pokemon.types);
   if (showMarkers && pokemon.shiny) {
     const shiny = document.createElement("span"); shiny.className = "shiny-label"; shiny.textContent = "★ Shiny"; types.append(shiny);
   }

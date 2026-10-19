@@ -2,6 +2,31 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Reference Pokédex — v0.25.56
+
+Use **Pokédex** in the shared menu for the standalone SoulSilver species reference,
+with or without a save. Johto/National numbered lists show local HGSS sprites and
+types. Sticky search jumps without hiding neighbors; closing a species card
+restores list position/focus. Reader's save-based registration Pokédex is preserved.
+
+Details include Gen IV abilities, EV yields, type matchups, wild held-item odds,
+evolution requirements, current Atlas locations, complete HGSS move lists,
+evolution-wide TM/HM compatibility and stat ranges. Atlas encounter names open the
+matching species; location links open exact Atlas destinations. The shared theme
+and presentation are reused across tools.
+
+All 493 species' level-up/Egg/tutor/machine sets match the independent HGSS
+cross-check: 1,972 comparisons, zero differences. Primary data includes twelve
+alternate form records; no hidden abilities, Fairy types or modern stats/learnsets
+are substituted. Location coverage retains the Atlas's Johto/League/Mt. Silver
+scope; full Kanto and the Safari mechanics audit remain separate work.
+
+See [sources, limitations and the focused online checklist](docs/reference-pokedex.md).
+All **124 automated checks pass**, including Reader/Planner/Atlas regressions,
+keyboard/history behavior and mobile layouts. Online user acceptance remains
+pending after publication. Safari mini Atlas is the
+next milestone after this one is validated.
+
 ## Atlas caught registrations — v0.25.55
 
 Atlas encounter species and EV Training results now show a small Poké Ball when
@@ -16,12 +41,12 @@ Profile changes update markers without resetting open encounters or map floors.
 
 Shared SoulSilver identifiers and audited EV yields now serve Planner and Atlas;
 all 1,653 existing encounter names resolve to species IDs. Safari's existing
-records are preserved unchanged. All **113 automated checks pass**, including
-Reader/Planner regressions, mobile themes and Pages paths. Real-save acceptance
-remains pending. See the [focused Atlas checklist and compatibility notes](docs/atlas-caught.md).
+records are preserved unchanged. All **113 automated checks passed** for v0.25.55, including
+Reader/Planner regressions, mobile themes and Pages paths. The user reported “All working well”
+and authorized advancing. See the [focused Atlas checklist and compatibility notes](docs/atlas-caught.md).
 
-The independent reference Pokédex is the next integration milestone; Safari mini
-Atlas remains later work.
+The independent reference Pokédex is implemented in v0.25.56; Safari mini Atlas
+remains later work.
 
 ## Planner integration — v0.25.54
 

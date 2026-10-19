@@ -84,11 +84,12 @@ Neither is the proposed independent reference encyclopedia.
    [Planner implementation and exact acceptance checklist](planner-integration.md).
 3. **Atlas/shared data:** full caught flags, authentic small ball markers, scoped
    species IDs, preserved conditions and verified data provenance.
-   **Implemented in v0.25.55; focused user acceptance pending.** See
+   **Implemented in v0.25.55; user reported “All working well” and authorized the next milestone.** See
    [caught registrations, shared data and exact acceptance checks](atlas-caught.md).
 4. **Reference Pokédex/cards:** complete game-specific numbered list/search jump,
    all requested Gen IV sections, evolution-wide TM/HM table, exact Atlas links,
-   preserved scroll/focus and existing Reader presentation. Pending.
+   preserved scroll/focus and existing Reader presentation. Implemented in v0.25.56;
+   online user acceptance pending. See [reference data and focused checks](reference-pokedex.md).
 5. **Safari mini Atlas:** verified six-position navigation, manual arrangement,
    existing encounter records, caught indicators and Gate return; no calculator or
    guessed binary layout. Pending.

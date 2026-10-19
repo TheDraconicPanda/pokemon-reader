@@ -255,7 +255,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.55') && document.querySelector('.eyebrow').textContent.includes('v0.25.55'),
+    version: document.title.includes('v0.25.56') && document.querySelector('.eyebrow').textContent.includes('v0.25.56'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -263,16 +263,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.55<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.56<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.55");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.56");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -333,7 +333,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -591,7 +591,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -777,7 +777,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.55'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.56'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1215,7 +1215,7 @@ test('Shared menu keeps themes across tools and region pairs fit phones and desk
         }
         const state=await evaluate(`({theme:document.documentElement.dataset.theme,labels:[...document.querySelector('.secondary-nav').children].map(c=>c.textContent),fit:document.documentElement.scrollWidth<=innerWidth,hash:location.hash})`);
         assert.equal(state.theme,theme);assert.equal(state.fit,true);
-        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas',theme==='dark'?'Light mode':'Dark mode']);
+        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas','Pokédex',theme==='dark'?'Light mode':'Dark mode']);
         if(tool==='reader')assert.equal(state.hash,'#overview');
         if(process.env.ATLAS_SCREENSHOT_DIR && width!==320){
           await evaluate('scrollTo(0,0)');
@@ -1738,4 +1738,113 @@ test('Atlas remains usable without a save or when profile storage is denied',asy
     await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});
     await evaluate(`indexedDB.open=globalThis.__caughtOriginalOpen`);
   }
+});
+
+async function referenceDex(hash='',prefix='') {
+  await command('Page.navigate',{url:baseURL+prefix+'/pokedex/'+hash});
+  await until(()=>evaluate(`document.body?.dataset.referenceReady==='true'`),'Reference Pokédex ready');
+}
+test('reference Pokédex is save-independent, keeps full numbered neighbors on search and opens outside-regional species',async()=>{
+ await referenceDex();
+ assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),256);
+ assert.equal(await evaluate(`document.querySelector('.species-row strong').textContent`),'Chikorita');
+ await evaluate(`document.querySelector('#species-search').value='Dratini';document.querySelector('#reference-search').requestSubmit()`);
+ assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),256);
+ assert.equal(await evaluate(`document.querySelector('.search-match').id`),'species-147');
+ const neighbors=await evaluate(`(() => {const row=document.querySelector('.search-match');return [row.previousElementSibling.querySelector('strong').textContent,row.nextElementSibling.querySelector('strong').textContent]})()`);
+ assert.deepEqual(neighbors,['Suicune','Dragonair']);
+ await evaluate(`document.querySelector('#species-search').value='Deoxys';document.querySelector('#reference-search').requestSubmit()`);
+ assert.equal(await evaluate(`document.querySelector('#reference-scope').value`),'national');
+ assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),493);
+ assert.equal(await evaluate(`document.querySelector('.search-match').id`),'species-386');
+ assert.equal(await evaluate(`document.querySelector('.species-row').textContent.includes('Bulbasaur')`),true);
+});
+test('reference cards preserve list scroll/focus and Back/Forward/escape, and show exact evolution-stage Fly compatibility',async()=>{
+ await referenceDex('#scope=national');
+ await evaluate(`document.querySelector('#species-search').value='147';document.querySelector('#reference-search').requestSubmit()`);
+ const before=await evaluate(`({y:scrollY,focused:document.activeElement.dataset.speciesId})`);
+ await evaluate(`document.querySelector('[data-species-id="147"]').click()`);
+ assert.equal(await evaluate(`document.querySelector('#reference-detail').open`),true);
+ assert.equal(await evaluate(`document.querySelector('#reference-title').textContent`),'Dratini');
+ const fly=await evaluate(`(() => {const table=document.querySelector('.machine-table');return [...table.tBodies[0].rows].find(r=>r.cells[0].textContent.includes('HM02')).textContent})()`);
+ assert.equal(fly,'HM02 · Fly——✓');
+ assert.equal(await evaluate(`document.querySelectorAll('#reference-content .type-grid>div').length`),17);
+ await evaluate(`document.querySelector('#reference-close').click()`);
+ await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Closed card');
+ assert.deepEqual(await evaluate(`({y:scrollY,focused:document.activeElement.dataset.speciesId})`),before);
+ await evaluate(`history.forward()`);await until(()=>evaluate(`document.querySelector('#reference-detail').open`),'Forward card');
+ await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Escape closes');
+ assert.equal(await evaluate('scrollY'),before.y);
+});
+test('reference direct links include HGSS ability/item/form/type/stats and all move sections with live controls',async()=>{
+ await referenceDex('#species=25&scope=national');
+ assert.equal(await evaluate(`document.querySelector('#reference-detail').open`),true);
+ assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Static/);
+ assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Light Ball: 5%/);
+ await evaluate(`document.querySelector('#compound-eyes').click()`);
+ assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Light Ball: 20%/);
+ await evaluate(`document.querySelector('#reference-level').value='100';document.querySelector('#reference-level').dispatchEvent(new Event('input'))`);
+ assert.equal(await evaluate(`document.querySelector('#reference-level').closest('details').querySelector('caption').textContent`),'Possible stats at level 100');
+ const headings=await evaluate(`Array.from(document.querySelectorAll('#reference-content>details>summary'),n=>n.textContent)`);
+ assert.deepEqual(headings,['Abilities','EV yield','Type matchups','Wild held items','Evolution family','SoulSilver locations','Level-up moves','TM/HM compatibility across evolutions','Tutor moves','Egg moves','Base stats and possible ranges','Sources and coverage']);
+ // Base and appliance Rotom both retain their Generation IV Ghost type.
+ await referenceDex('#species=479&scope=national');
+ await evaluate(`document.querySelector('#reference-form').value='503';document.querySelector('#reference-form').dispatchEvent(new Event('change'))`);
+ assert.equal(await evaluate(`document.querySelector('.pokemon-detail-header .type-badges').textContent`),'ElectricGhost');
+ assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Overheat/);
+ await referenceDex('#species=493&scope=national');
+ await evaluate(`document.querySelector('#reference-type').value='dragon';document.querySelector('#reference-type').dispatchEvent(new Event('change'))`);
+ assert.equal(await evaluate(`document.querySelector('.pokemon-detail-header .type-badges').textContent`),'Dragon');
+ await evaluate(`document.querySelector('#reference-close').click()`);
+ assert.equal(await evaluate(`document.querySelector('#reference-detail').open`),false);
+ assert.equal(await evaluate(`location.pathname`),'/pokedex/');
+});
+test('reference Atlas links open the exact location, and encounter names return to the matching species card',async()=>{
+ await referenceDex('#species=152&scope=national');
+ const href=await evaluate(`Array.from(document.querySelectorAll('.reference-locations a')).find(a=>a.textContent.includes('New Bark Town')).href`);
+ assert.equal(new URL(href).hash,'#location=New%20Bark%20Town');
+ await evaluate(`Array.from(document.querySelectorAll('.reference-locations a')).find(a=>a.textContent.includes('New Bark Town')).click()`);
+ await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='New Bark Town'`),'Exact Atlas location');
+ await evaluate(`location.hash='location=Route%2029'`);
+ await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Route 29'`),'Route29');
+ const link=await evaluate(`document.querySelector('.encounter-name').href`);assert.match(link,/\/pokedex\/#species=\d+&scope=national$/);
+ const id=Number(new URLSearchParams(new URL(link).hash.slice(1)).get('species'));
+ await evaluate(`document.querySelector('.encounter-name').click()`);
+ await until(()=>evaluate(`document.querySelector('#reference-detail')?.open`),'Encounter species');
+ assert.equal(await evaluate(`Number(new URLSearchParams(location.hash.slice(1)).get('species'))`),id);
+});
+test('reference browsing works with denied profile storage, local sprites and repository-relative paths',async()=>{
+ await command('Page.enable');
+ const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`Object.defineProperty(window,'indexedDB',{value:{open(){throw new DOMException('Denied','SecurityError')}}})`});
+ try {
+  await referenceDex('#species=68&scope=national','/pokemon-reader');
+  assert.equal(await evaluate(`document.querySelector('#reference-title').textContent`),'Machamp');
+  assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),493);
+  assert.equal(await evaluate(`(async()=>{const img=document.querySelector('.pokemon-detail-header img');await img.decode();return img.naturalWidth>0&&new URL(img.src).pathname==='/pokemon-reader/assets/pokemon/hgss/68.png'})()`),true);
+  assert.match(await evaluate(`document.querySelector('.secondary-nav a[aria-current="page"]').href`),/\/pokemon-reader\/pokedex\/$/);
+  assert.match(await evaluate(`document.querySelector('#load-save').href`),/\/pokemon-reader\/#overview$/);
+ }finally{await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});}
+});
+test('reference list and card fit phone/tablet/desktop themes, with keyboard-contained dialogs and sticky search',async()=>{
+ for(const theme of ['dark','light'])for(const width of [320,390,768,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
+  await referenceDex('#scope=national','/pokemon-reader');
+  await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'));scrollTo(0,1500)`);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`List width ${width}`);
+  assert.ok(Math.abs(await evaluate(`document.querySelector('.dex-jump').getBoundingClientRect().top`))<=1);
+  await evaluate(`document.querySelector('[data-species-id="149"]').click()`);
+  const fit=await evaluate(`(() => {const d=document.querySelector('#reference-detail'),r=d.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&d.scrollWidth<=d.clientWidth})()`);
+  assert.equal(fit,true,`Card width ${width} ${theme}`);
+  assert.equal(await evaluate(`document.activeElement.id`),'reference-close');
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
+  assert.equal(await evaluate(`document.querySelector('#reference-detail').contains(document.activeElement)`),true);
+  if(process.env.POKEDEX_SCREENSHOT_DIR&&[390,1440].includes(width)){
+   const shot=await command('Page.captureScreenshot',{format:'png'});
+   await require('node:fs/promises').writeFile(path.join(process.env.POKEDEX_SCREENSHOT_DIR,`pokedex-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+ }
+ await command('Emulation.clearDeviceMetricsOverride');
 });

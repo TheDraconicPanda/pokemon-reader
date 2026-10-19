@@ -1,0 +1,6 @@
+.type-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.type-badge { padding: 4px 9px; border-radius: 6px; background: var(--type-color, #697078); color: white; font-size: 12px; font-weight: 700; text-shadow: 0 1px 2px #000; }
+.type-normal { --type-color: #72724c; }.type-fire { --type-color: #a64b11; }.type-water { --type-color: #3565b8; }.type-electric { --type-color: #876d0b; }
+.type-grass { --type-color: #3c7620; }.type-ice { --type-color: #357675; }.type-fighting { --type-color: #b72b24; }.type-poison { --type-color: #913891; }
+.type-ground { --type-color: #886b28; }.type-flying { --type-color: #7058a6; }.type-psychic { --type-color: #b52b55; }.type-bug { --type-color: #67730d; }
+.type-rock { --type-color: #817127; }.type-ghost { --type-color: #655082; }.type-dragon { --type-color: #6538da; }.type-dark { --type-color: #685043; }.type-steel { --type-color: #656580; }

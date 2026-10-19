@@ -95,7 +95,9 @@ Planner's runtime matching behavior is unchanged. Phone and desktop marker
 screenshots were reviewed and `git diff --check` passed.
 
 Synthetic and constructed-save checks do not establish real-save/in-game accuracy.
-Live-version and user acceptance remain pending after publication.
+User reported “All working well” for the published milestone and authorized
+advancing to the reference Pokédex. Broader independent in-game validation is
+not inferred from that confirmation.
 
 ## Focused user checklist
 

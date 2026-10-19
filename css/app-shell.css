@@ -14,7 +14,7 @@
 }
 app-menu { display: block; }
 .secondary-nav {
-  display: grid; grid-template-columns: auto auto auto minmax(0, 1fr);
+  display: grid; grid-template-columns: auto auto auto auto minmax(0, 1fr);
   align-items: center; gap: 8px; margin-bottom: 20px;
 }
 .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle {
@@ -31,4 +31,9 @@ app-menu { display: block; }
   .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle {
     padding: 8px 6px; font-size: 12px; white-space: nowrap;
   }
+}
+
+@media (max-width: 420px) {
+  .secondary-nav { gap: 0; }
+  .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle { padding-inline: 3px; font-size: 11px; }
 }

@@ -1,0 +1,58 @@
+.reference-app { max-width: 820px; }
+.reference-app button, .reference-app input, .reference-app select, #reference-detail select, #reference-detail input, #reference-detail button { font: inherit; }
+.reference-app input, .reference-app select, #reference-detail input, #reference-detail select { padding: 8px; min-height: 44px; min-width: 0; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: var(--surface); }
+.reference-app button, #reference-detail button { color: var(--accent); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px; min-height: 44px; cursor: pointer; }
+.reference-app a, #reference-detail a { color: var(--accent); }
+.dex-jump { position: sticky; top: 0; z-index: 2; padding: 10px; background: var(--background); border: 1px solid var(--border); border-radius: 8px; }
+.reference-selectors { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.reference-selectors label { display: flex; align-items: center; gap: 6px; }
+#reference-search label { display: block; margin-bottom: 5px; }
+.jump-controls { display: flex; gap: 6px; }
+.jump-controls input { flex: 1; width: 100%; }
+#reference-status { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.species-list { list-style: none; padding: 0; margin: 12px 0; }
+.species-list li { scroll-margin-top: 200px; border-bottom: 1px solid var(--border); }
+.species-list .species-row { display: grid; grid-template-columns: 3ch 56px minmax(100px,1fr) auto; gap: 12px; align-items: center; width: 100%; border: 0; border-radius: 0; color: var(--text); padding: 3px 10px; text-align: left; }
+.species-row img { width: 56px; height: 56px; image-rendering: pixelated; }
+.species-row .dex-number { font-variant-numeric: tabular-nums; color: var(--muted); }
+.species-list .search-match { outline: 2px solid var(--accent); outline-offset: -2px; background: var(--soft-accent); }
+#reference-detail { width: min(880px,calc(100% - 24px)); max-height: calc(100dvh - 24px); overscroll-behavior: contain; }
+#reference-detail .pokemon-detail-dialog-header { top: -1.25rem; z-index: 3; }
+#reference-detail h2 { font-size: 1.35rem; }
+#reference-detail .pokemon-detail-content { display: block; }
+#reference-detail .pokemon-detail-section { margin: 14px 0; }
+#reference-detail .pokemon-detail-header img { image-rendering: pixelated; width: 96px; height: 96px; }
+#reference-detail summary { cursor: pointer; font-weight: 650; padding: 8px 0; }
+#reference-detail p { overflow-wrap: anywhere; }
+.reference-scroll { max-width: 100%; overflow: auto; border: 1px solid var(--border); border-radius: 6px; }
+.reference-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.reference-table td, .reference-table th { padding: 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.reference-table caption { text-align: left; padding: 8px; color: var(--muted); }
+.reference-table th { background: var(--surface); }
+.machine-table th:first-child { position: sticky; left: 0; z-index: 1; min-width: 130px; }
+.machine-table thead th { vertical-align: top; text-align: center; }
+.machine-table thead img { display: block; width: 48px; height: 48px; image-rendering: pixelated; margin: auto; }
+.machine-table td { text-align: center; }
+.machine-table .compatible { color: var(--success); font-weight: 700; }
+.reference-note { color: var(--muted); font-size: 14px; }
+.type-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 8px; }
+.type-grid > div { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.evolution-list { list-style: none; padding: 0; }
+.evolution-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.evolution-list span { display: block; margin-top: 5px; color: var(--muted); }
+.reference-locations details { padding: 4px 0; }
+.reference-locations li { margin: 8px 0; }
+#reference-detail :focus-visible, .reference-app :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+html:has(#reference-detail[open]) { overflow: hidden; }
+@media(max-width: 520px) {
+  .reference-app { width: calc(100% - 20px); padding-top: 1rem; }
+  .reference-selectors { gap: 6px; font-size: 12px; }
+  .reference-selectors select { max-width: 128px; }
+  .species-list .species-row { grid-template-columns: 3ch 40px minmax(0,1fr) 65px; gap: 5px; font-size: 14px; padding: 5px; }
+  .species-row img { width: 40px; height: 40px; }
+  .species-row .type-badges { gap: 2px; }
+  .species-row .type-badge { padding: 2px 4px; font-size: 10px; }
+  #reference-detail { padding: 12px; }
+  #reference-detail .pokemon-detail-dialog-header { top: -12px; }
+  .reference-table td, .reference-table th { padding: 6px; }
+}

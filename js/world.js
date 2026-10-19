@@ -130,7 +130,8 @@ function renderEncounters(locationName) {
         row.className = "encounter-entry";
         row.dataset.encounterIndex = String(index);
         row.dataset.encounterTimes = encounter.times;
-        const name = document.createElement("span");
+        const name = document.createElement("a");
+        name.href = `../pokedex/#species=${encounter.speciesId ?? speciesIdForName(ATLAS_GAME_ID,encounter.pokemon)}&scope=national`;
         name.className = "encounter-name";
         name.textContent = encounter.pokemon;
         caughtIndicators.decorate(name,encounter.speciesId ?? speciesIdForName(ATLAS_GAME_ID,encounter.pokemon));
