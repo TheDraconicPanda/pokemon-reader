@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.25.52</title>
+  <title>Pokémon Reader — v0.25.53</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/app-shell.css">
   <script src="js/app-shell.js"></script>
@@ -14,7 +14,7 @@
     <app-menu tool="reader"></app-menu>
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.52</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.53</span></p>
     </header>
       <nav class="dashboard-nav" aria-label="Reader views">
         <a href="#overview" data-view="overview">Overview</a>
@@ -35,6 +35,16 @@
         <input id="save-file" type="file" accept=".sav,.dsv,.dat,application/octet-stream">
       </label>
       <p id="file-status" class="status" aria-live="polite">No save file loaded.</p>
+      <label class="checkline"><input id="new-adventure" type="checkbox"> Keep this save as a separate adventure</label>
+    </section>
+
+    <section id="adventure-profiles" class="card" data-reader-view="overview" aria-labelledby="adventure-heading">
+      <h2 id="adventure-heading">Adventure Profiles</h2>
+      <label for="adventure-select">Saved adventures</label>
+      <select id="adventure-select"><option value="">No saved adventures</option></select>
+      <button id="adventure-restore" type="button" disabled>Open adventure</button>
+      <p id="adventure-status" class="status" aria-live="polite">Decoded progress is saved in this browser. Original save files are never stored.</p>
+      <p id="adventure-migration-status" class="status error" aria-live="polite" hidden></p>
     </section>
 
     <section data-reader-view="overview" id="overview-summary" class="card" hidden>
@@ -179,6 +189,16 @@
     </section>
 
   </main>
+  <dialog id="adventure-match-dialog" class="pokemon-detail-dialog" aria-labelledby="adventure-match-title">
+    <form method="dialog">
+      <h2 id="adventure-match-title">Choose an adventure</h2>
+      <p>These adventures share this Trainer ID and Secret ID. Choose which one to update, or keep this save as a separate adventure.</p>
+      <label for="adventure-match-select">Adventure</label>
+      <select id="adventure-match-select"></select>
+      <button type="submit" value="confirm">Continue</button>
+      <button type="submit" value="cancel">Cancel</button>
+    </form>
+  </dialog>
   <dialog id="pokemon-detail-dialog" class="pokemon-detail-dialog" aria-labelledby="pokemon-detail-dialog-title">
     <div class="pokemon-detail-dialog-header">
       <h2 id="pokemon-detail-dialog-title">Pokémon Details</h2>

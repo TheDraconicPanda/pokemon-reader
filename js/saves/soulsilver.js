@@ -91,6 +91,8 @@ export function detectSoulSilver(buffer) {
   };
   result.supported = true;
   result.valid = true;
+  const partyCount = data[activePartition * SOULSILVER.partitionSize + SOULSILVER.trainerOffset + 0x30];
+  result.decodeComplete = partyCount <= 6 && party.length === partyCount;
   result.reason = "Valid SoulSilver save structure detected.";
   return result;
 }
@@ -195,6 +197,7 @@ function decryptGen4StoredPokemon(data) {
 
   return {
     empty: false,
+    checksumValid: pokemonChecksum(result) === checksum,
     personality: pid,
     formId: getGen4FormId(readUint16(result, 8), result[0x40]),
     speciesId: readUint16(result, 8),
@@ -254,6 +257,7 @@ function decryptGen4PartyPokemon(data) {
 
   return {
     personality: pid,
+    checksumValid: pokemonChecksum(result) === checksum,
     formId: getGen4FormId(readUint16(result, 8), result[0x40]),
     speciesId: readUint16(result, 8),
     heldItemId: readUint16(result, 10),
@@ -291,6 +295,12 @@ function decryptGen4PartyPokemon(data) {
   };
 }
 
+
+function pokemonChecksum(data) {
+  let sum = 0;
+  for (let offset = 8; offset < 136; offset += 2) sum = (sum + readUint16(data, offset)) & 0xFFFF;
+  return sum;
+}
 
 function readGen4Moves(data) {
   return [0, 1, 2, 3].map((index) => ({

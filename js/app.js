@@ -1,10 +1,11 @@
-import { snapshotSave, rememberSave, forgetSave } from './planner-save.js';
+import { snapshotSave, rememberSave } from './planner-save.js';
+import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persistSnapshot, selectProfile, preserveLegacyPlanner, trainerKey } from './adventures.js';
 import { detectSoulSilver } from "./saves/soulsilver.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.52";
+const APP_VERSION = "0.25.53";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -103,8 +104,10 @@ dropZone.addEventListener("drop", (event) => {
 });
 
 async function handleFile(file) {
+  const newAdventure = document.querySelector('#new-adventure').checked;
   resetFileInfo();
   const revision = loadRevision;
+  const loadedAt = new Date().toISOString();
   document.querySelector(".app").setAttribute("aria-busy", "true");
   fileStatus.className = "status";
   fileStatus.textContent = "Reading save file…";
@@ -118,8 +121,59 @@ async function handleFile(file) {
     currentSaveFileName = file.name || "pokemon-save.sav";
     currentActivePartition = result.valid ? result.activePartition : null;
 
-    if (result.valid) rememberSave(snapshotSave(result, currentSaveFileName));
+    if (result.valid) {
+      let decodedSnapshot = null;
+      try {
+        const snapshot = createSnapshot(result, currentSaveFileName, loadedAt);
+        decodedSnapshot = snapshot;
+        const matches = (await listProfiles()).filter(profile => profile.trainerKey === trainerKey(snapshot));
+        if (revision !== loadRevision) return;
+        let profileId = null;
+        if (!newAdventure && (matches.length > 1 || matches.length === 1 && (matches[0].snapshot.trainer.name !== snapshot.trainer.name || matches[0].snapshot.trainer.gender !== snapshot.trainer.gender))) {
+          const choice = await chooseAdventure(matches);
+          if (revision !== loadRevision) return;
+          if (choice === null) {
+            resetFileInfo();
+            fileStatus.textContent = 'Save loading cancelled. Stored adventures were preserved.';
+            return;
+          }
+          profileId = choice || null;
+          const profile = await persistSnapshot(snapshot, {profileId, newAdventure:!choice});
+          if (revision !== loadRevision) return;
+          await refreshProfiles(profile.id);
+        } else {
+          const profile = await persistSnapshot(snapshot, {newAdventure});
+          if (revision !== loadRevision) return;
+          await refreshProfiles(profile.id);
+        }
+        adventureStatus.textContent = `Progress saved locally · ${new Date(loadedAt).toLocaleString()}. Original save file is held only for this session.`;
+        document.querySelector('#new-adventure').checked = false;
+      } catch (error) {
+        if (revision !== loadRevision) return;
+        adventureStatus.textContent = `This save could not update your stored adventure: ${error.message} Previous profiles are preserved. Reader remains usable for this session.`;
+      }
+      if (revision !== loadRevision) return;
+      if (decodedSnapshot) rememberSave(snapshotSave(result, currentSaveFileName));
+    }
 
+    await renderDecodedSave(result, revision);
+
+    if (revision !== loadRevision) return;
+    document.querySelector(".app").dataset.saveLoaded = String(result.valid);
+    fileStatus.className = result.valid ? "status success" : "status error";
+    fileStatus.textContent = result.reason;
+  } catch (error) {
+    if (revision !== loadRevision) return;
+    resetFileInfo();
+    fileStatus.className = "status error";
+    fileStatus.textContent = "Unable to read the selected file. Stored adventures were preserved.";
+    console.error(error);
+  } finally {
+    if (revision === loadRevision) document.querySelector(".app").setAttribute("aria-busy", "false");
+  }
+}
+
+async function renderDecodedSave(result, revision) {
     if (result.save) {
       const { trainer } = result.save;
 
@@ -149,19 +203,84 @@ async function handleFile(file) {
       renderAlternateForms(enrichedParty, enrichedStorage);
     }
 
-    document.querySelector(".app").dataset.saveLoaded = String(result.valid);
-    fileStatus.className = result.valid ? "status success" : "status error";
-    fileStatus.textContent = result.reason;
+}
+
+const adventureStatus = document.querySelector('#adventure-status');
+const adventureSelect = document.querySelector('#adventure-select');
+const adventureRestore = document.querySelector('#adventure-restore');
+async function refreshProfiles(selectedId) {
+  const profiles = await listProfiles();
+  adventureSelect.replaceChildren();
+  if (!profiles.length) adventureSelect.add(new Option('No saved adventures', ''));
+  for (const profile of profiles.sort((a,b) => b.updatedAt.localeCompare(a.updatedAt))) {
+    const trainer = profile.snapshot.trainer;
+    adventureSelect.add(new Option(`${trainer.name || 'Trainer'} · SoulSilver · ${trainer.trainerId} · ${new Date(profile.updatedAt).toLocaleString()} · ${profile.id.slice(0,8)}`, profile.id));
+  }
+  if (selectedId) adventureSelect.value = selectedId;
+  adventureRestore.disabled = !adventureSelect.value;
+}
+adventureSelect.addEventListener('change', () => { adventureRestore.disabled = !adventureSelect.value; });
+
+function chooseAdventure(matches) {
+  const dialog = document.querySelector('#adventure-match-dialog');
+  const select = document.querySelector('#adventure-match-select');
+  select.replaceChildren(new Option('Keep as a separate adventure', ''));
+  for (const profile of matches) select.add(new Option(`${profile.snapshot.trainer.name} · ${new Date(profile.updatedAt).toLocaleString()} · ${profile.id.slice(0,8)}`, profile.id));
+  return new Promise(resolve => {
+    dialog.returnValue = '';
+    dialog.addEventListener('close', () => resolve(dialog.returnValue === 'confirm' ? select.value : null), {once:true});
+    dialog.showModal();
+  });
+}
+
+async function restoreAdventure(profile, revision) {
+  if (!profile || revision !== loadRevision) return;
+  const result = snapshotResult(profile.snapshot);
+  document.querySelector('.app').setAttribute('aria-busy', 'true');
+  await renderDecodedSave(result, revision);
+  if (revision !== loadRevision) return;
+  document.querySelector('.app').dataset.saveLoaded = 'true';
+  document.querySelector('.app').setAttribute('aria-busy', 'false');
+  rememberSave(snapshotSave(result, profile.snapshot.fileName));
+  adventureStatus.textContent = `Restored ${profile.snapshot.trainer.name}'s progress from ${new Date(profile.snapshot.loadedAt).toLocaleString()}. Reload the original save to export an evolution. Original save files are never stored.`;
+}
+adventureRestore.addEventListener('click', async () => {
+  const id = adventureSelect.value;
+  resetFileInfo();
+  const revision = loadRevision;
+  try {
+    const profile = await selectProfile(id);
+    await restoreAdventure(profile, revision);
   } catch (error) {
+    if (revision === loadRevision) {
+      document.querySelector('.app').setAttribute('aria-busy','false');
+      adventureStatus.textContent = `Could not restore adventure: ${error.message}`;
+    }
+  }
+});
+
+async function initializeAdventures() {
+  const revision = loadRevision;
+  try {
+    await preserveLegacyPlanner();
+  } catch (error) {
+    const warning = document.querySelector('#adventure-migration-status');
+    warning.hidden = false;
+    warning.textContent = `Existing Planner data was kept unchanged; its migration copy could not be created: ${error.message}`;
+  }
+  try {
+    const profile = await getActiveProfile();
     if (revision !== loadRevision) return;
-    resetFileInfo();
-    fileStatus.className = "status error";
-    fileStatus.textContent = "Unable to read the selected file.";
-    console.error(error);
-  } finally {
-    if (revision === loadRevision) document.querySelector(".app").setAttribute("aria-busy", "false");
+    await refreshProfiles(profile?.id);
+    await restoreAdventure(profile, revision);
+  } catch (error) {
+    if (revision === loadRevision) {
+      document.querySelector('.app').setAttribute('aria-busy','false');
+      adventureStatus.textContent = `Adventure storage is unavailable: ${error.message} You can still load a save for this session.`;
+    }
   }
 }
+initializeAdventures();
 
 document.querySelector("#load-save").addEventListener("click", () => {
   resetFileInfo();
@@ -1356,6 +1475,13 @@ function experienceForLevel(level, growthRate) {
 function addEvolutionControl(container, pokemon) {
   const options = getAvailableEvolutions(pokemon);
   if (!options.length) return;
+  if (!currentSaveBytes) {
+    const note = document.createElement('p');
+    note.className = 'collection-note';
+    note.textContent = 'Reload the original save file to export an evolution. Restored adventures contain decoded progress only.';
+    container.append(note);
+    return;
+  }
 
   const wrapper = document.createElement("div");
   wrapper.className = "evolution-control";
@@ -1417,8 +1543,11 @@ function addEvolutionControl(container, pokemon) {
       link.remove();
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       fileStatus.className = "status success";
-      fileStatus.textContent = `Evolved into ${targetName}. Downloaded ${outputName}. The updated save is now loaded in this session.`;
-      await handleFile(new File([output], outputName, { type: "application/octet-stream" }));
+      fileStatus.textContent = `Downloaded ${outputName}. Load that file explicitly to update your adventure. Your loaded progress is unchanged.`;
+      feedback.textContent = fileStatus.textContent;
+      adventureStatus.textContent = fileStatus.textContent;
+      button.disabled = false;
+      button.textContent = 'Evolve';
     } catch (error) {
       if (revision !== loadRevision) return;
       fileStatus.className = "status error";
@@ -1447,7 +1576,7 @@ function getKnownSpeciesName(speciesId) {
 }
 
 function resetFileInfo() {
-  forgetSave();
+  document.querySelector('#adventure-match-dialog')?.close('cancel');
   document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
   activeBoxNumber = 1;

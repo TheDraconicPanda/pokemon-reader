@@ -1,4 +1,4 @@
-const { before, after, test } = require("node:test");
+const { before, beforeEach, after, test } = require("node:test");
 const assert = require("node:assert/strict");
 const { spawn, spawnSync } = require("node:child_process");
 const { mkdtemp, readFile, rm, mkdir } = require("node:fs/promises");
@@ -6,6 +6,7 @@ const { tmpdir } = require("node:os");
 const path = require("node:path");
 const httpServer = require("http-server");
 const { fixture } = require("./fixtures/reader.cjs");
+const { syntheticSave } = require('./fixtures/soulsilver.cjs');
 
 const root = path.resolve(__dirname, "..");
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -61,6 +62,10 @@ async function atlas({ directory = true } = {}) {
 before(async () => {
   assert.equal(typeof WebSocket, "function", "Use Node.js 22 or later");
   server = httpServer.createServer({ root, cache: -1 });
+  // Mount the same static app beneath the production repository path as well.
+  server.server.prependListener('request', request => {
+    if (request.url.startsWith('/pokemon-reader/')) request.url = request.url.slice('/pokemon-reader'.length);
+  });
   await new Promise((resolve, reject) => {
     server.server.once("error", reject);
     server.listen(0, "127.0.0.1", resolve);
@@ -114,6 +119,14 @@ before(async () => {
   });
   await command("Runtime.enable");
 }, { timeout: 25000 });
+
+// Profiles persist across page navigation within a test; tests start independently.
+beforeEach(async () => {
+  await evaluate(`location.origin === '${new URL(baseURL).origin}' ? new Promise((resolve,reject) => {
+    const request=indexedDB.deleteDatabase('pokemon-reader-adventures');
+    request.onsuccess=()=>resolve(true); request.onerror=()=>reject(request.error);
+  }) : true`);
+});
 
 after(async () => {
   socket?.close();
@@ -238,7 +251,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.51') && document.querySelector('.eyebrow').textContent.includes('v0.25.51'),
+    version: document.title.includes('v0.25.53') && document.querySelector('.eyebrow').textContent.includes('v0.25.53'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -246,16 +259,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.52<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.53<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.52");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.53");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -313,15 +326,16 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 });
 
 
-async function fixtureReader(data = fixture()) {
+async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`), 'Reader did not initialize');
-  await uploadFixture(data);
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`), 'Reader did not initialize');
+  await uploadFixture(data, true, bytes);
 }
-async function uploadFixture(data) {
-  await evaluate(`globalThis.__readerFixture = ${JSON.stringify(data)}; (() => {
-    const files = new DataTransfer(); files.items.add(new File([new Uint8Array(512*1024)], 'ui-fixture.sav'));
+async function uploadFixture(data, separateAdventure = true, bytes = null) {
+  const payload = bytes ? `Uint8Array.from(atob('${Buffer.from(bytes).toString('base64')}'),c=>c.charCodeAt(0))` : 'new Uint8Array(512*1024)';
+  await evaluate(`globalThis.__readerFixture = ${JSON.stringify(data)}; document.querySelector('#new-adventure').checked = ${separateAdventure}; (() => {
+    const files = new DataTransfer(); files.items.add(new File([${payload}], 'ui-fixture.sav'));
     const input=document.querySelector('#save-file'); input.files=files.files; input.dispatchEvent(new Event('change'));
   })()`);
   await until(() => evaluate(`document.querySelector('#file-status').classList.contains('${data.valid ? 'success' : 'error'}')`), 'Fixture save did not render');
@@ -573,7 +587,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -759,7 +773,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.52'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.53'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1295,4 +1309,132 @@ test('Planner refreshes actual EVs from Reader snapshots and handles ambiguous m
   await until(()=>evaluate(`document.querySelector('#ev-save-status').textContent.includes('Previous EV values retained')`),'Invalid replacement did not report failure');
   assert.equal(await evaluate(`document.getElementById('kingdra:Speed').checked`),false);
   await evaluate(`sessionStorage.removeItem('pokemon-reader-planner-save-v1')`);
+});
+
+test('Adventure restores decoded Reader views after refresh and retains valid data after invalid replacement', async () => {
+  await fixtureReader();
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).listProfiles()).length)()`),1);
+  await command('Page.reload');
+  await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded === 'true'`),'Adventure did not restore');
+  assert.equal(await evaluate(`globalThis.__parseCount || 0`),0,'Restoration must not invoke the binary parser');
+  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Test Trainer');
+  assert.equal(await evaluate(`document.querySelector('#adventure-status').textContent.includes('Restored')`),true);
+  await evaluate(`document.querySelector('#load-save').click()`);
+  await uploadFixture({valid:false,game:'Not detected',reason:'Invalid test save',party:[],save:null});
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).snapshot.trainer.name)()`),'Test Trainer');
+  await evaluate(`document.querySelector('#adventure-restore').click()`);
+  await until(()=>evaluate(`document.querySelector('.app').dataset.saveLoaded === 'true'`),'Manual restore after invalid save');
+  await evaluate(`location.hash='party';document.querySelectorAll('#party-grid .pokemon-detail-button')[1].click()`);
+  await until(()=>evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Restored detail ready');
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-content').textContent.includes('Reload the original save file')`),true);
+  assert.equal(await evaluate(`document.querySelector('.evolve-button') === null`),true);
+  await command('Fetch.disable');
+});
+
+test('Adventure persistence rejects partial replacements, preserves other profiles and resolves duplicate trainer identities explicitly', async () => {
+  await fixtureReader();
+  const originalId=await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).id)()`);
+  const partial=fixture(); delete partial.party[0].ivs.hp;
+  await uploadFixture(partial, false);
+  assert.equal(await evaluate(`document.querySelector('#adventure-status').textContent.includes('Previous profiles are preserved')`),true);
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).revision)()`),1);
+  await uploadFixture(fixture('Separate trainer identity'), true);
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).listProfiles()).length)()`),2);
+  // A subsequent load with the shared TID/SID must ask, rather than overwrite one.
+  await evaluate(`document.querySelector('#new-adventure').checked=false;globalThis.__readerFixture=${JSON.stringify(fixture())};
+    const files=new DataTransfer();files.items.add(new File([new Uint8Array(512*1024)],'ambiguous.sav'));
+    document.querySelector('#save-file').files=files.files;document.querySelector('#save-file').dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#adventure-match-dialog').open`),'Duplicate profile choice missing');
+  assert.equal(await evaluate(`document.querySelectorAll('#adventure-match-select option').length`),3);
+  await evaluate(`document.querySelector('#adventure-match-select').value=${JSON.stringify(originalId)};document.querySelector('#adventure-match-dialog button[value="confirm"]').click()`);
+  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Explicit duplicate selection did not load');
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).id)()`),originalId);
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).revision)()`),2);
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).listProfiles()).length)()`),2);
+  await command('Fetch.disable');
+});
+
+test('Adventure transactions reject stale/future snapshots and roll back profile and active selection together', async () => {
+  await fixtureReader();
+  const result = await evaluate(`(async()=>{
+    const api=await import('./js/adventures.js');
+    const original=await api.getActiveProfile();
+    const before=JSON.stringify(original);
+    const stale=structuredClone(original.snapshot); stale.loadedAt='2000-01-01T00:00:00Z';
+    let rejected=0;
+    try {await api.persistSnapshot(stale);} catch {rejected++;}
+    try {await api.persistSnapshot({...original.snapshot,schemaVersion:99});} catch {rejected++;}
+    const put=IDBObjectStore.prototype.put;
+    IDBObjectStore.prototype.put=function(value){if(this.name==='settings')throw new DOMException('Simulated quota failure','QuotaExceededError');return put.call(this,value);};
+    try {await api.persistSnapshot({...original.snapshot,loadedAt:new Date(Date.now()+1000).toISOString()});} catch {rejected++;}
+    finally {IDBObjectStore.prototype.put=put;}
+    return {rejected,unchanged:JSON.stringify(await api.getActiveProfile())===before,count:(await api.listProfiles()).length};
+  })()`);
+  assert.deepEqual(result,{rejected:3,unchanged:true,count:1});
+  await command('Fetch.disable');
+});
+
+test('Legacy Planner migration is lossless, idempotent, unassociated and leaves current browser data authoritative', async () => {
+  await fixtureReader();
+  const result=await evaluate(`(async()=>{
+    const api=await import('./js/adventures.js');
+    const raw=JSON.stringify({version:1,ready:{dragonite:true},moves:{'gengar:0':true},evDone:{'kingdra:HP':true},custom:'preserve me'});
+    localStorage.setItem(api.LEGACY_PLANNER_KEY,raw);
+    const fake={getItem:()=>raw};
+    const id=await api.preserveLegacyPlanner(fake);
+    const same=await api.preserveLegacyPlanner(fake);
+    const plan=await new Promise((resolve,reject)=>{const r=indexedDB.open('pokemon-reader-adventures');r.onsuccess=()=>{const db=r.result;const tx=db.transaction(['planners']);const get=tx.objectStore('planners').get(id);get.onsuccess=()=>resolve(get.result);get.onerror=()=>reject(get.error);tx.oncomplete=()=>db.close();};});
+    // initializeAdventures may already have copied the real existing browser plan;
+    // the marker must preserve that first copy rather than replacing it.
+    return {same:id===same,unassociated:plan.adventureId===null,sourceRoundTrip:JSON.stringify(JSON.parse(plan.legacySource))===JSON.stringify(plan.state),hasOriginal:localStorage.getItem(api.LEGACY_PLANNER_KEY)===raw};
+  })()`);
+  assert.deepEqual(result,{same:true,unassociated:true,sourceRoundTrip:true,hasOriginal:true});
+  await command('Fetch.disable');
+});
+
+test('Reader still loads when IndexedDB is denied, with an explicit persistence warning', async () => {
+  await fixtureReader();
+  await evaluate(`globalThis.__originalOpen=indexedDB.open;indexedDB.open=()=>{throw new DOMException('Storage denied','SecurityError');}`);
+  await uploadFixture(fixture('Session only'));
+  assert.equal(await evaluate(`document.querySelector('.app').dataset.saveLoaded`),'true');
+  assert.equal(await evaluate(`document.querySelector('#adventure-status').textContent.includes('Storage denied')`),true);
+  await evaluate(`indexedDB.open=globalThis.__originalOpen`);
+  assert.equal(await evaluate(`(async()=>(await (await import('./js/adventures.js')).getActiveProfile()).snapshot.trainer.name)()`),'Test Trainer');
+  await command('Fetch.disable');
+});
+
+test('Adventure restoration, menu links and profile controls work under the GitHub Pages path on phones', async () => {
+  await fixtureReader();
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:true});
+  await command('Page.navigate',{url:baseURL+'/pokemon-reader/#overview'});
+  await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Restore beneath Pages repository path');
+  assert.equal(await evaluate(`document.querySelector('app-menu a[href*="team-planner"]').pathname`),'/pokemon-reader/team-planner/');
+  assert.equal(await evaluate(`document.querySelector('app-menu a[href*="pokedex-earth"]').pathname`),'/pokemon-reader/pokedex-earth/');
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  await evaluate(`document.querySelector('#load-save').click()`);
+  assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),false);
+  assert.equal(await evaluate(`document.querySelector('#adventure-restore').disabled`),false);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  await command('Emulation.clearDeviceMetricsOverride');
+  await command('Fetch.disable');
+});
+
+test('Evolution export downloads constructed save bytes without replacing loaded adventure progress', async () => {
+  const {detectSoulSilver}=await import('../js/saves/soulsilver.js');
+  const {bytes}=syntheticSave(64);
+  await fixtureReader(detectSoulSilver(bytes.buffer), bytes);
+  await evaluate(`location.hash='storage';document.querySelector('#box-grid .pokemon-detail-button').click()`);
+  await until(()=>evaluate(`Boolean(document.querySelector('.evolve-button'))`),'Evolution export control missing');
+  const before=await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`);
+  await evaluate(`window.confirm=()=>true;globalThis.__downloaded=null;globalThis.__downloadName=null;
+    URL.createObjectURL=blob=>{globalThis.__downloaded=blob;return 'blob:test-download';};
+    HTMLAnchorElement.prototype.click=function(){globalThis.__downloadName=this.download;};
+    document.querySelector('.evolve-button').click();`);
+  await until(()=>evaluate(`document.querySelector('#adventure-status').textContent.includes('Load that file explicitly')`),'Export did not report separate progress');
+  assert.equal(await evaluate(`globalThis.__downloadName`),'ui-fixture.evolved.sav');
+  const exported=await evaluate(`(async()=>Array.from(new Uint8Array(await globalThis.__downloaded.arrayBuffer())))()`);
+  assert.equal(detectSoulSilver(Uint8Array.from(exported).buffer).storage.boxes[0].pokemon[0].speciesId,65);
+  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
+  assert.equal(await evaluate(`globalThis.__parseCount`),1,'Export must not implicitly reload the generated file');
+  await command('Fetch.disable');
 });

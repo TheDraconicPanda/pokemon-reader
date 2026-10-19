@@ -1,6 +1,6 @@
 // Synthetic parsed records for UI tests only. These do not validate the binary parser.
 const pokemon = (slot, speciesId, nickname, extra = {}) => ({
- slot, speciesId, nickname, empty:false, personality:0, natureId:0, abilityId:9,
+ slot, speciesId, nickname, empty:false, checksumValid:true, personality:0, natureId:0, abilityId:9,
  experience:1000, level:10, gender:'Male', currentHp:25, maxHp:50, status:0,
  heldItemId:0, otName:'Original', otId:123, secretId:456, metLevel:5,
  metLocationId:1, pokeballId:4, metDate:{year:2020,month:1,day:1},

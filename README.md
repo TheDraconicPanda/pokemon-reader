@@ -2,6 +2,44 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Adventure integration — v0.25.53
+
+The first integration milestone adds optional **Adventure Profiles**. Successfully
+decoded SoulSilver saves store trainer, Party, all PC slots and Pokédex progress in
+IndexedDB on this browser. Refreshing Reader restores the active profile without
+reloading the original file. Use **Load Save** to choose a replacement or **Open
+adventure** to restore a saved profile. Saves never leave the browser and original
+binary files are never persisted. Browser/site-data clearing removes these local
+profiles; retain your original save files.
+
+Profiles use separate unique IDs with a game/TID/SID matching index. Check **Keep
+this save as a separate adventure** when loading another playthrough with the
+same identity. When multiple profiles share an identity, loading asks which one
+to update. Invalid, incomplete or corrupt decoded records cannot replace stored
+progress; storage failures leave prior records intact and show a warning while
+Reader remains usable for the current session.
+
+The existing Planner storage key and JSON backups remain unchanged. A lossless,
+unassociated migration copy is stored separately when Reader opens. The current
+Planner still owns its v1 browser data; multiple-plan management and association
+are the next milestone. No plan is silently assigned to a trainer.
+
+Evolution exports require the original binary in the current session. Restored
+profiles explain when it must be reloaded. Exporting a modified save downloads it
+without replacing loaded progress; explicitly load the exported file if you want
+it to become the adventure snapshot. This behavior change was approved by the user.
+
+Safari layout/progression is not decoded. PC HP/status remain unavailable, as
+before. The independent reference Pokédex, full caught-flag Atlas integration,
+Planner identity tracking and Safari mini Atlas are subsequent milestones; this
+release does not claim they are implemented. See
+[architecture, risks, milestones and manual validation](docs/application-integration.md).
+
+Automated checks cover synthetic parsed records and constructed binary records;
+they do not establish real-save or user acceptance. This milestone requires online
+validation with a real SoulSilver save before the next phase begins, following
+the repository's phase-completion rule.
+
 ## Current target
 
 The first supported game is **Pokémon SoulSilver**.
