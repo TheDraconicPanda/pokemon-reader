@@ -1,5 +1,12 @@
 # Pokémon Reader Roadmap
 
+## Team Planner navigation — v0.25.66
+
+- [x] Remove duplicate HM plan / EV training tabs; preserve member-popup sections
+- [x] Main team fallback for old HM/EV URLs and two-tab keyboard navigation
+- [x] All 150 automated checks pass, including keyboard navigation and legacy links
+- [ ] Online acceptance
+
 ## Team Planner current details — v0.25.65
 
 - [x] Verified HGSS growth rates and local experience-to-level calculation for PC Pokémon
@@ -76,7 +83,7 @@ See [architecture and acceptance gates](docs/application-integration.md).
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.65 release label.
+in this chat. Reader, Atlas and Planner display the same v0.25.66 release label.
 See [the final integration review](docs/integration-review.md). The separate
 Safari mechanics audit/calculator remains subsequent work.
 

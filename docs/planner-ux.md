@@ -1,5 +1,14 @@
 # Team Planner UX
 
+## Navigation refinement — v0.25.66
+
+The visible tabs are Main team and Postgame options. HM plan and EV training
+remain together in each member's popup; their duplicate tab buttons are removed.
+Old `#hms` and `#evs` links select Main team. Arrow/Home/End navigation follows
+the two remaining tabs. No goals, links, backups or manual progress are changed.
+All **150 automated checks pass**, including the two-tab layout, keyboard/history,
+legacy-link fallback and retained HM/EV popup progress. Live/user acceptance is pending.
+
 ## Current-detail corrections — v0.25.65
 
 PC records store experience, but do not include the party-only level field.

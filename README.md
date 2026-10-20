@@ -2,6 +2,14 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Team Planner navigation — v0.25.66
+
+Main team and Postgame options are the remaining Planner tabs. HM plan and EV
+training remain in each Pokémon's popup; their duplicate navigation buttons are
+removed. Old HM/EV section links fall back to Main team. Saved plans and progress
+remain unchanged. All **150 automated checks pass**. Live confirmation and online
+acceptance remain pending.
+
 ## Team Planner current details — v0.25.65
 
 Boxed Pokémon levels are calculated locally from saved experience and verified

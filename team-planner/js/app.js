@@ -389,5 +389,5 @@ run(async()=>{
     let state=defaultProgress();try{const raw=localStorage.getItem('pokemon-reader-soulsilver-team-planner-v1');if(raw)state=normalizeProgress(JSON.parse(raw));}catch{}
     plan=newPlanner('SoulSilver / Mando (session only)',null,defaultGoals(),state);plans=[plan];render();message(`Planner storage unavailable: ${error.message} Original data is preserved; export session changes as a backup.`);
   }
-  const tab=document.querySelector(`.tab[data-tab="${['team','hms','evs','bench'].includes(location.hash.slice(1))?location.hash.slice(1):'team'}"]`);tab.click();
+  const tab=document.querySelector(`.tab[data-tab="${['team','bench'].includes(location.hash.slice(1))?location.hash.slice(1):'team'}"]`);tab.click();
 });

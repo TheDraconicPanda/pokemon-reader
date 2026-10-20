@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.65') && document.querySelector('.eyebrow').textContent.includes('v0.25.65'),
+    version: document.title.includes('v0.25.66') && document.querySelector('.eyebrow').textContent.includes('v0.25.66'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.65<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.66<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.65");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.66");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -305,7 +305,7 @@ test("Planner checklist persists and tabs work independently of Atlas", async ()
   await command("Page.reload");
   await until(() => evaluate(`document.querySelector('#party-count')?.textContent === '1 / 6 ready'`), "Planner did not restore progress");
   assert.equal(await evaluate(`document.querySelector('#kingdra').checked`), true);
-  for (const tab of ["hms", "evs", "bench", "team"]) {
+  for (const tab of ["bench", "team"]) {
     await evaluate(`document.querySelector('[data-tab="${tab}"]').click()`);
     assert.equal(await evaluate(`document.querySelector('#panel-${tab}').hidden`), false);
     assert.equal(await evaluate(`document.querySelectorAll('.panel:not([hidden])').length`), 1);
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1580,7 +1580,7 @@ test('Linked Planner views fit phones and desktop in both themes and retain sect
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
     for(const theme of ['light','dark']) {
       await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));`);
-      for(const tab of ['team','hms','evs','bench']) {
+      for(const tab of ['team','bench']) {
         await evaluate(`document.querySelector('[data-tab="${tab}"]').click();document.querySelector('#panel-${tab}').scrollIntoView();`);
         assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${width} ${theme} ${tab}`);
         assert.equal(await evaluate(`location.hash`),'#'+tab);
@@ -2209,23 +2209,25 @@ test('Planner URL changes and keyboard tab navigation keep panels and accessible
  await command('Page.navigate',{url:baseURL+'/pokemon-reader/team-planner/#team'});
  await until(()=>evaluate(`!!document.querySelector('#team-grid .team-card')`),'Planner ready');
  await evaluate(`location.hash='hms'`);
- await until(()=>evaluate(`!document.querySelector('#panel-hms').hidden`),'HM URL should open its panel');
+ await until(()=>evaluate(`!document.querySelector('#panel-team').hidden && document.querySelector('#panel-hms').hidden`),'Legacy HM URL should open Main team');
+ assert.equal(await evaluate(`document.querySelectorAll('.tabs .tab').length`),2);
+ assert.equal(await evaluate(`document.querySelector('[data-tab="hms"], [data-tab="evs"]')`),null);
  assert.equal(await evaluate(`document.querySelector('.tabs').getAttribute('role')`),'tablist');
- for(const key of ['hms','evs','bench','team']){
+ for(const key of ['bench','team']){
   const state=await evaluate(`(()=>{const t=document.querySelector('[data-tab="${key}"]'),p=document.querySelector('#panel-${key}');return {role:t.getAttribute('role'),selected:t.getAttribute('aria-selected'),tabIndex:t.tabIndex,controls:t.getAttribute('aria-controls'),panelRole:p.getAttribute('role'),label:p.getAttribute('aria-labelledby'),id:t.id};})()`);
-  assert.equal(state.role,'tab');assert.equal(state.selected,key==='hms'?'true':'false');assert.equal(state.tabIndex,key==='hms'?0:-1);assert.equal(state.controls,'panel-'+key);assert.equal(state.panelRole,'tabpanel');assert.equal(state.label,state.id);
+  assert.equal(state.role,'tab');assert.equal(state.selected,key==='team'?'true':'false');assert.equal(state.tabIndex,key==='team'?0:-1);assert.equal(state.controls,'panel-'+key);assert.equal(state.panelRole,'tabpanel');assert.equal(state.label,state.id);
  }
- await evaluate(`document.querySelector('[data-tab="hms"]').focus()`);
- for(const [key,expected]of [['ArrowRight','evs'],['End','bench'],['ArrowRight','team'],['Home','team'],['ArrowLeft','bench']]){
+ await evaluate(`document.querySelector('[data-tab="team"]').focus()`);
+ for(const [key,expected]of [['ArrowRight','bench'],['End','bench'],['ArrowRight','team'],['Home','team'],['ArrowLeft','bench']]){
   await command('Input.dispatchKeyEvent',{type:'keyDown',key});await command('Input.dispatchKeyEvent',{type:'keyUp',key});
   assert.equal(await evaluate(`document.activeElement.dataset.tab`),expected);
   assert.equal(await evaluate(`location.hash`),'#'+expected);
   assert.equal(await evaluate(`document.querySelector('[aria-selected="true"]').dataset.tab`),expected);
   assert.equal(await evaluate(`document.querySelector('#panel-${expected}').hidden`),false);
  }
- await evaluate(`location.hash='evs'`);await until(()=>evaluate(`!document.querySelector('#panel-evs').hidden`),'EV URL');
+ await evaluate(`location.hash='evs'`);await until(()=>evaluate(`!document.querySelector('#panel-team').hidden && document.querySelector('#panel-evs').hidden`),'Legacy EV URL opens Main team');
  await evaluate(`history.back()`);await until(()=>evaluate(`location.hash==='#bench'&&!document.querySelector('#panel-bench').hidden`),'Planner Back');
- await evaluate(`history.forward()`);await until(()=>evaluate(`location.hash==='#evs'&&!document.querySelector('#panel-evs').hidden`),'Planner Forward');
+ await evaluate(`history.forward()`);await until(()=>evaluate(`location.hash==='#evs'&&!document.querySelector('#panel-team').hidden`),'Planner Forward');
  const originalPlans=await evaluate(`(async()=>JSON.stringify(await(await import('/js/planner-store.js')).listPlanners()))()`);
  await evaluate(`document.querySelector('#reset-btn').click()`);
  await until(()=>evaluate(`document.querySelector('#confirm-dialog').open`),'Reset confirmation');
@@ -2257,7 +2259,7 @@ test('Integrated Pages-path journey keeps two adventures intact across all four 
     }
     if(tool==='planner'){
      await until(()=>evaluate(`document.querySelector('#planner-adventure').value===${JSON.stringify(context.id)}`),'Planner adventure shared');
-     await evaluate(`document.querySelector('[data-tab="evs"]').click()`);
+     await evaluate(`document.querySelector('[data-tab="team"]').click()`);
     }
     if(tool==='atlas'){
      await evaluate(`location.hash='location=Route%2029'`);
