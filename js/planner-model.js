@@ -1,3 +1,4 @@
+import { savedLevel } from './pokemon-level.js';
 import { TEAM, HMS, BENCH } from './planner-defaults.js';
 import { TEAM_FAMILIES, EV_KEYS } from './planner-save.js';
 import { gameReference } from './data/game-reference.js';
@@ -57,7 +58,7 @@ export function savedPokemon(profile) {
   return [
     ...profile.snapshot.party.map(p => ({...p,location:`Party slot ${p.slot}`,token:`party:${p.slot}`})),
     ...profile.snapshot.storage.boxes.flatMap(box => box.pokemon.map(p => ({...p,location:`Box ${box.number}, slot ${p.slot}`,token:`storage:${box.number}:${p.slot}`})))
-  ].filter(p => !p.empty && !p.isEgg && p.speciesId > 0);
+  ].filter(p => !p.empty && !p.isEgg && p.speciesId > 0).map(p=>({...p,level:savedLevel(p)}));
 }
 export function pokemonIdentity(p) {
   return {personality:p.personality,otId:p.otId,secretId:p.secretId,ivs:structuredClone(p.ivs),otName:p.otName ?? null,metDate:p.metDate ?? null,metLocationId:p.metLocationId ?? null,metLevel:p.metLevel ?? null};

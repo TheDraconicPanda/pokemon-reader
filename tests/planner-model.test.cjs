@@ -90,3 +90,19 @@ test('v1/v2 imports create independent plans, retain manual goals/progress and n
   assert.throws(()=>importPlannerBackup({version:99}));
   const broken=structuredClone(original);delete broken.goals.team[0].temporary;assert.throws(()=>validatePlanner(broken));
 });
+
+test('boxed Planner levels use HGSS species growth rates and preserve stored party levels',async()=>{
+  const {savedLevel,experienceForLevel}=await import('../js/pokemon-level.js');
+  const {SOULSILVER_GROWTH_RATES:growth}=await import('../js/data/games/soulsilver/growth-rates.js');
+  assert.equal(Object.keys(growth.species).length,493);
+  for(const [speciesId,experience,expected] of [[157,117360,50],[157,117359,49],[149,156250,50],[230,125000,50],[94,0,1],[157,1059860,100]])assert.equal(savedLevel({speciesId,experience}),expected);
+  assert.equal(savedLevel({speciesId:157,experience:117360,level:32}),32,'Party level stays authoritative');
+  assert.equal(savedLevel({speciesId:157}),null);assert.equal(savedLevel({speciesId:999,experience:10000}),null);
+  assert.equal(savedLevel({speciesId:157,experience:-1}),null);
+  for(const [rate,total]of [['fast',800000],['medium-fast',1000000],['medium-slow',1059860],['slow',1250000],['erratic',600000],['fluctuating',1640000]])assert.equal(experienceForLevel(100,rate),total);
+  const {model,profile}=await setup(157);
+  profile.snapshot.party=[];
+  profile.snapshot.storage.boxes[0].pokemon[0]={...fixture().party[0],speciesId:157,level:null,experience:117360,recordKind:'storage',slot:1};
+  assert.equal(model.savedPokemon(profile).find(p=>p.speciesId===157).level,50);
+  assert.equal(profile.snapshot.storage.boxes[0].pokemon[0].level,null,'Derived levels do not rewrite the snapshot');
+});

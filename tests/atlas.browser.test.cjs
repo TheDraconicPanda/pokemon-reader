@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.64') && document.querySelector('.eyebrow').textContent.includes('v0.25.64'),
+    version: document.title.includes('v0.25.65') && document.querySelector('.eyebrow').textContent.includes('v0.25.65'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.64<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.65<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.64");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.65");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.65'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2386,5 +2386,46 @@ test('Planner popup keeps compact identities, concise sections, nature descripti
   await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await until(()=>evaluate(`!document.querySelector('#member-dialog').open && document.activeElement.id==='member-dragonite'`),'Escape did not restore card focus');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('Planner shows boxed levels, adds only the current nonpreferred nature, removes main HM notes and resets new-popup scroll',async()=>{
+  const data=plannedParty();
+  const typhlosion={...structuredClone(data.party[0]),speciesId:157,personality:9871,slot:1,recordKind:'storage',level:null,experience:117360,natureId:5,nickname:'Boxed Typhlosion'};
+  data.storage.boxes[0].pokemon[0]=typhlosion;
+  await openLinkedPlanner(data);
+  await evaluate(`var s=document.querySelector('#team-pokemon-typhlosion');s.value='storage:1:1';s.dispatchEvent(new Event('change'));`);
+  await until(()=>evaluate(`document.querySelector('#member-typhlosion .species')?.textContent==='Level 50'`),'Boxed level was not derived from experience');
+  await evaluate(`document.querySelector('#member-typhlosion').click()`);
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollTop`),0);
+  assert.equal(await evaluate(`document.getElementById('nature-typhlosion:5').checked && document.getElementById('nature-typhlosion:5').disabled`),true);
+  assert.equal(await evaluate(`document.querySelector('#member-content .current-nature em').textContent.includes('not on the preferred list')`),true);
+  assert.deepEqual(await currentPlan(`plan.goals.team.find(m=>m.id==='typhlosion').natureIds`),[10,15]);
+  await evaluate(`document.querySelector('#member-content .info-button').focus()`);
+  assert.ok((await evaluate(`document.querySelector('#member-content .nature-overlay').textContent`)).includes('Bold: +10% Defense · −10% Attack'));
+  if(process.env.PLANNER_SCREENSHOT_DIR){
+    await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+    await evaluate(`document.querySelector('#member-content .current-nature').scrollIntoView({block:'center'});document.querySelector('#member-content .info-button').focus()`);
+    const shot=await command('Page.captureScreenshot',{format:'png'});
+    await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,'planner-current-nature.png'),Buffer.from(shot.data,'base64'));
+    await command('Emulation.clearDeviceMetricsOverride');
+  }
+  assert.equal(await evaluate(`document.querySelector('#member-content .member-details').textContent.includes('Cut is a sacrifice/navigation move.')`),false);
+  assert.equal(await evaluate(`document.querySelector('#member-content .member-details').textContent.includes('Shadow Ball was discussed but is not locked in.')`),true);
+  await evaluate(`document.querySelector('#member-content .ev-card').scrollIntoView({block:'end'})`);
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollTop>0`),true);
+  await evaluate(`document.querySelector('#member-close').click()`);
+  await until(()=>evaluate(`!document.querySelector('#member-dialog').open`),'Close');
+  await evaluate(`document.querySelector('#member-dragonite').click()`);
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollTop`),0,'A different member must start at the top');
+  assert.equal(await evaluate(`document.querySelector('#member-content .member-details').textContent.includes('Waterfall is exploration-only.')`),false);
+  assert.equal(await evaluate(`document.querySelector('#member-content .member-details').textContent.includes('Dragon Dance should be learned before evolving Dragonair at level 55.')`),true);
+  await evaluate(`document.querySelector('#member-close').click()`);
+  await until(()=>evaluate(`!document.querySelector('#member-dialog').open`),'Close Dragonite');
+  typhlosion.natureId=10;await plannerSave(data);
+  await until(()=>evaluate(`!document.getElementById('nature-typhlosion:5') && document.getElementById('nature-typhlosion:10').checked`),'Outdated current-nature option remained');
+  await evaluate(`document.querySelector('#member-typhlosion').click()`);
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollTop`),0,'Reopening also starts at top');
+  assert.equal(await evaluate(`document.querySelector('#member-content .current-nature')`),null);
   assert.deepEqual(exceptions,[]);
 });

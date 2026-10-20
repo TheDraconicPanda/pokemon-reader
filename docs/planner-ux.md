@@ -1,5 +1,39 @@
 # Team Planner UX
 
+## Current-detail corrections — v0.25.65
+
+PC records store experience, but do not include the party-only level field.
+Planner now derives missing levels from experience using all 493 HGSS species'
+growth rates, extracted from the same pinned pret/pokeheartgold personal.json
+used by the reference Pokédex. The input SHA-256 is verified by
+`scripts/build-soulsilver-growth-rates.py`; generation is reproducible with that
+file. `js/pokemon-level.js` uses the six Gen IV growth curves and preserves valid
+party levels. Missing/invalid experience or unknown species still show unavailable;
+Adventure snapshots and desired goals are not rewritten.
+
+If a linked individual's current nature is outside the preferred list, an extra
+checked, read-only option says “Current nature; not on the preferred list.” Its
+stat description joins the info overlay. This option follows the latest save and
+disappears when the current nature matches a preference or the individual is no
+longer present. It does not add a favorite or rewrite manual checklists.
+
+Main-team note presentation omits HM-related sentences, preserving other notes;
+HM assignments/explanations remain in HM plan and the saved goals are unchanged.
+Opening/reopening any popup explicitly resets its scroll to zero. In-place edits
+and save refreshes continue to preserve scroll. Queued close events from a previous
+popup cannot clear another member that has already opened.
+
+Focused checks cover a boxed level-50 Typhlosion, Bold outside Timid/Modest,
+unchanged preferences, current-nature refresh, preserved non-HM notes, and opening
+another/reopened member after scrolling to EV training. Online: confirm v0.25.65,
+check your boxed Pokémon's level and Typhlosion's extra nature/description, then
+close a detail near EV training and open another to confirm it begins at the top.
+
+Validation: **150 automated checks passed, 0 failed, 0 skipped**. Level coverage
+includes fixed growth-curve thresholds, level 1/100, missing data, saved party
+levels and snapshot immutability. The current-nature phone overlay screenshot was
+reviewed. `git diff --check` passes; real-save acceptance remains pending.
+
 ## Popup refinement — v0.25.64
 
 This supersedes the inline-card presentation described for v0.25.63 below.

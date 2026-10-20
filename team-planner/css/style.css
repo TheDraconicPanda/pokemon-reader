@@ -136,3 +136,4 @@ body:has(#member-dialog[open]) { overflow: hidden; }
 .card-species-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem; }
 .card-species { font-size: 1rem; margin: 0; }
 .card-species-row .type-badge { font-size: .65rem; padding: .15rem .3rem; }
+.current-nature em { font-size: .85rem; color: var(--muted); }

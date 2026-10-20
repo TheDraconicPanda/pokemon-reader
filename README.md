@@ -2,6 +2,20 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Team Planner current details — v0.25.65
+
+Boxed Pokémon levels are calculated locally from saved experience and verified
+HGSS species growth rates; party levels remain authoritative. Current natures
+outside the preferred list appear as an extra checked option with an italic note,
+and their stat modifiers join the info overlay. Preferred goals remain unchanged.
+
+Main team no longer repeats HM sentences from its notes; useful evolution/move
+notes remain, and HM explanations stay in HM plan. Every new/reopened popup
+starts at the top while background updates retain the current scroll position.
+A queued close event no longer clears a newly opened member.
+All **150 automated checks pass**. The phone nature overlay was reviewed.
+Live confirmation and user-save acceptance remain pending; see [Planner UX notes](docs/planner-ux.md).
+
 ## Team Planner popups — v0.25.64
 
 Cards retain the species label under the sprite, alongside Gen IV type badges,

@@ -1,5 +1,13 @@
 # Pokémon Reader Roadmap
 
+## Team Planner current details — v0.25.65
+
+- [x] Verified HGSS growth rates and local experience-to-level calculation for PC Pokémon
+- [x] Current nonpreferred nature option/description without changing favorite goals
+- [x] Main-team HM note removal and new-popup scroll/queued-close fixes
+- [x] All 150 automated checks pass; current-nature phone screenshot reviewed
+- [ ] Online acceptance with the user's save
+
 ## Team Planner popup refinement — v0.25.64
 
 - [x] Sprite/type/name/level cards and Party-style modal details with Close/Escape
@@ -68,7 +76,7 @@ See [architecture and acceptance gates](docs/application-integration.md).
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.64 release label.
+in this chat. Reader, Atlas and Planner display the same v0.25.65 release label.
 See [the final integration review](docs/integration-review.md). The separate
 Safari mechanics audit/calculator remains subsequent work.
 

@@ -133,6 +133,14 @@ function cardIdentity(member) {
   identity.append(image,speciesRow,paragraph(actual ? actual.nickname || species.name : 'Planned','card-name'),paragraph(actual ? actual.level ? 'Level '+actual.level : 'Level unavailable' : 'No linked Pokémon','species'));
   return identity;
 }
+function natureOptions(member) {
+  const current=displayProgress(member).actual?.natureId;
+  return Number.isInteger(current) && current>=0 && current<25 && !member.natureIds.includes(current) ? [...member.natureIds,current] : member.natureIds;
+}
+function mainTeamNote(member) {
+  const names=plan.goals.hms.map(hm=>hm.move.toLowerCase());
+  return member.note.split(/(?<=[.!?])\s+/).filter(sentence=>!(/\bhms?\b/i.test(sentence) || names.some(name=>sentence.toLowerCase().includes(name)))).join(' ');
+}
 function natureInfo(member) {
   const wrap=document.createElement('div');wrap.className='nature-heading';
   const heading=document.createElement('h4');heading.textContent='Nature';
@@ -140,7 +148,7 @@ function natureInfo(member) {
   const button=document.createElement('button');button.type='button';button.className='info-button';button.id='nature-info-toggle-'+member.id;button.textContent='ⓘ';button.setAttribute('aria-label','Nature descriptions');button.setAttribute('aria-expanded','false');
   const overlay=document.createElement('div');overlay.className='nature-overlay';overlay.id='nature-info-'+member.id;button.setAttribute('aria-controls',overlay.id);button.setAttribute('aria-describedby',overlay.id);overlay.setAttribute('role','tooltip');
   const stats=['Attack','Defense','Speed','Special Attack','Special Defense'];
-  for(const id of member.natureIds) {
+  for(const id of natureOptions(member)) {
     const up=Math.floor(id/5),down=id%5;
     overlay.append(paragraph(natureName(id)+': '+(up===down?'Neutral — no stat changes':'+10% '+stats[up]+' · −10% '+stats[down])));
   }
@@ -154,7 +162,7 @@ function rememberTracking() {
 }
 function openMember(member) {
   detailMember=member.id;detailPlan=plan.id;
-  renderTeam();$('#member-dialog').showModal();$('#member-close').focus();
+  renderTeam();$('#member-dialog').showModal();$('#member-close').focus();$('#member-dialog').scrollTop=0;
 }
 function renderTeam() {
   rememberTracking();
@@ -174,7 +182,12 @@ function renderTeam() {
     const ability=progress.actual ? SOULSILVER_POKEDEX.abilities[progress.actual.abilityId]?.name : null;
     body.append(checked(member.id,'Planned ability: '+member.ability,'abilities',progress.linked ? Boolean(ability && member.ability.toLowerCase().split(' / ').includes(ability.toLowerCase())) : null,'ability-'));
     body.append(natureInfo(member));
-    member.natureIds.forEach((id,i)=>body.append(checked(member.id+':'+id,`${i+1}. ${natureName(id)}`,'natures',progress.linked ? Boolean(progress.actual?.natureId===id) : null,'nature-')));
+    natureOptions(member).forEach((id,i)=>{
+      const preferred=member.natureIds.includes(id);
+      const row=checked(member.id+':'+id,preferred ? `${i+1}. ${natureName(id)}` : natureName(id),'natures',progress.linked ? Boolean(progress.actual?.natureId===id) : null,'nature-');
+      if(!preferred) {const comment=document.createElement('em');comment.textContent='— Current nature; not on the preferred list';row.append(comment);row.classList.add('current-nature');}
+      body.append(row);
+    });
     const moves=document.createElement('div');moves.className='moves';
     const heading=document.createElement('h4');heading.textContent='Final move priorities';moves.append(heading);
     member.moves.forEach(([move,detail],i)=>{
@@ -186,7 +199,8 @@ function renderTeam() {
       moves.append(checked(member.id+':'+i,text,'moves',progress.linked ? progress.moves[i] : null));
     });
     body.append(moves);
-    body.append(paragraph(member.note),checked(member.id,'Mark '+member.name+' ready for the final team (manual)','ready'));
+    const note=mainTeamNote(member);if(note)body.append(paragraph(note));
+    body.append(checked(member.id,'Mark '+member.name+' ready for the final team (manual)','ready'));
     const hmTitle=document.createElement('h3');hmTitle.textContent='HM plan';
     const hmList=document.createElement('div');hmList.className='stack';renderHms(hmList,member.id,'detail-');
     if(!hmList.childElementCount)hmList.append(paragraph('No HM assigned.'));
@@ -298,6 +312,8 @@ $('#member-dialog').addEventListener('keydown',event=>{
   else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first?.focus();}
 });
 $('#member-dialog').addEventListener('close',()=>{
+  // A queued close event can arrive after another member has already opened.
+  if($('#member-dialog').open)return;
   const id=detailMember;detailMember=null;detailPlan=null;
   if(plan)renderTeam();
   if(id)document.getElementById('member-'+id)?.focus();
