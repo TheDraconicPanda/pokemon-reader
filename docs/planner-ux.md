@@ -1,4 +1,53 @@
-# Team Planner UX — v0.25.63
+# Team Planner UX
+
+## Popup refinement — v0.25.64
+
+This supersedes the inline-card presentation described for v0.25.63 below.
+Cards retain the planned species name below the sprite, alongside current type
+badges (planned typing when unlinked), followed by
+name/nickname or Planned, and level or No linked Pokémon. Linked PC records with
+no level show Level unavailable rather than implying they are unlinked.
+
+Selecting a card opens a named native modal with a sticky Close button, Escape,
+keyboard-contained focus and focus restoration to the card. Edits and newer-save
+notifications update the same open member. Switching to a different planner
+closes the old member details. Choose saved Pokémon begins collapsed; its current
+and missing/ambiguous-link evidence remains available inside the disclosure.
+
+Planned ability has one checkbox and label. Nature options retain priority order;
+the info button displays only those natures' stat modifiers on hover, focus or
+tap. The existing Gen IV PID-nature mapping supplies the descriptions. No new
+ability or nature mechanics are introduced.
+
+Member HM sections show move, Temporary/Final set status, explanation and an
+accessible learned checkbox. Repeated owner/currently-known sentences and the
+separate Temporary HMs list are omitted. PC and unavailable-link warnings remain.
+The aggregate HM tab keeps owner names so assignments remain clear.
+
+EV sections show total current EVs / 510 under the name. Missing current data is
+labelled unavailable; historical totals remain explicitly last-known. Individual
+checkbox rows retain current/goal values, remaining amounts and over-target
+warnings. The redundant Target and Current paragraphs are removed.
+
+### Focused online check
+
+Confirm v0.25.64, select a saved member and an unlinked target, check the four
+card rows, then open their popups. Confirm the saved selector starts collapsed,
+nature info works on hover and tap, HM checks match the save and EV totals match
+Reader. Close with the button and Escape; verify the card receives focus.
+Existing matching, manual exclusivity, backups and saved progress are preserved.
+
+### Validation
+
+All **148 automated checks pass**. Final focused layout/popup checks also pass
+with the retained species labels. Browser coverage includes Enter activation,
+Close/Escape focus restoration, focus containment, collapsed saved selection,
+priority-nature descriptions, current EV totals and live updates in the open
+popup. Layouts fit 320/390/768/1440px; phone and desktop screenshots were reviewed
+in both themes. `git diff --check` passes. The existing Pages deployment remains
+the release target; live confirmation and real-save acceptance remain pending.
+
+## Initial UX release — v0.25.63
 
 The shared menu remains first. Its Settings gear opens a keyboard-contained native
 dialog; theme storage and cross-tab synchronization keep their existing shared

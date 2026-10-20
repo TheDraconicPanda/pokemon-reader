@@ -2,6 +2,23 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Team Planner popups — v0.25.64
+
+Cards retain the species label under the sprite, alongside Gen IV type badges,
+then show saved name/nickname or **Planned**, followed by
+level or **No linked Pokémon**. Selecting a card opens a Party-style popup with
+Close/Escape and focus restoration. Save updates and checklist edits retain the
+open member; Choose saved Pokémon is collapsed initially.
+
+Ability is a single checkbox, and priority-nature descriptions sit in an info
+overlay available by hover, focus or tap. HM sections retain move name, duration,
+useful explanations and learned checkboxes. Repeated owner/status text and the
+separate Temporary HMs line are removed from member details. EV sections show
+total EVs under the name, with individual progress on the existing checkboxes.
+All **148 automated checks pass**, plus final focused popup/layout checks.
+Phone and desktop screenshots were reviewed in both themes. User-save acceptance
+and live confirmation remain pending.
+
 ## Team Planner UX — v0.25.63
 
 The top menu now opens a shared **Settings** gear for the theme. In Team Planner,

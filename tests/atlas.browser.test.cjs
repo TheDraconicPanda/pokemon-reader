@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.63') && document.querySelector('.eyebrow').textContent.includes('v0.25.63'),
+    version: document.title.includes('v0.25.64') && document.querySelector('.eyebrow').textContent.includes('v0.25.64'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.63<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.64<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.63");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.64");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.64'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1484,13 +1484,13 @@ test('Planner follows a linked individual through evolution, PC transfer and mis
   data.storage.boxes[5].pokemon[0]=pokemon;await plannerSave(data);
   await until(()=>evaluate(`document.querySelector('#team-pokemon-machamp').value==='storage:6:1'`),'Linked Pokémon did not follow PC transfer');
   assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .pokemon-tracking').textContent.includes('Target reached')`),true);
-  assert.equal(await evaluate(`document.querySelector('[data-hm="Strength"] .hm-actual').textContent.includes('in PC')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-hm="Strength"] .hm-actual').textContent.includes('In PC')`),true);
   assert.deepEqual(await currentPlan('plan.links.machamp.identity'),original);
   data.storage.boxes[5].pokemon[0]={slot:1,empty:true};
   data.party.push({...structuredClone(pokemon),slot:4,recordKind:'party',personality:999,nickname:'Different Machamp'});
   await plannerSave(data);
   await until(()=>evaluate(`document.querySelector('[data-member="machamp"] .link-status')?.textContent.includes('Not found')`),'Missing link was silently reassigned');
-  assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .ev-last-known').textContent.includes('Attack 252')`),true);
+  assert.equal(await evaluate(`document.querySelector('[data-member="machamp"] .ev-last-known').textContent.includes('Last known total')`),true);
   assert.equal(await evaluate(`document.getElementById('machamp:Attack').checked`),false,'Last-known values are not current completion');
   assert.deepEqual(await currentPlan('plan.links.machamp.identity'),original);
   await evaluate(`var select=document.querySelector('#team-pokemon-machamp');select.value='party:4';select.dispatchEvent(new Event('change'));`);
@@ -2296,23 +2296,23 @@ test('Planner compact cards expose combined details, exclusive nature checks and
   assert.equal(await evaluate(`document.querySelector('.info-tooltip').getBoundingClientRect().height>0 && getComputedStyle(document.querySelector('.info-tooltip')).display!=='none'`),true,'Info hint should be visible on keyboard focus');
   await evaluate(`document.querySelector('.app-info summary').blur()`);
   assert.equal(await evaluate(`document.querySelectorAll('.team-card:not([open])').length`),6);
-  await until(()=>evaluate(`Array.from(document.querySelectorAll('.team-card > summary img')).every(img=>img.complete&&img.naturalWidth>0)`),'Planner sprites did not decode locally');
-  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="dragonite"] summary img').getAttribute('src').endsWith('/148.png')`),true);
-  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="kingdra"] summary img').classList.contains('unowned-sprite')`),true);
+  await until(()=>evaluate(`Array.from(document.querySelectorAll('.team-card .member-button img')).every(img=>img.complete&&img.naturalWidth>0)`),'Planner sprites did not decode locally');
+  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="dragonite"] .member-button img').getAttribute('src').endsWith('/148.png')`),true);
+  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="kingdra"] .member-button img').classList.contains('unowned-sprite')`),true);
   assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').disabled`),true);
   assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').selectedOptions[0].textContent`),'No eligible Pokémon found');
-  await evaluate(`document.querySelector('.team-card[data-member="kingdra"] summary').click()`);
-  await until(()=>evaluate(`document.querySelector('.team-card[data-member="kingdra"]').open`),'Card did not open');
-  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.team-card[data-member="kingdra"] .member-details > h3')).map(e=>e.textContent).join('|')`),'Main team|HM plan|EV training');
+  await evaluate(`document.querySelector('#member-kingdra').click()`);
+  await until(()=>evaluate(`document.querySelector('#member-dialog').open`),'Card did not open');
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('#member-content .member-details > h3')).map(e=>e.textContent).join('|')`),'Main team|HM plan|EV training');
   await evaluate(`document.getElementById('nature-kingdra:15').click()`);
   await until(()=>currentPlan(`plan.state.natures['kingdra:15']===true`),'Manual nature did not persist');
   await evaluate(`document.getElementById('nature-kingdra:10').click()`);
   await until(()=>currentPlan(`plan.state.natures['kingdra:10']===true && plan.state.natures['kingdra:15']===false`),'Nature priority checks were not exclusive');
   await evaluate(`document.getElementById('ability-kingdra').click()`);
   await until(()=>currentPlan('plan.state.abilities.kingdra===true'),'Manual ability did not persist');
-  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="kingdra"]').open`),true);
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').open`),true);
   assert.equal(await evaluate(`(()=>{const ids=Array.from(document.querySelectorAll('[id]')).map(e=>e.id);return ids.length===new Set(ids).size;})()`),true,'Duplicate control IDs');
-  await evaluate(`document.querySelector('#settings-toggle').click()`);
+  await evaluate(`document.querySelector('#member-close').click();document.querySelector('#settings-toggle').click()`);
   assert.equal(await evaluate(`document.querySelector('#app-settings').open && document.querySelector('#app-settings').contains(document.querySelector('#export-btn')) && document.querySelector('#app-settings').contains(document.querySelector('#planner-select'))`),true);
   for(const width of [320,390,768,1440]){
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
@@ -2321,10 +2321,10 @@ test('Planner compact cards expose combined details, exclusive nature checks and
       assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.querySelector('#app-settings').scrollWidth<=document.querySelector('#app-settings').clientWidth`),true,'Settings overflow '+width+theme);
     }
   }
-  await evaluate(`document.querySelector('#app-settings').close()`);
+  await evaluate(`document.querySelector('#app-settings').close();document.querySelector('#member-kingdra').click()`);
   for(const width of [320,390,768,1440]){
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
-    assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,'Details overflow '+width);
+    assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.querySelector('#member-dialog').scrollWidth<=document.querySelector('#member-dialog').clientWidth`),true,'Details overflow '+width);
     if(process.env.PLANNER_SCREENSHOT_DIR && [390,1440].includes(width)){
       await evaluate(`scrollTo(0,0)`);const shot=await command('Page.captureScreenshot',{format:'png'});
       await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,`planner-new-${width}.png`),Buffer.from(shot.data,'base64'));
@@ -2333,5 +2333,58 @@ test('Planner compact cards expose combined details, exclusive nature checks and
   await command('Emulation.clearDeviceMetricsOverride');
   await command('Page.reload');
   await until(()=>evaluate(`document.getElementById('nature-kingdra:10')?.checked && document.getElementById('ability-kingdra')?.checked`),'New checks were not restored');
+  assert.deepEqual(exceptions,[]);
+});
+
+test('Planner popup keeps compact identities, concise sections, nature descriptions and keyboard focus across save updates',async()=>{
+  const data=plannedParty();await openLinkedPlanner(data);
+  const card=await evaluate(`(()=>{const c=document.querySelector('#member-dragonite');return {name:c.querySelector('.card-name').textContent,level:c.querySelector('.species').textContent,types:c.querySelector('.type-badges').textContent};})()`);
+  assert.deepEqual(card,{name:'Mordecai',level:'Level 10',types:'Dragon'});
+  assert.equal(await evaluate(`document.querySelector('#member-dragonite .card-species').textContent`),'Dragonite','Keep the planned species label under the sprite');
+  assert.equal(await evaluate(`document.querySelector('#member-kingdra .card-name').textContent`),'Planned');
+  assert.equal(await evaluate(`document.querySelector('#member-kingdra .species').textContent`),'No linked Pokémon');
+  await command('Page.bringToFront');
+  await evaluate(`document.querySelector('#member-dragonite').focus()`);
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await until(()=>evaluate(`document.querySelector('#member-dialog').open`),'Keyboard did not open popup');
+  assert.equal(await evaluate(`document.activeElement.id`),'member-close');
+  assert.equal(await evaluate(`document.querySelector('#member-content .pokemon-tracking').open`),false);
+  assert.equal(await evaluate(`document.querySelector('#member-content .status-pill')`),null);
+  assert.equal(await evaluate(`document.querySelector('#member-content .checkline:has(#ability-dragonite)').textContent`),'Planned ability: Inner Focus');
+  assert.equal(await evaluate(`document.querySelector('#member-content').textContent.includes('Nature priority:') || document.querySelector('#member-content').textContent.includes('Temporary HMs:')`),false);
+  await evaluate(`document.querySelector('#member-content .info-button').focus()`);
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('#member-content .nature-overlay')).display`),'block');
+  const descriptions=await evaluate(`document.querySelector('#member-content .nature-overlay').textContent`);
+  assert.ok(descriptions.includes('Adamant: +10% Attack · −10% Special Attack'));
+  assert.ok(descriptions.includes('Jolly: +10% Speed · −10% Special Attack'));
+  assert.equal(await evaluate(`document.querySelectorAll('#member-content .hm-owner, #member-content .hm-actual').length`),0);
+  assert.equal(await evaluate(`document.querySelector('#member-content .stack').textContent.includes('Currently knows')`),false);
+  const ev=await evaluate(`document.querySelector('#member-content .ev-card').textContent`);
+  assert.ok(!ev.includes('Target:') && !ev.includes('Current:') && ev.includes('Total:'));
+  assert.equal(await evaluate(`document.querySelector('#member-content .ev-total').textContent`),`Total: ${Object.values(data.party[1].evs).reduce((n,v)=>n+v,0)} / 510 EVs`);
+  data.party[1].nickname='Mordecai updated';await plannerSave(data);
+  await until(()=>evaluate(`document.querySelector('#member-content > .card-identity .card-name')?.textContent==='Mordecai updated'`),'Popup did not refresh saved identity');
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').open`),true);
+  for(const width of [320,390,768,1440])for(const theme of ['dark','light']){
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));document.querySelector('#member-close').focus();document.querySelector('#member-dialog').scrollTop=0`);
+    assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollWidth<=document.querySelector('#member-dialog').clientWidth && document.documentElement.scrollWidth<=innerWidth`),true,width+' '+theme);
+    if(process.env.PLANNER_SCREENSHOT_DIR && [390,1440].includes(width)){
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,`planner-popup-${width}-${theme}.png`),Buffer.from(shot.data,'base64'));
+      await evaluate(`document.querySelector('#member-content .ev-card').scrollIntoView({block:'end'})`);
+      const lower=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,`planner-popup-sections-${width}-${theme}.png`),Buffer.from(lower.data,'base64'));
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  await evaluate(`document.querySelector('#member-close').focus()`);
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',modifiers:8});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',modifiers:8});
+  assert.equal(await evaluate(`document.querySelector('#member-dialog').contains(document.activeElement)`),true,'Focus escaped the modal');
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await until(()=>evaluate(`!document.querySelector('#member-dialog').open && document.activeElement.id==='member-dragonite'`),'Escape did not restore card focus');
   assert.deepEqual(exceptions,[]);
 });

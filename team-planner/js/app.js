@@ -1,11 +1,12 @@
 import { SOULSILVER_POKEDEX } from '../../js/data/games/soulsilver/pokedex-reference.js';
-import { hgssSprite } from '../../js/species-presentation.js';
+import { hgssSprite, typeBadges } from '../../js/species-presentation.js';
 import { EV_KEYS } from '../../js/planner-save.js';
 import { listProfiles, getActiveProfile, selectProfile, clearActiveProfile, subscribeAdventureChanges } from '../../js/adventures.js';
 import { initializePlanners, listPlanners, storePlanner, choosePlanner, preferredPlanner } from '../../js/planner-store.js';
 import { defaultProgress, defaultGoals, newPlanner, normalizeProgress, memberProgress, reconcilePlanner, savedPokemon, linkPokemon, importPlannerBackup, speciesName, natureName, moveName } from '../../js/planner-model.js';
 
-const openMembers=new Set();
+let detailMember=null, detailPlan=null;
+const trackingOpen=new Set();
 const $ = selector => document.querySelector(selector);
 let plan=null, profile=null, plans=[], profiles=[], persistent=true, queue=Promise.resolve(), revision=0, refreshTimer;
 
@@ -73,12 +74,14 @@ function checked(key,text,group,actual=null,prefix='') {
 function paragraph(text,className='small muted') {const p=document.createElement('p');p.className=className;p.textContent=text;return p;}
 function tracking(member,context='team') {
   const progress=displayProgress(member);
-  const box=document.createElement('div');box.className='pokemon-tracking';box.dataset.linkStatus=progress.status;
+  const box=document.createElement('details');box.className='pokemon-tracking';box.dataset.linkStatus=progress.status;
+  const key=context+'-'+member.id;box.dataset.tracking=key;box.open=trackingOpen.has(key);
+  const summary=document.createElement('summary');summary.id=context+'-tracking-'+member.id;summary.textContent='Choose saved Pokémon';box.append(summary);
   if(!profile || plan.adventureId!==profile.id) {
     box.append(paragraph('Manual progress. Associate this plan with an adventure to track saved Pokémon.'));
     return box;
   }
-  const label=document.createElement('label');label.textContent='Choose saved Pokémon: ';
+  const label=document.createElement('label');label.textContent='Saved Pokémon: ';
   const select=document.createElement('select');select.id=`${context}-pokemon-${member.id}`;
   select.setAttribute('aria-label',`${context==='team'?'Saved':'EV'} Pokémon for ${member.name}`);
   select.add(new Option('Choose a Pokémon',''));
@@ -119,27 +122,58 @@ function tracking(member,context='team') {
   if(!progress.candidates.length && plan.links[member.id]?.identity)box.append(paragraph('No eligible Pokémon found. Manual progress is enabled; the saved association is preserved.'));
   return box;
 }
+function cardIdentity(member) {
+  const actual=displayProgress(member).actual;
+  const species=SOULSILVER_POKEDEX.species[actual?.speciesId || member.speciesId];
+  const identity=document.createElement('div');identity.className='card-identity';
+  const image=document.createElement('img');image.src=hgssSprite(species.id);image.alt=species.name;image.width=96;image.height=96;
+  if(!actual)image.className='unowned-sprite';
+  const speciesRow=document.createElement('div');speciesRow.className='card-species-row';
+  const goal=document.createElement('h3');goal.className='card-species';goal.textContent=member.name;speciesRow.append(goal,typeBadges(species.types));
+  identity.append(image,speciesRow,paragraph(actual ? actual.nickname || species.name : 'Planned','card-name'),paragraph(actual ? actual.level ? 'Level '+actual.level : 'Level unavailable' : 'No linked Pokémon','species'));
+  return identity;
+}
+function natureInfo(member) {
+  const wrap=document.createElement('div');wrap.className='nature-heading';
+  const heading=document.createElement('h4');heading.textContent='Nature';
+  const info=document.createElement('div');info.className='nature-info';
+  const button=document.createElement('button');button.type='button';button.className='info-button';button.id='nature-info-toggle-'+member.id;button.textContent='ⓘ';button.setAttribute('aria-label','Nature descriptions');button.setAttribute('aria-expanded','false');
+  const overlay=document.createElement('div');overlay.className='nature-overlay';overlay.id='nature-info-'+member.id;button.setAttribute('aria-controls',overlay.id);button.setAttribute('aria-describedby',overlay.id);overlay.setAttribute('role','tooltip');
+  const stats=['Attack','Defense','Speed','Special Attack','Special Defense'];
+  for(const id of member.natureIds) {
+    const up=Math.floor(id/5),down=id%5;
+    overlay.append(paragraph(natureName(id)+': '+(up===down?'Neutral — no stat changes':'+10% '+stats[up]+' · −10% '+stats[down])));
+  }
+  button.addEventListener('click',()=>{const open=info.classList.toggle('pinned');button.setAttribute('aria-expanded',String(open));});
+  info.append(button,overlay);wrap.append(heading,info);return wrap;
+}
+function rememberTracking() {
+  for(const box of document.querySelectorAll('.pokemon-tracking')) {
+    if(box.open)trackingOpen.add(box.dataset.tracking);else trackingOpen.delete(box.dataset.tracking);
+  }
+}
+function openMember(member) {
+  detailMember=member.id;detailPlan=plan.id;
+  renderTeam();$('#member-dialog').showModal();$('#member-close').focus();
+}
 function renderTeam() {
+  rememberTracking();
   const grid=$('#team-grid');grid.replaceChildren();
+  const dialog=$('#member-dialog'), content=$('#member-content');
+  const scroll=dialog.scrollTop;content.replaceChildren();
+  if(detailPlan!==plan.id || !plan.goals.team.some(m=>m.id===detailMember)) {
+    detailMember=null;detailPlan=null;if(dialog.open)dialog.close();
+  }
   for(const member of plan.goals.team) {
     const progress=displayProgress(member);
-    const card=document.createElement('details');card.className='team-card';card.dataset.member=member.id;
-    card.open=openMembers.has(member.id);
-    card.addEventListener('toggle',()=>{if(card.open)openMembers.add(member.id);else openMembers.delete(member.id);});
-    const head=document.createElement('summary');head.className='card-head';
-    const actual=progress.actual;
-    const image=document.createElement('img');image.src=hgssSprite(actual?.speciesId || member.speciesId);image.alt=speciesName(actual?.speciesId || member.speciesId);image.width=96;image.height=96;
-    if(!actual)image.className='unowned-sprite';
-    head.append(image);
-    const titles=document.createElement('div');const title=document.createElement('h3');title.textContent=member.name;
-    titles.append(title,paragraph(actual ? `${actual.nickname || speciesName(actual.speciesId)} · ${speciesName(actual.speciesId)}${actual.level?' · Lv. '+actual.level:''}` : 'Planned · No linked Pokémon','species'));
-    const pill=document.createElement('span');pill.className='status-pill'+(plan.state.ready[member.id]?' done':'');pill.textContent=plan.state.ready[member.id]?'Ready (manual)':'Planned';head.append(titles,pill);
-    card.append(head);
-    const body=document.createElement('div');body.className='member-details';
+    const card=document.createElement('article');card.className='team-card';card.dataset.member=member.id;
+    const button=document.createElement('button');button.type='button';button.id='member-'+member.id;button.className='member-button';button.setAttribute('aria-label',member.name+'. Open Pokémon details');button.setAttribute('aria-haspopup','dialog');
+    button.append(cardIdentity(member));button.addEventListener('click',()=>openMember(member));card.append(button);
+    const body=document.createElement('div');body.className='member-details';body.dataset.member=member.id;body.hidden=member.id!==detailMember;
     const mainTitle=document.createElement('h3');mainTitle.textContent='Main team';body.append(mainTitle,paragraph('Started as '+member.origin,'species'),paragraph(member.role,'role'),tracking(member));
     const ability=progress.actual ? SOULSILVER_POKEDEX.abilities[progress.actual.abilityId]?.name : null;
-    body.append(checked(member.id,'Planned ability: '+member.ability+(ability?' · Current: '+ability:progress.linked?' · Current ability unavailable':' (manual)'),'abilities',progress.linked ? Boolean(ability && member.ability.toLowerCase().split(' / ').includes(ability.toLowerCase())) : null,'ability-'));
-    body.append(paragraph('Nature priority: '+member.nature));
+    body.append(checked(member.id,'Planned ability: '+member.ability,'abilities',progress.linked ? Boolean(ability && member.ability.toLowerCase().split(' / ').includes(ability.toLowerCase())) : null,'ability-'));
+    body.append(natureInfo(member));
     member.natureIds.forEach((id,i)=>body.append(checked(member.id+':'+id,`${i+1}. ${natureName(id)}`,'natures',progress.linked ? Boolean(progress.actual?.natureId===id) : null,'nature-')));
     const moves=document.createElement('div');moves.className='moves';
     const heading=document.createElement('h4');heading.textContent='Final move priorities';moves.append(heading);
@@ -152,15 +186,21 @@ function renderTeam() {
       moves.append(checked(member.id+':'+i,text,'moves',progress.linked ? progress.moves[i] : null));
     });
     body.append(moves);
-    if(member.temporary.length)body.append(paragraph('Temporary HMs: '+member.temporary.join(' · '),'small'));
     body.append(paragraph(member.note),checked(member.id,'Mark '+member.name+' ready for the final team (manual)','ready'));
     const hmTitle=document.createElement('h3');hmTitle.textContent='HM plan';
     const hmList=document.createElement('div');hmList.className='stack';renderHms(hmList,member.id,'detail-');
     if(!hmList.childElementCount)hmList.append(paragraph('No HM assigned.'));
     const evTitle=document.createElement('h3');evTitle.textContent='EV training';
     const evList=document.createElement('div');renderEvs(evList,member.id,'detail-');
-    body.append(hmTitle,hmList,evTitle,evList);card.append(body);grid.append(card);
+    body.append(hmTitle,hmList,evTitle,evList);
+    if(member.id===detailMember) {
+      $('#member-title').textContent=member.name;
+      const identity=cardIdentity(member);identity.querySelector('.card-species').remove();identity.querySelector('.card-name').textContent=progress.actual?.nickname || speciesName(progress.actual?.speciesId || member.speciesId);
+      content.append(identity,body);
+    } else card.append(body);
+    grid.append(card);
   }
+  dialog.scrollTop=scroll;
 }
 function renderHms(list=$('#hm-list'),memberId=null,prefix='') {
   list.replaceChildren();
@@ -171,10 +211,12 @@ function renderHms(list=$('#hm-list'),memberId=null,prefix='') {
     const learned=progress?.actual?.moves.some(move=>move.id===hm.moveId) || false;
     const row=document.createElement('article');row.className='hm-row';row.dataset.hm=hm.move;
     const name=document.createElement('div');const title=document.createElement('h3');title.textContent=hm.move;name.append(title,paragraph(hm.status));
-    const details=document.createElement('div');details.append(paragraph(hm.owner,'hm-owner'),paragraph(hm.why));
-    const status=progress?.linked ? progress.actual ? `${learned?'Currently knows':'Does not currently know'} ${hm.move} · ${progress.actual.nickname || speciesName(progress.actual.speciesId)} · ${progress.actual.location}${progress.actual.recordKind==='storage'?' (in PC, outside the travelling party)':''}` : 'Linked Pokémon not found or ambiguous in latest save.' : 'Manual confirmation; no saved Pokémon linked to this owner.';
-    details.append(paragraph(status,'hm-actual'));
-    row.append(name,details,checked('hm:'+i,progress?.linked ? 'Currently learned' : hm.status==='Temporary'?'HM taught / handled (manual)':'Confirmed (manual)','hmDone',progress?.linked ? learned : null,prefix));list.append(row);
+    const details=document.createElement('div');if(!memberId)details.append(paragraph(hm.owner,'hm-owner'));details.append(paragraph(hm.why));
+    if(progress?.actual?.recordKind==='storage')details.append(paragraph('In PC · outside the travelling party','hm-actual'));
+    else if(progress?.linked && !progress.actual)details.append(paragraph('Linked Pokémon not found or ambiguous in latest save.','hm-actual'));
+    const check=checked('hm:'+i,'','hmDone',progress?.linked ? learned : null,prefix);
+    check.querySelector('input').setAttribute('aria-label',hm.move+' learned'+(progress?.linked?'':' (manual)'));
+    row.append(name,details,check);list.append(row);
   });
 }
 function renderEvs(list=$('#ev-list'),memberId=null,prefix='') {
@@ -184,9 +226,10 @@ function renderEvs(list=$('#ev-list'),memberId=null,prefix='') {
     const progress=displayProgress(member);
     const actual=progress.actual;
     const card=document.createElement('article');card.className='ev-card';card.dataset.member=member.id;
-    const title=document.createElement('h3');title.textContent=member.name;card.append(title,paragraph('Target: '+member.evs.map(([stat,n])=>`${stat} ${n}`).join(' · ')),...(memberId ? [] : [tracking(member,'ev')]));
-    const observed=actual || progress.lastKnown;
-    if(observed)card.append(paragraph((actual?'Current: ':'Last known (not found or ambiguous): ')+Object.entries(EV_KEYS).map(([stat,key])=>`${stat} ${observed.evs[key]}`).join(' · ')+` · Total ${Object.values(observed.evs).reduce((n,v)=>n+v,0)} / 510`,actual?'ev-current':'ev-last-known'));
+    const title=document.createElement('h3');title.textContent=member.name;card.append(title);
+    const total=actual ? Object.values(actual.evs).reduce((n,v)=>n+v,0) : null;
+    card.append(paragraph(total===null?'Total: unavailable / 510 EVs':`Total: ${total} / 510 EVs`,'small muted ev-total'),...(memberId ? [] : [tracking(member,'ev')]));
+    if(!actual && progress.lastKnown)card.append(paragraph('Last known total (not current): '+Object.values(progress.lastKnown.evs).reduce((n,v)=>n+v,0)+' / 510 EVs','small ev-last-known'));
     const grid=document.createElement('div');grid.className='ev-checks';
     for(const [stat,target] of member.evs) {
       const current=actual?.evs[EV_KEYS[stat]];
@@ -234,9 +277,11 @@ function render() {
   // Capture focus at the DOM update, so an asynchronous refresh cannot steal
   // focus from a user who has already moved to another control.
   const focused=document.activeElement?.id;
+  rememberTracking();
   renderControls();
   for(const panel of document.querySelectorAll('.panel'))panel.classList.toggle('no-plan',!plan);
   if(!plan){
+    detailMember=null;detailPlan=null;$('#member-dialog').close();$('#member-content').replaceChildren();
     for(const id of ['team-grid','hm-list','ev-list','bench-list'])$('#'+id).replaceChildren();
     for(const section of ['party','move','ev']){$('#'+section+'-count').textContent='Choose a planner';$('#'+section+'-meter').style.width='0%';}
     return;
@@ -244,6 +289,19 @@ function render() {
   renderTeam();renderHms();renderEvs();renderBench();updateSummary();
   if(focused)document.getElementById(focused)?.focus();
 }
+$('#member-close').addEventListener('click',()=>$('#member-dialog').close());
+$('#member-dialog').addEventListener('keydown',event=>{
+  if(event.key!=='Tab')return;
+  const controls=[...event.currentTarget.querySelectorAll('button:not(:disabled), select:not(:disabled), input:not(:disabled), summary')].filter(node=>node.getClientRects().length);
+  const first=controls[0],last=controls.at(-1);
+  if(event.shiftKey && document.activeElement===first){event.preventDefault();last?.focus();}
+  else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first?.focus();}
+});
+$('#member-dialog').addEventListener('close',()=>{
+  const id=detailMember;detailMember=null;detailPlan=null;
+  if(plan)renderTeam();
+  if(id)document.getElementById('member-'+id)?.focus();
+});
 $('#planner-adventure').addEventListener('change',event=>{const id=event.target.value;run(async()=>{if(id)await selectProfile(id);else await clearActiveProfile();await refreshContext();});});
 $('#planner-select').addEventListener('change',event=>{const id=event.target.value;if(id)run(async()=>{if(persistent){await choosePlanner(id,profile?.id || null);await refreshContext(id);}else{plan=plans.find(p=>p.id===id);render();}});});
 $('#associate-plan').addEventListener('click',()=>mutate(next=>{if(next.adventureId!==null)throw new Error('This plan is already associated.');next.adventureId=profile.id;}));
