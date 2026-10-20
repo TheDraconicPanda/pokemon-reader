@@ -96,7 +96,9 @@ Neither is the proposed independent reference encyclopedia.
    adds online area maps (accepted), followed by v0.25.61 scroll/layout refinements.
    Validation and focused online checks are tracked in [the Safari milestone](safari-mini-atlas.md).
 6. **Integration regression:** shared menu, history/base-path/mobile/accessibility,
-   consistent versions, README/ROADMAP and real-save acceptance checklist. Pending.
+   consistent versions, README/ROADMAP and focused acceptance checklist.
+   Implemented in v0.25.62 with Reader restore-route and Planner URL/keyboard fixes;
+   validation/publication and online acceptance are tracked in [the review](integration-review.md).
 
 Each milestone must pass meaningful automated and relevant regression checks;
 real-save and user acceptance remain distinct. Repository instructions require

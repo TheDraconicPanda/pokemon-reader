@@ -16,7 +16,10 @@ function route(focus = false) {
   let view = Object.hasOwn(views, requested) ? requested : section?.dataset.readerView || 'overview';
   if (view !== "overview" && !hasSave()) {
     view = "overview"; section = null;
-    history.replaceState(null, "", `${location.pathname}${location.search}#overview`);
+    // An initial decoded-profile restore is asynchronous. Keep the requested
+    // route until it finishes; empty/denied storage still falls back to Overview.
+    if (document.querySelector(".app").dataset.adventureLoading !== "true")
+      history.replaceState(null, "", `${location.pathname}${location.search}#overview`);
   }
   activeView = view;
   document.querySelector(".app").dataset.view = view;
@@ -53,7 +56,10 @@ function updateState() {
   if (empty.hidden !== hideEmpty) empty.hidden = hideEmpty;
   document.querySelector('#view-description').textContent = activeView === 'overview' && loaded ? 'Your party, collection, and Pokédex at a glance.' : views[activeView][1];
 }
-new MutationObserver(updateState).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden','data-save-loaded']});
+new MutationObserver(records => {
+  if (records.some(record => record.attributeName === 'data-adventure-loading')) route();
+  else updateState();
+}).observe(document.querySelector('.app'), {subtree:true, attributes:true, attributeFilter:['hidden','data-save-loaded','data-adventure-loading']});
 new MutationObserver(updateState).observe(document.querySelector('#file-status'), {subtree:true, childList:true, attributes:true, attributeFilter:['class']});
 window.addEventListener('hashchange', () => route(true));
 route();

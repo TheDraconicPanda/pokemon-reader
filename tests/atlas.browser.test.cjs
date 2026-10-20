@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.61') && document.querySelector('.eyebrow').textContent.includes('v0.25.61'),
+    version: document.title.includes('v0.25.62') && document.querySelector('.eyebrow').textContent.includes('v0.25.62'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.61<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.62<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.61");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.62");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.61'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2172,4 +2172,119 @@ test('Safari shows only its short title above the map and repeated compass trave
    }
   }
  }finally{await command('Fetch.disable');await command('Emulation.clearDeviceMetricsOverride');safariMapFixture=null;safariMapFailure=false;}
+});
+
+test('Integrated Reader routes survive decoded restoration, reload and a cross-tool Back navigation',async()=>{
+ await fixtureReader();await command('Fetch.disable');
+ for(const view of ['party','storage','pokedex','collection-details-info']){
+  await command('Page.navigate',{url:baseURL+'/pokemon-reader/#'+view});
+  await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Decoded restoration');
+  assert.equal(await evaluate(`location.hash`),'#'+view,'Restoration must retain the requested Reader route');
+  assert.equal(await evaluate(`document.querySelector('.app').dataset.view`),view==='collection-details-info'?'collection':view);
+  assert.equal(await evaluate(`globalThis.__parseCount||0`),0);
+ }
+ await command('Page.navigate',{url:baseURL+'/pokemon-reader/#party'});
+ await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Party restored');
+ await evaluate(`document.querySelector('app-menu a[href*="team-planner/"]').click()`);
+ await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='planner'`),'Planner');
+ await evaluate(`history.back()`);
+ await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Return to Reader');
+ assert.equal(await evaluate(`location.hash`),'#party');
+ assert.equal(await evaluate(`document.querySelector('.app').dataset.view`),'party');
+ await command('Page.reload');
+ await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Reload Reader');
+ assert.equal(await evaluate(`location.hash`),'#party');
+ await evaluate(`document.querySelector('#load-save').click()`);
+ assert.equal(await evaluate(`location.hash`),'#overview');
+ assert.equal(await evaluate(`document.querySelector('.app').dataset.saveLoaded`),'false');
+ await evaluate(`(async()=>{await(await import('/js/adventures.js')).clearActiveProfile();})()`);
+ await command('Page.navigate',{url:baseURL+'/pokemon-reader/#party'});
+ await until(()=>evaluate(`document.querySelector('.app')?.dataset.adventureLoading==='false'`),'Empty startup completes');
+ assert.equal(await evaluate(`location.hash`),'#overview','Without an active adventure, unavailable routes still fall back');
+ assert.equal(await evaluate(`document.querySelector('.app').dataset.saveLoaded`),'false');
+});
+
+test('Planner URL changes and keyboard tab navigation keep panels and accessible selection synchronized',async()=>{
+ await evaluate(`localStorage.removeItem('pokemon-reader-soulsilver-team-planner-v1')`);
+ await command('Page.navigate',{url:baseURL+'/pokemon-reader/team-planner/#team'});
+ await until(()=>evaluate(`!!document.querySelector('#team-grid .team-card')`),'Planner ready');
+ await evaluate(`location.hash='hms'`);
+ await until(()=>evaluate(`!document.querySelector('#panel-hms').hidden`),'HM URL should open its panel');
+ assert.equal(await evaluate(`document.querySelector('.tabs').getAttribute('role')`),'tablist');
+ for(const key of ['hms','evs','bench','team']){
+  const state=await evaluate(`(()=>{const t=document.querySelector('[data-tab="${key}"]'),p=document.querySelector('#panel-${key}');return {role:t.getAttribute('role'),selected:t.getAttribute('aria-selected'),tabIndex:t.tabIndex,controls:t.getAttribute('aria-controls'),panelRole:p.getAttribute('role'),label:p.getAttribute('aria-labelledby'),id:t.id};})()`);
+  assert.equal(state.role,'tab');assert.equal(state.selected,key==='hms'?'true':'false');assert.equal(state.tabIndex,key==='hms'?0:-1);assert.equal(state.controls,'panel-'+key);assert.equal(state.panelRole,'tabpanel');assert.equal(state.label,state.id);
+ }
+ await evaluate(`document.querySelector('[data-tab="hms"]').focus()`);
+ for(const [key,expected]of [['ArrowRight','evs'],['End','bench'],['ArrowRight','team'],['Home','team'],['ArrowLeft','bench']]){
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key});await command('Input.dispatchKeyEvent',{type:'keyUp',key});
+  assert.equal(await evaluate(`document.activeElement.dataset.tab`),expected);
+  assert.equal(await evaluate(`location.hash`),'#'+expected);
+  assert.equal(await evaluate(`document.querySelector('[aria-selected="true"]').dataset.tab`),expected);
+  assert.equal(await evaluate(`document.querySelector('#panel-${expected}').hidden`),false);
+ }
+ await evaluate(`location.hash='evs'`);await until(()=>evaluate(`!document.querySelector('#panel-evs').hidden`),'EV URL');
+ await evaluate(`history.back()`);await until(()=>evaluate(`location.hash==='#bench'&&!document.querySelector('#panel-bench').hidden`),'Planner Back');
+ await evaluate(`history.forward()`);await until(()=>evaluate(`location.hash==='#evs'&&!document.querySelector('#panel-evs').hidden`),'Planner Forward');
+ const originalPlans=await evaluate(`(async()=>JSON.stringify(await(await import('/js/planner-store.js')).listPlanners()))()`);
+ await evaluate(`document.querySelector('#reset-btn').click()`);
+ await until(()=>evaluate(`document.querySelector('#confirm-dialog').open`),'Reset confirmation');
+ const tree=await command('Accessibility.getFullAXTree');
+ assert.ok(tree.nodes.some(n=>n.role?.value==='dialog'&&n.name?.value==="Reset this planner's manual progress?"),'Reset dialog has an accessible name');
+ await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await until(()=>evaluate(`!document.querySelector('#confirm-dialog').open`),'Cancel with Escape');
+ assert.equal(await evaluate(`(async()=>JSON.stringify(await(await import('/js/planner-store.js')).listPlanners()))()`),originalPlans,'Cancel preserves all planners');
+});
+
+test('Integrated Pages-path journey keeps two adventures intact across all four tools, themes, sizes and cross-page history',async()=>{
+ // Previous isolated cases deliberately leave malformed legacy text. Seed a valid
+ // backup here so this journey tests persistent integration, not session fallback.
+ const legacy=await evaluate(`(async()=>{const raw=JSON.stringify((await import('/js/planner-model.js')).defaultProgress());localStorage.setItem('pokemon-reader-soulsilver-team-planner-v1',raw);return raw;})()`);
+ await fixtureReader(atlasCaughtFixture());await command('Fetch.disable');
+ const context=await evaluate(`(async()=>{const a=await import('/js/adventures.js');const first=await a.getActiveProfile();await a.persistSnapshot(a.createSnapshot(${JSON.stringify(fixture('Second trainer'))},'second.sav'),{newAdventure:true});await a.selectProfile(first.id);return {id:first.id,profiles:JSON.stringify(await a.listProfiles())};})()`);
+ try {
+  for(const theme of ['dark','light'])for(const width of [320,768,1440]){
+   await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
+   await command('Page.navigate',{url:baseURL+'/pokemon-reader/#party'});
+   await until(()=>evaluate(`document.querySelector('.app')?.dataset.view==='party'&&document.querySelector('.app').dataset.saveLoaded==='true'`),'Reader party restored');
+   await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}))`);
+   for(const tool of ['reader','planner','atlas','pokedex']){
+    if(tool!=='reader'){
+     const destination={planner:'team-planner/',atlas:'pokedex-earth/',pokedex:'pokedex/'}[tool];
+     await evaluate(`document.querySelector('app-menu a[href$="${destination}"]').click()`);
+     await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')===${JSON.stringify(tool)}`),'Menu to '+tool);
+    }
+    if(tool==='planner'){
+     await until(()=>evaluate(`document.querySelector('#planner-adventure').value===${JSON.stringify(context.id)}`),'Planner adventure shared');
+     await evaluate(`document.querySelector('[data-tab="evs"]').click()`);
+    }
+    if(tool==='atlas'){
+     await evaluate(`location.hash='location=Route%2029'`);
+     await until(()=>evaluate(`document.querySelector('.location-card [data-species-id="19"] .caught-indicator')`),'Atlas caught flag shared');
+    }
+    if(tool==='pokedex')await until(()=>evaluate(`document.body.dataset.referenceReady==='true'`),'Reference ready');
+    const state=await evaluate(`({theme:document.documentElement.dataset.theme,fit:document.documentElement.scrollWidth<=innerWidth,links:[...document.querySelectorAll('app-menu a')].map(a=>a.pathname),current:[...document.querySelectorAll('app-menu [aria-current="page"]')].map(a=>a.textContent)})`);
+    assert.equal(state.theme,theme);assert.equal(state.fit,true,`${tool} ${width} ${theme}`);
+    assert.ok(state.links.every(link=>link.startsWith('/pokemon-reader/')));
+    if(tool!=='reader')assert.equal(state.current.length,1);
+    if(process.env.INTEGRATION_SCREENSHOT_DIR&&[320,1440].includes(width)){
+     const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.INTEGRATION_SCREENSHOT_DIR,`${tool}-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+    }
+   }
+   await evaluate(`history.back()`);
+   await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='atlas'&&document.querySelector('.location-card h2')?.textContent==='Route 29'`),'Back to Atlas location');
+   await until(()=>evaluate(`document.querySelector('.location-card [data-species-id="19"] .caught-indicator')`),'Back restores registrations');
+   await evaluate(`history.forward()`);
+   await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='pokedex'&&document.body.dataset.referenceReady==='true'`),'Forward to reference');
+   await evaluate(`document.querySelector('#load-save').click()`);
+   await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Menu returns to Reader');
+   assert.equal(await evaluate(`location.pathname+location.hash`),'/pokemon-reader/#overview');
+   assert.equal(await evaluate(`globalThis.__parseCount||0`),0);
+   const after=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return {id:(await a.getActiveProfile()).id,profiles:JSON.stringify(await a.listProfiles())};})()`);
+   assert.deepEqual(after,context,'Navigation must not replace or merge adventures');
+   assert.equal(await evaluate(`localStorage.getItem('pokemon-reader-soulsilver-team-planner-v1')`),legacy,'Original legacy backup is preserved');
+  }
+ }finally{await command('Emulation.clearDeviceMetricsOverride');}
+ assert.deepEqual(exceptions,[]);
 });

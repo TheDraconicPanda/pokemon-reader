@@ -210,11 +210,35 @@ function render() {
 $('#planner-adventure').addEventListener('change',event=>{const id=event.target.value;run(async()=>{if(id)await selectProfile(id);else await clearActiveProfile();await refreshContext();});});
 $('#planner-select').addEventListener('change',event=>{const id=event.target.value;if(id)run(async()=>{if(persistent){await choosePlanner(id,profile?.id || null);await refreshContext(id);}else{plan=plans.find(p=>p.id===id);render();}});});
 $('#associate-plan').addEventListener('click',()=>mutate(next=>{if(next.adventureId!==null)throw new Error('This plan is already associated.');next.adventureId=profile.id;}));
-for(const button of document.querySelectorAll('.tab'))button.addEventListener('click',()=>{
-  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab===button));
-  document.querySelectorAll('.panel').forEach(panel=>{panel.hidden=panel.id!=='panel-'+button.dataset.tab;panel.classList.toggle('active',!panel.hidden);});
-  history.replaceState(null,'','#'+button.dataset.tab);
-});
+const tabs=[...document.querySelectorAll('.tab')];
+function showPlannerTab(name) {
+  const selected=tabs.find(tab=>tab.dataset.tab===name)||tabs[0];
+  for(const tab of tabs) {
+    const active=tab===selected;
+    tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;
+  }
+  for(const panel of document.querySelectorAll('.panel')) {
+    panel.hidden=panel.id!=='panel-'+selected.dataset.tab;panel.classList.toggle('active',!panel.hidden);
+  }
+}
+function routePlannerTab(){showPlannerTab(location.hash.slice(1));}
+for(const button of tabs) {
+  button.addEventListener('click',()=>{
+    showPlannerTab(button.dataset.tab);
+    // Preserve the existing policy: selecting a tab replaces this history entry.
+    history.replaceState(null,'','#'+button.dataset.tab);
+  });
+  button.addEventListener('keydown',event=>{
+    if(event.altKey||event.ctrlKey||event.metaKey)return;
+    const index=tabs.indexOf(button);
+    const target={ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[event.key];
+    if(target===undefined)return;
+    event.preventDefault();tabs[target].focus();tabs[target].click();
+  });
+}
+window.addEventListener('hashchange',routePlannerTab);
+window.addEventListener('popstate',routePlannerTab);
+routePlannerTab();
 function planDialog(mode) {
   $('#plan-dialog').dataset.mode=mode;$('#plan-dialog').dataset.planner=plan?.id || '';$('#plan-dialog-title').textContent=mode==='rename'?'Rename planner':'Create planner';
   $('#plan-name').value=mode==='rename'?plan.name:'';$('#plan-dialog').showModal();$('#plan-name').focus();

@@ -2,6 +2,19 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Integration review — v0.25.62
+
+Reader keeps the selected Party, PC, Pokédex or Collection section when restoring
+an Adventure Profile, refreshing, or returning from another tool. Planner sections
+follow their URLs and support Left/Right/Home/End keyboard navigation, with
+accessible tab selection and a named reset confirmation.
+
+The integrated browser journey checks all four tools with two preserved adventure
+profiles, both themes and phone/tablet/desktop layouts under the Pages URL prefix.
+All **146 automated checks pass**. Pushed for the existing Pages deployment;
+live confirmation and focused acceptance remain pending.
+See [review evidence and the two focused online checks](docs/integration-review.md).
+
 ## Safari navigation refinements — v0.25.61
 
 The Safari page now begins with **Safari Zone**, followed by the map/compass and

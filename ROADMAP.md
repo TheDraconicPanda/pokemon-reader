@@ -43,15 +43,18 @@ See [architecture and acceptance gates](docs/application-integration.md).
 - [x] v0.25.60: user reported maps look great; requested minor navigation refinements
 - [x] v0.25.61: short Safari title, map-first layout, context inside manual editor and preserved navigation scroll
 - [x] v0.25.61: all 143 automated checks pass; repeated phone/desktop arrow scroll and failed-image space verified
-- [ ] v0.25.61: focused online scroll/layout acceptance
-- [ ] Milestone 6: integrated navigation/mobile/accessibility/data regression and docs
+- [ ] v0.25.61: explicit online scroll confirmation not separately reported; user authorized the final integration review
+- [x] Milestone 6 implementation (v0.25.62): Reader restore/history routing, Planner URL/keyboard semantics and named reset dialog
+- [x] Milestone 6: cross-tool Pages-path journey preserves two adventures across themes and phone/tablet/desktop layouts
+- [x] Milestone 6: all 146 automated checks pass; reviewed layouts and published v0.25.62 to the existing deployment branch
+- [ ] Milestone 6: live confirmation and two focused online acceptance checks
 
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.61 release label.
-See [the focused Safari checklist](docs/safari-mini-atlas.md). Integration-wide
-polish/regression remains next; the separate Safari calculator is still postponed.
+in this chat. Reader, Atlas and Planner display the same v0.25.62 release label.
+See [the final integration review](docs/integration-review.md). The separate
+Safari mechanics audit/calculator remains subsequent work.
 
 ## Phase 0 — Project foundation
 - [x] Create GitHub repository

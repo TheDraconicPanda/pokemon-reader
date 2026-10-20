@@ -6,7 +6,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.61";
+const APP_VERSION = "0.25.62";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -279,6 +279,8 @@ async function initializeAdventures() {
       document.querySelector('.app').setAttribute('aria-busy','false');
       adventureStatus.textContent = `Adventure storage is unavailable: ${error.message} You can still load a save for this session.`;
     }
+  } finally {
+    document.querySelector('.app').dataset.adventureLoading = 'false';
   }
 }
 initializeAdventures();

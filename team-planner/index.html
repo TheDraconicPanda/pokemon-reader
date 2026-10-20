@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver Team Planner — v0.25.61</title>
+  <title>SoulSilver Team Planner — v0.25.62</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <script src="../js/app-shell.js"></script>
@@ -14,7 +14,7 @@
     <app-menu tool="planner"></app-menu>
     <header class="hero">
       <p class="eyebrow">POKÉMON READER · TEAM PLANNER</p>
-      <h1>SoulSilver Team Planner <small>v0.25.61</small></h1>
+      <h1>SoulSilver Team Planner <small>v0.25.62</small></h1>
       <p>Keep your desired team separate from actual save progress. Linked Pokémon update moves, HMs, evolution, nature and EVs from your latest Adventure Profile.</p>
       <div class="toolbar">
         <span id="save-status" class="save-status" aria-live="polite">Progress saves in this browser</span>
@@ -46,25 +46,25 @@
       <article class="summary-card"><span>EV targets</span><strong id="ev-count">0 / 6 planned</strong><div class="meter"><span id="ev-meter"></span></div></article>
     </section>
 
-    <nav class="tabs" aria-label="Planner sections">
-      <button class="tab active" data-tab="team" type="button">Main team</button>
-      <button class="tab" data-tab="hms" type="button">HM plan</button>
-      <button class="tab" data-tab="evs" type="button">EV training</button>
-      <button class="tab" data-tab="bench" type="button">Postgame options</button>
+    <nav class="tabs" role="tablist" aria-label="Planner sections">
+      <button class="tab active" data-tab="team" id="tab-team" role="tab" aria-controls="panel-team" aria-selected="true" tabindex="0" type="button">Main team</button>
+      <button class="tab" data-tab="hms" id="tab-hms" role="tab" aria-controls="panel-hms" aria-selected="false" tabindex="-1" type="button">HM plan</button>
+      <button class="tab" data-tab="evs" id="tab-evs" role="tab" aria-controls="panel-evs" aria-selected="false" tabindex="-1" type="button">EV training</button>
+      <button class="tab" data-tab="bench" id="tab-bench" role="tab" aria-controls="panel-bench" aria-selected="false" tabindex="-1" type="button">Postgame options</button>
     </nav>
 
-    <section id="panel-team" class="panel active">
+    <section id="panel-team" role="tabpanel" aria-labelledby="tab-team" tabindex="0" class="panel active">
       <div class="section-heading"><div><h2>Main team</h2><p>Move order is priority order. Temporary HMs are shown separately and are not part of the final Red configuration.</p></div></div>
       <div id="team-grid" class="team-grid"></div>
     </section>
 
-    <section id="panel-hms" class="panel" hidden>
+    <section id="panel-hms" role="tabpanel" aria-labelledby="tab-hms" tabindex="0" class="panel" hidden>
       <div class="section-heading"><div><h2>HM & exploration plan</h2><p>Keep the travel setup stable; remove the temporary moves only when preparing the final Red configuration.</p></div></div>
       <div id="hm-list" class="stack"></div>
       <article class="card note"><h3>Final battle configuration</h3><p>Planned to remain on the final sets: <strong>Surf on Kingdra</strong> and <strong>Fly on Dragonite</strong>. Whirlpool, Waterfall, Rock Climb, Strength, Cut, and Rock Smash are exploration-only. Flash remains unassigned.</p></article>
     </section>
 
-    <section id="panel-evs" class="panel" hidden>
+    <section id="panel-evs" role="tabpanel" aria-labelledby="tab-evs" tabindex="0" class="panel" hidden>
       <div class="section-heading"><div><h2>EV training</h2><p>Targets stay fixed; loaded saves update current EVs and completion. Without a matching Pokémon, use the manual checklist. Generation IV allows 510 total EVs and 255 per stat; 252 is the usual effective target.</p></div></div>
       <p class="small muted">To refresh progress, use Load Save in Reader. The latest successful load supplies every Planner tab.</p>
       <p id="ev-save-status" role="status">No save loaded.</p>
@@ -72,7 +72,7 @@
       <p class="small muted">EVs already earned during the story count toward these targets. Load a newer save to refresh progress. Save files are read locally and never modified.</p>
     </section>
 
-    <section id="panel-bench" class="panel" hidden>
+    <section id="panel-bench" role="tabpanel" aria-labelledby="tab-bench" tabindex="0" class="panel" hidden>
       <div class="section-heading"><div><h2>Postgame candidates</h2><p>Optional bench choices, not replacements that have been approved for the main six.</p></div></div>
       <div id="bench-list" class="bench-grid"></div>
       <article class="card note"><h3>Current decision</h3><p>Keep the planned main six. Revisit a replacement only if a concrete gap appears; Metagross, Roserade, and Electivire remain optional candidates.</p></article>
@@ -81,7 +81,7 @@
     <footer><p>Adventure-linked and reference planners · Progress stays in this browser unless you export a backup. No save file is uploaded or edited.</p></footer>
   </main>
   <dialog id="plan-dialog" aria-labelledby="plan-dialog-title"><form id="plan-form" method="dialog"><h2 id="plan-dialog-title">Create planner</h2><label>Planner name<input id="plan-name" required maxlength="100" autocomplete="off"></label><div class="dialog-actions"><button class="button secondary" value="cancel" formnovalidate>Cancel</button><button class="button" value="confirm">Save planner</button></div></form></dialog>
-  <dialog id="confirm-dialog"><form method="dialog"><h2>Reset this planner's manual progress?</h2><p>This clears only this plan's manual checklists. Desired goals, Pokémon associations, actual save progress and other plans are preserved.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button id="confirm-reset" class="button danger" value="confirm">Reset progress</button></div></form></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-reset-title"><form method="dialog"><h2 id="confirm-reset-title">Reset this planner's manual progress?</h2><p>This clears only this plan's manual checklists. Desired goals, Pokémon associations, actual save progress and other plans are preserved.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button id="confirm-reset" class="button danger" value="confirm">Reset progress</button></div></form></dialog>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
