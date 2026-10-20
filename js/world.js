@@ -1,3 +1,4 @@
+import { createTravelConditions } from './atlas-travel.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS as SAFARI_ZONE_ENCOUNTERS } from './data/games/soulsilver/safari-encounters.js';
 import { mountCaughtIndicators } from './caught-indicators.js';
 import { speciesIdForName } from './data/game-reference.js';
@@ -102,7 +103,8 @@ function renderLocations({ exactName = null } = {}) {
     if (exactName !== null) return location.name === exactName;
     const matchesType = selectedType === "all" || location.type === selectedType;
     const routeText = locationDetailSearchText(ATLAS_GAME_ID, location.name);
-    const searchable = `${routeText} ${location.name} ${(location.aliases || []).join(" ")} ${location.region} ${location.details} ${location.landmarks.join(" ")} ${location.access.join(" ")} ${TYPE_LABELS[location.type]}`.toLowerCase();
+    const mapText = mapsForLocation(ATLAS_GAME_ID, location.name).map(map=>[map.label,map.notice||""].join(" ")).join(" ");
+    const searchable = `${routeText} ${mapText} ${location.name} ${(location.aliases || []).join(" ")} ${location.region} ${location.details} ${location.landmarks.join(" ")} ${location.access.join(" ")} ${TYPE_LABELS[location.type]}`.toLowerCase();
     return matchesType && searchable.includes(query);
   });
 
@@ -267,6 +269,7 @@ function renderLocations({ exactName = null } = {}) {
       label.textContent = "Connected locations";
       const links = document.createElement("div");
       links.className = "connection-links";
+      const travel=createTravelConditions(ATLAS_GAME_ID, location.name);
       const groups = {};
       for (const direction of ["north", "west", "east", "south", "other"]) {
         const group = document.createElement("div");
@@ -285,6 +288,8 @@ function renderLocations({ exactName = null } = {}) {
       current.className = "compass-current";
       current.setAttribute("aria-labelledby", heading.id);
       let mapControls;
+      const mapNotice=document.createElement("p");
+      mapNotice.className="map-reference-note";mapNotice.hidden=true;
       if (maps.length) {
         links.classList.add("has-map");
         const mapLink = document.createElement("a");
@@ -308,7 +313,9 @@ function renderLocations({ exactName = null } = {}) {
           const image = document.createElement("img");
           activeImage = image;
           image.className = "location-map";
-          image.alt = selected.label.includes("reference view")
+          mapNotice.textContent=[selected.notice,selected.kind ? `Interior view; compass connections and encounter tables describe ${location.name} as a whole.` : ""].filter(Boolean).join(" ");
+          mapNotice.hidden=!mapNotice.textContent;
+          image.alt = selected.kind === "reference" || selected.label.includes("reference view")
             ? `${description} in HeartGold and SoulSilver`
             : `${description} map in HeartGold and SoulSilver; north is up`;
           image.width = selected.width;
@@ -379,6 +386,7 @@ function renderLocations({ exactName = null } = {}) {
           if(location.name==='Safari Zone Gate'&&name==='Safari Zone')openSafariPosition();
           else openAtlasLocation(name);
         });
+        travel.decorate(link,name,`${LOCATIONS.indexOf(location)}-${LOCATIONS.findIndex(l=>l.name===name)}`);
         groups[direction].append(link);
       }
       for (const group of Object.values(groups)) {
@@ -386,7 +394,8 @@ function renderLocations({ exactName = null } = {}) {
       }
       connections.append(label);
       if (mapControls) connections.append(mapControls);
-      connections.append(links);
+      connections.append(links,mapNotice);
+      if(travel.hasConditions())connections.append(travel.panel);
       overview.append(connections);
     }
 

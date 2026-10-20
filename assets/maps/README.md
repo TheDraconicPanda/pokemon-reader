@@ -1,7 +1,7 @@
 # HeartGold/SoulSilver map assets
 
-The catalogue supplies 150 area/floor views across the 69 existing non-Safari
-locations, using 148 unique PNG files. Safari Zone itself remains a separate
+The catalogue supplies 192 area/floor views across the 69 existing non-Safari
+locations, using 175 unique PNG files. Safari Zone itself remains a separate
 project. See `docs/atlas-map-coverage.json` for the generated coverage report.
 
 ## Sources and reproduction
@@ -24,7 +24,7 @@ is named "Ecruteak City" in the archive and is explicitly matched to the
 `Ecruteak_City_HGSS.png` reference. Dark Cave's side labels and Mt. Mortar's floor
 labels are checked against the HGSS layout tables on their Bulbapedia articles.
 
-The 33 direct originals are recorded with source URLs, dimensions and SHA-256
+The 52 direct originals are recorded with source URLs, dimensions and SHA-256
 hashes in `docs/atlas-map-originals.json`. The provisional Battle Frontier artwork
 was rejected after inspection. Its replacement is `Battle_Frontier_Pt.png`,
 explicitly labelled as the shared Platinum/HGSS grounds layout: the
@@ -71,3 +71,13 @@ The twelve Safari mini Atlas maps are online original-image references in
 `js/data/games/soulsilver/safari-maps.js`, not files in this archive. Their linked
 Bulbagarden file pages carry source credits. See `docs/safari-mini-atlas.md` for
 availability/testing limits. Existing local asset counts and checksums are unchanged.
+
+
+Johto interior expansion v0.25.67 adds eight Gym maps and labelled named/shared
+room reference views. Metadata carries `kind`, `notice` and primary `mapIds` where
+applicable. These are included in the existing Map / area selector. Some rooms
+have screenshots rather than full floor plans, and rooms without verified released
+HGSS artwork remain absent. See `docs/atlas-johto-interiors-travel.md` and its JSON
+ledger for provenance and explicit remaining gaps. Reused standard Center/Mart
+and New Bark neighbouring-house layouts are backed by matching primary map matrices;
+characters/furniture shown in reference screenshots may differ during play.

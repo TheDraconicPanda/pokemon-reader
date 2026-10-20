@@ -57,3 +57,23 @@ test('the opening six map images stay unchanged and unsupported games have no fa
   assert.deepEqual(mapsForLocation('soulsilver','Safari Zone'),[]);
   assert.deepEqual(mapsForLocation('soulsilver','__proto__'),[]);
 });
+
+test('Johto interiors include all eight Gyms and clearly identify shared/reference images',async()=>{
+ const {mapsForLocation}=await load();
+ for(const town of ['Violet City','Azalea Town','Goldenrod City','Ecruteak City','Olivine City','Cianwood City','Mahogany Town','Blackthorn City']){
+  const gym=mapsForLocation('soulsilver',town).find(m=>m.label==='Gym');assert.ok(gym,town);assert.equal(gym.kind,'floorplan');
+ }
+ const newBark=mapsForLocation('soulsilver','New Bark Town');
+ assert.equal(newBark.filter(m=>m.id.startsWith('elms-lab-')).length,2);
+ assert.ok(newBark.some(m=>m.id==='player-bedroom'));
+ assert.ok(newBark.find(m=>m.id==='neighbor-house-1f').notice.includes('Shares'));
+ const goldenrod=mapsForLocation('soulsilver','Goldenrod City');
+ assert.ok(goldenrod.some(m=>m.id==='game-corner-international'&&m.notice.includes('Voltorb Flip')));
+ assert.ok(goldenrod.some(m=>m.id==='game-corner-japanese'&&m.notice.includes('Japanese')));
+ assert.equal(goldenrod.filter(m=>m.id.startsWith('global-terminal-')).length,3);
+ assert.equal(mapsForLocation('soulsilver','Magnet Train Station').find(m=>m.id==='magnet-train-platform').kind,'reference');
+ for(const town of ['Cherrygrove City','Violet City','Azalea Town','Ecruteak City','Olivine City','Cianwood City','Blackthorn City']){
+  const maps=mapsForLocation('soulsilver',town);assert.ok(maps.some(m=>m.id.endsWith('pokecenter-1f')),town);
+  for(const map of maps.filter(m=>m.kind==='reference'))assert.ok(map.notice,map.id);
+ }
+});

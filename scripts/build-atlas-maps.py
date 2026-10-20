@@ -59,7 +59,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
     assets = dict(pool.map(export, unique.items()))
 locations = {}
 for name, entries in catalog['locations'].items():
-    locations[name] = [dict(id=entry['id'], label=entry['label'], **assets[entry['file']]) for entry in entries if entry['file'] in assets]
+    locations[name] = [dict(id=entry['id'], label=entry['label'], **assets[entry['file']], **{k:entry[k] for k in ['kind','notice','mapIds'] if k in entry}) for entry in entries if entry['file'] in assets]
 (root / 'js/data/games/soulsilver/maps.js').write_text('// Verified HGSS map images; provenance: assets/maps/README.md.\nexport const SOULSILVER_MAPS = Object.freeze(' + json.dumps(dict(gameId='soulsilver', locations=locations), ensure_ascii=False, indent=2) + ');\n')
 report = dict(gameId='soulsilver', expectedLocations=len(locations), expectedViews=sum(map(len, catalog['locations'].values())), availableViews=sum(map(len, locations.values())), uniqueAssets=len(assets), missing=[dict(location=n,label=l,image=i) for n,l,i in missing])
 (root / 'docs/atlas-map-coverage.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')

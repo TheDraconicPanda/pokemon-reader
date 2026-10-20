@@ -1,8 +1,8 @@
 {
   "gameId": "soulsilver",
   "expectedLocations": 69,
-  "expectedViews": 150,
-  "availableViews": 150,
-  "uniqueAssets": 148,
+  "expectedViews": 192,
+  "availableViews": 192,
+  "uniqueAssets": 175,
   "missing": []
 }

@@ -228,7 +228,7 @@ test("all Atlas locations display static information, sources, and mobile layout
   await atlas();
   const result = await evaluate(`(() => {
     const cards = Array.from(document.querySelectorAll('.location-card'));
-    const complete = cards.every(card => card.querySelectorAll('.location-static h3').length === 1 && card.querySelectorAll('.location-static > div li').length >= 1 && !card.querySelector('.location-overview > div > p') && !card.querySelector('.compass-current figcaption') && card.querySelectorAll('.location-sources a').length >= 2);
+    const complete = cards.every(card => card.querySelectorAll('.location-static h3').length === 1 && card.querySelectorAll('.location-static > div li').length >= 1 && !card.querySelector('.location-overview > div:first-child > p') && !card.querySelector('.compass-current figcaption') && card.querySelectorAll('.location-sources a').length >= 2);
     const sources = cards[0].querySelector('.location-sources');
     sources.querySelector('summary').click();
     return { complete, sourcesOpen: sources.open };
@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.66') && document.querySelector('.eyebrow').textContent.includes('v0.25.66'),
+    version: document.title.includes('v0.25.67') && document.querySelector('.eyebrow').textContent.includes('v0.25.67'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.66<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.67<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.66");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.67");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.66'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1029,7 +1029,7 @@ test('all non-Safari location map choices render the matching catalogue view',as
     }
     return {locations,views,failures};
   })()`);
-  assert.equal(result.locations,69);assert.equal(result.views,150);assert.deepEqual(result.failures,[]);
+  assert.equal(result.locations,69);assert.equal(result.views,192);assert.deepEqual(result.failures,[]);
   assert.deepEqual(exceptions,[]);
 });
 
@@ -2430,4 +2430,36 @@ test('Planner shows boxed levels, adds only the current nonpreferred nature, rem
   assert.equal(await evaluate(`document.querySelector('#member-dialog').scrollTop`),0,'Reopening also starts at top');
   assert.equal(await evaluate(`document.querySelector('#member-content .current-nature')`),null);
   assert.deepEqual(exceptions,[]);
+});
+
+test('Interior maps and travel badges remain informative without locking reference navigation',async()=>{
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  const first=await evaluate(`(()=>{const b=document.querySelector('.compass-east button');return {name:b.textContent,described:document.getElementById(b.getAttribute('aria-describedby')).textContent,icon:!!b.querySelector('.travel-icon-surf'),enabled:!b.disabled,fit:document.documentElement.scrollWidth<=innerWidth};})()`);
+  assert.equal(first.name,'Route 27');assert.match(first.described,/Surf.*Fog Badge/);assert.equal(first.icon,true);assert.equal(first.enabled,true);assert.equal(first.fit,true);
+  await evaluate(`document.querySelector('.travel-conditions summary').click()`);
+  assert.equal(await evaluate(`document.querySelector('.travel-conditions').open`),true);
+  if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+   await evaluate(`document.querySelector('.location-connections').scrollIntoView()`);const shot=await command('Page.captureScreenshot',{format:'png'});
+   await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'travel-new-bark-'+width+'.png'),Buffer.from(shot.data,'base64'));
+  }
+  await evaluate(`location.hash='location=Violet%20City'`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Violet City'`),'Violet interiors');
+  const encounters=await evaluate(`document.querySelector('.location-encounters').textContent`);
+  await evaluate(`(()=>{const s=document.querySelector('.map-select');s.value=String([...s.options].findIndex(o=>o.textContent==='Gym'));s.dispatchEvent(new Event('change'));})()`);
+  await until(()=>evaluate(`document.querySelector('.location-map').naturalWidth>0 && document.querySelector('.location-map-link').href.includes('violet-gym')`),'Gym map');
+  assert.equal(await evaluate(`document.querySelector('.location-encounters').textContent`),encounters);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+   await evaluate(`document.querySelector('.map-controls').scrollIntoView()`);const shot=await command('Page.captureScreenshot',{format:'png'});
+   await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,'violet-gym-'+width+'.png'),Buffer.from(shot.data,'base64'));
+  }
+  await evaluate(`(()=>{const s=document.querySelector('.map-select');s.value=String([...s.options].findIndex(o=>o.textContent.includes('Pokémon Center')));s.dispatchEvent(new Event('change'));})()`);
+  assert.equal(await evaluate(`document.querySelector('.map-reference-note').hidden`),false);
+  assert.match(await evaluate(`document.querySelector('.map-reference-note').textContent`),/Shared HGSS room/);
+  await evaluate(`document.querySelector('#location-search-panel').open=true;document.querySelector('#location-search').value='Global Terminal';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+  assert.ok((await evaluate(`[...document.querySelectorAll('.location-card h2')].map(e=>e.textContent)`)).includes('Goldenrod City'));
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

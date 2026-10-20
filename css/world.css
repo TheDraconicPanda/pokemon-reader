@@ -304,3 +304,26 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2p
 .location-connections > .map-controls { margin: 0.75rem 0; }
 
 .encounter-name { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.connection-link { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; }
+.travel-badges { display: inline-flex; justify-content: center; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+.travel-badge { display: inline-flex; padding: 2px; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; background: var(--surface); }
+.travel-badge[data-usage="through"], .travel-badge[data-usage="alternative"] { border-style: dashed; }
+.travel-icon { display: block; width: 14px; height: 14px; background: currentColor; mask-size: contain; mask-repeat: no-repeat; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; }
+.travel-conditions { margin-top: 0.5rem; font-size: 0.85rem; }
+.travel-conditions summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 650; }
+.travel-conditions summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.travel-conditions ul { padding-left: 1.2rem; }
+.travel-conditions li { margin: 0.75rem 0; }
+.travel-conditions p, .map-reference-note { line-height: 1.5; overflow-wrap: anywhere; }
+.map-reference-note { margin: 0.65rem 0; font-size: 0.8rem; color: var(--muted); }
+.map-reference-note[hidden] { display: none; }
+.travel-icon-surf { mask-image: url("../assets/icons/travel/surf.svg"); -webkit-mask-image: url("../assets/icons/travel/surf.svg"); }
+.travel-icon-cut { mask-image: url("../assets/icons/travel/cut.svg"); -webkit-mask-image: url("../assets/icons/travel/cut.svg"); }
+.travel-icon-strength { mask-image: url("../assets/icons/travel/strength.svg"); -webkit-mask-image: url("../assets/icons/travel/strength.svg"); }
+.travel-icon-whirlpool { mask-image: url("../assets/icons/travel/whirlpool.svg"); -webkit-mask-image: url("../assets/icons/travel/whirlpool.svg"); }
+.travel-icon-waterfall { mask-image: url("../assets/icons/travel/waterfall.svg"); -webkit-mask-image: url("../assets/icons/travel/waterfall.svg"); }
+.travel-icon-rock-climb { mask-image: url("../assets/icons/travel/rock-climb.svg"); -webkit-mask-image: url("../assets/icons/travel/rock-climb.svg"); }
+.travel-icon-rock-smash { mask-image: url("../assets/icons/travel/rock-smash.svg"); -webkit-mask-image: url("../assets/icons/travel/rock-smash.svg"); }
+.travel-icon-story { mask-image: url("../assets/icons/travel/story.svg"); -webkit-mask-image: url("../assets/icons/travel/story.svg"); }
+.travel-icon-info { mask-image: url("../assets/icons/travel/info.svg"); -webkit-mask-image: url("../assets/icons/travel/info.svg"); }

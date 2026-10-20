@@ -130,3 +130,12 @@ The 2026-10-20 non-Safari audit and its evidence are recorded in
 `docs/atlas-integrated-audit-2026-10-20.md` and the companion JSON ledger. It audits
 v0.25.66's existing scope; it does not certify full Kanto, every building interior,
 per-connection HM/story gates, complete battle mechanics or Safari content.
+
+Atlas v0.25.67 adds verified Johto Gym/named/shared interior choices; the catalogue
+has 192 views / 175 assets. Keep `kind`/`notice` metadata and interior-vs-location
+context visible. Remaining rooms without verified released-HGSS artwork are listed
+in `docs/atlas-johto-interiors-travel.md`; do not claim every interior is complete.
+Directed HM/story/path rules live in `games/soulsilver/travel.js`, selected by
+`atlas-travel.js`. Preserve distinctions between passage, through-route,
+alternative and optional use; do not turn annotations into saved-progression
+locks. Safari links/data and new Kanto coverage are outside this milestone.

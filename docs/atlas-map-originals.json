@@ -328,5 +328,195 @@
       320,
       144
     ]
+  },
+  {
+    "image": "Day_Care_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/9/98/Day_Care_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Day_Care_HGSS.png",
+    "sha256": "4853e6d410e659f6c480bfdad3331679cede2dace1af74e8b7fc4c5587588dd5",
+    "dimensions": [
+      281,
+      183
+    ]
+  },
+  {
+    "image": "Elms_lab_1F_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/f/f8/Elms_lab_1F_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Elms_lab_1F_HGSS.png",
+    "sha256": "39c2c252c25ef7459aacdcbc5e77e135c6559930372e90134e90ba268039e460",
+    "dimensions": [
+      203,
+      203
+    ]
+  },
+  {
+    "image": "Elms_lab_2F_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/b/b8/Elms_lab_2F_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Elms_lab_2F_HGSS.png",
+    "sha256": "6658f1f1fedbf16f8113b027c8c4a2705067998e25f546efdfedb698f421190e",
+    "dimensions": [
+      212,
+      182
+    ]
+  },
+  {
+    "image": "Global_Terminal_1F_PtHGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/d/de/Global_Terminal_1F_PtHGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_1F_PtHGSS.png",
+    "sha256": "0d8d747eb229e7551140f057f85c5b0254de90feef272f757d7dd18c4835962a",
+    "dimensions": [
+      426,
+      260
+    ]
+  },
+  {
+    "image": "Global_Terminal_2F_PtHGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/b/b5/Global_Terminal_2F_PtHGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_2F_PtHGSS.png",
+    "sha256": "1da0f5d5271be9c434356366e4978284213894a69d25e7162122c107bd3c4a3d",
+    "dimensions": [
+      348,
+      268
+    ]
+  },
+  {
+    "image": "Global_Terminal_3F_PtHGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/0/0c/Global_Terminal_3F_PtHGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_3F_PtHGSS.png",
+    "sha256": "ce302686bba12a7e6b701124f38c7d195c135091816038edb31f4a328151d516",
+    "dimensions": [
+      300,
+      254
+    ]
+  },
+  {
+    "image": "Goldenrod_Game_Corner_JP_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/5/5e/Goldenrod_Game_Corner_JP_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Game_Corner_JP_HGSS.png",
+    "sha256": "4d6b680fa4b2a065b2f88d77de1a261bedd6b6a22f0c36439220b6efecd17210",
+    "dimensions": [
+      304,
+      211
+    ]
+  },
+  {
+    "image": "HGSS_Goldenrod_Game_Corner.png",
+    "url": "https://archives.bulbagarden.net/media/upload/a/a7/HGSS_Goldenrod_Game_Corner.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:HGSS_Goldenrod_Game_Corner.png",
+    "sha256": "6d661b1a01a8173edc22eb7a1cb6738c6fb902d591d32d5d73cc1b10f783a03e",
+    "dimensions": [
+      208,
+      167
+    ]
+  },
+  {
+    "image": "Indigo_Plateau_Center_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/4/44/Indigo_Plateau_Center_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Indigo_Plateau_Center_HGSS.png",
+    "sha256": "d429ec15966a9ca01ab88afeadb258593358bd9bc3354bdcd41f44d2df5f7197",
+    "dimensions": [
+      336,
+      346
+    ]
+  },
+  {
+    "image": "Mahogany_Town_Shop_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/0/05/Mahogany_Town_Shop_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Mahogany_Town_Shop_HGSS.png",
+    "sha256": "26ca9ce38f35ebba4e741fc7b32489a31528c1926d24431249585db7b2671b0b",
+    "dimensions": [
+      176,
+      144
+    ]
+  },
+  {
+    "image": "Miracle_Cycle_Goldenrod_interior_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/c/c5/Miracle_Cycle_Goldenrod_interior_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Miracle_Cycle_Goldenrod_interior_HGSS.png",
+    "sha256": "8b437518c63a6d6b887f4ac445447f6e50e507ed978936b80fcebaf703f60c88",
+    "dimensions": [
+      192,
+      155
+    ]
+  },
+  {
+    "image": "Name_Rater_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/c/cd/Name_Rater_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Name_Rater_HGSS.png",
+    "sha256": "9d2be88591d4e511bbd2ccdaa0650356cca2be90664f011f338938afdcb24ba0",
+    "dimensions": [
+      256,
+      192
+    ]
+  },
+  {
+    "image": "Player_Bedroom_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/8/8f/Player_Bedroom_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Player_Bedroom_HGSS.png",
+    "sha256": "e3e55c756f2c2c4addb3aa9d3ef660992a559c2e29b23051a80a7af1609e430c",
+    "dimensions": [
+      256,
+      192
+    ]
+  },
+  {
+    "image": "Player_House_1F_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/f/f7/Player_House_1F_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Player_House_1F_HGSS.png",
+    "sha256": "7d1695ce8597bdc64f177d482476cf4b760b1de5c8c85ee046008198d7d6b730",
+    "dimensions": [
+      256,
+      192
+    ]
+  },
+  {
+    "image": "Poké_Mart_interior_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/0/08/Pok%C3%A9_Mart_interior_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+    "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+    "dimensions": [
+      229,
+      175
+    ]
+  },
+  {
+    "image": "Pokémon_Center_inside_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/5/50/Pok%C3%A9mon_Center_inside_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+    "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+    "dimensions": [
+      256,
+      297
+    ]
+  },
+  {
+    "image": "Pokémon_School_interior_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/d/dd/Pok%C3%A9mon_School_interior_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_School_interior_HGSS.png",
+    "sha256": "26bfa9bc44248a8429742dce2f4cb0c2df076276a036378969751cbc9f5a12ce",
+    "dimensions": [
+      256,
+      160
+    ]
+  },
+  {
+    "image": "Rocket_Hideout_1F_before_Team_Rocket_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/f/fd/Rocket_Hideout_1F_before_Team_Rocket_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Rocket_Hideout_1F_before_Team_Rocket_HGSS.png",
+    "sha256": "99b1602e849cd5418808a128163461482c3a9fa125d07bfc895a9b69bbd01273",
+    "dimensions": [
+      160,
+      128
+    ]
+  },
+  {
+    "image": "Magnet_Train_HGSS.png",
+    "url": "https://archives.bulbagarden.net/media/upload/0/0f/Magnet_Train_HGSS.png",
+    "page": "https://archives.bulbagarden.net/wiki/File:Magnet_Train_HGSS.png",
+    "sha256": "af147b81983769f7d0ad3a258bd0e7c23d831ff2e5488e9f4938ed313c144bf4",
+    "dimensions": [
+      256,
+      192
+    ]
   }
 ]

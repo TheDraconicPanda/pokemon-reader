@@ -689,3 +689,18 @@ No confirmed data correction was needed. The report distinguishes that evidence
 from remaining Kanto/Sinjoh coverage, building/Gym interior maps, per-connection
 HM/story indicators, battle-reference depth and progression filtering. Safari
 content/mechanics are excluded. Application files and version remain unchanged.
+
+## Johto interior maps and travel conditions — v0.25.67
+
+Atlas adds 42 interior choices (all eight Gyms plus named/shared interior
+references) across 14 existing location groups. The catalogue now contains 192
+views and 175 PNG assets. Use Map / area to select a Gym, lab, house or service
+interior; reference/shared views are labelled. Some ordinary rooms still lack
+verified released-HGSS artwork, so this is not yet every building floor plan.
+
+Travel buttons now show HM/story/path symbols, with precise descriptions under
+Travel conditions. All 154 directed non-Safari connections are reviewed, including
+alternative paths, through-route versus entrance requirements and one-way ledges.
+The reference remains freely navigable; automatic saved-progression filtering is
+not added. All 154 tests pass. Safari content, encounters, reference records and
+EV yields are unchanged. See [coverage, evidence and remaining gaps](docs/atlas-johto-interiors-travel.md).

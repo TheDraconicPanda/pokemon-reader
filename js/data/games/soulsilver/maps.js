@@ -13,6 +13,90 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:New_Bark_Town_HGSS.png",
         "archive": "Johto",
         "layer": 1
+      },
+      {
+        "id": "elms-lab-1f",
+        "label": "Elm’s lab · 1F · reference view",
+        "file": "elms-lab-1f.png",
+        "width": 203,
+        "height": 203,
+        "sha256": "39c2c252c25ef7459aacdcbc5e77e135c6559930372e90134e90ba268039e460",
+        "source": "https://archives.bulbagarden.net/wiki/File:Elms_lab_1F_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_NEW_BARK_ELMS_LAB_1F"
+        ]
+      },
+      {
+        "id": "elms-lab-2f",
+        "label": "Elm’s lab · 2F · reference view",
+        "file": "elms-lab-2f.png",
+        "width": 212,
+        "height": 182,
+        "sha256": "6658f1f1fedbf16f8113b027c8c4a2705067998e25f546efdfedb698f421190e",
+        "source": "https://archives.bulbagarden.net/wiki/File:Elms_lab_2F_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_NEW_BARK_ELMS_LAB_2F"
+        ]
+      },
+      {
+        "id": "player-house-1f",
+        "label": "Player’s house · 1F · reference view",
+        "file": "player-house-1f.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "7d1695ce8597bdc64f177d482476cf4b760b1de5c8c85ee046008198d7d6b730",
+        "source": "https://archives.bulbagarden.net/wiki/File:Player_House_1F_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_NEW_BARK_PLAYER_HOUSE_1F"
+        ]
+      },
+      {
+        "id": "player-bedroom",
+        "label": "Player’s house · 2F · reference view",
+        "file": "player-bedroom.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "e3e55c756f2c2c4addb3aa9d3ef660992a559c2e29b23051a80a7af1609e430c",
+        "source": "https://archives.bulbagarden.net/wiki/File:Player_Bedroom_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_NEW_BARK_PLAYER_HOUSE_2F"
+        ]
+      },
+      {
+        "id": "neighbor-house-1f",
+        "label": "Neighbour’s house · 1F · shared layout reference view",
+        "file": "player-house-1f.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "7d1695ce8597bdc64f177d482476cf4b760b1de5c8c85ee046008198d7d6b730",
+        "source": "https://archives.bulbagarden.net/wiki/File:Player_House_1F_HGSS.png",
+        "kind": "reference",
+        "notice": "Shares the player’s-house 1F map matrix in HGSS. Furniture/characters shown are from the player’s-house reference.",
+        "mapIds": [
+          "MAP_NEW_BARK_RIVAL_HOUSE_1F"
+        ]
+      },
+      {
+        "id": "neighbor-house-2f",
+        "label": "Neighbour’s house · 2F · shared layout reference view",
+        "file": "player-bedroom.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "e3e55c756f2c2c4addb3aa9d3ef660992a559c2e29b23051a80a7af1609e430c",
+        "source": "https://archives.bulbagarden.net/wiki/File:Player_Bedroom_HGSS.png",
+        "kind": "reference",
+        "notice": "Shares the player’s-bedroom map matrix in HGSS. Characters shown are from the player’s-house reference.",
+        "mapIds": [
+          "MAP_NEW_BARK_RIVAL_HOUSE_2F"
+        ]
       }
     ],
     "Cherrygrove City": [
@@ -26,6 +110,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Cherrygrove_City_HGSS.png",
         "archive": "Johto",
         "layer": 6
+      },
+      {
+        "id": "cherrygrove-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "cherrygrove-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_POKEMART"
+        ]
       }
     ],
     "Violet City": [
@@ -39,6 +151,60 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Violet_City_HGSS.png",
         "archive": "Johto",
         "layer": 24
+      },
+      {
+        "id": "violet-gym",
+        "label": "Gym",
+        "file": "violet-gym.png",
+        "width": 320,
+        "height": 448,
+        "sha256": "5de66d57bed8d60b569d20cea726af7ea1564dda376aeb516dac4d3e27510ed9",
+        "source": "https://archives.bulbagarden.net/wiki/File:Violet_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 55,
+        "kind": "floorplan"
+      },
+      {
+        "id": "pokemon-school",
+        "label": "Pokémon School · reference view",
+        "file": "pokemon-school.png",
+        "width": 256,
+        "height": 160,
+        "sha256": "26bfa9bc44248a8429742dce2f4cb0c2df076276a036378969751cbc9f5a12ce",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_School_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_VIOLET_POKEMON_SCHOOL"
+        ]
+      },
+      {
+        "id": "violet-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_VIOLET_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "violet-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_VIOLET_POKEMART"
+        ]
       }
     ],
     "Azalea Town": [
@@ -52,6 +218,46 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Azalea_Town_HGSS.png",
         "archive": "Johto",
         "layer": 57
+      },
+      {
+        "id": "azalea-gym",
+        "label": "Gym",
+        "file": "azalea-gym.png",
+        "width": 384,
+        "height": 550,
+        "sha256": "9a5c95fb0b8fbdf5cdaecdefd59cc1ebc10c21be9e466c6a461ee42efc58a4a6",
+        "source": "https://archives.bulbagarden.net/wiki/File:Azalea_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 128,
+        "kind": "floorplan"
+      },
+      {
+        "id": "azalea-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_AZALEA_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "azalea-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_AZALEA_POKEMART"
+        ]
       }
     ],
     "Goldenrod City": [
@@ -65,6 +271,112 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_City_HGSS.png",
         "archive": "Johto",
         "layer": 87
+      },
+      {
+        "id": "goldenrod-gym",
+        "label": "Gym",
+        "file": "goldenrod-gym.png",
+        "width": 508,
+        "height": 356,
+        "sha256": "262ce85a746b4f401f546cca0a593aec7104b4a0ee228f18fb86592aa89a4d63",
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 121,
+        "kind": "floorplan"
+      },
+      {
+        "id": "goldenrod-bike-shop",
+        "label": "Bicycle shop · reference view",
+        "file": "goldenrod-bike-shop.png",
+        "width": 192,
+        "height": 155,
+        "sha256": "8b437518c63a6d6b887f4ac445447f6e50e507ed978936b80fcebaf703f60c88",
+        "source": "https://archives.bulbagarden.net/wiki/File:Miracle_Cycle_Goldenrod_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play."
+      },
+      {
+        "id": "goldenrod-name-rater",
+        "label": "Name Rater · reference view",
+        "file": "goldenrod-name-rater.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "9d2be88591d4e511bbd2ccdaa0650356cca2be90664f011f338938afdcb24ba0",
+        "source": "https://archives.bulbagarden.net/wiki/File:Name_Rater_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_GOLDENROD_NAME_RATER_HOUSE"
+        ]
+      },
+      {
+        "id": "game-corner-international",
+        "label": "Game Corner · international/Korean · reference view",
+        "file": "game-corner-international.png",
+        "width": 208,
+        "height": 167,
+        "sha256": "6d661b1a01a8173edc22eb7a1cb6738c6fb902d591d32d5d73cc1b10f783a03e",
+        "source": "https://archives.bulbagarden.net/wiki/File:HGSS_Goldenrod_Game_Corner.png",
+        "kind": "reference",
+        "notice": "International/Korean Voltorb Flip interior; Japanese releases have a different slot-machine layout."
+      },
+      {
+        "id": "game-corner-japanese",
+        "label": "Game Corner · Japanese release · reference view",
+        "file": "game-corner-japanese.png",
+        "width": 304,
+        "height": 211,
+        "sha256": "4d6b680fa4b2a065b2f88d77de1a261bedd6b6a22f0c36439220b6efecd17210",
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Game_Corner_JP_HGSS.png",
+        "kind": "reference",
+        "notice": "Japanese slot-machine interior; use the international/Korean view for Voltorb Flip releases."
+      },
+      {
+        "id": "global-terminal-1f",
+        "label": "Global Terminal · 1F · shared layout",
+        "file": "global-terminal-1f.png",
+        "width": 426,
+        "height": 260,
+        "sha256": "0d8d747eb229e7551140f057f85c5b0254de90feef272f757d7dd18c4835962a",
+        "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_1F_PtHGSS.png",
+        "kind": "floorplan",
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+      },
+      {
+        "id": "global-terminal-2f",
+        "label": "Global Terminal · 2F · shared layout",
+        "file": "global-terminal-2f.png",
+        "width": 348,
+        "height": 268,
+        "sha256": "1da0f5d5271be9c434356366e4978284213894a69d25e7162122c107bd3c4a3d",
+        "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_2F_PtHGSS.png",
+        "kind": "floorplan",
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+      },
+      {
+        "id": "global-terminal-3f",
+        "label": "Global Terminal · 3F · shared layout",
+        "file": "global-terminal-3f.png",
+        "width": 300,
+        "height": 254,
+        "sha256": "ce302686bba12a7e6b701124f38c7d195c135091816038edb31f4a328151d516",
+        "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_3F_PtHGSS.png",
+        "kind": "floorplan",
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+      },
+      {
+        "id": "goldenrod-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_GOLDENROD_POKECENTER_1F"
+        ]
       }
     ],
     "Ecruteak City": [
@@ -78,6 +390,46 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Ecruteak_City_HGSS.png",
         "archive": "Johto",
         "layer": 129
+      },
+      {
+        "id": "ecruteak-gym",
+        "label": "Gym",
+        "file": "ecruteak-gym.png",
+        "width": 256,
+        "height": 656,
+        "sha256": "b01305aecfd7e7c37307e96d63fe40ddc6033fcf547f10d115ec486aa2311c7b",
+        "source": "https://archives.bulbagarden.net/wiki/File:Ecruteak_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 235,
+        "kind": "floorplan"
+      },
+      {
+        "id": "ecruteak-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_ECRUTEAK_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "ecruteak-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_ECRUTEAK_POKEMART"
+        ]
       }
     ],
     "Olivine City": [
@@ -91,6 +443,46 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Olivine_City_HGSS.png",
         "archive": "Johto",
         "layer": 161
+      },
+      {
+        "id": "olivine-gym",
+        "label": "Gym",
+        "file": "olivine-gym.png",
+        "width": 192,
+        "height": 352,
+        "sha256": "6d846d276c02d9192458c7990efe7ebb8a2dbc420d08a58fdccece7bdcc85d57",
+        "source": "https://archives.bulbagarden.net/wiki/File:Olivine_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 181,
+        "kind": "floorplan"
+      },
+      {
+        "id": "olivine-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_OLIVINE_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "olivine-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_OLIVINE_POKEMART"
+        ]
       }
     ],
     "Cianwood City": [
@@ -104,6 +496,32 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Cianwood_City_HGSS.png",
         "archive": "Johto",
         "layer": 183
+      },
+      {
+        "id": "cianwood-gym",
+        "label": "Gym",
+        "file": "cianwood-gym.png",
+        "width": 416,
+        "height": 368,
+        "sha256": "d3de7b7fd1567d3ad77012f9c953b6e507deed39cab0fd3924324b6d1f8f28dc",
+        "source": "https://archives.bulbagarden.net/wiki/File:Cianwood_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 212,
+        "kind": "floorplan"
+      },
+      {
+        "id": "cianwood-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_CIANWOOD_POKECENTER_1F"
+        ]
       }
     ],
     "Mahogany Town": [
@@ -117,6 +535,43 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Mahogany_Town_HGSS.png",
         "archive": "Johto",
         "layer": 217
+      },
+      {
+        "id": "mahogany-gym",
+        "label": "Gym",
+        "file": "mahogany-gym.png",
+        "width": 208,
+        "height": 768,
+        "sha256": "21ce809e9865f9dd13bf1348c4033593c3533501fa4f189c38e0d04c49d9c011",
+        "source": "https://archives.bulbagarden.net/wiki/File:Mahogany_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 233,
+        "kind": "floorplan"
+      },
+      {
+        "id": "mahogany-shop",
+        "label": "Souvenir shop · reference view",
+        "file": "mahogany-shop.png",
+        "width": 176,
+        "height": 144,
+        "sha256": "26ca9ce38f35ebba4e741fc7b32489a31528c1926d24431249585db7b2671b0b",
+        "source": "https://archives.bulbagarden.net/wiki/File:Mahogany_Town_Shop_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play."
+      },
+      {
+        "id": "mahogany-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_MAHOGANY_POKECENTER_1F"
+        ]
       }
     ],
     "Blackthorn City": [
@@ -130,6 +585,46 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Blackthorn_City_HGSS.png",
         "archive": "Johto",
         "layer": 240
+      },
+      {
+        "id": "blackthorn-gym",
+        "label": "Gym",
+        "file": "blackthorn-gym.png",
+        "width": 400,
+        "height": 1136,
+        "sha256": "940003116d7fb6a94d1ba6a9250f28ac1da0ebaf1a94b7b470e2425728a2d396",
+        "source": "https://archives.bulbagarden.net/wiki/File:Blackthorn_Gym_HGSS.png",
+        "archive": "Johto",
+        "layer": 264,
+        "kind": "floorplan"
+      },
+      {
+        "id": "blackthorn-pokecenter-1f",
+        "label": "Pokémon Center · 1F · shared room reference view",
+        "file": "cherrygrove-pokecenter-1f.png",
+        "width": 256,
+        "height": 297,
+        "sha256": "3a1631fb84272c3cd7552420d07bfeb1720e8e734ba952ca47570c1084c84ba3",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_Center_inside_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_BLACKTHORN_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "blackthorn-pokemart",
+        "label": "Poké Mart · shared room reference view",
+        "file": "cherrygrove-pokemart.png",
+        "width": 229,
+        "height": 175,
+        "sha256": "dbfa3e7e21a58089d07073e41f1c6a481379022d4e916bf007032767bdb67e79",
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9_Mart_interior_HGSS.png",
+        "kind": "reference",
+        "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
+        "mapIds": [
+          "MAP_BLACKTHORN_POKEMART"
+        ]
       }
     ],
     "Route 26": [
@@ -1376,6 +1871,17 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_34_HGSS.png",
         "archive": "Johto",
         "layer": 58
+      },
+      {
+        "id": "day-care-interior",
+        "label": "Day Care · interior and yard · reference view",
+        "file": "day-care-interior.png",
+        "width": 281,
+        "height": 183,
+        "sha256": "4853e6d410e659f6c480bfdad3331679cede2dace1af74e8b7fc4c5587588dd5",
+        "source": "https://archives.bulbagarden.net/wiki/File:Day_Care_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play."
       }
     ],
     "S.S. Aqua": [
@@ -1448,6 +1954,17 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Indigo_Plateau_HGSS.png",
         "archive": "Johto",
         "layer": 447
+      },
+      {
+        "id": "league-lobby",
+        "label": "League lobby · reference view",
+        "file": "league-lobby.png",
+        "width": 336,
+        "height": 346,
+        "sha256": "d429ec15966a9ca01ab88afeadb258593358bd9bc3354bdcd41f44d2df5f7197",
+        "source": "https://archives.bulbagarden.net/wiki/File:Indigo_Plateau_Center_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play."
       }
     ],
     "Mt. Silver": [
@@ -1656,6 +2173,17 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Rocket_Hideout_B3F_HGSS.png",
         "archive": "Johto",
         "layer": 322
+      },
+      {
+        "id": "rocket-hq-shop-1f",
+        "label": "Shop entrance · 1F · before investigation · reference view",
+        "file": "rocket-hq-shop-1f.png",
+        "width": 160,
+        "height": 128,
+        "sha256": "99b1602e849cd5418808a128163461482c3a9fa125d07bfc895a9b69bbd01273",
+        "source": "https://archives.bulbagarden.net/wiki/File:Rocket_Hideout_1F_before_Team_Rocket_HGSS.png",
+        "kind": "reference",
+        "notice": "Interior reference view; characters and story objects may differ during play."
       }
     ],
     "Frontier Access": [
@@ -1722,6 +2250,17 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_City_HGSS.png",
         "archive": "Johto",
         "layer": 87
+      },
+      {
+        "id": "magnet-train-platform",
+        "label": "Train platform · reference view",
+        "file": "magnet-train-platform.png",
+        "width": 256,
+        "height": 192,
+        "sha256": "af147b81983769f7d0ad3a258bd0e7c23d831ff2e5488e9f4938ed313c144bf4",
+        "source": "https://archives.bulbagarden.net/wiki/File:Magnet_Train_HGSS.png",
+        "kind": "reference",
+        "notice": "Platform reference view, not a complete station floor plan. Boarding requires restored Power Plant service and the Magnet Train Pass."
       }
     ]
   }

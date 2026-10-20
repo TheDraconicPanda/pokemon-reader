@@ -569,3 +569,18 @@ pending; real-save and user validation pending.
 No application/data defect was confirmed by this pass. Building interior maps,
 travel HM/story indicators and deeper battle/progression features remain explicit
 scope choices; this audit does not claim those are implemented.
+
+## Johto interior maps and travel conditions — v0.25.67
+
+- [x] Add all eight Johto Gym maps and available verified named/shared interiors
+- [x] Label references, regional Game Corner differences and shared room evidence
+- [x] Expand the catalogue to 192 views / 175 assets with 42 new choices
+- [x] Add directed HM/story/path annotations for all 154 non-Safari connections
+- [x] Distinguish passage, through-route, alternate path and optional exploration
+- [x] Preserve fixed compass slots, accessible text and unrestricted reference navigation
+- [x] Pass 154 tests and review phone/desktop screenshots
+- [ ] Add remaining building interiors when verified released-HGSS artwork is obtained
+- [ ] User outcome acceptance on the existing Pages site
+
+See [explicit remaining artwork gaps](docs/atlas-johto-interiors-travel.md).
+Kanto, Safari data/mechanics and deeper battle/progression features are excluded.
