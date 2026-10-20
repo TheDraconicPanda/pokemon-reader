@@ -678,3 +678,14 @@ or uploaded. Reload the latest save after training.
 All 78 automated checks pass, including Reader/Atlas/Planner regressions and
 EV snapshot refresh, duplicate selection and invalid replacement. Publication
 pending; real-save and user validation pending.
+
+## Current non-Safari Atlas audit — 20 October 2026
+
+The [integrated audit](docs/atlas-integrated-audit-2026-10-20.md) reviews the current
+v0.25.66 Atlas, including all 69 existing non-Safari locations. All 150 tests pass,
+162 reference pages were rechecked, encounter/EV/map exports reproduce unchanged,
+and all 365 fixed/combined trainer rosters match pinned primary species/levels.
+No confirmed data correction was needed. The report distinguishes that evidence
+from remaining Kanto/Sinjoh coverage, building/Gym interior maps, per-connection
+HM/story indicators, battle-reference depth and progression filtering. Safari
+content/mechanics are excluded. Application files and version remain unchanged.

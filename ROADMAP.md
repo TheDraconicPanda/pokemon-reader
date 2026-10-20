@@ -555,3 +555,17 @@ or uploaded. Reload the latest save after training.
 All 78 automated checks pass, including Reader/Atlas/Planner regressions and
 EV snapshot refresh, duplicate selection and invalid replacement. Publication
 pending; real-save and user validation pending.
+
+## Non-Safari integrated audit — 20 October 2026
+
+- [x] Audit current v0.25.66 and account for all 69 scoped locations
+- [x] Reproduce encounters, EV yields and the full map catalogue unchanged
+- [x] Refresh 162 reference pages and compare applicable source content/rows
+- [x] Match all 365 fixed/combined trainer rosters to primary species/levels
+- [x] Pass 150 tests and verify live Atlas runtime/data files against the checkout
+- [x] Record [evidence and remaining coverage limits](docs/atlas-integrated-audit-2026-10-20.md)
+- [ ] Full SoulSilver final audit after Kanto and the separately developed Safari project
+
+No application/data defect was confirmed by this pass. Building interior maps,
+travel HM/story indicators and deeper battle/progression features remain explicit
+scope choices; this audit does not claim those are implemented.

@@ -125,3 +125,8 @@ Atlas v0.25.51 reserves all four compass slots around the map, with decorative
 arrows behind destination-only buttons. Retain directional accessible labels.
 Keep floor controls above the compass and unclassified links under Other
 connections. Do not infer HM requirements from compass direction or map imagery.
+
+The 2026-10-20 non-Safari audit and its evidence are recorded in
+`docs/atlas-integrated-audit-2026-10-20.md` and the companion JSON ledger. It audits
+v0.25.66's existing scope; it does not certify full Kanto, every building interior,
+per-connection HM/story gates, complete battle mechanics or Safari content.
