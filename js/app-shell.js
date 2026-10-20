@@ -44,7 +44,22 @@
         try { localStorage.setItem(key, theme); } catch {}
         applyTheme();
       });
-      nav.append(toggle); this.append(nav); applyTheme();
+      const settings = document.createElement('dialog'); settings.id = 'app-settings';
+      settings.setAttribute('aria-labelledby', 'app-settings-title');
+      const heading = document.createElement('h2'); heading.id = 'app-settings-title'; heading.textContent = 'Settings';
+      const close = document.createElement('button'); close.type = 'button'; close.textContent = 'Close';
+      close.addEventListener('click', () => settings.close());
+      settings.append(heading, toggle);
+      const gear = document.createElement('button'); gear.id = 'settings-toggle'; gear.type = 'button'; gear.textContent = '⚙';
+      gear.setAttribute('aria-label', 'Settings'); gear.setAttribute('aria-haspopup', 'dialog');
+      gear.addEventListener('click', () => settings.showModal());
+      settings.append(close); nav.append(gear); this.append(nav, settings); applyTheme();
+      const attachSettings = () => {
+        const content = document.getElementById('planner-settings');
+        if (content) { content.hidden = false; settings.insertBefore(content, close); }
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachSettings, {once:true});
+      else attachSettings();
     }
   });
 })();

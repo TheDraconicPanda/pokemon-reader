@@ -90,3 +90,29 @@ dialog { background: var(--surface); color: var(--text); }
 .checkline:has(input:disabled) { color: var(--text); }
 .file-button:focus-within, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media(max-width:560px) { .planner-selectors { grid-template-columns: 1fr; } }
+.title-row { display: flex; align-items: center; gap: .75rem; }
+.title-row h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h1 small { font-size: .5em; white-space: nowrap; letter-spacing: 0; color: var(--muted); }
+.hero > .save-status { display: block; margin-top: .6rem; font-size: .8rem; }
+.app-info { position: relative; flex: 0 0 auto; }
+.app-info summary { cursor: pointer; list-style: none; font-size: 1.3rem; color: var(--accent); padding: .4rem; }
+.app-info summary::-webkit-details-marker { display: none; }
+.app-info .info-tooltip { display: none; position: absolute; z-index: 3; right: 0; width: min(340px, calc(100vw - 2rem)); margin: 0; padding: 1rem; background: var(--elevated); border: 1px solid var(--border); border-radius: .6rem; color: var(--text); font-size: .9rem; line-height: 1.5; box-shadow: 0 5px 25px #0004; }
+.app-info[open] .info-tooltip, .app-info:hover .info-tooltip, .app-info:focus-within .info-tooltip { display: block; }
+.team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+.team-card { padding: 0; }
+.team-card > summary { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; cursor: pointer; list-style: none; }
+.team-card > summary::-webkit-details-marker { display: none; }
+.team-card > summary::after { content: 'View details ⌄'; color: var(--accent); font-size: .8rem; }
+.team-card[open] { grid-column: 1 / -1; }
+.team-card[open] > summary { flex-direction: row; text-align: left; flex-wrap: wrap; }
+.team-card[open] > summary::after { content: 'Close details ⌃'; margin-left: auto; }
+.team-card img { object-fit: contain; image-rendering: pixelated; }
+.unowned-sprite { filter: grayscale(1); opacity: .35; }
+.member-details { padding: 0 1rem 1rem; }
+.member-details > h3 { border-top: 1px solid var(--border); padding-top: 1rem; }
+.member-details .hm-row { grid-template-columns: 7rem 1fr; }
+.member-details .hm-row > .checkline { grid-column: 2; }
+.pokemon-tracking select:disabled { opacity: .55; cursor: not-allowed; }
+@media(max-width:760px) { .team-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .summary-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .35rem; } .summary-card { padding: .6rem .4rem; } .summary-card strong { font-size: .85rem; } .summary-card > span { font-size: .75rem; } .member-details .hm-row { grid-template-columns: 1fr; } .member-details .hm-row > .checkline { grid-column: 1; } }

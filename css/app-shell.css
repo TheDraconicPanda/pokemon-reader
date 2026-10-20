@@ -37,3 +37,10 @@ app-menu { display: block; }
   .secondary-nav { gap: 0; }
   .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle { padding-inline: 3px; font-size: 11px; }
 }
+.secondary-nav #settings-toggle { justify-self: end; font-size: 1.5rem; }
+#app-settings { width: min(640px, calc(100% - 2rem)); max-width: 640px; max-height: calc(100dvh - 2rem); overflow: auto; padding: 1.25rem; border: 1px solid var(--border); border-radius: .85rem; background: var(--surface); color: var(--text); }
+#app-settings::backdrop { background: #0f172a99; }
+#app-settings button { color: var(--text); background: var(--elevated); border: 1px solid var(--border); border-radius: .5rem; padding: .6rem .85rem; font: inherit; cursor: pointer; }
+#app-settings h2 { margin-top: 0; }
+#app-settings > button:last-child { display: block; margin: 1rem 0 0 auto; }
+#app-settings .planner-controls { margin-top: 1rem; }

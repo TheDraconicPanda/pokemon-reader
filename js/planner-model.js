@@ -3,7 +3,7 @@ import { TEAM_FAMILIES, EV_KEYS } from './planner-save.js';
 import { gameReference } from './data/game-reference.js';
 const REFERENCE = gameReference('soulsilver');
 
-export const defaultProgress = () => ({version:1, ready:{}, moves:{}, hmDone:{}, evDone:{}, benchNotes:{}});
+export const defaultProgress = () => ({version:1, ready:{}, moves:{}, hmDone:{}, evDone:{}, benchNotes:{}, abilities:{}, natures:{}});
 export const speciesName = id => REFERENCE.species[id] || `Species #${id}`;
 export const moveName = id => REFERENCE.moves[id] || `Move #${id}`;
 export const natureName = id => REFERENCE.natures[id] || 'Unavailable';
@@ -21,7 +21,7 @@ export function defaultGoals() {
 }
 export function normalizeProgress(state) {
   if (!state || state.version !== 1 || Array.isArray(state)) throw new Error('Unrecognized Planner progress.');
-  for (const group of ['ready','moves','hmDone','evDone','benchNotes']) {
+  for (const group of ['ready','moves','hmDone','evDone','benchNotes','abilities','natures']) {
     if (state[group] !== undefined && (!state[group] || typeof state[group] !== 'object' || Array.isArray(state[group]) || Object.values(state[group]).some(value => typeof value !== 'boolean'))) throw new Error('Invalid Planner checklist.');
   }
   return {...defaultProgress(),...structuredClone(state)};

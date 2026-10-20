@@ -1,5 +1,13 @@
 # Pokémon Reader Roadmap
 
+## Team Planner UX — v0.25.63
+
+- [x] Shared gear settings, single Planner title and accessible app-purpose hint
+- [x] Compact cards with current-stage sprites and combined team/HM/EV details
+- [x] Ability/nature checks, exclusive manual nature choices and no-candidate manual fallback
+- [x] All 147 merged automated checks pass; phone/desktop screenshots reviewed
+- [ ] Online acceptance with the user's current save
+
 ## Application integration — current track (2026-10-19)
 
 This user-requested integration supersedes the historical "Safari next" ordering
@@ -52,7 +60,7 @@ See [architecture and acceptance gates](docs/application-integration.md).
 Do not mark later milestones complete based on the profile foundation. Existing
 Planner v1 browser data remains preserved; schema-2 IndexedDB plans are authoritative
 after migration activation. No personal save has been used for automated validation
-in this chat. Reader, Atlas and Planner display the same v0.25.62 release label.
+in this chat. Reader, Atlas and Planner display the same v0.25.63 release label.
 See [the final integration review](docs/integration-review.md). The separate
 Safari mechanics audit/calculator remains subsequent work.
 

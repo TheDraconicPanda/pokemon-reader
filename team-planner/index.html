@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver Team Planner — v0.25.62</title>
+  <title>SoulSilver Team Planner — v0.25.63</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <script src="../js/app-shell.js"></script>
@@ -13,16 +13,16 @@
   <main class="app">
     <app-menu tool="planner"></app-menu>
     <header class="hero">
-      <p class="eyebrow">POKÉMON READER · TEAM PLANNER</p>
-      <h1>SoulSilver Team Planner <small>v0.25.62</small></h1>
-      <p>Keep your desired team separate from actual save progress. Linked Pokémon update moves, HMs, evolution, nature and EVs from your latest Adventure Profile.</p>
+      <div class="title-row"><h1>SoulSilver Team Planner <small>v0.25.63</small></h1><details class="app-info"><summary aria-label="About Team Planner" aria-describedby="planner-purpose">ⓘ<span id="planner-purpose" class="info-tooltip">Keep your desired team separate from actual save progress. Linked Pokémon update moves, HMs, evolution, nature and EVs from your latest Adventure Profile.</span></summary></details></div>
+      <span id="save-status" class="save-status" aria-live="polite">Progress saves in this browser</span>
+    </header>
+    <div id="planner-settings" hidden>
+      <h3>Team Planner</h3>
       <div class="toolbar">
-        <span id="save-status" class="save-status" aria-live="polite">Progress saves in this browser</span>
         <button id="export-btn" class="button secondary" type="button">Export backup</button>
         <label class="button secondary file-button" for="import-file">Import backup<input id="import-file" type="file" accept="application/json,.json"></label>
         <button id="reset-btn" class="button danger" type="button">Reset progress</button>
       </div>
-    </header>
 
     <section class="card planner-controls" aria-labelledby="planner-controls-title">
       <h2 id="planner-controls-title">Your planners</h2>
@@ -38,7 +38,8 @@
       <p id="planner-context" role="status"></p>
       <p class="small muted">Your original Mando plan is preserved. Associate it once with the correct adventure, or create a separate planner. New planners copy the selected goals with fresh manual checklists and Pokémon associations.</p>
     </section>
-    <p id="planner-empty" class="card" hidden>Choose a planner above, or create one. Multiple planners are kept separate.</p>
+    </div>
+    <p id="planner-empty" class="card" hidden>Open Settings to choose a planner or create one. Multiple planners are kept separate.</p>
 
     <section class="summary-grid" aria-label="Progress summary">
       <article class="summary-card"><span>Party</span><strong id="party-count">0 / 6 ready</strong><div class="meter"><span id="party-meter"></span></div></article>

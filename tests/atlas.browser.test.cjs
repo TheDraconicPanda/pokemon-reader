@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.62') && document.querySelector('.eyebrow').textContent.includes('v0.25.62'),
+    version: document.title.includes('v0.25.63') && document.querySelector('.eyebrow').textContent.includes('v0.25.63'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.62<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.63<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.62");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.63");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,10 +603,10 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
-  assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'theme-toggle');
+  assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
   assert.equal(await evaluate(`document.querySelector('.dashboard-nav').nextElementSibling.className`),'view-intro');
   assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),false);
   await fixtureReader();
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.62'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.63'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1227,7 +1227,7 @@ test('Shared menu keeps themes across tools and region pairs fit phones and desk
         }
         const state=await evaluate(`({theme:document.documentElement.dataset.theme,labels:[...document.querySelector('.secondary-nav').children].map(c=>c.textContent),fit:document.documentElement.scrollWidth<=innerWidth,hash:location.hash})`);
         assert.equal(state.theme,theme);assert.equal(state.fit,true);
-        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas','Pokédex',theme==='dark'?'Light mode':'Dark mode']);
+        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas','Pokédex','⚙']);
         if(tool==='reader')assert.equal(state.hash,'#overview');
         if(process.env.ATLAS_SCREENSHOT_DIR && width!==320){
           await evaluate('scrollTo(0,0)');
@@ -2287,4 +2287,51 @@ test('Integrated Pages-path journey keeps two adventures intact across all four 
   }
  }finally{await command('Emulation.clearDeviceMetricsOverride');}
  assert.deepEqual(exceptions,[]);
+});
+
+test('Planner compact cards expose combined details, exclusive nature checks and contextual gear settings',async()=>{
+  const data=plannedParty();data.storage.boxes.forEach(b=>b.pokemon=b.pokemon.map(p=>({slot:p.slot,empty:true})));await openLinkedPlanner(data);
+  assert.equal(await evaluate(`document.querySelector('.hero .eyebrow')`),null);
+  await evaluate(`document.querySelector('.app-info summary').focus()`);
+  assert.equal(await evaluate(`document.querySelector('.info-tooltip').getBoundingClientRect().height>0 && getComputedStyle(document.querySelector('.info-tooltip')).display!=='none'`),true,'Info hint should be visible on keyboard focus');
+  await evaluate(`document.querySelector('.app-info summary').blur()`);
+  assert.equal(await evaluate(`document.querySelectorAll('.team-card:not([open])').length`),6);
+  await until(()=>evaluate(`Array.from(document.querySelectorAll('.team-card > summary img')).every(img=>img.complete&&img.naturalWidth>0)`),'Planner sprites did not decode locally');
+  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="dragonite"] summary img').getAttribute('src').endsWith('/148.png')`),true);
+  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="kingdra"] summary img').classList.contains('unowned-sprite')`),true);
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').disabled`),true);
+  assert.equal(await evaluate(`document.querySelector('#team-pokemon-kingdra').selectedOptions[0].textContent`),'No eligible Pokémon found');
+  await evaluate(`document.querySelector('.team-card[data-member="kingdra"] summary').click()`);
+  await until(()=>evaluate(`document.querySelector('.team-card[data-member="kingdra"]').open`),'Card did not open');
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.team-card[data-member="kingdra"] .member-details > h3')).map(e=>e.textContent).join('|')`),'Main team|HM plan|EV training');
+  await evaluate(`document.getElementById('nature-kingdra:15').click()`);
+  await until(()=>currentPlan(`plan.state.natures['kingdra:15']===true`),'Manual nature did not persist');
+  await evaluate(`document.getElementById('nature-kingdra:10').click()`);
+  await until(()=>currentPlan(`plan.state.natures['kingdra:10']===true && plan.state.natures['kingdra:15']===false`),'Nature priority checks were not exclusive');
+  await evaluate(`document.getElementById('ability-kingdra').click()`);
+  await until(()=>currentPlan('plan.state.abilities.kingdra===true'),'Manual ability did not persist');
+  assert.equal(await evaluate(`document.querySelector('.team-card[data-member="kingdra"]').open`),true);
+  assert.equal(await evaluate(`(()=>{const ids=Array.from(document.querySelectorAll('[id]')).map(e=>e.id);return ids.length===new Set(ids).size;})()`),true,'Duplicate control IDs');
+  await evaluate(`document.querySelector('#settings-toggle').click()`);
+  assert.equal(await evaluate(`document.querySelector('#app-settings').open && document.querySelector('#app-settings').contains(document.querySelector('#export-btn')) && document.querySelector('#app-settings').contains(document.querySelector('#planner-select'))`),true);
+  for(const width of [320,390,768,1440]){
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    for(const theme of ['light','dark']){
+      await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));`);
+      assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.querySelector('#app-settings').scrollWidth<=document.querySelector('#app-settings').clientWidth`),true,'Settings overflow '+width+theme);
+    }
+  }
+  await evaluate(`document.querySelector('#app-settings').close()`);
+  for(const width of [320,390,768,1440]){
+    await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+    assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,'Details overflow '+width);
+    if(process.env.PLANNER_SCREENSHOT_DIR && [390,1440].includes(width)){
+      await evaluate(`scrollTo(0,0)`);const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.PLANNER_SCREENSHOT_DIR,`planner-new-${width}.png`),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await command('Emulation.clearDeviceMetricsOverride');
+  await command('Page.reload');
+  await until(()=>evaluate(`document.getElementById('nature-kingdra:10')?.checked && document.getElementById('ability-kingdra')?.checked`),'New checks were not restored');
+  assert.deepEqual(exceptions,[]);
 });

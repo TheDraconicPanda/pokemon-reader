@@ -2,6 +2,23 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Team Planner UX — v0.25.63
+
+The top menu now opens a shared **Settings** gear for the theme. In Team Planner,
+it also holds planner/adventure selection, creation, rename, backup and reset.
+Party, Move goals and EV targets lead the page beneath a single title and an info
+hint. Compact Pokémon cards open Main team, HM plan and EV training together.
+
+Linked cards show the actual saved evolution stage; unlinked targets use a grey
+sprite. Ability and nature have completion checkboxes; manual nature choices are
+exclusive and follow the priority list. No eligible family member disables the
+saved-Pokémon selector and enables manual progress without discarding an existing
+association. Unique party-family auto-linking and explicit PC/ambiguous matching
+are preserved. All **147 automated checks pass**, including existing Reader,
+Atlas, Pokédex and Safari regressions and 320/390/768/1440px theme checks. Phone
+and desktop screenshots were reviewed. Live confirmation and user-save acceptance
+remain pending. See [Planner UX checks](docs/planner-ux.md).
+
 ## Integration review — v0.25.62
 
 Reader keeps the selected Party, PC, Pokédex or Collection section when restoring
