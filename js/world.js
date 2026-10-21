@@ -1,3 +1,4 @@
+import { createMapLinks } from './atlas-map-links.js';
 import { createTravelConditions } from './atlas-travel.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS as SAFARI_ZONE_ENCOUNTERS } from './data/games/soulsilver/safari-encounters.js';
 import { mountCaughtIndicators } from './caught-indicators.js';
@@ -288,6 +289,7 @@ function renderLocations({ exactName = null } = {}) {
       current.className = "compass-current";
       current.setAttribute("aria-labelledby", heading.id);
       let mapControls;
+      let stairLinks;
       const mapNotice=document.createElement("p");
       mapNotice.className="map-reference-note";mapNotice.hidden=true;
       if (maps.length) {
@@ -307,7 +309,15 @@ function renderLocations({ exactName = null } = {}) {
         let selection;
         let previous;
         let next;
-        function showMap(index, userSelected = false) {
+        stairLinks = createMapLinks(ATLAS_GAME_ID, location.name, maps, (mapId, pairId) => {
+          showMap(maps.findIndex(map => map.id === mapId), true, pairId);
+        });
+        let hasStairLinks = false;
+        if (stairLinks) mapLink.addEventListener("click", event => {
+          if (!hasStairLinks || event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault(); stairLinks.openViewer(mapLink);
+        });
+        function showMap(index, userSelected = false, pairId = null) {
           const selected = maps[index];
           const description = `${location.name} · ${selected.label}`;
           const image = document.createElement("img");
@@ -328,7 +338,12 @@ function renderLocations({ exactName = null } = {}) {
           mapLink.setAttribute("aria-label", `Open full-size ${description} map in a new tab`);
           const hint = document.createElement("span");
           hint.className = "map-hint";
-          hint.textContent = "Open full-size map";
+          hasStairLinks = stairLinks?.update(selected, pairId) || false;
+          if (hasStairLinks) {
+            mapLink.setAttribute("aria-haspopup", "dialog");
+            mapLink.setAttribute("aria-label", `Open full-size ${description} map with stair links`);
+          } else mapLink.removeAttribute("aria-haspopup");
+          hint.textContent = hasStairLinks ? "Open full-size map with stair links" : "Open full-size map";
           mapLink.replaceChildren(image, hint);
           mapLink.hidden = false;
           fallback.hidden = true;
@@ -344,11 +359,14 @@ function renderLocations({ exactName = null } = {}) {
           image.addEventListener("error", () => {
             if (activeImage !== image) return;
             mapLink.hidden = true;
+            stairLinks?.unavailable();
             fallback.hidden = false;
             announcement.textContent = `${description}: map unavailable.`;
           }, { once: true });
           image.src = mapLink.href;
-          if (userSelected) announcement.textContent = `Showing ${description}.`;
+          if (userSelected) announcement.textContent = pairId
+            ? `Showing ${description}; arrived at stair ${pairId}.`
+            : `Showing ${description}.`;
         }
         if (maps.length > 1) {
           const controls = document.createElement("div");
@@ -376,7 +394,11 @@ function renderLocations({ exactName = null } = {}) {
           controls.append(label, previous, next);
           mapControls = controls;
         }
-        current.append(mapLink, fallback, announcement);
+        if (stairLinks) {
+          const frame = document.createElement("div"); frame.className = "map-marker-frame";
+          frame.append(mapLink, stairLinks.overlay);
+          current.append(frame, fallback, announcement);
+        } else current.append(mapLink, fallback, announcement);
         showMap(0);
       }
       links.append(current);
@@ -400,6 +422,7 @@ function renderLocations({ exactName = null } = {}) {
       connections.append(label);
       if (mapControls) connections.append(mapControls);
       connections.append(links,mapNotice);
+      if (stairLinks) connections.append(stairLinks.panel, stairLinks.dialog);
       if(travel.hasConditions())connections.append(travel.panel);
       overview.append(connections);
     }

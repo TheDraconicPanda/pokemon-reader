@@ -601,3 +601,17 @@ The v0.25.67 missing-room inventory is resolved for reference coverage. High-det
 rendered artwork can still replace a labelled plan later if verified artwork
 becomes available. Kanto expansion, Safari and deeper battle/progression features
 remain separate. See [coverage and limitations](docs/atlas-johto-interior-completion.md).
+
+## Whirl Islands stair connections — v0.25.69
+
+- [x] Pair all six entrance/B1F ladders against primary game warps, including both
+  adjacent B1F event tiles per ladder.
+- [x] Add matching A–F markers and touch-friendly text links to the existing maps.
+- [x] Follow links in both directions and highlight/focus the destination.
+- [x] Keep markers in a full-size scrollable viewer with theme and keyboard support.
+- [x] Preserve original map bytes, floor choices, compass and encounter tables.
+- [x] Pass 161 tests and review phone/desktop layouts in both themes.
+- [ ] User outcome acceptance of the published stair-link overlay.
+
+This covers the requested four entrance maps ↔ B1F connections; B2F/deeper paths,
+Safari and Kanto expansion remain separate. See [evidence and scope](docs/whirl-islands-stair-links.md).

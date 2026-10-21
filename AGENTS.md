@@ -151,3 +151,14 @@ interior-vs-location note; unflagged tiles are not guaranteed walkable because
 objects, height and scripts also matter. See `docs/atlas-johto-interior-completion.md`
 and its coverage ledger. No new Kanto locations or Safari area content is included;
 user visual acceptance and real-game validation remain separate from automation.
+
+Atlas v0.25.69 adds Whirl Islands A–F ladder overlays for the six 1F/B1F pairs.
+Game data is in `games/soulsilver/map-links.js`, selected via `atlas-map-links.js`;
+the renderer is `js/atlas-map-links.js`. Keep original PNGs/credits intact and align
+markers with object-fit's actual painted rectangle, not its letterboxed element.
+The full-size dialog retains interactive letters, map selection, panning to the
+arrival, accessible text links, Escape/close and focus return. Two adjacent B1F
+warp tiles represent one ladder. B1F/B2F stairs and cave exits have no A–F labels.
+Evidence/primary indices and image hashes: `docs/whirl-islands-stair-links.json`.
+Do not infer a walkable whole-floor route or override HM/story requirements from
+these paired links. Other locations/games must not inherit Whirl's connections.

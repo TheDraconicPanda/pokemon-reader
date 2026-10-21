@@ -1,0 +1,352 @@
+{
+  "gameId": "soulsilver",
+  "location": "Whirl Islands",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "scope": "All six 1F entrance-area ladders paired with B1F; Route 41 cave exits and B1F/B2F ladders are outside this focused overlay.",
+  "sources": {
+    "files/fielddata/eventdata/zone_event/118_D40R0101.json": {
+      "sha256": "b19065e1b1e281c9e549a2420284de540e46c4ecc1e874ab6085fb6f8136c320",
+      "warps": [
+        {
+          "x": 37,
+          "z": 25,
+          "header": "MAP_ROUTE_41",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 51,
+          "z": 22,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 56,
+          "z": 9,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 11,
+          "z": 20,
+          "header": "MAP_ROUTE_41",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "z": 16,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "z": 54,
+          "header": "MAP_ROUTE_41",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 9,
+          "y": 0
+        },
+        {
+          "x": 52,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 12,
+          "y": 0
+        },
+        {
+          "x": 52,
+          "z": 59,
+          "header": "MAP_ROUTE_41",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "files/fielddata/eventdata/zone_event/228_D40R0102.json": {
+      "sha256": "5e838cf0955eeb76c37954db8becd622c1a5a1f91236ff7e2228a79116411b4e",
+      "warps": [
+        {
+          "x": 23,
+          "z": 11,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 23,
+          "z": 10,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 29,
+          "z": 54,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 29,
+          "z": 53,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 64,
+          "z": 16,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 64,
+          "z": 15,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 73,
+          "z": 8,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 73,
+          "z": 7,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 46,
+          "z": 54,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 46,
+          "z": 53,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 54,
+          "z": 43,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 66,
+          "z": 51,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 8,
+          "y": 0
+        },
+        {
+          "x": 66,
+          "z": 50,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 8,
+          "y": 0
+        }
+      ]
+    }
+  },
+  "images": {
+    "1f-nw": {
+      "file": "whirl-islands-1f-nw-hgss.png",
+      "width": 204,
+      "height": 146,
+      "sha256": "021b04d8c070fe6051385dd2e175b06d805aa3da6ed73865e6c953041c665a8c"
+    },
+    "1f-ne": {
+      "file": "whirl-islands-1f-ne-hgss.png",
+      "width": 445,
+      "height": 307,
+      "sha256": "453636828332cd8f2150683d18ae16277095e33c752727e01bcefafc8dc06157"
+    },
+    "1f-sw": {
+      "file": "whirl-islands-1f-sw-hgss.png",
+      "width": 476,
+      "height": 170,
+      "sha256": "516c077ac5cabb618c2d282741dd60ca710878cab9ec2ffb096929898629a292"
+    },
+    "1f-se": {
+      "file": "whirl-islands-1f-se-hgss.png",
+      "width": 268,
+      "height": 270,
+      "sha256": "206ccf4621e5fca6451aca7ba4d22cbc96cc837261c499f5de840b10a0bfee41"
+    },
+    "b1f": {
+      "file": "whirl-islands-b1f-hgss.png",
+      "width": 1088,
+      "height": 736,
+      "sha256": "518abd844b6300c62ec5501e7c238fb15aa8e50c30edac4de6e43a7002f107e5"
+    }
+  },
+  "pairs": [
+    {
+      "id": "A",
+      "label": "NW ladder",
+      "ends": [
+        {
+          "mapId": "1f-nw",
+          "x": 70,
+          "y": 72
+        },
+        {
+          "mapId": "b1f",
+          "x": 168,
+          "y": 110
+        }
+      ],
+      "primary1fWarp": 4,
+      "primaryB1fWarps": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "B",
+      "label": "NE · north ladder",
+      "ends": [
+        {
+          "mapId": "1f-ne",
+          "x": 375,
+          "y": 71
+        },
+        {
+          "mapId": "b1f",
+          "x": 968,
+          "y": 74
+        }
+      ],
+      "primary1fWarp": 2,
+      "primaryB1fWarps": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "C",
+      "label": "NE · south ladder",
+      "ends": [
+        {
+          "mapId": "1f-ne",
+          "x": 295,
+          "y": 223
+        },
+        {
+          "mapId": "b1f",
+          "x": 824,
+          "y": 182
+        }
+      ],
+      "primary1fWarp": 1,
+      "primaryB1fWarps": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "D",
+      "label": "SW · west ladder",
+      "ends": [
+        {
+          "mapId": "1f-sw",
+          "x": 70,
+          "y": 86
+        },
+        {
+          "mapId": "b1f",
+          "x": 264,
+          "y": 650
+        }
+      ],
+      "primary1fWarp": 6,
+      "primaryB1fWarps": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "E",
+      "label": "SW · east ladder",
+      "ends": [
+        {
+          "mapId": "1f-sw",
+          "x": 406,
+          "y": 86
+        },
+        {
+          "mapId": "b1f",
+          "x": 536,
+          "y": 650
+        }
+      ],
+      "primary1fWarp": 7,
+      "primaryB1fWarps": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "F",
+      "label": "SE ladder",
+      "ends": [
+        {
+          "mapId": "1f-se",
+          "x": 134,
+          "y": 112
+        },
+        {
+          "mapId": "b1f",
+          "x": 856,
+          "y": 600
+        }
+      ],
+      "primary1fWarp": 8,
+      "primaryB1fWarps": [
+        12,
+        13
+      ]
+    }
+  ],
+  "notes": [
+    "B1F has two adjacent event tiles per upward ladder; both return to the same 1F warp. They represent one ladder, not separate connections.",
+    "Image pixel anchors were visually matched to the six ladder sprites and cross-checked against game-coordinate quadrant/order. They are not an assumed direct projection of game coordinates.",
+    "The original PNGs, including credits, are unchanged. Letter markers are HTML overlays, also present in the full-size viewer.",
+    "Lettered pairs describe connections only. Ledges, water and story requirements still determine which paths within each floor are usable."
+  ]
+}

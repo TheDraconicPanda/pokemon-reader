@@ -327,3 +327,29 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2p
 .travel-icon-rock-smash { mask-image: url("../assets/icons/travel/rock-smash.svg"); -webkit-mask-image: url("../assets/icons/travel/rock-smash.svg"); }
 .travel-icon-story { mask-image: url("../assets/icons/travel/story.svg"); -webkit-mask-image: url("../assets/icons/travel/story.svg"); }
 .travel-icon-info { mask-image: url("../assets/icons/travel/info.svg"); -webkit-mask-image: url("../assets/icons/travel/info.svg"); }
+
+/* Markers align with the actual object-fit:contain image, including letterboxing. */
+.map-marker-frame { position: relative; }
+.map-marker-viewport { position: absolute; inset: 0 0 auto; height: clamp(130px, 24vw, 260px); display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.map-marker-layer { position: relative; width: min(100%, calc(clamp(130px, 24vw, 260px) * var(--map-ratio))); aspect-ratio: var(--map-ratio); pointer-events: none; }
+.map-stair-marker { position: absolute; transform: translate(-50%, -50%); width: 20px; height: 20px; min-height: 0; padding: 0; border: 2px solid #fff; border-radius: 50%; background: #1759ac; color: #fff; box-shadow: 0 0 0 1px #102e51; font: 700 11px/1 system-ui, sans-serif; cursor: pointer; pointer-events: auto; }
+.map-stair-marker.is-arrival { background: #7b3500; box-shadow: 0 0 0 3px #ffc44d; }
+.map-stair-marker:focus-visible { outline: 3px solid #ffc44d; outline-offset: 2px; z-index: 1; }
+.map-stair-links { margin-top: 0.65rem; }
+.map-stair-links > strong { font-size: 0.85rem; }
+.map-stair-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 0.35rem; margin: 0.5rem 0; }
+.map-stair-list button, .map-viewer-header button { min-height: 44px; padding: 0.45rem 0.6rem; border: 1px solid var(--border); border-radius: 0.4rem; background: var(--soft-accent); color: var(--accent); font: inherit; font-size: 0.8rem; cursor: pointer; overflow-wrap: anywhere; }
+.map-stair-list button.is-arrival { outline: 2px solid var(--accent); outline-offset: -2px; font-weight: 700; }
+.map-stair-list button:focus-visible, .map-viewer button:focus-visible, .map-viewer-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.map-viewer { width: min(1180px, calc(100vw - 2rem)); max-width: calc(100vw - 2rem); max-height: 92dvh; padding: 1rem; box-sizing: border-box; border: 1px solid var(--border); border-radius: 0.65rem; background: var(--surface); color: var(--text); overflow-y: auto; }
+.map-viewer::backdrop { background: rgb(0 0 0 / 65%); }
+.map-viewer-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; }
+.map-viewer-header h3 { margin: 0; font-size: 1rem; }
+.map-viewer-header button { flex-shrink: 0; }
+.map-viewer-scroll { max-height: 55dvh; overflow: auto; overscroll-behavior: contain; background: var(--background); margin: 0.6rem 0; border: 1px solid var(--border); border-radius: 0.4rem; }
+.map-viewer-picture { position: relative; margin-inline: auto; }
+.map-viewer-picture img { display: block; max-width: none; }
+.map-marker-layer-large { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; }
+.map-marker-layer-large .map-stair-marker { width: 34px; height: 34px; font-size: 16px; }
+.map-viewer-status { font-size: 0.85rem; }
+.map-viewer [hidden], .map-stair-links[hidden] { display: none; }

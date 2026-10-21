@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.68') && document.querySelector('.eyebrow').textContent.includes('v0.25.68'),
+    version: document.title.includes('v0.25.69') && document.querySelector('.eyebrow').textContent.includes('v0.25.69'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.68<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.69<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.68");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.69");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2486,6 +2486,90 @@ test('Missing-room terrain plans load with their source and caveat on phones and
    assert.equal(await evaluate(`document.querySelector('.map-reference-note').hidden`),true);
    assert.match(await evaluate(`document.querySelector('[data-map-source]').href`),/archives.bulbagarden.net/);
   }
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Whirl letters align with every entrance ladder and follow all six pairs in both directions',async()=>{
+ const pairs=[['A',0],['B',1],['C',1],['D',2],['E',2],['F',3]];
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  await evaluate(`location.hash='location=Whirl%20Islands'`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Whirl Islands'`),'Whirl stairs');
+  const encounters=await evaluate(`document.querySelector('.location-encounters').textContent`);
+  for(const [letter,index] of pairs){
+   await evaluate(`document.querySelector('.map-select').value='${index}';document.querySelector('.map-select').dispatchEvent(new Event('change'))`);
+   await until(()=>evaluate(`document.querySelector('.location-map').complete&&document.querySelector('.location-map').naturalWidth>0`),'Whirl entrance image');
+   // Compare marker centres with object-fit's painted rectangle, not the image element's letterbox.
+   const alignment=await evaluate(`(async()=>{
+    const {mapLinksForLocation}=await import('/js/data/atlas-map-links.js');const {mapsForLocation}=await import('/js/data/atlas-maps.js');
+    const map=mapsForLocation('soulsilver','Whirl Islands')[${index}];const image=document.querySelector('.location-map');const r=image.getBoundingClientRect();
+    const scale=Math.min(r.width/map.width,r.height/map.height);const x=r.left+(r.width-map.width*scale)/2;const y=r.top+(r.height-map.height*scale)/2;
+    return mapLinksForLocation('soulsilver','Whirl Islands').pairs.filter(p=>p.ends.some(e=>e.mapId===map.id)).map(p=>{
+     const e=p.ends.find(e=>e.mapId===map.id);const b=document.querySelector('.map-marker-viewport [data-stair="'+p.id+'"]').getBoundingClientRect();
+     return Math.max(Math.abs(b.left+b.width/2-x-e.x*scale),Math.abs(b.top+b.height/2-y-e.y*scale));
+    });
+   })()`);
+   assert.ok(alignment.every(error=>error<1),`${width}px entrance ${letter}: ${alignment}`);
+   await evaluate(`document.querySelector('.map-marker-viewport [data-stair="${letter}"]').click()`);
+   assert.equal(await evaluate(`document.querySelector('.map-select').value`),'4');
+   assert.equal(await evaluate(`document.querySelectorAll('.map-marker-viewport [data-stair]').length`),6);
+   assert.equal(await evaluate(`document.activeElement.dataset.stair`),letter);
+   assert.match(await evaluate(`document.querySelector('.map-announcement').textContent`),new RegExp('arrived at stair '+letter));
+   assert.equal(await evaluate(`document.querySelector('.location-encounters').textContent`),encounters);
+   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+   assert.equal(await evaluate(`[...document.querySelectorAll('.map-stair-links button')].every(b=>b.getBoundingClientRect().height>=44)`),true);
+   await evaluate(`document.querySelector('.map-stair-links [data-stair-link="${letter}"]').click()`);
+   assert.equal(await evaluate(`document.querySelector('.map-select').value`),String(index));
+   assert.equal(await evaluate(`document.activeElement.dataset.stair`),letter);
+  }
+  await evaluate(`document.querySelector('.map-stair-links [data-stair-link="F"]').click()`);
+  if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+   await evaluate(`document.querySelector('.map-controls').scrollIntoView()`);const shot=await command('Page.captureScreenshot',{format:'png'});
+   await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`whirl-stairs-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+  // B2F is not assigned a misleading entrance marker; returning restores the six B1F links.
+  await evaluate(`document.querySelector('.map-select').value='5';document.querySelector('.map-select').dispatchEvent(new Event('change'))`);
+  assert.equal(await evaluate(`document.querySelector('.map-stair-links').hidden`),true);
+  assert.equal(await evaluate(`document.querySelector('.location-map-link').hasAttribute('aria-haspopup')`),false);
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Full-size Whirl maps retain stair links, pan to arrivals and close accessibly on mobile and desktop',async()=>{
+ for(const width of [320,390,1440])for(const theme of ['light','dark']){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));location.hash='location=Whirl%20Islands'`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Whirl Islands'`),'Whirl viewer location');
+  await evaluate(`document.querySelector('.location-map-link').click()`);
+  await until(()=>evaluate(`document.querySelector('.map-viewer').open`),'Whirl viewer open');
+  await evaluate(`document.querySelector('.map-viewer [data-stair="A"]').click()`);
+  await until(()=>evaluate(`document.querySelector('.map-viewer img').complete&&document.querySelector('.map-viewer img').naturalWidth===1088`),'B1F full-size image');
+  const state=await evaluate(`(()=>{
+   const d=document.querySelector('.map-viewer'),s=d.querySelector('.map-viewer-scroll'),b=d.querySelector('[data-stair="A"]'),r=s.getBoundingClientRect(),m=b.getBoundingClientRect();
+   return {open:d.open,fit:document.documentElement.scrollWidth<=innerWidth,scroll:s.scrollWidth,letter:document.activeElement.dataset.stair,visible:m.left>=r.left&&m.right<=r.right&&m.top>=r.top&&m.bottom<=r.bottom,main:document.querySelector('.location-map').src,original:d.querySelector('a').href,status:d.querySelector('[role="status"]').textContent,markers:d.querySelectorAll('[data-stair]').length,theme:document.documentElement.dataset.theme};
+  })()`);
+  assert.equal(state.open,true);assert.equal(state.fit,true);assert.ok(state.scroll>=1088);assert.equal(state.letter,'A');assert.equal(state.visible,true);assert.equal(state.original,state.main);assert.equal(state.markers,6);assert.equal(state.theme,theme);assert.match(state.status,/Arrived at stair A on B1F/);
+  if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+   const shot=await command('Page.captureScreenshot',{format:'png'});
+   await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`whirl-viewer-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+  await evaluate(`document.querySelector('.map-viewer select').value='1f-sw';document.querySelector('.map-viewer select').dispatchEvent(new Event('change'))`);
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.map-viewer [data-stair]')].map(b=>b.dataset.stair)`),['D','E']);
+  await evaluate(`document.querySelector('.map-viewer [data-stair="E"]').click()`);
+  assert.equal(await evaluate(`document.activeElement.dataset.stair`),'E');
+  if(theme==='dark'){
+   await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  }else await evaluate(`document.querySelector('.map-viewer-header button').click()`);
+  await until(()=>evaluate(`!document.querySelector('.map-viewer').open&&document.activeElement.dataset.stair==='E'`),'Viewer close and focus return');
+  // A failed main image must not leave floating interactive markers over an absent map.
+  await evaluate(`document.querySelector('.location-map').src='/missing-whirl-image.png'`);
+  await until(()=>evaluate(`document.querySelector('.location-map-link').hidden`),'Whirl image failure');
+  assert.equal(await evaluate(`document.querySelector('.map-marker-viewport').hidden`),true);
+  assert.equal(await evaluate(`document.querySelector('.map-stair-links').hidden`),true);
  }
  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

@@ -718,3 +718,14 @@ screenshots or complete movement rules. Objects, height and scripts can affect
 movement. Their source links and caveats remain visible; the existing overview
 images and location-level encounters are preserved. Kanto expansion and Safari
 remain separate. See [scope, reproduction and coverage](docs/atlas-johto-interior-completion.md).
+
+## Whirl Islands stair connections — v0.25.69
+
+Matching **A–F** markers connect the existing NW/NE/SW/SE entrance maps to B1F.
+Click a letter or the stair list to open and highlight its other end. **Open
+full-size map with stair links** keeps the markers on an enlarged, scrollable map,
+with the shared theme and keyboard/phone controls. The original maps are retained.
+
+All six entrance/B1F ladder pairs are verified against the HGSS game warps in both
+directions. The lower-floor ladders and cave exits are outside this focused
+overlay. See [usage, evidence and scope](docs/whirl-islands-stair-links.md).
