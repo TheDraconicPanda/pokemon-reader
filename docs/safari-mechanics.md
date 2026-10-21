@@ -173,7 +173,8 @@ The generator and source ledger reproduced byte-for-byte on two successive runs.
 `git diff --check`, JavaScript syntax and Python compilation checks passed. No
 save-reader code or personal save bytes were changed.
 
-Publication uses the existing `main` deployment branch after safe remote fetch.
+Release commit `6296381` was pushed successfully to the existing `main` deployment
+branch on 2026-10-21 after a safe remote fetch and a normal fast-forward push.
 Live Pages verification remains blocked by the known API/production-host HTTP
 policy restriction; the browser-source connector also cannot access production.
 A push is not proof of a successful Pages deployment. Milestone 2 implementation
