@@ -1,5 +1,19 @@
 # Pokémon Reader Roadmap
 
+## Safari v1 — Milestone 1 foundation (v0.25.75)
+
+- [x] Audit existing 12-area reference, maps, six-position navigation, Gate links,
+  layout persistence and shared encounter presentation; recheck primary hashes.
+- [x] Reject incomplete sparse layouts and add corruption regression coverage.
+- [x] Document encounter/mechanics/save gaps without inventing game state.
+- [x] Pass 172 automated regressions with no failures or skips.
+- [ ] Verify existing Pages publication (API and live URL blocked by HTTP 403).
+- [ ] Milestones 2–5: verified engine/data, save/manual initialization, simulator
+  and optimizer, final integrated audit/release (outside this step-1 change).
+
+See [foundation audit](docs/safari-foundation-audit.md).
+
+
 ## Pokédex icons and consistent Reader headings — v0.25.74
 
 Seen uses open/closed eye icons; Caught uses the existing Poké Ball icon, muted

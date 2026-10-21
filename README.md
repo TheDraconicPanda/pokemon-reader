@@ -1,5 +1,16 @@
 # Pokémon Reader
 
+## Safari foundation audit — v0.25.75
+
+Milestone 1 rechecks all twelve area identities and six-position navigation against
+pinned primary HGSS sources, preserving the existing maps, Gate links and manual
+editor. Incomplete stored layouts now fail safely before rendering. Encounter
+mechanics and save decoding remain explicitly pending the later Safari milestones.
+All **172 automated checks pass**. Publication verification remains pending because
+the environment blocks the Pages API and production URL.
+See [audit evidence and limitations](docs/safari-foundation-audit.md).
+
+
 ## Pokédex icons and consistent Reader headings — v0.25.74
 
 Seen uses open/closed eye icons; Caught uses the existing Poké Ball icon, muted

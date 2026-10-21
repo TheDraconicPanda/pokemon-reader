@@ -49,3 +49,15 @@ test('Safari map references cover the twelve exact area IDs without leaking into
  for(const game of ['heartgold','other',null])assert.equal(safariAreaMap(game,0),null);
  for(const id of [-1,12,'0',null])assert.equal(safariAreaMap('soulsilver',id),null);
 });
+
+test('incomplete sparse layouts are rejected before a stored area can reach the renderer',async()=>{
+ const {validateSafariAreas,swapSafariArea}=await api();
+ const {validateSafariLayout}=await import('../js/safari-store.js');
+ const incomplete=[0,7,1,5,3,6];delete incomplete[2];
+ // IndexedDB structured cloning preserves holes: a corrupt six-slot record
+ // must not be accepted merely because Array.some skips its missing entry.
+ const stored=structuredClone(incomplete);
+ assert.throws(()=>validateSafariAreas('soulsilver',stored),/six different/);
+ assert.throws(()=>swapSafariArea('soulsilver',stored,0,11),/six different/);
+ assert.throws(()=>validateSafariLayout({key:'safariManualLayout:soulsilver:reference',gameId:'soulsilver',adventureId:null,schemaVersion:1,revision:1,areas:stored},'soulsilver',null),/six different/);
+});

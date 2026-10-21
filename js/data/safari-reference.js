@@ -5,7 +5,8 @@ export const SAFARI_POSITIONS=['Northwest','North center','Northeast','Southwest
 export function safariReference(gameId) { return gameId==='soulsilver'?SOULSILVER_SAFARI_REFERENCE:null; }
 export function validateSafariAreas(gameId,areas) {
   const game=safariReference(gameId);
-  if(!game||!Array.isArray(areas)||areas.length!==6||new Set(areas).size!==6||areas.some(id=>!Number.isInteger(id)||!game.areas.some(a=>a.id===id)))throw new Error('Choose six different Safari areas for SoulSilver.');
+  // Inspect holes too: IndexedDB can preserve incomplete sparse arrays.
+  if(!game||!Array.isArray(areas)||areas.length!==6||new Set(areas).size!==6||Array.from(areas).some(id=>!Number.isInteger(id)||!game.areas.some(a=>a.id===id)))throw new Error('Choose six different Safari areas for SoulSilver.');
   return areas;
 }
 export function safariNeighbors(gameId,position) {

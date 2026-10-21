@@ -223,3 +223,8 @@ through automated regressions.
    an image loads. There should be no repeated scroll back to the area buttons.
 
 The previous map/navigation acceptance remains recorded; no broad retest is needed.
+
+## Safari v1 foundation re-audit
+
+See [Milestone 1 audit](safari-foundation-audit.md) for the v0.25.75 baseline,
+primary-source recheck, incomplete-layout correction and remaining mechanics scope.
