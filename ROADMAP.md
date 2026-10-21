@@ -1,6 +1,6 @@
 # Pokémon Reader Roadmap
 
-## Load Save refinements — v0.25.72
+## Load Save refinements — v0.25.73
 
 Reader help uses info disclosures; Adventure Profiles hide while a save is loaded.
 Reader views share the Party mobile width, with pointer focus rings removed from
@@ -9,6 +9,27 @@ The main-menu Pokédex now includes save Seen/Caught/Owned filters and counts;
 the duplicate Reader view is removed and old links redirect to the reference.
 Automated validation and online acceptance are recorded after verification.
 
+
+## Johto Atlas completion — v0.25.72
+
+This checkpoint supersedes the older Johto missing-interior/travel-indicator
+notes. The agreed Johto implementation is complete; online acceptance of the
+final audit release remains separate.
+
+- [x] Account for all 69 non-Safari groups, 1,384 displayed encounter records,
+  299 map views, reference details and six-stat EV Training.
+- [x] Check 154 directed travel annotations, 83 reciprocal dungeon connections
+  and nine one-way holes; preserve Safari Zone Gate as a normal Atlas location.
+- [x] Rebuild encounter/EV/map/link data unchanged from pinned sources; recheck
+  all 365 fixed/combined trainer species-and-level rosters.
+- [x] Fix dungeon arrival panning so the map dialog’s floor controls stay in place.
+- [x] Pass all 170 automated checks, review phone/desktop screenshots and record
+  source/reproduction evidence in the completion ledger.
+- [ ] User outcome acceptance of v0.25.72 on the existing Pages site.
+
+Safari data/mechanics/calculator, Kanto/Sinjoh expansion, automatic progression
+filtering and deeper battle simulation remain separate scopes. See the
+[completion audit](docs/atlas-johto-completion.md).
 
 ## Team Planner navigation — v0.25.66
 
@@ -159,9 +180,9 @@ Safari mechanics audit/calculator remains subsequent work.
 - [x] Audit all 70 static location groups against Serebii/Bulbapedia and record evidence (v0.25.37)
 - [x] Define initial location data model
 - [x] Build searchable directory foundation
-- [ ] Expand and verify Johto locations
+- [x] Expand and verify the 69 existing non-Safari Johto/approach groups (v0.25.72)
 - [x] Add connected-location navigation
-- [ ] Routes and areas
+- [x] Scoped Johto routes/areas, map references and dungeon connections (v0.25.72)
 - [x] Add first verified wild-encounter dataset (Route 32)
 - [x] Add Union Cave wild encounters by floor and method
 - [x] Add Route 33 wild encounters by time, Radio, and Headbutt group
@@ -201,9 +222,9 @@ Safari mechanics audit/calculator remains subsequent work.
 - [ ] Audit all Safari Zone encounter tables against SoulSilver-specific references
 - [x] Add Whirl Islands wild encounters by floor and method
 - [x] Complete encounter coverage across existing non-Safari locations (v0.25.42)
-- [ ] Trainers
-- [ ] Items
-- [ ] Other useful location data
+- [x] Structured trainer references and fixed species/level roster audit; full battle simulation remains separate
+- [x] Structured source-listed items/rewards, including machines and Apricorns
+- [x] Structured gifts/trades, shops/exchanges, services and relevant conditions
 
 ## Phase 7 — Expansion
 - [ ] Define game-specific parser interface

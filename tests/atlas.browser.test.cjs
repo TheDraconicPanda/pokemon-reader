@@ -21,8 +21,14 @@ let safariMapFixture=null, safariMapFailure=false;
 async function until(operation, message) {
   const deadline = Date.now() + 15000;
   while (Date.now() < deadline) {
-    const result = await operation();
-    if (result) return result;
+    try {
+      const result = await operation();
+      if (result) return result;
+    } catch (error) {
+      // A read can cross a real page navigation while polling for its destination.
+      // Retry only CDP's destroyed-context errors; assertions and page errors fail.
+      if (!/Inspected target navigated or closed|Execution context was destroyed|Cannot find context with specified id/.test(error.message)) throw error;
+    }
     await pause(50);
   }
   throw new Error(`${message}\n${browserLog.slice(-2000)}`);
@@ -267,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.72') && document.querySelector('.eyebrow').textContent.includes('v0.25.72'),
+    version: document.title.includes('v0.25.73') && document.querySelector('.eyebrow').textContent.includes('v0.25.73'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.72<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.73<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.72");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.73'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.73");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.73'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.73'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -589,7 +595,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.73'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -773,7 +779,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.73'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2238,7 +2244,7 @@ test('Integrated Pages-path journey keeps two adventures intact across all four 
    for(const tool of ['reader','planner','atlas','pokedex']){
     if(tool!=='reader'){
      const destination={planner:'team-planner/',atlas:'pokedex-earth/',pokedex:'pokedex/'}[tool];
-     await evaluate(`document.querySelector('app-menu a[href$="${destination}"]').click()`);
+     await evaluate(`setTimeout(()=>document.querySelector('app-menu a[href$="${destination}"]').click(),0);true`);
      await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')===${JSON.stringify(tool)}`),'Menu to '+tool);
     }
     if(tool==='planner'){
@@ -2258,12 +2264,12 @@ test('Integrated Pages-path journey keeps two adventures intact across all four 
      const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.INTEGRATION_SCREENSHOT_DIR,`${tool}-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
     }
    }
-   await evaluate(`history.back()`);
+   await evaluate(`setTimeout(()=>history.back(),0);true`);
    await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='atlas'&&document.querySelector('.location-card h2')?.textContent==='Route 29'`),'Back to Atlas location');
    await until(()=>evaluate(`document.querySelector('.location-card [data-species-id="19"] .caught-indicator')`),'Back restores registrations');
-   await evaluate(`history.forward()`);
+   await evaluate(`setTimeout(()=>history.forward(),0);true`);
    await until(()=>evaluate(`document.querySelector('app-menu')?.getAttribute('tool')==='pokedex'&&document.body.dataset.referenceReady==='true'`),'Forward to reference');
-   await evaluate(`document.querySelector('#load-save').click()`);
+   await evaluate(`setTimeout(()=>document.querySelector('#load-save').click(),0);true`);
    await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Menu returns to Reader');
    assert.equal(await evaluate(`location.pathname+location.hash`),'/pokemon-reader/#overview');
    assert.equal(await evaluate(`globalThis.__parseCount||0`),0);
@@ -2736,4 +2742,20 @@ test('Load Save info, profile visibility, consistent widths and offline Flash se
  await evaluate(`document.querySelector('#load-save').click()`);
  assert.equal(await evaluate(`document.querySelector('#adventure-profiles').hidden`),false);
  await command('Emulation.clearDeviceMetricsOverride');await command('Fetch.disable');
+});
+
+test('Dungeon arrivals pan the image without scrolling the viewer controls out of reach',async()=>{
+ for(const [width,height]of[[320,844],[390,844],[844,390],[1440,900]]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<900});
+  await atlas({directory:false});
+  await evaluate(`location.hash='location=Ice%20Path'`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Ice Path'`),'Ice Path arrival audit');
+  await evaluate(`document.querySelector('.map-select').value='1';document.querySelector('.map-select').dispatchEvent(new Event('change'));document.querySelector('.location-map-link').click();document.querySelector('.map-viewer').scrollTop=0;document.querySelector('.map-viewer [data-stair="D1"]').click()`);
+  const state=await evaluate(`(()=>{const d=document.querySelector('.map-viewer'),p=d.querySelector('.map-viewer-scroll'),r=p.getBoundingClientRect(),m=d.querySelector('[data-stair="D1"]').getBoundingClientRect();return {scroll:d.scrollTop,focused:document.activeElement.dataset.stair,inside:m.left>=r.left&&m.right<=r.right&&m.top>=r.top&&m.bottom<=r.bottom}})()`);
+  assert.equal(state.scroll,0,`${width}×${height}: floor travel must only pan the map, keeping the surrounding controls in place`);
+  assert.equal(state.focused,'D1');assert.equal(state.inside,true);
+  await evaluate(`document.querySelector('.map-viewer-header button').click()`);
+  await until(()=>evaluate(`!document.querySelector('.map-viewer').open`),'Close arrival audit');
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });
