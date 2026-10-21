@@ -65,5 +65,5 @@ async function refresh(){
  }
 }
 subscribeAdventureChanges(refresh);window.addEventListener('focus',refresh);window.addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
-simulator=mountSafariSimulator({getScenario:()=>scenario,setScenario:(next,message)=>{scenario=next;$('scenario-message').textContent=message;render();},focusField:key=>{const control=controls.get(key);if(!control)return;$('scenario-edit-mode').value='starting';render();const detail=control.input.closest('details');if(detail)detail.open=true;control.input.scrollIntoView({block:'center'});control.input.focus({preventScroll:true});},selectHypotheticalMode:()=>{$('scenario-edit-mode').value='current';}});
+simulator=mountSafariSimulator({getScenario:()=>scenario,setScenario:(next,message)=>{scenario=next;$('scenario-message').textContent=message;render();},focusField:(key,{starting=true}={})=>{const control=controls.get(key);if(!control)return;$('scenario-edit-mode').value=starting?'starting':'current';render();const detail=control.input.closest('details');if(detail)detail.open=true;control.input.scrollIntoView({block:'center'});control.input.focus({preventScroll:true});},selectHypotheticalMode:()=>{$('scenario-edit-mode').value='current';}});
 refresh();

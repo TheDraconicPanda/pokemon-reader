@@ -50,6 +50,13 @@ export function mountSafariSimulator({getScenario,setScenario,focusField,selectH
   }
   if(result.issues.length){const detail=node('details');detail.append(node('summary','Other paths: missing values or locked prerequisites'));const list=node('ul');for(const issue of result.issues){const li=node('li',`${rules.areas[issue.areaId].name} · ${SAFARI_METHODS[issue.method]} · ${issue.status==='unknown'?'Unknown starting values':'Locked with this configuration'}: ${issue.reasons.join(' ')}${issue.requirements.length?' Target slot points: '+issue.requirements.map(points).join('; ')+'.':''}`);list.append(li);}detail.append(list);container.append(detail);}
  }
+ function missingField(scenario){
+  const v=scenario.current.values,area=v[`layout.${position}`];
+  if(area===null)return `layout.${position}`;
+  const keys=['open',...Array.from({length:6},(_,i)=>`layout.${i}`),'time','blockLevel',...(method.value==='land'?[]:[method.value]),`age.${area}`,...categories.map(c=>`blocks.${position}.${c}`)];
+  if(categories.some(c=>v[`blocks.${position}.${c}`]>0))keys.push('nationalDex','baobaStage',...(v.blockLevel>0&&v.blockLevel<4?['trainerId']:[]));
+  return keys.find(key=>v[key]===null);
+ }
  function render(){
   const scenario=getScenario();if(!scenario)return;
   areas.replaceChildren();
@@ -58,14 +65,13 @@ export function mountSafariSimulator({getScenario,setScenario,focusField,selectH
   showTable(starting,'safari-starting-status','safari-starting-encounters');showTable(current,'safari-proposed-status','safari-proposed-encounters');
   $('safari-live-mode').textContent=$('scenario-edit-mode').value==='starting'?'Editing starting values: manual corrections become the comparison baseline.':'Editing hypothetical changes: starting values remain preserved.';
   const area=scenario.current.values[`layout.${position}`];
-  $('safari-live-points').textContent=current.scores?`${rules.areas[area].name} points: ${Object.entries(current.scores).map(([c,n])=>`${names[c]} ${n}`).join(' · ')}. Ages are stored/simulated credited days.`:'Complete the unavailable starting fields to calculate this table.';
-  $('safari-complete-start').hidden=current.status==='available';renderTarget();
+  $('safari-live-points').textContent=current.scores?`${rules.areas[area].name} points: ${Object.entries(current.scores).map(([c,n])=>`${names[c]} ${n}`).join(' · ')}. Ages are stored/simulated credited days.`:current.status==='unknown'?'Complete the unavailable values to calculate this table.':'No encounter table is available for this method and configuration.';
+  $('safari-complete-start').hidden=current.status!=='unknown'||!missingField(scenario);renderTarget();
  }
  method.addEventListener('change',render);
  $('safari-complete-start').addEventListener('click',()=>{
-  const s=getScenario();if(!s)return;const v=s.current.values,area=v[`layout.${position}`];
-  const keys=['open',...Array.from({length:6},(_,i)=>`layout.${i}`),'time','blockLevel',...(method.value==='land'?[]:[method.value]),`age.${area}`,...categories.map(c=>`blocks.${position}.${c}`)];
-  const missing=keys.find(k=>v[k]===null);focusField(missing||'open');
+  const s=getScenario();if(!s)return;const missing=missingField(s);if(!missing)return;
+  focusField(missing,{starting:s.starting.values[missing]===null});
  });
  $('safari-target-form').addEventListener('submit',event=>{
   event.preventDefault();const name=$('safari-target').value.trim();targetId=speciesIdForName('soulsilver',name);

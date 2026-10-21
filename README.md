@@ -1,5 +1,19 @@
 # Pokémon Reader
 
+## Safari v1 final audit — v0.25.79
+
+The [Safari simulator](safari-zone/) now has its final integrated audit:
+12 areas, 32 reachable method tables, all 153 target species and 2,822 replayed
+plans. Source generators reproduced unchanged; independent examples and exhaustive
+object-allocation checks verify the shared mechanics and optimizer.
+
+All **222 automated checks pass**. The audit fixes missing-field recovery and keeps object-free encounters usable
+when unrelated object identity/progress is unknown. See the
+[release audit, coverage and remaining acceptance](docs/safari-v1-release.md)
+and [feature guide](docs/safari-simulator.md). Live publication confirmation and
+real-save/user acceptance remain pending.
+
+
 ## Safari simulator and optimizer — v0.25.78
 
 The [Safari simulator](safari-zone/) now compares starting and proposed encounters

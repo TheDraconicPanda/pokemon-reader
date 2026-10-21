@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "version": "0.25.79",
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "areas": 12,
+  "reachableMethodTables": 32,
+  "baseTimeSlots": 960,
+  "bonusTimeSlots": 495,
+  "targetSpecies": 153,
+  "checkedPlans": 2822,
+  "checkedPlanTimes": 6447,
+  "primaryCompared": true,
+  "realSaveFixtures": 0,
+  "failures": [],
+  "coveredAreaMethodTimes": 96,
+  "mechanicsSha256": "1318b5c77e5a7dcf9816fd626cfef7e6606ead3d730308db7dd9fc0d11b34cae"
+}

@@ -1,5 +1,26 @@
 # Pokémon Reader Roadmap
 
+## Safari v1 — Milestone 5 final audit (v0.25.79)
+
+- [x] Reproduce primary topology, encounter/mechanics and save-evidence outputs.
+- [x] Compare all 960 base / 495 bonus time slots directly with primary data.
+- [x] Replay 2,822 plans / 6,447 time results across all 153 targets and 96 area/method/time combinations.
+- [x] Verify minimum-change costs against exhaustive integer allocations.
+- [x] Audit all live areas/methods/times, unknown-field recovery, keyboard and
+  Gate/Atlas/simulator/Pokédex navigation while preserving the adventure.
+- [x] Correct irrelevant missing-input actions and object-free target dependencies.
+- [x] Document the feature guide, sources, save support and explicit v1 limits.
+- [x] Pass all 222 automated checks, inspect final phone/desktop screenshots and
+  reproduce the audit ledger byte for byte.
+- [ ] Push the release to the existing deployment branch.
+- [ ] Confirm actual Pages deployment and production assets (network restriction).
+- [ ] User outcome and real-save/in-game acceptance.
+
+See [final audit and acceptance limits](docs/safari-v1-release.md) and its
+[reproducible ledger](docs/safari-v1-audit.json). Technical audit completion does
+not imply live publication or real-save acceptance.
+
+
 ## Safari v1 — Milestone 4 (v0.25.78)
 
 - [x] Add live starting/proposed encounter tables for active areas and all methods.

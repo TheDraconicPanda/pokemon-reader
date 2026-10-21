@@ -1,5 +1,8 @@
 # Safari simulator and target optimizer — Milestone 4
 
+The v0.25.79 [final audit](safari-v1-release.md) supersedes the validation and
+publication checkpoint below. The usage guide remains applicable.
+
 Version **0.25.78**, 21 October 2026. Open the existing
 [Safari simulator](https://thedraconicpanda.github.io/pokemon-reader/safari-zone/)
 or follow Safari Atlas → Open Safari simulator. This milestone implements the

@@ -231,3 +231,14 @@ object groups and capacity. Keep credited waiting separate from calendar time;
 preview changes only visit-local state, preserving original/manual baselines.
 Recompute targets after edits and reject stale plan signatures. Do not describe
 hypothetical eligibility as actual in-game progress. Milestone 5 remains separate.
+
+Safari v1 Milestone 5 (v0.25.79) records the final integrated technical audit in
+`docs/safari-v1-release.md` and `safari-v1-audit.json`. Reproduce raw-source and
+all-target replay coverage with `scripts/audit-safari-v1.mjs`; its no-source path
+runs in `npm test`. Keep object-free encounter dependencies separate from object
+unlock identity, and send missing-field recovery to the correct starting/current
+edit mode. All 12 areas / 32 methods / 96 times and 153 target species are scoped
+to SoulSilver. Preserve explicit limits for tile packing, modified/capture odds,
+linked setups, credited clock aging and synthetic save fixtures. Release audit
+records are version-specific; never convert a push into proof of live publication
+or mark pending user/real-save acceptance complete without evidence.

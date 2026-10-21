@@ -11,8 +11,9 @@ export function safariResultBasis(scenario,keys){
  for(const key of new Set(keys)){const source=scenario.current.provenance[key]||'unavailable';basis[source].push(key);}
  return basis;
 }
-function relevantKeys(position,areaId,method){
- return ['open','time','blockLevel','nationalDex','baobaStage','trainerId',...Array.from({length:6},(_,i)=>`layout.${i}`),`age.${areaId}`,...categories.map(c=>`blocks.${position}.${c}`),...(method==='land'?[]:[method])];
+function relevantKeys(position,areaId,method,blocks,blockLevel){
+ const placed=Object.values(blocks||{}).some(n=>n>0);
+ return ['open','time','blockLevel',...Array.from({length:6},(_,i)=>`layout.${i}`),`age.${areaId}`,...categories.map(c=>`blocks.${position}.${c}`),...(method==='land'?[]:[method]),...(placed?['nationalDex','baobaStage',...(blockLevel>0&&blockLevel<4?['trainerId']:[])]:[])];
 }
 export function safariLiveResults(scenario,position,method,{starting=false}={}){
  const state=starting?{...scenario,current:scenario.starting}:scenario;
@@ -23,7 +24,7 @@ export function safariLiveResults(scenario,position,method,{starting=false}={}){
   const row=grouped.get(slot.speciesId);row.levels.push(slot.level);row.percent+=slot.slotPercent;row.slots.push(slot.slot);
  }
  const encounters=[...grouped.values()].map(r=>({...r,levels:[...new Set(r.levels)].sort((a,b)=>a-b)}));
- return {...result,encounters,basis:safariResultBasis(state,relevantKeys(position,input.areaId,method))};
+ return {...result,encounters,basis:safariResultBasis(state,relevantKeys(position,input.areaId,method,input.blocks,input.progression.blockLevel))};
 }
 // Each cell has exactly the same qualifying bonus rows. Project the current
 // quantities onto that cell, then remove only the capacity excess. This avoids
@@ -94,7 +95,7 @@ export function optimizeSafariTarget(scenario,speciesId,{replacePosition=null,li
     if(objects!==null&&!tableIssue.requirements.some(req=>Object.keys(req).every(c=>allowed.has(c))))pre.blocked.push('Receive the missing object-category calls from Baoba.');
    }
    if(pre.blocked.length||pre.unknown.length){if(!recorded){issues.push({...tableIssue,status:pre.blocked.length?'locked':'unknown',reasons:[...new Set([...pre.blocked,...pre.unknown])]});recorded=true;}continue;}
-   if(objects===null){if(!recorded){issues.push({...tableIssue,status:'unknown',reasons:['Supply the full trainer ID to determine unlocked object groups.']});recorded=true;}continue;}
+   if(objects===null&&(!isBase||(!replaceArea&&categories.some(c=>values[`blocks.${position}.${c}`]>0)))){if(!recorded){issues.push({...tableIssue,status:'unknown',reasons:['Supply the full trainer ID to determine unlocked object groups.']});recorded=true;}continue;}
    const before=Object.fromEntries(categories.map(c=>[c,values[`blocks.${position}.${c}`]])),current=replaceArea?zero():before;
    const fromDays=values[`age.${area.id}`],daysToTry=[...new Set([fromDays,...Object.values(rules.thresholds).flat().filter(day=>day>fromDays)])].sort((a,b)=>a-b);
    const found=new Set();let feasible=false;
@@ -113,7 +114,7 @@ export function optimizeSafariTarget(scenario,speciesId,{replacePosition=null,li
       const slots=evaluation.slots.filter(s=>s.speciesId===speciesId);if(!slots.length)continue;
       const additionalDays=days-fromDays,timeChange=time!==values.time;
       const alreadyQualifies=!replaceArea&&!objectOperations&&!additionalDays&&!timeChange;
-      const plan={speciesId,areaId:area.id,method,position,time,availableTimes:[time],days,additionalDays,blocks:{...blocks},scores:evaluation.scores,multipliers:Object.fromEntries(SAFARI_CATEGORIES.map(c=>[c,safariMultiplier(c,days)])),levels:[...new Set(slots.map(s=>s.level))].sort((a,b)=>a-b),percent:slots.length*10,replaceArea,previousArea:layout[position],timeChange,objectOperations,displacedObjects:replaceArea?sum(Object.values(before)):0,changedBlockCategories:categories.filter(c=>blocks[c]!==current[c]).length,totalObjects:sum(Object.values(blocks)),alreadyQualifies,status:alreadyQualifies?'ready':additionalDays?'waiting':timeChange?'time':'configure',requirements:table.bonus.filter(b=>slots.some(s=>s.bonusId===b.id)).map(b=>({...b.requirements})),basis:safariResultBasis(scenario,[...relevantKeys(position,area.id,method),...(replaceArea?['customizerUnlocked']:[]),...(additionalDays?['clockPenalty']:[])]),warnings:additionalDays?(values.clockPenalty===true?['Clock penalty is active. Credited area aging must resume before these waiting days can accumulate.']:values.clockPenalty===null?['Clock penalty status is unknown. Waiting is expressed in credited active-area days, not a calendar date.']:[]):[],signature:signature(scenario)};
+      const plan={speciesId,areaId:area.id,method,position,time,availableTimes:[time],days,additionalDays,blocks:{...blocks},scores:evaluation.scores,multipliers:Object.fromEntries(SAFARI_CATEGORIES.map(c=>[c,safariMultiplier(c,days)])),levels:[...new Set(slots.map(s=>s.level))].sort((a,b)=>a-b),percent:slots.length*10,replaceArea,previousArea:layout[position],timeChange,objectOperations,displacedObjects:replaceArea?sum(Object.values(before)):0,changedBlockCategories:categories.filter(c=>blocks[c]!==current[c]).length,totalObjects:sum(Object.values(blocks)),alreadyQualifies,status:alreadyQualifies?'ready':additionalDays?'waiting':timeChange?'time':'configure',requirements:table.bonus.filter(b=>slots.some(s=>s.bonusId===b.id)).map(b=>({...b.requirements})),basis:safariResultBasis(scenario,[...relevantKeys(position,area.id,method,blocks,values.blockLevel),...(replaceArea?['customizerUnlocked']:[]),...(additionalDays?['clockPenalty']:[])]),warnings:additionalDays?(values.clockPenalty===true?['Clock penalty is active. Credited area aging must resume before these waiting days can accumulate.']:values.clockPenalty===null?['Clock penalty status is unknown. Waiting is expressed in credited active-area days, not a calendar date.']:[]):[],signature:signature(scenario)};
       if(!byTime.has(time))byTime.set(time,[]);byTime.get(time).push(plan);
      }
     }
