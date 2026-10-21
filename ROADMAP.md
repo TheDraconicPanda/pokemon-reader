@@ -9,6 +9,7 @@
 - [x] Explain locked/unknown paths and credited waiting without inventing progress.
 - [x] Add named progression controls, object guidance and responsive comparisons.
 - [x] Pass all 215 automated checks and inspect phone/desktop screenshots.
+- [x] Push release `049510c` to existing `main` after a fresh fetch.
 - [ ] Confirm live Pages publication (API/production access restriction).
 - [ ] User outcome and real-save/in-game acceptance.
 - [ ] Milestone 5: final integrated Safari audit/release.

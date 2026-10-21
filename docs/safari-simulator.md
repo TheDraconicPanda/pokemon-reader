@@ -108,3 +108,9 @@ This is automated/source-based validation, not real-save acceptance.
 
 The existing deployment branch is `main`; live confirmation remains pending
 because the GitHub Pages API returns Forbidden from this environment.
+
+Release commit `049510c` was pushed successfully to existing `main` on
+2026-10-21 after a fresh fetch and normal fast-forward push. The post-push Pages
+API check still returned Forbidden. Live deployment is unconfirmed; a successful
+push does not establish publication. User outcome and real-save validation remain
+pending, and the final Milestone 5 audit has not been started.
