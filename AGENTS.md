@@ -192,3 +192,13 @@ keys but display the shared letter and endpoint side names. Keep all current
 images, credits, floor choices and game scoping. The pinned primary verifies
 complete internal warps and explicit coordinate-trigger/script hole destinations;
 ordinary ledges, ice/boulder puzzles and story events are not fabricated stairs.
+
+Johto Atlas v0.25.72 closes the agreed current reference/navigation/EV milestone.
+See `docs/atlas-johto-completion.md` and its ledger; the static inventory is
+reproducible with `scripts/audit-johto-atlas.mjs`. Earlier notes about missing room
+references and per-edge travel indicators are superseded by v0.25.67–71. Keep
+Safari and new Kanto/Sinjoh work separate. Completion means the documented scope,
+not automatic progression filtering, complete battle simulation or a new in-game
+playthrough. Full-size arrival panning must scroll only the image pane; do not
+restore `scrollIntoView` on marker arrivals because it moves the containing dialog
+and can hide floor controls on phones. User outcome acceptance remains separate.

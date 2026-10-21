@@ -2,6 +2,15 @@
 
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
+## Johto Atlas completion — v0.25.72
+
+The current Johto Atlas milestone is implemented and technically audited:
+69 locations, encounters and reference details, 299 map views, dungeon connections
+and EV Training. A final mobile fix keeps the full-size viewer’s floor controls
+in place when following a marker. Safari mechanics/calculator and Kanto expansion
+remain separate. See [verified coverage and remaining scope](docs/atlas-johto-completion.md).
+User outcome validation continues on the existing GitHub Pages site.
+
 ## Team Planner navigation — v0.25.66
 
 Main team and Postgame options are the remaining Planner tabs. HM plan and EV

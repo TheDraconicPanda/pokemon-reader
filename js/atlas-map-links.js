@@ -108,7 +108,16 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     const scope = dialog.open ? viewport : overlay;
     const target = scope.querySelector(`[data-stair="${arrival}"]`);
     target?.focus({ preventScroll: true });
-    if (dialog.open) target?.scrollIntoView({ block: 'center', inline: 'center' });
+    if (dialog.open && target) {
+      // Pan only the image: scrollIntoView also scrolls the dialog and can hide
+      // its floor selector and help, especially on a phone.
+      const marker = target.getBoundingClientRect();
+      const bounds = viewport.getBoundingClientRect();
+      viewport.scrollTo({
+        left: viewport.scrollLeft + marker.left - bounds.left + marker.width / 2 - viewport.clientWidth / 2,
+        top: viewport.scrollTop + marker.top - bounds.top + marker.height / 2 - viewport.clientHeight / 2
+      });
+    }
   }
   function updateViewer() {
     title.textContent = `${locationName} · ${activeMap.label}`;
