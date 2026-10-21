@@ -1,0 +1,411 @@
+{
+  "note": "Hand-transcribed reference expectations, not generated from runtime data. Primary-only cases are separately identified in the test file. Consult docs/safari-mechanics.md for disagreements and scope.",
+  "sources": {
+    "land": "https://shinyfinder.github.io/encounter-slots/safari-zone/Land.html",
+    "water": "https://shinyfinder.github.io/encounter-slots/safari-zone/Water.html",
+    "oldrod": "https://shinyfinder.github.io/encounter-slots/safari-zone/Old%20Rod.html",
+    "upgrades": "https://shinyfinder.github.io/encounter-slots/safari-zone/Block%20Scores.html",
+    "lairon": "https://www.serebii.net/heartgoldsoulsilver/safarizone.shtml",
+    "bagon": "https://bulbapedia.bulbagarden.net/wiki/Johto_Safari_Zone",
+    "goodrod": "https://shinyfinder.github.io/encounter-slots/safari-zone/Good%20Rod.html",
+    "superrod": "https://shinyfinder.github.io/encounter-slots/safari-zone/Super%20Rod.html"
+  },
+  "thresholds": {
+    "plains": [
+      10,
+      50,
+      100,
+      150,
+      200,
+      250
+    ],
+    "forest": [
+      20,
+      60,
+      110,
+      160,
+      210,
+      250
+    ],
+    "peak": [
+      30,
+      70,
+      120,
+      170,
+      220,
+      250
+    ],
+    "water": [
+      40,
+      80,
+      130,
+      180,
+      230,
+      250
+    ]
+  },
+  "tables": [
+    {
+      "source": "land",
+      "areaId": 11,
+      "method": "land",
+      "time": "day",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 0
+      },
+      "days": 0,
+      "expected": [
+        [
+          27,
+          15
+        ],
+        [
+          28,
+          15
+        ],
+        [
+          27,
+          15
+        ],
+        [
+          27,
+          16
+        ],
+        [
+          28,
+          16
+        ],
+        [
+          104,
+          16
+        ],
+        [
+          27,
+          17
+        ],
+        [
+          28,
+          17
+        ],
+        [
+          104,
+          17
+        ],
+        [
+          105,
+          17
+        ]
+      ]
+    },
+    {
+      "source": "land",
+      "areaId": 6,
+      "method": "land",
+      "time": "night",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 0
+      },
+      "days": 0,
+      "expected": [
+        [
+          69,
+          15
+        ],
+        [
+          92,
+          15
+        ],
+        [
+          200,
+          15
+        ],
+        [
+          69,
+          16
+        ],
+        [
+          93,
+          16
+        ],
+        [
+          200,
+          16
+        ],
+        [
+          69,
+          17
+        ],
+        [
+          92,
+          17
+        ],
+        [
+          200,
+          17
+        ],
+        [
+          93,
+          17
+        ]
+      ]
+    },
+    {
+      "source": "water",
+      "areaId": 1,
+      "method": "surf",
+      "time": "morning",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 0
+      },
+      "days": 0,
+      "expected": [
+        [
+          129,
+          15
+        ],
+        [
+          129,
+          15
+        ],
+        [
+          129,
+          16
+        ],
+        [
+          129,
+          16
+        ],
+        [
+          129,
+          17
+        ],
+        [
+          194,
+          15
+        ],
+        [
+          194,
+          16
+        ],
+        [
+          194,
+          17
+        ],
+        [
+          183,
+          16
+        ],
+        [
+          183,
+          17
+        ]
+      ]
+    },
+    {
+      "source": "oldrod",
+      "areaId": 8,
+      "method": "oldrod",
+      "time": "day",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 3
+      },
+      "days": 0,
+      "expected": [
+        [
+          60,
+          16
+        ],
+        [
+          60,
+          18
+        ],
+        [
+          129,
+          13
+        ],
+        [
+          129,
+          13
+        ],
+        [
+          129,
+          14
+        ],
+        [
+          129,
+          15
+        ],
+        [
+          60,
+          12
+        ],
+        [
+          60,
+          13
+        ],
+        [
+          60,
+          14
+        ],
+        [
+          60,
+          15
+        ]
+      ]
+    },
+    {
+      "source": "goodrod",
+      "areaId": 4,
+      "method": "goodrod",
+      "time": "day",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 8
+      },
+      "days": 0,
+      "expected": [
+        [
+          99,
+          26
+        ],
+        [
+          99,
+          27
+        ],
+        [
+          129,
+          23
+        ],
+        [
+          118,
+          22
+        ],
+        [
+          118,
+          22
+        ],
+        [
+          118,
+          23
+        ],
+        [
+          98,
+          22
+        ],
+        [
+          98,
+          23
+        ],
+        [
+          98,
+          24
+        ],
+        [
+          98,
+          25
+        ]
+      ]
+    },
+    {
+      "source": "superrod",
+      "areaId": 4,
+      "method": "superrod",
+      "time": "night",
+      "blocks": {
+        "plains": 0,
+        "forest": 0,
+        "peak": 0,
+        "water": 20
+      },
+      "days": 0,
+      "expected": [
+        [
+          341,
+          46
+        ],
+        [
+          341,
+          48
+        ],
+        [
+          118,
+          37
+        ],
+        [
+          118,
+          38
+        ],
+        [
+          119,
+          35
+        ],
+        [
+          119,
+          36
+        ],
+        [
+          119,
+          37
+        ],
+        [
+          119,
+          38
+        ],
+        [
+          99,
+          38
+        ],
+        [
+          99,
+          39
+        ]
+      ]
+    }
+  ],
+  "minimumDays": [
+    {
+      "source": "lairon",
+      "requirements": {
+        "peak": 24
+      },
+      "days": 0,
+      "minimumBlocks": 24
+    },
+    {
+      "source": "lairon",
+      "requirements": {
+        "peak": 24
+      },
+      "days": 30,
+      "minimumBlocks": 12
+    },
+    {
+      "source": "bagon",
+      "requirements": {
+        "peak": 56,
+        "forest": 35
+      },
+      "earliest": 110,
+      "blocks": {
+        "plains": 0,
+        "forest": 9,
+        "peak": 19,
+        "water": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "revision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "sources": {
+    "include/constants/safari.h": {
+      "sha256": "475bd34656e7c550ef57e3ce2feb5f0c658ad5e73ef2f06f75c55d6d07fd6de8",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/constants/safari.h"
+    },
+    "include/constants/species.h": {
+      "sha256": "a72ce01027d83aabd9ff61dc8f3afbbf43eee30b25c39b6e23ed42c5ac587732",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/constants/species.h"
+    },
+    "files/arc/safari_enc.json": {
+      "sha256": "4ad9ba51ba80f469a352eff7aa9dea971c9263f9f4b9df4c836f8560ea141390",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/arc/safari_enc.json"
+    },
+    "files/arc/safari_enc.json.txt": {
+      "sha256": "50106a8d50c0b2259243736421a3fd0af1b96d0d724a67320e585b719e292f92",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/arc/safari_enc.json.txt"
+    },
+    "src/unk_02097268.c": {
+      "sha256": "4742bb7db16325d066d8a124a7ee1a6d945dbafb48d7cbbbc17642f27f48bf5f",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/unk_02097268.c"
+    },
+    "src/field/encounter_check.c": {
+      "sha256": "a91dad88736b55698c9d06485c98167b48b732f81469c75234327cb5d9dc1c18",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/field/encounter_check.c"
+    },
+    "src/safari_zone.c": {
+      "sha256": "713077994124189a05cf65af9d02b2281e2fc93832783061e8419731bb3ccab5",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/safari_zone.c"
+    },
+    "src/unk_02055418.c": {
+      "sha256": "79b402dd1725b089827b991cec0133d8a590da06352f5a84915c10f23044c67b",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/unk_02055418.c"
+    },
+    "src/unk_02092BE8.c": {
+      "sha256": "e32e66ad14b681b4a899f6c8878e4f04b77c59891028f4845bb056bbd8d6575f",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/unk_02092BE8.c"
+    },
+    "src/application/pokegear/phone/scripts/phone_scripts_baoba.c": {
+      "sha256": "303c777762c7f5a1a5802f6692aadcdd37df5202ff49c4bf47e9e94c74b3a1bc",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/application/pokegear/phone/scripts/phone_scripts_baoba.c"
+    },
+    "files/fielddata/script/scr_seq/scr_seq_0119_D47R0101.s": {
+      "sha256": "92f69e5e997391cde4394f0d86715c0ac2c783cdbc2ebf5721cf0e47a5597404",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/script/scr_seq/scr_seq_0119_D47R0101.s"
+    },
+    "src/map_matrix.c": {
+      "sha256": "ba617ac352db26641098ec162646b4771257418da54f795a64c76d94c20b4671",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/map_matrix.c"
+    },
+    "asm/overlay_108_021E8850.s": {
+      "sha256": "dd57ea5e76dc32c696886cc728684e000469175d24d07a4017d01aa4ec3c0a92",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/asm/overlay_108_021E8850.s"
+    },
+    "files/a/0/6/5": {
+      "sha256": "0817bd81cc30342bc40dd6ce829121e9a8be4e9d04d0b790f8d9d99688c4bebe",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/a/0/6/5"
+    },
+    "include/constants/metatile_behavior.h": {
+      "sha256": "daf592a2074c423b5649eba564cc37ea5acd224c5c86658dc1fe6b00160f509d",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/constants/metatile_behavior.h"
+    },
+    "src/metatile_behavior.c": {
+      "sha256": "6c666a9c849c524de9a43016ca39ddcdaffff46c0daa87e8d91afe1fc6c8c78c",
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/metatile_behavior.c"
+    }
+  },
+  "terrain": [
+    {
+      "areaId": 0,
+      "model": 652,
+      "riverSeaTiles": 0,
+      "attributesSha256": "47792978486f6e0a9990eb958cc8ef3b685ab8483f0f438e6daf60801e0ce124"
+    },
+    {
+      "areaId": 1,
+      "model": 653,
+      "riverSeaTiles": 60,
+      "attributesSha256": "6319b1ac6e6a6e0abc0fd56ef2c003c4182ab293424a07b35484f97bd21266d9"
+    },
+    {
+      "areaId": 2,
+      "model": 654,
+      "riverSeaTiles": 0,
+      "attributesSha256": "1211dcf92d3200601e8314f69b457c522cb5ef27d8ed43a81533c2693a78c1f9"
+    },
+    {
+      "areaId": 3,
+      "model": 655,
+      "riverSeaTiles": 0,
+      "attributesSha256": "686e4c3d4be8569634f0973ace71da6907ce4d19aebe132ca988957111403e4b"
+    },
+    {
+      "areaId": 4,
+      "model": 656,
+      "riverSeaTiles": 120,
+      "attributesSha256": "80e05b886f41185d0cba5b744cefe5e8c99d8fba4f63e23079d9b2fb45d257b0"
+    },
+    {
+      "areaId": 5,
+      "model": 657,
+      "riverSeaTiles": 223,
+      "attributesSha256": "5e16e90c221de846e523271ba1a21bff0e2c2bbc5d52de2c3eb9f835b0ae6697"
+    },
+    {
+      "areaId": 6,
+      "model": 658,
+      "riverSeaTiles": 0,
+      "attributesSha256": "853a2921a269fabae3931a6c98c2cdcd1ca8fa6c5135e15059a503b49520a0d4"
+    },
+    {
+      "areaId": 7,
+      "model": 659,
+      "riverSeaTiles": 110,
+      "attributesSha256": "057245a4f1c98aa5ab5b93f8e3fc9c2841b7644d011ba9f101daa885d108e6f0"
+    },
+    {
+      "areaId": 8,
+      "model": 660,
+      "riverSeaTiles": 188,
+      "attributesSha256": "4173a74b58313103284a70ecbd9c2043b65043ffefb2a68a2b23776dadeb2fa7"
+    },
+    {
+      "areaId": 9,
+      "model": 661,
+      "riverSeaTiles": 0,
+      "attributesSha256": "8d657d44587cc1d86cec01a27b15fd9b607dcd5835e3d125c1f6e7e83fcc2f3b"
+    },
+    {
+      "areaId": 10,
+      "model": 662,
+      "riverSeaTiles": 0,
+      "attributesSha256": "eb1d727c60040fc7591a9347526e38ade6821f1d565be5b7b35fee2d62f77ee8"
+    },
+    {
+      "areaId": 11,
+      "model": 663,
+      "riverSeaTiles": 0,
+      "attributesSha256": "cd813a098e91d934c5fbf4b6e9815420176b3629360e2db51a08359cd201548c"
+    }
+  ],
+  "areas": 12,
+  "reachableMethodTables": 32,
+  "baseSlots": 960,
+  "bonusTimeSlots": 495,
+  "generatedSha256": "1318b5c77e5a7dcf9816fd626cfef7e6606ead3d730308db7dd9fc0d11b34cae"
+}

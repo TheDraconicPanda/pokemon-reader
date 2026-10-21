@@ -1,5 +1,23 @@
 # Pokémon Reader Roadmap
 
+## Safari v1 — Milestone 2 (v0.25.76)
+
+- [x] Generate all reachable HGSS Safari encounter tables from pinned primary data,
+  preserving method, time, level, slot order and score requirements.
+- [x] Implement shared pure rules for points, multipliers, minimum-day/capacity
+  bounds, object groups, area availability, aging and configuration changes.
+- [x] Replace the legacy reference with a single shared 339-row Atlas catalogue.
+- [x] Record primary hashes, terrain evidence, source disagreements and independent
+  hand-transcribed fixtures for all five encounter methods.
+- [x] Pass 186 automated regressions and reproduce generated evidence byte-for-byte.
+- [ ] Verify live Pages publication (API/production network restriction remains).
+- [ ] Milestone 3: save/manual initialization and provenance.
+- [ ] Milestone 4: interactive simulator, original-state comparison and optimizer.
+- [ ] Milestone 5: final integrated audit and Safari v1 release.
+
+See [mechanics audit](docs/safari-mechanics.md).
+
+
 ## Safari v1 — Milestone 1 foundation (v0.25.75)
 
 - [x] Audit existing 12-area reference, maps, six-position navigation, Gate links,

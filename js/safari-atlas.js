@@ -71,7 +71,7 @@ export function mountSafariAtlas({gameId,panel,decorateSpecies,onOpenPosition,on
     compass.append(current);
     const rows=safariAreaEncounters(gameId,areas[position]);
     const section=renderAtlasEncounters({gameId,locationName:areaName(areas[position]),encounters:rows,notes:[],decorateSpecies});
-    const count=node('p',`${rows.length} existing reference records · Safari data audit pending · not filtered by your blocks, aging or progression`,'safari-reference-count');
+    const count=node('p',`${rows.length} verified reference records · not filtered by your blocks, aging or progression · rates are slot shares before lead abilities and Repel`,'safari-reference-count');
     encounters.replaceChildren(count,section);showSource();
     if(focus)heading.focus({preventScroll:true});
     if(preserveScroll)window.scrollTo({...previousScroll,behavior:'instant'});

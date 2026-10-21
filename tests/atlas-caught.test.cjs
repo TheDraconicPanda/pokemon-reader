@@ -10,7 +10,7 @@ test('shared SoulSilver identifiers and audited yields cover every existing Atla
   const {SOULSILVER_LOCATION_ENCOUNTERS}=await import('../js/data/games/soulsilver/location-encounters.js');
   const {SOULSILVER_SAFARI_ENCOUNTERS}=await import('../js/data/games/soulsilver/safari-encounters.js');
   const rows=[...Object.values(SOULSILVER_ROUTE_ENCOUNTERS.routes).flat(),...Object.values(SOULSILVER_LOCATION_ENCOUNTERS.locations).flatMap(location=>location.encounters),...SOULSILVER_SAFARI_ENCOUNTERS];
-  assert.equal(rows.length,1384+269);assert.equal(SOULSILVER_SAFARI_ENCOUNTERS.length,269);
+  assert.equal(rows.length,1384+339);assert.equal(SOULSILVER_SAFARI_ENCOUNTERS.length,339);
   for(const row of rows)assert.ok(speciesReference('soulsilver',speciesIdForName('soulsilver',row.pokemon)),row.pokemon);
   for(let id=1;id<=493;id++)assert.ok(speciesReference('soulsilver',id).evYield,id);
   assert.equal(gameReference('soulsilver').generation,4);

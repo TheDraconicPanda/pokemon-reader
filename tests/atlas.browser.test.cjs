@@ -273,24 +273,24 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.75') && document.querySelector('.eyebrow').textContent.includes('v0.25.75'),
+    version: document.title.includes('v0.25.76') && document.querySelector('.eyebrow').textContent.includes('v0.25.76'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
   assert.equal(result.version, true);
-  assert.equal(result.safari, 269);
+  assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.75<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.76<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.75'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.75");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.76");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.75'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.75'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.75'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.75'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -815,7 +815,7 @@ test('Atlas starts in New Bark, uses compass positions, and keeps navigation bef
     await evaluate(`(() => { const search=document.querySelector('#location-search');search.value='Safari Zone Gate';search.dispatchEvent(new Event('input'));Array.from(document.querySelectorAll('.location-card')).find(c=>c.querySelector('h2').textContent==='Safari Zone Gate').querySelector('.compass-north button').click(); })()`);
     const layout=await evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,heading:document.activeElement.textContent,nav:document.querySelector('#safari-compass').getBoundingClientRect().bottom,encounters:document.querySelector('#safari-encounters').getBoundingClientRect().top,rows:new Set(Array.from(document.querySelectorAll('#safari-encounters .encounter-entry'),r=>r.dataset.encounterIndex)).size})`);
     assert.equal(layout.overflow,false); assert.equal(layout.heading,'Peak');
-    assert.ok(layout.nav<=layout.encounters); assert.equal(layout.rows,20);
+    assert.ok(layout.nav<=layout.encounters); assert.equal(layout.rows,21);
     await evaluate(`document.querySelector('[data-safari-direction="south"]').click()`);
     await evaluate(`document.querySelector('#location-search').value='New Bark Town';document.querySelector('#location-search').dispatchEvent(new Event('input'));document.querySelector('.compass-west button').click()`);
   }
@@ -923,7 +923,7 @@ test('whole Atlas distinguishes verified empty locations and exposes city and ca
   assert.ok(cards.every(c=>!c.text.includes('not been added')));
   for (const name of ['Cherrygrove City','Dark Cave','Ilex Forest','Mt. Mortar','Ice Path']) assert.ok(cards.find(c=>c.name===name).rows>0,name);
   assert.match(cards.find(c=>c.name==='Goldenrod City').text,/No fixed wild encounters/);
-  assert.equal(cards.find(c=>c.name==='Safari Zone').rows,269);
+  assert.equal(cards.find(c=>c.name==='Safari Zone').rows,339);
   for (const width of [320,390,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
     for (const name of ['Cherrygrove City','Ruins of Alph','National Park','Mt. Silver','Victory Road']) {
@@ -1130,7 +1130,7 @@ test('all Atlas encounter records remain available in collapsed time and method 
       const name=card.querySelector('h2').textContent;
       const rows=Array.from(card.querySelectorAll('.encounter-entry'));
       const ids=[...new Set(rows.map(r=>Number(r.dataset.encounterIndex)))].sort((a,b)=>a-b);
-      const expected=locationEncounterReference('soulsilver',name)?.encounters.length??(name==='Safari Zone'?269:0);
+      const expected=locationEncounterReference('soulsilver',name)?.encounters.length??(name==='Safari Zone'?339:0);
       if(ids.length!==expected)failures.push(name+': source count');
       if(ids.some((id,index)=>id!==index))failures.push(name+': missing source row');
       for(const row of rows){
@@ -1676,7 +1676,7 @@ test('Atlas caught markers use registration rather than ownership or Seen flags 
   assert.equal(result.records,result.expected);assert.equal(result.accessible,true);assert.equal(result.mapped,true);
   await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Safari%20Zone'});
   await until(()=>evaluate(`document.querySelector('[data-species-id="19"] .caught-indicator')`),'Existing Safari records lack caught markers');
-  assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(row=>row.dataset.encounterIndex)).size`),269);
+  assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(row=>row.dataset.encounterIndex)).size`),339);
   await command('Page.navigate',{url:baseURL+'/pokedex-earth/#ev-training'});
   await until(()=>evaluate(`Boolean(document.querySelector('#ev-results [data-species-id="129"] .caught-indicator'))`),'EV finder did not share caught markers');
   assert.equal(await evaluate(`document.querySelectorAll('select[id*="caught"],input[id*="caught"]').length`),0);
@@ -2003,7 +2003,7 @@ test('manual Safari layout swaps positions, persists separately per adventure an
  const saved=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return a.adventureTransaction(['settings'],'readonly',tx=>a.idbValue(tx.objectStore('settings').getAll()));})()`);
  assert.equal(saved.filter(r=>r.key.startsWith('safariManualLayout:')).length,3);
 });
-test('Safari area browsing preserves every existing encounter and condition across all twelve areas with direct species links',async()=>{
+test('Safari area browsing presents every verified encounter and condition across all twelve areas with direct species links',async()=>{
  await safariVisit('#safari=0');
  const {safariReference,safariAreaEncounters}=await import('../js/data/safari-reference.js');
  for(const area of safariReference('soulsilver').areas){
@@ -2016,7 +2016,7 @@ test('Safari area browsing preserves every existing encounter and condition acro
  assert.match(await evaluate(`document.querySelector('#safari-encounters .encounter-name').href`),/\/pokedex\/#species=\d+&scope=national$/);
  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Safari%20Zone'});
  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Safari Zone'`),'Preserved all-area Safari reference');
- assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(n=>n.dataset.encounterIndex)).size`),269);
+ assert.equal(await evaluate(`new Set([...document.querySelectorAll('.encounter-entry')].map(n=>n.dataset.encounterIndex)).size`),339);
 });
 test('Safari uses shared caught registrations and refreshes an updated save without resetting the current area or open encounters',async()=>{
  const data=atlasCaughtFixture();await fixtureReader(data);await command('Fetch.disable');await safariVisit('#safari=0');
@@ -2767,4 +2767,18 @@ test('Dungeon arrivals pan the image without scrolling the viewer controls out o
   await until(()=>evaluate(`!document.querySelector('.map-viewer').open`),'Close arrival audit');
  }
  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Safari audited catalogue shows corrected species, score requirements and an honest unfiltered rate basis',async()=>{
+ await safariVisit('#safari=0');await editSafari(0,11);
+ assert.match(await evaluate(`document.querySelector('#safari-encounters').textContent`),/Spinda/);
+ assert.match(await evaluate(`document.querySelector('#safari-encounters').textContent`),/49 Forest points/);
+ assert.match(await evaluate(`document.querySelector('.safari-reference-count').textContent`),/not filtered.*slot shares before lead abilities and Repel/);
+ assert.doesNotMatch(await evaluate(`document.querySelector('#safari-encounters').textContent`),/available after \d+ days|audit pending/);
+ await editSafari(0,4);
+ const text=await evaluate(`document.querySelector('#safari-encounters').textContent`);
+ for(const species of ['Lapras','Corphish','Kingler'])assert.ok(text.includes(species),species);
+ await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+ await command('Emulation.clearDeviceMetricsOverride');
 });

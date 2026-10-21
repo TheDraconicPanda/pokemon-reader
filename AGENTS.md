@@ -203,3 +203,13 @@ not automatic progression filtering, complete battle simulation or a new in-game
 playthrough. Full-size arrival panning must scroll only the image pane; do not
 restore `scrollIntoView` on marker arrivals because it moves the containing dialog
 and can hide floor controls on phones. User outcome acceptance remains separate.
+
+Safari v1 Milestone 2 (v0.25.76) replaces the legacy 269-row reference with a
+339-row catalogue derived from the shared primary slot dataset and Safari engine.
+See `docs/safari-mechanics.md`, its source ledger and hand-transcribed fixtures.
+Do not restore guide block counts as fixed day gates, expose placeholder water
+tables in dry areas, or use ordinary overworld slot weights. Area age is keyed by
+identity; replacing an area clears its objects, swapping retains them. Object
+unlock group order depends on the full trainer ID. Partial unknown state must
+remain unknown. Atlas is still an unfiltered reference; save initialization and
+the interactive simulator belong to Milestones 3 and 4.

@@ -1,6 +1,5 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const crypto=require('node:crypto');
 const api=()=>import('../js/data/safari-reference.js');
 test('Safari topology uses verified 3×2 row-major positions and only the south-center entrance exits',async()=>{
  const {safariReference,safariNeighbors}=await api();const game=safariReference('soulsilver');
@@ -15,13 +14,12 @@ test('Safari topology uses verified 3×2 row-major positions and only the south-
  for(const i of [-1,6,1.5,NaN])assert.equal(safariNeighbors('soulsilver',i),null);
  for(const source of Object.values(game.sources)){assert.match(source.url,/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/);assert.match(source.sha256,/^[a-f0-9]{64}$/);}
 });
-test('all twelve Safari area views preserve the original 269 records, conditions and source indices',async()=>{
+test('all twelve Safari area views share the verified 339-row catalogue and source indices',async()=>{
  const {safariReference,safariAreaEncounters}=await api();const {SOULSILVER_SAFARI_ENCOUNTERS:original}=await import('../js/data/games/soulsilver/safari-encounters.js');
  const rows=safariReference('soulsilver').areas.flatMap(area=>{const rows=safariAreaEncounters('soulsilver',area.id);assert.ok(rows.length);assert.ok(rows.every(r=>r.method.split(' · ')[0]===area.name));return rows;});
- assert.equal(rows.length,269);assert.equal(new Set(rows.map(r=>r.sourceIndex)).size,269);
+ assert.equal(rows.length,339);assert.equal(new Set(rows.map(r=>r.sourceIndex)).size,339);
  for(const {sourceIndex,...row}of rows)assert.deepEqual(row,original[sourceIndex]);
- assert.equal(crypto.createHash('sha256').update(JSON.stringify(original)).digest('hex'),'769f131cc6148882931d4e5ddf4ce614fca9494389f6cafe5d73d229d3228246');
- assert.ok(rows.some(r=>r.rarity.includes('days')));assert.ok(rows.some(r=>r.method.includes('Surfing')));assert.ok(rows.some(r=>r.method.includes('Super Rod')));
+ assert.ok(rows.some(r=>r.rarity.includes('points')));assert.ok(rows.some(r=>r.method.includes('Surfing')));assert.ok(rows.some(r=>r.method.includes('Super Rod')));
  assert.deepEqual(safariAreaEncounters('other',0),[]);assert.deepEqual(safariAreaEncounters('soulsilver',12),[]);
 });
 test('manual layouts require six distinct area IDs and swapping preserves caller data and unrelated layouts',async()=>{

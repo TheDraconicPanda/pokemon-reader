@@ -80,7 +80,7 @@ function renderEncounters(locationName) {
   const reference=locationEncounterReference(ATLAS_GAME_ID,locationName);
   return renderAtlasEncounters({gameId:ATLAS_GAME_ID,locationName,
     encounters:reference?reference.encounters:locationName==='Safari Zone'?SAFARI_ZONE_ENCOUNTERS:null,
-    status:reference?.status,notes:reference?.notes||['Safari encounters still require their dedicated data/mechanics audit.'],
+    status:reference?.status,notes:reference?.notes||['Verified Safari reference: base rates assume no objects; object encounters require block points and replace base slots. Rates are slot shares before lead abilities and Repel. Not filtered by your current progress.'],
     decorateSpecies:(node,id)=>caughtIndicators.decorate(node,id)});
 }
 

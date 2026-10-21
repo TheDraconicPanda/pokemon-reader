@@ -1,4 +1,8 @@
-# SoulSilver Safari mini Atlas — v0.25.61
+# SoulSilver Safari mini Atlas — historical integration notes
+
+The encounter-preservation counts and pending-audit statements below describe
+v0.25.59–61. Milestone 2 supersedes them with the verified shared slot dataset
+and 339-row catalogue. See [current mechanics and limitations](safari-mechanics.md).
 
 This milestone integrates the Safari reference into Atlas without the separate
 calculator or new binary-save research. Reader/Pokédex navigation was accepted by

@@ -1,5 +1,20 @@
 # Pokémon Reader
 
+## Verified Safari data and mechanics — v0.25.76
+
+Safari Atlas now derives its reference from audited HGSS slot tables: all twelve
+areas, five methods where reachable, exact time/level differences and block-point
+requirements. A shared pure engine handles ten-slot replacement, category aging,
+30-object limits, staged unlock groups and hypothetical layout changes. The old
+269-row reference is replaced by 339 verified catalogue rows.
+
+Atlas remains unfiltered; save initialization and the interactive simulator are
+Milestones 3 and 4. Rates are encounter-slot shares before lead abilities/Repel.
+All **186 automated checks pass**, including independent fixtures and browser
+regressions. Live Pages confirmation remains blocked by network policy.
+See [mechanics, independent fixtures, source disagreements and limits](docs/safari-mechanics.md).
+
+
 ## Safari foundation audit — v0.25.75
 
 Milestone 1 rechecks all twelve area identities and six-position navigation against
