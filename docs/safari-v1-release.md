@@ -145,3 +145,14 @@ layouts remain usable.
 - The environment still excludes the Pages API/production host from its enforced
   network allowlist. Deployment and actual production assets cannot be certified
   from a local test or successful Git push. Publication status follows below.
+
+## Publication checkpoint
+
+Release commit `d3a6454` was pushed successfully to the existing `main` deployment
+branch on 21 October 2026 after a fresh fetch and normal fast-forward integration.
+The post-push Pages API request remained Forbidden, and the production Safari
+URL returned **HTTP 403 at the proxy CONNECT tunnel**. These are environment
+access failures; they do not demonstrate a broken deployment or establish that
+v0.25.79 is live. The code, guide and technical audit are pushed; actual production
+publication, remote-image availability and user/real-save acceptance remain
+unconfirmed. No separate hosting or repository was introduced.

@@ -12,7 +12,7 @@
 - [x] Document the feature guide, sources, save support and explicit v1 limits.
 - [x] Pass all 222 automated checks, inspect final phone/desktop screenshots and
   reproduce the audit ledger byte for byte.
-- [ ] Push the release to the existing deployment branch.
+- [x] Push release `d3a6454` to existing `main` after a fresh fetch.
 - [ ] Confirm actual Pages deployment and production assets (network restriction).
 - [ ] User outcome and real-save/in-game acceptance.
 
