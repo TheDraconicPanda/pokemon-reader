@@ -179,3 +179,9 @@ Live Pages verification remains blocked by the known API/production-host HTTP
 policy restriction; the browser-source connector also cannot access production.
 A push is not proof of a successful Pages deployment. Milestone 2 implementation
 and automated acceptance are complete; live publication confirmation is pending.
+
+## Subsequent initialization milestone
+
+Milestone 3 now supplies [save/manual starting state](safari-save-initialization.md)
+through the existing Reader. Earlier statements above about initialization being
+future work describe Milestone 2; linked/unknown fields retain explicit fallback.

@@ -1,0 +1,91 @@
+{
+  "sources": {
+    "primary/include/save_pokegear.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/save_pokegear.h",
+      "sha256": "6bd42cc3682b63105b685f455325745a44cff855ad456a1cb9a7a68e1b948d44"
+    },
+    "pkhex/PKHeX.Core/Saves/SAV4HGSS.cs": {
+      "url": "https://github.com/kwsch/PKHeX/blob/0a7854f64e118ad228513f3cf4b84c308dac2fdc/PKHeX.Core/Saves/SAV4HGSS.cs",
+      "sha256": "9bfa9e55730df2220e230d8f1e22372af8cd53688e5111411632b6dd2a24befa"
+    },
+    "pkhex/PKHeX.Core/Saves/SAV4.cs": {
+      "url": "https://github.com/kwsch/PKHeX/blob/0a7854f64e118ad228513f3cf4b84c308dac2fdc/PKHeX.Core/Saves/SAV4.cs",
+      "sha256": "6da5fd03b210165abad9261ce21a3b0351a1a256621359b7bc76de7998fa284a"
+    },
+    "primary/src/save.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/save.c",
+      "sha256": "c3cd84b17b771db6c878289955794c0e55f86fda65b2205a53b2caaae571d2fc"
+    },
+    "primary/src/save_arrays.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/save_arrays.c",
+      "sha256": "c0ccc14c3b01f20f6ee4623345ee1f328cdebbe3b16e38a71a7aabf060b1cd28"
+    },
+    "primary/include/safari_zone.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/safari_zone.h",
+      "sha256": "5a9a0457b576b3737f7bb363fbecf03f46ae9012f4229cde689622dc5890a702"
+    },
+    "primary/include/constants/safari.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/constants/safari.h",
+      "sha256": "475bd34656e7c550ef57e3ce2feb5f0c658ad5e73ef2f06f75c55d6d07fd6de8"
+    },
+    "primary/src/safari_zone.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/safari_zone.c",
+      "sha256": "713077994124189a05cf65af9d02b2281e2fc93832783061e8419731bb3ccab5"
+    },
+    "primary/src/unk_02097268.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/unk_02097268.c",
+      "sha256": "4742bb7db16325d066d8a124a7ee1a6d945dbafb48d7cbbbc17642f27f48bf5f"
+    },
+    "editor/include/manager/save_data_manager.hpp": {
+      "url": "https://github.com/Yoyovicti/HGSS_SafariZoneEditor/blob/9b06bd854172599d81d89b8979aa00ac8ddee063/include/manager/save_data_manager.hpp",
+      "sha256": "bb768250f047454ed4c7179b6e7c51f24d43597aa7602d00dbe1e94398de06b6"
+    },
+    "primary/include/save_vars_flags.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/save_vars_flags.h",
+      "sha256": "1bfd419a51443a217a27ad119fd61cbffe4dfb22d37750ba1d5f76c3599178d1"
+    },
+    "primary/src/save_vars_flags.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/save_vars_flags.c",
+      "sha256": "a9aeb111bf1d8fbe6c35db1e738e811aa6da527e62fda826ea7e24ae6912016d"
+    },
+    "primary/src/sys_vars.c": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/sys_vars.c",
+      "sha256": "40ffedeaaeccd974a95195ed001bc776851e0871ef4ab438b262389f37c4170b"
+    },
+    "primary/files/fielddata/script/scr_seq/scr_seq_0119_D47R0101.s": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/script/scr_seq/scr_seq_0119_D47R0101.s",
+      "sha256": "92f69e5e997391cde4394f0d86715c0ac2c783cdbc2ebf5721cf0e47a5597404"
+    },
+    "primary/include/player_data.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/player_data.h",
+      "sha256": "907318f03e92f07346b0e7ddb1bc2b4a6626cfb456de390af1eb0bd6a4e3f5ed"
+    },
+    "pksm/src/scriptsHGSS.txt": {
+      "url": "https://github.com/FlagBrew/PKSM-Scripts/blob/9b744f76c7b14089b45323c2cf1cb5493a3837ee/src/scriptsHGSS.txt",
+      "sha256": "7e766c962aac32524f985d6f278182ce3ec88566f30ae934241ca011a84b7fbd"
+    }
+  },
+  "realSaveFixtures": 0,
+  "validation": "Source-verified offsets and synthetic checksummed fixtures; no real-save validation claimed.",
+  "fieldOffsets": {
+    "zoneBase": "0xc13c",
+    "slotStride": "0x7a",
+    "areaAges": "0xc418",
+    "baobaStage": "0xe92",
+    "pendingDays": "0xc734",
+    "packedUnlockAndActiveSet": "0xc735"
+  },
+  "derivation": [
+    "Pok\u00e9gear base = PKHeX caller offset 0xC0EC - primary caller-field offset 0x60C = 0xBAE0.",
+    "Safari base = 0xBAE0 + aligned primary Pok\u00e9gear size 0x658 + save-substructure trailer 4 = 0xC13C.",
+    "Dedicated HGSS editor independently supplies 0xC13C, 0x7A stride and 0xC418 counters.",
+    "6 * (2 + 30 * 4) = 0x2DC bytes before the twelve area counters.",
+    "Two 0x2E8-byte sets plus 0x28-byte link-leader data place pending days at +0x5F8 and the packed unlock/selection byte at +0x5F9.",
+    "PKHeX event-variable base 0xDE4 + 2 * (0x4057 - 0x4000) = 0xE92."
+  ],
+  "disagreement": {
+    "source": "PKSM-Scripts src/scriptsHGSS.txt",
+    "claimedCounterOffset": "0xC148",
+    "resolution": "Not used: inconsistent with primary structure and both independent base/stride derivations. 0xC148 lies inside the first area object record storage, while area counters begin at 0xC418."
+  }
+}

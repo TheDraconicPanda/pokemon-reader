@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>SoulSilver Safari — v0.25.77</title>
+  <link rel="stylesheet" href="../css/world.css">
+  <link rel="stylesheet" href="../css/app-shell.css">
+  <link rel="stylesheet" href="../css/safari-scenario.css">
+  <script src="../js/app-shell.js"></script>
+</head>
+<body>
+<main class="world-app">
+  <app-menu tool="atlas"></app-menu>
+  <header class="world-header"><p class="eyebrow">POKÉMON READER · SAFARI · v0.25.77</p><h1>Safari starting configuration</h1></header>
+  <nav class="scenario-return" aria-label="Return to Atlas"><a href="../pokedex-earth/#safari">Safari Atlas</a><a href="../pokedex-earth/#location=Safari%20Zone%20Gate">Safari Zone Gate</a></nav>
+  <section class="world-panel" aria-labelledby="scenario-owner"><h2 id="scenario-owner">Loading adventure…</h2><p id="scenario-source" role="status"></p><p id="scenario-notes"></p><p>Changes here are hypothetical and stay in this visit. Use Load Save in Reader to initialize from another save.</p></section>
+  <section class="world-panel" aria-labelledby="configuration-title">
+    <h2 id="configuration-title">Configure your starting values</h2>
+    <p>Unavailable fields stay blank until you supply them. Correct starting values first, then try hypothetical changes. The loaded save and its stored adventure remain unchanged.</p>
+    <label class="scenario-mode">Edit mode <select id="scenario-edit-mode"><option value="starting">Starting values · manual corrections</option><option value="current">Hypothetical changes</option></select></label>
+    <div id="scenario-fields"></div>
+    <div class="scenario-actions"><button id="scenario-reset" type="button">Reset hypothetical changes</button><button id="scenario-restore" type="button">Restore loaded/default start</button></div>
+    <p id="scenario-message" role="status"></p>
+  </section>
+  <section class="world-panel" aria-labelledby="scenario-diff-title"><h2 id="scenario-diff-title">Changes from your starting configuration</h2><ul id="scenario-differences"></ul><p>Encounter filtering and target optimization will use these values in the next Safari milestone.</p></section>
+  <details class="world-panel"><summary>Sources and save support</summary><p>Area arrangement, object types, stored area days, object unlock level and Baoba stage are decoded where independently verified. Entry access, Surf/rod access, clock penalty and time of day require manual configuration. Linked Safari setups require manual fallback. Stored days are not increased using this device’s date.</p><a href="../docs/safari-save-initialization.md">Field evidence and limitations</a></details>
+</main>
+<script type="module" src="../js/safari-scenario-ui.js"></script>
+</body>
+</html>

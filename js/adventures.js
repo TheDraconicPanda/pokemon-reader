@@ -1,3 +1,4 @@
+import { sanitizeSafariSave } from './saves/soulsilver-safari.js';
 // Decoded data only. Binary bytes remain owned by the Reader's current session.
 export const ADVENTURE_SCHEMA = 1;
 export const LEGACY_PLANNER_KEY = 'pokemon-reader-soulsilver-team-planner-v1';
@@ -74,7 +75,7 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
     trainer:result.save?.trainer && pick(result.save.trainer, ['name','trainerId','secretId','money','gender','badges','badgeCount','playTime']),
     party, storage,
     pokedex:result.save?.pokedex && pick(result.save.pokedex, ['nationalDex','speciesIds','seenSpecies','caughtSpecies','speciesCount','seenCount','caughtCount','seenPercent','caughtPercent','allCaughtSpecies','allSeenSpecies']),
-    safari:{ supported:false, reason:'Area arrangement and progression are not decoded by the SoulSilver parser.' }
+    safari:sanitizeSafariSave(result.save?.safari)
   };
   if (snapshot.trainer?.playTime) snapshot.trainer.playTime = pick(snapshot.trainer.playTime, ['hours','minutes','seconds']);
   // Canonical JSON also ensures ArrayBuffers, typed arrays and parser offsets cannot
@@ -86,7 +87,7 @@ export function snapshotResult(snapshot) {
   validateSnapshot(snapshot);
   return { valid:true, supported:true, game:'Pokémon SoulSilver', reason:'Restored decoded adventure.',
     trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage,
-    save:{trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, pokedex:snapshot.pokedex}
+    save:{trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, pokedex:snapshot.pokedex, safari:sanitizeSafariSave(snapshot.safari)}
   };
 }
 

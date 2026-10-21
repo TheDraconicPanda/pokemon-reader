@@ -1,0 +1,16 @@
+.scenario-return,.scenario-actions{display:flex;flex-wrap:wrap;gap:12px;margin-block:1rem}
+.scenario-return a{color:var(--accent);min-height:44px;display:inline-flex;align-items:center}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px;margin-block:1rem}
+.scenario-field{display:grid;gap:5px;min-width:0}
+.scenario-field input,.scenario-field select,.scenario-mode select{box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font:inherit}
+.scenario-field small{color:var(--muted);line-height:1.4}
+.scenario-mode{display:grid;gap:6px;max-width:420px}
+#scenario-fields details{margin-block:1rem}
+#scenario-fields summary{cursor:pointer;min-height:44px;line-height:1.5}
+.scenario-actions button{padding:10px;min-height:44px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--accent);font:inherit;cursor:pointer}
+#scenario-message{color:var(--warning)}
+.world-panel p,#scenario-differences{overflow-wrap:anywhere;line-height:1.5}
+.scenario-field:focus-within small{color:var(--text)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* Atlas panels use a search/sidebar grid on desktop; configuration cards flow vertically. */
+.world-app > .world-panel{display:block;margin-block:1rem}

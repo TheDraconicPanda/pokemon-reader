@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.76') && document.querySelector('.eyebrow').textContent.includes('v0.25.76'),
+    version: document.title.includes('v0.25.77') && document.querySelector('.eyebrow').textContent.includes('v0.25.77'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.76<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.77<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.76");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.77");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.76'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2781,4 +2781,85 @@ test('Safari audited catalogue shows corrected species, score requirements and a
  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
  await command('Emulation.clearDeviceMetricsOverride');
+});
+
+let safariScenarioVisitNumber=0;
+async function visitSafariScenario(prefix=''){
+ await command('Page.navigate',{url:baseURL+prefix+'/safari-zone/?test='+(++safariScenarioVisitNumber)});
+ await until(()=>evaluate(`document.documentElement.dataset.safariScenarioReady==='true'`),'Safari starting configuration did not initialize');
+}
+async function setScenarioField(key,value){
+ await evaluate(`(()=>{const input=document.querySelector('[data-scenario-field="${key}"]');input.value=${JSON.stringify(value)};input.dispatchEvent(new Event('change'));})()`);
+}
+test('Safari save-free starting configuration supports manual completion, hypothetical changes, two resets and shared mobile themes',async()=>{
+ await visitSafariScenario('/pokemon-reader');
+ assert.match(await evaluate(`document.querySelector('#scenario-owner').textContent`),/No save/);
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'0');
+ await setScenarioField('customizerUnlocked','true');await setScenarioField('blockLevel','4');
+ assert.match(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').nextElementSibling.textContent`),/Manually supplied/);
+ await evaluate(`document.querySelector('#scenario-edit-mode').value='current';document.querySelector('#scenario-edit-mode').dispatchEvent(new Event('change'))`);
+ await setScenarioField('blocks.0.peak','12');
+ assert.match(await evaluate(`document.querySelector('#scenario-differences').textContent`),/12.*Hypothetical/);
+ await evaluate(`document.querySelector('#scenario-reset').click()`);
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blocks.0.peak"]').value`),'0');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'4');
+ await evaluate(`document.querySelector('#scenario-restore').click()`);
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'0');
+ for(const theme of ['dark','light'])for(const width of [320,390,768,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
+  await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');window.dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));document.querySelector('#scenario-fields details').open=true`);
+  assert.equal(await evaluate(`document.documentElement.dataset.theme`),theme);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme}/${width}`);
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.world-panel')).display`),'block','Scenario cards must not inherit Atlas search/sidebar columns');
+ }
+ if(process.env.SAFARI_SCENARIO_SCREENSHOT_DIR){
+  await require('node:fs/promises').mkdir(process.env.SAFARI_SCENARIO_SCREENSHOT_DIR,{recursive:true});
+  for(const width of [390,1440]){await command('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<800});const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SCENARIO_SCREENSHOT_DIR,`scenario-${width}.png`),Buffer.from(shot.data,'base64'));}
+ }
+ assert.ok(await evaluate(`document.querySelector('#load-save').href.endsWith('/pokemon-reader/#overview')`));
+ assert.equal(await evaluate(`document.querySelectorAll('input[type=file]').length`),0,'Reuses Reader file loader');
+ await command('Emulation.clearDeviceMetricsOverride');
+});
+test('Safari reads a constructed binary through Reader, restores fields and preserves the adventure while editing',async()=>{
+ const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
+ await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
+ await command('Page.navigate',{url:baseURL+'/#overview'});
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.25.77'`),'Real Reader ready');
+ const payload=Buffer.from(bytes).toString('base64');
+ await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
+ await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
+ await command('Fetch.disable');await visitSafariScenario();
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="layout.0"]').value`),'11');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="age.7"]').value`),'110');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blocks.0.peak"]').value`),'1');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="open"]').value`),'');
+ assert.match(await evaluate(`document.querySelector('[data-scenario-field="open"]').nextElementSibling.textContent`),/Unavailable/);
+ const before=await evaluate(`(async()=>{const a=await import('/js/adventures.js');return JSON.stringify(await a.getActiveProfile());})()`);
+ await setScenarioField('open','true');await setScenarioField('age.7','120');
+ assert.equal(await evaluate(`(async()=>{const a=await import('/js/adventures.js');return JSON.stringify(await a.getActiveProfile());})()`),before);
+ await command('Page.reload');await until(()=>evaluate(`document.querySelector('[data-scenario-field="age.7"]')?.value==='110'`),'Reload uses original saved ages, not visit edits');
+});
+test('Safari reinitializes on same-adventure save revision and profile changes but ignores unrelated notifications',async()=>{
+ const data=fixture();const {safariSave}=require('./fixtures/safari/save.cjs');const parsed=(await import('../js/saves/soulsilver.js')).detectSoulSilver(safariSave().bytes.buffer);data.save.safari=parsed.save.safari;
+ await fixtureReader(data);await command('Fetch.disable');await visitSafariScenario();
+ await setScenarioField('age.7','120');
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');a.notifyAdventureChange();})()`);
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="age.7"]').value`),'120');
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');const p=await a.getActiveProfile();const s=structuredClone(p.snapshot);s.loadedAt=new Date(Date.parse(s.loadedAt)+1000).toISOString();s.safari.areaAges[7]=130;await a.persistSnapshot(s,{profileId:p.id});})()`);
+ await until(()=>evaluate(`document.querySelector('[data-scenario-field="age.7"]').value==='130'`),'Same-adventure replacement reinitializes');
+ assert.match(await evaluate(`document.querySelector('#scenario-message').textContent`),/reinitialized/);
+ await evaluate(`(async()=>{const a=await import('/js/adventures.js');await a.clearActiveProfile();})()`);
+ await until(()=>evaluate(`document.querySelector('#scenario-owner').textContent.includes('No save')`),'Reference scenario reinitializes');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="age.7"]').value`),'0');
+});
+test('Safari starting configuration remains usable when storage is denied and older snapshots retain unknown fields',async()=>{
+ await fixtureReader();await command('Fetch.disable');await visitSafariScenario();
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="layout.0"]').value`),'');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'');
+ await setScenarioField('layout.0','11');assert.equal(await evaluate(`document.querySelector('[data-scenario-field="layout.0"]').value`),'11');
+ const injection=await command('Page.addScriptToEvaluateOnNewDocument',{source:`indexedDB.open=()=>{throw new DOMException('Denied','SecurityError')}`});
+ try{
+  await visitSafariScenario();assert.match(await evaluate(`document.querySelector('#scenario-notes').textContent`),/storage is unavailable/);
+  await setScenarioField('blockLevel','4');assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'4');
+ }finally{await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});}
 });

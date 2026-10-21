@@ -1,3 +1,4 @@
+import { readSoulSilverSafari } from './soulsilver-safari.js';
 const SOULSILVER = Object.freeze({
   game: "Pokémon SoulSilver",
   fileSize: 0x80000,
@@ -88,6 +89,7 @@ export function detectSoulSilver(buffer) {
     party,
     storage,
     pokedex,
+    safari: readSoulSilverSafari(data, activePartition),
   };
   result.supported = true;
   result.valid = true;

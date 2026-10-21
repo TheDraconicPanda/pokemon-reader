@@ -71,6 +71,7 @@ export function evaluateSafariEncounters(scenario){
  const {gameId,areaId,method,time,blocks,days,layout,progression,trainerId,methodAccess}=scenario;
  if(!safariRules(gameId))return {status:'unsupported',reasons:['Safari mechanics are unavailable for this game.'],slots:[]};
  try{
+  if(areaId===null||areaId===undefined)return {status:'unknown',reasons:['Unavailable: required Safari area.'],slots:[]};
   integer(areaId,0,11,'area');
   if(!Object.hasOwn(SAFARI_METHODS,method))return {status:'unsupported',reasons:['Unsupported Safari encounter method.'],slots:[]};
   if(!rules.areas[areaId].methods[method])return {status:'unavailable',reasons:['This area has no water encounter terrain.'],slots:[]};

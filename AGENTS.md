@@ -213,3 +213,13 @@ identity; replacing an area clears its objects, swapping retains them. Object
 unlock group order depends on the full trainer ID. Partial unknown state must
 remain unknown. Atlas is still an unfiltered reference; save initialization and
 the interactive simulator belong to Milestones 3 and 4.
+
+Safari Milestone 3 (v0.25.77) adds read-only local Safari decoding and the
+`safari-zone/` starting-configuration page. Exact evidence and unknown fields are
+in `docs/safari-save-initialization.md` and `safari-save-sources.json`. Use the
+existing Reader's validated partition and optional canonical snapshot subrecord.
+Never use the conflicting PKSM 0xC148 day-counter location, apply wall-clock
+elapsed/pending days automatically, or turn unknown linked/entry/Surf/rod/clock
+state into progress. Old profiles remain compatible without a database migration.
+Starting corrections are manual; proposed changes are hypothetical; original
+state is preserved. Scenario edits are session-only and reset on save revision.

@@ -1,5 +1,22 @@
 # Pokémon Reader
 
+## Safari save initialization — v0.25.77
+
+The new [Safari starting configuration](safari-zone/) uses the existing Reader and
+Adventure Profiles. Verified fields include local areas, object types/counts,
+stored area days, object unlock level and Baoba stage. Missing fields stay
+unavailable with manual configuration. Defaults, verified values, manual baseline
+corrections and hypothetical changes have separate labels and two reset actions.
+New save revisions reset the scenario without changing stored adventures or bytes.
+
+Linked Safari state and real-time aging require manual fallback. Scenario edits
+last for this visit. Live eligibility and target optimization follow in Step 4.
+All **201 automated checks pass**. Decoding is source-verified and tested with
+synthetic files; no real-save validation is claimed. Live Pages confirmation
+remains subject to the network restriction.
+See [field evidence, usage and limitations](docs/safari-save-initialization.md).
+
+
 ## Verified Safari data and mechanics — v0.25.76
 
 Safari Atlas now derives its reference from audited HGSS slot tables: all twelve

@@ -1,5 +1,23 @@
 # Pokémon Reader Roadmap
 
+## Safari v1 — Milestone 3 (v0.25.77)
+
+- [x] Investigate primary Safari structures and corroborate offsets independently.
+- [x] Read verified local fields through the existing validated SoulSilver parser.
+- [x] Preserve optional decoded fields through canonical Adventure snapshots;
+  older profiles and partial/corrupt fields retain explicit fallback.
+- [x] Add save-free defaults, manual baseline completion, hypothetical changes,
+  original preservation, reset and new-save/profile reinitialization.
+- [x] Keep the existing loader, shell, themes and hosting; no save writes.
+- [x] Pass 201 automated checks; review phone/desktop screenshots and reproduce
+  the source evidence. No real-save validation is claimed.
+- [ ] Confirm live Pages publication (known API/production access restriction).
+- [ ] Milestone 4: live encounter eligibility and target optimizer interface.
+- [ ] Milestone 5: final integrated Safari audit/release.
+
+See [save evidence and initialization guide](docs/safari-save-initialization.md).
+
+
 ## Safari v1 — Milestone 2 (v0.25.76)
 
 - [x] Generate all reachable HGSS Safari encounter tables from pinned primary data,
