@@ -1,0 +1,1084 @@
+{
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "scope": "Released-game Johto geographic INTERIOR map headers plus already-scoped Route 26–28/League buildings; no new Kanto locations, Safari, online session maps, unused/debug maps or Sinjoh.",
+  "rooms": [
+    {
+      "mapId": "MAP_NEW_BARK_ELMS_LAB_1F",
+      "location": "New Bark Town",
+      "label": "Elms Lab 1F",
+      "existingView": "elms-lab-1f"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_ELMS_LAB_2F",
+      "location": "New Bark Town",
+      "label": "Elms Lab 2F",
+      "existingView": "elms-lab-2f"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_PLAYER_HOUSE_1F",
+      "location": "New Bark Town",
+      "label": "Player House 1F",
+      "existingView": "player-house-1f"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_PLAYER_HOUSE_2F",
+      "location": "New Bark Town",
+      "label": "Player House 2F",
+      "existingView": "player-bedroom"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_SOUTHWEST_HOUSE",
+      "location": "New Bark Town",
+      "label": "Southwest House"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_RIVAL_HOUSE_1F",
+      "location": "New Bark Town",
+      "label": "Rival House 1F",
+      "existingView": "neighbor-house-1f"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKEMART",
+      "location": "Cherrygrove City",
+      "label": "Poké Mart",
+      "existingView": "cherrygrove-pokemart"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKECENTER_1F",
+      "location": "Cherrygrove City",
+      "label": "Pokémon Center 1F",
+      "existingView": "cherrygrove-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_SOUTHWEST_HOUSE",
+      "location": "Cherrygrove City",
+      "label": "Southwest House"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_GUIDE_GENT_HOUSE",
+      "location": "Cherrygrove City",
+      "label": "Guide Gent’s house"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_SOUTHEAST_HOUSE",
+      "location": "Cherrygrove City",
+      "label": "Southeast House"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKEMART",
+      "location": "Ecruteak City",
+      "label": "Poké Mart",
+      "existingView": "ecruteak-pokemart"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_GYM",
+      "location": "Ecruteak City",
+      "label": "Gym",
+      "existingView": "ecruteak-gym"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_1F",
+      "location": "Ecruteak City",
+      "label": "Pokémon Center 1F",
+      "existingView": "ecruteak-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION",
+      "location": "Ecruteak City",
+      "label": "Bell Tower gate · main room"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_DOWSING_MACHINE_HOUSE",
+      "location": "Ecruteak City",
+      "label": "Dowsing Machine House"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_SOUTHWEST_HOUSE",
+      "location": "Ecruteak City",
+      "label": "Southwest House"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_DANCE_THEATER",
+      "location": "Ecruteak City",
+      "label": "Dance Theater"
+    },
+    {
+      "mapId": "MAP_ROUTE_31_VIOLET_GATEHOUSE",
+      "location": "Route 31",
+      "label": "Violet gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_32_RUINS_OF_ALPH_GATEHOUSE",
+      "location": "Route 32",
+      "label": "Ruins of Alph gatehouse"
+    },
+    {
+      "mapId": "MAP_AZALEA_ILEX_FOREST_GATEHOUSE",
+      "location": "Azalea Town",
+      "label": "Ilex Forest Gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_35_GOLDENROD_GATEHOUSE",
+      "location": "Route 35",
+      "label": "Goldenrod gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_35_NATIONAL_PARK_POKEATHALON_GATEHOUSE",
+      "location": "Route 35",
+      "label": "Park / Pokéathlon gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_36_RUINS_OF_ALPH_GATEHOUSE",
+      "location": "Route 36",
+      "label": "Ruins of Alph gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_36_NATIONAL_PARK_GATEHOUSE",
+      "location": "Route 36",
+      "label": "National Park gatehouse"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_1F",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower 1F",
+      "existingView": "1f"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_SOUVENIR_SHOP",
+      "location": "Mahogany Town",
+      "label": "Souvenir Shop",
+      "existingView": "mahogany-shop"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_TUNNEL_1F",
+      "location": "Goldenrod Tunnel",
+      "label": "Tunnel entrance rooms · 1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_30_APRICORN_HOUSE",
+      "location": "Route 30",
+      "label": "Apricorn Box house"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_B1F",
+      "location": "Ecruteak City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_42_ECRUTEAK_GATEHOUSE",
+      "location": "Route 42",
+      "label": "Ecruteak Gatehouse"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_EAST_HOUSE",
+      "location": "Mahogany Town",
+      "label": "East House"
+    },
+    {
+      "mapId": "MAP_ROUTE_29_ROUTE_46_GATEHOUSE",
+      "location": "Route 29",
+      "label": "Route 46 Gatehouse"
+    },
+    {
+      "mapId": "MAP_VIOLET_GYM",
+      "location": "Violet City",
+      "label": "Gym",
+      "existingView": "violet-gym"
+    },
+    {
+      "mapId": "MAP_AZALEA_GYM_ENTRANCE",
+      "location": "Azalea Town",
+      "label": "Gym · entrance room"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GYM",
+      "location": "Goldenrod City",
+      "label": "Gym",
+      "existingView": "goldenrod-gym"
+    },
+    {
+      "mapId": "MAP_OLIVINE_GYM",
+      "location": "Olivine City",
+      "label": "Gym",
+      "existingView": "olivine-gym"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_GYM",
+      "location": "Cianwood City",
+      "label": "Gym",
+      "existingView": "cianwood-gym"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_GYM_LEADER_ROOM",
+      "location": "Mahogany Town",
+      "label": "Gym · leader room",
+      "existingView": "mahogany-gym"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_GYM",
+      "location": "Blackthorn City",
+      "label": "Gym",
+      "existingView": "blackthorn-gym"
+    },
+    {
+      "mapId": "MAP_ROUTE_43_MAHOGANY_GATEHOUSE",
+      "location": "Route 43",
+      "label": "Mahogany Gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_30_MR_POKEMON_HOUSE",
+      "location": "Route 30",
+      "label": "Mr. Pokémon’s house"
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKECENTER_B1F",
+      "location": "Cherrygrove City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_VIOLET_ROUTE_36_GATEHOUSE",
+      "location": "Route 36",
+      "label": "Route 36 Gatehouse"
+    },
+    {
+      "mapId": "MAP_VIOLET_POKEMART",
+      "location": "Violet City",
+      "label": "Poké Mart",
+      "existingView": "violet-pokemart"
+    },
+    {
+      "mapId": "MAP_VIOLET_POKECENTER_1F",
+      "location": "Violet City",
+      "label": "Pokémon Center 1F",
+      "existingView": "violet-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_VIOLET_POKEMON_SCHOOL",
+      "location": "Violet City",
+      "label": "Pokemon School",
+      "existingView": "pokemon-school"
+    },
+    {
+      "mapId": "MAP_VIOLET_NORTHWEST_HOUSE",
+      "location": "Violet City",
+      "label": "Northwest House"
+    },
+    {
+      "mapId": "MAP_VIOLET_BELLSPROUT_ONYX_TRADE_HOUSE",
+      "location": "Violet City",
+      "label": "Onix trade house"
+    },
+    {
+      "mapId": "MAP_AZALEA_CHARCOAL_KILN",
+      "location": "Azalea Town",
+      "label": "Charcoal Kiln"
+    },
+    {
+      "mapId": "MAP_AZALEA_KURT_HOUSE",
+      "location": "Azalea Town",
+      "label": "Kurt’s house"
+    },
+    {
+      "mapId": "MAP_AZALEA_POKEMART",
+      "location": "Azalea Town",
+      "label": "Poké Mart",
+      "existingView": "azalea-pokemart"
+    },
+    {
+      "mapId": "MAP_AZALEA_POKECENTER_1F",
+      "location": "Azalea Town",
+      "label": "Pokémon Center 1F",
+      "existingView": "azalea-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_VIOLET_POKECENTER_B1F",
+      "location": "Violet City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_AZALEA_POKECENTER_B1F",
+      "location": "Azalea Town",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_32_POKECENTER_1F",
+      "location": "Route 32",
+      "label": "Pokémon Center 1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_32_POKECENTER_B1F",
+      "location": "Route 32",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_34_ILEX_FOREST_GATEHOUSE",
+      "location": "Route 34",
+      "label": "Ilex Forest Gatehouse"
+    },
+    {
+      "mapId": "MAP_ROUTE_38_ECRUTEAK_GATEHOUSE",
+      "location": "Route 38",
+      "label": "Ecruteak Gatehouse"
+    },
+    {
+      "mapId": "MAP_AZALEA_GYM",
+      "location": "Azalea Town",
+      "label": "Gym",
+      "existingView": "azalea-gym"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_BIKE_SHOP",
+      "location": "Goldenrod City",
+      "label": "Bike Shop",
+      "existingView": "goldenrod-bike-shop"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GAME_CORNER_JP",
+      "location": "Goldenrod City",
+      "label": "Game Corner Jp",
+      "existingView": "game-corner-japanese"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_FLOWER_SHOP",
+      "location": "Goldenrod City",
+      "label": "Flower Shop"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_POKECENTER_1F",
+      "location": "Goldenrod City",
+      "label": "Pokémon Center 1F",
+      "existingView": "goldenrod-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_2F",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower 2F",
+      "existingView": "2f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_3F",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower 3F",
+      "existingView": "3f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_4F",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower 4F",
+      "existingView": "4f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_5F",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower 5F",
+      "existingView": "5f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_OBSERVATION_DECK",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower Observation Deck",
+      "existingView": "observation-deck"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_1F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 1F",
+      "existingView": "1f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_2F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 2F",
+      "existingView": "2f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_3F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 3F",
+      "existingView": "3f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_4F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 4F",
+      "existingView": "4f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_5F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 5F",
+      "existingView": "5f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_6F",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store 6F",
+      "existingView": "6f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F",
+      "location": "Magnet Train Station",
+      "label": "Station · 1F"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F",
+      "location": "Magnet Train Station",
+      "label": "Station · 2F (train present)"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_TUNNEL_B1F",
+      "location": "Goldenrod Tunnel",
+      "label": "Tunnel B1F",
+      "existingView": "b1f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_BASEMENT",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store Basement",
+      "existingView": "basement"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_TUNNEL_B2F",
+      "location": "Goldenrod Tunnel",
+      "label": "Tunnel B2F",
+      "existingView": "b2f-switch-puzzle"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_TUNNEL_WAREHOUSE",
+      "location": "Goldenrod Tunnel",
+      "label": "Tunnel Warehouse",
+      "existingView": "underground-warehouse"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_BILLS_HOUSE",
+      "location": "Goldenrod City",
+      "label": "Bill’s house"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_FRIENDSHIP_CHECKER_HOUSE",
+      "location": "Goldenrod City",
+      "label": "Friendship checker’s house"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_NORTHEAST_HOUSE",
+      "location": "Goldenrod City",
+      "label": "Northeast House"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_NAME_RATER_HOUSE",
+      "location": "Goldenrod City",
+      "label": "Name Rater House",
+      "existingView": "goldenrod-name-rater"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GLOBAL_TERMINAL_1F",
+      "location": "Goldenrod City",
+      "label": "Global Terminal 1F",
+      "existingView": "global-terminal-1f"
+    },
+    {
+      "mapId": "MAP_ROUTE_39_MOOMOO_FARM_HOUSE",
+      "location": "MooMoo Farm",
+      "label": "Route 39 Moomoo Farm House",
+      "existingView": "house"
+    },
+    {
+      "mapId": "MAP_ROUTE_39_MOOMOO_FARM_STABLE",
+      "location": "MooMoo Farm",
+      "label": "Route 39 Moomoo Farm Stable",
+      "existingView": "barn"
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION_CORRIDOR",
+      "location": "Ecruteak City",
+      "label": "Bell Tower gate · corridor"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_POKECENTER_B1F",
+      "location": "Goldenrod City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_OLIVINE_POKECENTER_1F",
+      "location": "Olivine City",
+      "label": "Pokémon Center 1F",
+      "existingView": "olivine-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_OLIVINE_POKEMART",
+      "location": "Olivine City",
+      "label": "Poké Mart",
+      "existingView": "olivine-pokemart"
+    },
+    {
+      "mapId": "MAP_OLIVINE_NORTH_HOUSE",
+      "location": "Olivine City",
+      "label": "Voltorb trade house"
+    },
+    {
+      "mapId": "MAP_OLIVINE_NORTHEAST_HOUSE",
+      "location": "Olivine City",
+      "label": "Northeast House"
+    },
+    {
+      "mapId": "MAP_OLIVINE_NORTHWEST_HOUSE",
+      "location": "Olivine City",
+      "label": "Fishing Guru’s house (Good Rod)"
+    },
+    {
+      "mapId": "MAP_OLIVINE_CAFE",
+      "location": "Olivine City",
+      "label": "Olivine Café"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_KIRKS_HOUSE",
+      "location": "Cianwood City",
+      "label": "Kirk’s house (Shuckie)"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_PHARMACY",
+      "location": "Cianwood City",
+      "label": "Pharmacy"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_CAMERONS_HOUSE",
+      "location": "Cianwood City",
+      "label": "Cameron’s house"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_CENTRAL_HOUSE",
+      "location": "Cianwood City",
+      "label": "Central House"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_POKECENTER_1F",
+      "location": "Cianwood City",
+      "label": "Pokémon Center 1F",
+      "existingView": "cianwood-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_OLIVINE_PORT_INTERIOR",
+      "location": "S.S. Aqua",
+      "label": "Olivine port · gatehouse"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_POKECENTER_B1F",
+      "location": "Cianwood City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_ROUTE_43_GATEHOUSE",
+      "location": "Route 43",
+      "label": "Route 43 Gatehouse"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_POKECENTER_1F",
+      "location": "Mahogany Town",
+      "label": "Pokémon Center 1F",
+      "existingView": "mahogany-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER",
+      "location": "Battle Frontier",
+      "label": "Battle Tower · lobby"
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_ELEVATOR",
+      "location": "Battle Frontier",
+      "label": "Battle Tower · elevator"
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_PARTNER_ROOM",
+      "location": "Battle Frontier",
+      "label": "Battle Tower · partner room"
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_FRONTIER_ACCESS_GATEHOUSE",
+      "location": "Battle Frontier",
+      "label": "Frontier Access gatehouse"
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_BATTLE_FACTORY",
+      "location": "Battle Frontier",
+      "label": "Battle Factory"
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_BATTLE_HALL",
+      "location": "Battle Frontier",
+      "label": "Battle Hall"
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_BATTLE_CASTLE",
+      "location": "Battle Frontier",
+      "label": "Battle Castle"
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_BATTLE_ARCADE",
+      "location": "Battle Frontier",
+      "label": "Battle Arcade"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_1F",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior 1F",
+      "existingView": "1f"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_2F",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior 2F",
+      "existingView": "2f"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_2F_ENTRANCE",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior 2F Entrance",
+      "existingView": "2f-entrance"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_B1F_SOLIDARITY_ROOM",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior B1F Solidarity Room",
+      "existingView": "b1f-solidarity"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_B1F_TRUST_ROOM",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior B1F Trust Room",
+      "existingView": "b1f-trust"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_B1F_POTENTIAL_ROOM",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior B1F Potential Room",
+      "existingView": "b1f-potential"
+    },
+    {
+      "mapId": "MAP_POKEATHLON_DOME_INTERIOR_B1F_FRIENDSHIP_ROOM",
+      "location": "Pokéathlon Dome",
+      "label": "Pokeathlon Dome Interior B1F Friendship Room",
+      "existingView": "b1f-friendship"
+    },
+    {
+      "mapId": "MAP_DRAGONS_DEN_SHRINE",
+      "location": "Dragon's Den",
+      "label": "Dragon Shrine"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_WEST_HOUSE",
+      "location": "Blackthorn City",
+      "label": "West House"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_EAST_HOUSE",
+      "location": "Blackthorn City",
+      "label": "East House"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_MOVE_TUTOR_HOUSE",
+      "location": "Blackthorn City",
+      "label": "Move services house"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_POKEMART",
+      "location": "Blackthorn City",
+      "label": "Poké Mart",
+      "existingView": "blackthorn-pokemart"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_POKECENTER_1F",
+      "location": "Blackthorn City",
+      "label": "Pokémon Center 1F",
+      "existingView": "blackthorn-pokecenter-1f"
+    },
+    {
+      "mapId": "MAP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE",
+      "location": "Lake of Rage",
+      "label": "Hidden Power house"
+    },
+    {
+      "mapId": "MAP_LAKE_OF_RAGE_FISHING_GURU_HOUSE",
+      "location": "Lake of Rage",
+      "label": "Fishing Guru’s house"
+    },
+    {
+      "mapId": "MAP_ROUTE_26_NORTH_HOUSE",
+      "location": "Route 26",
+      "label": "Rest house"
+    },
+    {
+      "mapId": "MAP_ROUTE_26_WEEK_SIBLINGS_HOUSE",
+      "location": "Route 26",
+      "label": "Week Siblings’ house"
+    },
+    {
+      "mapId": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+      "location": "Pokémon League Reception Gate",
+      "label": "Reception gate"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_ENTRANCE",
+      "location": "Indigo Plateau",
+      "label": "Entrance",
+      "existingView": "league-lobby"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_WILL_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Will Room"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_KOGA_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Koga Room"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_BRUNO_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Bruno Room"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_KAREN_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Karen Room"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_LANCE_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Lance Room"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_HALL_OF_FAME",
+      "location": "Indigo Plateau",
+      "label": "Hall Of Fame"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_1F",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua 1F",
+      "existingView": "1f"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_CAPTAIN_ROOM",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua Captain Room"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_1F_SOUTHEAST_ROOMS",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua 1F Southeast Rooms"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_1F_SOUTHWEST_ROOMS",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua 1F Southwest Rooms"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_1F_NORTHEAST_ROOMS",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua 1F Northeast Rooms"
+    },
+    {
+      "mapId": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "location": "Ruins of Alph",
+      "label": "Ruins Of Alph Research Center",
+      "existingView": "research-center"
+    },
+    {
+      "mapId": "MAP_ROUTE_27_HOUSE",
+      "location": "Route 27",
+      "label": "Sandstorm house"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_1F_NORTHWEST_ROOMS",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua 1F Northwest Rooms"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_B1F",
+      "location": "S.S. Aqua",
+      "label": "S.S. Aqua B1F",
+      "existingView": "b1f"
+    },
+    {
+      "mapId": "MAP_ROUTE_34_DAYCARE",
+      "location": "Pokémon Day Care",
+      "label": "Route 34 Daycare",
+      "existingView": "day-care-interior"
+    },
+    {
+      "mapId": "MAP_ROUTE_40_BATTLE_FRONTIER_GATEHOUSE",
+      "location": "Route 40",
+      "label": "Frontier Access Gatehouse"
+    },
+    {
+      "mapId": "MAP_OLIVINE_POKECENTER_B1F",
+      "location": "Olivine City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_POKECENTER_B1F",
+      "location": "Mahogany Town",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_POKECENTER_B1F",
+      "location": "Blackthorn City",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_NEW_BARK_RIVAL_HOUSE_2F",
+      "location": "New Bark Town",
+      "label": "Rival House 2F",
+      "existingView": "neighbor-house-2f"
+    },
+    {
+      "mapId": "MAP_CIANWOOD_NORTH_HOUSE",
+      "location": "Cianwood City",
+      "label": "North House"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_GYM_ROOM_2",
+      "location": "Mahogany Town",
+      "label": "Gym · middle room",
+      "existingView": "mahogany-gym"
+    },
+    {
+      "mapId": "MAP_MAHOGANY_GYM_ROOM_1",
+      "location": "Mahogany Town",
+      "label": "Gym Room 1",
+      "existingView": "mahogany-gym"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GLOBAL_TERMINAL_2F",
+      "location": "Goldenrod City",
+      "label": "Global Terminal 2F",
+      "existingView": "global-terminal-2f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GLOBAL_TERMINAL_3F",
+      "location": "Goldenrod City",
+      "label": "Global Terminal 3F",
+      "existingView": "global-terminal-3f"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_DEPARTMENT_STORE_ELEVATOR",
+      "location": "Goldenrod Department Store",
+      "label": "Department Store Elevator"
+    },
+    {
+      "mapId": "MAP_OLIVINE_LIGHTHOUSE_ELEVATOR",
+      "location": "Olivine Lighthouse",
+      "label": "Lighthouse Elevator"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_ELEVATOR",
+      "location": "Goldenrod Radio Tower",
+      "label": "Radio Tower Elevator"
+    },
+    {
+      "mapId": "MAP_ROUTE_28_HOUSE",
+      "location": "Route 28",
+      "label": "Celebrity’s house (Steel Wing)"
+    },
+    {
+      "mapId": "MAP_MOUNT_SILVER_POKECENTER_1F",
+      "location": "Mt. Silver",
+      "label": "Pokémon Center 1F"
+    },
+    {
+      "mapId": "MAP_MOUNT_SILVER_POKECENTER_B1F",
+      "location": "Mt. Silver",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F_EMPTY",
+      "location": "Magnet Train Station",
+      "label": "Station · 2F (platform)"
+    },
+    {
+      "mapId": "MAP_FRONTIER_ACCESS_POKECENTER_1F",
+      "location": "Frontier Access",
+      "label": "Pokémon Center 1F"
+    },
+    {
+      "mapId": "MAP_FRONTIER_ACCESS_POKECENTER_B1F",
+      "location": "Frontier Access",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_FRONTIER_ACCESS_POKEMART",
+      "location": "Frontier Access",
+      "label": "Poké Mart"
+    },
+    {
+      "mapId": "MAP_FRONTIER_ACCESS_MOVE_TUTOR_HOUSE",
+      "location": "Frontier Access",
+      "label": "Move Tutor House"
+    },
+    {
+      "mapId": "MAP_SAFARI_ZONE_GATE_POKECENTER_1F",
+      "location": "Safari Zone Gate",
+      "label": "Pokémon Center 1F"
+    },
+    {
+      "mapId": "MAP_SAFARI_ZONE_GATE_POKECENTER_B1F",
+      "location": "Safari Zone Gate",
+      "label": "Pokémon Center B1F"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GAME_CORNER",
+      "location": "Goldenrod City",
+      "label": "Game Corner",
+      "existingView": "game-corner-international"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_ENTRANCE_WIFI_ROOM",
+      "location": "Indigo Plateau",
+      "label": "Pokémon Center · B1F"
+    }
+  ],
+  "excluded": [
+    {
+      "mapId": "MAP_UNION",
+      "reason": "Shared online/battle session room; outside geographic building maps."
+    },
+    {
+      "mapId": "MAP_WIFI_SINGLE_BATTLE_AREA",
+      "reason": "Shared online/battle session room; outside geographic building maps."
+    },
+    {
+      "mapId": "MAP_WIFI_MULTI_BATTLE_AREA",
+      "reason": "Shared online/battle session room; outside geographic building maps."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_UNUSED_HOUSE",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_UNUSED_GATEHOUSE",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_1",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_2",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_3",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_NATIONAL_PARK_UNUSED_GATEHOUSE",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_VIOLET_UNUSED",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_SAFARI_ZONE_ENTRANCE_INTERIOR",
+      "reason": "Safari entrance belongs to the separate Safari tool; excluded by request."
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_UNUSED_1",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_1",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_2",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_3",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_4",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_5",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_GOLDENROD_UNUSED_6",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_2",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_3",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_4",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_5",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_6",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_7",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_8",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_FIGHT_AREA_UNUSED_9",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_PARK_UNUSED_1",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_PARK_UNUSED_2",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_UNUSED_1",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_UNUSED_2",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_UNUSED_3",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_TOWER_UNUSED_4",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_BATTLE_FRONTIER_BATTLE_TOWER_UNUSED",
+      "reason": "Unused/debug room; not an additional released-game building."
+    },
+    {
+      "mapId": "MAP_WIFI_PLAZA_WARP_ROOM",
+      "reason": "Shared online/battle session room; outside geographic building maps."
+    },
+    {
+      "mapId": "MAP_SINJOH_RUINS_CABIN",
+      "reason": "Sinjoh event area is not in the existing Atlas scope."
+    }
+  ]
+}

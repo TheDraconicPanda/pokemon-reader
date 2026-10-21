@@ -24,7 +24,7 @@ test('available HGSS map PNGs retain verified bytes, dimensions and source refer
       assert.equal(bytes.readUInt32BE(16),map.width);
       assert.equal(bytes.readUInt32BE(20),map.height);
       assert.equal(createHash('sha256').update(bytes).digest('hex'),map.sha256,map.file);
-      assert.equal(new URL(map.source).hostname,'archives.bulbagarden.net');
+      assert.equal(new URL(map.source).hostname,map.kind==='terrain-plan'?'github.com':'archives.bulbagarden.net');
     }
   }
   assert.ok(verified.size>100,'Expansion must add verified maps beyond the opening six');
@@ -76,4 +76,47 @@ test('Johto interiors include all eight Gyms and clearly identify shared/referen
   const maps=mapsForLocation('soulsilver',town);assert.ok(maps.some(m=>m.id.endsWith('pokecenter-1f')),town);
   for(const map of maps.filter(m=>m.kind==='reference'))assert.ok(map.notice,map.id);
  }
+});
+
+test('Johto interior census accounts for all reviewed primary headers without borrowing other regions',async()=>{
+ const coverage=JSON.parse(await readFile(path.join(root,'docs/atlas-johto-interior-coverage.json'),'utf8'));
+ const config=JSON.parse(await readFile(path.join(root,'scripts/soulsilver-interior-rooms.json'),'utf8'));
+ const {mapsForLocation}=await load();
+ assert.equal(coverage.primaryRevision,'d2355244ac42b3c6e40d8c36aa3564ee8706dea4');
+ assert.equal(coverage.accountedHeaders,208);assert.equal(coverage.coveredRooms,173);
+ assert.equal(coverage.addedPlans,103);assert.deepEqual(coverage.missing,[]);
+ assert.equal(new Set([...coverage.rooms,...coverage.excluded].map(r=>r.mapId)).size,208);
+ assert.deepEqual(coverage.rooms.map(r=>r.mapId),config.rooms.map(r=>r.mapId));
+ for(const room of coverage.rooms){
+  const view=mapsForLocation('soulsilver',room.location).find(m=>m.id===room.viewId);
+  assert.ok(view,room.mapId);assert.ok(view.mapIds.includes(room.mapId),room.mapId);
+  assert.ok(coverage.inputSha256[room.matrix]);assert.ok(coverage.inputSha256[room.events]);
+  if(room.file){
+   assert.equal(view.kind,'terrain-plan');assert.match(view.notice,/objects, height/);
+   assert.ok(view.source.endsWith(coverage.primaryRevision+'/'+room.events));
+   assert.ok(room.terrainRows.every(row=>row.length===room.bounds[2]-room.bounds[0]+1));
+   assert.equal(room.terrainRows.length,room.bounds[3]-room.bounds[1]+1);
+   for(const warp of room.warps)assert.equal(room.terrainRows[warp.z-room.bounds[1]][warp.x-room.bounds[0]],'E');
+  }
+ }
+ assert.ok(coverage.excluded.some(r=>r.mapId==='MAP_SAFARI_ZONE_ENTRANCE_INTERIOR'));
+ assert.ok(!coverage.rooms.some(r=>r.location==='Safari Zone'||/SAFFRON|VERMILION/.test(r.mapId)));
+ assert.equal(mapsForLocation('platinum','Azalea Town').length,0);
+});
+
+test('new terrain plans preserve independently reviewed room dimensions and exit positions',async()=>{
+ const {rooms}=JSON.parse(await readFile(path.join(root,'docs/atlas-johto-interior-coverage.json'),'utf8'));
+ const room=id=>rooms.find(r=>r.mapId===id);
+ const kurt=room('MAP_AZALEA_KURT_HOUSE');
+ assert.deepEqual(kurt.bounds,[0,0,17,10]);assert.equal(kurt.model,239);
+ assert.deepEqual(kurt.warps.map(w=>[w.x,w.z,w.header]),[[4,9,'MAP_AZALEA']]);
+ assert.equal(kurt.terrainRows[0],'##################');assert.equal(kurt.terrainRows[7],'#................#');
+ const theater=room('MAP_ECRUTEAK_DANCE_THEATER');
+ assert.deepEqual(theater.bounds,[0,0,13,18]);assert.equal(theater.model,228);
+ assert.deepEqual(theater.warps.map(w=>[w.x,w.z]),[[7,17]]);
+ assert.equal(room('MAP_CIANWOOD_PHARMACY').model,234);
+ assert.equal(room('MAP_AZALEA_GYM_ENTRANCE').warps.length,2);
+ for(const id of ['MAP_SS_AQUA_CAPTAIN_ROOM','MAP_SS_AQUA_1F_NORTHWEST_ROOMS','MAP_BATTLE_TOWER_PARTNER_ROOM','MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F_EMPTY','MAP_ROUTE_32_POKECENTER_B1F','MAP_SAFARI_ZONE_GATE_POKECENTER_B1F'])assert.ok(room(id).file,id);
+ assert.equal(room('MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F').warps.length,0,'Scripted train scene must not invent exits');
+ assert.equal(room('MAP_MAHOGANY_GYM_LEADER_ROOM').viewId,'mahogany-gym','Original composite covers all three rooms');
 });

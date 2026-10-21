@@ -139,3 +139,15 @@ Directed HM/story/path rules live in `games/soulsilver/travel.js`, selected by
 `atlas-travel.js`. Preserve distinctions between passage, through-route,
 alternative and optional use; do not turn annotations into saved-progression
 locks. Safari links/data and new Kanto coverage are outside this milestone.
+
+Atlas v0.25.68 closes the scoped building-reference inventory with 103 explicitly
+labelled `kind: terrain-plan` choices, not rendered screenshots or full movement
+maps. Catalogue: 295 views / 278 assets. `scripts/soulsilver-interior-rooms.json`
+accounts for 208 primary INTERIOR headers (173 room assignments / 35 exclusions).
+`build-soulsilver-interiors.py` reproduces plans from the pinned clean HGSS primary
+revision, terrain attributes at offset 0x14, and event warps; the regular map build
+verifies `generated_sha256`. Keep the game-data caveat, source links and
+interior-vs-location note; unflagged tiles are not guaranteed walkable because
+objects, height and scripts also matter. See `docs/atlas-johto-interior-completion.md`
+and its coverage ledger. No new Kanto locations or Safari area content is included;
+user visual acceptance and real-game validation remain separate from automation.

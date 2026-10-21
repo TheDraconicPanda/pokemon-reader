@@ -579,8 +579,25 @@ scope choices; this audit does not claim those are implemented.
 - [x] Distinguish passage, through-route, alternate path and optional exploration
 - [x] Preserve fixed compass slots, accessible text and unrestricted reference navigation
 - [x] Pass 154 tests and review phone/desktop screenshots
-- [ ] Add remaining building interiors when verified released-HGSS artwork is obtained
+- [x] Account for remaining building interiors with verified artwork or labelled primary terrain plans (v0.25.68; see below)
 - [ ] User outcome acceptance on the existing Pages site
 
 See [explicit remaining artwork gaps](docs/atlas-johto-interiors-travel.md).
 Kanto, Safari data/mechanics and deeper battle/progression features are excluded.
+
+## Remaining Johto building references — v0.25.68
+
+- [x] Census all 208 candidate geographic interior headers in the existing scope:
+  173 assigned room references and 35 explained exclusions.
+- [x] Supply Kurt’s house, Pharmacy, Dance Theater and the other 100 missing room
+  choices using labelled, reproducible static game-data terrain plans.
+- [x] Keep existing rendered artwork, sources, floor selectors, compass travel and
+  encounter data; catalogue is 295 views / 278 PNG assets.
+- [x] Record primary inputs, checksums, tile grids and exits; distinguish diagrams
+  from screenshots and complete movement simulations.
+- [ ] User acceptance of the published room-reference choices.
+
+The v0.25.67 missing-room inventory is resolved for reference coverage. High-detail
+rendered artwork can still replace a labelled plan later if verified artwork
+becomes available. Kanto expansion, Safari and deeper battle/progression features
+remain separate. See [coverage and limitations](docs/atlas-johto-interior-completion.md).

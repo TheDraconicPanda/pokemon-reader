@@ -315,7 +315,9 @@ function renderLocations({ exactName = null } = {}) {
           image.className = "location-map";
           mapNotice.textContent=[selected.notice,selected.kind ? `Interior view; compass connections and encounter tables describe ${location.name} as a whole.` : ""].filter(Boolean).join(" ");
           mapNotice.hidden=!mapNotice.textContent;
-          image.alt = selected.kind === "reference" || selected.label.includes("reference view")
+          image.alt = selected.kind === "terrain-plan"
+            ? `${description} in HeartGold and SoulSilver; static blocked tiles and exits, north is up`
+            : selected.kind === "reference" || selected.label.includes("reference view")
             ? `${description} in HeartGold and SoulSilver`
             : `${description} map in HeartGold and SoulSilver; north is up`;
           image.width = selected.width;
@@ -330,7 +332,10 @@ function renderLocations({ exactName = null } = {}) {
           mapLink.replaceChildren(image, hint);
           mapLink.hidden = false;
           fallback.hidden = true;
-          if (mapSourceLink) mapSourceLink.href = selected.source;
+          if (mapSourceLink) {
+            mapSourceLink.href = selected.source;
+            mapSourceLink.dataset.mapSource = "true";
+          }
           if (selection) {
             selection.value = String(index);
             previous.disabled = index === 0;

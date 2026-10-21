@@ -39,6 +39,9 @@ def export(item):
     dest = output / file
     if entry.get('existing'):
         assert hashlib.sha256(dest.read_bytes()).hexdigest() == entry['existing']['sha256']
+    elif entry.get('generated_sha256'):
+        if hashlib.sha256(dest.read_bytes()).hexdigest() != entry['generated_sha256']:
+            raise ValueError(f'Generated plan checksum mismatch; run build-soulsilver-interiors.py: {file}')
     elif entry.get('archive'):
         xcf = args.source / entry['archive'] / (entry['archive'] + '.xcf')
         subprocess.run(['convert', f'{xcf}[{entry["layer"]}]', '+repage', '-define', 'png:exclude-chunk=date,time', str(dest)], check=True)
@@ -54,7 +57,7 @@ def export(item):
     width, height = struct.unpack('>II', body[16:24])
     if entry.get('width') and (width, height) != (entry['width'], entry['height']):
         raise ValueError(f'Unexpected dimensions: {file}')
-    return file, dict(file=file, width=width, height=height, sha256=hashlib.sha256(body).hexdigest(), source='https://archives.bulbagarden.net/wiki/File:' + urllib.parse.quote(entry['image'], safe='._'), **({k: entry[k] for k in ['archive', 'layer'] if k in entry}))
+    return file, dict(file=file, width=width, height=height, sha256=hashlib.sha256(body).hexdigest(), source=entry.get('source') or 'https://archives.bulbagarden.net/wiki/File:' + urllib.parse.quote(entry['image'], safe='._'), **({k: entry[k] for k in ['archive', 'layer'] if k in entry}))
 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
     assets = dict(pool.map(export, unique.items()))
 locations = {}

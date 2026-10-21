@@ -81,3 +81,18 @@ HGSS artwork remain absent. See `docs/atlas-johto-interiors-travel.md` and its J
 ledger for provenance and explicit remaining gaps. Reused standard Center/Mart
 and New Bark neighbouring-house layouts are backed by matching primary map matrices;
 characters/furniture shown in reference screenshots may differ during play.
+
+## Primary terrain plans (v0.25.68)
+
+`plan-*.png` are original diagram renderings of pinned HGSS static terrain flags
+and event warp coordinates, not screenshots or redrawn artwork. The renderer is
+`scripts/build-soulsilver-interiors.py`; its explicit room census is
+`scripts/soulsilver-interior-rooms.json`, with input hashes and geometry in
+`docs/atlas-johto-interior-coverage.json`. Run that generator against the documented
+clean primary revision before the regular map build. The regular build verifies
+these PNG hashes before adding them to the same manifest. Clear terrain is not a
+promise of a walkable rendered surface: object collision, model heights and scripts
+are not simulated. Source links point to each room’s primary event file; the full
+format evidence and limitations are in `docs/atlas-johto-interior-completion.md`.
+This adds 103 plans, making 295 map choices / 278 PNG assets; original images and
+credits are preserved.

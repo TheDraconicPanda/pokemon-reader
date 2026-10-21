@@ -1,5 +1,9 @@
 # Johto interiors and travel conditions — v0.25.67
 
+Historical release record. The missing-room reference inventory below is resolved
+by [v0.25.68’s labelled terrain plans](atlas-johto-interior-completion.md); the
+original artwork limitations remain accurately described here.
+
 This release advances the two requested areas: interior reference maps and HM/story
 information on travel buttons. It does not add Kanto locations, audit/change Safari,
 expand battle mechanics or filter reference content by saved progression.

@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.67') && document.querySelector('.eyebrow').textContent.includes('v0.25.67'),
+    version: document.title.includes('v0.25.68') && document.querySelector('.eyebrow').textContent.includes('v0.25.68'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.67<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.68<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.67");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.68");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.67'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.68'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1022,14 +1022,14 @@ test('all non-Safari location map choices render the matching catalogue view',as
         if(select){select.value=String(index);select.dispatchEvent(new Event('change'));}
         views++;
         const image=card.querySelector('.location-map');
-        const source=card.querySelector('.location-sources a[href*="archives.bulbagarden.net"]');
+        const source=card.querySelector('.location-sources a[data-map-source]');
         if(!image?.src.endsWith('/'+map.file)||source?.href!==new URL(map.source,location.href).href)
           failures.push(name+': '+map.label);
       }
     }
     return {locations,views,failures};
   })()`);
-  assert.equal(result.locations,69);assert.equal(result.views,192);assert.deepEqual(result.failures,[]);
+  assert.equal(result.locations,69);assert.equal(result.views,295);assert.deepEqual(result.failures,[]);
   assert.deepEqual(exceptions,[]);
 });
 
@@ -2460,6 +2460,32 @@ test('Interior maps and travel badges remain informative without locking referen
   assert.match(await evaluate(`document.querySelector('.map-reference-note').textContent`),/Shared HGSS room/);
   await evaluate(`document.querySelector('#location-search-panel').open=true;document.querySelector('#location-search').value='Global Terminal';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
   assert.ok((await evaluate(`[...document.querySelectorAll('.location-card h2')].map(e=>e.textContent)`)).includes('Goldenrod City'));
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Missing-room terrain plans load with their source and caveat on phones and desktop',async()=>{
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  for(const [town,room] of [['Azalea Town','Kurt’s house'],['Cianwood City','Pharmacy'],['Ecruteak City','Dance Theater'],['New Bark Town','Southwest House'],['Magnet Train Station','Station · 1F']]){
+   await evaluate(`location.hash='location='+encodeURIComponent(${JSON.stringify(town)})`);
+   await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent===${JSON.stringify(town)}`),'Room location');
+   const encounters=await evaluate(`document.querySelector('.location-encounters').textContent`);
+   await evaluate(`(()=>{const s=document.querySelector('.map-select');s.value=String([...s.options].findIndex(o=>o.textContent===${JSON.stringify(room+' · terrain plan')}));s.dispatchEvent(new Event('change'));})()`);
+   await until(()=>evaluate(`document.querySelector('.location-map').complete&&document.querySelector('.location-map').naturalWidth>0`),'Terrain plan image');
+   const state=await evaluate(`({note:document.querySelector('.map-reference-note').textContent,alt:document.querySelector('.location-map').alt,source:document.querySelector('[data-map-source]').href,link:document.querySelector('.location-map-link').href,image:document.querySelector('.location-map').src,fit:document.documentElement.scrollWidth<=innerWidth,encounters:document.querySelector('.location-encounters').textContent})`);
+   assert.match(state.note,/Game-data terrain plan/);assert.ok(state.note.includes(town+' as a whole'));assert.match(state.alt,/static blocked tiles and exits/);
+   assert.match(state.source,/github.com\/pret\/pokeheartgold\/blob\/d2355244/);assert.equal(state.link,state.image);assert.equal(state.fit,true);assert.equal(state.encounters,encounters);
+   if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+    await evaluate(`document.querySelector('.map-controls').scrollIntoView()`);const shot=await command('Page.captureScreenshot',{format:'png'});
+    await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`interior-${town.replaceAll(' ','-')}-${width}.png`),Buffer.from(shot.data,'base64'));
+   }
+   // Returning to the location image clears the interior caveat and restores its source.
+   await evaluate(`document.querySelector('.map-select').value='0';document.querySelector('.map-select').dispatchEvent(new Event('change'))`);
+   assert.equal(await evaluate(`document.querySelector('.map-reference-note').hidden`),true);
+   assert.match(await evaluate(`document.querySelector('[data-map-source]').href`),/archives.bulbagarden.net/);
+  }
  }
  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

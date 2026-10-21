@@ -97,6 +97,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_NEW_BARK_RIVAL_HOUSE_2F"
         ]
+      },
+      {
+        "id": "plan-new-bark-southwest-house",
+        "label": "Southwest House · terrain plan",
+        "file": "plan-new-bark-southwest-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "7126d5d33bbb280a4cbe13858ba40b6db7ce57ea505b7286719c1daf978b5560",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/062_T20R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_NEW_BARK_SOUTHWEST_HOUSE"
+        ]
       }
     ],
     "Cherrygrove City": [
@@ -138,6 +152,62 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_CHERRYGROVE_POKEMART"
         ]
+      },
+      {
+        "id": "plan-cherrygrove-southwest-house",
+        "label": "Southwest House · terrain plan",
+        "file": "plan-cherrygrove-southwest-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "adbce2db56fa0f32b03603a8850ebf417d79ec3dc3de007a5ba831c7014832ca",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/067_T21R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_SOUTHWEST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cherrygrove-guide-gent-house",
+        "label": "Guide Gent’s house · terrain plan",
+        "file": "plan-cherrygrove-guide-gent-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "6ef1515f6ceb1f42bd9bc113d4a5d3d332a782017db16dcb37f9b56ee812f794",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/068_T21R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_GUIDE_GENT_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cherrygrove-southeast-house",
+        "label": "Southeast House · terrain plan",
+        "file": "plan-cherrygrove-southeast-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "d2f44255a480c63d5b27becf7a17305adc7abb4712d6904a05eb845dafb43e08",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/069_T21R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_SOUTHEAST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cherrygrove-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-cherrygrove-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/140_T21PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CHERRYGROVE_POKECENTER_B1F"
+        ]
       }
     ],
     "Violet City": [
@@ -162,7 +232,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Violet_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 55,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_VIOLET_GYM"
+        ]
       },
       {
         "id": "pokemon-school",
@@ -205,6 +278,48 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_VIOLET_POKEMART"
         ]
+      },
+      {
+        "id": "plan-violet-northwest-house",
+        "label": "Northwest House · terrain plan",
+        "file": "plan-violet-northwest-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "be881f908a6e5a2a3b0a9899203d971168820d552acc20a063ed10a296fe1f90",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/155_T22R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_VIOLET_NORTHWEST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-violet-bellsprout-onyx-trade-house",
+        "label": "Onix trade house · terrain plan",
+        "file": "plan-violet-bellsprout-onyx-trade-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "ad8f517582f494cc960d6d04f2d4393b46ab6ef7d6d5aff765e4e8d995de3a14",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/156_T22R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_VIOLET_BELLSPROUT_ONYX_TRADE_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-violet-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-violet-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/161_T22PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_VIOLET_POKECENTER_B1F"
+        ]
       }
     ],
     "Azalea Town": [
@@ -229,7 +344,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Azalea_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 128,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_AZALEA_GYM"
+        ]
       },
       {
         "id": "azalea-pokecenter-1f",
@@ -258,6 +376,76 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_AZALEA_POKEMART"
         ]
+      },
+      {
+        "id": "plan-azalea-ilex-forest-gatehouse",
+        "label": "Ilex Forest Gatehouse · terrain plan",
+        "file": "plan-azalea-ilex-forest-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "352f98933b700fe630af6700b969fb4cb89ce6da0cfa5afa8fa3c36f09d77c47",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/097_T23R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_AZALEA_ILEX_FOREST_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-azalea-gym-entrance",
+        "label": "Gym · entrance room · terrain plan",
+        "file": "plan-azalea-gym-entrance.png",
+        "width": 520,
+        "height": 452,
+        "sha256": "d7c186c324f1f15f8bcc86e081c80564a926a59adde48d6b1205aa79a9ed80dd",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/132_T23GYM0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_AZALEA_GYM_ENTRANCE"
+        ]
+      },
+      {
+        "id": "plan-azalea-charcoal-kiln",
+        "label": "Charcoal Kiln · terrain plan",
+        "file": "plan-azalea-charcoal-kiln.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "438820b9b2fbb4fbb81fe80a2fa781b673646f5a54d38d434e337651c01a60f2",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/157_T23R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_AZALEA_CHARCOAL_KILN"
+        ]
+      },
+      {
+        "id": "plan-azalea-kurt-house",
+        "label": "Kurt’s house · terrain plan",
+        "file": "plan-azalea-kurt-house.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "eae6d3132c1b2ec7908a023a2f32a9fddab5c73813c312e33d835a933adf9f36",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/158_T23R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_AZALEA_KURT_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-azalea-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-azalea-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/162_T23PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_AZALEA_POKECENTER_B1F"
+        ]
       }
     ],
     "Goldenrod City": [
@@ -282,7 +470,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 121,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_GOLDENROD_GYM"
+        ]
       },
       {
         "id": "goldenrod-bike-shop",
@@ -293,7 +484,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "8b437518c63a6d6b887f4ac445447f6e50e507ed978936b80fcebaf703f60c88",
         "source": "https://archives.bulbagarden.net/wiki/File:Miracle_Cycle_Goldenrod_interior_HGSS.png",
         "kind": "reference",
-        "notice": "Interior reference view; characters and story objects may differ during play."
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_GOLDENROD_BIKE_SHOP"
+        ]
       },
       {
         "id": "goldenrod-name-rater",
@@ -318,7 +512,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "6d661b1a01a8173edc22eb7a1cb6738c6fb902d591d32d5d73cc1b10f783a03e",
         "source": "https://archives.bulbagarden.net/wiki/File:HGSS_Goldenrod_Game_Corner.png",
         "kind": "reference",
-        "notice": "International/Korean Voltorb Flip interior; Japanese releases have a different slot-machine layout."
+        "notice": "International/Korean Voltorb Flip interior; Japanese releases have a different slot-machine layout.",
+        "mapIds": [
+          "MAP_GOLDENROD_GAME_CORNER"
+        ]
       },
       {
         "id": "game-corner-japanese",
@@ -329,7 +526,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "4d6b680fa4b2a065b2f88d77de1a261bedd6b6a22f0c36439220b6efecd17210",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Game_Corner_JP_HGSS.png",
         "kind": "reference",
-        "notice": "Japanese slot-machine interior; use the international/Korean view for Voltorb Flip releases."
+        "notice": "Japanese slot-machine interior; use the international/Korean view for Voltorb Flip releases.",
+        "mapIds": [
+          "MAP_GOLDENROD_GAME_CORNER_JP"
+        ]
       },
       {
         "id": "global-terminal-1f",
@@ -340,7 +540,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "0d8d747eb229e7551140f057f85c5b0254de90feef272f757d7dd18c4835962a",
         "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_1F_PtHGSS.png",
         "kind": "floorplan",
-        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended.",
+        "mapIds": [
+          "MAP_GOLDENROD_GLOBAL_TERMINAL_1F"
+        ]
       },
       {
         "id": "global-terminal-2f",
@@ -351,7 +554,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "1da0f5d5271be9c434356366e4978284213894a69d25e7162122c107bd3c4a3d",
         "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_2F_PtHGSS.png",
         "kind": "floorplan",
-        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended.",
+        "mapIds": [
+          "MAP_GOLDENROD_GLOBAL_TERMINAL_2F"
+        ]
       },
       {
         "id": "global-terminal-3f",
@@ -362,7 +568,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "ce302686bba12a7e6b701124f38c7d195c135091816038edb31f4a328151d516",
         "source": "https://archives.bulbagarden.net/wiki/File:Global_Terminal_3F_PtHGSS.png",
         "kind": "floorplan",
-        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended."
+        "notice": "Shared Platinum/HGSS Global Terminal layout. Original Nintendo Wi-Fi services have ended.",
+        "mapIds": [
+          "MAP_GOLDENROD_GLOBAL_TERMINAL_3F"
+        ]
       },
       {
         "id": "goldenrod-pokecenter-1f",
@@ -376,6 +585,76 @@ export const SOULSILVER_MAPS = Object.freeze({
         "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
         "mapIds": [
           "MAP_GOLDENROD_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-flower-shop",
+        "label": "Flower Shop · terrain plan",
+        "file": "plan-goldenrod-flower-shop.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "07d78361244660880b67ddd1b39bd97f0375a0fb40d7a587883d868ddd1beb3e",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/177_T25R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_FLOWER_SHOP"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-bills-house",
+        "label": "Bill’s house · terrain plan",
+        "file": "plan-goldenrod-bills-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "27668c1f8f3e50a91e43735cc3c0983ee20425c17414e2a93f4e30af80bc133a",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/196_T25R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_BILLS_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-friendship-checker-house",
+        "label": "Friendship checker’s house · terrain plan",
+        "file": "plan-goldenrod-friendship-checker-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "77722d013a2bcf2cbe2b6f98fa7820bb05bc66cc0c50e195a23bbb2eeb7a1340",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/197_T25R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_FRIENDSHIP_CHECKER_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-northeast-house",
+        "label": "Northeast House · terrain plan",
+        "file": "plan-goldenrod-northeast-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "62667e6d3ca66362c1288d173c2e0d3d93a76c5ef3d01342641aa00e2315a011",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/198_T25R0801.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_NORTHEAST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-goldenrod-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/205_T25PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_POKECENTER_B1F"
         ]
       }
     ],
@@ -401,7 +680,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Ecruteak_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 235,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_ECRUTEAK_GYM"
+        ]
       },
       {
         "id": "ecruteak-pokecenter-1f",
@@ -430,6 +712,90 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_ECRUTEAK_POKEMART"
         ]
+      },
+      {
+        "id": "plan-ecruteak-bell-tower-barrier-station",
+        "label": "Bell Tower gate · main room · terrain plan",
+        "file": "plan-ecruteak-bell-tower-barrier-station.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "7635a76252b4d08e26449fdb45d8155e5f70247891a88bb71277ab65dec40bb6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/080_T27R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION"
+        ]
+      },
+      {
+        "id": "plan-ecruteak-dowsing-machine-house",
+        "label": "Dowsing Machine House · terrain plan",
+        "file": "plan-ecruteak-dowsing-machine-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "54b379e6876dd25b862aff7ee9a39b999974edb8e773ec41c9a68fece74c8d9b",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/081_T27R0801.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_DOWSING_MACHINE_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-ecruteak-southwest-house",
+        "label": "Southwest House · terrain plan",
+        "file": "plan-ecruteak-southwest-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "7126d5d33bbb280a4cbe13858ba40b6db7ce57ea505b7286719c1daf978b5560",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/082_T27R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_SOUTHWEST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-ecruteak-dance-theater",
+        "label": "Dance Theater · terrain plan",
+        "file": "plan-ecruteak-dance-theater.png",
+        "width": 520,
+        "height": 620,
+        "sha256": "d0667239c4021f427f6e34091a5363a8593a83c9feab945041ca70e6d6c7e0e4",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/083_T27R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_DANCE_THEATER"
+        ]
+      },
+      {
+        "id": "plan-ecruteak-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-ecruteak-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/127_T27PC0105.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_POKECENTER_B1F"
+        ]
+      },
+      {
+        "id": "plan-ecruteak-bell-tower-barrier-station-corridor",
+        "label": "Bell Tower gate · corridor · terrain plan",
+        "file": "plan-ecruteak-bell-tower-barrier-station-corridor.png",
+        "width": 520,
+        "height": 692,
+        "sha256": "083103c1fc1be209d9fc3909b969b6673cee97266efb0995d01f689db9d7d9a8",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/203_T27R0202.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION_CORRIDOR"
+        ]
       }
     ],
     "Olivine City": [
@@ -454,7 +820,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Olivine_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 181,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_OLIVINE_GYM"
+        ]
       },
       {
         "id": "olivine-pokecenter-1f",
@@ -483,6 +852,76 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_OLIVINE_POKEMART"
         ]
+      },
+      {
+        "id": "plan-olivine-north-house",
+        "label": "Voltorb trade house · terrain plan",
+        "file": "plan-olivine-north-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "08bee32cf7d5ab2d11a927af73de66bdf0c2e31d46a648747667a5d42dfb8957",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/214_T26R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_NORTH_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-olivine-northeast-house",
+        "label": "Northeast House · terrain plan",
+        "file": "plan-olivine-northeast-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "62667e6d3ca66362c1288d173c2e0d3d93a76c5ef3d01342641aa00e2315a011",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/215_T26R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_NORTHEAST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-olivine-northwest-house",
+        "label": "Fishing Guru’s house (Good Rod) · terrain plan",
+        "file": "plan-olivine-northwest-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "17bf210dc9dda831fb85400c94d78ddf64ae9732aa29323268b3a85aa8a5445b",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/216_T26R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_NORTHWEST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-olivine-cafe",
+        "label": "Olivine Café · terrain plan",
+        "file": "plan-olivine-cafe.png",
+        "width": 520,
+        "height": 452,
+        "sha256": "fc954f674d021c8e49e8b1624c8d347297f8b99c0fb4da43e06f25ec979ba904",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/217_T26R0701.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_CAFE"
+        ]
+      },
+      {
+        "id": "plan-olivine-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-olivine-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/324_T26PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_POKECENTER_B1F"
+        ]
       }
     ],
     "Cianwood City": [
@@ -507,7 +946,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Cianwood_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 212,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_CIANWOOD_GYM"
+        ]
       },
       {
         "id": "cianwood-pokecenter-1f",
@@ -521,6 +963,90 @@ export const SOULSILVER_MAPS = Object.freeze({
         "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
         "mapIds": [
           "MAP_CIANWOOD_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-cianwood-kirks-house",
+        "label": "Kirk’s house (Shuckie) · terrain plan",
+        "file": "plan-cianwood-kirks-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "a14c50e6ce5d851cea02d9573d43c69baf66020dae641e2a7106a5f0e59c591e",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/218_T24R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_KIRKS_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cianwood-pharmacy",
+        "label": "Pharmacy · terrain plan",
+        "file": "plan-cianwood-pharmacy.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "87298f6998b005dc6d126c2b4dcfcceb84f54788c7430ec6686287898f20c449",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/219_T24R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_PHARMACY"
+        ]
+      },
+      {
+        "id": "plan-cianwood-camerons-house",
+        "label": "Cameron’s house · terrain plan",
+        "file": "plan-cianwood-camerons-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "7be0ddbb5e3679e96ab81a25fc698d2cb5eeb59c1495bdcf53e2def414c81677",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/220_T24R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_CAMERONS_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cianwood-central-house",
+        "label": "Central House · terrain plan",
+        "file": "plan-cianwood-central-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "fd8527413d1f066845acad8bc58922004684e039b8886d9f04d5087d28dfdc27",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/221_T24R0701.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_CENTRAL_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-cianwood-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-cianwood-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/227_T24PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_POKECENTER_B1F"
+        ]
+      },
+      {
+        "id": "plan-cianwood-north-house",
+        "label": "North House · terrain plan",
+        "file": "plan-cianwood-north-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "6363b9b4bb3960898827717eb5dfedfc9132ec2e65f3392abb544806aeee698e",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/342_T24R0801.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_CIANWOOD_NORTH_HOUSE"
         ]
       }
     ],
@@ -546,7 +1072,12 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Mahogany_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 233,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_MAHOGANY_GYM_LEADER_ROOM",
+          "MAP_MAHOGANY_GYM_ROOM_1",
+          "MAP_MAHOGANY_GYM_ROOM_2"
+        ]
       },
       {
         "id": "mahogany-shop",
@@ -557,7 +1088,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "26ca9ce38f35ebba4e741fc7b32489a31528c1926d24431249585db7b2671b0b",
         "source": "https://archives.bulbagarden.net/wiki/File:Mahogany_Town_Shop_HGSS.png",
         "kind": "reference",
-        "notice": "Interior reference view; characters and story objects may differ during play."
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_MAHOGANY_SOUVENIR_SHOP"
+        ]
       },
       {
         "id": "mahogany-pokecenter-1f",
@@ -571,6 +1105,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "notice": "Shared HGSS room layout; town-specific staff, visitors and shop stock may differ. This view is not an item/character-position overlay.",
         "mapIds": [
           "MAP_MAHOGANY_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-mahogany-east-house",
+        "label": "East House · terrain plan",
+        "file": "plan-mahogany-east-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "44eaaf4a6969a450c5459bc3c49e10345db889e249a38e50f479771db9613213",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/129_T28R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_MAHOGANY_EAST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-mahogany-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-mahogany-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/325_T28PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_MAHOGANY_POKECENTER_B1F"
         ]
       }
     ],
@@ -596,7 +1158,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Blackthorn_Gym_HGSS.png",
         "archive": "Johto",
         "layer": 264,
-        "kind": "floorplan"
+        "kind": "floorplan",
+        "mapIds": [
+          "MAP_BLACKTHORN_GYM"
+        ]
       },
       {
         "id": "blackthorn-pokecenter-1f",
@@ -625,6 +1190,62 @@ export const SOULSILVER_MAPS = Object.freeze({
         "mapIds": [
           "MAP_BLACKTHORN_POKEMART"
         ]
+      },
+      {
+        "id": "plan-blackthorn-west-house",
+        "label": "West House · terrain plan",
+        "file": "plan-blackthorn-west-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "4f649377e296b20a05087f4c3e9a71a901ca09ad416541c6c9968455a944d74f",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/260_T30R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BLACKTHORN_WEST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-blackthorn-east-house",
+        "label": "East House · terrain plan",
+        "file": "plan-blackthorn-east-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "44eaaf4a6969a450c5459bc3c49e10345db889e249a38e50f479771db9613213",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/261_T30R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BLACKTHORN_EAST_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-blackthorn-move-tutor-house",
+        "label": "Move services house · terrain plan",
+        "file": "plan-blackthorn-move-tutor-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "0aa77297a3150d52dc88ad4c38bb11c84e4db09411f82ec8c83642ff0c1269fb",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/262_T30R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BLACKTHORN_MOVE_TUTOR_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-blackthorn-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-blackthorn-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/326_T30PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BLACKTHORN_POKECENTER_B1F"
+        ]
       }
     ],
     "Route 26": [
@@ -638,6 +1259,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Kanto_Route_26_HGSS.png",
         "archive": "Johto",
         "layer": 442
+      },
+      {
+        "id": "plan-route-26-north-house",
+        "label": "Rest house · terrain plan",
+        "file": "plan-route-26-north-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "71c7e6e3366d5977357b0abf0003aebd3a7bd02ec6bba6737095ff8f87d67440",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/267_R26R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_26_NORTH_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-26-week-siblings-house",
+        "label": "Week Siblings’ house · terrain plan",
+        "file": "plan-route-26-week-siblings-house.png",
+        "width": 520,
+        "height": 548,
+        "sha256": "08925b5ff13be6cf86b946a2b1e0f65f8e2eddee5592eb72497a4943d5c5bda0",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/268_R26R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_26_WEEK_SIBLINGS_HOUSE"
+        ]
       }
     ],
     "Route 27": [
@@ -651,6 +1300,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Kanto_Route_27_HGSS.png",
         "archive": "Johto",
         "layer": 440
+      },
+      {
+        "id": "plan-route-27-house",
+        "label": "Sandstorm house · terrain plan",
+        "file": "plan-route-27-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "2c0a889dba260f1994a7753c0cf7b42615a7f7cd551b462dfb2f359943f15ab8",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/293_R27R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_27_HOUSE"
+        ]
       }
     ],
     "Route 28": [
@@ -664,6 +1327,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Kanto_Route_28_HGSS.png",
         "archive": "Kanto",
         "layer": 339
+      },
+      {
+        "id": "plan-route-28-house",
+        "label": "Celebrity’s house (Steel Wing) · terrain plan",
+        "file": "plan-route-28-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "4a5b54665eb960cf6119d26638b1730391c4cb8f2b4caaadcc89a43a42998d93",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/462_R28R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_28_HOUSE"
+        ]
       }
     ],
     "Route 29": [
@@ -677,6 +1354,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_29_HGSS.png",
         "archive": "Johto",
         "layer": 2
+      },
+      {
+        "id": "plan-route-29-route-46-gatehouse",
+        "label": "Route 46 Gatehouse · terrain plan",
+        "file": "plan-route-29-route-46-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "7f238f0c35d0a1ea0f4de47d851e2aab9d490cfde2ba6684188adea68627fb92",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/130_R29R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_29_ROUTE_46_GATEHOUSE"
+        ]
       }
     ],
     "Route 30": [
@@ -690,6 +1381,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_30_HGSS.png",
         "archive": "Johto",
         "layer": 7
+      },
+      {
+        "id": "plan-route-30-apricorn-house",
+        "label": "Apricorn Box house · terrain plan",
+        "file": "plan-route-30-apricorn-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "23b7d3c7cbb7e402d7e12e13eb5350ea8f0ca69810484c797ffcfdd919816a8a",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/124_R30R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_30_APRICORN_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-30-mr-pokemon-house",
+        "label": "Mr. Pokémon’s house · terrain plan",
+        "file": "plan-route-30-mr-pokemon-house.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "c55a4d9bd5b60395fdb73351b9e25a330716e8ad46f37ec730352fade4c7f4b3",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/139_R30R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_30_MR_POKEMON_HOUSE"
+        ]
       }
     ],
     "Route 31": [
@@ -703,6 +1422,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_31_HGSS.png",
         "archive": "Johto",
         "layer": 15
+      },
+      {
+        "id": "plan-route-31-violet-gatehouse",
+        "label": "Violet gatehouse · terrain plan",
+        "file": "plan-route-31-violet-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "08fddaba1384d8930022198ec4fb1847c68f1834b678f49e6a3a144528f1d0a9",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/094_R31R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_31_VIOLET_GATEHOUSE"
+        ]
       }
     ],
     "Route 32": [
@@ -716,6 +1449,48 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_32_HGSS.png",
         "archive": "Johto",
         "layer": 25
+      },
+      {
+        "id": "plan-route-32-ruins-of-alph-gatehouse",
+        "label": "Ruins of Alph gatehouse · terrain plan",
+        "file": "plan-route-32-ruins-of-alph-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "9b3e5455720397b01572fba0f3766091424f2a8ba7ac19da89b2f59139079d5d",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/095_R32R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_32_RUINS_OF_ALPH_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-32-pokecenter-1f",
+        "label": "Pokémon Center 1F · terrain plan",
+        "file": "plan-route-32-pokecenter-1f.png",
+        "width": 520,
+        "height": 668,
+        "sha256": "51d83d1d9b0d068638fe5d9dd2e4391ba70d5159faf70793520c9ebc7d55e948",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/163_R32PC0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_32_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-route-32-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-route-32-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/164_R32PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_32_POKECENTER_B1F"
+        ]
       }
     ],
     "Route 33": [
@@ -742,6 +1517,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_34_HGSS.png",
         "archive": "Johto",
         "layer": 58
+      },
+      {
+        "id": "plan-route-34-ilex-forest-gatehouse",
+        "label": "Ilex Forest Gatehouse · terrain plan",
+        "file": "plan-route-34-ilex-forest-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "d4989fb753f72af81b567e675f50ab5b3c688212dbf90f8f2b6eb80f07119441",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/165_R34R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_34_ILEX_FOREST_GATEHOUSE"
+        ]
       }
     ],
     "Route 35": [
@@ -755,6 +1544,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_35_HGSS.png",
         "archive": "Johto",
         "layer": 88
+      },
+      {
+        "id": "plan-route-35-goldenrod-gatehouse",
+        "label": "Goldenrod gatehouse · terrain plan",
+        "file": "plan-route-35-goldenrod-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "990c4e5caaa679a77541d3fc639720676059f862515073f019dda7ede47ce1d9",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/098_R35R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_35_GOLDENROD_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-35-national-park-pokeathalon-gatehouse",
+        "label": "Park / Pokéathlon gatehouse · terrain plan",
+        "file": "plan-route-35-national-park-pokeathalon-gatehouse.png",
+        "width": 768,
+        "height": 476,
+        "sha256": "4bdce368628f88e15c98ccbd62cdc74177aaf3fe92220123aaa7cfa6a3b97fda",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/099_R35R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_35_NATIONAL_PARK_POKEATHALON_GATEHOUSE"
+        ]
       }
     ],
     "Route 36": [
@@ -768,6 +1585,48 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_36_HGSS.png",
         "archive": "Johto",
         "layer": 91
+      },
+      {
+        "id": "plan-route-36-ruins-of-alph-gatehouse",
+        "label": "Ruins of Alph gatehouse · terrain plan",
+        "file": "plan-route-36-ruins-of-alph-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "3cb15b70b48112f09032c0cce4b971428a05b503637bdd0463aa48eadd163c7c",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/100_R36R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_36_RUINS_OF_ALPH_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-36-national-park-gatehouse",
+        "label": "National Park gatehouse · terrain plan",
+        "file": "plan-route-36-national-park-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "bd1a4037c51dfb107acb0440798f5ebbb4172f0073bf6815f6069ec1c81f324d",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/101_R36R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_36_NATIONAL_PARK_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-violet-route-36-gatehouse",
+        "label": "Route 36 Gatehouse · terrain plan",
+        "file": "plan-violet-route-36-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "64bbc3f9ddfffb15edee9cce9e94df7acf5d3ee72d1f063cf3b8f55a8170633c",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/144_T22R0701.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_VIOLET_ROUTE_36_GATEHOUSE"
+        ]
       }
     ],
     "Route 37": [
@@ -794,6 +1653,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_38_HGSS.png",
         "archive": "Johto",
         "layer": 134
+      },
+      {
+        "id": "plan-route-38-ecruteak-gatehouse",
+        "label": "Ecruteak Gatehouse · terrain plan",
+        "file": "plan-route-38-ecruteak-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "32a78671f8b18e1073ff3bf87e5c57fb2421e5abd31787f28b9922e6351e3266",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/166_R38R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_38_ECRUTEAK_GATEHOUSE"
+        ]
       }
     ],
     "Route 39": [
@@ -820,6 +1693,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_40_HGSS.png",
         "archive": "Johto",
         "layer": 165
+      },
+      {
+        "id": "plan-route-40-battle-frontier-gatehouse",
+        "label": "Frontier Access Gatehouse · terrain plan",
+        "file": "plan-route-40-battle-frontier-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "bd3bad28c475e8b8746bdbe4eba82e4f576e118cfe569f10735f807f16b93545",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/323_W40R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_40_BATTLE_FRONTIER_GATEHOUSE"
+        ]
       }
     ],
     "Route 41": [
@@ -846,6 +1733,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_42_HGSS.png",
         "archive": "Johto",
         "layer": 215
+      },
+      {
+        "id": "plan-route-42-ecruteak-gatehouse",
+        "label": "Ecruteak Gatehouse · terrain plan",
+        "file": "plan-route-42-ecruteak-gatehouse.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "32a78671f8b18e1073ff3bf87e5c57fb2421e5abd31787f28b9922e6351e3266",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/128_R42R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_42_ECRUTEAK_GATEHOUSE"
+        ]
       }
     ],
     "Route 43": [
@@ -859,6 +1760,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Johto_Route_43_HGSS.png",
         "archive": "Johto",
         "layer": 218
+      },
+      {
+        "id": "plan-route-43-mahogany-gatehouse",
+        "label": "Mahogany Gatehouse · terrain plan",
+        "file": "plan-route-43-mahogany-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "b56eb16f4c78f543ae13f36f1fb8e070049d004896a810e101a779558cb1d621",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/138_R43R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_43_MAHOGANY_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-route-43-gatehouse",
+        "label": "Route 43 Gatehouse · terrain plan",
+        "file": "plan-route-43-gatehouse.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "ef99ec86b7c8757c3f534de58aec5027b73346744f25deebbe2901d8203f601a",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/231_R43R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_43_GATEHOUSE"
+        ]
       }
     ],
     "Route 44": [
@@ -1108,7 +2037,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 181,
         "height": 162,
         "sha256": "a3355b61804066be01b03e95e84a556de0c083500c9f4b518cbc1b73b970db40",
-        "source": "https://archives.bulbagarden.net/wiki/File:Ruins_of_Alph_Research_Center_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Ruins_of_Alph_Research_Center_HGSS.png",
+        "mapIds": [
+          "MAP_RUINS_OF_ALPH_RESEARCH_CENTER"
+        ]
       }
     ],
     "Union Cave": [
@@ -1498,6 +2430,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "height": 929,
         "sha256": "17673bc214941979b7f20c8188f776c3c5118a964439c2285ae674bd4bbfc674",
         "source": "https://archives.bulbagarden.net/wiki/File:Lake_of_Rage_HGSS_dry.png"
+      },
+      {
+        "id": "plan-lake-of-rage-hidden-power-house",
+        "label": "Hidden Power house · terrain plan",
+        "file": "plan-lake-of-rage-hidden-power-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "2c33f931f45fe30084206eed799e35b2c682e45aa9e1d4be3d97f236ccd84c03",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/265_T29R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE"
+        ]
+      },
+      {
+        "id": "plan-lake-of-rage-fishing-guru-house",
+        "label": "Fishing Guru’s house · terrain plan",
+        "file": "plan-lake-of-rage-fishing-guru-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "c81e286b25e01f396b3b234bf253d32906276cf5e8c5866dc5571862aad55ed3",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/266_T29R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_LAKE_OF_RAGE_FISHING_GURU_HOUSE"
+        ]
       }
     ],
     "Ice Path": [
@@ -1557,6 +2517,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Dragons_Den_HGSS.png",
         "archive": "Johto",
         "layer": 241
+      },
+      {
+        "id": "plan-dragons-den-shrine",
+        "label": "Dragon Shrine · terrain plan",
+        "file": "plan-dragons-den-shrine.png",
+        "width": 520,
+        "height": 668,
+        "sha256": "395afc3aabb57107e20f5f1b55446106a5220cf7c0eb82de7ed3a86bd903b3e4",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/259_D44R0103.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_DRAGONS_DEN_SHRINE"
+        ]
       }
     ],
     "Safari Zone Gate": [
@@ -1570,6 +2544,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Safari_Zone_Gate.png",
         "archive": "Johto",
         "layer": 186
+      },
+      {
+        "id": "plan-safari-zone-gate-pokecenter-1f",
+        "label": "Pokémon Center 1F · terrain plan",
+        "file": "plan-safari-zone-gate-pokecenter-1f.png",
+        "width": 520,
+        "height": 668,
+        "sha256": "51d83d1d9b0d068638fe5d9dd2e4391ba70d5159faf70793520c9ebc7d55e948",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/486_D47PC0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SAFARI_ZONE_GATE_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-safari-zone-gate-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-safari-zone-gate-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/487_D47PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SAFARI_ZONE_GATE_POKECENTER_B1F"
+        ]
       }
     ],
     "Pokéathlon Dome": [
@@ -1591,7 +2593,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 800,
         "height": 352,
         "sha256": "3260c2d944a5dbdd56869e02ce26d06b16660b673416e395e56048a99b20361f",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_1F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_1F_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_1F"
+        ]
       },
       {
         "id": "2f-entrance",
@@ -1600,7 +2605,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 112,
         "height": 272,
         "sha256": "5e704284599a173f8a3e5a796595be5dceefe83ac5bc95916a26a26ffee9f4e3",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_2F_Entrance_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_2F_Entrance_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_2F_ENTRANCE"
+        ]
       },
       {
         "id": "2f",
@@ -1609,7 +2617,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 720,
         "height": 312,
         "sha256": "ec80118f3c9726bf667f1e4d32613563f4a6e9cd3fa6d6a5a26a29e61b42bf56",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_2F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_2F_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_2F"
+        ]
       },
       {
         "id": "b1f-solidarity",
@@ -1618,7 +2629,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 272,
         "height": 208,
         "sha256": "e8faf34502e5da65633869d0c3b7280153d6791335e13fd9fb8ba8beb0afca4e",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Solidarity_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Solidarity_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_B1F_SOLIDARITY_ROOM"
+        ]
       },
       {
         "id": "b1f-trust",
@@ -1627,7 +2641,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 272,
         "height": 224,
         "sha256": "023e155c8e7306c14f49a8d31fd2cb2781312bcc5c603dae7e57839e0d381ce6",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Trust_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Trust_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_B1F_TRUST_ROOM"
+        ]
       },
       {
         "id": "b1f-potential",
@@ -1636,7 +2653,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 240,
         "height": 224,
         "sha256": "b3b23a70f29aa0c26035c3c4b69dc23c61e6f767276db0de1410b24905f267b5",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Potential_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Potential_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_B1F_POTENTIAL_ROOM"
+        ]
       },
       {
         "id": "b1f-friendship",
@@ -1645,7 +2665,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 240,
         "height": 224,
         "sha256": "b314499aa3fa63b3acdf7b2b35c04c8dc189f6d6f465e7dc25e82e9d1c9a656f",
-        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Friendship_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9athlon_Dome_B1F_Friendship_HGSS.png",
+        "mapIds": [
+          "MAP_POKEATHLON_DOME_INTERIOR_B1F_FRIENDSHIP_ROOM"
+        ]
       }
     ],
     "Goldenrod Department Store": [
@@ -1656,7 +2679,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "661335cdd80de0a72d5d399d4dcc6218a45a55502dda59500cec6d20382fb0d6",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_1F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_1F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_1F"
+        ]
       },
       {
         "id": "2f",
@@ -1665,7 +2691,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "3cfb9e06f1e2bba22a3dbfde80f26529ebbedc334d473aa405920eb244e28700",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_2F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_2F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_2F"
+        ]
       },
       {
         "id": "3f",
@@ -1674,7 +2703,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "eb5ea4bbf41f322cf01cadf849de41c7c1cbbe6dd1a3937da7eb39fa82a4ccf1",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_3F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_3F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_3F"
+        ]
       },
       {
         "id": "4f",
@@ -1683,7 +2715,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "87e49643298872afad91e2673e1051420073cd833410b3a05dda7c5a17915d46",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_4F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_4F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_4F"
+        ]
       },
       {
         "id": "5f",
@@ -1692,7 +2727,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "1e3cbc17640143108d8d2cf6f75f313b304384b5e8be6e64fe5b733b06fde1b3",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_5F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_5F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_5F"
+        ]
       },
       {
         "id": "6f",
@@ -1701,7 +2739,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 384,
         "height": 192,
         "sha256": "bea3887cf076bdb22dcf79f36c91043d1ce39e022c1b3ae2aa19ecabf6fcfc13",
-        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_6F_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_6F_HGSS.png",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_6F"
+        ]
       },
       {
         "id": "basement",
@@ -1712,7 +2753,24 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "bd7f1fba80eb506c0e8900c9182b52f28087eebab11c07de01959078cf985056",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Department_Store_Basement_HGSS.png",
         "archive": "Johto",
-        "layer": 98
+        "layer": 98,
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_BASEMENT"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-department-store-elevator",
+        "label": "Department Store Elevator · terrain plan",
+        "file": "plan-goldenrod-department-store-elevator.png",
+        "width": 520,
+        "height": 356,
+        "sha256": "6775816c53d17215c6ba5237bf14e8b8582fec44fbe86a43b0641530281271c9",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/396_T25R1007.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_DEPARTMENT_STORE_ELEVATOR"
+        ]
       }
     ],
     "Goldenrod Radio Tower": [
@@ -1725,7 +2783,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "46036b57bf156a4ca446949c0de421383bfc65ca8f3cb70fb9e59197ea2adf11",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_1F_HGSS.png",
         "archive": "Johto",
-        "layer": 365
+        "layer": 365,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_1F"
+        ]
       },
       {
         "id": "2f",
@@ -1736,7 +2797,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "96f9d6725df8bbc6790c0fc6b9da99e483d841ff819d2b4882ec766bb44cdcde",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_2F_HGSS.png",
         "archive": "Johto",
-        "layer": 359
+        "layer": 359,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_2F"
+        ]
       },
       {
         "id": "3f",
@@ -1747,7 +2811,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "f560d97ba54359e93f895db745423435ba4ab0eb26942f27bb2df3d6d8512d95",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_3F_HGSS.png",
         "archive": "Johto",
-        "layer": 360
+        "layer": 360,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_3F"
+        ]
       },
       {
         "id": "4f",
@@ -1758,7 +2825,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "21b6a59c7cbadcbb0ba2ba0e2f74202f0217eb1cc199981b11642b37c89cdcb8",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_4F_HGSS.png",
         "archive": "Johto",
-        "layer": 361
+        "layer": 361,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_4F"
+        ]
       },
       {
         "id": "5f",
@@ -1769,7 +2839,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "03cada637c1eafeab2a353c5a232751435325b984b102c25b2da01608cc0a67e",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_5F_HGSS.png",
         "archive": "Johto",
-        "layer": 362
+        "layer": 362,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_5F"
+        ]
       },
       {
         "id": "observation-deck",
@@ -1780,7 +2853,24 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "efcfeccae7ece2031dac805870f379e01d4b221b9679ae16709cd4323665e206",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Radio_Tower_Observation_Deck_HGSS.png",
         "archive": "Johto",
-        "layer": 363
+        "layer": 363,
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_OBSERVATION_DECK"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-radio-tower-elevator",
+        "label": "Radio Tower Elevator · terrain plan",
+        "file": "plan-goldenrod-radio-tower-elevator.png",
+        "width": 520,
+        "height": 356,
+        "sha256": "cb5fa1b4082d687786e6b719c7c19c0395d0f0c2a5b0ce02396206b965db4422",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/402_D23R0107.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_RADIO_TOWER_ELEVATOR"
+        ]
       }
     ],
     "Olivine Lighthouse": [
@@ -1858,6 +2948,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Glitter_Lighthouse_3F_Balcony_HGSS.png",
         "archive": "Johto",
         "layer": 306
+      },
+      {
+        "id": "plan-olivine-lighthouse-elevator",
+        "label": "Lighthouse Elevator · terrain plan",
+        "file": "plan-olivine-lighthouse-elevator.png",
+        "width": 520,
+        "height": 356,
+        "sha256": "7b8bab7ca7180495c83ca0572c9641e76005cc90a77325d9ce0b48b1ab1343bb",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/401_D27R0108.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_OLIVINE_LIGHTHOUSE_ELEVATOR"
+        ]
       }
     ],
     "Pokémon Day Care": [
@@ -1881,7 +2985,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "4853e6d410e659f6c480bfdad3331679cede2dace1af74e8b7fc4c5587588dd5",
         "source": "https://archives.bulbagarden.net/wiki/File:Day_Care_HGSS.png",
         "kind": "reference",
-        "notice": "Interior reference view; characters and story objects may differ during play."
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_ROUTE_34_DAYCARE"
+        ]
       }
     ],
     "S.S. Aqua": [
@@ -1894,7 +3001,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "0286c039dab66a1624ac2a97b50454ffd38c738711b5504734e3ee713de47dfc",
         "source": "https://archives.bulbagarden.net/wiki/File:SS_Aqua_1F_HGSS.png",
         "archive": "Kanto",
-        "layer": 11
+        "layer": 11,
+        "mapIds": [
+          "MAP_SS_AQUA_1F"
+        ]
       },
       {
         "id": "b1f",
@@ -1905,7 +3015,94 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "440adbb7d4feff7d0a486ae9c2fc862b8fd5912c9c9d021a804ea90741eda8d1",
         "source": "https://archives.bulbagarden.net/wiki/File:SS_Aqua_B1F_HGSS.png",
         "archive": "Kanto",
-        "layer": 10
+        "layer": 10,
+        "mapIds": [
+          "MAP_SS_AQUA_B1F"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-olivine-port-interior",
+        "label": "Olivine port · gatehouse · terrain plan",
+        "file": "plan-ss-aqua-olivine-port-interior.png",
+        "width": 600,
+        "height": 476,
+        "sha256": "c4e5d195279d6ab0c81d4ff3ca780d30bbdb9fe241869d3bf64e3cd0492228a7",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/226_P01R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_OLIVINE_PORT_INTERIOR"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-captain-room",
+        "label": "S.S. Aqua Captain Room · terrain plan",
+        "file": "plan-ss-aqua-captain-room.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "65f85ac5c104492c3c35b51c97e469327b0af092125920d1d78c9323dedd42b8",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/279_P01R0302.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_CAPTAIN_ROOM"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-1f-southeast-rooms",
+        "label": "S.S. Aqua 1F Southeast Rooms · terrain plan",
+        "file": "plan-ss-aqua-1f-southeast-rooms.png",
+        "width": 720,
+        "height": 476,
+        "sha256": "8b994a6e2407e2bd89f375ae7fee17c5fa3fa0d557cbda3c8a696aac9793696d",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/280_P01R0303.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_1F_SOUTHEAST_ROOMS"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-1f-southwest-rooms",
+        "label": "S.S. Aqua 1F Southwest Rooms · terrain plan",
+        "file": "plan-ss-aqua-1f-southwest-rooms.png",
+        "width": 720,
+        "height": 476,
+        "sha256": "45f62e13b3ba029e09dff355043640f08c4ab155c79dc7cbdbc1609d9c080506",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/281_P01R0304.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_1F_SOUTHWEST_ROOMS"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-1f-northeast-rooms",
+        "label": "S.S. Aqua 1F Northeast Rooms · terrain plan",
+        "file": "plan-ss-aqua-1f-northeast-rooms.png",
+        "width": 720,
+        "height": 476,
+        "sha256": "a2354a82da878bade2c23a60e097a1609ee1b3925255daedcd23757e232ccd7d",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/282_P01R0305.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_1F_NORTHEAST_ROOMS"
+        ]
+      },
+      {
+        "id": "plan-ss-aqua-1f-northwest-rooms",
+        "label": "S.S. Aqua 1F Northwest Rooms · terrain plan",
+        "file": "plan-ss-aqua-1f-northwest-rooms.png",
+        "width": 720,
+        "height": 476,
+        "sha256": "2483a93d5b133dd06db05d08f0c254be4a8b742c5e5bd4ebe1d59d12ca5f0e03",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/299_P01R0306.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_SS_AQUA_1F_NORTHWEST_ROOMS"
+        ]
       }
     ],
     "Victory Road": [
@@ -1964,7 +3161,108 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "d429ec15966a9ca01ab88afeadb258593358bd9bc3354bdcd41f44d2df5f7197",
         "source": "https://archives.bulbagarden.net/wiki/File:Indigo_Plateau_Center_HGSS.png",
         "kind": "reference",
-        "notice": "Interior reference view; characters and story objects may differ during play."
+        "notice": "Interior reference view; characters and story objects may differ during play.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_ENTRANCE"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-will-room",
+        "label": "Will Room · terrain plan",
+        "file": "plan-pokemon-league-will-room.png",
+        "width": 520,
+        "height": 740,
+        "sha256": "263f843b9bfafbf250ace6a3919f38e257af7ef927f157c020a8056dd776f8b0",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/272_T10R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_WILL_ROOM"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-koga-room",
+        "label": "Koga Room · terrain plan",
+        "file": "plan-pokemon-league-koga-room.png",
+        "width": 520,
+        "height": 740,
+        "sha256": "ca26700693cf7040102f516dfb636eb7b7d812d2b9b00653093f2d522eb883f3",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/273_T10R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_KOGA_ROOM"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-bruno-room",
+        "label": "Bruno Room · terrain plan",
+        "file": "plan-pokemon-league-bruno-room.png",
+        "width": 520,
+        "height": 740,
+        "sha256": "893d5ae13df4bfb1662a223270b026573522d9c4cd81501848bdf18c898d4a83",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/274_T10R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_BRUNO_ROOM"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-karen-room",
+        "label": "Karen Room · terrain plan",
+        "file": "plan-pokemon-league-karen-room.png",
+        "width": 520,
+        "height": 740,
+        "sha256": "a515c0cdf620038650c2950dc38ce51460af29b05be1d1654ec8e74cdfe400ca",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/275_T10R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_KAREN_ROOM"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-lance-room",
+        "label": "Lance Room · terrain plan",
+        "file": "plan-pokemon-league-lance-room.png",
+        "width": 520,
+        "height": 884,
+        "sha256": "38b16499354afbc2f32093ac3403a9babf3579602f23e899fc8e504ac53c8b8c",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/276_T10R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_LANCE_ROOM"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-hall-of-fame",
+        "label": "Hall Of Fame · terrain plan",
+        "file": "plan-pokemon-league-hall-of-fame.png",
+        "width": 520,
+        "height": 740,
+        "sha256": "359f6430c5c9661a84bd9d4e6678d65c7577d5b812588b9ec07c677b434cb9ff",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/277_T10R0701.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_HALL_OF_FAME"
+        ]
+      },
+      {
+        "id": "plan-pokemon-league-entrance-wifi-room",
+        "label": "Pokémon Center · B1F · terrain plan",
+        "file": "plan-pokemon-league-entrance-wifi-room.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "ad4bd5883116e549e448ad77ba9cd40697266625d2478ee89184cf31403a4278",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/490_T10R0801.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_POKEMON_LEAGUE_ENTRANCE_WIFI_ROOM"
+        ]
       }
     ],
     "Mt. Silver": [
@@ -2066,6 +3364,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Mt._Silver_Summit_HGSS.png",
         "archive": "Kanto",
         "layer": 350
+      },
+      {
+        "id": "plan-mount-silver-pokecenter-1f",
+        "label": "Pokémon Center 1F · terrain plan",
+        "file": "plan-mount-silver-pokecenter-1f.png",
+        "width": 520,
+        "height": 668,
+        "sha256": "51d83d1d9b0d068638fe5d9dd2e4391ba70d5159faf70793520c9ebc7d55e948",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/466_T31PC0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_MOUNT_SILVER_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-mount-silver-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-mount-silver-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/467_T31PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_MOUNT_SILVER_POKECENTER_B1F"
+        ]
       }
     ],
     "Tohjo Falls": [
@@ -2090,6 +3416,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "height": 300,
         "sha256": "667f2f5690dd8fd6c8920595d5b85d254dddcb0ab0b9409b7efb06aaee875209",
         "source": "https://archives.bulbagarden.net/wiki/File:Pok%C3%A9mon_League_Reception_Gate_HGSS.png"
+      },
+      {
+        "id": "plan-route-22-pokemon-league-reception-gate",
+        "label": "Reception gate · terrain plan",
+        "file": "plan-route-22-pokemon-league-reception-gate.png",
+        "width": 600,
+        "height": 764,
+        "sha256": "47166d0cb085f1ba081c6c783a32cb799015852778278832d1f92a31680c219d",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/270_R22R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE"
+        ]
       }
     ],
     "Bellchime Trail": [
@@ -2115,7 +3455,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "ec3dc50b8d45cf7de1a5407cbe4e7181a90f6fbb88370d7aafa7a447501bb113",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Tunnel_HGSS.png",
         "archive": "Johto",
-        "layer": 96
+        "layer": 96,
+        "mapIds": [
+          "MAP_GOLDENROD_TUNNEL_B1F"
+        ]
       },
       {
         "id": "b2f-switch-puzzle",
@@ -2126,7 +3469,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "61051f291d0de659f944dec8ff284d1d01cb96179d7fa399a5abef640775629d",
         "source": "https://archives.bulbagarden.net/wiki/File:Goldenrod_Tunnel_Basement_HGSS.png",
         "archive": "Johto",
-        "layer": 358
+        "layer": 358,
+        "mapIds": [
+          "MAP_GOLDENROD_TUNNEL_B2F"
+        ]
       },
       {
         "id": "underground-warehouse",
@@ -2137,7 +3483,24 @@ export const SOULSILVER_MAPS = Object.freeze({
         "sha256": "29955260e2a4b154baece011f4929cda9a20d37c13f7f05690fc4461b19bfa4c",
         "source": "https://archives.bulbagarden.net/wiki/File:Underground_Warehouse_HGSS.png",
         "archive": "Johto",
-        "layer": 364
+        "layer": 364,
+        "mapIds": [
+          "MAP_GOLDENROD_TUNNEL_WAREHOUSE"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-tunnel-1f",
+        "label": "Tunnel entrance rooms · 1F · terrain plan",
+        "file": "plan-goldenrod-tunnel-1f.png",
+        "width": 792,
+        "height": 932,
+        "sha256": "b810ec0e982d2d3190b0871a2f5fe7cb643d8079167c3e7efe3ac861cc036cad",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/115_D37R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_TUNNEL_1F"
+        ]
       }
     ],
     "Team Rocket HQ": [
@@ -2197,6 +3560,62 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Frontier_Access_HGSS.png",
         "archive": "Johto",
         "layer": 168
+      },
+      {
+        "id": "plan-frontier-access-pokecenter-1f",
+        "label": "Pokémon Center 1F · terrain plan",
+        "file": "plan-frontier-access-pokecenter-1f.png",
+        "width": 520,
+        "height": 668,
+        "sha256": "51d83d1d9b0d068638fe5d9dd2e4391ba70d5159faf70793520c9ebc7d55e948",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/480_D32PC0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_FRONTIER_ACCESS_POKECENTER_1F"
+        ]
+      },
+      {
+        "id": "plan-frontier-access-pokecenter-b1f",
+        "label": "Pokémon Center B1F · terrain plan",
+        "file": "plan-frontier-access-pokecenter-b1f.png",
+        "width": 520,
+        "height": 500,
+        "sha256": "8a28658ff5136a264afc4a0638429957f0d2eb620adee35e43fb80315d1d37d6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/481_D32PC0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_FRONTIER_ACCESS_POKECENTER_B1F"
+        ]
+      },
+      {
+        "id": "plan-frontier-access-pokemart",
+        "label": "Poké Mart · terrain plan",
+        "file": "plan-frontier-access-pokemart.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "a934c9efecf05a8d1d831d375dbc82b9c1b6f26d129c591de7b1af460bfbfec2",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/482_D32FS0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_FRONTIER_ACCESS_POKEMART"
+        ]
+      },
+      {
+        "id": "plan-frontier-access-move-tutor-house",
+        "label": "Move Tutor House · terrain plan",
+        "file": "plan-frontier-access-move-tutor-house.png",
+        "width": 520,
+        "height": 404,
+        "sha256": "c18945d745ceabd6c09fdc1bcda377662eea8ff54c528542024cc6795d034546",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/483_D32R0103.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_FRONTIER_ACCESS_MOVE_TUTOR_HOUSE"
+        ]
       }
     ],
     "Battle Frontier": [
@@ -2208,6 +3627,118 @@ export const SOULSILVER_MAPS = Object.freeze({
         "height": 932,
         "sha256": "5c1d6e3391dbd09ada1229d6bab1a313faaa8c8cc0252a5d10d9f0b69fffc448",
         "source": "https://archives.bulbagarden.net/wiki/File:Battle_Frontier_Pt.png"
+      },
+      {
+        "id": "plan-battle-tower",
+        "label": "Battle Tower · lobby · terrain plan",
+        "file": "plan-battle-tower.png",
+        "width": 792,
+        "height": 668,
+        "sha256": "a1590caa172c0f4d06e45e0d073bdc6ac4b9d4438b9e78e7b1f5989378fce367",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/240_D31R0201.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_TOWER"
+        ]
+      },
+      {
+        "id": "plan-battle-tower-elevator",
+        "label": "Battle Tower · elevator · terrain plan",
+        "file": "plan-battle-tower-elevator.png",
+        "width": 520,
+        "height": 356,
+        "sha256": "3b2304028df94b6ef82ce50b25d7aed00e80f9bdbc348d7db974238f09f220d3",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/241_D31R0202.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_TOWER_ELEVATOR"
+        ]
+      },
+      {
+        "id": "plan-battle-tower-partner-room",
+        "label": "Battle Tower · partner room · terrain plan",
+        "file": "plan-battle-tower-partner-room.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "472a43c43bccac3dcad464ca5166b9dfea4daeea2f495a1c0c3b2665981398c7",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/242_D31R0207.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_TOWER_PARTNER_ROOM"
+        ]
+      },
+      {
+        "id": "plan-battle-frontier-frontier-access-gatehouse",
+        "label": "Frontier Access gatehouse · terrain plan",
+        "file": "plan-battle-frontier-frontier-access-gatehouse.png",
+        "width": 520,
+        "height": 692,
+        "sha256": "4159ef31006b24f260ac5d476c9e36f65b801337222d4a8be39cf572d295c35e",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/244_D32R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_FRONTIER_FRONTIER_ACCESS_GATEHOUSE"
+        ]
+      },
+      {
+        "id": "plan-battle-frontier-battle-factory",
+        "label": "Battle Factory · terrain plan",
+        "file": "plan-battle-frontier-battle-factory.png",
+        "width": 696,
+        "height": 500,
+        "sha256": "4587971ce1fa5a95bc434e24093ccb89d4fd5a48f576b07ddb23263b3c1196ae",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/246_D32R0301.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_FRONTIER_BATTLE_FACTORY"
+        ]
+      },
+      {
+        "id": "plan-battle-frontier-battle-hall",
+        "label": "Battle Hall · terrain plan",
+        "file": "plan-battle-frontier-battle-hall.png",
+        "width": 696,
+        "height": 500,
+        "sha256": "99e076cef4b05710dd5e2e061febd8c2daf62d869ee4a2e0ec77ed4d1a11e2fb",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/247_D32R0401.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_FRONTIER_BATTLE_HALL"
+        ]
+      },
+      {
+        "id": "plan-battle-frontier-battle-castle",
+        "label": "Battle Castle · terrain plan",
+        "file": "plan-battle-frontier-battle-castle.png",
+        "width": 600,
+        "height": 572,
+        "sha256": "f16fa77bdb8f8418cfd4c987bc881bf35151c6294fca84a3bf575d563b897a84",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/248_D32R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_FRONTIER_BATTLE_CASTLE"
+        ]
+      },
+      {
+        "id": "plan-battle-frontier-battle-arcade",
+        "label": "Battle Arcade · terrain plan",
+        "file": "plan-battle-frontier-battle-arcade.png",
+        "width": 600,
+        "height": 572,
+        "sha256": "da31de3e154da2b9b4fbad923317454217b1f761bdac57bdf3c6a44c2ce9de20",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/249_D32R0601.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_BATTLE_FRONTIER_BATTLE_ARCADE"
+        ]
       }
     ],
     "MooMoo Farm": [
@@ -2227,7 +3758,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 208,
         "height": 144,
         "sha256": "237da3aeadfd88253cb199c048fb407688e2de286301c9fb2c0d0963935d178e",
-        "source": "https://archives.bulbagarden.net/wiki/File:MooMoo_Farm_House_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:MooMoo_Farm_House_HGSS.png",
+        "mapIds": [
+          "MAP_ROUTE_39_MOOMOO_FARM_HOUSE"
+        ]
       },
       {
         "id": "barn",
@@ -2236,7 +3770,10 @@ export const SOULSILVER_MAPS = Object.freeze({
         "width": 320,
         "height": 144,
         "sha256": "1a0e2db8c88e33ccdc47fdf1e43a7c00f94e2b442e17c96bbcaf527f55eaec01",
-        "source": "https://archives.bulbagarden.net/wiki/File:MooMoo_Farm_Barn_HGSS.png"
+        "source": "https://archives.bulbagarden.net/wiki/File:MooMoo_Farm_Barn_HGSS.png",
+        "mapIds": [
+          "MAP_ROUTE_39_MOOMOO_FARM_STABLE"
+        ]
       }
     ],
     "Magnet Train Station": [
@@ -2261,6 +3798,48 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Magnet_Train_HGSS.png",
         "kind": "reference",
         "notice": "Platform reference view, not a complete station floor plan. Boarding requires restored Power Plant service and the Magnet Train Pass."
+      },
+      {
+        "id": "plan-goldenrod-magnet-train-station-1f",
+        "label": "Station · 1F · terrain plan",
+        "file": "plan-goldenrod-magnet-train-station-1f.png",
+        "width": 528,
+        "height": 644,
+        "sha256": "c94878525c421e3df996a17d2c902f30f9883cfb44475d533b8b1b59bb5f8535",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/190_T25R0501.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_MAGNET_TRAIN_STATION_1F"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-magnet-train-station-2f",
+        "label": "Station · 2F (train present) · terrain plan",
+        "file": "plan-goldenrod-magnet-train-station-2f.png",
+        "width": 816,
+        "height": 572,
+        "sha256": "89f07672f011ccbd3eb44e34d43acb8daac32ae3c556b52cf578750bf0b5b7df",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/191_T25R0502.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F"
+        ]
+      },
+      {
+        "id": "plan-goldenrod-magnet-train-station-2f-empty",
+        "label": "Station · 2F (platform) · terrain plan",
+        "file": "plan-goldenrod-magnet-train-station-2f-empty.png",
+        "width": 816,
+        "height": 572,
+        "sha256": "ed40eb94ef63c62bcacb4e1279e4756facd0bb3f4e6dce851e1bcbd35e666b23",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/471_T25R0503.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
+        "mapIds": [
+          "MAP_GOLDENROD_MAGNET_TRAIN_STATION_2F_EMPTY"
+        ]
       }
     ]
   }

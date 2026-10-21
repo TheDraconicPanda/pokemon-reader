@@ -704,3 +704,17 @@ alternative paths, through-route versus entrance requirements and one-way ledges
 The reference remains freely navigable; automatic saved-progression filtering is
 not added. All 154 tests pass. Safari content, encounters, reference records and
 EV yields are unchanged. See [coverage, evidence and remaining gaps](docs/atlas-johto-interiors-travel.md).
+
+## Remaining Johto building references — v0.25.68
+
+The Atlas map selector now includes Kurt’s house, Cianwood Pharmacy, Dance Theater,
+ordinary houses, gatehouses, Center basements, station floors, ship cabins and
+facility rooms. All 173 scoped building-room headers have an image/reference:
+70 use existing artwork and 103 use clearly labelled **game-data terrain plans**.
+There are 295 choices / 278 PNG assets in the same 69 non-Safari location groups.
+
+Terrain plans show static tile collision flags and exit/stair coordinates, not
+screenshots or complete movement rules. Objects, height and scripts can affect
+movement. Their source links and caveats remain visible; the existing overview
+images and location-level encounters are preserved. Kanto expansion and Safari
+remain separate. See [scope, reproduction and coverage](docs/atlas-johto-interior-completion.md).
