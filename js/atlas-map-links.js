@@ -50,17 +50,22 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
   });
 
   function connections(map) {
-    return data.pairs.filter(pair => pair.ends.some(end => end.mapId === map.id));
+    return data.pairs.flatMap(pair => pair.ends.flatMap((end, index) => end.mapId === map.id
+      ? [{ ...pair, endIndex: index, key: pair.ends[0].mapId === pair.ends[1].mapId ? `${pair.id}-${index}` : pair.id }] : []));
   }
   function destination(pair) {
-    return pair.ends.find(end => end.mapId !== activeMap.id);
+    return pair.ends[1 - pair.endIndex];
   }
   function description(pair) {
     const target = maps.find(map => map.id === destination(pair).mapId);
-    return `${pair.id} · ${pair.label} → ${target.label}`;
+    return pair.oneWay && pair.endIndex === 1
+      ? `${pair.id} · Landing only · return using another route`
+      : `${pair.id} · ${pair.label}${pair.ends[pair.endIndex].side ? ' · ' + pair.ends[pair.endIndex].side + ' → ' + destination(pair).side : ''}${pair.oneWay ? ' · one-way ↓' : ''} → ${target.label}`;
   }
   function travel(pair) {
-    onSelect(destination(pair).mapId, pair.id);
+    if (pair.oneWay && pair.endIndex === 1) return;
+    const key = pair.ends[0].mapId === pair.ends[1].mapId ? `${pair.id}-${1 - pair.endIndex}` : pair.id;
+    onSelect(destination(pair).mapId, key);
   }
   function markers(map, large = false) {
     const layer = document.createElement('div');
@@ -68,14 +73,16 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     if (large) layer.classList.add('map-marker-layer-large');
     layer.style.setProperty('--map-ratio', String(map.width / map.height));
     for (const pair of connections(map)) {
-      const end = pair.ends.find(end => end.mapId === map.id);
+      const end = pair.ends[pair.endIndex];
       const button = document.createElement('button');
       button.type = 'button'; button.className = 'map-stair-marker';
-      button.textContent = pair.id; button.dataset.stair = pair.id;
+      button.textContent = pair.id + (pair.oneWay ? (pair.endIndex === 0 ? '↓' : '·') : ''); button.dataset.stair = pair.key;
+      button.classList.toggle('is-one-way', !!pair.oneWay);
+      if (pair.oneWay && pair.endIndex === 1) { button.setAttribute('aria-disabled', 'true'); button.tabIndex = -1; }
       button.style.left = `${end.x / map.width * 100}%`;
       button.style.top = `${end.y / map.height * 100}%`;
       button.title = description(pair); button.setAttribute('aria-label', description(pair));
-      button.classList.toggle('is-arrival', pair.id === arrival);
+      button.classList.toggle('is-arrival', pair.key === arrival);
       button.addEventListener('click', () => travel(pair));
       layer.append(button);
     }
@@ -88,8 +95,9 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     for (const pair of connections(activeMap)) {
       const button = document.createElement('button');
       button.type = 'button'; button.textContent = description(pair);
-      button.dataset.stairLink = pair.id;
-      button.classList.toggle('is-arrival', pair.id === arrival);
+      button.dataset.stairLink = pair.key;
+      if (pair.oneWay && pair.endIndex === 1) { button.setAttribute('aria-disabled', 'true'); button.tabIndex = -1; }
+      button.classList.toggle('is-arrival', pair.key === arrival);
       button.addEventListener('click', () => travel(pair)); list.append(button);
     }
     fragment.append(label, list);
@@ -112,7 +120,7 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     image.width = activeMap.width; image.height = activeMap.height;
     image.alt = `${locationName} · ${activeMap.label}; north is up; lettered markers link matching connections`;
     const layer = markers(activeMap, true);
-    status.textContent = arrival ? `Arrived at ${data.arrivalLabel || "connection"} ${arrival} on ${activeMap.label}.` : '';
+    status.textContent = arrival ? `Arrived at ${data.arrivalLabel || "connection"} ${arrival.replace(/-[01]$/, '')} on ${activeMap.label}.` : '';
     image.addEventListener('error', () => {
       if (!picture.isConnected) return;
       layer.hidden = true; status.textContent = 'Map unavailable. Use the stair links or select another map.';

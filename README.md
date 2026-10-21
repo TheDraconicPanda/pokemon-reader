@@ -742,3 +742,13 @@ existing images. The catalogue now has 299 views / 282 PNG assets.
 connection’s requirements. Tap the destination name to travel.** Travel conditions
 below the map also remains available to touch, keyboard and screen-reader users.
 HM rules and encounter data are unchanged. See [coverage and evidence](docs/cave-map-links.md).
+
+## Towers, lower Whirl Islands and one-way holes — v0.25.71
+
+Map connections now include Sprout Tower, Burned Tower, Bell Tower's stairs and
+teleport pads, and Whirl Islands down to both deepest chambers. This adds 27
+reciprocal pairs. Nine scripted holes in Ice Path and Victory Road use separate
+**D1↓** markers with landing-only indicators, so they never offer reverse travel.
+Bell Tower's same-floor pads identify both sides and work in the full-size viewer.
+The existing artwork, encounter data and map catalogue remain unchanged.
+See [coverage, controls and verification](docs/dungeon-map-links.md).

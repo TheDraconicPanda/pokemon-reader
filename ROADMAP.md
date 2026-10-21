@@ -631,3 +631,22 @@ Safari and Kanto expansion remain separate. See [evidence and scope](docs/whirl-
 The [coverage ledger and scope](docs/cave-map-links.md) distinguish paired stairs
 from in-floor steps, one-way drops and puzzles. Towers, Whirl’s lower-floor
 extension, Safari and new Kanto locations remain separate.
+
+## Remaining Johto dungeon connections — v0.25.71
+
+- [x] Add all four Sprout Tower ladders, Burned Tower's basement ladder and all 18
+  Bell Tower stair/teleport pairs, including the pair within 7F.
+- [x] Retain Whirl A–F and add four lower-floor/chamber connections G–J.
+- [x] Verify four Ice Path and five Victory Road scripted holes; distinguish their
+  one-way departures and landing-only markers from reversible stairs.
+- [x] Preserve images, credits, map choices, encounter/reference data and existing
+  compass/HM/story annotations; no Safari or new Kanto location changes.
+- [x] Check primary warp completeness, script destinations, themes, mobile layouts,
+  full-size same-floor travel and focus return.
+- [x] Pass 169 tests across Reader, Planner, Atlas, Pokédex and existing Safari
+  regressions; reproduce generated runtime/evidence byte-for-byte.
+- [ ] User outcome acceptance on the existing Pages site.
+
+See [scope and source evidence](docs/dungeon-map-links.md). This completes the
+agreed dungeon-connection implementation; real-game playthrough validation remains
+separate. Safari and Kanto retain their separate development tracks.

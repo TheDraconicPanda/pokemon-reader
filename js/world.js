@@ -368,7 +368,7 @@ function renderLocations({ exactName = null } = {}) {
           }, { once: true });
           image.src = mapLink.href;
           if (userSelected) announcement.textContent = pairId
-            ? `Showing ${description}; arrived at ${stairLinks?.arrivalLabel || "stair"} ${pairId}.`
+            ? `Showing ${description}; arrived at ${stairLinks?.arrivalLabel || "stair"} ${pairId.replace(/-[01]$/, '')}.`
             : `Showing ${description}.`;
         }
         if (maps.length > 1) {

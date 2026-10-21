@@ -180,3 +180,15 @@ activation, stopping propagation to the navigation button; names still navigate.
 Keep the existing native disclosure/aria descriptions for keyboard/screen-reader
 access and avoid nested interactive controls. The full-size map header is sticky
 so Close map stays reachable after panning to deeper room markers.
+
+Atlas v0.25.71 adds 27 reciprocal pairs in the three towers/lower Whirl Islands
+and nine script-driven one-way holes in Ice Path/Victory Road. Recipe/generator:
+`soulsilver-dungeon-links.json` / `build-dungeon-links.py`; evidence:
+`docs/dungeon-map-links.json`. The game adapter merges this extension with existing
+cave data, preserving Whirl A–F and old cave pairs. Runtime `pairs` can now contain
+`oneWay: true`; end 0 is departure and end 1 is landing-only. Never offer reverse
+travel from that landing. Same-map pairs use endpoint-specific internal focus
+keys but display the shared letter and endpoint side names. Keep all current
+images, credits, floor choices and game scoping. The pinned primary verifies
+complete internal warps and explicit coordinate-trigger/script hole destinations;
+ordinary ledges, ice/boulder puzzles and story events are not fabricated stairs.

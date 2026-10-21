@@ -1,0 +1,4342 @@
+{
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "inputSha256": {
+    "src/data/map_headers.h": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539",
+    "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s": "c4acf05db8115d13e32b518e8638c9e5e3ac2e27a714c8ff628392295823c334",
+    "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s": "3e630cb7a203e14b49390c73053c82d4b373c6dc5a0f524c626f9c79f073825f"
+  },
+  "sources": {
+    "MAP_SPROUT_TOWER_1F": {
+      "path": "files/fielddata/eventdata/zone_event/107_D15R0101.json",
+      "sha256": "6f55aaec31838e588c69c94ab0816f74b50706e1d41118aae18bf79954e61f43",
+      "header": "fielddata/script/scr_seq/event_D15R0101.h",
+      "objects": [
+        {
+          "id": "obj_D15R0101_gsoldwoman1",
+          "spriteId": "SPRITE_GSOLDWOMAN1",
+          "movement": 16,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D15R0101_001 + 1",
+          "facingDirection": 2,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 24,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0101_gswoman1",
+          "spriteId": "SPRITE_GSWOMAN1",
+          "movement": 14,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D15R0101_002 + 1",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 20,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0101_bozu",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 16,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D15R0101_003 + 1",
+          "facingDirection": 2,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 11,
+          "z": 19,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0101_bozu_2",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D15R0101_004 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 11,
+          "z": 15,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0101_bozu_3",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 17,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_CHOW)",
+          "facingDirection": 3,
+          "param0": 2,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 5,
+          "z": 10,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0101_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D15R0101_PARLYZ_HEAL",
+          "scriptId": "std_itemball_d15r0101_parlyz_heal",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 24,
+          "z": 16,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 28,
+          "header": "MAP_VIOLET",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 10,
+          "z": 15,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 9,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 16,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 15,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 10,
+          "z": 14,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 8,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 1,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_SPROUT_TOWER_2F": {
+      "path": "files/fielddata/eventdata/zone_event/150_D15R0102.json",
+      "sha256": "7ab46d3cfdbc4c47aaa2f25e739a7a5163ecdd8170139ade32361165310ff1bb",
+      "header": "fielddata/script/scr_seq/event_D15R0102.h",
+      "objects": [
+        {
+          "id": "obj_D15R0102_bozu",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 15,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_NICO)",
+          "facingDirection": 1,
+          "param0": 2,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 20,
+          "z": 13,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0102_bozu_2",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 16,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_EDMOND)",
+          "facingDirection": 2,
+          "param0": 6,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 27,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0102_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D15R0102_X_ACCURACY",
+          "scriptId": "std_itemball_d15r0102_x_accuracy",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 9,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 11,
+          "z": 14,
+          "header": "MAP_SPROUT_TOWER_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 9,
+          "header": "MAP_SPROUT_TOWER_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 16,
+          "header": "MAP_SPROUT_TOWER_1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 27,
+          "header": "MAP_SPROUT_TOWER_3F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_SPROUT_TOWER_3F": {
+      "path": "files/fielddata/eventdata/zone_event/151_D15R0103.json",
+      "sha256": "b379505631d6d47e540210debd02b13e7ab37989b7fcf6d5389880e1d2e784f3",
+      "header": "fielddata/script/scr_seq/event_D15R0103.h",
+      "objects": [
+        {
+          "id": "obj_D15R0103_bozu",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 16,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_JIN)",
+          "facingDirection": 2,
+          "param0": 5,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 18,
+          "z": 25,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_bozu_2",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 17,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_NEAL)",
+          "facingDirection": 3,
+          "param0": 4,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 22,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_bozu_3",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 15,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_SAGE_TROY)",
+          "facingDirection": 1,
+          "param0": 1,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 19,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_chourou",
+          "spriteId": "SPRITE_CHOUROU",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D15R0103_002 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 12,
+          "z": 9,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D15R0103_POTION",
+          "scriptId": "std_itemball_d15r0103_potion",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 11,
+          "z": 27,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D15R0103_ESCAPE_ROPE",
+          "scriptId": "std_itemball_d15r0103_escape_rope",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 19,
+          "z": 8,
+          "y": 0
+        },
+        {
+          "id": "obj_D15R0103_gsrivel",
+          "spriteId": "SPRITE_GSRIVEL",
+          "movement": 14,
+          "type": 0,
+          "eventFlag": "FLAG_UNK_1A3",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 12,
+          "z": 12,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 27,
+          "header": "MAP_SPROUT_TOWER_2F",
+          "anchor": 3,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D15R0103_001 + 1",
+          "x": 13,
+          "z": 17,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40A4"
+        }
+      ]
+    },
+    "MAP_BURNED_TOWER_1F": {
+      "path": "files/fielddata/eventdata/zone_event/005_D18R0101.json",
+      "sha256": "fe0bcc028d5012917a06bc2b76826cc23ea3fbfedc3ed58d6981e7929d2e4206",
+      "header": "fielddata/script/scr_seq/event_D18R0101.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d18r0101_ultra_ball",
+          "type": 2,
+          "x": 8,
+          "z": 24,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d18r0101_ether",
+          "type": 2,
+          "x": 11,
+          "z": 6,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D18R0101_gsrivel",
+          "spriteId": "SPRITE_GSRIVEL",
+          "movement": 14,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_RIVAL",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 23,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_minaki",
+          "spriteId": "SPRITE_MINAKI",
+          "movement": 2,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_EUSINE",
+          "scriptId": "_EV_scr_seq_D18R0101_001 + 1",
+          "facingDirection": 3,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 23,
+          "z": 23,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_gsleader4",
+          "spriteId": "SPRITE_GSLEADER4",
+          "movement": 3,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_MORTY",
+          "scriptId": "_EV_scr_seq_D18R0101_002 + 1",
+          "facingDirection": 3,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 1,
+          "yRange": 0,
+          "x": 23,
+          "z": 26,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_fire",
+          "spriteId": "SPRITE_FIRE",
+          "movement": 17,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_FIREBREATHER_RICHARD)",
+          "facingDirection": 3,
+          "param0": 3,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 9,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_fire_2",
+          "spriteId": "SPRITE_FIRE",
+          "movement": 15,
+          "type": 1,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_trainer(TRAINER_FIREBREATHER_NED)",
+          "facingDirection": 1,
+          "param0": 3,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 22,
+          "z": 8,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_tsure_poke_static_suicune",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_SUICUNE",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_tsure_poke_static_raikou",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_RAIKOU",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_RAIKOU",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 15,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_tsure_poke_static_entei",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_ENTEI",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_1F_ENTEI",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 15,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_breakrock",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_010",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 5,
+          "z": 22,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_breakrock_2",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_011",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 23,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_breakrock_3",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_012",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 7,
+          "z": 25,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D18R0101_HP_UP",
+          "scriptId": "std_itemball_d18r0101_hp_up",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 7,
+          "z": 26,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D18R0101_ANTIDOTE",
+          "scriptId": "std_itemball_d18r0101_antidote",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 9,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0101_tsure_poke_static_suicune_2",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 7,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 26,
+          "header": "MAP_ECRUTEAK",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 22,
+          "z": 16,
+          "header": "MAP_BURNED_TOWER_B1F",
+          "anchor": 0,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D18R0101_000 + 1",
+          "x": 19,
+          "z": 23,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40A2"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D18R0101_003 + 1",
+          "x": 22,
+          "z": 19,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40A6"
+        }
+      ]
+    },
+    "MAP_BURNED_TOWER_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/204_D18R0102.json",
+      "sha256": "a659c500163b38c65a2b1addbfddad10bb53a096908407ed6c9e4dc357317c6d",
+      "header": "fielddata/script/scr_seq/event_D18R0102.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d18r0102_revive",
+          "type": 2,
+          "x": 15,
+          "z": 24,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d18r0102_antidote",
+          "type": 2,
+          "x": 10,
+          "z": 7,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D18R0102_tsure_poke_static_suicune",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_B1F_SUICUNE",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_tsure_poke_static_entei",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_ENTEI",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_B1F_ENTEI",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_tsure_poke_static_raikou",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_RAIKOU",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_B1F_RAIKOU",
+          "scriptId": 0,
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_minaki",
+          "spriteId": "SPRITE_MINAKI",
+          "movement": 16,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_B1F_EUSINE",
+          "scriptId": 0,
+          "facingDirection": 2,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 23,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_rock",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 20,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_rock_2",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 19,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_rock_3",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 18,
+          "z": 23,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_rock_4",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 19,
+          "z": 22,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_breakrock",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_010",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 18,
+          "z": 22,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_breakrock_2",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_011",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 23,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_rock_5",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 12,
+          "z": 20,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D18R0102_TM12",
+          "scriptId": "std_itemball_d18r0102_tm12",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 5,
+          "z": 6,
+          "y": 0
+        },
+        {
+          "id": "obj_D18R0102_tsure_poke_static_suicune_2",
+          "spriteId": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
+          "movement": 15,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE",
+          "scriptId": "_EV_scr_seq_D18R0102_001 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 6,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 23,
+          "z": 16,
+          "header": "MAP_BURNED_TOWER_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 23,
+          "z": 15,
+          "header": "MAP_BURNED_TOWER_1F",
+          "anchor": 1,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D18R0102_000 + 1",
+          "x": 20,
+          "z": 16,
+          "w": 1,
+          "h": 2,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40A1"
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_1F": {
+      "path": "files/fielddata/eventdata/zone_event/108_D17R0101.json",
+      "sha256": "fd7c1ed4dbb26c156fde50afbd7f3eaabab4f51a50318a01e7862074f9bbad5f",
+      "header": "fielddata/script/scr_seq/event_D17R0101.h",
+      "objects": [
+        {
+          "id": "obj_D17R0101_bozu",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D17R0101_000 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 8,
+          "z": 8,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 26,
+          "header": "MAP_BELLCHIME_TOWER",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "z": 7,
+          "header": "MAP_BELL_TOWER_2F",
+          "anchor": 0,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D17R0101_001 + 1",
+          "x": 7,
+          "z": 12,
+          "w": 3,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40F3"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D17R0101_001 + 1",
+          "x": 12,
+          "z": 7,
+          "w": 1,
+          "h": 4,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40F3"
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_2F": {
+      "path": "files/fielddata/eventdata/zone_event/303_D17R0102.json",
+      "sha256": "429133ca405e3b2bfeb3e8895a35112589ab0a26d8ebb669893af6e5ba432eeb",
+      "header": "fielddata/script/scr_seq/event_D17R0102.h",
+      "warps": [
+        {
+          "x": 9,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_3F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_3F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_3F": {
+      "path": "files/fielddata/eventdata/zone_event/304_D17R0103.json",
+      "sha256": "3a6f448ddfe13d6fbf4d707febd15fd35442e4570a54e83cc88097d54f36b748",
+      "header": "fielddata/script/scr_seq/event_D17R0103.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d17r0103_max_potion",
+          "type": 2,
+          "x": 16,
+          "z": 8,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0103_FULL_HEAL",
+          "scriptId": "std_itemball_d17r0103_full_heal",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 25,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_4F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 7,
+          "header": "MAP_BELL_TOWER_4F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_4F": {
+      "path": "files/fielddata/eventdata/zone_event/305_D17R0104.json",
+      "sha256": "d80fa52e3b2a5af4dbbde5f5a8939633738fd4e562e62c99d30715041b1b8e35",
+      "header": "fielddata/script/scr_seq/event_D17R0104.h",
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0104_ESCAPE_ROPE",
+          "scriptId": "std_itemball_d17r0104_escape_rope",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 21,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0104_ULTRA_BALL",
+          "scriptId": "std_itemball_d17r0104_ultra_ball",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 22,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_3",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0104_PP_UP",
+          "scriptId": "std_itemball_d17r0104_pp_up",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 25,
+          "z": 24,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 24,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_3F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 7,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_5F": {
+      "path": "files/fielddata/eventdata/zone_event/306_D17R0105.json",
+      "sha256": "f670da6e0c40567b038181d8f8edcf89a76a6d088c3394bc5fb24e8fba78a735",
+      "header": "fielddata/script/scr_seq/event_D17R0105.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d17r0105_full_restore",
+          "type": 2,
+          "x": 24,
+          "z": 20,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0105_RARE_CANDY",
+          "scriptId": "std_itemball_d17r0105_rare_candy",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 19,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 6,
+          "z": 8,
+          "header": "MAP_BELL_TOWER_4F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_4F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_4F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 13,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_6F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 13,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_6F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_6F": {
+      "path": "files/fielddata/eventdata/zone_event/307_D17R0106.json",
+      "sha256": "31a4b5bea3f42667e2985132e9ddcd930a65e3b6e6f2424c04f7dcf2c8aeab34",
+      "header": "fielddata/script/scr_seq/event_D17R0106.h",
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0106_MAX_POTION",
+          "scriptId": "std_itemball_d17r0106_max_potion",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0106_FULL_HEAL",
+          "scriptId": "std_itemball_d17r0106_full_heal",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 7,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 13,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_5F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 19,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 18,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_7F": {
+      "path": "files/fielddata/eventdata/zone_event/308_D17R0107.json",
+      "sha256": "8ff729503b148b1d0ed9d5c70fae5f92df4e5fb27ea4686d33c4ca1c936f2627",
+      "header": "fielddata/script/scr_seq/event_D17R0107.h",
+      "objects": [
+        {
+          "id": "obj_D17R0107_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0107_MAX_REVIVE",
+          "scriptId": "std_itemball_d17r0107_max_revive",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 23,
+          "z": 7,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 6,
+          "z": 19,
+          "header": "MAP_BELL_TOWER_6F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 26,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "z": 16,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "z": 16,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "z": 10,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_8F": {
+      "path": "files/fielddata/eventdata/zone_event/309_D17R0108.json",
+      "sha256": "b43c17cafdb2a78d3851c097d5ae7356cf81b9d289d2c8309c4baa39cd21e1ba",
+      "header": "fielddata/script/scr_seq/event_D17R0108.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d17r0108_carbos",
+          "type": 2,
+          "x": 21,
+          "z": 6,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0108_FULL_RESTORE",
+          "scriptId": "std_itemball_d17r0108_full_restore",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 6,
+          "z": 6,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0108_MAX_ELIXIR",
+          "scriptId": "std_itemball_d17r0108_max_elixir",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_3",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0108_NUGGET",
+          "scriptId": "std_itemball_d17r0108_nugget",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 19,
+          "z": 24,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 7,
+          "z": 12,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 7,
+          "z": 20,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 16,
+          "z": 9,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 11,
+          "z": 18,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 23,
+          "z": 17,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 4,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_9F": {
+      "path": "files/fielddata/eventdata/zone_event/310_D17R0109.json",
+      "sha256": "5831f4c72c33cc3de87c4632b431073175fb2f4d15510ccd46571491a3b6b5a4",
+      "header": "fielddata/script/scr_seq/event_D17R0109.h",
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D17R0109_HP_UP",
+          "scriptId": "std_itemball_d17r0109_hp_up",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 6,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 6,
+          "z": 12,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "z": 7,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "z": 15,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 15,
+          "header": "MAP_BELL_TOWER_7F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 10,
+          "z": 23,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 14,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_8F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "z": 17,
+          "header": "MAP_BELL_TOWER_10F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "z": 16,
+          "header": "MAP_BELL_TOWER_10F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_10F": {
+      "path": "files/fielddata/eventdata/zone_event/312_D17R0112.json",
+      "sha256": "9d35357e0359cd0439781ca6f7ad4d65af86ca4c046cd1ec3309d54a2df2b5fb",
+      "header": "fielddata/script/scr_seq/event_D17R0112.h",
+      "warps": [
+        {
+          "x": 11,
+          "z": 17,
+          "header": "MAP_BELL_TOWER_9F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 25,
+          "header": "MAP_BELL_TOWER_ROOF",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_ROOF",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_BELL_TOWER_ROOF": {
+      "path": "files/fielddata/eventdata/zone_event/311_D17R0110.json",
+      "sha256": "1a3fe34fe615985456d9d20db94b9af692730447f403558a2a10624d9ac6f59b",
+      "header": "fielddata/script/scr_seq/event_D17R0110.h",
+      "objects": [
+        {
+          "id": "obj_D17R0110_dancer",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D17R0110_001 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_D17R0110_dancer_2",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D17R0110_004 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_D17R0110_dancer_3",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D17R0110_004 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_D17R0110_dancer_4",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D17R0110_004 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_D17R0110_dancer_5",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D17R0110_004 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 18,
+          "y": 0
+        },
+        {
+          "id": "obj_D17R0110_hou_obj01",
+          "spriteId": "SPRITE_HOU_OBJ01",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_BELL_TOWER_HO_OH",
+          "scriptId": "_EV_scr_seq_D17R0110_000 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 16,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 15,
+          "z": 24,
+          "header": "MAP_BELL_TOWER_10F",
+          "anchor": 1,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D17R0110_006 + 1",
+          "x": 15,
+          "z": 20,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 1,
+          "var": "VAR_UNK_40FA"
+        }
+      ]
+    },
+    "MAP_WHIRL_ISLANDS_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/228_D40R0102.json",
+      "sha256": "5e838cf0955eeb76c37954db8becd622c1a5a1f91236ff7e2228a79116411b4e",
+      "header": "fielddata/script/scr_seq/event_D40R0102.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d40r0102_ultra_ball",
+          "type": 2,
+          "x": 63,
+          "z": 45,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d40r0102_super_repel",
+          "type": 2,
+          "x": 67,
+          "z": 8,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d40r0102_pearl",
+          "type": 2,
+          "x": 28,
+          "z": 10,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d40r0102_revive",
+          "type": 2,
+          "x": 72,
+          "z": 20,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D40R0102_rock",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 50,
+          "z": 48,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0102_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0102_ESCAPE_ROPE",
+          "scriptId": "std_itemball_d40r0102_escape_rope",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 42,
+          "z": 49,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0102_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0102_CARBOS",
+          "scriptId": "std_itemball_d40r0102_carbos",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 19,
+          "z": 36,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0102_monstarball_3",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0102_FULL_RESTORE",
+          "scriptId": "std_itemball_d40r0102_full_restore",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 26,
+          "z": 27,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0102_monstarball_4",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0102_NUGGET",
+          "scriptId": "std_itemball_d40r0102_nugget",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 41,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0102_monstarball_5",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0102_CALCIUM",
+          "scriptId": "std_itemball_d40r0102_calcium",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 70,
+          "z": 39,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 23,
+          "z": 11,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 23,
+          "z": 10,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 29,
+          "z": 54,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 29,
+          "z": 53,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 64,
+          "z": 16,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 64,
+          "z": 15,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 73,
+          "z": 8,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 73,
+          "z": 7,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 46,
+          "z": 54,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 46,
+          "z": 53,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 54,
+          "z": 43,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 66,
+          "z": 51,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 8,
+          "y": 0
+        },
+        {
+          "x": 66,
+          "z": 50,
+          "header": "MAP_WHIRL_ISLANDS_1F",
+          "anchor": 8,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_WHIRL_ISLANDS_B2F": {
+      "path": "files/fielddata/eventdata/zone_event/229_D40R0104.json",
+      "sha256": "6c0ca6508f539cc1d07deab9314bbc27fd2f7d92791c3079d20d0e6884799e5b",
+      "header": "fielddata/script/scr_seq/event_D40R0104.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d40r0104_full_restore",
+          "type": 2,
+          "x": 29,
+          "z": 11,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D40R0104_bozu",
+          "spriteId": "SPRITE_BOZU",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "_EV_scr_seq_D40R0104_000 + 1",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 36,
+          "z": 30,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0104_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0104_MAX_REVIVE",
+          "scriptId": "std_itemball_d40r0104_max_revive",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 25,
+          "z": 17,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0104_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0104_FULL_RESTORE",
+          "scriptId": "std_itemball_d40r0104_full_restore",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 29,
+          "z": 25,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0104_monstarball_3",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0104_MAX_ELIXIR",
+          "scriptId": "std_itemball_d40r0104_max_elixir",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 25,
+          "z": 30,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 27,
+          "z": 28,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 27,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 32,
+          "z": 14,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 11,
+          "y": 0
+        },
+        {
+          "x": 32,
+          "z": 13,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 11,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "z": 31,
+          "header": "MAP_WHIRL_ISLANDS_B3F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "z": 43,
+          "header": "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_WHIRL_ISLANDS_B3F": {
+      "path": "files/fielddata/eventdata/zone_event/439_D40R0106.json",
+      "sha256": "1d3b684e646fc94230e39e889b4c1c6b947f56a5965f869f8037f4a5350978dc",
+      "header": "fielddata/script/scr_seq/event_D40R0106.h",
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0106_RARE_CANDY",
+          "scriptId": "std_itemball_d40r0106_rare_candy",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 27,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 16,
+          "z": 29,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 4,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE": {
+      "path": "files/fielddata/eventdata/zone_event/230_D40R0107.json",
+      "sha256": "55d767054ed7d47818a60984d41ce6d1f6cf28e6f5f3f6d0672e169b3fc85def",
+      "header": "fielddata/script/scr_seq/event_D40R0107.h",
+      "objects": [
+        {
+          "id": "obj_D40R0107_dancer",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D40R0107_003 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_dancer_2",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D40R0107_003 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 18,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_dancer_3",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D40R0107_003 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_dancer_4",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D40R0107_003 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 14,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_dancer_5",
+          "spriteId": "SPRITE_DANCER",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS",
+          "scriptId": "_EV_scr_seq_D40R0107_001 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_lug_obj01",
+          "spriteId": "SPRITE_LUG_OBJ01",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": "_EV_scr_seq_D40R0107_000 + 1",
+          "facingDirection": 1,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 17,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_stop",
+          "spriteId": "SPRITE_STOP",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 17,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_stop_2",
+          "spriteId": "SPRITE_STOP",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 17,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_stop_3",
+          "spriteId": "SPRITE_STOP",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 15,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_stop_4",
+          "spriteId": "SPRITE_STOP",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 16,
+          "z": 16,
+          "y": 0
+        },
+        {
+          "id": "obj_D40R0107_stop_5",
+          "spriteId": "SPRITE_STOP",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_WHIRL_ISLAND_LUGIA",
+          "scriptId": 0,
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 17,
+          "z": 16,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 16,
+          "z": 38,
+          "header": "MAP_WHIRL_ISLANDS_B2F",
+          "anchor": 5,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D40R0107_005 + 1",
+          "x": 16,
+          "z": 36,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 1,
+          "var": "VAR_UNK_40FA"
+        }
+      ]
+    },
+    "MAP_WHIRL_ISLANDS_1F": {
+      "path": "files/fielddata/eventdata/zone_event/118_D40R0101.json",
+      "sha256": "b19065e1b1e281c9e549a2420284de540e46c4ecc1e874ab6085fb6f8136c320",
+      "header": "fielddata/script/scr_seq/event_D40R0101.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d40r0101_rare_candy",
+          "type": 2,
+          "x": 47,
+          "z": 44,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_EVERYWHERE_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0101_ULTRA_BALL_2",
+          "scriptId": "std_itemball_d40r0101_ultra_ball_2",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 22,
+          "z": 47,
+          "y": 0
+        },
+        {
+          "id": "obj_EVERYWHERE_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D40R0101_ULTRA_BALL",
+          "scriptId": "std_itemball_d40r0101_ultra_ball",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 48,
+          "z": 21,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 37,
+          "z": 25,
+          "header": "MAP_ROUTE_41",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 51,
+          "z": 22,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 56,
+          "z": 9,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 11,
+          "z": 20,
+          "header": "MAP_ROUTE_41",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "z": 16,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "z": 54,
+          "header": "MAP_ROUTE_41",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 9,
+          "y": 0
+        },
+        {
+          "x": 52,
+          "z": 49,
+          "header": "MAP_WHIRL_ISLANDS_B1F",
+          "anchor": 12,
+          "y": 0
+        },
+        {
+          "x": 52,
+          "z": 59,
+          "header": "MAP_ROUTE_41",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_ICE_PATH_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/223_D39R0102.json",
+      "sha256": "a4f1de1aaea4958c335a6005da5bd239420975a78011418ef0073da3b464df31",
+      "header": "fielddata/script/scr_seq/event_D39R0102.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d39r0102_revive",
+          "type": 2,
+          "x": 15,
+          "z": 47,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D39R0102_rock",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ICE_PATH_BOULDER_1_INIT",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 10,
+          "z": 13,
+          "y": 0
+        },
+        {
+          "id": "obj_D39R0102_rock_2",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ICE_PATH_BOULDER_2_INIT",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 14,
+          "y": 0
+        },
+        {
+          "id": "obj_D39R0102_rock_3",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ICE_PATH_BOULDER_3_INIT",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 18,
+          "z": 12,
+          "y": 0
+        },
+        {
+          "id": "obj_D39R0102_rock_4",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ICE_PATH_BOULDER_4_INIT",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 25,
+          "z": 12,
+          "y": 0
+        },
+        {
+          "id": "obj_D39R0102_rock_5",
+          "spriteId": "SPRITE_ROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_NOTHING",
+          "scriptId": "std_field_strength",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 12,
+          "z": 44,
+          "y": 0
+        },
+        {
+          "id": "obj_D39R0102_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D39R0102_IRON",
+          "scriptId": "std_itemball_d39r0102_iron",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 13,
+          "z": 48,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 6,
+          "z": 21,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 20,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 25,
+          "z": 8,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 40,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 42,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 41,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 3,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D39R0102_000 + 1",
+          "x": 11,
+          "z": 10,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40AA"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D39R0102_001 + 1",
+          "x": 10,
+          "z": 18,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40AA"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D39R0102_002 + 1",
+          "x": 18,
+          "z": 7,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40AA"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D39R0102_003 + 1",
+          "x": 19,
+          "z": 19,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40AA"
+        }
+      ]
+    },
+    "MAP_VICTORY_ROAD_3F": {
+      "path": "files/fielddata/eventdata/zone_event/172_D43R0103.json",
+      "sha256": "7d25529141398f5c19df80515167d7ee747c751de255fb13e5644d61a7616221",
+      "header": "fielddata/script/scr_seq/event_D43R0103.h",
+      "bgs": [
+        {
+          "scriptId": "std_hiddenitem_d43r0103_hyper_potion",
+          "type": 2,
+          "x": 59,
+          "z": 40,
+          "y": 0,
+          "dir": 4
+        },
+        {
+          "scriptId": "std_hiddenitem_d43r0103_zinc",
+          "type": 2,
+          "x": 43,
+          "z": 18,
+          "y": 0,
+          "dir": 4
+        }
+      ],
+      "objects": [
+        {
+          "id": "obj_D43R0103_gsrivel",
+          "spriteId": "SPRITE_GSRIVEL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_VICTORY_ROAD_RIVAL",
+          "scriptId": "_EV_scr_seq_D43R0103_001 + 1",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 33,
+          "z": 29,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_monstarball",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D43R0103_ULTRA_BALL",
+          "scriptId": "std_itemball_d43r0103_ultra_ball",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 46,
+          "z": 19,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_monstarball_2",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D43R0103_TM79",
+          "scriptId": "std_itemball_d43r0103_tm79",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 33,
+          "z": 36,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_monstarball_3",
+          "spriteId": "SPRITE_MONSTARBALL",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_HIDE_ITEMBALL_D43R0103_RARE_CANDY",
+          "scriptId": "std_itemball_d43r0103_rare_candy",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 25,
+          "z": 15,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_010",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 33,
+          "z": 31,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_2",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_011",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 33,
+          "z": 32,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_3",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_012",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 33,
+          "z": 33,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_4",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_013",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 43,
+          "z": 19,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_5",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_014",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 45,
+          "z": 21,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_6",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_015",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 47,
+          "z": 20,
+          "y": 0
+        },
+        {
+          "id": "obj_D43R0103_breakrock_7",
+          "spriteId": "SPRITE_BREAKROCK",
+          "movement": 0,
+          "type": 0,
+          "eventFlag": "FLAG_MAPTEMP_016",
+          "scriptId": "std_field_rock_smash",
+          "facingDirection": 0,
+          "param0": 0,
+          "param1": 0,
+          "param2": 0,
+          "xRange": 0,
+          "yRange": 0,
+          "x": 42,
+          "z": 21,
+          "y": 0
+        }
+      ],
+      "warps": [
+        {
+          "x": 38,
+          "z": 14,
+          "header": "MAP_INDIGO_PLATEAU",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 25,
+          "z": 45,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 49,
+          "z": 39,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 54,
+          "z": 22,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "z": 19,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 38,
+          "z": 13,
+          "header": "MAP_INDIGO_PLATEAU",
+          "anchor": 0,
+          "y": 0
+        }
+      ],
+      "coords": [
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_000 + 1",
+          "x": 37,
+          "z": 21,
+          "w": 3,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C5"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_002 + 1",
+          "x": 55,
+          "z": 42,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C9"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_003 + 1",
+          "x": 26,
+          "z": 38,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C9"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_004 + 1",
+          "x": 29,
+          "z": 44,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C9"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_005 + 1",
+          "x": 20,
+          "z": 18,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C9"
+        },
+        {
+          "scriptId": "_EV_scr_seq_D43R0103_006 + 1",
+          "x": 56,
+          "z": 28,
+          "w": 1,
+          "h": 1,
+          "y": 0,
+          "val": 0,
+          "var": "VAR_UNK_40C9"
+        }
+      ]
+    }
+  },
+  "locations": {
+    "Sprout Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Central ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 112,
+              "y": 145,
+              "warpIndices": [
+                1,
+                5
+              ]
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 0,
+              "mapId": "2f",
+              "x": 128,
+              "y": 145,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Northeast ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 2,
+              "mapId": "1f",
+              "x": 336,
+              "y": 72,
+              "warpIndices": [
+                2,
+                6
+              ]
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 1,
+              "mapId": "2f",
+              "x": 336,
+              "y": 82,
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "West ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 3,
+              "mapId": "1f",
+              "x": 48,
+              "y": 160,
+              "warpIndices": [
+                3,
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 2,
+              "mapId": "2f",
+              "x": 48,
+              "y": 170,
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Top floor ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 3,
+              "mapId": "2f",
+              "x": 192,
+              "y": 280,
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_3F",
+              "warp": 0,
+              "mapId": "3f",
+              "x": 192,
+              "y": 308,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "drops": [],
+      "images": {
+        "1f": {
+          "file": "sprout-tower-1f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "5991cfb0e0ac7c2ba0a95f8514b3d0b2b33cf4ffb295bc44c6b0a610a9dbc6e3"
+        },
+        "2f": {
+          "file": "sprout-tower-2f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "c6a52870ebfb103838d55ab448cac5533b11bbd67830548cac5574ec34cc7abd"
+        },
+        "3f": {
+          "file": "sprout-tower-3f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "9db35a48a19fb49d3b3d903ec702e5e30f69286e9ea77270d79c04a8ab5c270a"
+        }
+      },
+      "primaryMaps": [
+        "MAP_SPROUT_TOWER_1F",
+        "MAP_SPROUT_TOWER_2F",
+        "MAP_SPROUT_TOWER_3F"
+      ],
+      "missing": []
+    },
+    "Burned Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Basement ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_BURNED_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 288,
+              "y": 176,
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "primaryMap": "MAP_BURNED_TOWER_B1F",
+              "warp": 0,
+              "mapId": "b1f",
+              "x": 296,
+              "y": 160,
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "drops": [],
+      "images": {
+        "1f": {
+          "file": "burned-tower-1f-hgss.png",
+          "width": 352,
+          "height": 309,
+          "sha256": "a125443665cc15677844110fe890048e1b79b5aeabfa6a72265053b0194294ef"
+        },
+        "b1f": {
+          "file": "burned-tower-b1f-hgss.png",
+          "width": 336,
+          "height": 300,
+          "sha256": "ef61d9d81674fa2034609e3646978390b58ad2b8545bd4976325700c79bd0a83"
+        }
+      },
+      "primaryMaps": [
+        "MAP_BURNED_TOWER_1F",
+        "MAP_BURNED_TOWER_B1F"
+      ],
+      "missing": []
+    },
+    "Bell Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 96,
+              "y": 72,
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_2F",
+              "warp": 0,
+              "mapId": "2f",
+              "x": 96,
+              "y": 90,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_2F",
+              "warp": 1,
+              "mapId": "2f",
+              "x": 192,
+              "y": 280,
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_3F",
+              "warp": 0,
+              "mapId": "3f",
+              "x": 192,
+              "y": 308,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_3F",
+              "warp": 1,
+              "mapId": "3f",
+              "x": 336,
+              "y": 70,
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 0,
+              "mapId": "4f",
+              "x": 336,
+              "y": 92,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 1,
+              "mapId": "4f",
+              "x": 48,
+              "y": 70,
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 0,
+              "mapId": "5f",
+              "x": 48,
+              "y": 90,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 3,
+              "mapId": "4f",
+              "x": 48,
+              "y": 280,
+              "warpIndices": [
+                3,
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 1,
+              "mapId": "5f",
+              "x": 48,
+              "y": 308,
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 5,
+              "mapId": "4f",
+              "x": 336,
+              "y": 280,
+              "warpIndices": [
+                5,
+                6
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 2,
+              "mapId": "5f",
+              "x": 336,
+              "y": 308,
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 3,
+              "mapId": "5f",
+              "x": 160,
+              "y": 280,
+              "warpIndices": [
+                3,
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_6F",
+              "warp": 0,
+              "mapId": "6f",
+              "x": 160,
+              "y": 308,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_6F",
+              "warp": 1,
+              "mapId": "6f",
+              "x": 48,
+              "y": 205,
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 0,
+              "mapId": "7f",
+              "x": 48,
+              "y": 223,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 1,
+              "mapId": "7f",
+              "x": 192,
+              "y": 308,
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 0,
+              "mapId": "8f",
+              "x": 64,
+              "y": 147,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 2,
+              "mapId": "7f",
+              "x": 144,
+              "y": 184,
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 3,
+              "mapId": "9f",
+              "x": 336,
+              "y": 185,
+              "warpIndices": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 3,
+              "mapId": "7f",
+              "x": 240,
+              "y": 184,
+              "side": "east pad",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 4,
+              "mapId": "7f",
+              "x": 96,
+              "y": 112,
+              "side": "northwest pad",
+              "warpIndices": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 1,
+              "mapId": "8f",
+              "x": 64,
+              "y": 244,
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 1,
+              "mapId": "9f",
+              "x": 272,
+              "y": 85,
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 2,
+              "mapId": "8f",
+              "x": 208,
+              "y": 110,
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 2,
+              "mapId": "9f",
+              "x": 240,
+              "y": 185,
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 3,
+              "mapId": "8f",
+              "x": 128,
+              "y": 220,
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 5,
+              "mapId": "9f",
+              "x": 176,
+              "y": 307,
+              "warpIndices": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 4,
+              "mapId": "8f",
+              "x": 320,
+              "y": 207,
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 0,
+              "mapId": "9f",
+              "x": 48,
+              "y": 147,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "P",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 5,
+              "mapId": "8f",
+              "x": 336,
+              "y": 293,
+              "warpIndices": [
+                5
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 4,
+              "mapId": "9f",
+              "x": 112,
+              "y": 283,
+              "warpIndices": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 6,
+              "mapId": "9f",
+              "x": 144,
+              "y": 195,
+              "warpIndices": [
+                6,
+                7
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_10F",
+              "warp": 0,
+              "mapId": "10f",
+              "x": 128,
+              "y": 200,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "R",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_ROOF",
+              "warp": 0,
+              "mapId": "roof",
+              "x": 224,
+              "y": 360,
+              "warpIndices": [
+                0
+              ]
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_10F",
+              "warp": 1,
+              "mapId": "10f",
+              "x": 192,
+              "y": 280,
+              "warpIndices": [
+                1,
+                2
+              ]
+            }
+          ]
+        }
+      ],
+      "drops": [],
+      "images": {
+        "1f": {
+          "file": "bell-tower-1f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "965aa8dc13ccb8b291dbd4c12cac291258ca58357cd50b7b50dece3ab67085ba"
+        },
+        "2f": {
+          "file": "bell-tower-2f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "e369b4711bc9fd3f8addb23ca4a5b29f2478d028f4022a7834ed8baf63cd3cfb"
+        },
+        "3f": {
+          "file": "bell-tower-3f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "40871c0b00d936ce2f21d582305db52d21960ed7d1e303336194458c2a791d44"
+        },
+        "4f": {
+          "file": "bell-tower-4f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "b8e02fdf9ead93eedc4e52a8ef2dd1bcf2dd79c274f588df07dfd58fcfef428c"
+        },
+        "5f": {
+          "file": "bell-tower-5f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "5562996eec857a2399b76362c2657e7cf92637bc2dc7814d146050bc644c3a76"
+        },
+        "6f": {
+          "file": "bell-tower-6f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "00c040d9def515d9b252c27456bcd12b30cc2b25a694514cc624f569305438dd"
+        },
+        "7f": {
+          "file": "bell-tower-7f-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "84deb0f926d7a66872f31591be777f1c31704d1315912d5681eb03768103ec83"
+        },
+        "8f": {
+          "file": "bell-tower-8f-hgss.png",
+          "width": 384,
+          "height": 384,
+          "sha256": "9cc7e6c85dc62951dbd0120364eb3e7e7d0769f5f631bd68b2b4c82410cde074"
+        },
+        "9f": {
+          "file": "bell-tower-9f-hgss.png",
+          "width": 384,
+          "height": 384,
+          "sha256": "cf1e91d3a6e52de9de458f7d85192b1ed41d3f988b05cdc0a5631eb3bb14b178"
+        },
+        "10f": {
+          "file": "bell-tower-10f-hgss.png",
+          "width": 384,
+          "height": 384,
+          "sha256": "b800c818ee0c2047be9b801c24b2d21d00703694ff2ad99b516b2c508e05a00b"
+        },
+        "roof": {
+          "file": "bell-tower-summit-hgss.png",
+          "width": 448,
+          "height": 574,
+          "sha256": "0277691a601022accb8ec0f1c8c4812ee9081e2b7eda4655d9ac31127a12c7fe"
+        }
+      },
+      "primaryMaps": [
+        "MAP_BELL_TOWER_10F",
+        "MAP_BELL_TOWER_1F",
+        "MAP_BELL_TOWER_2F",
+        "MAP_BELL_TOWER_3F",
+        "MAP_BELL_TOWER_4F",
+        "MAP_BELL_TOWER_5F",
+        "MAP_BELL_TOWER_6F",
+        "MAP_BELL_TOWER_7F",
+        "MAP_BELL_TOWER_8F",
+        "MAP_BELL_TOWER_9F",
+        "MAP_BELL_TOWER_ROOF"
+      ],
+      "missing": []
+    },
+    "Whirl Islands": {
+      "pairs": [
+        {
+          "id": "G",
+          "label": "B1F southwest ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B1F",
+              "warp": 4,
+              "mapId": "b1f",
+              "x": 295,
+              "y": 595,
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 0,
+              "mapId": "b2f",
+              "x": 144,
+              "y": 235,
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "B1F central ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B1F",
+              "warp": 11,
+              "mapId": "b1f",
+              "x": 664,
+              "y": 519,
+              "warpIndices": [
+                11
+              ]
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 2,
+              "mapId": "b2f",
+              "x": 224,
+              "y": 65,
+              "warpIndices": [
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Upper side chamber",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 4,
+              "mapId": "b2f",
+              "x": 208,
+              "y": 315,
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B3F",
+              "warp": 0,
+              "mapId": "b3f",
+              "x": 120,
+              "y": 180,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "label": "Lugia chamber entrance",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 5,
+              "mapId": "b2f",
+              "x": 208,
+              "y": 650,
+              "warpIndices": [
+                5
+              ]
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE",
+              "warp": 0,
+              "mapId": "lugia-chamber",
+              "x": 272,
+              "y": 600,
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "drops": [],
+      "images": {
+        "1f-nw": {
+          "file": "whirl-islands-1f-nw-hgss.png",
+          "width": 204,
+          "height": 146,
+          "sha256": "021b04d8c070fe6051385dd2e175b06d805aa3da6ed73865e6c953041c665a8c"
+        },
+        "b1f": {
+          "file": "whirl-islands-b1f-hgss.png",
+          "width": 1088,
+          "height": 736,
+          "sha256": "518abd844b6300c62ec5501e7c238fb15aa8e50c30edac4de6e43a7002f107e5"
+        },
+        "1f-ne": {
+          "file": "whirl-islands-1f-ne-hgss.png",
+          "width": 445,
+          "height": 307,
+          "sha256": "453636828332cd8f2150683d18ae16277095e33c752727e01bcefafc8dc06157"
+        },
+        "1f-sw": {
+          "file": "whirl-islands-1f-sw-hgss.png",
+          "width": 476,
+          "height": 170,
+          "sha256": "516c077ac5cabb618c2d282741dd60ca710878cab9ec2ffb096929898629a292"
+        },
+        "1f-se": {
+          "file": "whirl-islands-1f-se-hgss.png",
+          "width": 268,
+          "height": 270,
+          "sha256": "206ccf4621e5fca6451aca7ba4d22cbc96cc837261c499f5de840b10a0bfee41"
+        },
+        "b2f": {
+          "file": "whirl-islands-b2f-hgss.png",
+          "width": 432,
+          "height": 794,
+          "sha256": "ab9d0d3522e4829299dc8d97031f0165c61ac3722758263c8edb2da1230b70eb"
+        },
+        "b3f": {
+          "file": "whirl-islands-b3f-hgss.png",
+          "width": 240,
+          "height": 192,
+          "sha256": "5a21c16ae06d416a38a0e7259f5468bfa496b8f6deb8314b942b24b8eb0c480b"
+        },
+        "lugia-chamber": {
+          "file": "whirl-islands-b3f-lugia-hgss.png",
+          "width": 544,
+          "height": 640,
+          "sha256": "e607f3c6757169a59faf53bdce19a28fe9015bb382eb5d1c36042a2e82dd2a17"
+        }
+      },
+      "primaryMaps": [
+        "MAP_WHIRL_ISLANDS_1F",
+        "MAP_WHIRL_ISLANDS_B1F",
+        "MAP_WHIRL_ISLANDS_B2F",
+        "MAP_WHIRL_ISLANDS_B3F",
+        "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE"
+      ],
+      "missing": []
+    },
+    "Ice Path": {
+      "pairs": [],
+      "drops": [
+        {
+          "id": "D1",
+          "label": "One-way hole",
+          "scriptIndex": 0,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 198,
+              "y": 139
+            },
+            {
+              "mapId": "b2f",
+              "x": 184,
+              "y": 164
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D39R0102_000 + 1",
+            "x": 11,
+            "z": 10,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40AA"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s",
+          "landing": {
+            "x": 12,
+            "z": 12
+          },
+          "jump": "_0062"
+        },
+        {
+          "id": "D2",
+          "label": "One-way hole",
+          "scriptIndex": 1,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 182,
+              "y": 239
+            },
+            {
+              "mapId": "b2f",
+              "x": 152,
+              "y": 274
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D39R0102_001 + 1",
+            "x": 10,
+            "z": 18,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40AA"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s",
+          "landing": {
+            "x": 10,
+            "z": 21
+          },
+          "jump": "_0062"
+        },
+        {
+          "id": "D3",
+          "label": "One-way hole",
+          "scriptIndex": 2,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 312,
+              "y": 103
+            },
+            {
+              "mapId": "b2f",
+              "x": 312,
+              "y": 138
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D39R0102_002 + 1",
+            "x": 18,
+            "z": 7,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40AA"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s",
+          "landing": {
+            "x": 20,
+            "z": 10
+          },
+          "jump": "_0062"
+        },
+        {
+          "id": "D4",
+          "label": "One-way hole",
+          "scriptIndex": 3,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 330,
+              "y": 252
+            },
+            {
+              "mapId": "b2f",
+              "x": 328,
+              "y": 298
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D39R0102_003 + 1",
+            "x": 19,
+            "z": 19,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40AA"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0100_D39R0102.s",
+          "landing": {
+            "x": 21,
+            "z": 23
+          },
+          "jump": "_0062"
+        }
+      ],
+      "images": {
+        "b1f": {
+          "file": "ice-path-b1f-hgss.png",
+          "width": 544,
+          "height": 640,
+          "sha256": "3b74adbf44de1395a7c02d211c99f988880f23b6cbf22bd4f41bf3e4bf9ee805"
+        },
+        "b2f": {
+          "file": "ice-path-b2f-hgss.png",
+          "width": 992,
+          "height": 384,
+          "sha256": "18e95d6e047a1e6d3653be483073fb44409d7703fa8e2368c2623c4948415a1d"
+        }
+      },
+      "primaryMaps": [],
+      "missing": []
+    },
+    "Victory Road": {
+      "pairs": [],
+      "drops": [
+        {
+          "id": "D1",
+          "label": "One-way hole",
+          "scriptIndex": 2,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 896,
+              "y": 455
+            },
+            {
+              "mapId": "2f",
+              "x": 948,
+              "y": 410
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D43R0103_002 + 1",
+            "x": 55,
+            "z": 42,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40C9"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "landing": {
+            "x": 57,
+            "z": 42
+          },
+          "jump": "_0278"
+        },
+        {
+          "id": "D2",
+          "label": "One-way hole",
+          "scriptIndex": 3,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 432,
+              "y": 396
+            },
+            {
+              "mapId": "2f",
+              "x": 484,
+              "y": 350
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D43R0103_003 + 1",
+            "x": 26,
+            "z": 38,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40C9"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "landing": {
+            "x": 28,
+            "z": 38
+          },
+          "jump": "_0278"
+        },
+        {
+          "id": "D3",
+          "label": "One-way hole",
+          "scriptIndex": 4,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 480,
+              "y": 471
+            },
+            {
+              "mapId": "2f",
+              "x": 532,
+              "y": 425
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D43R0103_004 + 1",
+            "x": 29,
+            "z": 44,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40C9"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "landing": {
+            "x": 31,
+            "z": 44
+          },
+          "jump": "_0278"
+        },
+        {
+          "id": "D4",
+          "label": "One-way hole",
+          "scriptIndex": 5,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 336,
+              "y": 160
+            },
+            {
+              "mapId": "2f",
+              "x": 388,
+              "y": 82
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D43R0103_005 + 1",
+            "x": 20,
+            "z": 18,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40C9"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "landing": {
+            "x": 22,
+            "z": 17
+          },
+          "jump": "_0278"
+        },
+        {
+          "id": "D5",
+          "label": "One-way hole",
+          "scriptIndex": 6,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 912,
+              "y": 286
+            },
+            {
+              "mapId": "2f",
+              "x": 964,
+              "y": 226
+            }
+          ],
+          "trigger": {
+            "scriptId": "_EV_scr_seq_D43R0103_006 + 1",
+            "x": 56,
+            "z": 28,
+            "w": 1,
+            "h": 1,
+            "y": 0,
+            "val": 0,
+            "var": "VAR_UNK_40C9"
+          },
+          "scriptPath": "files/fielddata/script/scr_seq/scr_seq_0110_D43R0103.s",
+          "landing": {
+            "x": 58,
+            "z": 28
+          },
+          "jump": "_0278"
+        }
+      ],
+      "images": {
+        "3f": {
+          "file": "victory-road-3f-hgss.png",
+          "width": 1052,
+          "height": 566,
+          "sha256": "2d89997736a33b52c55522c571b4212b4ad0f9d1fdd4220a0c7ba77932d6c956"
+        },
+        "2f": {
+          "file": "victory-road-2f-hgss.png",
+          "width": 1094,
+          "height": 498,
+          "sha256": "b67e9503010e6fff232faca6304a2cb5239663a86b2ddd2d485a44c19f50af9e"
+        }
+      },
+      "primaryMaps": [],
+      "missing": []
+    }
+  },
+  "missing": []
+}

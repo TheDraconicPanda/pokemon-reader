@@ -357,3 +357,7 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2p
 .travel-badges { min-width: 44px; min-height: 28px; align-items: center; cursor: help; }
 .travel-conditions li.is-selected { padding: 0.5rem; border-radius: 0.4rem; background: var(--soft-accent); outline: 2px solid var(--accent); outline-offset: 2px; }
 .map-viewer-header { position: sticky; top: 0; z-index: 2; padding-block: 0.35rem; background: var(--surface); }
+
+.map-stair-marker.is-one-way { width: 32px; height: 24px; border-style: dashed; }
+.map-stair-marker[aria-disabled="true"], .map-stair-list button[aria-disabled="true"] { cursor: default; opacity: .85; }
+.map-marker-layer-large .map-stair-marker.is-one-way { width: 40px; height: 34px; font-size: 14px; }

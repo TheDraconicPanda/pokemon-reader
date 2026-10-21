@@ -1,0 +1,744 @@
+{
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "locations": {
+    "Sprout Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Central ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 112,
+              "y": 145
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 0,
+              "mapId": "2f",
+              "x": 128,
+              "y": 145
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Northeast ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 2,
+              "mapId": "1f",
+              "x": 336,
+              "y": 72
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 1,
+              "mapId": "2f",
+              "x": 336,
+              "y": 82
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "West ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_1F",
+              "warp": 3,
+              "mapId": "1f",
+              "x": 48,
+              "y": 160
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 2,
+              "mapId": "2f",
+              "x": 48,
+              "y": 170
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Top floor ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_2F",
+              "warp": 3,
+              "mapId": "2f",
+              "x": 192,
+              "y": 280
+            },
+            {
+              "primaryMap": "MAP_SPROUT_TOWER_3F",
+              "warp": 0,
+              "mapId": "3f",
+              "x": 192,
+              "y": 308
+            }
+          ]
+        }
+      ]
+    },
+    "Burned Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Basement ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_BURNED_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 288,
+              "y": 176
+            },
+            {
+              "primaryMap": "MAP_BURNED_TOWER_B1F",
+              "warp": 0,
+              "mapId": "b1f",
+              "x": 296,
+              "y": 160
+            }
+          ]
+        }
+      ]
+    },
+    "Bell Tower": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_1F",
+              "warp": 1,
+              "mapId": "1f",
+              "x": 96,
+              "y": 72
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_2F",
+              "warp": 0,
+              "mapId": "2f",
+              "x": 96,
+              "y": 90
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_2F",
+              "warp": 1,
+              "mapId": "2f",
+              "x": 192,
+              "y": 280
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_3F",
+              "warp": 0,
+              "mapId": "3f",
+              "x": 192,
+              "y": 308
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_3F",
+              "warp": 1,
+              "mapId": "3f",
+              "x": 336,
+              "y": 70
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 0,
+              "mapId": "4f",
+              "x": 336,
+              "y": 92
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 1,
+              "mapId": "4f",
+              "x": 48,
+              "y": 70
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 0,
+              "mapId": "5f",
+              "x": 48,
+              "y": 90
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 3,
+              "mapId": "4f",
+              "x": 48,
+              "y": 280
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 1,
+              "mapId": "5f",
+              "x": 48,
+              "y": 308
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_4F",
+              "warp": 5,
+              "mapId": "4f",
+              "x": 336,
+              "y": 280
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 2,
+              "mapId": "5f",
+              "x": 336,
+              "y": 308
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_5F",
+              "warp": 3,
+              "mapId": "5f",
+              "x": 160,
+              "y": 280
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_6F",
+              "warp": 0,
+              "mapId": "6f",
+              "x": 160,
+              "y": 308
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_6F",
+              "warp": 1,
+              "mapId": "6f",
+              "x": 48,
+              "y": 205
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 0,
+              "mapId": "7f",
+              "x": 48,
+              "y": 223
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 1,
+              "mapId": "7f",
+              "x": 192,
+              "y": 308
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 0,
+              "mapId": "8f",
+              "x": 64,
+              "y": 147
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 2,
+              "mapId": "7f",
+              "x": 144,
+              "y": 184
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 3,
+              "mapId": "9f",
+              "x": 336,
+              "y": 185
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 3,
+              "mapId": "7f",
+              "x": 240,
+              "y": 184,
+              "side": "east pad"
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_7F",
+              "warp": 4,
+              "mapId": "7f",
+              "x": 96,
+              "y": 112,
+              "side": "northwest pad"
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 1,
+              "mapId": "8f",
+              "x": 64,
+              "y": 244
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 1,
+              "mapId": "9f",
+              "x": 272,
+              "y": 85
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 2,
+              "mapId": "8f",
+              "x": 208,
+              "y": 110
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 2,
+              "mapId": "9f",
+              "x": 240,
+              "y": 185
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 3,
+              "mapId": "8f",
+              "x": 128,
+              "y": 220
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 5,
+              "mapId": "9f",
+              "x": 176,
+              "y": 307
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 4,
+              "mapId": "8f",
+              "x": 320,
+              "y": 207
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 0,
+              "mapId": "9f",
+              "x": 48,
+              "y": 147
+            }
+          ]
+        },
+        {
+          "id": "P",
+          "label": "Teleport pad",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_8F",
+              "warp": 5,
+              "mapId": "8f",
+              "x": 336,
+              "y": 293
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 4,
+              "mapId": "9f",
+              "x": 112,
+              "y": 283
+            }
+          ]
+        },
+        {
+          "id": "Q",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_9F",
+              "warp": 6,
+              "mapId": "9f",
+              "x": 144,
+              "y": 195
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_10F",
+              "warp": 0,
+              "mapId": "10f",
+              "x": 128,
+              "y": 200
+            }
+          ]
+        },
+        {
+          "id": "R",
+          "label": "Stairs",
+          "ends": [
+            {
+              "primaryMap": "MAP_BELL_TOWER_ROOF",
+              "warp": 0,
+              "mapId": "roof",
+              "x": 224,
+              "y": 360
+            },
+            {
+              "primaryMap": "MAP_BELL_TOWER_10F",
+              "warp": 1,
+              "mapId": "10f",
+              "x": 192,
+              "y": 280
+            }
+          ]
+        }
+      ]
+    },
+    "Whirl Islands": {
+      "pairs": [
+        {
+          "id": "G",
+          "label": "B1F southwest ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B1F",
+              "warp": 4,
+              "mapId": "b1f",
+              "x": 295,
+              "y": 595
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 0,
+              "mapId": "b2f",
+              "x": 144,
+              "y": 235
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "B1F central ladder",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B1F",
+              "warp": 11,
+              "mapId": "b1f",
+              "x": 664,
+              "y": 519
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 2,
+              "mapId": "b2f",
+              "x": 224,
+              "y": 65
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Upper side chamber",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 4,
+              "mapId": "b2f",
+              "x": 208,
+              "y": 315
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B3F",
+              "warp": 0,
+              "mapId": "b3f",
+              "x": 120,
+              "y": 180
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "label": "Lugia chamber entrance",
+          "ends": [
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B2F",
+              "warp": 5,
+              "mapId": "b2f",
+              "x": 208,
+              "y": 650
+            },
+            {
+              "primaryMap": "MAP_WHIRL_ISLANDS_B3F_LUGIA_CAVE",
+              "warp": 0,
+              "mapId": "lugia-chamber",
+              "x": 272,
+              "y": 600
+            }
+          ]
+        }
+      ]
+    },
+    "Ice Path": {
+      "pairs": [],
+      "drops": [
+        {
+          "id": "D1",
+          "label": "One-way hole",
+          "scriptIndex": 0,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 198,
+              "y": 139
+            },
+            {
+              "mapId": "b2f",
+              "x": 184,
+              "y": 164
+            }
+          ]
+        },
+        {
+          "id": "D2",
+          "label": "One-way hole",
+          "scriptIndex": 1,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 182,
+              "y": 239
+            },
+            {
+              "mapId": "b2f",
+              "x": 152,
+              "y": 274
+            }
+          ]
+        },
+        {
+          "id": "D3",
+          "label": "One-way hole",
+          "scriptIndex": 2,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 312,
+              "y": 103
+            },
+            {
+              "mapId": "b2f",
+              "x": 312,
+              "y": 138
+            }
+          ]
+        },
+        {
+          "id": "D4",
+          "label": "One-way hole",
+          "scriptIndex": 3,
+          "primaryMap": "MAP_ICE_PATH_B1F",
+          "targetMap": "MAP_ICE_PATH_B2F",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 330,
+              "y": 252
+            },
+            {
+              "mapId": "b2f",
+              "x": 328,
+              "y": 298
+            }
+          ]
+        }
+      ]
+    },
+    "Victory Road": {
+      "pairs": [],
+      "drops": [
+        {
+          "id": "D1",
+          "label": "One-way hole",
+          "scriptIndex": 2,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 896,
+              "y": 455
+            },
+            {
+              "mapId": "2f",
+              "x": 948,
+              "y": 410
+            }
+          ]
+        },
+        {
+          "id": "D2",
+          "label": "One-way hole",
+          "scriptIndex": 3,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 432,
+              "y": 396
+            },
+            {
+              "mapId": "2f",
+              "x": 484,
+              "y": 350
+            }
+          ]
+        },
+        {
+          "id": "D3",
+          "label": "One-way hole",
+          "scriptIndex": 4,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 480,
+              "y": 471
+            },
+            {
+              "mapId": "2f",
+              "x": 532,
+              "y": 425
+            }
+          ]
+        },
+        {
+          "id": "D4",
+          "label": "One-way hole",
+          "scriptIndex": 5,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 336,
+              "y": 160
+            },
+            {
+              "mapId": "2f",
+              "x": 388,
+              "y": 82
+            }
+          ]
+        },
+        {
+          "id": "D5",
+          "label": "One-way hole",
+          "scriptIndex": 6,
+          "primaryMap": "MAP_VICTORY_ROAD_3F",
+          "targetMap": "MAP_VICTORY_ROAD_2F",
+          "ends": [
+            {
+              "mapId": "3f",
+              "x": 912,
+              "y": 286
+            },
+            {
+              "mapId": "2f",
+              "x": 964,
+              "y": 226
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
