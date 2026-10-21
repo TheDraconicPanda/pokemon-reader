@@ -27,6 +27,7 @@ Prefer correctness and completeness over visual polish. Do not guess at game dat
 - Use a dedicated feature branch in the existing isolated checkout; do not create a worktree unless explicitly requested.
 - Complete the agreed milestone, inspect the diff, and run meaningful automated checks before publication. Check the changed feature and relevant regressions in Reader, Team Planner, and Atlas. Report missing real-save validation accurately.
 - Standing user authorization (2026-10-14): after a milestone is developed and validated, commit it, integrate it into the existing deployment branch, and push to GitHub so the existing Pages workflow can publish it. No additional routine approval is required for these steps. Do not publish unfinished or failing work.
+- Reconfirmed by the user on 2026-10-21: changes requested to `TheDraconicPanda/pokemon-reader` authorize commits, pushes and GitHub deployment without additional routine approval.
 - Fetch the deployment branch before integration, preserve remote changes, and use normal non-force pushes. Respect branch protections; report any concrete blocker.
 - Keep the existing repository and GitHub Pages site. Do not introduce separate preview hosting, repositories, or ZIP-based review as the normal workflow.
 - After pushing, tell the user what changed, which checks passed, the version, deployment status, and the existing URLs to test. A pushed commit is not proof the deployment is live.

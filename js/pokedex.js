@@ -25,6 +25,20 @@ function table(parent,headers,rows,caption) {
   const body=node('tbody');for(const row of rows){const tr=node('tr');row.forEach((value,i)=>{const td=node(i===0?'th':'td');if(i===0)td.scope='row';value instanceof Node?td.append(value):td.textContent=String(value);tr.append(td);});body.append(tr);}t.append(body);wrap.append(t);parent.append(wrap);return t;
 }
 function speciesButton(id,label) { const b=node('button',label||species(id).name);b.type='button';b.addEventListener('click',()=>openSpecies(id));return b; }
+function saveStatus(flags, count) {
+  const row=node('small',undefined,'save-status');
+  for(const [label,active,icon] of [
+    ['Seen',flags.seen,flags.seen?'eye-open':'eye-closed'],
+    ['Caught',flags.caught,'caught-gen4']
+  ]) {
+    const marker=node('span',undefined,`save-status-icon${active?'':' is-unregistered'}`);
+    marker.setAttribute('role','img');marker.setAttribute('aria-label',`${label}: ${active?'Yes':'No'}`);
+    marker.title=`${label}: ${active?'Yes':'No'}`;
+    const img=node('img');img.src=`../assets/icons/${icon}.svg`;img.alt='';img.width=20;img.height=20;
+    marker.append(img);row.append(marker);
+  }
+  row.append(node('span',`Owned: ${count}`));return row;
+}
 function renderList() {
   list.replaceChildren();const ids=scope==='regional'?data().regional:Array.from({length:493},(_,i)=>i+1);
   ids.forEach((id,index)=>{
@@ -34,7 +48,7 @@ function renderList() {
     const b=node('button',undefined,'species-row');b.type='button';b.dataset.speciesId=id;b.setAttribute('aria-label',`${String(index+1).padStart(3,'0')} ${p.name}, ${p.types.join(' and ')}`);
     const number=node('span',String(index+1).padStart(3,'0'),'dex-number');
     const img=node('img');img.src=hgssSprite(id);img.width=56;img.height=56;img.alt='';img.loading='lazy';
-    b.append(number,img,node('strong',p.name),typeBadges(p.types));if(savedDex)b.append(node('small',`Seen: ${flags.seen?'Yes':'No'} · Caught: ${flags.caught?'Yes':'No'} · Owned: ${owned.get(id)||0}`));b.addEventListener('click',()=>openSpecies(id));li.append(b);list.append(li);
+    b.append(number,img,node('strong',p.name),typeBadges(p.types));if(savedDex)b.append(saveStatus(flags,owned.get(id)||0));b.addEventListener('click',()=>openSpecies(id));li.append(b);list.append(li);
   });
   if(!list.children.length)list.append(node('li','No species match this save filter.'));
   scopeSelect.value=scope;document.body.dataset.referenceReady='true';

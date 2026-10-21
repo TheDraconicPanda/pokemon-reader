@@ -963,9 +963,10 @@ button { cursor: pointer; }
 .app-header h1 { font-size: 20px; }
 .app-header p { font-size: 12px; }
 #theme-toggle { border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; color: var(--text); background: var(--elevated); }
-.view-intro { margin: 28px 0; }
+.view-intro { margin: 16px 0; }
 .view-intro h2 { font-size: clamp(26px, 4vw, 36px); margin: 8px 0; }
 .view-intro p { color: var(--muted); }
+.view-intro .eyebrow { margin: 4px 0; }
 .eyebrow { font-size: 11px; letter-spacing: .14em; font-weight: 700; }
 .card { box-shadow: 0 4px 16px #0000000d; border-radius: 16px; }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 10; background: var(--surface); padding: 12px; }
@@ -995,7 +996,6 @@ button { cursor: pointer; }
 .dashboard-party-card .type-badges { justify-content: center; gap: 2px; }
 .dashboard-party-card .type-badge { padding: 2px 3px; font-size: 10px; white-space: nowrap; }
 .empty-party-slot { min-height: 150px; border-style: dashed; color: var(--muted); }
-.app[data-view="party"] .view-intro { margin: 12px 0; }
 
 .app[data-view="party"] #party-info { padding: 12px; }
 @media (max-width: 520px) {
@@ -1066,8 +1066,6 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .moves-section td { white-space: nowrap; font-size: 11px; }
 .training-section tbody tr:last-child { font-weight: 700; }
 .hidden-power { margin: 12px 0 0; font-size: 13px; }
-.app[data-view="party"] .eyebrow { margin: 4px 0; }
-.app[data-view="party"] .view-intro h2 { margin: 4px 0; }
 
 .detail-icons [aria-label="Egg"] { grid-row: 2; }
 .hp-critical { background: #c9364933; }
@@ -1077,8 +1075,8 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 
 .dashboard-nav a[aria-disabled="true"] { opacity: .5; cursor: not-allowed; background: transparent; color: var(--muted); }
 
-/* Headings retain programmatic focus without an input-like pointer outline. */
-#view-heading:focus:not(:focus-visible) { outline: none; }
+/* Noninteractive headings receive route focus without a selection-style box. */
+.app[data-view] h2:focus { outline: none; }
 .reader-info { position: relative; display: inline-block; }
 .reader-info summary { cursor: pointer; list-style: none; color: var(--accent); padding: 4px 8px; }
 .reader-info summary::-webkit-details-marker { display: none; }

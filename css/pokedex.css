@@ -81,3 +81,9 @@
 }
 .species-row > small { grid-column: 3 / -1; color: var(--muted); font-size: 11px; }
 #save-dex-status { font-size: 12px; margin: 8px 0; }
+
+.species-row .save-status { display: flex; align-items: center; gap: 10px; }
+.save-status-icon { display: inline-flex; align-items: center; }
+.species-row .save-status-icon img { width: 20px; height: 20px; margin: 0; }
+.save-status-icon.is-unregistered { opacity: .55; }
+.save-status-icon.is-unregistered img[src*="caught-gen4"] { filter: grayscale(1); opacity: .5; }

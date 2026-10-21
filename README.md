@@ -1,5 +1,15 @@
 # Pokémon Reader
 
+## Pokédex icons and consistent Reader headings — v0.25.74
+
+Seen uses open/closed eye icons; Caught uses the existing Poké Ball icon, muted
+when unregistered. Accessible labels and hover text retain the exact state; Owned
+remains text. Party now uses the same heading/intro spacing as every Reader view.
+Noninteractive route-focused headings no longer show a selection-style outline.
+All 171 automated checks pass, including icon states, identical heading positions,
+outline removal and six-card phone layout. Online user acceptance remains pending.
+
+
 ## Load Save refinements — v0.25.73
 
 Reader help uses info disclosures; Adventure Profiles hide while a save is loaded.
