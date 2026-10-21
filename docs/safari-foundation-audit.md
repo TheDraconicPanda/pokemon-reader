@@ -63,7 +63,8 @@ This includes Gate/history, all twelve area views, manual layout storage/isolati
 cross-tab updates, image fixtures/errors, 320/390/768/1440px theme checks and
 Reader/Planner/Pokédex/Atlas regressions. `git diff --check` passed.
 
-Publication is authorized to the existing `main` deployment branch. Live deployment
+Release commit `a8bcf78` was pushed successfully to the existing `main` deployment
+branch on 2026-10-21 using a normal fast-forward push. Live deployment
 verification is blocked: the Pages API and production URL return HTTP 403 from
 this environment. A successful push must not be represented as confirmed live
 publication. Milestone 1 technical checks are complete; its publication acceptance
