@@ -7,7 +7,9 @@ Reader views share the Party mobile width, with pointer focus rings removed from
 view headings. PC searches include saved move names from local HGSS data.
 The main-menu Pokédex now includes save Seen/Caught/Owned filters and counts;
 the duplicate Reader view is removed and old links redirect to the reference.
-Automated validation and online acceptance are recorded after verification.
+All 171 automated checks pass, including Reader, Planner, Atlas and unified
+Pokédex regressions plus case-insensitive Flash search and equal mobile widths.
+Online acceptance with the user’s current save remains pending.
 
 
 ## Johto Atlas completion — v0.25.72

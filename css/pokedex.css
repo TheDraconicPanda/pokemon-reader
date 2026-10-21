@@ -79,3 +79,5 @@
   .reference-top { padding-block: 4px; }
   .reference-selectors { margin-bottom: 4px; }
 }
+.species-row > small { grid-column: 3 / -1; color: var(--muted); font-size: 11px; }
+#save-dex-status { font-size: 12px; margin: 8px 0; }
