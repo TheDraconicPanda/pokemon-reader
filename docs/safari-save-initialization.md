@@ -162,6 +162,7 @@ phone and desktop screenshots were inspected. The source ledger reproduced
 byte-for-byte, syntax/compilation checks and `git diff --check` passed. These are
 synthetic/source-based checks, not real-save validation.
 
-Publication follows a fresh remote fetch and a normal push to the existing `main`
-deployment branch. Pages API/live-site verification remains subject to the known
-network restriction. Pushing does not establish a successful live deployment.
+Release commit `a7cf7bc` was pushed to the existing `main` deployment branch on
+2026-10-21 after a fresh fetch, using a normal fast-forward push. The subsequent
+GitHub Pages API check still returned HTTP 403. Live publication is unconfirmed;
+the successful push is not proof of deployment.
