@@ -1,5 +1,21 @@
 # Pokémon Reader Roadmap
 
+## Safari v1 — Milestone 4 (v0.25.78)
+
+- [x] Add live starting/proposed encounter tables for active areas and all methods.
+- [x] Optimize targets against actual slot replacement, unlocks, object capacity,
+  stored age, time, access and manual/default/hypothetical provenance.
+- [x] Preview ranked plans, preserve starting state and support both resets.
+- [x] Explain locked/unknown paths and credited waiting without inventing progress.
+- [x] Add named progression controls, object guidance and responsive comparisons.
+- [x] Pass all 215 automated checks and inspect phone/desktop screenshots.
+- [ ] Confirm live Pages publication (API/production access restriction).
+- [ ] User outcome and real-save/in-game acceptance.
+- [ ] Milestone 5: final integrated Safari audit/release.
+
+See [simulator guide and validation](docs/safari-simulator.md).
+
+
 ## Safari v1 — Milestone 3 (v0.25.77)
 
 - [x] Investigate primary Safari structures and corroborate offsets independently.

@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.77') && document.querySelector('.eyebrow').textContent.includes('v0.25.77'),
+    version: document.title.includes('v0.25.78') && document.querySelector('.eyebrow').textContent.includes('v0.25.78'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.77<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.78<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.77");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.78'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.78");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.78'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.78'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.78'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.77'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.78'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2824,7 +2824,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.25.77'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.25.78'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -2862,4 +2862,63 @@ test('Safari starting configuration remains usable when storage is denied and ol
   await visitSafariScenario();assert.match(await evaluate(`document.querySelector('#scenario-notes').textContent`),/storage is unavailable/);
   await setScenarioField('blockLevel','4');assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'4');
  }finally{await command('Page.removeScriptToEvaluateOnNewDocument',{identifier:injection.identifier});}
+});
+
+async function configureSafariSimulator(){
+ for(const [key,value]of Object.entries({baobaStage:'6',blockLevel:'4',nationalDex:'true',surf:'true',oldrod:'true',goodrod:'true',superrod:'true'}))await setScenarioField(key,value);
+}
+async function findSafariTarget(name){await evaluate(`(()=>{const i=document.querySelector('#safari-target');i.value=${JSON.stringify(name)};i.dispatchEvent(new Event('input'));document.querySelector('#safari-target-form').requestSubmit();})()`);}
+test('Safari simulator previews a reference target, updates comparison and resets without rewriting the baseline',async()=>{
+ await visitSafariScenario('/pokemon-reader');await configureSafariSimulator();await findSafariTarget('Bagon');
+ const card=await evaluate(`document.querySelector('.safari-plan').textContent`);
+ for(const text of ['Swamp','110 additional credited area days','9 Forest','19 Peak','56 Peak points','35 Forest points'])assert.ok(card.includes(text),text);
+ assert.match(card,/manually supplied|default inputs/);
+ await evaluate(`document.querySelector('.safari-plan button').click()`);
+ assert.equal(await evaluate(`document.activeElement.id`),'safari-live-title');
+ assert.match(await evaluate(`document.querySelector('#safari-proposed-encounters').textContent`),/Bagon.*10%/);
+ assert.doesNotMatch(await evaluate(`document.querySelector('#safari-starting-encounters').textContent`),/Bagon/);
+ assert.equal(await evaluate(`document.querySelector('#scenario-edit-mode').value`),'current');
+ assert.match(await evaluate(`document.querySelector('#scenario-differences').textContent`),/110.*Hypothetical/);
+ assert.match(await evaluate(`document.querySelector('#safari-target-summary').textContent`),/proposed scenario/);
+ if(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR){
+  await mkdir(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR,{recursive:true});
+  for(const width of [390,1440]){await command('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<800});await evaluate(`document.querySelector('#safari-live-title').scrollIntoView()`);const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR,`comparison-${width}.png`),Buffer.from(shot.data,'base64'));}
+  await command('Emulation.clearDeviceMetricsOverride');
+ }
+ await evaluate(`document.querySelector('#scenario-reset').click()`);
+ assert.doesNotMatch(await evaluate(`document.querySelector('#safari-proposed-encounters').textContent`),/Bagon/);
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="age.7"]').value`),'0');
+ assert.equal(await evaluate(`document.querySelector('[data-scenario-field="blockLevel"]').value`),'4');
+ assert.deepEqual(exceptions,[]);
+});
+test('Safari simulator handles all methods, progression locks, missing fields and unsupported targets visibly',async()=>{
+ await visitSafariScenario();await findSafariTarget('Bagon');
+ assert.match(await evaluate(`document.querySelector('#safari-target-results').textContent`),/Unlock object placement/);
+ await configureSafariSimulator();
+ await evaluate(`document.querySelector('[data-sim-position="1"]').click()`);
+ for(const method of ['land','surf','oldrod','goodrod','superrod']){
+  await evaluate(`document.querySelector('#safari-sim-method').value='${method}';document.querySelector('#safari-sim-method').dispatchEvent(new Event('change'))`);
+  assert.match(await evaluate(`document.querySelector('#safari-proposed-status').textContent`),/Available in this scenario/);
+  assert.ok(await evaluate(`document.querySelectorAll('#safari-proposed-encounters li').length>0`));
+ }
+ await setScenarioField('superrod','false');assert.match(await evaluate(`document.querySelector('#safari-proposed-status').textContent`),/Unavailable/);
+ await setScenarioField('age.7','');await findSafariTarget('Bagon');
+ assert.match(await evaluate(`document.querySelector('#safari-target-summary').textContent`),/stored age/);
+ await evaluate(`document.querySelector('#safari-complete-start').click()`);assert.equal(await evaluate(`document.activeElement.dataset.scenarioField`),'age.7');
+ await findSafariTarget('Arceus');assert.match(await evaluate(`document.querySelector('#safari-target-summary').textContent`),/no supported Safari Zone encounter/);
+ await findSafariTarget('not-a-pokemon');assert.match(await evaluate(`document.querySelector('#safari-target-summary').textContent`),/exact Pokémon name/);
+ assert.deepEqual(exceptions,[]);
+});
+test('Safari target plans and live comparison remain usable across mobile and desktop themes',async()=>{
+ await visitSafariScenario('/pokemon-reader');await configureSafariSimulator();await findSafariTarget('Bagon');
+ for(const theme of ['light','dark'])for(const width of [320,390,768,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
+  await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));document.querySelector('#safari-target-title').scrollIntoView()`);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme}/${width}`);
+  assert.ok(await evaluate(`document.querySelector('.safari-plan button').getBoundingClientRect().height>=40`));
+  if(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR&&[390,1440].includes(width)){
+   await mkdir(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR,{recursive:true});const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.SAFARI_SIMULATOR_SCREENSHOT_DIR,`simulator-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

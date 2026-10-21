@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>SoulSilver Safari — v0.25.77</title>
+  <title>SoulSilver Safari — v0.25.78</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/app-shell.css">
   <link rel="stylesheet" href="../css/safari-scenario.css">
@@ -13,9 +13,25 @@
 <body>
 <main class="world-app">
   <app-menu tool="atlas"></app-menu>
-  <header class="world-header"><p class="eyebrow">POKÉMON READER · SAFARI · v0.25.77</p><h1>Safari starting configuration</h1></header>
+  <header class="world-header"><p class="eyebrow">POKÉMON READER · SAFARI · v0.25.78</p><h1>Safari Zone simulator</h1></header>
   <nav class="scenario-return" aria-label="Return to Atlas"><a href="../pokedex-earth/#safari">Safari Atlas</a><a href="../pokedex-earth/#location=Safari%20Zone%20Gate">Safari Zone Gate</a></nav>
   <section class="world-panel" aria-labelledby="scenario-owner"><h2 id="scenario-owner">Loading adventure…</h2><p id="scenario-source" role="status"></p><p id="scenario-notes"></p><p>Changes here are hypothetical and stay in this visit. Use Load Save in Reader to initialize from another save.</p></section>
+  <section class="world-panel" aria-labelledby="safari-live-title">
+    <h2 id="safari-live-title" tabindex="-1">Explore encounters</h2>
+    <p>Choose an active area and encounter method. Results use your proposed configuration; the starting table stays alongside it for comparison.</p>
+    <nav id="safari-sim-areas" class="simulator-area-grid" aria-label="Active Safari areas"></nav>
+    <div class="scenario-grid" id="safari-live-controls"><label class="scenario-field">Encounter method<select id="safari-sim-method"><option value="land">Walking</option><option value="surf">Surfing</option><option value="oldrod">Old Rod</option><option value="goodrod">Good Rod</option><option value="superrod">Super Rod</option></select></label></div>
+    <p id="safari-live-mode"></p><p id="safari-live-points"></p>
+    <button type="button" id="safari-complete-start">Complete unavailable starting values</button>
+    <div class="safari-comparison"><section aria-labelledby="safari-starting-title"><h3 id="safari-starting-title">Starting configuration</h3><p id="safari-starting-status"></p><ul id="safari-starting-encounters"></ul></section><section aria-labelledby="safari-proposed-title"><h3 id="safari-proposed-title">Proposed configuration</h3><p id="safari-proposed-status" role="status"></p><ul id="safari-proposed-encounters"></ul></section></div>
+    <p>Percentages are encounter-slot shares before lead abilities and Repel. They are not capture chances. Manually supplied, default and hypothetical inputs remain labeled.</p>
+  </section>
+  <section class="world-panel" aria-labelledby="safari-target-title">
+    <h2 id="safari-target-title">Find a target Pokémon</h2>
+    <p>Find the changes needed from this configuration. Plans favor no waiting, then the fewest credited area days and configuration changes.</p>
+    <form id="safari-target-form"><label class="scenario-field">Pokémon name<input id="safari-target" list="safari-target-list" type="search" autocomplete="off" placeholder="For example, Bagon"></label><datalist id="safari-target-list"></datalist><button type="submit">Find requirements</button></form>
+    <p id="safari-target-summary" role="status">Choose a target to calculate its requirements.</p><div id="safari-target-results"></div>
+  </section>
   <section class="world-panel" aria-labelledby="configuration-title">
     <h2 id="configuration-title">Configure your starting values</h2>
     <p>Unavailable fields stay blank until you supply them. Correct starting values first, then try hypothetical changes. The loaded save and its stored adventure remain unchanged.</p>
@@ -24,8 +40,8 @@
     <div class="scenario-actions"><button id="scenario-reset" type="button">Reset hypothetical changes</button><button id="scenario-restore" type="button">Restore loaded/default start</button></div>
     <p id="scenario-message" role="status"></p>
   </section>
-  <section class="world-panel" aria-labelledby="scenario-diff-title"><h2 id="scenario-diff-title">Changes from your starting configuration</h2><ul id="scenario-differences"></ul><p>Encounter filtering and target optimization will use these values in the next Safari milestone.</p></section>
-  <details class="world-panel"><summary>Sources and save support</summary><p>Area arrangement, object types, stored area days, object unlock level and Baoba stage are decoded where independently verified. Entry access, Surf/rod access, clock penalty and time of day require manual configuration. Linked Safari setups require manual fallback. Stored days are not increased using this device’s date.</p><a href="../docs/safari-save-initialization.md">Field evidence and limitations</a></details>
+  <section class="world-panel" aria-labelledby="scenario-diff-title"><h2 id="scenario-diff-title">Changes from your starting configuration</h2><ul id="scenario-differences"></ul><p>Simulated aging and object changes do not pass time or place anything in your game. Reset to compare again with your starting state.</p></section>
+  <details class="world-panel"><summary>Safari mechanics, sources and save support</summary><p>Each area holds at most 30 objects, including decorations. Objects add category points; stored active-area days increase their multipliers. A species may have several valid setups. Rearranging retains area age; replacing an area clears its objects.</p><div id="safari-object-guide"></div><p>Baoba enables Area Customizer for his Sandshrew challenge. Object placement follows the completed challenge, National Dex and received object calls. Waiting days in plans are credited active-area days; clock penalties can delay them.</p><p>Area arrangement, object types, stored area days, object unlock level and Baoba stage are decoded where independently verified. Entry access, Surf/rod access, clock penalty and time of day require manual configuration. Linked Safari setups require manual fallback. Stored days are not increased using this device’s date.</p><a href="../docs/safari-save-initialization.md">Field evidence and limitations</a> · <a href="../docs/safari-simulator.md">Simulator guide and optimizer validation</a></details>
 </main>
 <script type="module" src="../js/safari-scenario-ui.js"></script>
 </body>

@@ -223,3 +223,11 @@ elapsed/pending days automatically, or turn unknown linked/entry/Surf/rod/clock
 state into progress. Old profiles remain compatible without a database migration.
 Starting corrections are manual; proposed changes are hypothetical; original
 state is preserved. Scenario edits are session-only and reset on save revision.
+
+Safari Milestone 4 (v0.25.78) adds live starting/proposed tables and target plans.
+See `docs/safari-simulator.md`. Plans must pass the shared ten-slot engine,
+including base-slot displacement, explicit unknown decoration counts, access,
+object groups and capacity. Keep credited waiting separate from calendar time;
+preview changes only visit-local state, preserving original/manual baselines.
+Recompute targets after edits and reject stale plan signatures. Do not describe
+hypothetical eligibility as actual in-game progress. Milestone 5 remains separate.

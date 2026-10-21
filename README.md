@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Safari simulator and optimizer — v0.25.78
+
+The [Safari simulator](safari-zone/) now compares starting and proposed encounters
+and finds target Pokémon setups using the verified shared engine. Plans show
+area, method/time, objects, multipliers, credited waiting and locked prerequisites.
+Preview and reset preserve the original save and manually corrected baseline.
+Named progression controls and object guidance support save-free/manual use.
+
+All **215 automated checks pass**. Desktop/mobile validation is recorded in the
+[simulator guide](docs/safari-simulator.md). Real-save/user acceptance and live
+Pages confirmation remain separate. Step 5 is the final integrated Safari audit.
+
+
 ## Safari save initialization — v0.25.77
 
 The new [Safari starting configuration](safari-zone/) uses the existing Reader and

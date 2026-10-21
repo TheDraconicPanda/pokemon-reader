@@ -23,7 +23,7 @@ export function safariBlockScores(blocks,days){
  for(const key of Object.keys(blocks))if(![...SAFARI_CATEGORIES,'none'].includes(key))throw new Error('Invalid block category.');
  // Missing category counts are unknown, not automatically zero.
  const quantities=Object.fromEntries(SAFARI_CATEGORIES.map(c=>[c,integer(blocks[c],0,30,`${c} block count`)]));
- const decorations=integer(blocks.none??0,0,30,'decoration count');
+ const decorations=integer(blocks.none===undefined?0:blocks.none,0,30,'decoration count');
  if(Object.values(quantities).reduce((a,b)=>a+b,decorations)>rules.maxBlocks)throw new Error('At most 30 objects may be placed in one area.');
  return Object.fromEntries(SAFARI_CATEGORIES.map(c=>[c,quantities[c]*safariMultiplier(c,days)]));
 }
@@ -85,7 +85,7 @@ export function evaluateSafariEncounters(scenario){
   }
   if(!SAFARI_TIMES.includes(time))missing.push('time of day');
   if(days===null||days===undefined)missing.push('area age');
-  if(!blocks||SAFARI_CATEGORIES.some(c=>blocks[c]===null||blocks[c]===undefined))missing.push('block quantities');
+  if(!blocks||SAFARI_CATEGORIES.some(c=>blocks[c]===null||blocks[c]===undefined)||blocks.none===null)missing.push('block quantities, including known decorations');
   if(progression?.blockLevel===null||progression?.blockLevel===undefined)missing.push('block unlock level');
   if(missing.length)return {status:'unknown',reasons:missing.map(x=>`Unavailable: ${x}.`),slots:[]};
   const objects=safariAvailableObjects(progression.blockLevel,trainerId);
@@ -93,6 +93,7 @@ export function evaluateSafariEncounters(scenario){
   const placed=Object.values(blocks).reduce((a,b)=>a+b,0);
   if(placed&&progression.nationalDex===false)return {status:'unavailable',reasons:['Object placement requires the National Dex.'],slots:[]};
   if(placed&&progression.baobaStage!==null&&progression.baobaStage!==undefined&&safariCustomizationAccess(progression).blockCallsEligible===false)return {status:'unavailable',reasons:['Baoba’s second challenge must be completed before object placement.'],slots:[]};
+  if(placed&&(progression.nationalDex===null||progression.baobaStage===null))return {status:'unknown',reasons:['Confirm National Dex and Baoba challenge progress before using placed objects.'],slots:[]};
   if(placed&&objects===null)return {status:'unknown',reasons:['Trainer ID is needed to determine the unlocked object groups.'],slots:[]};
   const categories=new Set((objects||[]).map(id=>rules.objects[id].category));
   if(Object.entries(blocks).some(([c,n])=>n>0&&!categories.has(c)))return {status:'unavailable',reasons:['The configuration uses locked object categories.'],slots:[]};
