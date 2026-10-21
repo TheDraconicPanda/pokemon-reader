@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.69') && document.querySelector('.eyebrow').textContent.includes('v0.25.69'),
+    version: document.title.includes('v0.25.70') && document.querySelector('.eyebrow').textContent.includes('v0.25.70'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.69<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.70<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.69");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.70'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.70");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.70'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.70'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -603,7 +603,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.70'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -789,7 +789,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.69'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.70'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1029,7 +1029,7 @@ test('all non-Safari location map choices render the matching catalogue view',as
     }
     return {locations,views,failures};
   })()`);
-  assert.equal(result.locations,69);assert.equal(result.views,295);assert.deepEqual(result.failures,[]);
+  assert.equal(result.locations,69);assert.equal(result.views,299);assert.deepEqual(result.failures,[]);
   assert.deepEqual(exceptions,[]);
 });
 
@@ -2572,4 +2572,95 @@ test('Full-size Whirl maps retain stair links, pan to arrivals and close accessi
   assert.equal(await evaluate(`document.querySelector('.map-stair-links').hidden`),true);
  }
  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Other caves follow every verified stair or passage in both directions at phone and desktop sizes',async()=>{
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  const result=await evaluate(`(async()=>{
+   const {SOULSILVER_MAP_LINKS}=await import('/js/data/games/soulsilver/map-links.js');const {mapsForLocation}=await import('/js/data/atlas-maps.js');
+   const wait=async fn=>{for(let i=0;i<100;i++){if(fn())return;await new Promise(r=>setTimeout(r,10));}throw Error('Cave render timed out');};
+   const failures=[];let pairs=0;let locations=0;
+   for(const [name,data]of Object.entries(SOULSILVER_MAP_LINKS)){
+    if(name==='Whirl Islands')continue;locations++;location.hash='location='+encodeURIComponent(name);
+    await wait(()=>document.querySelector('.location-card h2')?.textContent===name);
+    const maps=mapsForLocation('soulsilver',name);const before=document.querySelector('.location-encounters').textContent;
+    for(const pair of data.pairs){
+     const [from,to]=pair.ends;const select=document.querySelector('.map-select');select.value=String(maps.findIndex(m=>m.id===from.mapId));select.dispatchEvent(new Event('change'));
+     const image=document.querySelector('.location-map'),map=maps.find(m=>m.id===from.mapId),r=image.getBoundingClientRect();
+     const scale=Math.min(r.width/map.width,r.height/map.height),x=r.left+(r.width-map.width*scale)/2,y=r.top+(r.height-map.height*scale)/2;
+     for(const p of data.pairs.filter(p=>p.ends.some(e=>e.mapId===from.mapId))){
+      const e=p.ends.find(e=>e.mapId===from.mapId);const b=document.querySelector('.map-marker-viewport [data-stair="'+p.id+'"]').getBoundingClientRect();
+      if(Math.abs(b.left+b.width/2-x-e.x*scale)>1||Math.abs(b.top+b.height/2-y-e.y*scale)>1)failures.push(name+': '+p.id+' alignment');
+     }
+     document.querySelector('.map-marker-viewport [data-stair="'+pair.id+'"]').click();
+     if(select.value!==String(maps.findIndex(m=>m.id===to.mapId)))failures.push(name+': '+pair.id+' destination');
+     if(document.activeElement.dataset.stair!==pair.id)failures.push(name+': '+pair.id+' focus');
+     if(!document.querySelector('.map-marker-viewport [data-stair="'+pair.id+'"]').classList.contains('is-arrival'))failures.push(name+': '+pair.id+' highlight');
+     document.querySelector('.map-stair-links [data-stair-link="'+pair.id+'"]').click();
+     if(select.value!==String(maps.findIndex(m=>m.id===from.mapId)))failures.push(name+': '+pair.id+' return');
+     pairs++;
+    }
+    if(document.querySelector('.location-encounters').textContent!==before)failures.push(name+': encounters');
+    if(document.documentElement.scrollWidth>innerWidth)failures.push(name+': overflow');
+   }
+   return {pairs,locations,failures};
+  })()`);
+  assert.equal(result.pairs,50);assert.equal(result.locations,10);assert.deepEqual(result.failures,[]);
+  if(process.env.ATLAS_SCREENSHOT_DIR&&width!==320){
+   await evaluate(`location.hash='location=Mt.%20Mortar'`);await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Mt. Mortar'`),'Mt Mortar screenshot');
+   await evaluate(`document.querySelector('.map-controls').scrollIntoView()`);
+   await until(()=>evaluate(`document.querySelector('.location-map').complete&&document.querySelector('.location-map').naturalWidth>0`),'Mortar image');
+   const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`cave-mortar-${width}.png`),Buffer.from(shot.data,'base64'));
+  }
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Cave full-size maps retain multi-floor and supplementary room links in both themes',async()=>{
+ for(const width of [390,1440])for(const theme of ['light','dark']){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await atlas({directory:false});
+  await evaluate(`localStorage.setItem('pokemon-reader-theme','${theme}');dispatchEvent(new StorageEvent('storage',{key:'pokemon-reader-theme'}));location.hash='location=Union%20Cave'`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Union Cave'`),'Union Cave viewer');
+  await evaluate(`document.querySelector('.location-map-link').click();document.querySelector('.map-viewer [data-stair="A"]').click();document.querySelector('.map-viewer [data-stair="D"]').click()`);
+  await until(()=>evaluate(`document.querySelector('.map-viewer img').complete&&document.querySelector('.map-viewer img').naturalWidth>0`),'Supplementary passage plan');
+  const state=await evaluate(`({open:document.querySelector('.map-viewer').open,source:document.querySelector('[data-map-source]').href,sourceLabel:document.querySelector('[data-map-source]').textContent,note:document.querySelector('.map-reference-note').textContent,main:document.querySelector('.map-select').selectedOptions[0].textContent,full:document.querySelector('.map-viewer img').src,focus:document.activeElement.dataset.stair,fit:document.documentElement.scrollWidth<=innerWidth,theme:document.documentElement.dataset.theme})`);
+  assert.equal(state.open,true);assert.match(state.source,/github.com\/pret\/pokeheartgold/);assert.match(state.sourceLabel,/source events/);assert.match(state.note,/Game-data terrain plan/);assert.match(state.main,/Northern connecting passages/);assert.match(state.full,/cave-plan-union-side-passages/);assert.equal(state.focus,'D');assert.equal(state.fit,true);assert.equal(state.theme,theme);
+  assert.equal(await evaluate(`(()=>{const d=document.querySelector('.map-viewer').getBoundingClientRect(),b=document.querySelector('.map-viewer-header button').getBoundingClientRect();return b.top>=d.top&&b.bottom<=d.bottom&&b.left>=d.left&&b.right<=d.right;})()`),true,'Close map remains visible after panning to a deeper room');
+  if(process.env.ATLAS_SCREENSHOT_DIR){const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`cave-union-${theme}-${width}.png`),Buffer.from(shot.data,'base64'));}
+  await evaluate(`document.querySelector('.map-viewer [data-stair="F"]').click()`);
+  assert.match(await evaluate(`document.querySelector('.map-select').selectedOptions[0].textContent`),/Ruins exit alcoves/);
+  await evaluate(`document.querySelector('.map-viewer-header button').click()`);await until(()=>evaluate(`!document.querySelector('.map-viewer').open&&document.activeElement.dataset.stair==='F'`),'Cave viewer close and focus return');
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Touching HM and story symbols opens the matching travel requirement without navigating',async()=>{
+ for(const width of [320,390]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true});
+  await command('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1});
+  for(const [from,to,expected]of [['New Bark Town','Route 27','Surf'],['Ice Path','Route 44','Strength'],['Whirl Islands','Route 41','Whirlpool'],['Mahogany Town','Route 44','Radio Tower']]){
+   await atlas({directory:false});await evaluate(`location.hash='location='+encodeURIComponent(${JSON.stringify(from)})`);
+   await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent===${JSON.stringify(from)}`),'Touch travel origin');
+   const point=await evaluate(`(()=>{const button=[...document.querySelectorAll('.connection-link')].find(b=>b.textContent===${JSON.stringify(to)});const badge=button.querySelector('.travel-badges');badge.scrollIntoView({block:'center'});const r=badge.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2,w:r.width,h:r.height,hash:location.hash};})()`);
+   assert.ok(point.w>=44&&point.h>=28);
+   await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:point.x,y:point.y,radiusX:2,radiusY:2,id:1}]});
+   await command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   await until(()=>evaluate(`document.querySelector('.travel-conditions').open`),'Tap did not open travel requirements');
+   const state=await evaluate(`({hash:location.hash,selected:document.querySelector('.travel-conditions .is-selected')?.textContent,focused:document.activeElement===document.querySelector('.travel-conditions .is-selected'),fit:document.documentElement.scrollWidth<=innerWidth})`);
+   assert.equal(state.hash,point.hash);assert.ok(state.selected.includes(to));assert.ok(state.selected.includes(expected),state.selected);assert.equal(state.focused,true);assert.equal(state.fit,true);
+   if(process.env.ATLAS_SCREENSHOT_DIR&&width===390){const shot=await command('Page.captureScreenshot',{format:'png'});await require('node:fs/promises').writeFile(path.join(process.env.ATLAS_SCREENSHOT_DIR,`touch-requirements-${expected.replaceAll(' ','-')}.png`),Buffer.from(shot.data,'base64'));}
+   // Keyboard readers can still open the same disclosure; the name still navigates by touch.
+   await evaluate(`document.querySelector('.travel-conditions').open=false;document.querySelector('.travel-conditions summary').focus()`);
+   assert.equal(await evaluate(`document.activeElement===document.querySelector('.travel-conditions summary')`),true);
+   await command('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});await command('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+   await until(()=>evaluate(`document.querySelector('.travel-conditions').open`),'Keyboard did not open travel requirements');
+   const namePoint=await evaluate(`(()=>{const b=[...document.querySelectorAll('.connection-link')].find(b=>b.textContent===${JSON.stringify(to)});b.scrollIntoView({block:'center'});const r=b.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+12};})()`);
+   await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:namePoint.x,y:namePoint.y,radiusX:2,radiusY:2,id:1}]});await command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent===${JSON.stringify(to)}`),'Destination name did not navigate');
+  }
+ }
+ await command('Emulation.setTouchEmulationEnabled',{enabled:false});await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

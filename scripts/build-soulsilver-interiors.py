@@ -142,9 +142,10 @@ def main():
         raise SystemExit('Interior census differs from primary headers')
     catalog_path = ROOT / 'scripts/atlas-map-sources.json'
     catalog = json.loads(catalog_path.read_text())
+    view_order = {name: {v['id']: i for i, v in enumerate(views)} for name, views in catalog['locations'].items()}
     # Idempotent generation; retain hand-verified artwork, order and first views.
     for location, views in catalog['locations'].items():
-        catalog['locations'][location] = [v for v in views if v.get('kind') != 'terrain-plan']
+        catalog['locations'][location] = [v for v in views if not (v.get('kind') == 'terrain-plan' and v['id'].startswith('plan-'))]
     inputs = {header_path: sha(header_bytes), land_path: sha(land_bytes)}
     rooms = []
     for room in config['rooms']:
@@ -182,6 +183,9 @@ def main():
                             bounds=bounds, warps=warps, file=file,
                             terrainRows=[''.join('E' if any(w['x']==x and w['z']==z for w in warps) else '#' if attributes[z*32+x]&0x8000 else '.' for x in range(bounds[0], bounds[2]+1)) for z in range(bounds[1], bounds[3]+1)])
         rooms.append(evidence)
+    for name, views in catalog['locations'].items():
+        positions = view_order[name]
+        views.sort(key=lambda view: positions.get(view['id'], len(positions)))
     catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
     report = dict(gameId='soulsilver', primaryRevision=revision, scope=config['scope'],
                   inputSha256=inputs, rooms=rooms, excluded=config['excluded'],

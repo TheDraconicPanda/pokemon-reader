@@ -729,3 +729,16 @@ with the shared theme and keyboard/phone controls. The original maps are retaine
 All six entrance/B1F ladder pairs are verified against the HGSS game warps in both
 directions. The lower-floor ladders and cave exits are outside this focused
 overlay. See [usage, evidence and scope](docs/whirl-islands-stair-links.md).
+
+## More cave links and mobile travel help — v0.25.70
+
+Matching letters now follow **50 additional stair/passage pairs across ten more
+caves**, including Union Cave, Mt. Mortar, Ice Path, Victory Road and Mt. Silver.
+The enlarged map retains the markers and keeps Close map available while scrolling.
+Four labelled terrain plans cover small connecting/entrance rooms missing from the
+existing images. The catalogue now has 299 views / 282 PNG assets.
+
+**On mobile, tap the Surf/Strength/other symbols to open and highlight that
+connection’s requirements. Tap the destination name to travel.** Travel conditions
+below the map also remains available to touch, keyboard and screen-reader users.
+HM rules and encounter data are unchanged. See [coverage and evidence](docs/cave-map-links.md).

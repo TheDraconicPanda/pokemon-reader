@@ -341,14 +341,17 @@ function renderLocations({ exactName = null } = {}) {
           hasStairLinks = stairLinks?.update(selected, pairId) || false;
           if (hasStairLinks) {
             mapLink.setAttribute("aria-haspopup", "dialog");
-            mapLink.setAttribute("aria-label", `Open full-size ${description} map with stair links`);
+            mapLink.setAttribute("aria-label", `Open full-size ${description} map with connections`);
           } else mapLink.removeAttribute("aria-haspopup");
-          hint.textContent = hasStairLinks ? "Open full-size map with stair links" : "Open full-size map";
+          hint.textContent = hasStairLinks ? "Open full-size map with connections" : "Open full-size map";
           mapLink.replaceChildren(image, hint);
           mapLink.hidden = false;
           fallback.hidden = true;
           if (mapSourceLink) {
             mapSourceLink.href = selected.source;
+            mapSourceLink.textContent = selected.kind === "terrain-plan"
+              ? "Game-data terrain plan · source events"
+              : "HGSS map image · Bulbagarden Archives";
             mapSourceLink.dataset.mapSource = "true";
           }
           if (selection) {
@@ -365,7 +368,7 @@ function renderLocations({ exactName = null } = {}) {
           }, { once: true });
           image.src = mapLink.href;
           if (userSelected) announcement.textContent = pairId
-            ? `Showing ${description}; arrived at stair ${pairId}.`
+            ? `Showing ${description}; arrived at ${stairLinks?.arrivalLabel || "stair"} ${pairId}.`
             : `Showing ${description}.`;
         }
         if (maps.length > 1) {

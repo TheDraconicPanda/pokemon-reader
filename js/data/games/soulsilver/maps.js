@@ -2074,6 +2074,34 @@ export const SOULSILVER_MAPS = Object.freeze({
         "height": 744,
         "sha256": "c2dda5378e06a1d3209e5044d4a410e8997e01e61a3499c1c4746d5e69ea13fe",
         "source": "https://archives.bulbagarden.net/wiki/File:Union_Cave_B2F_HGSS.png"
+      },
+      {
+        "id": "cave-plan-union-ruins-exits",
+        "label": "Ruins exit alcoves · terrain plan",
+        "file": "cave-plan-union-ruins-exits.png",
+        "width": 816,
+        "height": 356,
+        "sha256": "14430d7c79ac917162efcc42caf95464e7d0e99fa723bc0dd1ae317ff27e5531",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/096_D25R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan. Pale tiles have no static terrain collision flag; objects, height and scripts can restrict movement.",
+        "mapIds": [
+          "MAP_UNION_CAVE_1F"
+        ]
+      },
+      {
+        "id": "cave-plan-union-side-passages",
+        "label": "Northern connecting passages · terrain plan",
+        "file": "cave-plan-union-side-passages.png",
+        "width": 816,
+        "height": 1124,
+        "sha256": "6e87e6b47314fcea757a142f12bd42a82ef86873e3e2ecb429d39464f2bec486",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/149_D25R0103.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan. Pale tiles have no static terrain collision flag; objects, height and scripts can restrict movement.",
+        "mapIds": [
+          "MAP_UNION_CAVE_B2F"
+        ]
       }
     ],
     "Slowpoke Well": [
@@ -2530,6 +2558,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "notice": "Game-data terrain plan, not a screenshot. Clear tiles have no static terrain collision flag; objects, height, scripts and puzzles can further restrict movement. E marks exits or stairs; scripted transfers may have no E marker.",
         "mapIds": [
           "MAP_DRAGONS_DEN_SHRINE"
+        ]
+      },
+      {
+        "id": "cave-plan-dragons-den-entrance",
+        "label": "Entrance passage · terrain plan",
+        "file": "cave-plan-dragons-den-entrance.png",
+        "width": 520,
+        "height": 428,
+        "sha256": "b4f4e674098d888980a9dc9822e849ec59e800bfbacf974d3550520bbd60d9a6",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/122_D44R0101.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan. Pale tiles have no static terrain collision flag; objects, height and scripts can restrict movement.",
+        "mapIds": [
+          "MAP_DRAGONS_DEN_ENTRANCE"
         ]
       }
     ],
@@ -3405,6 +3447,20 @@ export const SOULSILVER_MAPS = Object.freeze({
         "source": "https://archives.bulbagarden.net/wiki/File:Tohjo_Falls_HGSS.png",
         "archive": "Johto",
         "layer": 441
+      },
+      {
+        "id": "cave-plan-tohjo-hidden-room",
+        "label": "Hidden room · terrain plan",
+        "file": "cave-plan-tohjo-hidden-room.png",
+        "width": 520,
+        "height": 476,
+        "sha256": "3358fa81fa56197826a1ea9f1636075e315d10f8634af2050d451f9534188a27",
+        "source": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/fielddata/eventdata/zone_event/269_D45R0102.json",
+        "kind": "terrain-plan",
+        "notice": "Game-data terrain plan. Pale tiles have no static terrain collision flag; objects, height and scripts can restrict movement. Giovanni appears here only during the Celebi event.",
+        "mapIds": [
+          "MAP_TOHJO_FALLS_HIDDEN_ROOM"
+        ]
       }
     ],
     "Pokémon League Reception Gate": [

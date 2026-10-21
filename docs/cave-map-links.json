@@ -1,0 +1,2987 @@
+{
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "inputSha256": {
+    "src/data/map_headers.h": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539",
+    "files/a/0/6/5": "0817bd81cc30342bc40dd6ce829121e9a8be4e9d04d0b790f8d9d99688c4bebe",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0042_D25R0101.bin": "c28570bc62c53998222658f6280eda5f20f649cc1182f2e7bf5b6e206f6cd40e",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0044_D25R0103.bin": "dc7490a2093690fbd0917afc1f10743490224645ab3410f4551ccb5f547c4374",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0145_D44R0101.bin": "336c9083ec3d3169518cfacf5bead744db06c6ad3e3ee10f609d8f12475491df",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0164_D45R0102.bin": "5eebcabb4b2a15ea75149ffae77340e61adf2f22b321601d6e78a54ec6256b04"
+  },
+  "sources": {
+    "MAP_UNION_CAVE_1F": {
+      "path": "files/fielddata/eventdata/zone_event/096_D25R0101.json",
+      "sha256": "d501969396ea44d961d525620409274e9202353f4da8485903083a2d22f72780",
+      "warps": [
+        {
+          "x": 27,
+          "z": 43,
+          "header": "MAP_ROUTE_32",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "z": 25,
+          "header": "MAP_UNION_CAVE_B1F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 93,
+          "header": "MAP_ROUTE_33",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 92,
+          "header": "MAP_UNION_CAVE_B1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "z": 3,
+          "header": "MAP_UNION_CAVE_B2F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 3,
+          "header": "MAP_UNION_CAVE_B2F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "z": 4,
+          "header": "MAP_RUINS_OF_ALPH",
+          "anchor": 15,
+          "y": 0
+        },
+        {
+          "x": 26,
+          "z": 6,
+          "header": "MAP_RUINS_OF_ALPH",
+          "anchor": 16,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_UNION_CAVE_B2F": {
+      "path": "files/fielddata/eventdata/zone_event/149_D25R0103.json",
+      "sha256": "a8f6e348de7e8f5cf3dfaf204d9beb4d5523d571961d9741ad0bf6a5bf0b53d2",
+      "warps": [
+        {
+          "x": 2,
+          "z": 43,
+          "header": "MAP_UNION_CAVE_B1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 15,
+          "header": "MAP_UNION_CAVE_B1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "z": 27,
+          "header": "MAP_UNION_CAVE_B1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "z": 3,
+          "header": "MAP_UNION_CAVE_1F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "z": 19,
+          "header": "MAP_UNION_CAVE_1F",
+          "anchor": 4,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_DRAGONS_DEN_ENTRANCE": {
+      "path": "files/fielddata/eventdata/zone_event/122_D44R0101.json",
+      "sha256": "5b0f65658d3b49f73adaa5b74df540db276108a62e7593d2ee724421b0221058",
+      "warps": [
+        {
+          "x": 6,
+          "z": 9,
+          "header": "MAP_BLACKTHORN",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 5,
+          "header": "MAP_DRAGONS_DEN",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_TOHJO_FALLS_HIDDEN_ROOM": {
+      "path": "files/fielddata/eventdata/zone_event/269_D45R0102.json",
+      "sha256": "255bfb1671a3c111c89ad02f8dc4c11a154e0b0bc5470cfc6025a96b7666bcb7",
+      "warps": [
+        {
+          "x": 6,
+          "z": 10,
+          "header": "MAP_TOHJO_FALLS",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_CLIFF_CAVE": {
+      "path": "files/fielddata/eventdata/zone_event/313_D50R0101.json",
+      "sha256": "d4e7f7e62a62ad532c463dea673c5320e0629854278bed08678a1a8536686d3c",
+      "warps": [
+        {
+          "x": 6,
+          "z": 7,
+          "header": "MAP_ROUTE_47",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 26,
+          "z": 13,
+          "header": "MAP_ROUTE_47",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 29,
+          "header": "MAP_ROUTE_47",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "z": 5,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "z": 4,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "z": 22,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "z": 5,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 4,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 3,
+          "header": "MAP_CLIFF_CAVE",
+          "anchor": 6,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_UNION_CAVE_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/148_D25R0102.json",
+      "sha256": "0c2cef999299715247f9d40c0dec4badb343a7f491e4fb3a7fdb8fbc462c0c68",
+      "warps": [
+        {
+          "x": 29,
+          "z": 43,
+          "header": "MAP_UNION_CAVE_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "z": 60,
+          "header": "MAP_UNION_CAVE_1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 57,
+          "header": "MAP_UNION_CAVE_B2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "z": 3,
+          "header": "MAP_UNION_CAVE_B2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 2,
+          "z": 12,
+          "header": "MAP_UNION_CAVE_B2F",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_SLOWPOKE_WELL_ENTRANCE": {
+      "path": "files/fielddata/eventdata/zone_event/111_D26R0101.json",
+      "sha256": "421e63d9f443445f43e9c1d777f19f2d98cafe050ed4fdc65e489d7b5b371f45",
+      "warps": [
+        {
+          "x": 17,
+          "z": 5,
+          "header": "MAP_AZALEA",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 11,
+          "z": 6,
+          "header": "MAP_SLOWPOKE_WELL_B1F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_SLOWPOKE_WELL_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/170_D26R0102.json",
+      "sha256": "9b601d99d81b5f88732cf4c8c212c5e0c8c0181b5077c3bae542ee337c5c4718",
+      "warps": [
+        {
+          "x": 42,
+          "z": 27,
+          "header": "MAP_SLOWPOKE_WELL_ENTRANCE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 20,
+          "header": "MAP_SLOWPOKE_WELL_B2F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_SLOWPOKE_WELL_B2F": {
+      "path": "files/fielddata/eventdata/zone_event/174_D26R0103.json",
+      "sha256": "d86a79e3131a15956a12868fc967b5c18e42a2fb5d1295fbfe344d2841bf757d",
+      "warps": [
+        {
+          "x": 13,
+          "z": 20,
+          "header": "MAP_SLOWPOKE_WELL_B1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 13,
+          "z": 19,
+          "header": "MAP_SLOWPOKE_WELL_B1F",
+          "anchor": 1,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_MORTAR_1F_ENTRANCE": {
+      "path": "files/fielddata/eventdata/zone_event/116_D38R0101.json",
+      "sha256": "6087a3679b3d0edfc3d61d63ad3a34eceef33604512445f00a3c9b741f1e9f80",
+      "warps": [
+        {
+          "x": 20,
+          "z": 46,
+          "header": "MAP_ROUTE_42",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 45,
+          "z": 50,
+          "header": "MAP_ROUTE_42",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 59,
+          "z": 53,
+          "header": "MAP_ROUTE_42",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 70,
+          "z": 46,
+          "header": "MAP_ROUTE_42",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "z": 31,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 56,
+          "z": 31,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 81,
+          "z": 31,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 26,
+          "z": 14,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 69,
+          "z": 15,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 45,
+          "z": 2,
+          "header": "MAP_MOUNT_MORTAR_2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 45,
+          "z": 44,
+          "header": "MAP_MOUNT_MORTAR_B1F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_MORTAR_1F_BACK": {
+      "path": "files/fielddata/eventdata/zone_event/236_D38R0102.json",
+      "sha256": "3c621b829010e40b374fa068804d5cbf2dcbf8158c810f36a19957568a0cb8f5",
+      "warps": [
+        {
+          "x": 35,
+          "z": 81,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 57,
+          "z": 81,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 82,
+          "z": 81,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 65,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 64,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 70,
+          "z": 66,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 8,
+          "y": 0
+        },
+        {
+          "x": 70,
+          "z": 65,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 8,
+          "y": 0
+        },
+        {
+          "x": 35,
+          "z": 38,
+          "header": "MAP_MOUNT_MORTAR_B1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 28,
+          "z": 13,
+          "header": "MAP_MOUNT_MORTAR_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 28,
+          "z": 12,
+          "header": "MAP_MOUNT_MORTAR_2F",
+          "anchor": 1,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_MORTAR_2F": {
+      "path": "files/fielddata/eventdata/zone_event/237_D38R0103.json",
+      "sha256": "b46188287316fcc918556a7872a91b3bdaf47566847a6c2ae70b094116f0a085",
+      "warps": [
+        {
+          "x": 27,
+          "z": 55,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 9,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "z": 16,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 8,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_MORTAR_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/238_D38R0104.json",
+      "sha256": "b3824ced88e58273d0c552d44ca9d160a7809bb6c07a6f9074d9db0b32916a2a",
+      "warps": [
+        {
+          "x": 32,
+          "z": 71,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 10,
+          "y": 0
+        },
+        {
+          "x": 21,
+          "z": 14,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 21,
+          "z": 13,
+          "header": "MAP_MOUNT_MORTAR_1F_BACK",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 32,
+          "z": 70,
+          "header": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+          "anchor": 10,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_ICE_PATH_1F": {
+      "path": "files/fielddata/eventdata/zone_event/117_D39R0101.json",
+      "sha256": "efb8fc351647c31e96142e0d927a5400944044c3bf12fe12c0264e1eae1298d9",
+      "warps": [
+        {
+          "x": 11,
+          "z": 58,
+          "header": "MAP_ROUTE_44",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 55,
+          "z": 40,
+          "header": "MAP_BLACKTHORN",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 55,
+          "z": 7,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 55,
+          "z": 20,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 4,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_ICE_PATH_B1F": {
+      "path": "files/fielddata/eventdata/zone_event/223_D39R0102.json",
+      "sha256": "a4f1de1aaea4958c335a6005da5bd239420975a78011418ef0073da3b464df31",
+      "warps": [
+        {
+          "x": 6,
+          "z": 21,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 20,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 25,
+          "z": 8,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 40,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 42,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 6,
+          "z": 41,
+          "header": "MAP_ICE_PATH_1F",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_ICE_PATH_B2F": {
+      "path": "files/fielddata/eventdata/zone_event/224_D39R0103.json",
+      "sha256": "cd76a014ec13750ca415b869edb34e432a3163f18ffd68ec678d949c30bcbd34",
+      "warps": [
+        {
+          "x": 26,
+          "z": 11,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 26,
+          "z": 10,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 16,
+          "z": 17,
+          "header": "MAP_ICE_PATH_B3F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 50,
+          "z": 5,
+          "header": "MAP_ICE_PATH_B3F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 43,
+          "z": 22,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 43,
+          "z": 21,
+          "header": "MAP_ICE_PATH_B1F",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_ICE_PATH_B3F": {
+      "path": "files/fielddata/eventdata/zone_event/225_D39R0104.json",
+      "sha256": "e2696a74b4d41cbd7f36d0846dc4a8b18c5552fab8153f031fbccf71d62c9d1e",
+      "warps": [
+        {
+          "x": 5,
+          "z": 11,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "z": 10,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 12,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "z": 11,
+          "header": "MAP_ICE_PATH_B2F",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_VICTORY_ROAD_1F": {
+      "path": "files/fielddata/eventdata/zone_event/121_D43R0101.json",
+      "sha256": "10a76baa57fb8e6eef5ff7865c5b56babb40c604cfc3f97fdcfa02b5117c246b",
+      "warps": [
+        {
+          "x": 46,
+          "z": 59,
+          "header": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 19,
+          "z": 7,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 19,
+          "z": 6,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_VICTORY_ROAD_2F": {
+      "path": "files/fielddata/eventdata/zone_event/171_D43R0102.json",
+      "sha256": "c2ebd03c6462f4c09db87a7776c670157aaab813d1cc51d144a6206d2b0127af",
+      "warps": [
+        {
+          "x": 7,
+          "z": 31,
+          "header": "MAP_VICTORY_ROAD_1F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 45,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 44,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 51,
+          "z": 39,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 51,
+          "z": 38,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 56,
+          "z": 22,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 56,
+          "z": 21,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 7,
+          "z": 18,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 7,
+          "z": 17,
+          "header": "MAP_VICTORY_ROAD_3F",
+          "anchor": 4,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_VICTORY_ROAD_3F": {
+      "path": "files/fielddata/eventdata/zone_event/172_D43R0103.json",
+      "sha256": "7d25529141398f5c19df80515167d7ee747c751de255fb13e5644d61a7616221",
+      "warps": [
+        {
+          "x": 38,
+          "z": 14,
+          "header": "MAP_INDIGO_PLATEAU",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 25,
+          "z": 45,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 49,
+          "z": 39,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 54,
+          "z": 22,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "z": 19,
+          "header": "MAP_VICTORY_ROAD_2F",
+          "anchor": 7,
+          "y": 0
+        },
+        {
+          "x": 38,
+          "z": 13,
+          "header": "MAP_INDIGO_PLATEAU",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER": {
+      "path": "files/fielddata/eventdata/zone_event/087_T31.json",
+      "sha256": "4a5a83d5eebff5cfedd1ad0841ba16658f7653ebedb14d07bce88f2e33b939a0",
+      "warps": [
+        {
+          "x": 811,
+          "z": 260,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 820,
+          "z": 265,
+          "header": "MAP_MOUNT_SILVER_POKECENTER_1F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_1F": {
+      "path": "files/fielddata/eventdata/zone_event/119_D41R0101.json",
+      "sha256": "b5d275db86ffa6d23701fc607db5f7df7238a1eb4c6866bcdf0ba7245d48676f",
+      "warps": [
+        {
+          "x": 40,
+          "z": 61,
+          "header": "MAP_MOUNT_SILVER",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 15,
+          "z": 12,
+          "header": "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "z": 47,
+          "header": "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 51,
+          "z": 46,
+          "header": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 53,
+          "z": 41,
+          "header": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 55,
+          "z": 24,
+          "header": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 32,
+          "z": 9,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER": {
+      "path": "files/fielddata/eventdata/zone_event/416_D41R0105.json",
+      "sha256": "d963ab0ccada60eb3debee32d7032a44b1c68ce24962d33b209d7c5a6c1cd3e5",
+      "warps": [
+        {
+          "x": 10,
+          "z": 22,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 1,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER": {
+      "path": "files/fielddata/eventdata/zone_event/415_D41R0104.json",
+      "sha256": "ff584a554f0f05afa6064d079b8d5d81a6b6bb67e1b644d0c918bea22f55db50",
+      "warps": [
+        {
+          "x": 5,
+          "z": 8,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE": {
+      "path": "files/fielddata/eventdata/zone_event/414_D41R0103.json",
+      "sha256": "000eb5388a58503aaba24089347107d5c933c2c097b8460bb93e4972bd3e26de",
+      "warps": [
+        {
+          "x": 19,
+          "z": 20,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 23,
+          "z": 37,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 42,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 3,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_2F": {
+      "path": "files/fielddata/eventdata/zone_event/417_D41R0106.json",
+      "sha256": "01c41329984462bf0f4ffd9266ee8e1ee4408787c10923e195100f3a9ea3286c",
+      "warps": [
+        {
+          "x": 20,
+          "z": 22,
+          "header": "MAP_MOUNT_SILVER_CAVE_1F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "z": 1,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 38,
+          "z": 8,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 38,
+          "z": 20,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 38,
+          "z": 32,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "z": 38,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "z": 38,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 5,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE": {
+      "path": "files/fielddata/eventdata/zone_event/413_D41R0102.json",
+      "sha256": "28873b43b0e4a8dbdeeda2575de627665f4adc51a144f7044b91003527b7646d",
+      "warps": [
+        {
+          "x": 24,
+          "z": 12,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 39,
+          "z": 19,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 39,
+          "z": 31,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 3,
+          "y": 0
+        },
+        {
+          "x": 39,
+          "z": 43,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 4,
+          "y": 0
+        },
+        {
+          "x": 32,
+          "z": 51,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 5,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "z": 51,
+          "header": "MAP_MOUNT_SILVER_CAVE_2F",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 14,
+          "z": 39,
+          "header": "MAP_MOUNT_SILVER_CAVE_3F",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_3F": {
+      "path": "files/fielddata/eventdata/zone_event/418_D41R0107.json",
+      "sha256": "6e2a27699af3be04168438328c314588bf7beae803448bd7e8c8885803f9bb86",
+      "warps": [
+        {
+          "x": 34,
+          "z": 18,
+          "header": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+          "anchor": 6,
+          "y": 0
+        },
+        {
+          "x": 13,
+          "z": 1,
+          "header": "MAP_MOUNT_SILVER_CAVE_SUMMIT",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_MOUNT_SILVER_CAVE_SUMMIT": {
+      "path": "files/fielddata/eventdata/zone_event/419_D41R0108.json",
+      "sha256": "fa696953fe234f6c7e172e5a40b121bc206ae8cf53b0e496b4b18b927ad95c0a",
+      "warps": [
+        {
+          "x": 30,
+          "z": 36,
+          "header": "MAP_MOUNT_SILVER_CAVE_3F",
+          "anchor": 1,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_DARK_CAVE_ROUTE_31_SIDE": {
+      "path": "files/fielddata/eventdata/zone_event/169_D42R0102.json",
+      "sha256": "b144aec68ed39350864e3e61aa500e879f86cfbc5440bcd2054be501e748bb00",
+      "warps": [
+        {
+          "x": 5,
+          "z": 26,
+          "header": "MAP_ROUTE_31",
+          "anchor": 2,
+          "y": 0
+        },
+        {
+          "x": 26,
+          "z": 4,
+          "header": "MAP_DARK_CAVE_ROUTE_45_SIDE",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 55,
+          "z": 56,
+          "header": "MAP_ROUTE_46",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_DARK_CAVE_ROUTE_45_SIDE": {
+      "path": "files/fielddata/eventdata/zone_event/120_D42R0101.json",
+      "sha256": "84dd2f09f59a2348d2ba3932c0b5b76bc0e00c21c5fe8df7342babff33177574",
+      "warps": [
+        {
+          "x": 6,
+          "z": 57,
+          "header": "MAP_DARK_CAVE_ROUTE_31_SIDE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 60,
+          "z": 4,
+          "header": "MAP_ROUTE_45",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_DRAGONS_DEN": {
+      "path": "files/fielddata/eventdata/zone_event/239_D44R0102.json",
+      "sha256": "eeba40ee5fdce4aa38512281e66cffa94ff9d6369207368591efae10464de516",
+      "warps": [
+        {
+          "x": 28,
+          "z": 6,
+          "header": "MAP_DRAGONS_DEN_ENTRANCE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 28,
+          "z": 5,
+          "header": "MAP_DRAGONS_DEN_ENTRANCE",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 28,
+          "z": 50,
+          "header": "MAP_DRAGONS_DEN_SHRINE",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_DRAGONS_DEN_SHRINE": {
+      "path": "files/fielddata/eventdata/zone_event/259_D44R0103.json",
+      "sha256": "9c2d200f3a8a90c6862a15d48c93a968b222ffa6b1751e55c0f9884b0d597c94",
+      "warps": [
+        {
+          "x": 6,
+          "z": 19,
+          "header": "MAP_DRAGONS_DEN",
+          "anchor": 2,
+          "y": 0
+        }
+      ]
+    },
+    "MAP_TOHJO_FALLS": {
+      "path": "files/fielddata/eventdata/zone_event/123_D45R0101.json",
+      "sha256": "e53072e1ae4d43a1492de9511cff042de04225d635a4cee4ac32bf5a730a956c",
+      "warps": [
+        {
+          "x": 30,
+          "z": 22,
+          "header": "MAP_ROUTE_27",
+          "anchor": 0,
+          "y": 0
+        },
+        {
+          "x": 45,
+          "z": 20,
+          "header": "MAP_ROUTE_27",
+          "anchor": 1,
+          "y": 0
+        },
+        {
+          "x": 27,
+          "z": 11,
+          "header": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+          "anchor": 0,
+          "y": 0
+        }
+      ]
+    }
+  },
+  "supplementaryPlans": [
+    {
+      "location": "Union Cave",
+      "id": "cave-plan-union-ruins-exits",
+      "label": "Ruins exit alcoves",
+      "primaryMap": "MAP_UNION_CAVE_1F",
+      "modelCell": 0,
+      "bounds": [
+        0,
+        0,
+        31,
+        7
+      ],
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0042_D25R0101.bin",
+      "models": [
+        479,
+        480,
+        481
+      ],
+      "attributesSha256": "13868c237d2542f9737fb54f18217587da9c011e64e5c6b52c8c041cae21241e",
+      "file": "cave-plan-union-ruins-exits.png",
+      "sha256": "14430d7c79ac917162efcc42caf95464e7d0e99fa723bc0dd1ae317ff27e5531",
+      "terrainRows": [
+        "##########............##########",
+        "##########............##########",
+        "##....####............##....####",
+        "##....####............##....####",
+        "##....####............##....####",
+        "##########............##......##",
+        "##########............##......##",
+        "......................##########"
+      ]
+    },
+    {
+      "location": "Union Cave",
+      "id": "cave-plan-union-side-passages",
+      "label": "Northern connecting passages",
+      "primaryMap": "MAP_UNION_CAVE_B2F",
+      "modelCell": 0,
+      "bounds": [
+        0,
+        0,
+        31,
+        39
+      ],
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0044_D25R0103.bin",
+      "models": [
+        484,
+        485,
+        486
+      ],
+      "attributesSha256": "a60e7e764a6a2842bb0370d1e19c55cdb36edb21ccb76e2b6931197c458d71ce",
+      "file": "cave-plan-union-side-passages.png",
+      "sha256": "6e87e6b47314fcea757a142f12bd42a82ef86873e3e2ecb429d39464f2bec486",
+      "terrainRows": [
+        "................................",
+        "..##########....................",
+        "..##########....................",
+        "..##..#...##....................",
+        "..##......##....................",
+        "..##..#...##....................",
+        "..##.#....##....................",
+        "..##..#...##....................",
+        "..###.....##....................",
+        "..##......##....................",
+        "..##......##....................",
+        "..#####...##....................",
+        "..#####...##....................",
+        ".....##...######................",
+        ".....##...######................",
+        ".....##.....####................",
+        ".....##.....#############.......",
+        ".....####...#############.......",
+        ".....#############.....###......",
+        ".....#############...#.###......",
+        "................##......##......",
+        "................#####...##......",
+        "................#####...##......",
+        "...................##.#.##......",
+        "...................##...######..",
+        "...................##..#######..",
+        "...................##.....####..",
+        "...................##.....####..",
+        "...................###....####..",
+        "...................###########..",
+        "...................###########..",
+        "................................",
+        "................................",
+        "................................",
+        "................................",
+        "................................",
+        "................................",
+        "................................",
+        "................................",
+        "................................"
+      ]
+    },
+    {
+      "location": "Dragon's Den",
+      "id": "cave-plan-dragons-den-entrance",
+      "label": "Entrance passage",
+      "primaryMap": "MAP_DRAGONS_DEN_ENTRANCE",
+      "modelCell": 0,
+      "bounds": [
+        1,
+        1,
+        11,
+        11
+      ],
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0145_D44R0101.bin",
+      "models": [
+        614
+      ],
+      "attributesSha256": "168f14165ade7c00884372a0c17a27c17826a92d94614628e0e80578db467174",
+      "file": "cave-plan-dragons-den-entrance.png",
+      "sha256": "b4f4e674098d888980a9dc9822e849ec59e800bfbacf974d3550520bbd60d9a6",
+      "terrainRows": [
+        "###########",
+        "###########",
+        "##......###",
+        "##......###",
+        "##......###",
+        "##.......##",
+        "##.......##",
+        "###.....###",
+        "####.....##",
+        "###########",
+        "###########"
+      ]
+    },
+    {
+      "location": "Tohjo Falls",
+      "id": "cave-plan-tohjo-hidden-room",
+      "label": "Hidden room",
+      "primaryMap": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+      "modelCell": 0,
+      "bounds": [
+        0,
+        0,
+        15,
+        12
+      ],
+      "notice": "Giovanni appears here only during the Celebi event.",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0164_D45R0102.bin",
+      "models": [
+        621
+      ],
+      "attributesSha256": "763f980f80a354921f2b104446f8d5fa10af16eb1542c16f7542b8c18239b048",
+      "file": "cave-plan-tohjo-hidden-room.png",
+      "sha256": "3358fa81fa56197826a1ea9f1636075e315d10f8634af2050d451f9534188a27",
+      "terrainRows": [
+        "................",
+        ".....###########",
+        ".....###########",
+        ".....####..#..##",
+        ".....####.....##",
+        ".....###.....###",
+        ".....###.....###",
+        ".....##.......##",
+        ".....##......###",
+        ".....##.......##",
+        ".....###......##",
+        ".....###########",
+        ".....###########"
+      ]
+    }
+  ],
+  "locations": {
+    "Cliff Cave": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Upper ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 86,
+              "y": 82,
+              "primaryMap": "MAP_CLIFF_CAVE",
+              "warpIndices": [
+                3,
+                4
+              ]
+            },
+            {
+              "mapId": "2f",
+              "x": 87,
+              "y": 85,
+              "primaryMap": "MAP_CLIFF_CAVE",
+              "warpIndices": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Lower ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 151,
+              "y": 98,
+              "primaryMap": "MAP_CLIFF_CAVE",
+              "warpIndices": [
+                6
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 103,
+              "y": 69,
+              "primaryMap": "MAP_CLIFF_CAVE",
+              "warpIndices": [
+                7,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "1f": {
+          "file": "cliff-cave-1f-hgss.png",
+          "width": 238,
+          "height": 147,
+          "sha256": "f81f45b7450d1e55c43dfee17f93de20750b36938b2c6fcebbe3f096c67845ec"
+        },
+        "2f": {
+          "file": "cliff-cave-2f-hgss.png",
+          "width": 222,
+          "height": 196,
+          "sha256": "f3ff4af35470c676844341a17fd6956b920c09d6edd39c31b27988508a4df1b8"
+        },
+        "b1f": {
+          "file": "cliff-cave-b1f-hgss.png",
+          "width": 190,
+          "height": 220,
+          "sha256": "ea48e4e803fc1cefb1b14ae8c58a65d8e5afbb5a1ab319ed217a29e739e6d3cc"
+        }
+      },
+      "primaryMaps": [
+        "MAP_CLIFF_CAVE"
+      ],
+      "coveredWarpTiles": 6,
+      "missing": []
+    },
+    "Union Cave": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Northwest ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 70,
+              "y": 88,
+              "primaryMap": "MAP_UNION_CAVE_1F",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 503,
+              "y": 575,
+              "primaryMap": "MAP_UNION_CAVE_B1F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Southwest ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 134,
+              "y": 912,
+              "primaryMap": "MAP_UNION_CAVE_1F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 70,
+              "y": 757,
+              "primaryMap": "MAP_UNION_CAVE_B1F",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Lapras chamber passage",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 471,
+              "y": 721,
+              "primaryMap": "MAP_UNION_CAVE_B1F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "b2f",
+              "x": 70,
+              "y": 89,
+              "primaryMap": "MAP_UNION_CAVE_B2F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "North passage",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 70,
+              "y": 71,
+              "primaryMap": "MAP_UNION_CAVE_B1F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "cave-plan-union-side-passages",
+              "x": 684.0,
+              "y": 444.0,
+              "primaryMap": "MAP_UNION_CAVE_B2F",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "Side passage",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 70,
+              "y": 185,
+              "primaryMap": "MAP_UNION_CAVE_B1F",
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "mapId": "cave-plan-union-side-passages",
+              "x": 252.0,
+              "y": 732.0,
+              "primaryMap": "MAP_UNION_CAVE_B2F",
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "Eastern Ruins alcove",
+          "ends": [
+            {
+              "mapId": "cave-plan-union-side-passages",
+              "x": 516.0,
+              "y": 156.0,
+              "primaryMap": "MAP_UNION_CAVE_B2F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "cave-plan-union-ruins-exits",
+              "x": 684.0,
+              "y": 156.0,
+              "primaryMap": "MAP_UNION_CAVE_1F",
+              "warpIndices": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "label": "Western Ruins alcove",
+          "ends": [
+            {
+              "mapId": "cave-plan-union-side-passages",
+              "x": 84.0,
+              "y": 540.0,
+              "primaryMap": "MAP_UNION_CAVE_B2F",
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "mapId": "cave-plan-union-ruins-exits",
+              "x": 156.0,
+              "y": 156.0,
+              "primaryMap": "MAP_UNION_CAVE_1F",
+              "warpIndices": [
+                4
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "1f": {
+          "file": "union-cave-1f-hgss.png",
+          "width": 544,
+          "height": 962,
+          "sha256": "9e9c51b29284009c4550eeea80c4fca644a7e519413fa5e4e3934ceca9b6ef92"
+        },
+        "b1f": {
+          "file": "union-cave-b1f-hgss.png",
+          "width": 576,
+          "height": 832,
+          "sha256": "9ecc796f95f78c08ea4e03a22c3e1a126733965ee9c6a4f4272ccdd684567875"
+        },
+        "b2f": {
+          "file": "union-cave-b2f-hgss.png",
+          "width": 640,
+          "height": 744,
+          "sha256": "c2dda5378e06a1d3209e5044d4a410e8997e01e61a3499c1c4746d5e69ea13fe"
+        },
+        "cave-plan-union-ruins-exits": {
+          "file": "cave-plan-union-ruins-exits.png",
+          "width": 816,
+          "height": 356,
+          "sha256": "14430d7c79ac917162efcc42caf95464e7d0e99fa723bc0dd1ae317ff27e5531"
+        },
+        "cave-plan-union-side-passages": {
+          "file": "cave-plan-union-side-passages.png",
+          "width": 816,
+          "height": 1124,
+          "sha256": "6e87e6b47314fcea757a142f12bd42a82ef86873e3e2ecb429d39464f2bec486"
+        }
+      },
+      "primaryMaps": [
+        "MAP_UNION_CAVE_1F",
+        "MAP_UNION_CAVE_B1F",
+        "MAP_UNION_CAVE_B2F"
+      ],
+      "coveredWarpTiles": 14,
+      "missing": []
+    },
+    "Slowpoke Well": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Entrance passage",
+          "ends": [
+            {
+              "mapId": "entrance",
+              "x": 70,
+              "y": 192,
+              "primaryMap": "MAP_SLOWPOKE_WELL_ENTRANCE",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 464,
+              "y": 402,
+              "primaryMap": "MAP_SLOWPOKE_WELL_B1F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Lower ladder",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 224,
+              "y": 314,
+              "primaryMap": "MAP_SLOWPOKE_WELL_B1F",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "b2f",
+              "x": 252,
+              "y": 282,
+              "primaryMap": "MAP_SLOWPOKE_WELL_B2F",
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "entrance": {
+          "file": "slowpoke-well-entrance-hgss.png",
+          "width": 240,
+          "height": 272,
+          "sha256": "d1fd24e927287d9f646c086cf7dcc5cf3c90b9681ea74f177eb662d5d6892193"
+        },
+        "b1f": {
+          "file": "slowpoke-well-b1f-hgss.png",
+          "width": 574,
+          "height": 476,
+          "sha256": "e996e6756861be04844f2ee925f750f3b13f84688b98f55201c4511f35367d9f"
+        },
+        "b2f": {
+          "file": "slowpoke-well-b2f-hgss.png",
+          "width": 593,
+          "height": 452,
+          "sha256": "b943e013ae386a66f6e0611cece1137b9230776a0258c2238926eb562adaa247"
+        }
+      },
+      "primaryMaps": [
+        "MAP_SLOWPOKE_WELL_B1F",
+        "MAP_SLOWPOKE_WELL_B2F",
+        "MAP_SLOWPOKE_WELL_ENTRANCE"
+      ],
+      "coveredWarpTiles": 5,
+      "missing": []
+    },
+    "Mt. Mortar": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "West lower passage",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 488,
+              "y": 520,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "mapId": "1f-back",
+              "x": 312,
+              "y": 1040,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Central lower passage",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 840,
+              "y": 520,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                5
+              ]
+            },
+            {
+              "mapId": "1f-back",
+              "x": 664,
+              "y": 1040,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "East lower passage",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 1240,
+              "y": 478,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                6
+              ]
+            },
+            {
+              "mapId": "1f-back",
+              "x": 1064,
+              "y": 1000,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "West raised ladder",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 359,
+              "y": 212,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                7
+              ]
+            },
+            {
+              "mapId": "1f-back",
+              "x": 184,
+              "y": 748,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                3,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "East raised ladder",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 1048,
+              "y": 224,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                8
+              ]
+            },
+            {
+              "mapId": "1f-back",
+              "x": 872,
+              "y": 760,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "Above the waterfall",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 664,
+              "y": 72,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                9
+              ]
+            },
+            {
+              "mapId": "2f",
+              "x": 408,
+              "y": 635,
+              "primaryMap": "MAP_MOUNT_MORTAR_2F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "label": "Central basement ladder",
+          "ends": [
+            {
+              "mapId": "1f-entrance",
+              "x": 664,
+              "y": 686,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+              "warpIndices": [
+                10
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 488,
+              "y": 813,
+              "primaryMap": "MAP_MOUNT_MORTAR_B1F",
+              "warpIndices": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "Back cave basement ladder",
+          "ends": [
+            {
+              "mapId": "1f-back",
+              "x": 312,
+              "y": 459,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                7
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 312,
+              "y": 63,
+              "primaryMap": "MAP_MOUNT_MORTAR_B1F",
+              "warpIndices": [
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Back cave upper ladder",
+          "ends": [
+            {
+              "mapId": "1f-back",
+              "x": 200,
+              "y": 124,
+              "primaryMap": "MAP_MOUNT_MORTAR_1F_BACK",
+              "warpIndices": [
+                8,
+                9
+              ]
+            },
+            {
+              "mapId": "2f",
+              "x": 120,
+              "y": 151,
+              "primaryMap": "MAP_MOUNT_MORTAR_2F",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "1f-entrance": {
+          "file": "mt-mortar-entrance-hgss.png",
+          "width": 1424,
+          "height": 820,
+          "sha256": "3e5f57c17e6513ed73ad01cc771da15894b97744b2490bd689b811d22deacb04"
+        },
+        "1f-back": {
+          "file": "mt-mortar-lower-cave-hgss.png",
+          "width": 1200,
+          "height": 1080,
+          "sha256": "b431164366a26446017b01940a168abf96d1450db481a5d054500f86f316abca"
+        },
+        "2f": {
+          "file": "mt-mortar-upper-cave-hgss.png",
+          "width": 912,
+          "height": 660,
+          "sha256": "33f0946db8756f9744ce04b317007d684207b2c4f515b6b4689878748a517ddb"
+        },
+        "b1f": {
+          "file": "mt-mortar-basement-hgss.png",
+          "width": 960,
+          "height": 948,
+          "sha256": "4221720c1d48f541b080f143a384481dfb68af51138d1791c099b5c02181fb6e"
+        }
+      },
+      "primaryMaps": [
+        "MAP_MOUNT_MORTAR_1F_BACK",
+        "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+        "MAP_MOUNT_MORTAR_2F",
+        "MAP_MOUNT_MORTAR_B1F"
+      ],
+      "coveredWarpTiles": 23,
+      "missing": []
+    },
+    "Ice Path": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "North 1F ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 816,
+              "y": 106,
+              "primaryMap": "MAP_ICE_PATH_1F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 120,
+              "y": 258,
+              "primaryMap": "MAP_ICE_PATH_B1F",
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "South 1F ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 816,
+              "y": 266,
+              "primaryMap": "MAP_ICE_PATH_1F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "b1f",
+              "x": 120,
+              "y": 520,
+              "primaryMap": "MAP_ICE_PATH_B1F",
+              "warpIndices": [
+                4,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Boulder puzzle ladder",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 424,
+              "y": 115,
+              "primaryMap": "MAP_ICE_PATH_B1F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "b2f",
+              "x": 408,
+              "y": 155,
+              "primaryMap": "MAP_ICE_PATH_B2F",
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "East B1F ladder",
+          "ends": [
+            {
+              "mapId": "b1f",
+              "x": 456,
+              "y": 511,
+              "primaryMap": "MAP_ICE_PATH_B1F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "b2f",
+              "x": 680,
+              "y": 294,
+              "primaryMap": "MAP_ICE_PATH_B2F",
+              "warpIndices": [
+                4,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "West B3F ladder",
+          "ends": [
+            {
+              "mapId": "b2f",
+              "x": 248,
+              "y": 248,
+              "primaryMap": "MAP_ICE_PATH_B2F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "b3f",
+              "x": 104,
+              "y": 136,
+              "primaryMap": "MAP_ICE_PATH_B3F",
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "East B3F ladder",
+          "ends": [
+            {
+              "mapId": "b2f",
+              "x": 792,
+              "y": 99,
+              "primaryMap": "MAP_ICE_PATH_B2F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "b3f",
+              "x": 408,
+              "y": 146,
+              "primaryMap": "MAP_ICE_PATH_B3F",
+              "warpIndices": [
+                2,
+                3
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "1f": {
+          "file": "ice-path-1f-hgss.png",
+          "width": 896,
+          "height": 768,
+          "sha256": "e462e57563cb8ea823351182ca407fb4d28cbefdc2ff185fef33efd1614ef6c4"
+        },
+        "b1f": {
+          "file": "ice-path-b1f-hgss.png",
+          "width": 544,
+          "height": 640,
+          "sha256": "3b74adbf44de1395a7c02d211c99f988880f23b6cbf22bd4f41bf3e4bf9ee805"
+        },
+        "b2f": {
+          "file": "ice-path-b2f-hgss.png",
+          "width": 992,
+          "height": 384,
+          "sha256": "18e95d6e047a1e6d3653be483073fb44409d7703fa8e2368c2623c4948415a1d"
+        },
+        "b3f": {
+          "file": "ice-path-b3f-hgss.png",
+          "width": 512,
+          "height": 224,
+          "sha256": "5a41ab389049442e640b7f1ee4869adef7294cfbb1036418bc5dbb12c9b43b3a"
+        }
+      },
+      "primaryMaps": [
+        "MAP_ICE_PATH_1F",
+        "MAP_ICE_PATH_B1F",
+        "MAP_ICE_PATH_B2F",
+        "MAP_ICE_PATH_B3F"
+      ],
+      "coveredWarpTiles": 18,
+      "missing": []
+    },
+    "Victory Road": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "1F ladder",
+          "ends": [
+            {
+              "mapId": "1f",
+              "x": 126,
+              "y": 103,
+              "primaryMap": "MAP_VICTORY_ROAD_1F",
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "mapId": "2f",
+              "x": 148,
+              "y": 283,
+              "primaryMap": "MAP_VICTORY_ROAD_2F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "South-central ladder",
+          "ends": [
+            {
+              "mapId": "2f",
+              "x": 468,
+              "y": 418,
+              "primaryMap": "MAP_VICTORY_ROAD_2F",
+              "warpIndices": [
+                1,
+                2
+              ]
+            },
+            {
+              "mapId": "3f",
+              "x": 416,
+              "y": 492,
+              "primaryMap": "MAP_VICTORY_ROAD_3F",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Southeast ladder",
+          "ends": [
+            {
+              "mapId": "2f",
+              "x": 852,
+              "y": 336,
+              "primaryMap": "MAP_VICTORY_ROAD_2F",
+              "warpIndices": [
+                3,
+                4
+              ]
+            },
+            {
+              "mapId": "3f",
+              "x": 800,
+              "y": 420,
+              "primaryMap": "MAP_VICTORY_ROAD_3F",
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Northeast ladder",
+          "ends": [
+            {
+              "mapId": "2f",
+              "x": 932,
+              "y": 125,
+              "primaryMap": "MAP_VICTORY_ROAD_2F",
+              "warpIndices": [
+                5,
+                6
+              ]
+            },
+            {
+              "mapId": "3f",
+              "x": 880,
+              "y": 210,
+              "primaryMap": "MAP_VICTORY_ROAD_3F",
+              "warpIndices": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "Northwest ladder",
+          "ends": [
+            {
+              "mapId": "2f",
+              "x": 148,
+              "y": 76,
+              "primaryMap": "MAP_VICTORY_ROAD_2F",
+              "warpIndices": [
+                7,
+                8
+              ]
+            },
+            {
+              "mapId": "3f",
+              "x": 96,
+              "y": 171,
+              "primaryMap": "MAP_VICTORY_ROAD_3F",
+              "warpIndices": [
+                4
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "1f": {
+          "file": "victory-road-1f-hgss.png",
+          "width": 692,
+          "height": 787,
+          "sha256": "2a31817b76ed49d21b4caba6cddb08e4baba55465a12672bd5063841f981df71"
+        },
+        "2f": {
+          "file": "victory-road-2f-hgss.png",
+          "width": 1094,
+          "height": 498,
+          "sha256": "b67e9503010e6fff232faca6304a2cb5239663a86b2ddd2d485a44c19f50af9e"
+        },
+        "3f": {
+          "file": "victory-road-3f-hgss.png",
+          "width": 1052,
+          "height": 566,
+          "sha256": "2d89997736a33b52c55522c571b4212b4ad0f9d1fdd4220a0c7ba77932d6c956"
+        }
+      },
+      "primaryMaps": [
+        "MAP_VICTORY_ROAD_1F",
+        "MAP_VICTORY_ROAD_2F",
+        "MAP_VICTORY_ROAD_3F"
+      ],
+      "coveredWarpTiles": 15,
+      "missing": []
+    },
+    "Mt. Silver": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Main cave entrance",
+          "ends": [
+            {
+              "mapId": "outside",
+              "x": 184,
+              "y": 104,
+              "primaryMap": "MAP_MOUNT_SILVER",
+              "warpIndices": [
+                0
+              ]
+            },
+            {
+              "mapId": "cave-1f",
+              "x": 648,
+              "y": 832,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Moltres chamber",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 248,
+              "y": 121,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "moltres-chamber",
+              "x": 192,
+              "y": 316,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Expert Belt chamber",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 552,
+              "y": 608,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "expert-belt-chamber",
+              "x": 112,
+              "y": 163,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "label": "Lower mountainside · south",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 830,
+              "y": 595,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "lower-mountainside",
+              "x": 336,
+              "y": 466,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "label": "Lower mountainside · middle",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 862,
+              "y": 509,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "mapId": "lower-mountainside",
+              "x": 272,
+              "y": 388,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "label": "Lower mountainside · north",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 895,
+              "y": 285,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                5
+              ]
+            },
+            {
+              "mapId": "lower-mountainside",
+              "x": 208,
+              "y": 157,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "label": "Spiral centre passage",
+          "ends": [
+            {
+              "mapId": "cave-1f",
+              "x": 520,
+              "y": 48,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_1F",
+              "warpIndices": [
+                6
+              ]
+            },
+            {
+              "mapId": "cave-2f",
+              "x": 352,
+              "y": 368,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "label": "Upper mountainside · north",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 352,
+              "y": 48,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 392,
+              "y": 282,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "label": "Upper mountainside · northeast",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 640,
+              "y": 138,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 619,
+              "y": 259,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "label": "Upper mountainside · east",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 640,
+              "y": 287,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                3
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 619,
+              "y": 407,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "label": "Upper mountainside · southeast",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 640,
+              "y": 438,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                4
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 619,
+              "y": 556,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "label": "Upper mountainside · south",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 576,
+              "y": 512,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                5
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 520,
+              "y": 659,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "label": "Upper mountainside · southwest",
+          "ends": [
+            {
+              "mapId": "cave-2f",
+              "x": 352,
+              "y": 512,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_2F",
+              "warpIndices": [
+                6
+              ]
+            },
+            {
+              "mapId": "upper-mountainside",
+              "x": 296,
+              "y": 659,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "label": "3F entrance",
+          "ends": [
+            {
+              "mapId": "upper-mountainside",
+              "x": 232,
+              "y": 451,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE",
+              "warpIndices": [
+                6
+              ]
+            },
+            {
+              "mapId": "cave-3f",
+              "x": 576,
+              "y": 361,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_3F",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "label": "Summit passage",
+          "ends": [
+            {
+              "mapId": "cave-3f",
+              "x": 240,
+              "y": 48,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_3F",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "summit",
+              "x": 328,
+              "y": 386,
+              "primaryMap": "MAP_MOUNT_SILVER_CAVE_SUMMIT",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "outside": {
+          "file": "mt-silver-exterior-hgss.png",
+          "width": 512,
+          "height": 448,
+          "sha256": "09306363862d401e524fda05840a46c0bfc6f4e6598f11d2d873fac525687616"
+        },
+        "cave-1f": {
+          "file": "mt-silver-1f-hgss.png",
+          "width": 1024,
+          "height": 896,
+          "sha256": "78fc6226cc59a4926b163a68f188aa549425a8304663b73ef7301bfe2eebac22"
+        },
+        "cave-2f": {
+          "file": "mt-silver-2f-hgss.png",
+          "width": 704,
+          "height": 544,
+          "sha256": "883e4301909b613cdca03d87a4505501f676c47fce2ed69025795ca7e0f11e5e"
+        },
+        "cave-3f": {
+          "file": "mt-silver-3f-hgss.png",
+          "width": 832,
+          "height": 416,
+          "sha256": "61e7ea7209c265e57dc46a5878ce723ef1eab89bec4c9ec4bcf09b5fd2f126c3"
+        },
+        "lower-mountainside": {
+          "file": "mt-silver-lower-mountainside-hgss.png",
+          "width": 416,
+          "height": 630,
+          "sha256": "904db1e3ad67f9188a38cd0402fa4d4650bd8f1f5f5f1259507f108b961bb5d5"
+        },
+        "upper-mountainside": {
+          "file": "mt-silver-upper-mountainside-hgss.png",
+          "width": 896,
+          "height": 883,
+          "sha256": "78a666e0cbe5ff28f098a07a3169ee797576470c03d5829d578411419b893a13"
+        },
+        "expert-belt-chamber": {
+          "file": "mt-silver-expert-belt-hgss.png",
+          "width": 224,
+          "height": 192,
+          "sha256": "1432c4b7f7fc8be93cdd8940ae2a69c1394fe7d20fe990ac36f9c3a9e0025bdd"
+        },
+        "moltres-chamber": {
+          "file": "mt-silver-moltres-hgss.png",
+          "width": 384,
+          "height": 352,
+          "sha256": "2b12b7c05779f6da0c6d9fbe4ab9a8391e50f1d3600a08e4cdbc507aa1b51578"
+        },
+        "summit": {
+          "file": "mt-silver-summit-hgss.png",
+          "width": 640,
+          "height": 480,
+          "sha256": "8ed702fdc7cc30d7c41706ce7bb69a09cbbbbcdee665ef0517cb83d9c3e9f7a0"
+        }
+      },
+      "primaryMaps": [
+        "MAP_MOUNT_SILVER",
+        "MAP_MOUNT_SILVER_CAVE_1F",
+        "MAP_MOUNT_SILVER_CAVE_2F",
+        "MAP_MOUNT_SILVER_CAVE_3F",
+        "MAP_MOUNT_SILVER_CAVE_EXPERT_BELT_CHAMBER",
+        "MAP_MOUNT_SILVER_CAVE_LOWER_MOUNTAINSIDE",
+        "MAP_MOUNT_SILVER_CAVE_MOLTRES_CHAMBER",
+        "MAP_MOUNT_SILVER_CAVE_SUMMIT",
+        "MAP_MOUNT_SILVER_CAVE_UPPER_MOUNTAINSIDE"
+      ],
+      "coveredWarpTiles": 30,
+      "missing": []
+    },
+    "Dark Cave": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Connecting passage",
+          "ends": [
+            {
+              "mapId": "route-31-route-46-side",
+              "x": 456,
+              "y": 108,
+              "primaryMap": "MAP_DARK_CAVE_ROUTE_31_SIDE",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "route-45-side",
+              "x": 135,
+              "y": 770,
+              "primaryMap": "MAP_DARK_CAVE_ROUTE_45_SIDE",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "route-31-route-46-side": {
+          "file": "dark-cave-1-hgss.png",
+          "width": 1088,
+          "height": 832,
+          "sha256": "ad38a85c05f8115490553f1f00e13245caec0bda39a11c5cce22bd4df179d84b"
+        },
+        "route-45-side": {
+          "file": "dark-cave-2-hgss.png",
+          "width": 1088,
+          "height": 800,
+          "sha256": "77a82df75dc8f961ef85158d9cb7f05428c97700678bf561291d978b2ffe2a28"
+        }
+      },
+      "primaryMaps": [
+        "MAP_DARK_CAVE_ROUTE_31_SIDE",
+        "MAP_DARK_CAVE_ROUTE_45_SIDE"
+      ],
+      "coveredWarpTiles": 2,
+      "missing": []
+    },
+    "Dragon's Den": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Entrance ladder",
+          "ends": [
+            {
+              "mapId": "cave-plan-dragons-den-entrance",
+              "x": 260.0,
+              "y": 180.0,
+              "primaryMap": "MAP_DRAGONS_DEN_ENTRANCE",
+              "warpIndices": [
+                1
+              ]
+            },
+            {
+              "mapId": "overview",
+              "x": 464,
+              "y": 90,
+              "primaryMap": "MAP_DRAGONS_DEN",
+              "warpIndices": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Dragon Shrine entrance",
+          "ends": [
+            {
+              "mapId": "overview",
+              "x": 464,
+              "y": 687,
+              "primaryMap": "MAP_DRAGONS_DEN",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "plan-dragons-den-shrine",
+              "x": 200,
+              "y": 540,
+              "primaryMap": "MAP_DRAGONS_DEN_SHRINE",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "overview": {
+          "file": "dragons-den-hgss.png",
+          "width": 929,
+          "height": 766,
+          "sha256": "cc1245afcc4338bffbfe5e21c118123e24246c8eb5b863f943153baaf09426b1"
+        },
+        "plan-dragons-den-shrine": {
+          "file": "plan-dragons-den-shrine.png",
+          "width": 520,
+          "height": 668,
+          "sha256": "395afc3aabb57107e20f5f1b55446106a5220cf7c0eb82de7ed3a86bd903b3e4"
+        },
+        "cave-plan-dragons-den-entrance": {
+          "file": "cave-plan-dragons-den-entrance.png",
+          "width": 520,
+          "height": 428,
+          "sha256": "b4f4e674098d888980a9dc9822e849ec59e800bfbacf974d3550520bbd60d9a6"
+        }
+      },
+      "primaryMaps": [
+        "MAP_DRAGONS_DEN",
+        "MAP_DRAGONS_DEN_ENTRANCE",
+        "MAP_DRAGONS_DEN_SHRINE"
+      ],
+      "coveredWarpTiles": 5,
+      "missing": []
+    },
+    "Tohjo Falls": {
+      "pairs": [
+        {
+          "id": "A",
+          "label": "Behind the west waterfall",
+          "ends": [
+            {
+              "mapId": "overview",
+              "x": 272,
+              "y": 245,
+              "primaryMap": "MAP_TOHJO_FALLS",
+              "warpIndices": [
+                2
+              ]
+            },
+            {
+              "mapId": "cave-plan-tohjo-hidden-room",
+              "x": 224.0,
+              "y": 324.0,
+              "primaryMap": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+              "warpIndices": [
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "images": {
+        "overview": {
+          "file": "tohjo-falls-hgss.png",
+          "width": 700,
+          "height": 424,
+          "sha256": "48692c966b283d2927e0132302831276e8e9257e5746e478983ae2374ae84d60"
+        },
+        "cave-plan-tohjo-hidden-room": {
+          "file": "cave-plan-tohjo-hidden-room.png",
+          "width": 520,
+          "height": 476,
+          "sha256": "3358fa81fa56197826a1ea9f1636075e315d10f8634af2050d451f9534188a27"
+        }
+      },
+      "primaryMaps": [
+        "MAP_TOHJO_FALLS",
+        "MAP_TOHJO_FALLS_HIDDEN_ROOM"
+      ],
+      "coveredWarpTiles": 2,
+      "missing": []
+    }
+  },
+  "addedPairs": 50,
+  "addedLocations": 10,
+  "missing": [],
+  "exclusions": [
+    "Safari and new Kanto locations are excluded.",
+    "Embedded Tower maps are story variants, not connected floors; no link is invented.",
+    "Only paired map-changing stairs/passages are marked. In-floor steps, ledges and scripted one-way falls are not paired warp routes.",
+    "The accepted Whirl Islands six-pair overlay is retained; its lower-floor expansion remains separate.",
+    "Exterior route/region exits and Pokémon Center rooms use existing navigation rather than internal cave markers."
+  ]
+}

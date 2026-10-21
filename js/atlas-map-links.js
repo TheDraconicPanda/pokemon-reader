@@ -11,10 +11,10 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
   overlay.className = 'map-marker-viewport';
   const panel = document.createElement('section');
   panel.className = 'map-stair-links';
-  panel.setAttribute('aria-label', 'Stair connections');
+  panel.setAttribute('aria-label', 'Map connections');
   const dialog = document.createElement('dialog');
   dialog.className = 'map-viewer';
-  dialog.setAttribute('aria-label', `${locationName} map with stair links`);
+  dialog.setAttribute('aria-label', `${locationName} map with connections`);
   const header = document.createElement('div');
   header.className = 'map-viewer-header';
   const title = document.createElement('h3');
@@ -34,7 +34,7 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
   selectLabel.append(select);
   const help = document.createElement('p');
   help.className = 'map-hint';
-  help.textContent = 'Scroll the map to explore. Matching letters connect the same ladder between 1F and B1F.';
+  help.textContent = data.help || 'Scroll the map to explore. Matching letters connect the same stairs or passage between maps.';
   const viewport = document.createElement('div');
   viewport.className = 'map-viewer-scroll';
   viewport.tabIndex = 0; viewport.setAttribute('aria-label', 'Scrollable full-size map');
@@ -83,7 +83,7 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
   }
   function linkList() {
     const fragment = document.createDocumentFragment();
-    const label = document.createElement('strong'); label.textContent = 'Stairs · 1F ↔ B1F';
+    const label = document.createElement('strong'); label.textContent = data.heading || 'Stairs & passages';
     const list = document.createElement('div'); list.className = 'map-stair-list';
     for (const pair of connections(activeMap)) {
       const button = document.createElement('button');
@@ -110,9 +110,9 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     const image = document.createElement('img');
     image.src = `../assets/maps/${activeMap.file}`;
     image.width = activeMap.width; image.height = activeMap.height;
-    image.alt = `${locationName} · ${activeMap.label}; north is up; lettered markers link matching stairs`;
+    image.alt = `${locationName} · ${activeMap.label}; north is up; lettered markers link matching connections`;
     const layer = markers(activeMap, true);
-    status.textContent = arrival ? `Arrived at stair ${arrival} on ${activeMap.label}.` : '';
+    status.textContent = arrival ? `Arrived at ${data.arrivalLabel || "connection"} ${arrival} on ${activeMap.label}.` : '';
     image.addEventListener('error', () => {
       if (!picture.isConnected) return;
       layer.hidden = true; status.textContent = 'Map unavailable. Use the stair links or select another map.';
@@ -123,7 +123,7 @@ export function createMapLinks(gameId, locationName, maps, onSelect) {
     focusArrival();
   }
   return {
-    overlay, panel, dialog,
+    overlay, panel, dialog, arrivalLabel: data.arrivalLabel || "connection",
     update(map, selectedPair = null) {
       activeMap = map; arrival = selectedPair;
       const available = connections(map).length > 0;

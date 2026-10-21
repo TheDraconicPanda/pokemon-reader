@@ -14,7 +14,7 @@ export function createTravelConditions(gameId, from) {
   const panel=document.createElement('details');panel.className='travel-conditions';
   const summary=document.createElement('summary');summary.textContent='Travel conditions';
   const help=document.createElement('p');
-  help.textContent='Solid HM symbols mark passage requirements. Outlined symbols mark through-route or alternative-path requirements; entering an area may be possible without them. A lock marks a story condition; “i” marks a path note. Open a destination to view its guide.';
+  help.textContent='Solid HM symbols mark passage requirements. Outlined symbols mark through-route or alternative-path requirements; entering an area may be possible without them. A lock marks a story condition; “i” marks a path note. Tap symbols to read their requirements here; tap a destination’s name to open its guide.';
   const list=document.createElement('ul');
   panel.append(summary,help,list);
   function decorate(button,to,index) {
@@ -38,7 +38,19 @@ export function createTravelConditions(gameId, from) {
     entry.append(title,text);list.append(entry);
     button.setAttribute('aria-describedby',text.id);
     button.title=descriptions.join(' ');
-    if(badges.childElementCount)button.append(badges);
+    if(badges.childElementCount) {
+      // The existing disclosure is also the keyboard/screen-reader route to help.
+      // Touching its duplicate symbols must not activate the navigation button.
+      badges.title='Read travel requirements for '+to;
+      badges.addEventListener('click', event => {
+        event.preventDefault(); event.stopPropagation();
+        panel.open=true;
+        for(const old of list.querySelectorAll('.is-selected'))old.classList.remove('is-selected');
+        entry.classList.add('is-selected'); entry.tabIndex=-1;
+        entry.focus({preventScroll:true}); entry.scrollIntoView({block:'nearest'});
+      });
+      button.append(badges);
+    }
   }
   return {panel,decorate,hasConditions:()=>list.childElementCount>0};
 }

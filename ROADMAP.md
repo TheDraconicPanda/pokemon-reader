@@ -615,3 +615,19 @@ remain separate. See [coverage and limitations](docs/atlas-johto-interior-comple
 
 This covers the requested four entrance maps ↔ B1F connections; B2F/deeper paths,
 Safari and Kanto expansion remain separate. See [evidence and scope](docs/whirl-islands-stair-links.md).
+
+## More cave links and mobile travel help — v0.25.70
+
+- [x] Verify and add all 50 paired map-changing stairs/passages across the ten
+  additional scoped caves; retain the accepted six Whirl pairs.
+- [x] Cover unmapped connector/entrance rooms with four labelled terrain plans.
+- [x] Preserve original map bytes/order, floor selectors, compass and encounters.
+- [x] Make travel symbols open/highlight their requirement entry on touch while
+  destination names continue to navigate; retain keyboard/disclosure access.
+- [x] Keep Close map visible while scrolling the full-size viewer.
+- [x] Pass 166 tests, review phone/desktop layouts and reproduce all map assets.
+- [ ] User outcome acceptance on the existing Pages site.
+
+The [coverage ledger and scope](docs/cave-map-links.md) distinguish paired stairs
+from in-floor steps, one-way drops and puzzles. Towers, Whirl’s lower-floor
+extension, Safari and new Kanto locations remain separate.

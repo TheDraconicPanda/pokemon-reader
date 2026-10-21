@@ -1,7 +1,7 @@
 # HeartGold/SoulSilver map assets
 
-The catalogue supplies 192 area/floor views across the 69 existing non-Safari
-locations, using 175 unique PNG files. Safari Zone itself remains a separate
+The catalogue supplies 299 area/floor views across the 69 existing non-Safari
+locations, using 282 unique PNG files. Safari Zone itself remains a separate
 project. See `docs/atlas-map-coverage.json` for the generated coverage report.
 
 ## Sources and reproduction
@@ -96,3 +96,13 @@ are not simulated. Source links point to each room’s primary event file; the f
 format evidence and limitations are in `docs/atlas-johto-interior-completion.md`.
 This adds 103 plans, making 295 map choices / 278 PNG assets; original images and
 credits are preserved.
+
+
+## Cave connector plans (v0.25.70)
+
+Four `cave-plan-*.png` diagrams fill small Union Cave, Dragon’s Den and Tohjo Falls
+room gaps needed by the new paired map markers. Their primary terrain/crop/warp
+recipe is `scripts/soulsilver-cave-links.json`, built by `build-cave-links.py`.
+They show static collision flags, not complete walking surfaces or rendered
+artwork. Other cave markers are HTML overlays; all original PNG bytes and credits
+remain unchanged. See `docs/cave-map-links.md` for reproduction and scope.

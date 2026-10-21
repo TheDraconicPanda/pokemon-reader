@@ -353,3 +353,7 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2p
 .map-marker-layer-large .map-stair-marker { width: 34px; height: 34px; font-size: 16px; }
 .map-viewer-status { font-size: 0.85rem; }
 .map-viewer [hidden], .map-stair-links[hidden] { display: none; }
+
+.travel-badges { min-width: 44px; min-height: 28px; align-items: center; cursor: help; }
+.travel-conditions li.is-selected { padding: 0.5rem; border-radius: 0.4rem; background: var(--soft-accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+.map-viewer-header { position: sticky; top: 0; z-index: 2; padding-block: 0.35rem; background: var(--surface); }

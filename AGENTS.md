@@ -162,3 +162,21 @@ warp tiles represent one ladder. B1F/B2F stairs and cave exits have no A–F lab
 Evidence/primary indices and image hashes: `docs/whirl-islands-stair-links.json`.
 Do not infer a walkable whole-floor route or override HM/story requirements from
 these paired links. Other locations/games must not inherit Whirl's connections.
+
+Atlas v0.25.70 adds 50 verified paired map-changing stairs/passages in ten other
+caves (56 pairs / 11 locations including accepted Whirl). Explicit recipe:
+`scripts/soulsilver-cave-links.json`; build with `build-cave-links.py` against the
+pinned clean HGSS checkout, then the regular map builder. Four supplementary plans
+bring the catalogue to 299 views / 282 PNGs. Interior/cave generators own separate
+ID prefixes and preserve view order. Source evidence/crops/warp indices:
+`docs/cave-map-links.json`. Assign displayed floor per endpoint: Cliff Cave shares
+one header across floors; Union has separate connector/exit rooms inside existing
+primary scenes. Do not infer floor or pixel positions from header names alone.
+In-floor steps, scripted one-way falls and puzzles are not reversible warp pairs;
+Embedded Tower variants are not connected floors. Existing Whirl lower-floor,
+tower, Safari and Kanto expansion scopes remain separate.
+Travel badge strips now open/focus the exact entry in Travel conditions on pointer
+activation, stopping propagation to the navigation button; names still navigate.
+Keep the existing native disclosure/aria descriptions for keyboard/screen-reader
+access and avoid nested interactive controls. The full-size map header is sticky
+so Close map stays reachable after panning to deeper room markers.
