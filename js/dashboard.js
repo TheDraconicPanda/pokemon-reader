@@ -2,7 +2,6 @@ const views = {
   overview: ['Overview', 'Load a save to explore your adventure. Your file stays in this browser.'],
   party: ['Party', 'Your travelling team, in its original party order.'],
   storage: ['PC Storage', 'Browse your boxes and inspect each Pokémon.'],
-  pokedex: ['Pokédex', 'Your save’s Seen and Caught registrations.'],
   collection: ['Collection', 'Explore current ownership, registrations, forms, and collection statistics.'],
 };
 const heading = document.querySelector('#view-heading');
@@ -11,6 +10,7 @@ let activeView;
 const hasSave = () => document.querySelector(".app").dataset.saveLoaded === "true";
 function route(focus = false) {
   const requested = location.hash.slice(1);
+  if (["pokedex", "pokedex-info"].includes(requested)) { location.replace("pokedex/"); return; }
   // Existing collection jump links keep their section context.
   let section = document.getElementById(requested);
   let view = Object.hasOwn(views, requested) ? requested : section?.dataset.readerView || 'overview';
@@ -39,6 +39,8 @@ function route(focus = false) {
 }
 function updateState() {
   const loaded = hasSave();
+  const profiles = document.querySelector("#adventure-profiles");
+  if (profiles.hidden !== loaded) profiles.hidden = loaded;
   if (!loaded && activeView !== "overview") { route(); return; }
   for (const link of document.querySelectorAll(".dashboard-nav [data-view]")) {
     const disabled = link.dataset.view !== "overview" && !loaded;

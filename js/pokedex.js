@@ -5,6 +5,11 @@ const gameSelect=document.querySelector('#reference-game'), scopeSelect=document
 const list=document.querySelector('#species-list'), status=document.querySelector('#reference-status');
 const dialog=document.querySelector('#reference-detail'), content=document.querySelector('#reference-content');
 const search=document.querySelector('#species-search'), next=document.querySelector('#next-match');
+let savedDex=null, owned=new Map();
+const saveFilter=document.querySelector('#save-filter');
+const requestedFilter=new URLSearchParams(location.hash.slice(1)).get('filter');
+if([...saveFilter.options].some(o=>o.value===requestedFilter))saveFilter.value=requestedFilter;
+function saveFlags(id) { return {seen:new Set(savedDex?.allSeenSpecies || savedDex?.seenSpecies || []).has(id),caught:new Set(savedDex?.allCaughtSpecies || savedDex?.caughtSpecies || []).has(id),owned:owned.has(id)}; }
 let gameId='soulsilver',scope='regional', opener=null,listY=0,currentKey=null,matchIds=[],matchIndex=0;
 const node=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;};
 const note=(parent,text)=>parent.append(node('p',text,'reference-note'));
@@ -23,12 +28,15 @@ function speciesButton(id,label) { const b=node('button',label||species(id).name
 function renderList() {
   list.replaceChildren();const ids=scope==='regional'?data().regional:Array.from({length:493},(_,i)=>i+1);
   ids.forEach((id,index)=>{
+    const flags=saveFlags(id),filter=saveFilter.value;
+    if(savedDex && !(filter==='all'||flags[filter]||filter==='missing'&&!flags.caught||filter==='unseen'&&!flags.seen))return;
     const p=species(id),li=node('li');li.id=`species-${id}`;li.value=index+1;
     const b=node('button',undefined,'species-row');b.type='button';b.dataset.speciesId=id;b.setAttribute('aria-label',`${String(index+1).padStart(3,'0')} ${p.name}, ${p.types.join(' and ')}`);
     const number=node('span',String(index+1).padStart(3,'0'),'dex-number');
     const img=node('img');img.src=hgssSprite(id);img.width=56;img.height=56;img.alt='';img.loading='lazy';
-    b.append(number,img,node('strong',p.name),typeBadges(p.types));b.addEventListener('click',()=>openSpecies(id));li.append(b);list.append(li);
+    b.append(number,img,node('strong',p.name),typeBadges(p.types));if(savedDex)b.append(node('small',`Seen: ${flags.seen?'Yes':'No'} · Caught: ${flags.caught?'Yes':'No'} · Owned: ${owned.get(id)||0}`));b.addEventListener('click',()=>openSpecies(id));li.append(b);list.append(li);
   });
+  if(!list.children.length)list.append(node('li','No species match this save filter.'));
   scopeSelect.value=scope;document.body.dataset.referenceReady='true';
 }
 function renderDetail(key,referenceType=null) {
@@ -138,7 +146,7 @@ function revealSpecies(id) {
   return row.querySelector('button');
 }
 function jump(id) {
-  if(!document.querySelector(`#species-${id}`)){scope='national';history.replaceState(null,'','#scope=national');renderList();}
+  if(!document.querySelector(`#species-${id}`)){scope='national';saveFilter.value='all';history.replaceState(null,'','#scope=national');renderList();}
   revealSpecies(id).focus({preventScroll:true});
   status.textContent=`${species(id).name} · National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':'Johto'} order; surrounding species remain visible.`;
 }
@@ -146,5 +154,8 @@ const normalize=s=>s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9♀♂]/g,
 document.querySelector('#reference-search').addEventListener('submit',event=>{event.preventDefault();const q=normalize(search.value);matchIds=q?Array.from({length:493},(_,i)=>i+1).filter(id=>/^\d+$/.test(q)?id===Number(q):normalize(species(id).name).includes(q)):[];matchIndex=0;next.hidden=matchIds.length<2;if(matchIds.length)jump(matchIds[0]);else status.textContent=q?'No matching SoulSilver species. The list is unchanged.':'Enter a species name or National number.';});
 next.addEventListener('click',()=>{matchIndex=(matchIndex+1)%matchIds.length;jump(matchIds[matchIndex]);});
 // Supported game defaults from the active profile; reference remains independent.
-try {const profile=await getActiveProfile();if(pokedexReference(profile?.gameId))gameId=profile.gameId;}catch{}
+try {const profile=await getActiveProfile();if(pokedexReference(profile?.gameId)){gameId=profile.gameId;savedDex=profile.snapshot.pokedex;for(const p of [...profile.snapshot.party,...profile.snapshot.storage.boxes.flatMap(b=>b.pokemon)])if(!p.empty&&!p.isEgg)owned.set(p.speciesId,(owned.get(p.speciesId)||0)+1);}}catch{}
+saveFilter.disabled=!savedDex;
+document.querySelector('#save-dex-status').textContent=savedDex?`${savedDex.nationalDex?'National':'Johto'} save · Seen ${savedDex.seenCount} / ${savedDex.speciesCount} · Caught ${savedDex.caughtCount} / ${savedDex.speciesCount}. Registrations persist after evolution/trading. Owned counts party and PC only, excluding Eggs and Day Care.`:'Load a save to see Seen, Caught and current ownership.';
+saveFilter.addEventListener('change',renderList);
 gameSelect.value=gameId;renderList();route();

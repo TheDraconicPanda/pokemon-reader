@@ -1,5 +1,15 @@
 # Pokémon Reader
 
+## Load Save refinements — v0.25.72
+
+Reader help uses info disclosures; Adventure Profiles hide while a save is loaded.
+Reader views share the Party mobile width, with pointer focus rings removed from
+view headings. PC searches include saved move names from local HGSS data.
+The main-menu Pokédex now includes save Seen/Caught/Owned filters and counts;
+the duplicate Reader view is removed and old links redirect to the reference.
+Automated validation and online acceptance are recorded after verification.
+
+
 A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.
 
 ## Team Planner navigation — v0.25.66

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.25.71</title>
+  <title>Pokémon Reader — v0.25.72</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/app-shell.css">
   <script src="js/app-shell.js"></script>
@@ -14,22 +14,21 @@
     <app-menu tool="reader"></app-menu>
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.71</span></p>
+      <p>SoulSilver save-file reader · Version <span id="app-version">v0.25.72</span></p>
     </header>
       <nav class="dashboard-nav" aria-label="Reader views">
         <a href="#overview" data-view="overview">Overview</a>
         <a data-view="party" role="link" aria-disabled="true" tabindex="-1">Party</a>
         <a data-view="storage" role="link" aria-disabled="true" tabindex="-1">PC Storage</a>
-        <a data-view="pokedex" role="link" aria-disabled="true" tabindex="-1">Pokédex</a>
         <a data-view="collection" role="link" aria-disabled="true" tabindex="-1">Collection</a>
       </nav>
     <div class="view-intro"><p class="eyebrow">YOUR SOULSILVER COMPANION</p><h2 id="view-heading" tabindex="-1">Overview</h2>
-    <p id="view-description">Load a save to explore your adventure. Your file stays in this browser.</p></div>
+    <details class="reader-info"><summary aria-label="About this view">ⓘ</summary><p id="view-description">Load a save to explore your adventure. Your file stays in this browser.</p></details></div>
     <p id="view-empty" class="card" hidden>Load a SoulSilver save in <a href="#overview">Overview</a> to use this view.</p>
 
     <section id="upload-area" class="card" data-reader-view="overview">
       <h2 id="upload-heading">Your adventure starts here</h2>
-      <p id="upload-help">Choose a raw 512 KB Pokémon SoulSilver save. Emulator containers must be exported as raw saves first. Files are processed locally and never uploaded.</p>
+      <details class="reader-info"><summary aria-label="Save file requirements">ⓘ</summary><p id="upload-help">Choose a raw 512 KB Pokémon SoulSilver save. Emulator containers must be exported as raw saves first. Files are processed locally and never uploaded.</p></details>
       <label id="drop-zone" class="file-picker" for="save-file">
         <span class="file-picker-text">Choose a save file or drop one here</span>
         <input id="save-file" type="file" accept=".sav,.dsv,.dat,application/octet-stream">
@@ -71,7 +70,7 @@
       <div class="collection-nav-links">
         <a href="#party-info">Party</a>
         <a href="#storage-info">PC storage</a>
-        <a href="#pokedex-info">Pokédex</a>
+        <a href="pokedex/">Pokédex</a>
         <a href="#collection-info">Statistics</a>
         <a href="#collection-gender-info">Gender</a>
         <a href="#unown-form-info">Alternate forms</a>
@@ -89,34 +88,13 @@
         <button id="box-previous" type="button" aria-label="Previous box">← Previous</button>
         <label>Current box<select id="box-select"></select></label>
         <button id="box-next" type="button" aria-label="Next box">Next →</button>
-        <label class="storage-search-label">Find in all boxes<input id="storage-search" type="search" placeholder="Species, nickname, or Dex number"></label>
+        <label class="storage-search-label">Find in all boxes<input id="storage-search" type="search" placeholder="Species, nickname, move, or Dex number"></label>
       </div>
       <p id="box-occupancy" aria-live="polite"></p>
       <p class="collection-note">Search highlights matches without moving slots. Choose a result to open its original box.</p>
       <div id="storage-results" class="storage-results" aria-live="polite" hidden></div>
       <nav id="box-tabs" class="box-tabs" aria-label="PC boxes"></nav>
       <div id="box-grid" class="box-grid"></div>
-    </section>
-
-    <section data-reader-view="pokedex" id="pokedex-info" class="card" hidden>
-      <h2>Pokédex</h2>
-      <dl>
-        <div><dt>Mode</dt><dd id="pokedex-mode-value">—</dd></div>
-        <div><dt>Seen</dt><dd id="pokedex-seen-value">—</dd></div>
-        <div><dt>Caught</dt><dd id="pokedex-caught-value">—</dd></div>
-      </dl>
-      <p class="collection-note">Seen and Caught are permanent save registrations. Currently Owned counts non-Egg Pokémon in your party and PC only; it excludes Day Care and Pokémon traded away.</p>
-      <div class="dex-controls">
-        <label>Search species<input id="dex-search" type="search" placeholder="Species name or Dex number"></label>
-        <label>Show<select id="dex-filter">
-          <option value="all">All species in this Dex</option><option value="seen">Seen</option>
-          <option value="caught">Caught</option><option value="owned">Currently Owned</option>
-          <option value="missing">Not Caught</option><option value="unseen">Not Seen</option>
-        </select></label>
-      </div>
-      <p id="dex-count" aria-live="polite"></p>
-      <div id="dex-list" class="dex-list"></div>
-      <button id="dex-more" class="dex-more" type="button" hidden>Show more species</button>
     </section>
 
     <section data-reader-view="collection" id="collection-info" class="card" hidden>

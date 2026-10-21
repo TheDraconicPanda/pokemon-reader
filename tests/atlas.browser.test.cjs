@@ -267,7 +267,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.71') && document.querySelector('.eyebrow').textContent.includes('v0.25.71'),
+    version: document.title.includes('v0.25.72') && document.querySelector('.eyebrow').textContent.includes('v0.25.72'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -275,16 +275,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 269);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.71<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.72<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.71'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.71");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.72");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.71'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -319,7 +319,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
   await until(() => evaluate(`document.querySelector('[data-view="overview"]')?.getAttribute('aria-current') === 'page'`), "Dashboard did not initialize");
   assert.equal(await evaluate(`document.documentElement.dataset.theme`), "dark");
   await fixtureReader();
-  for (const view of ["party", "storage", "pokedex", "collection", "overview"]) {
+  for (const view of ["party", "storage", "collection", "overview"]) {
     await evaluate(`document.querySelector('[data-view="${view}"]').click()`);
     await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`), "View did not switch");
     assert.equal(await evaluate(`document.activeElement.id`), "view-heading");
@@ -345,7 +345,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.71'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -417,26 +417,17 @@ test('PC retains 18 boxes and 30 slots while search navigates in original order'
   await command('Fetch.disable');
 });
 
-test('Pokédex separates registrations from ownership and preserves regional scope', async () => {
-  const data = fixture(); data.save.pokedex.caughtSpecies=[25,152]; data.save.pokedex.caughtCount=2;
-  await fixtureReader(data);
+test('Unified Pokédex keeps registration and ownership filters and redirects legacy Reader links', async () => {
+  await fixtureReader(); await command('Fetch.disable');
   await evaluate(`location.hash='pokedex'`);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 3`),'Dex entries');
-  assert.equal(await evaluate(`document.querySelector('[data-species="152"]').textContent.includes('Currently Owned: No')`),true);
-  assert.equal(await evaluate(`document.querySelector('[data-species="133"]').textContent.includes('Caught: No')`),true);
-  assert.equal(await evaluate(`document.querySelector('[data-species="133"]').textContent.includes('Currently Owned: Yes (1)')`),true);
-  await evaluate(`var filter=document.querySelector('#dex-filter'); filter.value='owned'; filter.dispatchEvent(new Event('change'));`);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 2`),'Owned filter');
-  await evaluate(`var search=document.querySelector('#dex-search'); search.value='EEVEE'; search.dispatchEvent(new Event('input'));`);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 1`),'Dex search');
-  assert.equal(await evaluate(`document.querySelector('.dex-entry').dataset.species`),'133');
-  const regional=fixture('Regional'); regional.save.pokedex={...regional.save.pokedex,nationalDex:false,speciesIds:[25]};
-  await evaluate(`document.querySelector('#dex-search').value=''; document.querySelector('#dex-filter').value='all';`);
-  await uploadFixture(regional);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 1`),'Regional scope');
-  assert.equal(await evaluate(`document.querySelector('#pokedex-mode-value').textContent`),'Regional Dex');
-  assert.equal(await evaluate(`document.querySelector('.dex-entry').dataset.species`),'25');
-  await command('Fetch.disable');
+  await until(()=>evaluate(`document.body?.dataset.referenceReady==='true'`),'Unified Dex ready');
+  assert.equal(await evaluate(`location.pathname`),'/pokedex/');
+  assert.equal(await evaluate(`document.querySelector('#save-filter').disabled`),false);
+  await evaluate(`var f=document.querySelector('#save-filter');f.value='owned';f.dispatchEvent(new Event('change'));`);
+  assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),2);
+  assert.equal(await evaluate(`document.querySelector('[data-species-id="133"]').textContent.includes('Owned: 1')`),true);
+  await evaluate(`var f=document.querySelector('#save-filter');f.value='caught';f.dispatchEvent(new Event('change'));`);
+  assert.equal(await evaluate(`document.querySelector('[data-species-id="25"]')!==null`),true);
 });
 
 test('Collection keeps counts, duplicates, caught/missing views, search and sorting', async () => {
@@ -466,7 +457,7 @@ test('Loaded dashboard and dialogs fit mobile/desktop in both themes', async () 
     await evaluate(`if (document.documentElement.dataset.theme !== '${theme}') document.querySelector('#theme-toggle').click()`);
     for (const width of [320,390,768,1440]) {
       await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
-      for (const view of ['overview','party','storage','pokedex','collection']) {
+      for (const view of ['overview','party','storage','collection']) {
         await evaluate(`location.hash='${view}'`);
         await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`),'View switch');
         assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true,`${theme}/${view}/${width} overflow`);
@@ -506,7 +497,6 @@ test('Metadata outage retains parsed data with honest fallback labels', async ()
     await fixtureReader();
     assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Test Trainer');
     assert.equal(await evaluate(`document.querySelector('#party-grid').textContent.includes('Sparky')`),true);
-    assert.equal(await evaluate(`document.querySelector('#dex-count').textContent.includes('Species names unavailable')`),true);
     await evaluate(`location.hash='party'`);
     await until(() => evaluate(`document.querySelector('[data-view="party"]').getAttribute('aria-current') === 'page'`),'Party route');
     await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
@@ -521,9 +511,6 @@ test('Metadata outage retains parsed data with honest fallback labels', async ()
 test('Pagination and rapid replacement do not reparse or resurrect stale information', async () => {
   const data=fixture(); data.save.pokedex.speciesIds=Array.from({length:100},(_,i)=>i+1);
   await fixtureReader(data);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 40`),'Initial Dex page');
-  await evaluate(`document.querySelector('#dex-more').click()`);
-  await until(() => evaluate(`document.querySelectorAll('.dex-entry').length === 80`),'More Dex entries');
   await evaluate(`var mode=document.querySelector('#collection-list-mode'); mode.value='missing'; mode.dispatchEvent(new Event('change'));`);
   await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 40`),'Initial collection page');
   await evaluate(`document.querySelector('#collection-show-more').click()`);
@@ -548,11 +535,10 @@ test('Invalid replacement clears all previous data and empty parties keep six sl
   const storageKeys = await evaluate(`Object.keys(localStorage).sort()`);
   assert.equal(await evaluate(`document.querySelectorAll('.empty-party-slot').length`),6);
   await uploadFixture({valid:false,game:'Not detected',activePartition:null,reason:'Invalid test save',party:[],save:null});
-  for (const id of ['trainer-info','party-info','storage-info','pokedex-info','collection-info','collection-gender-info','unown-form-info','collection-details-info','overview-summary']) {
+  for (const id of ['trainer-info','party-info','storage-info','collection-info','collection-gender-info','unown-form-info','collection-details-info','overview-summary']) {
     assert.equal(await evaluate(`document.querySelector('#${id}').hidden`),true,id);
   }
   assert.equal(await evaluate(`document.querySelector('#party-grid').childElementCount`),0);
-  assert.equal(await evaluate(`document.querySelector('#dex-list').childElementCount`),0);
   assert.equal(await evaluate(`document.querySelector('.app').getAttribute('aria-busy')`),'false');
   assert.deepEqual(await evaluate(`Object.keys(localStorage).sort()`),storageKeys);
   await command('Fetch.disable');
@@ -603,7 +589,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.71'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -612,14 +598,13 @@ test('Ribbons replace the old status row and Load Save resets to the welcome scr
   await fixtureReader();
   assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),true);
   assert.equal(await evaluate(`document.querySelector('#overview-summary').hidden`),false);
-  await evaluate(`location.hash='pokedex'; document.querySelector('#dex-search').value='pikachu'; document.querySelector('#load-save').click()`);
+  await evaluate(`location.hash='party'; document.querySelector('#load-save').click()`);
   await until(() => evaluate(`document.querySelector('[data-view="overview"]').getAttribute('aria-current') === 'page'`),'Reset route');
-  for (const id of ['overview-summary','trainer-info','party-info','storage-info','pokedex-info','collection-info']) {
+  for (const id of ['overview-summary','trainer-info','party-info','storage-info','collection-info']) {
     assert.equal(await evaluate(`document.querySelector('#${id}').hidden`),true,id);
   }
   assert.equal(await evaluate(`document.querySelector('#upload-area').hidden`),false);
   assert.equal(await evaluate(`document.querySelector('#file-status').textContent`),'No save file loaded.');
-  assert.equal(await evaluate(`document.querySelector('#dex-search').value`),'');
   assert.equal(await evaluate(`document.querySelector('#overview-stats').childElementCount`),0);
   await uploadFixture(fixture('Loaded after reset'));
   assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Loaded after reset');
@@ -632,12 +617,11 @@ test('Summary buttons navigate to real Party, PC, ownership, shiny, and registra
   data.storage.boxes[0].pokemon[4].shiny=true;
   data.storage.boxes[17].pokemon[29].shiny=true;
   await fixtureReader(data);
-  for (const [destination, view] of [['party','party'],['storage','storage'],['seen','pokedex'],['caught','pokedex'],['owned','collection'],['shiny','collection']]) {
+  for (const [destination, view] of [['party','party'],['storage','storage'],['owned','collection'],['shiny','collection']]) {
     await evaluate(`location.hash='overview'`);
     await until(() => evaluate(`document.querySelector('[data-view="overview"]').getAttribute('aria-current') === 'page'`),'Overview route');
     await evaluate(`document.querySelector('.summary-button[data-destination="${destination}"]').click()`);
     await until(() => evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-current') === 'page'`),'Summary destination');
-    if (destination === 'seen' || destination === 'caught') assert.equal(await evaluate(`document.querySelector('#dex-filter').value`),destination);
     if (destination === 'owned') {
       await until(() => evaluate(`document.querySelectorAll('.collection-species-row').length === 2`),'Owned species include those outside regional Dex');
       assert.equal(await evaluate(`document.querySelector('#collection-list-mode').value`),'owned');
@@ -764,7 +748,7 @@ test('Ordinary Pokémon hide unknown egg history and missing training values do 
 test('Reader views stay unavailable before loading, after invalid files, and after reset', async () => {
   await command('Page.navigate',{url:baseURL+'/?gate-test=1#party'});
   await until(() => evaluate(`document.querySelector('[data-view="overview"]')?.getAttribute('aria-current') === 'page'`),'Guard direct Party link');
-  for (const view of ['party','storage','pokedex','collection']) {
+  for (const view of ['party','storage','collection']) {
     assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').getAttribute('aria-disabled')`),'true');
     assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').hasAttribute('href')`),false);
     assert.equal(await evaluate(`document.querySelector('[data-view="${view}"]').tabIndex`),-1);
@@ -781,15 +765,15 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
   await until(() => evaluate(`document.querySelector('.app').dataset.view === 'party'`),'Loaded Party route');
   await evaluate(`document.querySelector('#load-save').click()`);
   await until(() => evaluate(`document.querySelector('.app').dataset.view === 'overview'`),'Reset returns to Overview');
-  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),4);
+  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),3);
   await uploadFixture({valid:false,game:'Not detected',activePartition:null,reason:'Invalid test save',party:[],save:null});
-  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),4);
+  assert.equal(await evaluate(`document.querySelectorAll('.dashboard-nav [aria-disabled="true"]').length`),3);
   await command('Fetch.disable');
 });
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.71'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.72'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2176,7 +2160,7 @@ test('Safari shows only its short title above the map and repeated compass trave
 
 test('Integrated Reader routes survive decoded restoration, reload and a cross-tool Back navigation',async()=>{
  await fixtureReader();await command('Fetch.disable');
- for(const view of ['party','storage','pokedex','collection-details-info']){
+ for(const view of ['party','storage','collection-details-info']){
   await command('Page.navigate',{url:baseURL+'/pokemon-reader/#'+view});
   await until(()=>evaluate(`document.querySelector('.app')?.dataset.saveLoaded==='true'`),'Decoded restoration');
   assert.equal(await evaluate(`location.hash`),'#'+view,'Restoration must retain the requested Reader route');
@@ -2729,4 +2713,27 @@ test('Towers, lower Whirl and one-way holes navigate and focus correctly on phon
   await until(()=>evaluate(`!document.querySelector('.map-viewer').open&&document.activeElement.dataset.stair==='D1'`),'Landing close');
  }
  await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
+});
+
+test('Load Save info, profile visibility, consistent widths and offline Flash search',async()=>{
+ const data=fixture();data.storage.boxes[0].pokemon[4].moves=[{id:148,pp:20,ppUps:0}];
+ await fixtureReader(data);
+ assert.equal(await evaluate(`document.querySelector('#adventure-profiles').hidden`),true);
+ assert.equal(await evaluate(`document.querySelector('[data-view="pokedex"]')`),null);
+ await evaluate(`document.querySelector('.view-intro .reader-info summary').click()`);
+ assert.equal(await evaluate(`document.querySelector('.view-intro .reader-info').open`),true);
+ await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ const widths=[];
+ for(const view of ['overview','party','storage','collection']){
+  await evaluate(`location.hash='${view}'`);
+  await until(()=>evaluate(`document.querySelector('.app').dataset.view==='${view}'`),'Reader view');
+  widths.push(await evaluate(`document.querySelector('.app').getBoundingClientRect().width`));
+ }
+ assert.equal(new Set(widths).size,1);
+ await evaluate(`location.hash='storage';var s=document.querySelector('#storage-search');s.value='fLaSh';s.dispatchEvent(new Event('input'));`);
+ assert.equal(await evaluate(`document.querySelector('#storage-results').textContent.startsWith('1 matching Pokémon')`),true);
+ assert.equal(await evaluate(`document.querySelectorAll('.box-grid .search-match').length`),1);
+ await evaluate(`document.querySelector('#load-save').click()`);
+ assert.equal(await evaluate(`document.querySelector('#adventure-profiles').hidden`),false);
+ await command('Emulation.clearDeviceMetricsOverride');await command('Fetch.disable');
 });

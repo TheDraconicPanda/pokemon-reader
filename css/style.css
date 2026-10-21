@@ -328,7 +328,7 @@ dd {
 
 @media (max-width: 700px) {
   .box-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -955,7 +955,7 @@ button, select { min-height: 44px; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .app { width: min(1200px, calc(100% - 32px)); max-width: 1200px; margin: 0 auto; padding: 16px 0 48px; }
-.dashboard-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.dashboard-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; position: sticky; top: 0; z-index: 3; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
 .dashboard-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 4px; border-radius: 8px; color: var(--muted); text-decoration: none; text-align: center; }
 .dashboard-nav a[aria-current], .dashboard-nav a:hover { background: var(--elevated); color: var(--accent); }
 [id] { scroll-margin-top: 90px; }
@@ -972,7 +972,7 @@ button { cursor: pointer; }
 .skip-link:focus { top: 12px; }
 .app > *, dd, .party-item > div { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 800px) {
-  .dashboard-nav { gap: 4px; padding: 4px; grid-template-columns: minmax(0, 53fr) minmax(0, 44fr) minmax(0, 55fr) minmax(0, 50fr) minmax(0, 60fr); }
+  .dashboard-nav { gap: 4px; padding: 4px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .dashboard-nav a { font-size: 11px; padding: 10px 1px; overflow-wrap: normal; }
   .card { padding: 16px; }
   .pokemon-detail-list { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
@@ -996,10 +996,10 @@ button { cursor: pointer; }
 .dashboard-party-card .type-badge { padding: 2px 3px; font-size: 10px; white-space: nowrap; }
 .empty-party-slot { min-height: 150px; border-style: dashed; color: var(--muted); }
 .app[data-view="party"] .view-intro { margin: 12px 0; }
-.app[data-view="party"] #view-description { display: none; }
+
 .app[data-view="party"] #party-info { padding: 12px; }
 @media (max-width: 520px) {
- .app[data-view="party"] { width: calc(100% - 16px); }
+ .app[data-view] { width: calc(100% - 16px); }
  .app[data-view="party"] #party-info { padding: 4px; }
  .dashboard-party-card { padding: 4px 2px; }
  .party-nickname { font-size: 14px; }
@@ -1076,3 +1076,16 @@ summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; 
 .detail-table th:not(:first-child), .detail-table td { text-align: right; }
 
 .dashboard-nav a[aria-disabled="true"] { opacity: .5; cursor: not-allowed; background: transparent; color: var(--muted); }
+
+/* Headings retain programmatic focus without an input-like pointer outline. */
+#view-heading:focus:not(:focus-visible) { outline: none; }
+.reader-info { position: relative; display: inline-block; }
+.reader-info summary { cursor: pointer; list-style: none; color: var(--accent); padding: 4px 8px; }
+.reader-info summary::-webkit-details-marker { display: none; }
+.reader-info p { margin: 8px; max-width: 42rem; }
+
+.view-intro { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+.view-intro .eyebrow { grid-column: 1 / -1; }
+.view-intro > .reader-info { grid-column: 2; grid-row: 2; }
+.reader-info[open] p { padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.view-intro .reader-info p { position: absolute; right: 0; z-index: 4; width: min(32rem, calc(100vw - 48px)); }

@@ -1,3 +1,4 @@
+import { moveName } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges } from './species-presentation.js';
 import { snapshotSave, rememberSave } from './planner-save.js';
 import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persistSnapshot, selectProfile, preserveLegacyPlanner, trainerKey } from './adventures.js';
@@ -6,7 +7,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.71";
+const APP_VERSION = "0.25.72";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -20,10 +21,6 @@ const moneyValue = document.querySelector("#money-value");
 const playTimeValue = document.querySelector("#play-time-value");
 const badgesValue = document.querySelector("#badges-value");
 const badgeGrid = document.querySelector("#badge-grid");
-const pokedexInfo = document.querySelector("#pokedex-info");
-const pokedexModeValue = document.querySelector("#pokedex-mode-value");
-const pokedexSeenValue = document.querySelector("#pokedex-seen-value");
-const pokedexCaughtValue = document.querySelector("#pokedex-caught-value");
 const collectionInfo = document.querySelector("#collection-info");
 const collectionTotalValue = document.querySelector("#collection-total-value");
 const collectionPartyValue = document.querySelector("#collection-party-value");
@@ -41,9 +38,6 @@ const collectionSpeciesList = document.querySelector("#collection-species-list")
 const collectionShowMore = document.querySelector("#collection-show-more");
 let currentCollectionDetails = null;
 let speciesIndexPromise = null;
-let currentPokedex = null;
-let dexRevision = 0;
-let dexVisibleLimit = 40;
 let collectionVisibleLimit = 40;
 const trainerInfo = document.querySelector("#trainer-info");
 const collectionNav = document.querySelector("#collection-nav");
@@ -186,7 +180,6 @@ async function renderDecodedSave(result, revision) {
       playTimeValue.textContent = formatPlayTime(trainer.playTime);
       badgesValue.textContent = `${trainer.badgeCount} / 16`;
       renderBadges(trainer.badges);
-      renderPokedex(result.save.pokedex);
       renderCollectionStats(result.party, result.storage);
       renderCollectionDetails(result.save.pokedex, result.party, result.storage);
       renderOverview(result);
@@ -311,9 +304,7 @@ function renderOverview(result) {
     button.addEventListener("click", () => {
       if (destination === "party" || destination === "storage") location.hash = destination;
       else if (destination === "seen" || destination === "caught") {
-        document.querySelector("#dex-search").value = "";
-        document.querySelector("#dex-filter").value = destination;
-        dexVisibleLimit = 40; renderPokedexList(); location.hash = "pokedex";
+        location.href = `pokedex/#scope=national&filter=${destination}`;
       } else {
         collectionListMode.value = destination; collectionSearch.value = "";
         collectionVisibleLimit = 40; renderCollectionSpeciesList(); location.hash = "collection-details-info";
@@ -487,7 +478,6 @@ function renderCollectionDetails(pokedex, party, storage) {
   collectionVisibleLimit = 40;
   collectionDetailsInfo.hidden = false;
   renderCollectionSpeciesList();
-  renderPokedexList();
 }
 
 collectionListMode.addEventListener("change", () => {
@@ -627,59 +617,7 @@ async function renderCollectionSpeciesList() {
   }
 }
 
-function renderPokedex(pokedex) {
-  currentPokedex = pokedex;
-  dexVisibleLimit = 40;
-  if (!pokedex) {
-    pokedexInfo.hidden = true;
-    return;
-  }
 
-  pokedexModeValue.textContent = pokedex.nationalDex
-    ? "National Dex"
-    : "Regional Dex";
-  pokedexSeenValue.textContent =
-    pokedex.seenCount + " / " + pokedex.speciesCount + " (" + formatPercent(pokedex.seenPercent) + ")";
-  pokedexCaughtValue.textContent =
-    pokedex.caughtCount + " / " + pokedex.speciesCount + " (" + formatPercent(pokedex.caughtPercent) + ")";
-  pokedexInfo.hidden = false;
-}
-
-async function renderPokedexList() {
-  if (!currentPokedex || !currentCollectionDetails) return;
-  const revision = ++dexRevision;
-  const dex = currentPokedex;
-  const ownership = currentCollectionDetails.ownedCounts;
-  const query = document.querySelector("#dex-search").value.trim().toLowerCase();
-  const filter = document.querySelector("#dex-filter").value;
-  const names = await getSpeciesIndex();
-  if (revision !== dexRevision || dex !== currentPokedex) return;
-  const seen = new Set(dex.seenSpecies || []), caught = new Set(dex.caughtSpecies || []);
-  const entries = dex.speciesIds.filter(id => {
-    const matches = !query || `${names.get(id) || ""} #${id}`.toLowerCase().includes(query);
-    return matches && (filter === "all" || filter === "seen" && seen.has(id) || filter === "caught" && caught.has(id) || filter === "owned" && ownership.has(id) || filter === "missing" && !caught.has(id) || filter === "unseen" && !seen.has(id));
-  });
-  const list = document.querySelector("#dex-list"); list.replaceChildren();
-  document.querySelector("#dex-count").textContent = `${entries.length} matching species${names.size ? "" : " · Species names unavailable; search by number"}`;
-  for (const id of entries.slice(0, dexVisibleLimit)) {
-    const card = document.createElement("article"); card.className = "dex-entry"; card.dataset.species = id;
-    const image = document.createElement("img"); image.src = pokemonSprite({speciesId:id}); image.alt = ""; image.loading = "lazy"; image.width = 80; image.height = 80;
-    const name = document.createElement("h3"); name.textContent = names.get(id) || `Pokémon #${id}`;
-    const number = document.createElement("p"); number.textContent = `National Dex #${id}`;
-    const flags = document.createElement("div"); flags.className = "dex-flags";
-    for (const [label, active] of [["Seen", seen.has(id)], ["Caught", caught.has(id)], ["Currently Owned", ownership.has(id)]]) {
-      const flag = document.createElement("span"); flag.className = active ? "registered" : "unregistered";
-      flag.textContent = `${label}: ${active ? "Yes" : "No"}${label === "Currently Owned" && active ? ` (${ownership.get(id)})` : ""}`; flags.append(flag);
-    }
-    card.append(image, name, number, flags); list.append(card);
-  }
-  if (!entries.length) { const empty = document.createElement("p"); empty.textContent = "No species match these filters."; list.append(empty); }
-  document.querySelector("#dex-more").hidden = entries.length <= dexVisibleLimit;
-}
-for (const [id, event] of [["dex-search", "input"], ["dex-filter", "change"]]) {
-  document.querySelector(`#${id}`).addEventListener(event, () => { dexVisibleLimit = 40; renderPokedexList(); });
-}
-document.querySelector("#dex-more").addEventListener("click", () => { dexVisibleLimit += 40; renderPokedexList(); });
 
 function renderBadges(badges) {
   badgeGrid.replaceChildren();
@@ -1178,7 +1116,7 @@ function renderBox(boxNumber) {
 
 
 function storageMatches(pokemon, query) {
-  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId}`.toLowerCase().includes(query);
+  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId} ${(pokemon.moves || []).filter(move => move.id).map(move => moveName("soulsilver", move.id)).join(" ")}`.toLowerCase().includes(query);
 }
 function renderStorageSearch() {
   const results = document.querySelector("#storage-results"); results.replaceChildren();
@@ -1579,12 +1517,9 @@ function resetFileInfo() {
   document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
   activeBoxNumber = 1;
-  dexVisibleLimit = 40;
   collectionVisibleLimit = 40;
   document.querySelectorAll(".app details").forEach(details => { details.open = false; });
   document.querySelector("#upload-area").hidden = false;
-  document.querySelector("#dex-search").value = "";
-  document.querySelector("#dex-filter").value = "all";
   collectionListMode.value = "caught";
   collectionSort.value = "priority";
   fileInput.value = "";
@@ -1594,11 +1529,6 @@ function resetFileInfo() {
   loadRevision++;
   detailRevision++;
   collectionRevision++;
-  dexRevision++;
-  currentPokedex = null;
-  document.querySelector("#dex-list").replaceChildren();
-  document.querySelector("#dex-count").textContent = "";
-  document.querySelector("#dex-more").hidden = true;
   pokemonDetailDialog.close();
   pokemonDetailContent.replaceChildren();
   document.querySelector("#overview-summary").hidden = true;
@@ -1614,10 +1544,6 @@ function resetFileInfo() {
   playTimeValue.textContent = "—";
   badgesValue.textContent = "—";
   badgeGrid.replaceChildren();
-  pokedexModeValue.textContent = "—";
-  pokedexSeenValue.textContent = "—";
-  pokedexCaughtValue.textContent = "—";
-  pokedexInfo.hidden = true;
   collectionTotalValue.textContent = "—";
   collectionPartyValue.textContent = "—";
   collectionPcValue.textContent = "—";
