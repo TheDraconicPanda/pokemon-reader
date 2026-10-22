@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Platinum expansion — v0.26.6
+
+SoulSilver and Platinum now share the existing Reader, evolution/export tools,
+Pokédex and Atlas. Platinum includes its 210-entry Sinnoh Pokédex, complete reviewed
+125-location / 501-area Sinnoh catalogue, native encounter/special systems, EV
+recommendations and a separate save-aware Great Marsh planner. The urgent
+SoulSilver ability repair remains included.
+
+All **290 automated checks pass**, with zero mandatory audit failures and preserved
+SoulSilver regressions. The [completion report](docs/platinum-completion.md) records features, executable
+checks, independent PKHeX validation, data coverage, source decisions and limits.
+Earlier milestone entries below describe their release-time state.
+
 ## Sinnoh Atlas and Great Marsh — v0.26.5
 
 The existing Atlas now has Platinum’s complete reviewed Sinnoh catalogue: 125

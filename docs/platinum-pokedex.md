@@ -1,5 +1,8 @@
 # Platinum Pokédex — milestone 4
 
+Milestone 5 completes the linked [Sinnoh Atlas and Great Marsh](platinum-atlas.md).
+The [final report](platinum-completion.md) supersedes historical pending work below.
+
 The existing reference view now selects SoulSilver or Platinum. Explicit `game=platinum`
 URL parameters take precedence over the active Adventure Profile; legacy SoulSilver
 URLs stay unchanged. Save registrations and possession indicators are used only for

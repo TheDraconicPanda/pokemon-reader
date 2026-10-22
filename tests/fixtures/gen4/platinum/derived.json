@@ -1,0 +1,118 @@
+{
+  "referenceRevision": "a9ff30657073b26825929a65ef58e61f99a1fe6f",
+  "syntheticFixtures": true,
+  "source": "PKHeX PK4.CurrentLevel, HPType and HPPower; freshly executed Reference.dll derived SAVE",
+  "fixtures": {
+    "early": {
+      "saveSha256": "5f1b63e378a9caafdc1d5ce3a5686627b7e8aa35a0ec7baf81894d6db07efe5d",
+      "pokemon": [
+        {
+          "box": 0,
+          "slot": 1,
+          "speciesId": 387,
+          "level": 10,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 1,
+          "slot": 30,
+          "speciesId": 387,
+          "level": 10,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        }
+      ]
+    },
+    "middle": {
+      "saveSha256": "69b0efa4352818f9471297d18090ac2e173c73deeb536b9386088aa0485825f6",
+      "pokemon": [
+        {
+          "box": 0,
+          "slot": 1,
+          "speciesId": 387,
+          "level": 30,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 0,
+          "slot": 2,
+          "speciesId": 95,
+          "level": 31,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 1,
+          "slot": 30,
+          "speciesId": 387,
+          "level": 30,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 2,
+          "slot": 30,
+          "speciesId": 95,
+          "level": 31,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        }
+      ]
+    },
+    "postgame": {
+      "saveSha256": "ef041acf55c38bd11cca239687c69b022789b59c71058bad1052a2d559f89e4a",
+      "pokemon": [
+        {
+          "box": 0,
+          "slot": 1,
+          "speciesId": 387,
+          "level": 50,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 0,
+          "slot": 2,
+          "speciesId": 95,
+          "level": 51,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 0,
+          "slot": 3,
+          "speciesId": 487,
+          "level": 52,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 1,
+          "slot": 30,
+          "speciesId": 387,
+          "level": 50,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 2,
+          "slot": 30,
+          "speciesId": 95,
+          "level": 51,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        },
+        {
+          "box": 3,
+          "slot": 30,
+          "speciesId": 487,
+          "level": 52,
+          "hiddenPowerType": "Bug",
+          "hiddenPowerPower": 62
+        }
+      ]
+    }
+  }
+}

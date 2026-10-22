@@ -97,3 +97,32 @@ test('committed synthetic fixtures and independent expected values retain their 
  for(const [file,hash]of Object.entries(ledger.files))assert.equal(createHash('sha256').update(fs.readFileSync(path.join(dir,file))).digest('hex'),hash,file);
  for(const name of ['early','middle','postgame'])assert.equal(expected(name).checksumsValid,true);
 });
+
+test('checksum-valid Platinum saves with missing party members or invalid trainer and PC metadata are rejected before snapshot/export',async()=>{
+ const {detectPlatinum}=await import('../js/saves/platinum.js');
+ const {createSnapshot}=await import('../js/adventures.js');
+ const {crc16Ccitt}=await import('../js/saves/gen4-binary.js');
+ const {cryptGen4}=await import('../js/saves/gen4-pokemon.js');
+ const empty=new Uint8Array(236);cryptGen4(empty,8,136,0);cryptGen4(empty,136,236,0);
+ const cases=[
+  {edit:(r,b)=>r.set(empty,b+0xA0),reason:/party count/},
+  {edit:(r,b)=>r[b+0x80]=2,reason:/trainer gender/},
+  {edit:(r,b)=>r[b+0x8C]=60,reason:/play-time/},
+  {edit:(r,b)=>r[b+0x8D]=60,reason:/play-time/},
+  {edit:(r,b)=>new DataView(r.buffer).setUint32(b+0xCF2C,18,true),reason:/current PC box/}
+ ];
+ for(const c of cases){
+  const raw=bytes('middle');for(const b of [0,0x40000]){c.edit(raw,b);for(const [o,size]of [[0,0xCF2C],[0xCF2C,0x121E4]])new DataView(raw.buffer).setUint16(b+o+size-2,crc16Ccitt(raw.subarray(b+o,b+o+size-20)),true);}
+  const before=raw.slice(),r=detectPlatinum(raw);assert.equal(r.valid,false);assert.match(r.reason,c.reason);assert.equal(r.trainer,null);assert.deepEqual(r.party,[]);assert.throws(()=>createSnapshot(r,'corrupt.sav'));assert.deepEqual(raw,before);
+ }
+});
+
+test('party and PC experience levels match freshly executed independent PKHeX derived fixtures',async()=>{
+ const {detectSave}=await import('../js/saves/index.js');const {savedLevel}=await import('../js/pokemon-level.js');
+ const reference=JSON.parse(fs.readFileSync(path.join(dir,'derived.json')));const {createHash}=require('node:crypto');
+ for(const [name,entry]of Object.entries(reference.fixtures)){
+  const raw=bytes(name);assert.equal(createHash('sha256').update(raw).digest('hex'),entry.saveSha256);
+  const r=detectSave(raw);assert.equal(r.valid,true);
+  for(const p of entry.pokemon){const actual=p.box?r.storage.boxes[p.box-1].pokemon[p.slot-1]:r.party[p.slot-1];assert.equal(actual.speciesId,p.speciesId);assert.equal(savedLevel(actual),p.level,`${name} ${p.box}/${p.slot}`);}
+ }
+});

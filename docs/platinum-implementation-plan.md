@@ -200,3 +200,31 @@ test's premature document-element read; no Safari product behavior changed.
 A fresh PKHeX invocation validates all 114 Platinum exports and all three Reader
 fixtures after integration. Original SoulSilver parser equivalence still passes;
 the intentional ability writer correction retains the incoming repair tests.
+
+## Milestone 6 final technical gate
+
+Version 0.26.6 passes **290/290 checks**, zero skips/cancellations/failures and zero
+mandatory audit failures. Both Atlas inventories retain 100% reviewed coverage.
+The final gate includes the exact final UI sources after preserving open Pokédex
+card/disclosure/focus state during save-indicator refresh.
+
+Closed final-regression cases: checksum-valid missing declared party records,
+invalid Platinum trainer gender/time and PC indices now reject before exposing
+results or snapshots. Unsupported game and wrong-mechanic routes cannot borrow
+another game's data. An open Pokédex refreshes matching save revisions and clears
+other-game flags without resetting its reference card or unrelated notifications.
+
+Fresh PKHeX execution reproduces all three fixtures' trainer/party/PC/checksum
+and every Seen/Caught bit; all 114 generated evolution exports match independently
+read attributes/registrations/checksums and current byte hashes. Twelve occupied
+party/PC records have new independent experience-level/Hidden Power fixtures and
+actual Reader display assertions. All 511 checked Reader/Pokédex/Atlas/map/report
+outputs rebuild byte-identically from clean pinned primary sources. Source conflicts
+remain explicitly resolved, with no unknown critical mechanic invented.
+
+SoulSilver's original full parser equivalence, all Reader/Planner/Pokédex/Atlas/EV/
+Safari checks and the urgent ability repair pass together. The legacy mixed-copy
+recovery policy was reviewed against PKHeX and retained outside scope; debt is
+recorded separately. No real-game playthrough or complete legality is claimed.
+The completion report gives feature scope, commands, coverage, known limits and
+milestone references; final CI/Pages commit/run references accompany publication.

@@ -1,11 +1,11 @@
 import { pokedexReference, referenceSpecies, speciesForms, evolutionFamily, evolutionRequirement, typeMultipliers, statRange, heldItems, speciesLocations, moveName, STAT_LABELS } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges, speciesHeading } from './species-presentation.js';
-import { getActiveProfile } from './adventures.js';
+import { getActiveProfile, subscribeAdventureChanges } from './adventures.js';
 const gameSelect=document.querySelector('#reference-game'), scopeSelect=document.querySelector('#reference-scope');
 const list=document.querySelector('#species-list'), status=document.querySelector('#reference-status');
 const dialog=document.querySelector('#reference-detail'), content=document.querySelector('#reference-content');
 const search=document.querySelector('#species-search'), next=document.querySelector('#next-match');
-let savedDex=null, owned=new Map(), activeProfile=null;
+let savedDex=null, owned=new Map(), activeProfile=null, unsupportedGame=false;
 const gameName=()=>gameId==='platinum'?'Platinum':'SoulSilver';
 const regionName=()=>gameId==='platinum'?'Sinnoh':'Johto';
 const gameParam=()=>gameId==='platinum'?'&game=platinum':'';
@@ -140,6 +140,16 @@ function restoreList() {
 }
 function route() {
   const params=new URLSearchParams(location.hash.slice(1));
+  if(params.has('game')&&!pokedexReference(params.get('game'))){
+    restoreList();unsupportedGame=true;list.replaceChildren();list.hidden=true;
+    gameSelect.selectedIndex=-1;
+    for(const input of [scopeSelect,saveFilter,search,...document.querySelectorAll('#reference-search button')])input.disabled=true;
+    document.querySelector('#save-dex-status').textContent='';
+    status.textContent='This game is not supported. Choose SoulSilver or Platinum.';
+    document.body.dataset.referenceReady='true';
+    return;
+  }
+  if(unsupportedGame)selectGame(gameId);
   const requested=params.get('game') || (params.has('species')?'soulsilver':null);
   if(pokedexReference(requested) && requested!==gameId)selectGame(requested);
   const key=Number(params.get('species')), record=species(key);
@@ -185,6 +195,8 @@ document.querySelector('#reference-search').addEventListener('submit',event=>{ev
 next.addEventListener('click',()=>{matchIndex=(matchIndex+1)%matchIds.length;jump(matchIds[matchIndex]);});
 // Reference selection and persisted save indicators are independently game scoped.
 function selectGame(id) {
+  unsupportedGame=false;list.hidden=false;
+  for(const input of [scopeSelect,search,...document.querySelectorAll('#reference-search button')])input.disabled=false;
   gameId=id;savedDex=null;owned=new Map();
   if(activeProfile?.gameId===id) {
     savedDex=activeProfile.snapshot.pokedex;
@@ -203,3 +215,21 @@ selectGame(pokedexReference(requestedGame)?requestedGame:pokedexReference(active
 gameSelect.addEventListener('change',()=>{restoreList();selectGame(gameSelect.value);history.replaceState(null,'',`#scope=${scope}${gameParam()}`);status.textContent='Search keeps the surrounding species in view.';});
 saveFilter.addEventListener('change',renderList);
 route();
+
+let profileRevision=0,profileSignature=JSON.stringify(activeProfile);
+async function refreshProfile(){
+  const revision=++profileRevision;
+  let profile=null;try{profile=await getActiveProfile();}catch{}
+  if(revision!==profileRevision)return;
+  const signature=JSON.stringify(profile);if(signature===profileSignature)return;
+  profileSignature=signature;
+  activeProfile=profile;
+  if(unsupportedGame)return;
+  const y=list.scrollTop,key=currentKey;
+  selectGame(gameId);list.scrollTop=y;
+  if(dialog.open&&key!==null)opener=list.querySelector(`[data-species-id="${species(key).id}"]`);
+}
+subscribeAdventureChanges(refreshProfile);
+window.addEventListener('pageshow',refreshProfile);
+window.addEventListener('focus',refreshProfile);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refreshProfile();});

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "applicationVersion": "0.26.6",
+  "technicalValidationPassed": true,
+  "automatedTests": {
+    "tests": 290,
+    "pass": 290,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "logSha256": "04c366d233342f486eb79c03b100eb97a66cc86034159414383aabfa55e94c82",
+    "startedAt": "2026-10-22T20:22:17.231Z",
+    "completedAt": "2026-10-22T20:25:40.066Z"
+  },
+  "mandatoryFailures": [],
+  "soulSilverCoverage": {
+    "regions": {
+      "Johto": {
+        "expected": 63,
+        "implemented": 63,
+        "ready": 63,
+        "locationCoveragePercent": 100,
+        "readyPercent": 100
+      },
+      "Kanto": {
+        "expected": 59,
+        "implemented": 59,
+        "ready": 59,
+        "locationCoveragePercent": 100,
+        "readyPercent": 100
+      }
+    },
+    "overall": {
+      "expected": 122,
+      "implemented": 122,
+      "ready": 122,
+      "locationCoveragePercent": 100,
+      "readyPercent": 100
+    }
+  },
+  "platinumCoverage": {
+    "expectedLocations": 125,
+    "implementedLocations": 125,
+    "locationCoveragePercent": 100,
+    "nativeHeaders": 593,
+    "includedAreas": 501,
+    "excludedHeaders": 92,
+    "terrainPlans": 501,
+    "encounterRows": 5724,
+    "headerEncounterTables": 154,
+    "directedNativeConnections": 1062,
+    "referenceDestinations": 273,
+    "warpReferences": 488
+  },
+  "independentPkhex": {
+    "revision": "a9ff30657073b26825929a65ef58e61f99a1fe6f",
+    "freshReaderFixtures": 3,
+    "allSeenCaughtBitsRechecked": true,
+    "freshEvolutionExports": 114,
+    "supportedRules": 47,
+    "derivedPartyPcRecords": 12,
+    "writerReport": "platinum-evolution-independent.json",
+    "syntheticFixtures": true,
+    "realGamePlaythrough": false
+  },
+  "reproducibility": {
+    "checkedOutputs": 511,
+    "changedOutputs": []
+  },
+  "dataDiscrepancies": {
+    "ordinaryExactAreas": 142,
+    "ordinaryComparedAreas": 144,
+    "slotTimeMethodComparisons": 7920,
+    "resolvedAreas": [
+      63,
+      82
+    ],
+    "unresolvedCriticalMechanics": []
+  },
+  "completionReport": "platinum-completion.md",
+  "deployment": {
+    "branch": "main",
+    "featureBranch": "feature/platinum-expansion",
+    "url": "https://thedraconicpanda.github.io/pokemon-reader/",
+    "workflow": "Existing GitHub Pages plus Atlas coverage and integrity; verify final successful runs against release commit."
+  }
+}

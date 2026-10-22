@@ -15,6 +15,14 @@ object Pokemon(PKM p) => new {
  evs=new {hp=p.EV_HP,attack=p.EV_ATK,defense=p.EV_DEF,speed=p.EV_SPE,specialAttack=p.EV_SPA,specialDefense=p.EV_SPD},
  checksumValid=p.ChecksumValid
 };
+if (args[0]=="derived") {
+ var sav=new SAV4Pt(File.ReadAllBytes(args[1]));
+ object Derived(PKM p,int box,int slot)=>new{box,slot,speciesId=p.Species,level=p.CurrentLevel,hiddenPowerType=((MoveType)(p.HPType+1)).ToString(),hiddenPowerPower=p.HPPower};
+ var rows=new List<object>();
+ for(int i=0;i<sav.PartyCount;i++)rows.Add(Derived(sav.GetPartySlotAtIndex(i),0,i+1));
+ for(int b=0;b<18;b++)for(int s=0;s<30;s++){var p=sav.GetBoxSlotAtIndex(b,s);if(p.Species!=0)rows.Add(Derived(p,b+1,s+1));}
+ Console.WriteLine(JsonSerializer.Serialize(rows));return;
+}
 if (args[0]=="batch") {
  var rows=new List<object>();
  foreach(var file in Directory.GetFiles(args[1]).Where(f=>f.EndsWith(".sav",StringComparison.OrdinalIgnoreCase)||f.EndsWith(".dsv",StringComparison.OrdinalIgnoreCase)).Order()){

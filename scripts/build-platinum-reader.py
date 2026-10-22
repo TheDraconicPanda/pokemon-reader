@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCE = pathlib.Path(sys.argv[1])
 REVISION = '49f78f35ccd8c6880e189d23a630eef2976c44ac'
 assert subprocess.check_output(['git', '-C', str(SOURCE), 'rev-parse', 'HEAD'], text=True).strip() == REVISION
+assert not subprocess.check_output(['git', '-C', str(SOURCE), 'status', '--porcelain', '--untracked-files=no'], text=True).strip()
 used = {}
 
 def read(name):

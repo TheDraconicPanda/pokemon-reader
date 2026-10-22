@@ -6,6 +6,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 source,api=map(pathlib.Path,sys.argv[1:3])
 REV='49f78f35ccd8c6880e189d23a630eef2976c44ac'; API='6fd69dfe90465ba96534f6816fc817737d1f97f6'
 assert subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=True).strip()==REV
+assert not subprocess.check_output(['git','-C',str(source),'status','--porcelain','--untracked-files=no'],text=True).strip()
 used={}
 def read(path,origin='primary'):
  raw=((source if origin=='primary' else api)/path).read_bytes()

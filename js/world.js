@@ -503,6 +503,16 @@ function selectAtlasGame(id) {
 }
 function showAtlasRoute(focus = true) {
   const params=new URLSearchParams(location.hash.slice(1));
+  const wrongMechanic=params.has('safari')&&params.get('game')==='platinum'||params.has('great-marsh')&&params.get('game')!=='platinum';
+  const unsupported=params.has('game')&&!atlasGameReference(params.get('game'));
+  const gameStatus=document.querySelector('#atlas-game-status');
+  gameStatus.hidden=!unsupported&&!wrongMechanic;
+  if(unsupported||wrongMechanic){
+    gameStatus.textContent=unsupported?'This game is not supported. Choose an available region below.':'This tool is not available for the selected game. Choose an available region below.';
+    setAtlasView(homePanel);
+    if(focus)document.querySelector('#atlas-home-title').focus();
+    return;
+  }
   selectAtlasGame(params.get('game')==='platinum'||location.hash==='#sinnoh'?'platinum':'soulsilver');
   toolNav.setAttribute('aria-label',`${ATLAS_GAME_ID==='platinum'?'Platinum':'SoulSilver'} Atlas tools`);
   for(const a of toolNav.querySelectorAll('a')) {

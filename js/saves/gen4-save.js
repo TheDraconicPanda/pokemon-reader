@@ -78,8 +78,18 @@ export function detectGen4Save(buffer, profile, mechanics = {}) {
   const pokedex = readPokedex(data, activePartition, profile);
 
   if (profile.extendedPokemonFields) {
+    const trainerBase = activePartition * profile.partitionSize + profile.trainerOffset;
+    if (data[trainerBase + 0x18] > 1 || trainer.playTime.minutes > 59 || trainer.playTime.seconds > 59) {
+      result.reason = 'Platinum contains invalid trainer gender or play-time fields.';
+      return result;
+    }
+    if (storage.currentBox >= profile.boxCount) {
+      result.reason = 'Platinum contains an invalid current PC box.';
+      return result;
+    }
     const records = [...party, ...storage.boxes.flatMap(box => box.pokemon)].filter(p => !p.empty);
-    if (records.some(p => !p.checksumValid || p.speciesId < 1 || p.speciesId > 493) || data[activePartition * profile.partitionSize + profile.partyOffset] > 6) {
+    const partyCount = data[activePartition * profile.partitionSize + profile.partyOffset];
+    if (records.some(p => !p.checksumValid || p.speciesId < 1 || p.speciesId > 493) || partyCount > 6 || party.length !== partyCount) {
       result.reason = 'Platinum contains an invalid Pokémon checksum, identifier or party count.';
       return result;
     }

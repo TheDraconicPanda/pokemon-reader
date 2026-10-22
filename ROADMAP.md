@@ -19,7 +19,7 @@ is verified after pushing. No new evolution methods or development phase are int
 - [x] Platinum transactional evolution and container-preserving export: 47 verified paths, 114 independent PKHeX-inspected exports (0.26.2).
 - [x] Platinum 210-entry Sinnoh/National Pokédex, native forms/learnsets and game-scoped progress; primary Sinnoh random-encounter links (0.26.3).
 - [x] Complete sourced Sinnoh Atlas, repeatable census/audit and Great Marsh: 125 groups / 501 native plans, 285 passing combined checks (0.26.5).
-- [ ] Integrated two-game regression, independent save validation and final release.
+- [x] Integrated two-game regression and final technical release: 290/290 checks, fresh independent PKHeX validation, reproducible data and complete evidence (0.26.6). See [completion report](docs/platinum-completion.md).
 
 # Pokémon Reader Roadmap
 
