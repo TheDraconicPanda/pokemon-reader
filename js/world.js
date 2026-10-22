@@ -325,7 +325,7 @@ function renderLocations({ exactName = null } = {}) {
           const image = document.createElement("img");
           activeImage = image;
           image.className = "location-map";
-          mapNotice.textContent=[selected.notice,selected.kind ? `Interior view; compass connections and encounter tables describe ${location.name} as a whole.` : ""].filter(Boolean).join(" ");
+          mapNotice.textContent=[selected.notice,selected.kind ? `${selected.context==='outdoor'?'Area':'Interior'} view; compass connections and encounter tables describe ${location.name} as a whole.` : ""].filter(Boolean).join(" ");
           mapNotice.hidden=!mapNotice.textContent;
           image.alt = selected.kind === "terrain-plan"
             ? `${description} in HeartGold and SoulSilver; static blocked tiles and exits, north is up`

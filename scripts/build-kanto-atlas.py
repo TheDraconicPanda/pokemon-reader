@@ -41,7 +41,7 @@ def main():
   a,b=edge['fromLocation'],edge['toLocation']
   for x,y in [(a,b),(b,a)]:
    if y not in byname[x]['connections']:byname[x]['connections'].append(y)
-   travel.append(dict(fromLocation=x,toLocation=y,hms=edge['hms'],conditions=edge['conditions'],notes=edge['notes'],sources=[s['url'] for s in byname[a]['sources'][:2]]))
+   travel.append(dict(fromLocation=x,toLocation=y,hms=edge['hms'],conditions=edge.get('reverseConditions',edge['conditions']) if x==b else edge['conditions'],notes=edge['notes'],sources=[s['url'] for s in byname[a]['sources'][:2]]))
   for x in [a,b]:
    for note in edge['conditions']+edge['notes']:
     if note not in byname[x]['access']:byname[x]['access'].append(note)

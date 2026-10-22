@@ -103,7 +103,7 @@ export function speciesLocations(gameId,id) {
     for(const row of SOULSILVER_SAFARI_ENCOUNTERS)add(speciesIdForName(gameId,row.pokemon),'Safari Zone',`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rarity}`,['Existing Safari records: encounter/block mechanics audit remains pending.']);
     // These are moving encounters, deliberately not fixed walking-table rows.
     for(const n of [29,30,31,32,33,34,35,36,37,38,39,42,43,44,45,46])for(const id of [243,244])add(id,`Route ${n}`,'Roaming · Lv. 40 · after release at Burned Tower; check the Pokégear map');
-    for(const n of [26,28])add(381,`Route ${n}`,'Roaming · Lv. 35 · after Steven’s Vermilion City event; check the Pokégear map');
+    for(const n of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,26,28])add(381,`Route ${n}`,'Roaming · Lv. 35 · after Steven’s Vermilion City event; check the Pokégear map');
     locationsCache.set(gameId,bySpecies);
   }
   return locationsCache.get(gameId).get(id)||[];

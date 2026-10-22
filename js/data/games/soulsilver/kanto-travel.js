@@ -957,7 +957,12 @@ export const KANTO_TRAVEL = Object.freeze([
   {
     "fromLocation": "Route 11",
     "toLocation": "Diglett’s Cave",
-    "hms": [],
+    "hms": [
+      {
+        "id": "rock-climb",
+        "usage": "optional"
+      }
+    ],
     "conditions": [
       "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
     ],
@@ -970,7 +975,12 @@ export const KANTO_TRAVEL = Object.freeze([
   {
     "fromLocation": "Diglett’s Cave",
     "toLocation": "Route 11",
-    "hms": [],
+    "hms": [
+      {
+        "id": "rock-climb",
+        "usage": "optional"
+      }
+    ],
     "conditions": [
       "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
     ],
@@ -1007,7 +1017,9 @@ export const KANTO_TRAVEL = Object.freeze([
     "toLocation": "Rock Tunnel",
     "hms": [],
     "conditions": [],
-    "notes": [],
+    "notes": [
+      "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
+    ],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/route10.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_10"
@@ -1018,7 +1030,9 @@ export const KANTO_TRAVEL = Object.freeze([
     "toLocation": "Route 10",
     "hms": [],
     "conditions": [],
-    "notes": [],
+    "notes": [
+      "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
+    ],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/route10.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Kanto_Route_10"
@@ -1176,7 +1190,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "toLocation": "Vermilion City",
     "hms": [],
     "conditions": [
-      "S.S. Ticket and scheduled sailing: Vermilion to Olivine on Wednesday and Sunday; first Kanto arrival follows the initial Olivine voyage."
+      "Initial Olivine-to-Vermilion story voyage; later Olivine departures are Monday and Friday. An S.S. Ticket is required."
     ],
     "notes": [],
     "sources": [
@@ -1284,10 +1298,10 @@ export const KANTO_TRAVEL = Object.freeze([
     "fromLocation": "Saffron City",
     "toLocation": "Saffron Magnet Train Station",
     "hms": [],
-    "conditions": [
+    "conditions": [],
+    "notes": [
       "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
     ],
-    "notes": [],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/saffroncity.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Saffron_City"
@@ -1297,10 +1311,10 @@ export const KANTO_TRAVEL = Object.freeze([
     "fromLocation": "Saffron Magnet Train Station",
     "toLocation": "Saffron City",
     "hms": [],
-    "conditions": [
+    "conditions": [],
+    "notes": [
       "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
     ],
-    "notes": [],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/saffroncity.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Saffron_City"

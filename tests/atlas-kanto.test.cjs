@@ -70,3 +70,27 @@ test('independent HGSS examples preserve version, outbreak, Headbutt and station
  assert.equal(rows('Silph Co.').filter(r=>r.method==='gift').length,3);
  assert.equal(rows('Pewter Museum of Science').filter(r=>r.method==='gift').length,7);
 });
+
+test('all new Kanto groups have verified map assets with correct floor choices and labelled terrain evidence',async()=>{
+ const {KANTO_MAPS:k}=await load('js/data/games/soulsilver/kanto-maps.js');const {mapsForLocation}=await load('js/data/atlas-maps.js');
+ let views=0;const verified=new Set();
+ for(const name of config.locations.map(l=>l.name)){
+  const maps=mapsForLocation('soulsilver',name);assert.ok(maps.length,name);assert.equal(new Set(maps.map(m=>m.id)).size,maps.length);
+  for(const m of maps){views++;const bytes=fs.readFileSync(path.join(root,'assets/maps',m.file));assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.readUInt32BE(16),m.width);assert.equal(bytes.readUInt32BE(20),m.height);assert.equal(require('node:crypto').createHash('sha256').update(bytes).digest('hex'),m.sha256);verified.add(m.file);
+   if(m.kind==='terrain-plan'){assert.match(m.notice,/not a rendered screenshot/);assert.match(m.source,/pokeheartgold\/blob\/d2355244/);}else assert.equal(new URL(m.source).hostname,'archives.bulbagarden.net');
+  }
+  assert.deepEqual(mapsForLocation('heartgold',name),[]);
+ }
+ assert.equal(views,83);assert.equal(verified.size,83);
+ assert.deepEqual(k.locations['Cerulean Cave'].map(m=>m.label),['1F','2F','B1F']);
+ assert.deepEqual(k.locations['Seafoam Islands'].slice(0,6).map(m=>m.label),['1F','B1F','B2F','B3F','B4F','Cinnabar Gym']);
+ assert.ok(!k.locations['Cinnabar Island'].some(m=>m.id==='gym'));
+ assert.equal(k.locations['Pal Park'].find(m=>m.mapIds.includes('MAP_PAL_PARK')).context,'outdoor');
+});
+test('reverse Pokédex locations include all 25 actual Kanto Latios routes and fixed Kanto encounters',async()=>{
+ const {speciesLocations:s}=await load('js/data/pokedex-reference.js');
+ const latios=s('soulsilver',381).filter(r=>r.details.some(d=>d.startsWith('Roaming'))).map(r=>r.location);
+ assert.equal(latios.length,25);assert.ok(latios.includes('Route 1'));assert.ok(latios.includes('Route 24'));assert.ok(!latios.includes('Route 25'));
+ assert.ok(s('soulsilver',150).some(r=>r.location==='Cerulean Cave'));assert.ok(s('soulsilver',144).some(r=>r.location==='Seafoam Islands'));
+ assert.ok(s('soulsilver',245).some(r=>r.location==='Burned Tower'&&r.details.some(d=>d.includes('not a second capture'))));
+});

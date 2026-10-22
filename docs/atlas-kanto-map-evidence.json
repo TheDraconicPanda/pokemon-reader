@@ -1,0 +1,511 @@
+{
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "archiveRevision": "7840506be21bc5636f8d3d92b93266e202e6d63b",
+  "archiveSha256": "050a5a8272217b49388ee90b033c1ee99bbab88454c96eacdb7e2c84475a1ae7",
+  "inputs": {
+    "src/data/map_headers.h": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539",
+    "files/a/0/6/5": "0817bd81cc30342bc40dd6ce829121e9a8be4e9d04d0b790f8d9d99688c4bebe",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0008_D10R0101.bin": "3109e96c982a39ed6386ded050bdc8ce8e7fea8d10e1f1fa134c65d39bf12cc9",
+    "files/fielddata/eventdata/zone_event/106_D10R0101.json": "29f71d50b20a266bcdade116d74838936d1213a3de5640588f364d1be2682ff9",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0243_T08R0201.bin": "90147a9b9a68b8f2dacc011df72bd1c6566ae6576f27d99415579842ed97daa7",
+    "files/fielddata/eventdata/zone_event/432_T08R0201.json": "b909fb011738f7cc7c3fb765bf568ea7c5452dd834f250461d54cdf278da23cc",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0251_R10R0201.bin": "376e92da4b309fc84b0680eeeba3e65966bf4e46c1d6d700dfb06ea61dc1ae42",
+    "files/fielddata/eventdata/zone_event/421_R10R0201.json": "b0fcadfab28fad0d49089f21e6b9688822d05eadcb21044b6961f0909b2a73fb",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0276_R10R0202.bin": "9ad28386216e4bbbf778f76db84f3953bb93b37ed1ec70ccd273c2d479ac1bc4",
+    "files/fielddata/eventdata/zone_event/441_R10R0202.json": "92a859bb14d43369020dae49459097ef6d6986fe0d08e0c24095a0c5922b410a",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0195_T05R0701.bin": "65c772cb931fc1bd46aa6a554c5463a68c8d63d17b65734c5d25fe1f270e5a0d",
+    "files/fielddata/eventdata/zone_event/394_T05R0701.json": "ac434d09799fca2bd2d52d64ddfcc931e0d5441f6d5df1bd1ba9e3358e734759",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0187_T11R0601.bin": "d4cb652b6942db50f52e3cbd640a39b23d2f603cf1e0d39bc47302cb6527704c",
+    "files/fielddata/eventdata/zone_event/357_T11R0601.json": "0a094c4a7a187357f81763a09e9e881cc7a49d7ee525a55c2fafad7988f61f16",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0188_T11R0602.bin": "006ae9accd9e9072c3f192139d68818ed4cde91541ba02493be788d133e06889",
+    "files/fielddata/eventdata/zone_event/358_T11R0602.json": "5c4f79f71c7321cd703d3767ec710cf5f3c79cbdad1aaa4426ac1cde87704f1d",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0283_T11R0603.bin": "4543cdf558b2ab57d54ca418f7606d4accd19c244399485008e85d90e4f4dd37",
+    "files/fielddata/eventdata/zone_event/472_T11R0603.json": "e22647e50fd0e4abd38a99d3dbe00eac331cb0a0f6ca277033a41744eed5cf7e",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0192_T11R0101.bin": "d0526a98a64ebcfb536a9f1f26d36be7ce5dade94790107753a9bc0c5e1e77ca",
+    "files/fielddata/eventdata/zone_event/355_T11R0101.json": "8093abc8fb0372c5dccad60c5b423e30ae611ff6396e6f27e69bab932fb334ed",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0189_T11R0701.bin": "aa3e3c022c99f81571b203ab95d4f0cd7bb02756d3d276c60cf28e5df32b693f",
+    "files/fielddata/eventdata/zone_event/359_T11R0701.json": "eb9fd6d35225dcc85560646b0fa18cbc489d29c90c1967ca7189edfa162658b4",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0241_T11R0702.bin": "e901ae6da74098c6d81f0a77cfb8d2a3a34b1b3fe7aa2b05b1b684b1520b75a9",
+    "files/fielddata/eventdata/zone_event/360_T11R0702.json": "0d1e243f328a45c402ae8d4421b823e82218906418faacc6b052f7069818242f",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0262_D31R0202.bin": "d1137c6f71b0350c81ba9047c907b8afa8c99492fbd171846b89f8e05ab22e60",
+    "files/fielddata/eventdata/zone_event/400_T11R0703.json": "a6c9ad5b6276dcd4357e4fe8e683a9a9e22850078bd23fa151fb7826735f56db",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0215_T07R0101.bin": "04c61a7c2a799f980f85cec7b247f4cde7b19829eb5ceac82056ee0a1821fb4c",
+    "files/fielddata/eventdata/zone_event/327_T07R0101.json": "8d9f0e69e73e7c378ad1451f7f0a5e97f4ae067328e5e8c174a7c3c0f68350e6",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0216_T07R0102.bin": "d4a6c159d31243dbac062825545a256627e5d1c89bd5e581b3b1d2441600f52a",
+    "files/fielddata/eventdata/zone_event/328_T07R0102.json": "43d4ba6438f20ea99b49f2320ac8c2156acfecf4ff38508b4037921c0c625deb",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0217_T07R0103.bin": "00b70000cca0f6b1d7088001d55944be857c1caf2246c609c7ebd5a2de8e08e6",
+    "files/fielddata/eventdata/zone_event/329_T07R0103.json": "5b389c7ab376f87b1efd4c91f368d0ceb86984a962d2255abe4ddb66c5b8085f",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0218_T07R0104.bin": "12aca028f9f8f784c4f107525ac7dd9bcc3ee6a7a8d915aa5b517222a64704a5",
+    "files/fielddata/eventdata/zone_event/330_T07R0104.json": "80d92fee557e19d89a586d34c9bdead12ef41536b1550517235f52de64b469bf",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0219_T07R0105.bin": "c9ca87876b550fadfa95a1278194efd6312e1f4034134d6db8d0e4228079ca43",
+    "files/fielddata/eventdata/zone_event/331_T07R0105.json": "893db05ba3a41acdaeb4ae903f76ed3607bf2e61d4028a46d5a60aa743abc765",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0220_T07R0106.bin": "946f6c342e70c5cb1abc087fd2fb633b270f5af062aafe2a8deaacdbe37d9a72",
+    "files/fielddata/eventdata/zone_event/332_T07R0106.json": "7fe2ee6cc529b2e2708e10dbeee7049ca713c3c5f6e91cbeb16ab06f8300a6b5",
+    "files/fielddata/eventdata/zone_event/397_T07R0107.json": "25cd7f2cb802a29bae8033db5a96a562facd100e2009b37919f1bdb7e49d5422",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0213_T07R0401.bin": "f2c17bbfd672e589d7934d0da5167c0bd96b88ca0fd79ca35c31cee01ddd734a",
+    "files/fielddata/eventdata/zone_event/338_T07R0401.json": "e43946f14628f2b31fd6d0b13f96ab669c7ef0295a8e2e0b2abda17fa0a1de41",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0214_T07R0501.bin": "0b75ede8590d0decb9cdfe8a3a2dc62cfe830049e84efc3aa62febed98e73d11",
+    "files/fielddata/eventdata/zone_event/339_T07R0501.json": "3196dbb6809420e08d8da830bac6a6d31ce63c5f7f2deeea855578bcb5e3fef8",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0286_T25SP0101.bin": "438599fb16b600e2d42533aa1345b1c993b5760c34776dc76dd12556a1c362de",
+    "files/fielddata/eventdata/zone_event/489_T07SP0101.json": "9fc23e6854c922580939563094198af2794b81ddbf58017cb69322491e96d5bf",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0244_T02R0301.bin": "a594f4c05cea8b1cc3047cd9b9c8838c4b3e09abf710379535d74b4b1c5e83d5",
+    "files/fielddata/eventdata/zone_event/450_T02R0301.json": "020ef79b9ffceccfe722cc0d222dc1bdd418d5e3c4f4c4171be101f2e3c1ceaf",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0245_T02R0302.bin": "c04b79b6998f5964e08fee6dd23057317f951de13715d4e238568739c3db45aa",
+    "files/fielddata/eventdata/zone_event/451_T02R0302.json": "63a3f925048376e75b67e408291b70d71e99f49606ea56890d4a88ab5417e3e1",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0242_T03R0101.bin": "cad0a32621200f3182d968b169b93a85d7500afb1766cf47afcda8b8c5deead9",
+    "files/fielddata/eventdata/zone_event/424_T03R0101.json": "8cf1190b2b94c9553b07b2f25e27341030b071604fbb85927a2dda94953fe1e8",
+    "files/fielddata/mapmatrix/map_matrix/map_matrix_0004_D02R0102.bin": "8bab4ace36bff01c8fa2a12479b0d5dc7d918f7b1fa28db7f209fe1d9e31d9d3",
+    "files/fielddata/eventdata/zone_event/403_D02R0102.json": "b5b1db319709a9256b1c3e528266caad9b58965991dec7f9494f2e40825e3b11"
+  },
+  "locations": 52,
+  "views": 83,
+  "artworkViews": 57,
+  "terrainPlans": [
+    {
+      "location": "Pal Park",
+      "mapId": "MAP_PAL_PARK",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0008_D10R0101.bin",
+      "models": [
+        415,
+        668,
+        669,
+        670
+      ],
+      "events": "files/fielddata/eventdata/zone_event/106_D10R0101.json",
+      "bounds": [
+        0,
+        0,
+        63,
+        63
+      ],
+      "file": "kanto-plan-pal-park.png",
+      "sha256": "b1cb275a0b5f8d9aa0c23bce9dd07f231e9307821c5cdfb2054a67aa8f7f88ca"
+    },
+    {
+      "location": "Pal Park",
+      "mapId": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0243_T08R0201.bin",
+      "models": [
+        359
+      ],
+      "events": "files/fielddata/eventdata/zone_event/432_T08R0201.json",
+      "bounds": [
+        0,
+        0,
+        16,
+        20
+      ],
+      "file": "kanto-plan-fuchsia-pal-park-entrance.png",
+      "sha256": "0671d7286b841c65650677bdd4f10540b21a18cfc3423a18775dfb5fbcba38fc"
+    },
+    {
+      "location": "Power Plant",
+      "mapId": "MAP_ROUTE_10_POWER_PLANT_REPAIRED",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0251_R10R0201.bin",
+      "models": [
+        367
+      ],
+      "events": "files/fielddata/eventdata/zone_event/421_R10R0201.json",
+      "bounds": [
+        0,
+        0,
+        29,
+        21
+      ],
+      "file": "kanto-plan-route-10-power-plant-repaired.png",
+      "sha256": "3f7a0fff523d63886b749cd7f058094e9f3c8297635f777259e58e4d4db7cf3b"
+    },
+    {
+      "location": "Power Plant",
+      "mapId": "MAP_ROUTE_10_POWER_PLANT_BROKEN",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0276_R10R0202.bin",
+      "models": [
+        376
+      ],
+      "events": "files/fielddata/eventdata/zone_event/441_R10R0202.json",
+      "bounds": [
+        0,
+        0,
+        21,
+        21
+      ],
+      "file": "kanto-plan-route-10-power-plant-broken.png",
+      "sha256": "e1c57b7caad80432e6bb5dcd96848b4be3caf3c7a5cf0b05776c9031e85b92d5"
+    },
+    {
+      "location": "Kanto Radio Tower",
+      "mapId": "MAP_LAVENDER_RADIO_STATION",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0195_T05R0701.bin",
+      "models": [
+        309
+      ],
+      "events": "files/fielddata/eventdata/zone_event/394_T05R0701.json",
+      "bounds": [
+        0,
+        0,
+        21,
+        13
+      ],
+      "file": "kanto-plan-lavender-radio-station.png",
+      "sha256": "9029f9d5030906594eab9c03e468bf50b99420989db5e8b9e056ae61a74b66c5"
+    },
+    {
+      "location": "Saffron Magnet Train Station",
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_1F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0187_T11R0601.bin",
+      "models": [
+        301
+      ],
+      "events": "files/fielddata/eventdata/zone_event/357_T11R0601.json",
+      "bounds": [
+        0,
+        0,
+        21,
+        21
+      ],
+      "file": "kanto-plan-saffron-magnet-train-station-1f.png",
+      "sha256": "0b6dccc91baf02a82dca990904a5b6fac34ed91112622feeac5457f1b84113f1"
+    },
+    {
+      "location": "Saffron Magnet Train Station",
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0188_T11R0602.bin",
+      "models": [
+        302
+      ],
+      "events": "files/fielddata/eventdata/zone_event/358_T11R0602.json",
+      "bounds": [
+        0,
+        0,
+        31,
+        16
+      ],
+      "file": "kanto-plan-saffron-magnet-train-station-2f.png",
+      "sha256": "6acbf76b580d29bd9ab0cc67ae12f053462271f5f0aae7c387aa704f5e11d0b6"
+    },
+    {
+      "location": "Saffron Magnet Train Station",
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F_EMPTY",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0283_T11R0603.bin",
+      "models": [
+        380
+      ],
+      "events": "files/fielddata/eventdata/zone_event/472_T11R0603.json",
+      "bounds": [
+        0,
+        0,
+        31,
+        16
+      ],
+      "file": "kanto-plan-saffron-magnet-train-station-2f-empty.png",
+      "sha256": "cd9c5bf57d5b23c0282525f1cb5fc883da454a3624268361b093cd98f9e83698"
+    },
+    {
+      "location": "Fighting Dojo",
+      "mapId": "MAP_SAFFRON_FIGHTING_DOJO",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0192_T11R0101.bin",
+      "models": [
+        306
+      ],
+      "events": "files/fielddata/eventdata/zone_event/355_T11R0101.json",
+      "bounds": [
+        0,
+        0,
+        14,
+        15
+      ],
+      "file": "kanto-plan-saffron-fighting-dojo.png",
+      "sha256": "a0b6fb8ae3c96c29d705c4fdb5931f5774e798cd677cb15e9418a160dac2bb47"
+    },
+    {
+      "location": "Silph Co.",
+      "mapId": "MAP_SAFFRON_SILPH_CO_HQ",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0189_T11R0701.bin",
+      "models": [
+        303
+      ],
+      "events": "files/fielddata/eventdata/zone_event/359_T11R0701.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        15
+      ],
+      "file": "kanto-plan-saffron-silph-co-hq.png",
+      "sha256": "554e167b82889f87e0f41d38e71fa9e7f7208a535394325314b1cc8508ae36c4"
+    },
+    {
+      "location": "Silph Co.",
+      "mapId": "MAP_SAFFRON_SILPH_CO_ROTOM_ROOM",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0241_T11R0702.bin",
+      "models": [
+        355
+      ],
+      "events": "files/fielddata/eventdata/zone_event/360_T11R0702.json",
+      "bounds": [
+        0,
+        0,
+        14,
+        12
+      ],
+      "file": "kanto-plan-saffron-silph-co-rotom-room.png",
+      "sha256": "b9f742d74d0b3ab18e8c5769e91b921abef3005c20374cce91aeb64a2a4fb241"
+    },
+    {
+      "location": "Silph Co.",
+      "mapId": "MAP_SAFFRON_SILPH_CO_ELEVATOR",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0262_D31R0202.bin",
+      "models": [
+        372
+      ],
+      "events": "files/fielddata/eventdata/zone_event/400_T11R0703.json",
+      "bounds": [
+        0,
+        0,
+        6,
+        7
+      ],
+      "file": "kanto-plan-saffron-silph-co-elevator.png",
+      "sha256": "de5756622cb578ea32d2d3bc45dfdf1b767c187def5ff06e2fdf0cef6516bce4"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_1F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0215_T07R0101.bin",
+      "models": [
+        322
+      ],
+      "events": "files/fielddata/eventdata/zone_event/327_T07R0101.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-1f.png",
+      "sha256": "300037b84ab1699c2aa9aa9d8b4fef1c40c992b6696253ec38f0a2b53756053f"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_2F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0216_T07R0102.bin",
+      "models": [
+        323
+      ],
+      "events": "files/fielddata/eventdata/zone_event/328_T07R0102.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-2f.png",
+      "sha256": "76c90561f9ceb2578873bb220ba6c237809d85021394471573c4ee673fd878a4"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_3F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0217_T07R0103.bin",
+      "models": [
+        324
+      ],
+      "events": "files/fielddata/eventdata/zone_event/329_T07R0103.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-3f.png",
+      "sha256": "94221847ef7d9fc8a891a6026d79dc1671f54fa5e8c168966d6d946e608d3ca1"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_4F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0218_T07R0104.bin",
+      "models": [
+        325
+      ],
+      "events": "files/fielddata/eventdata/zone_event/330_T07R0104.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-4f.png",
+      "sha256": "fe634aebdec7bd980a920108ddaa416eb992f8656281bb67de1e62c1bf56a344"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_5F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0219_T07R0105.bin",
+      "models": [
+        326
+      ],
+      "events": "files/fielddata/eventdata/zone_event/331_T07R0105.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-5f.png",
+      "sha256": "1fad7306328fdbc714abe2dc243e68f0db066504cac3e0fb457061a4c203f690"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_ROOF",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0220_T07R0106.bin",
+      "models": [
+        327
+      ],
+      "events": "files/fielddata/eventdata/zone_event/332_T07R0106.json",
+      "bounds": [
+        0,
+        0,
+        24,
+        13
+      ],
+      "file": "kanto-plan-celadon-department-store-roof.png",
+      "sha256": "06afb73dad15ad93db7db98308488b0ceed8fe11199f3eb59ff238dfbdc6e13e"
+    },
+    {
+      "location": "Celadon Department Store",
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_ELEVATOR",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0262_D31R0202.bin",
+      "models": [
+        372
+      ],
+      "events": "files/fielddata/eventdata/zone_event/397_T07R0107.json",
+      "bounds": [
+        0,
+        0,
+        6,
+        7
+      ],
+      "file": "kanto-plan-celadon-department-store-elevator.png",
+      "sha256": "393fc618e4c1f0aba29143eefc52037917c0fa1614bd5c395d556db353931dfb"
+    },
+    {
+      "location": "Celadon Game Corner",
+      "mapId": "MAP_CELADON_GAME_CORNER_JP",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0213_T07R0401.bin",
+      "models": [
+        320
+      ],
+      "events": "files/fielddata/eventdata/zone_event/338_T07R0401.json",
+      "bounds": [
+        0,
+        0,
+        20,
+        17
+      ],
+      "file": "kanto-plan-celadon-game-corner-jp.png",
+      "sha256": "e44f0b71d8dc1894362f1124f0ef056a8a73e8c36de55332b57bd6c23a851ab7"
+    },
+    {
+      "location": "Celadon Game Corner",
+      "mapId": "MAP_CELADON_PRIZE_CORNER",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0214_T07R0501.bin",
+      "models": [
+        321
+      ],
+      "events": "files/fielddata/eventdata/zone_event/339_T07R0501.json",
+      "bounds": [
+        0,
+        0,
+        8,
+        8
+      ],
+      "file": "kanto-plan-celadon-prize-corner.png",
+      "sha256": "d164fe8871a8aaa53776ebe96598f04bbaeb8aa0d559888ffc67dcd4b79a4d07"
+    },
+    {
+      "location": "Celadon Game Corner",
+      "mapId": "MAP_CELADON_GAME_CORNER",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0286_T25SP0101.bin",
+      "models": [
+        381
+      ],
+      "events": "files/fielddata/eventdata/zone_event/489_T07SP0101.json",
+      "bounds": [
+        0,
+        0,
+        14,
+        13
+      ],
+      "file": "kanto-plan-celadon-game-corner.png",
+      "sha256": "612cb1abf95f481ffc019499908a1f13bf655e297bd0ced0240419169b429164"
+    },
+    {
+      "location": "Trainer House",
+      "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_1F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0244_T02R0301.bin",
+      "models": [
+        360
+      ],
+      "events": "files/fielddata/eventdata/zone_event/450_T02R0301.json",
+      "bounds": [
+        0,
+        0,
+        14,
+        16
+      ],
+      "file": "kanto-plan-viridian-trainer-house-1f.png",
+      "sha256": "2d19596ffefb3f2dfc445f65844dedacea3a54b0f7d3300e31c0ce7b676328ce"
+    },
+    {
+      "location": "Trainer House",
+      "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_B1F",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0245_T02R0302.bin",
+      "models": [
+        361
+      ],
+      "events": "files/fielddata/eventdata/zone_event/451_T02R0302.json",
+      "bounds": [
+        0,
+        0,
+        14,
+        17
+      ],
+      "file": "kanto-plan-viridian-trainer-house-b1f.png",
+      "sha256": "d2dc2157825f66a4dd34dafc966b4965facdbcbf0356592c5c0f382e36be8a66"
+    },
+    {
+      "location": "Pewter Museum of Science",
+      "mapId": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0242_T03R0101.bin",
+      "models": [
+        358
+      ],
+      "events": "files/fielddata/eventdata/zone_event/424_T03R0101.json",
+      "bounds": [
+        0,
+        0,
+        28,
+        20
+      ],
+      "file": "kanto-plan-pewter-museum-of-science.png",
+      "sha256": "13e79c25fe97f7cf1935e35c683169d2bbabdb9bfa4f8907ce98932b3c3ece27"
+    },
+    {
+      "location": "Mt. Moon Square",
+      "mapId": "MAP_MOUNT_MOON_SQUARE_ENTRANCE",
+      "matrix": "files/fielddata/mapmatrix/map_matrix/map_matrix_0004_D02R0102.bin",
+      "models": [
+        390
+      ],
+      "events": "files/fielddata/eventdata/zone_event/403_D02R0102.json",
+      "bounds": [
+        0,
+        0,
+        10,
+        27
+      ],
+      "file": "kanto-plan-mount-moon-square-entrance.png",
+      "sha256": "15eb72cb259019bf4086eb501aba3270422786d361f8b96aa2bc89149fed84c0"
+    }
+  ]
+}

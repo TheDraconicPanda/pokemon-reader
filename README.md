@@ -1,3 +1,10 @@
+# Kanto Atlas — integrated maps, v0.25.82
+
+Step 3 adds 83 Kanto map views and verifies save registrations, National Pokédex
+links, floor controls and layouts across both regions. Existing Johto maps and
+Safari mechanics are retained. The final two-region machine-readable audit is
+Step 4. See [implementation status](docs/atlas-kanto-implementation.md).
+
 # Kanto Atlas — encounters, v0.25.81
 
 Step 2 adds 847 source-derived Kanto encounter records, gifts/trades and explicit

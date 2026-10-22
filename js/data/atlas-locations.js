@@ -3998,7 +3998,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "access": [
       "Postgame Kanto access follows the first Pokémon League victory and S.S. Aqua voyage.",
       "Reference navigation remains available regardless of saved story progress.",
-      "South Route 10: travel from the northern section requires passing through Rock Tunnel."
+      "South Route 10: travel from the northern section requires passing through Rock Tunnel.",
+      "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
     ],
     "connections": [
       "Route 9",
@@ -5167,7 +5168,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Postgame Kanto access follows the first Pokémon League victory and S.S. Aqua voyage.",
-      "Reference navigation remains available regardless of saved story progress."
+      "Reference navigation remains available regardless of saved story progress.",
+      "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
     ],
     "connections": [
       "Route 10"

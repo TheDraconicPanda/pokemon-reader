@@ -2036,7 +2036,7 @@ export const SOULSILVER_TRAVEL = Object.freeze({
       "toLocation": "Olivine City",
       "hms": [],
       "conditions": [
-        "After the first voyage, return sailings from Vermilion are Wednesday/Sunday. This guide does not add a Kanto destination."
+        "After the first voyage, return sailings from Vermilion are Wednesday/Sunday. The connected Vermilion destination is available in this Atlas."
       ],
       "notes": [],
       "sources": [

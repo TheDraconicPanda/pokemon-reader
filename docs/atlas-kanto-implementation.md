@@ -52,3 +52,24 @@ kept separate and labelled rather than combined into an invalid distribution.
 
 Step 2 validation: all 227 automated checks pass. Source regeneration is byte-for-byte
 reproducible; Safari data and mechanics remain unchanged.
+
+## Step 3 — Atlas integration, v0.25.82
+
+83 verified map choices cover all 52 new groups, including every Cerulean Cave and
+Seafoam floor, Blaine’s relocated Gym, the other seven Kanto Gyms, and named
+facility interiors. 57 archive layers retain original artwork; 26 primary terrain
+plans explicitly show their limitations. Existing Johto PNGs and stair overlays
+are unchanged. Reproduce with `python scripts/build-kanto-maps.py PRIMARY Kanto.zip`.
+
+The shared renderer retains floor controls, desktop/mobile themes, accessible
+navigation, save registrations and National Pokédex links. A regression fixture
+checks Kanto Caught versus Seen/Owned distinctions and preserves the adventure
+snapshot while browsing. All Kanto PNGs decode with their declared dimensions.
+The reverse species catalogue now includes all 25 actual Latios roamer routes;
+Route 25 remains excluded from roaming and retains its stationary Suicune story.
+Ship conditions are directional, station entry is distinct from train service,
+and Flash is an optional visibility aid in Rock Tunnel. No progression state is
+invented from browsing. The separate Safari mechanics/simulator are unchanged.
+
+Step 3 validation: all 230 checks pass, including every new PNG decode, shared
+Reader/Planner/Safari regressions and Kanto registration/theme/phone checks.

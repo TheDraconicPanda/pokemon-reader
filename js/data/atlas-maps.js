@@ -1,6 +1,7 @@
+import { KANTO_MAPS } from "./games/soulsilver/kanto-maps.js";
 import { SOULSILVER_MAPS } from './games/soulsilver/maps.js';
 
-const GAMES = new Map([['soulsilver', SOULSILVER_MAPS.locations]]);
+const GAMES = new Map([['soulsilver', {...SOULSILVER_MAPS.locations,...KANTO_MAPS.locations}]]);
 
 export function mapsForLocation(gameId, locationName) {
   const locations = GAMES.get(gameId);
@@ -9,5 +10,5 @@ export function mapsForLocation(gameId, locationName) {
 
 // First-view compatibility for existing consumers; the Atlas uses mapsForLocation.
 export const ATLAS_MAPS = Object.freeze(Object.fromEntries(
-  Object.entries(SOULSILVER_MAPS.locations).filter(([, maps]) => maps.length).map(([name, maps]) => [name, maps[0]])
+  Object.entries({...SOULSILVER_MAPS.locations,...KANTO_MAPS.locations}).filter(([, maps]) => maps.length).map(([name, maps]) => [name, maps[0]])
 ));

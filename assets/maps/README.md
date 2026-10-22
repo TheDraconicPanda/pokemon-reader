@@ -1,3 +1,17 @@
+# Kanto integration — v0.25.82
+
+Kanto adds 83 views across 52 new location groups: 57 unchanged-source artwork
+layers and 26 explicitly labelled primary terrain plans. The existing Johto map
+catalogue and PNGs are preserved. The combined Atlas has 382 views / 365 assets.
+
+Reproduce Kanto with `python scripts/build-kanto-maps.py PRIMARY Kanto.zip`.
+The generator checks the existing pinned archive SHA-256 and clean HGSS revision,
+records source layers and primary matrix/model/event hashes, and uses HGSS terrain
+attributes at offset 0x14. Terrain plans show static flags/warps; objects, height
+and scripts also restrict movement. Pal Park’s outdoor plan is labelled as such.
+The Japanese Celadon Game Corner and empty train-platform variants retain labels.
+See `docs/atlas-kanto-map-evidence.json` and the game-scoped `kanto-maps.js`.
+
 # HeartGold/SoulSilver map assets
 
 The catalogue supplies 299 area/floor views across the 69 existing non-Safari

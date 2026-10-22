@@ -843,7 +843,12 @@
       "fromLocation": "Route 11",
       "toLocation": "Diglett’s Cave",
       "direction": "west",
-      "hms": [],
+      "hms": [
+        {
+          "id": "rock-climb",
+          "usage": "optional"
+        }
+      ],
       "conditions": [
         "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
       ],
@@ -863,7 +868,9 @@
       "direction": "other",
       "hms": [],
       "conditions": [],
-      "notes": []
+      "notes": [
+        "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
+      ]
     },
     {
       "fromLocation": "Route 10",
@@ -928,7 +935,10 @@
       "conditions": [
         "S.S. Ticket and scheduled sailing: Vermilion to Olivine on Wednesday and Sunday; first Kanto arrival follows the initial Olivine voyage."
       ],
-      "notes": []
+      "notes": [],
+      "reverseConditions": [
+        "Initial Olivine-to-Vermilion story voyage; later Olivine departures are Monday and Friday. An S.S. Ticket is required."
+      ]
     },
     {
       "fromLocation": "Saffron Magnet Train Station",
@@ -971,10 +981,10 @@
       "toLocation": "Saffron Magnet Train Station",
       "direction": "other",
       "hms": [],
-      "conditions": [
+      "conditions": [],
+      "notes": [
         "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
-      ],
-      "notes": []
+      ]
     },
     {
       "fromLocation": "Saffron City",
