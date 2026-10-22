@@ -1,5 +1,16 @@
 # Pokémon Reader
 
+## Generation IV foundation — v0.26.0
+
+The Platinum expansion now has an explicit game-profile interface and shared
+Generation IV decoding, binary/checksum utilities, evolution encoding and stat
+calculations. Existing SoulSilver entry points and behavior are preserved.
+Platinum is not enabled yet. See the [implementation plan](docs/platinum-implementation-plan.md).
+
+Regression fixtures capture complete pre-refactor parser results and export
+hashes; all **241 automated checks pass**, including the original
+Reader/Planner/Atlas/Safari browser regressions and generated Atlas audit.
+
 ## SoulSilver Atlas — v0.25.83
 
 Johto and Kanto now share one connected Atlas: **122 expected location groups**

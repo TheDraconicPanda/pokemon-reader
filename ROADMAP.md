@@ -1,3 +1,13 @@
+# Platinum expansion — phase 26
+
+- [x] Audit current architecture and save the [implementation plan](docs/platinum-implementation-plan.md).
+- [x] Extract profile-driven Generation IV parser/writer primitives with captured SoulSilver equivalence fixtures (0.26.0).
+- [ ] Platinum detection and full Reader integration.
+- [ ] Platinum transactional evolution and container-preserving export.
+- [ ] Platinum 210-entry Sinnoh/National Pokédex.
+- [ ] Complete sourced Sinnoh Atlas, repeatable census/audit and Great Marsh.
+- [ ] Integrated two-game regression, independent save validation and final release.
+
 # Pokémon Reader Roadmap
 
 ## Kanto and two-region Atlas audit — v0.25.83

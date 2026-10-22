@@ -2,12 +2,12 @@ import { moveName } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges } from './species-presentation.js';
 import { snapshotSave, rememberSave } from './planner-save.js';
 import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persistSnapshot, selectProfile, preserveLegacyPlanner, trainerKey } from './adventures.js';
-import { detectSoulSilver } from "./saves/soulsilver.js";
+import { detectSave } from "./saves/index.js";
 import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.25.83";
+const APP_VERSION = "0.26.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -111,7 +111,7 @@ async function handleFile(file) {
   try {
     const buffer = await file.arrayBuffer();
     if (revision !== loadRevision) return;
-    const result = detectSoulSilver(buffer);
+    const result = detectSave(buffer);
     currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
     currentSaveFileName = file.name || "pokemon-save.sav";
     currentActivePartition = result.valid ? result.activePartition : null;
