@@ -9,6 +9,7 @@ permissions:
 jobs:
   atlas:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       CHROMIUM_PATH: google-chrome
     steps:
@@ -17,7 +18,9 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
+      - name: Install test dependencies
+        timeout-minutes: 3
+        run: npm ci --no-audit --no-fund --fetch-retries=1 --fetch-timeout=30000
       - name: Regenerate and validate the committed two-region report
         run: npm run validate:atlas -- --check-committed
       - name: Preserve the generated report and test evidence

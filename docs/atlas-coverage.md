@@ -20,7 +20,9 @@ reference authorities change. CI uses `--check-committed`: it regenerates and ru
 tests, then rejects stale committed coverage/input fingerprints. Test timestamps
 and TAP hashes may differ between environments; they are excluded from the stale
 comparison. Both the report and test evidence are uploaded as a CI artifact on
-success or failure. The existing GitHub Pages workflow/hosting are retained.
+success or failure. CI bounds dependency installation to three minutes and the
+whole job to ten minutes; an installer/network failure is not an Atlas pass.
+The existing GitHub Pages workflow/hosting are retained.
 
 ## Independent inventory and denominators
 

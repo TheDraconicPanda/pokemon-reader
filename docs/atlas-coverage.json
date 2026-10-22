@@ -18075,11 +18075,11 @@
   "integrityPassed": true,
   "realSaveOrInGameValidation": false,
   "applicationVersion": "0.25.83",
-  "generatedAt": "2026-10-22T02:31:06.563Z",
+  "generatedAt": "2026-10-22T02:40:45.786Z",
   "generator": "scripts/audit-atlas.mjs",
   "referenceInventorySha256": "7435df68355e128b271defcb787b6e86c8e7256c55fda7aeeb5a246e4c47a90f",
   "inputSha256": {
-    ".github/workflows/atlas-validation.yml": "f01790ada501bd57a3f30594d9ae1ed6e13b27422dcb09a0a63116b646c5728f",
+    ".github/workflows/atlas-validation.yml": "71d281868c510840c5d3ffa95f6b6551ac952d327e547cda6039c99253164622",
     "css/app-shell.css": "87ebe4a040e114fc3624116a16f28e4f21f033a095a9892909d504bd76b4fc29",
     "css/pokedex.css": "7eb61a19a2b0d92f8ce1a1b98b2148ca5a8e9ee61879d43e6aa938b2bb81d538",
     "css/safari-scenario.css": "d11056d6d9f350918339725fa38c93616df088c82bf82887b171d807a5995f4a",
@@ -18212,8 +18212,8 @@
   },
   "automatedTests": {
     "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/planner-model.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs",
-    "startedAt": "2026-10-22T02:31:06.595Z",
-    "completedAt": "2026-10-22T02:32:29.277Z",
+    "startedAt": "2026-10-22T02:40:45.812Z",
+    "completedAt": "2026-10-22T02:42:10.910Z",
     "status": "passed",
     "tests": 238,
     "pass": 238,
@@ -18223,7 +18223,7 @@
     "exitCode": 0,
     "error": null,
     "log": "work/atlas-validation.tap",
-    "logSha256": "540b2e6053ff61c1d02b93ebbc5017def37accdaa5c8c7c942c3830b04801365",
+    "logSha256": "82b0b3c81a0522530a5ed852ffc6c3068f90d066953f3386e583132a42250302",
     "testFiles": [
       "tests/adventures.test.cjs",
       "tests/atlas-caught.test.cjs",

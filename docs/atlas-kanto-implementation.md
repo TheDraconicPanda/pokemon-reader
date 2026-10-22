@@ -104,7 +104,12 @@ scoped to the previously audited Johto dungeons. Terrain plans are labelled
 references, not complete movement simulations. No new Safari mechanics work is
 included. Real-save outcomes and user/in-game acceptance remain separate.
 
-Steps 1–3 completed their existing GitHub Pages deployment workflows. Step 4 uses
-the same branch/site; final deployment outcome is checked after the final push.
+All four steps completed the existing GitHub Pages deployment workflow. The final
+application commit is `09c7b69`; [Pages run 39712052004](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/39712052004) completed successfully for v0.25.83.
 A direct HTTP check of the production URL returned the environment proxy’s 403,
 so a successful workflow is not represented as an independent live HTTP smoke test.
+
+The new CI installation step is bounded to three minutes (ten minutes for the
+job), with audit/funding lookups disabled. A clean isolated installation fetched
+all 48 dependencies successfully. This CI-only follow-up leaves v0.25.83’s
+application/data unchanged and retains all 238 passing release checks.

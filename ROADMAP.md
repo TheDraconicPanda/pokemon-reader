@@ -17,7 +17,7 @@
   existing Safari rules and Johto map images remain unchanged.
 - [x] Secondary reference discrepancies and remaining uncertainties are explicit
   in the report; no full fresh two-site row-by-row verification is claimed.
-- [ ] Confirm final v0.25.83 Pages workflow outcome after the final push.
+- [x] Pages deployed v0.25.83 from `09c7b69`; [workflow 39712052004](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/39712052004) completed successfully.
 - [ ] User outcome acceptance and real-save / real-game validation.
 
 The requested four-step implementation is technically complete within the
