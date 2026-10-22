@@ -28,6 +28,7 @@ export async function generatedSamples(){
 
 export async function writerFingerprints(){
  const files=['js/saves/evolution-transaction.js','js/saves/gen4-evolution.js','js/saves/platinum-evolution-rules.js',
+  'js/saves/gen4-abilities.js','js/saves/gen4-record-writer.js','js/data/games/soulsilver/pokedex-reference.js',
   'js/saves/gen4-container.js','js/saves/gen4-stats.js','js/saves/gen4-binary.js','js/saves/gen4-pokemon.js','js/saves/gen4-save.js','js/saves/profiles.js','js/saves/index.js',
   'js/pokemon-level.js','js/data/games/soulsilver/growth-rates.js','js/data/games/platinum/reader-reference.js','js/data/gen4-default-names.js',
   'tests/fixtures/gen4/evolution-vectors.json','tests/fixtures/gen4/evolution-oracle.json','tests/fixtures/gen4/evolution.cjs','tests/fixtures/gen4/platinum/postgame.sav'];

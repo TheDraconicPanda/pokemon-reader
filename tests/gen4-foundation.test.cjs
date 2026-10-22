@@ -1,6 +1,5 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {createHash}=require('node:crypto');
 const baseline=require('./fixtures/gen4/soulsilver-baseline.json');
 const {syntheticSave}=require('./fixtures/soulsilver.cjs');
 
@@ -16,7 +15,7 @@ test('SoulSilver parser matches captured pre-refactor trainer, party, all PC slo
  }
 });
 
-test('shared writer produces byte-identical SoulSilver exports and leaves its input intact',async()=>{
+test('shared writer preserves SoulSilver data while correcting the historical stale ability byte',async()=>{
  const {detectSoulSilver}=await import('../js/saves/soulsilver.js');
  const {evolveSoulSilverPokemon,getAvailableEvolutions}=await import('../js/saves/soulsilver-evolution.js');
  for(const entry of baseline.cases.filter(e=>e.exportSha256)){
@@ -26,7 +25,14 @@ test('shared writer produces byte-identical SoulSilver exports and leaves its in
   const before=bytes.slice(),p=detectSoulSilver(bytes.buffer).storage.boxes[0].pokemon[0];
   const rule=getAvailableEvolutions(p).find(e=>e.method==='trade');
   const out=evolveSoulSilverPokemon(bytes,p,rule,0);
-  assert.equal(createHash('sha256').update(out).digest('hex'),entry.exportSha256);
+  const {decryptGen4Record}=await import('../js/saves/gen4-pokemon.js');
+  const beforeRecord=decryptGen4Record(bytes.subarray(p.saveOffset,p.saveOffset+136),false);
+  const afterRecord=decryptGen4Record(out.subarray(p.saveOffset,p.saveOffset+136),false);
+  // The old export hash captured the bug: ability 50 remained on Alakazam.
+  // Parser equivalence above remains exact; writer changes are now explicit.
+  const {evolutionAbility}=await import('../js/saves/gen4-abilities.js');
+  assert.equal(afterRecord[21],evolutionAbility(p.personality,rule.to,'soulsilver'));
+  for(let i=0;i<136;i++)if(![6,7,8,9,21].includes(i))assert.equal(afterRecord[i],beforeRecord[i]);
   assert.deepEqual(bytes,before);
   const loaded=detectSoulSilver(out.buffer);
   assert.equal(loaded.valid,true);assert.equal(loaded.storage.boxes[0].pokemon[0].speciesId,rule.to);

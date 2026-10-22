@@ -1,3 +1,16 @@
+# Focused HGSS ability bug fix — v0.26.4
+
+- [x] Verify the historical stale ability byte and PID/species/form rules against HGSS primary code and all 505 personal-data records.
+- [x] Share ability selection and PK4 checksum/encryption between both evolution writers.
+- [x] Add conservative SoulSilver party/PC validation and a confirmed ability-only repair export.
+- [x] Add synthetic ability, preservation, checksum, container, idempotence and Reader UI tests.
+- [x] Complete release validation: 272 passing tests and zero mandatory Atlas integrity failures.
+- [ ] User validation with the affected Kingdra and actual SoulSilver in-game testing.
+
+Publication uses the existing main branch and GitHub Pages workflow; deployment
+is verified after pushing. No new evolution methods or development phase are introduced. See
+[repair instructions and scope](docs/hgss-ability-repair.md).
+
 # Platinum expansion — phase 26
 
 - [x] Audit current architecture and save the [implementation plan](docs/platinum-implementation-plan.md).

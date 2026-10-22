@@ -1,5 +1,15 @@
 # Pokémon Reader
 
+## HGSS ability bug fix and SoulSilver repair — v0.26.4
+
+Evolution writers now share PID-based Generation IV ability selection. The
+SoulSilver Reader identifies species-invalid party/PC abilities, previews the
+replacement and offers **Repair Ability** with explicit confirmation and a
+separate save download. Valid abilities, unrelated Pokémon data, original files,
+container footers and file extensions are preserved. See [repair instructions,
+mechanics, evidence and limits](docs/hgss-ability-repair.md). All **272 automated
+checks pass**; actual SoulSilver in-game validation remains separate.
+
 ## Platinum Pokédex — v0.26.3
 
 Use the existing Pokédex’s Game selector to browse Platinum’s 210-entry Sinnoh or
