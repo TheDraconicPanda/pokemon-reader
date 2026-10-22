@@ -914,7 +914,9 @@ export const KANTO_TRAVEL = Object.freeze([
     "fromLocation": "Route 22",
     "toLocation": "Pokémon League Reception Gate",
     "hms": [],
-    "conditions": [],
+    "conditions": [
+      "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
+    ],
     "notes": [],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",
@@ -925,7 +927,9 @@ export const KANTO_TRAVEL = Object.freeze([
     "fromLocation": "Pokémon League Reception Gate",
     "toLocation": "Route 22",
     "hms": [],
-    "conditions": [],
+    "conditions": [
+      "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
+    ],
     "notes": [],
     "sources": [
       "https://www.serebii.net/pokearth/kanto/4th/route22.shtml",

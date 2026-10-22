@@ -1,23 +1,29 @@
-# Kanto Atlas — integrated maps, v0.25.82
-
-Step 3 adds 83 Kanto map views and verifies save registrations, National Pokédex
-links, floor controls and layouts across both regions. Existing Johto maps and
-Safari mechanics are retained. The final two-region machine-readable audit is
-Step 4. See [implementation status](docs/atlas-kanto-implementation.md).
-
-# Kanto Atlas — encounters, v0.25.81
-
-Step 2 adds 847 source-derived Kanto encounter records, gifts/trades and explicit
-empty-location status. Secondary reference uncertainties remain documented.
-See [implementation status](docs/atlas-kanto-implementation.md).
-
-# Kanto Atlas — geography, v0.25.80
-
-Step 1 adds 52 Kanto groups, a pinned primary-map census and navigation across both
-regions. Encounters, map integration and final two-region audit follow in Steps
-2–4. See [implementation status](docs/atlas-kanto-implementation.md).
-
 # Pokémon Reader Roadmap
+
+## Kanto and two-region Atlas audit — v0.25.83
+
+- [x] Step 1: all 52 new Kanto groups, independent primary census, directional
+  navigation and Johto connections; published v0.25.80 (`299330b`).
+- [x] Step 2: full primary encounter extraction, time/method/version conditions,
+  gifts/trades/static/event distinctions and verified absences; published
+  v0.25.81 (`290f289`).
+- [x] Step 3: 83 Kanto map views, shared search/save/Pokédex/EV integration,
+  access annotations and phone/desktop regressions; published v0.25.82 (`0703b71`).
+- [x] Step 4: automatically generated JSON coverage, separate source inventory,
+  mandatory validation command, negative tests, CI freshness checks and final audit.
+- [x] Both regions have 100% expected location-group coverage (122 total); all
+  mandatory data/navigation checks and 238 automated checks pass.
+- [x] Geography, encounter, inventory and map outputs reproduce from pinned sources;
+  existing Safari rules and Johto map images remain unchanged.
+- [x] Secondary reference discrepancies and remaining uncertainties are explicit
+  in the report; no full fresh two-site row-by-row verification is claimed.
+- [ ] Confirm final v0.25.83 Pages workflow outcome after the final push.
+- [ ] User outcome acceptance and real-save / real-game validation.
+
+The requested four-step implementation is technically complete within the
+[documented inventory and audit scope](docs/atlas-coverage.md). No further feature
+phase is started. Production HTTP checks may remain blocked by this environment;
+Pages workflow completion and user acceptance are separate observations.
 
 ## Safari v1 — Milestone 5 final audit (v0.25.79)
 

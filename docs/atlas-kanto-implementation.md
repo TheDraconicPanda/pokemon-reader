@@ -73,3 +73,38 @@ invented from browsing. The separate Safari mechanics/simulator are unchanged.
 
 Step 3 validation: all 230 checks pass, including every new PNG decode, shared
 Reader/Planner/Safari regressions and Kanto registration/theme/phone checks.
+
+## Step 4 — generated two-region audit, v0.25.83
+
+The separate reference inventory derives from primary HGSS recipes, independently
+audited Johto names/connections, the Kanto reference inventory and the existing
+Safari audit. Its builder never reads the live Atlas location array or compiled
+encounter tables. It accounts for 122 groups, 540 headers and 123 region/section
+entries. Every grouped header and every intentional exclusion is reported.
+
+`npm run validate:atlas` regenerates `docs/atlas-coverage.json` and runs the complete
+suite. Missing locations cannot reduce its expected denominator. Mandatory checks
+cover internal navigation, reachability, compass orientation, map assets/floors,
+encounter fingerprints/species/levels/times/rates, special continuations, complete
+display, source freshness, documented uncertainties and Safari compatibility.
+Negative tests verify that defects actually fail. CI also rejects stale committed
+report/input fingerprints and uploads the report plus TAP evidence.
+
+Technical result: 63/63 Johto and 59/59 Kanto groups; 100% in each region and
+122/122 overall. All 276 directed geographic connections and 92 existing floor
+connections pass. The complete suite has 238 passing checks. All generators
+reproduce unchanged output, and phone/desktop screenshots were inspected.
+
+The final report explicitly distinguishes primary verification, older Johto
+secondary audits, partial/new Kanto secondary retrieval, resolved source
+conflicts and six remaining uncertainty categories. It does not assert complete
+fresh row-by-row Serebii/Bulbapedia verification. See `atlas-coverage.md`.
+Kanto cave floor selectors are available; existing on-image stair overlays remain
+scoped to the previously audited Johto dungeons. Terrain plans are labelled
+references, not complete movement simulations. No new Safari mechanics work is
+included. Real-save outcomes and user/in-game acceptance remain separate.
+
+Steps 1–3 completed their existing GitHub Pages deployment workflows. Step 4 uses
+the same branch/site; final deployment outcome is checked after the final push.
+A direct HTTP check of the production URL returned the environment proxy’s 403,
+so a successful workflow is not represented as an independent live HTTP smoke test.

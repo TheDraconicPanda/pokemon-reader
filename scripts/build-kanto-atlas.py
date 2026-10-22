@@ -12,7 +12,9 @@ def main():
  headers={n:dict(re.findall(r'\.(\w+) = ([^,\n]+)',b)) for n,b in re.findall(r'\[(MAP_\w+)\]\s*=\s*\{(.*?)\n\s*\},?',raw.decode(),re.S)}
  runtime=ROOT/'js/data/atlas-locations.js';old=json.loads(runtime.read_text().split('Object.freeze(',1)[1].rsplit(');',1)[0]);newnames={l['name'] for l in cfg['locations']};old=[l for l in old if l['name'] not in newnames]
  # Remove only generator-owned added connections; source Johto records remain intact.
- for l in old:l['connections']=[n for n in l['connections'] if n not in newnames]
+ for l in old:
+  l['connections']=[n for n in l['connections'] if n not in newnames]
+  l['access']=[note.replace("and Route 22 is beyond this Johto directory's eastern scope",'and Route 22 leads east to Viridian City') for note in l['access']]
  assignments={}
  for c in cfg['locations']:
   if c.get('section'):

@@ -828,7 +828,9 @@
       "toLocation": "Pokémon League Reception Gate",
       "direction": "north",
       "hms": [],
-      "conditions": [],
+      "conditions": [
+        "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
+      ],
       "notes": []
     },
     {

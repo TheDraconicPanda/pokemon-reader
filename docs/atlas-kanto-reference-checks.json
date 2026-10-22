@@ -723,6 +723,26 @@
       "id": "historical-event",
       "scope": "Pewter City Latias",
       "detail": "Requires an eligible historical Enigma Stone event. It is not treated as normally unlocked or available through a current distribution."
+    },
+    {
+      "id": "safari-secondary-scope",
+      "scope": "Safari Zone",
+      "detail": "The separate Safari audit checks primary rules and independent Serebii/Bulbapedia examples. Bulbapedia returned maintenance; indexed passages were used. Serebii’s fifth age multiplier disagrees with primary data. See docs/safari-mechanics.md; this report does not reopen Safari or claim a complete fresh secondary-page download."
+    }
+  ],
+  "discrepancies": [
+    {
+      "id": "diglett-south-exit",
+      "location": "Diglett’s Cave",
+      "source": "https://www.serebii.net/pokearth/kanto/4th/diglett%27scave.shtml",
+      "detail": "The exit table says Vermilion City while the HGSS narrative describes Route 11. The primary exit warp and Bulbapedia support Route 11; the Atlas connects to Route 11.",
+      "resolution": "Use pinned released-HGSS warp data, not the legacy-generation exit label."
+    },
+    {
+      "id": "diglett-level-ranges",
+      "location": "Diglett’s Cave",
+      "detail": "Serebii presents min/max ranges. Primary slots and Bulbapedia list discrete levels; the Atlas retains the actual discrete levels.",
+      "resolution": "Discrete levels are retained; intervening levels are not invented."
     }
   ]
 }

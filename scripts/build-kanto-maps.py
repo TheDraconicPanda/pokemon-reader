@@ -80,6 +80,6 @@ def main():
   if not selected.get(l['name']):raise ValueError('Missing map for '+l['name'])
  result=dict(gameId='soulsilver',locations=selected)
  (ROOT/'js/data/games/soulsilver/kanto-maps.js').write_text('// Generated verified Kanto artwork and labelled primary terrain plans.\nexport const KANTO_MAPS = Object.freeze('+json.dumps(result,ensure_ascii=False,indent=2)+');\n')
- (ROOT/'docs/atlas-kanto-map-evidence.json').write_text(json.dumps(dict(gameId='soulsilver',primaryRevision=REV,archiveRevision='7840506be21bc5636f8d3d92b93266e202e6d63b',archiveSha256=ARCHIVE_SHA,inputs=inputs,locations=len(selected),views=sum(map(len,selected.values())),artworkViews=len(artworks),terrainPlans=evidence),ensure_ascii=False,indent=2)+'\n')
+ (ROOT/'docs/atlas-kanto-map-evidence.json').write_text(json.dumps(dict(gameId='soulsilver',primaryRevision=REV,archiveRevision='7840506be21bc5636f8d3d92b93266e202e6d63b',archiveSha256=ARCHIVE_SHA,inputs=inputs,locations=len(selected),views=sum(map(len,selected.values())),artworkViews=len(artworks),artworkAssets=[dict(location=n,**m) for n,ms in selected.items() for m in ms if m.get('archive')],locationViews={n:[m['id'] for m in ms] for n,ms in selected.items()},terrainPlans=evidence),ensure_ascii=False,indent=2)+'\n')
  print(f'{len(selected)} locations; {sum(map(len,selected.values()))} views; {len(artworks)} artwork views; {len(plans)} terrain plans')
 if __name__=='__main__':main()

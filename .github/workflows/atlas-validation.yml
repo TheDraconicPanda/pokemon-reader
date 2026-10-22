@@ -1,0 +1,30 @@
+name: Atlas coverage and integrity
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  atlas:
+    runs-on: ubuntu-latest
+    env:
+      CHROMIUM_PATH: google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Regenerate and validate the committed two-region report
+        run: npm run validate:atlas -- --check-committed
+      - name: Preserve the generated report and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-coverage
+          path: |
+            docs/atlas-coverage.json
+            work/atlas-validation.tap

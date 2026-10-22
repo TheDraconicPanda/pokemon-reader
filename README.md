@@ -1,23 +1,26 @@
-# Kanto Atlas — integrated maps, v0.25.82
-
-Step 3 adds 83 Kanto map views and verifies save registrations, National Pokédex
-links, floor controls and layouts across both regions. Existing Johto maps and
-Safari mechanics are retained. The final two-region machine-readable audit is
-Step 4. See [implementation status](docs/atlas-kanto-implementation.md).
-
-# Kanto Atlas — encounters, v0.25.81
-
-Step 2 adds 847 source-derived Kanto encounter records, gifts/trades and explicit
-empty-location status. Secondary reference uncertainties remain documented.
-See [implementation status](docs/atlas-kanto-implementation.md).
-
-# Kanto Atlas — geography, v0.25.80
-
-Step 1 adds 52 Kanto groups, a pinned primary-map census and navigation across both
-regions. Encounters, map integration and final two-region audit follow in Steps
-2–4. See [implementation status](docs/atlas-kanto-implementation.md).
-
 # Pokémon Reader
+
+## SoulSilver Atlas — v0.25.83
+
+Johto and Kanto now share one connected Atlas: **122 expected location groups**
+(63 Johto / 59 Kanto), with **100% calculated location coverage in both regions**.
+Kanto adds 52 groups, 847 source-derived encounter records and 83 map views.
+Ship/train travel, search, floor controls, save registrations and National
+Pokédex links work across both regions; existing Safari mechanics are retained.
+
+Run `npm run validate:atlas` to regenerate the committed
+[machine-readable coverage report](docs/atlas-coverage.json) and run all tests.
+The command fails on mandatory coverage, navigation, encounter, source or test
+failures. CI also rejects stale committed reports. See the
+[report guide and reference limits](docs/atlas-coverage.md) and
+[four-step implementation record](docs/atlas-kanto-implementation.md).
+
+All 238 automated checks pass. The report records 276 directed geographic links,
+92 existing floor connections and all 540 primary headers, with explicit
+exclusions. Full fresh row-by-row comparison against both secondary websites,
+real-save outcomes and in-game/user acceptance remain distinct and documented.
+
+Use the [existing Atlas](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#kanto).
 
 ## Safari v1 final audit — v0.25.79
 

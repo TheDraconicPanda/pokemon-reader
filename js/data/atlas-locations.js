@@ -3207,8 +3207,9 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Eight Johto Badges open the way north to Victory Road",
-      "The westward Mt. Silver route opens after Oak's all-16-Badges authorization, and Route 22 is beyond this Johto directory's eastern scope",
-      "The eastern Route 22 guard moves after the player first visits Viridian City in HeartGold/SoulSilver, not after the Generation II Snorlax condition"
+      "The westward Mt. Silver route opens after Oak's all-16-Badges authorization, and Route 22 leads east to Viridian City",
+      "The eastern Route 22 guard moves after the player first visits Viridian City in HeartGold/SoulSilver, not after the Generation II Snorlax condition",
+      "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
     ],
     "connections": [
       "Route 26",
@@ -4489,7 +4490,8 @@ export const ATLAS_LOCATIONS = Object.freeze([
     ],
     "access": [
       "Postgame Kanto access follows the first Pokémon League victory and S.S. Aqua voyage.",
-      "Reference navigation remains available regardless of saved story progress."
+      "Reference navigation remains available regardless of saved story progress.",
+      "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
     ],
     "connections": [
       "Viridian City",

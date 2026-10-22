@@ -1,11 +1,12 @@
 {
   "name": "pokemon-reader",
-  "version": "0.25.82",
-  "description": "A personal, browser-based tool for reading Pokémon game save files and exposing information that is normally hidden from the player.",
+  "version": "0.25.83",
+  "description": "A personal, browser-based tool for reading Pok\u00e9mon game save files and exposing information that is normally hidden from the player.",
   "main": "index.js",
   "scripts": {
     "test": "node --test tests/*.test.cjs",
-    "dev": "http-server . -p 8080 -c-1"
+    "dev": "http-server . -p 8080 -c-1",
+    "validate:atlas": "node scripts/audit-atlas.mjs"
   },
   "keywords": [],
   "author": "",
