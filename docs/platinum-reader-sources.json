@@ -13,9 +13,17 @@
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/generated/abilities.txt",
       "sha256": "753103da07583053e1869d57253c7a34478b4da477ac2bb91c2f60daabc5af28"
     },
+    "generated/items.txt": {
+      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/generated/items.txt",
+      "sha256": "9b5e48100fff0baf7a899a5355dca6bbe86b46acca5fe4854ede462296c4acb5"
+    },
     "res/pokemon/sinnoh_pokedex.json": {
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/res/pokemon/sinnoh_pokedex.json",
       "sha256": "5d0ebfd3f3ae6f7a0dfcae70cdf799c093464d7935426ef3da1171d07a19a732"
+    },
+    "generated/gender_ratios.txt": {
+      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/generated/gender_ratios.txt",
+      "sha256": "f85ccfc6fd03ef153be8db8e5ecc3a577783bca6356e830e0e5374976b18e79a"
     },
     "res/pokemon/bulbasaur/data.json": {
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/res/pokemon/bulbasaur/data.json",
@@ -5645,10 +5653,6 @@
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/res/items/data/zoom_lens.json",
       "sha256": "cc4097673a85409508fae63c97e258c71b9eb1870b3db4549622fac76ca05d35"
     },
-    "generated/items.txt": {
-      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/generated/items.txt",
-      "sha256": "9b5e48100fff0baf7a899a5355dca6bbe86b46acca5fe4854ede462296c4acb5"
-    },
     "tools/msgenc/charmap.txt": {
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/tools/msgenc/charmap.txt",
       "sha256": "07b54e9a3a828aca088111ad80e811a0cc697f2eee7962bfe773052da65ad495"
@@ -5668,6 +5672,28 @@
     "src/savedata.c": {
       "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/src/savedata.c",
       "sha256": "2d893f963ccb9b1c3aa412d631fc66840661b8e9726524821d17e91b46e12ec7"
+    },
+    "src/pokemon.c": {
+      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/src/pokemon.c",
+      "sha256": "84838b196abe0d851f76e2f1ea75e04473b158ede6d517a4229f2c337b4dda8b"
+    },
+    "src/evolution.c": {
+      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/src/evolution.c",
+      "sha256": "8f8d8d2570e3204c69b3a13c76ae70537f63d334fc970a0d2e5052db7f90d701"
+    },
+    "src/pc_boxes.c": {
+      "url": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/src/pc_boxes.c",
+      "sha256": "1d3c06dd098730489a175f82317bf3ad61767541ec2b391b8e6b811fc6d16dc9"
     }
+  },
+  "characterNormalization": {
+    "reference": "https://github.com/kwsch/PKHeX/blob/a9ff30657073b26825929a65ef58e61f99a1fe6f/PKHeX.Core/PKM/Strings/StringConverter4Util.cs",
+    "codes": [
+      "00EE",
+      "00EF",
+      "00F1",
+      "0400-040F"
+    ],
+    "reason": "Normalize gender/prolonged-sound glyph aliases and correct the missing reserved Korean entry; independently checked across 3451 native names."
   }
 }

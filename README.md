@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Platinum evolution and container exports — v0.26.2
+
+The existing Reader now simulates 47 verified Platinum trade/special evolution
+paths and exports a separate validated save. SoulSilver shares the transaction,
+with native ability/name/stat/Dex updates. Original saves and loaded profiles
+remain unchanged; `.sav` and supported DeSmuME `.dsv` formats/extensions are kept.
+
+All 114 complete fixture exports were independently read by PKHeX with valid
+checksums and registrations. Full PK4 bytes, blocked conditions, all seven native
+name languages and phone export flows have automated coverage. Real player-save
+and in-game validation remain separate. All **259 automated checks pass**.
+See [evidence, reproduction and limits](docs/platinum-writing.md).
+
 ## Platinum Reader — v0.26.1
 
 Load a raw SoulSilver or Platinum save in the existing Reader. Game detection

@@ -6,11 +6,13 @@ import { hgssSprite, typeBadges } from './species-presentation.js';
 import { snapshotSave, rememberSave } from './planner-save.js';
 import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persistSnapshot, selectProfile, preserveLegacyPlanner, trainerKey } from './adventures.js';
 import { detectSave } from "./saves/index.js";
-import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsilver-evolution.js";
+import { getAvailableEvolutions } from "./saves/gen4-evolution.js";
+import { evolveSavePokemon } from './saves/evolution-transaction.js';
+import { evolutionExportName } from './saves/gen4-container.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.26.1";
+const APP_VERSION = "0.26.2";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -62,6 +64,7 @@ let currentSaveBytes = null;
 let currentSaveFileName = "pokemon-save.sav";
 let currentActivePartition = null;
 let currentGameId = "soulsilver";
+let currentParty = [];
 const itemNameCache = new Map();
 const moveDataCache = new Map();
 const appVersion = document.querySelector("#app-version");
@@ -176,6 +179,7 @@ async function renderDecodedSave(result, revision) {
     if (result.save) {
       const { trainer } = result.save;
       currentGameId = result.gameId || "soulsilver";
+      currentParty = result.party;
       document.querySelector(".view-intro .eyebrow").textContent = `YOUR ${gameProfile(currentGameId).shortName.toUpperCase()} COMPANION`;
 
       trainerNameValue.textContent = trainer.name || "—";
@@ -321,7 +325,7 @@ function renderOverview(result) {
   document.querySelector('#game-progress')?.remove();
   if (currentGameId === 'platinum') {
     const progress = document.createElement('p'); progress.id='game-progress'; progress.className='collection-note';
-    progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. Platinum reference Pokédex, Atlas and evolution exports are not yet enabled. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
+    progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. Platinum reference Pokédex and Atlas are not yet enabled. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
     document.querySelector('#overview-summary').append(progress);
   }
   document.querySelector("#overview-summary").hidden = false;
@@ -1427,12 +1431,7 @@ function experienceForLevel(level, growthRate) {
 }
 
 function addEvolutionControl(container, pokemon) {
-  if (currentGameId === 'platinum') {
-    const note = document.createElement('p'); note.className = 'collection-note';
-    note.textContent = 'Platinum evolution exports are not enabled in this Reader milestone.';
-    container.append(note); return;
-  }
-  const options = getAvailableEvolutions(pokemon);
+  const options = getAvailableEvolutions(pokemon, currentGameId, {party:currentParty});
   if (!options.length) return;
   if (!currentSaveBytes) {
     const note = document.createElement('p');
@@ -1449,49 +1448,41 @@ function addEvolutionControl(container, pokemon) {
   for (const option of options) {
     const item = document.createElement("option");
     item.value = String(option.to);
-    item.textContent = `Evolve to ${getKnownSpeciesName(option.to)}${option.consumesItem ? ` (consume ${option.itemName})` : ""}`;
+    const condition = option.location || (option.moveId ? `knowing ${PLATINUM_READER.moves[option.moveId]?.name}` : option.requiredSpecies ? `${GEN4_IDENTIFIERS.species[option.requiredSpecies]} in party` : option.beauty ? `Beauty ≥${option.beauty}` : option.friendship ? `friendship ≥${option.friendship}` : '');
+    item.textContent = `Evolve to ${getKnownSpeciesName(option.to)}${option.consumesItem ? ` (consume ${option.itemName})` : ""}${condition ? ` · ${condition}` : ''}${option.requiredTime ? ` · ${option.requiredTime}` : ''}`;
     select.append(item);
   }
 
+  let timeSelect = null;
+  if (options.some(option => option.requiredTime)) {
+    const label = document.createElement('label'); label.textContent = 'Simulated game time ';
+    timeSelect = document.createElement('select'); timeSelect.setAttribute('aria-label','Simulated game time');
+    for (const [value, text] of [['','Choose game time'],['day','Day · 04:00–19:59'],['night','Night · 20:00–03:59']]) timeSelect.add(new Option(text, value));
+    label.append(timeSelect); wrapper.append(label);
+  }
   const button = document.createElement("button");
   button.type = "button";
   button.className = "evolve-button";
   button.textContent = "Evolve";
+  const syncTime = () => {const rule=options.find(o=>o.to===Number(select.value));button.disabled=Boolean(rule?.requiredTime && timeSelect?.value!==rule.requiredTime);};
+  select.addEventListener('change',syncTime);timeSelect?.addEventListener('change',syncTime);syncTime();
   button.addEventListener("click", async () => {
     const evolution = options.find((option) => option.to === Number(select.value));
     if (!evolution || !currentSaveBytes || currentActivePartition === null) return;
     const targetName = getKnownSpeciesName(evolution.to);
     const itemNote = evolution.consumesItem ? `\n\nThis will consume the held ${evolution.itemName}.` : "";
-    const locationNote = evolution.method === "location-level-up"
-      ? "\n\nThis simulates the unavailable location's level-up trigger. The Pokémon's level and experience will not change."
-      : "";
+    const locationNote = evolution.method.includes('level-up')
+      ? `\n\n${currentGameId === 'soulsilver' && evolution.location ? 'This simulates a location trigger from Diamond/Pearl/Platinum; that location is absent in SoulSilver' : 'This simulates a level-up trigger'}${evolution.location ? ` at ${evolution.location}` : ''}${timeSelect?.value ? ` during ${timeSelect.value}` : ''}. Level, experience and moves remain unchanged.`
+      : '\n\nThis simulates the evolution trigger only. No Pokémon exchange occurs; trainer identity and ownership remain unchanged.';
     if (!window.confirm(`Evolve ${pokemon.nickname || getDisplaySpeciesName(pokemon)} into ${targetName}?${itemNote}${locationNote}\n\nA separate modified save will be downloaded. Your original file is not overwritten.`)) return;
 
     const revision = loadRevision;
     button.disabled = true;
     button.textContent = "Evolving…";
     try {
-      let evolvedStats = null;
-      if (pokemon.recordKind === "party") {
-        const data = await getPokemonData(evolution.to);
-        evolvedStats = data?.pokemon?.stats || null;
-        if (!evolvedStats) throw new Error("Could not load the evolved species' base stats. No changes were made.");
-      }
       if (revision !== loadRevision) return;
-      const output = evolveSoulSilverPokemon(
-        currentSaveBytes,
-        pokemon,
-        evolution,
-        currentActivePartition,
-        evolvedStats
-      );
-      const extensionMatch = currentSaveFileName.match(/(\.[^./\\]+)$/);
-      const extension = extensionMatch ? extensionMatch[1] : ".sav";
-      const baseName = (extensionMatch
-        ? currentSaveFileName.slice(0, -extension.length)
-        : currentSaveFileName
-      ).replace(/\.evolved$/i, "");
-      const outputName = `${baseName}.evolved${extension}`;
+      const output = evolveSavePokemon(currentSaveBytes, pokemon, evolution, {time:timeSelect?.value || undefined});
+      const outputName = evolutionExportName(currentSaveFileName);
       const blob = new Blob([output], { type: "application/octet-stream" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -1531,7 +1522,7 @@ const KNOWN_SPECIES_NAMES = Object.freeze({
 });
 
 function getKnownSpeciesName(speciesId) {
-  return KNOWN_SPECIES_NAMES[speciesId] || `Pokémon #${speciesId}`;
+  return KNOWN_SPECIES_NAMES[speciesId] || GEN4_IDENTIFIERS.species[speciesId] || `Pokémon #${speciesId}`;
 }
 
 function resetFileInfo() {
@@ -1539,6 +1530,7 @@ function resetFileInfo() {
   document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
   currentGameId = "soulsilver";
+  currentParty = [];
   document.querySelector(".view-intro .eyebrow").textContent = "YOUR POKÉMON COMPANION";
   activeBoxNumber = 1;
   collectionVisibleLimit = 40;

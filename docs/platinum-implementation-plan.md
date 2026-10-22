@@ -132,3 +132,21 @@ Foundation release gate: `npm run validate:atlas` passes **241/241** tests,
 zero mandatory integrity failures, 100% existing Johto/Kanto location coverage.
 The only first-pass failure was a stale escaped version assertion; fixed before
 publication. The regenerated report fingerprints all application/test inputs.
+
+## Milestones 2 and 3 evidence
+
+Milestone 2: 249/249 tests, independent PKHeX synthetic early/middle/postgame
+fixtures, all 32 PK4 shuffle values, profile isolation and mobile Reader journey.
+Released as 0.26.1 / `7d8f7cf`; Pages 39793080174 and CI 39793079708 succeeded.
+
+Milestone 3: 47 sourced trade/special evolution rules, 114 complete exports
+independently inspected by PKHeX, complete logical PK4 comparisons, 12 blocked
+vectors, all 3451 default names, original-byte/profile immutability and DSV
+preservation. Shared native attribute transaction also serves SoulSilver.
+259/259 tests pass; 0.26.2 release evidence is in `platinum-writing.md` and
+`platinum-evolution-independent.json`. No real-game playthrough is claimed.
+
+Final-regression leads retained for milestone 6: review SoulSilver's legacy
+same-partition storage policy against primary HGSS save recovery; extend semantic
+corruption cases (empty declared party slots and invalid trainer fields). These
+are separate from a claim of Pokémon legality or real-save outcome validation.

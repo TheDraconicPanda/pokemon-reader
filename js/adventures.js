@@ -60,7 +60,7 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
   const profile = gameProfile(gameId);
   requireValue(result?.valid === true && profile && result.game === profile.game, 'Select a valid supported save.');
   requireValue(result.decodeComplete !== false, 'Save contains an invalid party count.');
-  const pokemonKeys = ['empty','slot','personality','formId','speciesId','heldItemId','otId','secretId','experience','friendship','abilityId','isEgg','isNicknamed','nickname','otName','eggDate','metDate','eggLocationId','metLocationId','pokeballId','metLevel','shiny','natureId','moves','evs','ivs','level','currentHp','maxHp','stats','status','checksumValid','genderId','fatefulEncounter','originGameId','languageId','pokerus','otGenderId','groundTile'];
+  const pokemonKeys = ['empty','slot','personality','formId','speciesId','heldItemId','otId','secretId','experience','friendship','abilityId','isEgg','isNicknamed','nickname','otName','eggDate','metDate','eggLocationId','metLocationId','pokeballId','metLevel','shiny','natureId','moves','evs','ivs','level','currentHp','maxHp','stats','status','checksumValid','genderId','fatefulEncounter','originGameId','languageId','pokerus','otGenderId','groundTile','contestBeauty'];
   const decodedPokemon = p => {
     const value = pick(p, pokemonKeys);
     for (const key of ['evs','ivs','stats']) if (p[key]) value[key] = pick(p[key], STATS);

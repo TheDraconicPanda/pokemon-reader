@@ -4,7 +4,10 @@ Platinum uses the existing Reader, party/PC details, collection, search, themes,
 menus and local Adventure Profiles. Detection uses save contents, never filenames.
 The shared foundation was released as 0.26.0 in `bb6bf5c`; Pages run
 [39786973436](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/39786973436)
-succeeded. Platinum Reader targets 0.26.1; release checks/publication follow below.
+succeeded. Platinum Reader was released as 0.26.1 in `7d8f7cf`;
+[Pages run 39793080174](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/39793080174)
+and [CI run 39793079708](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/39793079708)
+succeeded. Evolution/container support is documented in [milestone 3](platinum-writing.md).
 
 ## Layout and primary evidence
 

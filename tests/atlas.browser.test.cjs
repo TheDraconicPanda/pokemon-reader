@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.26.1') && document.querySelector('.eyebrow').textContent.includes('v0.26.1'),
+    version: document.title.includes('v0.26.2') && document.querySelector('.eyebrow').textContent.includes('v0.26.2'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.26\.1<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.26\.2<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.1'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.1");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.2");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.1'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -348,16 +348,16 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 });
 
 
-async function fixtureReader(data = fixture(), bytes = null) {
-  await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
+async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
+  await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.1'`), 'Reader did not initialize');
-  await uploadFixture(data, true, bytes);
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), 'Reader did not initialize');
+  await uploadFixture(data, true, bytes, fileName);
 }
-async function uploadFixture(data, separateAdventure = true, bytes = null) {
+async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
   const payload = bytes ? `Uint8Array.from(atob('${Buffer.from(bytes).toString('base64')}'),c=>c.charCodeAt(0))` : 'new Uint8Array(512*1024)';
   await evaluate(`globalThis.__readerFixture = ${JSON.stringify(data)}; document.querySelector('#new-adventure').checked = ${separateAdventure}; (() => {
-    const files = new DataTransfer(); files.items.add(new File([${payload}], 'ui-fixture.sav'));
+    const files = new DataTransfer(); files.items.add(new File([${payload}], ${JSON.stringify(fileName)}));
     const input=document.querySelector('#save-file'); input.files=files.files; input.dispatchEvent(new Event('change'));
   })()`);
   await until(() => evaluate(`document.querySelector('#file-status').classList.contains('${data.valid ? 'success' : 'error'}')`), 'Fixture save did not render');
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.1'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.1'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1405,8 +1405,8 @@ test('Adventure restoration, menu links and profile controls work under the GitH
 
 test('Evolution export downloads constructed save bytes without replacing loaded adventure progress', async () => {
   const {detectSoulSilver}=await import('../js/saves/soulsilver.js');
-  const {bytes}=syntheticSave(64);
-  await fixtureReader(detectSoulSilver(bytes.buffer), bytes);
+  const {bytes,sealBlock}=syntheticSave(64);bytes[0x7D]=2;sealBlock(0,0xF628);
+  await fixtureReader(detectSoulSilver(bytes.buffer), bytes, true);
   await evaluate(`location.hash='storage';document.querySelector('#box-grid .pokemon-detail-button').click()`);
   await until(()=>evaluate(`Boolean(document.querySelector('.evolve-button'))`),'Evolution export control missing');
   const before=await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`);
@@ -1419,7 +1419,7 @@ test('Evolution export downloads constructed save bytes without replacing loaded
   const exported=await evaluate(`(async()=>Array.from(new Uint8Array(await globalThis.__downloaded.arrayBuffer())))()`);
   assert.equal(detectSoulSilver(Uint8Array.from(exported).buffer).storage.boxes[0].pokemon[0].speciesId,65);
   assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
-  assert.equal(await evaluate(`globalThis.__parseCount`),1,'Export must not implicitly reload the generated file');
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog-title').textContent`),'A','Export must leave the original individual displayed');
   await command('Fetch.disable');
 });
 
@@ -2825,7 +2825,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.1'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.2'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3049,7 +3049,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.1'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.2'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');
@@ -3074,4 +3074,34 @@ test('Platinum loads PKHeX binary fixtures through shared Reader on phones and d
  await fixtureReader();assert.equal(await evaluate(`document.querySelector('#badges-value').textContent`),'2 / 16');
  assert.equal(await evaluate(`(async()=>{const api=await import('/js/adventures.js');return (await api.listProfiles()).some(p=>p.id===${JSON.stringify(id)}&&p.gameId==='platinum');})()`),true);
  assert.equal(await evaluate(`document.querySelector('#game-progress')===null`),true);
+});
+
+test('Platinum evolution exports preserve DSV containers and profiles, with explicit simulated night on phones',async()=>{
+ const {vectors,evolutionFixture,dsv}=require('./fixtures/gen4/evolution.cjs');
+ const {detectSave}=await import('../js/saves/index.js');
+ for(const vector of [vectors[0],vectors.find(v=>v.from===207&&!v.blocked)]){
+  const {bytes}=await evolutionFixture(vector),input=dsv(bytes);
+  await fixtureReader(detectSave(bytes),input,true,'Platinum.DSV');
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:900,deviceScaleFactor:1,mobile:true});
+  await evaluate(`location.hash='party'`);await until(()=>evaluate(`!document.querySelector('#party-info').hidden`),'Party');
+  await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
+  await until(()=>evaluate(`document.querySelector('#pokemon-detail-dialog').open`),'Details');
+  const before=await evaluate(`(async()=>{const api=await import('/js/adventures.js');return JSON.stringify((await api.getActiveProfile()).snapshot);})()`);
+  if(vector.time){
+   assert.equal(await evaluate(`document.querySelector('.evolve-button').disabled`),true);
+   await evaluate(`(()=>{const select=document.querySelector('[aria-label="Simulated game time"]');select.value='day';select.dispatchEvent(new Event('change'));})()`);
+   assert.equal(await evaluate(`document.querySelector('.evolve-button').disabled`),true);
+   await evaluate(`(()=>{const select=document.querySelector('[aria-label="Simulated game time"]');select.value='night';select.dispatchEvent(new Event('change'));})()`);
+   assert.equal(await evaluate(`document.querySelector('.evolve-button').disabled`),false);
+  }
+  assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog').scrollWidth<=document.querySelector('#pokemon-detail-dialog').clientWidth`),true);
+  await evaluate(`(()=>{window.confirm=()=>true;const old=URL.createObjectURL;URL.createObjectURL=blob=>{globalThis.__exportBlob=blob;return old(blob);};HTMLAnchorElement.prototype.click=function(){globalThis.__exportName=this.download;};document.querySelector('.evolve-button').click();})()`);
+  await until(()=>evaluate(`document.querySelector('#file-status').textContent.includes('Downloaded Platinum.evolved.DSV')`),'Evolution export');
+  const exported=await evaluate(`(async()=>Array.from(new Uint8Array(await globalThis.__exportBlob.arrayBuffer())))()`);
+  assert.equal(await evaluate(`globalThis.__exportName`),'Platinum.evolved.DSV');
+  const output=Uint8Array.from(exported),loaded=detectSave(output);
+  assert.equal(loaded.valid,true);assert.equal(loaded.party[0].speciesId,vector.to);
+  assert.deepEqual(output.subarray(0x80000),input.subarray(0x80000));
+  assert.equal(await evaluate(`(async()=>{const api=await import('/js/adventures.js');return JSON.stringify((await api.getActiveProfile()).snapshot);})()`),before);
+ }
 });

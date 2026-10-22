@@ -11,30 +11,9 @@ function getGen4FormId(speciesId, formByte) {
 }
 
 export function decryptGen4StoredPokemon(data, extended = false) {
-  const result = new Uint8Array(data);
-  const pid = readUint32(result, 0);
-
-  if (data.every(byte => byte === 0)) {
-    return { empty: true };
-  }
-
-  const checksum = readUint16(result, 6);
-  const shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >> 13) & 0x1F];
-
-  cryptGen4(result, 8, 136, checksum);
-
-  const blocks = [
-    result.slice(8, 40),
-    result.slice(40, 72),
-    result.slice(72, 104),
-    result.slice(104, 136),
-  ];
-  const unshuffled = new Uint8Array(128);
-
-  for (let i = 0; i < 4; i++) {
-    unshuffled.set(blocks[shuffle[i]], i * 32);
-  }
-  result.set(unshuffled, 8);
+  if (data.every(byte => byte === 0)) return {empty: true};
+  const result = decryptGen4Record(data, false);
+  const pid = readUint32(result, 0), checksum = readUint16(result, 6);
 
   if (readUint16(result, 8) === 0 && pokemonChecksum(result) === checksum) return {empty: true};
 
@@ -70,30 +49,8 @@ export function decryptGen4StoredPokemon(data, extended = false) {
 }
 
 export function decryptGen4PartyPokemon(data, extended = false) {
-  const result = new Uint8Array(data);
-  const pid = readUint32(result, 0);
-  const checksum = readUint16(result, 6);
-  const shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >> 13) & 0x1F];
-
-  // Party data after the first 136 bytes is encrypted with the PID.
-  cryptGen4(result, 136, 236, pid);
-
-  // The four 32-byte data blocks are encrypted with the checksum and
-  // stored in a PID-dependent order.
-  cryptGen4(result, 8, 136, checksum);
-
-  const blocks = [
-    result.slice(8, 40),
-    result.slice(40, 72),
-    result.slice(72, 104),
-    result.slice(104, 136),
-  ];
-  const unshuffled = new Uint8Array(128);
-
-  for (let i = 0; i < 4; i++) {
-    unshuffled.set(blocks[shuffle[i]], i * 32);
-  }
-  result.set(unshuffled, 8);
+  const result = decryptGen4Record(data, true);
+  const pid = readUint32(result, 0), checksum = readUint16(result, 6);
 
   return {
     ...(extended ? extendedFields(result) : {}),
@@ -136,6 +93,17 @@ export function decryptGen4PartyPokemon(data, extended = false) {
   };
 }
 
+
+// One logical PK4 representation serves both the Reader and transactional writer.
+export function decryptGen4Record(data, party = data.length === 236) {
+  if (data.length !== (party ? 236 : 136)) throw new Error('Invalid Generation IV Pokémon record length.');
+  const result = new Uint8Array(data), pid = readUint32(result, 0), checksum = readUint16(result, 6);
+  if (party) cryptGen4(result, 136, 236, pid);
+  cryptGen4(result, 8, 136, checksum);
+  const stored = result.slice(8, 136), shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >>> 13) & 31];
+  for (let i = 0; i < 4; i++) result.set(stored.subarray(shuffle[i] * 32, shuffle[i] * 32 + 32), 8 + i * 32);
+  return result;
+}
 
 export function pokemonChecksum(data) {
   let sum = 0;
@@ -248,31 +216,19 @@ function decodeGen4Character(value) {
     return String.fromCharCode(0x41 + value - 0x12B);
   }
 
-  if (value >= 0x145 && value <= 0x16E) {
+  if (value >= 0x145 && value <= 0x15E) {
     return String.fromCharCode(0x61 + value - 0x145);
   }
 
-  const punctuation = new Map([
-    [0x1D0, "@"],
-    [0x1D2, "%"],
-    [0x1D4, "!"],
-    [0x1D5, "?"],
-    [0x1D6, ","],
-    [0x1D7, "."],
-    [0x1DE, " "],
-    [0x1B3, "'"],
-    [0x1B4, "'"],
-    [0x1B5, "'"],
-    [0x1BC, "+"],
-    [0x1BD, "-"],
-  ]);
-
-  return punctuation.get(value) ?? PLATINUM_READER.characters[value] ?? "�";
+  // Primary character data includes punctuation and both international/Korean
+  // alphabets; preserve the canonical apostrophe used by PKHeX's decoder.
+  if (value === 0x1B3) return "'";
+  return PLATINUM_READER.characters[value] ?? "�";
 }
 
 
 function extendedFields(data) {
   return {genderId: (data[0x40] >>> 1) & 3, fatefulEncounter: Boolean(data[0x40] & 1),
-    originGameId: data[0x5F], languageId: data[0x17], pokerus: data[0x82],
+    contestBeauty: data[0x1F], originGameId: data[0x5F], languageId: data[0x17], pokerus: data[0x82],
     otGenderId: data[0x84] >>> 7, groundTile: data[0x85]};
 }

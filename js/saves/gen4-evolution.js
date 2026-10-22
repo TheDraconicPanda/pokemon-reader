@@ -1,5 +1,6 @@
+import { platinumEvolutions } from './platinum-evolution-rules.js';
 import { readUint16, readUint32, writeUint16, crc16Ccitt } from './gen4-binary.js';
-import { cryptGen4, GEN4_BLOCK_UNSHUFFLES, pokemonChecksum } from './gen4-pokemon.js';
+import { cryptGen4, GEN4_BLOCK_UNSHUFFLES, pokemonChecksum, decryptGen4Record } from './gen4-pokemon.js';
 import { recalculatePartyStats, validBaseStats } from './gen4-stats.js';
 
 const TRADE_EVOLUTIONS = Object.freeze([
@@ -29,7 +30,10 @@ const LOCATION_EVOLUTIONS = Object.freeze([
   { from: 133, to: 471, method: "location-level-up", location: "Ice Rock" },
 ]);
 
-export function getAvailableEvolutions(pokemon) {
+export function getAvailableEvolutions(pokemon, gameId = 'soulsilver', context = {}) {
+  if (gameId === 'platinum') return platinumEvolutions(pokemon, context);
+  if (gameId !== 'soulsilver') return [];
+  if (pokemon?.heldItemId === 229 && pokemon?.speciesId !== 64) return [];
   if (!pokemon || pokemon.empty || pokemon.isEgg || !pokemon.speciesId) return [];
   const options = TRADE_EVOLUTIONS.filter((rule) =>
     rule.from === pokemon.speciesId &&
@@ -44,7 +48,7 @@ export function getAvailableEvolutions(pokemon) {
   return [...options, ...locationOptions];
 }
 
-export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, evolvedBaseStats, profile) {
+export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, evolvedBaseStats, profile, options = {}) {
   if (!(buffer instanceof Uint8Array) || buffer.length !== profile.fileSize) {
     throw new Error(`Only a validated 512 KB ${profile.shortName} save can be modified.`);
   }
@@ -55,7 +59,7 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
     throw new Error("The active save partition is unknown.");
   }
 
-  const rule = getAvailableEvolutions(pokemon).find((entry) =>
+  const rule = getAvailableEvolutions(pokemon, profile.id, options.context).find((entry) =>
     entry.to === evolution.to && entry.method === evolution.method
   );
   if (!rule) throw new Error("This Pokémon does not meet the selected evolution requirements.");
@@ -71,23 +75,8 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
   const offset = pokemon.saveOffset;
   if (offset < 0 || offset + length > output.length) throw new Error("Pokémon record is outside the save file.");
 
-  const record = output.slice(offset, offset + length);
-  const pid = readUint32(record, 0);
-  const shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >>> 13) & 0x1F];
-
-  if (pokemon.recordKind === "party") cryptGen4(record, 136, 236, pid);
-  const oldChecksum = readUint16(record, 6);
-  cryptGen4(record, 8, 136, oldChecksum);
-
-  const storedBlocks = [
-    record.slice(8, 40),
-    record.slice(40, 72),
-    record.slice(72, 104),
-    record.slice(104, 136),
-  ];
-  const logicalBlocks = new Uint8Array(128);
-  for (let i = 0; i < 4; i++) logicalBlocks.set(storedBlocks[shuffle[i]], i * 32);
-  record.set(logicalBlocks, 8);
+  const record = decryptGen4Record(output.slice(offset, offset + length), pokemon.recordKind === 'party');
+  const pid = readUint32(record, 0), shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >>> 13) & 31];
 
   const currentSpecies = readUint16(record, 8);
   const currentItem = readUint16(record, 10);
@@ -97,6 +86,7 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
 
   writeUint16(record, 8, rule.to);
   if (rule.consumesItem) writeUint16(record, 10, 0);
+  options.transform?.(record);
   const oldMaxHp = pokemon.recordKind === "party" ? readUint16(record, 0x90) : 0;
   const oldHp = pokemon.recordKind === "party" ? readUint16(record, 0x8E) : 0;
 
@@ -118,7 +108,7 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
   if (pokemon.recordKind === "party") {
     writeBlockChecksum(output, partitionBase, profile.generalSize, profile.footerSize);
   } else {
-    writeBlockChecksum(output, partitionBase + profile.storageOffset, profile.storageSize, profile.footerSize);
+    writeBlockChecksum(output, (options.storagePartition ?? activePartition) * profile.partitionSize + profile.storageOffset, profile.storageSize, profile.footerSize);
   }
   return output;
 }
