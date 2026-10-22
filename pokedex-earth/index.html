@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.25.79 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.25.80 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/safari.css">
   <link rel="stylesheet" href="../css/app-shell.css">
@@ -14,12 +14,13 @@
   <main class="world-app">
     <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.79</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.25.80</p>
       <h1>Pokémon Atlas</h1>
       <p id="atlas-save-status" class="atlas-save-status" role="status" hidden></p>
-      <nav class="atlas-tools" id="johto-tool-nav" aria-label="Johto · SoulSilver tools" hidden>
+      <nav class="atlas-tools" id="johto-tool-nav" aria-label="SoulSilver Atlas tools" hidden>
         <a href="#home" class="atlas-tool-link">Regions</a>
         <a href="#johto" class="atlas-tool-link">Johto</a>
+        <a href="#kanto" class="atlas-tool-link">Kanto</a>
         <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link">Navigation</a>
         <a href="#safari" class="atlas-tool-link">Safari</a>
         <a href="#ev-training" class="atlas-tool-link">EV Training</a>
@@ -30,7 +31,7 @@
       <h2 id="atlas-home-title" tabindex="-1">Choose a region</h2>
       <p>Explore the Pokémon world. Regions are ordered by their first appearance.</p>
       <div class="atlas-card-grid region-grid" aria-label="Regions">
-        <button class="atlas-feature-card" disabled><strong>Kanto</strong><span>Generation I</span><span>Planned</span></button>
+        <a href="#kanto" class="atlas-feature-card"><strong>Kanto</strong><span>Generation I</span><span>Available</span></a>
         <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>Available</span></a>
         <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Sinnoh</strong><span>Generation IV</span><span>Planned</span></button>
@@ -53,6 +54,16 @@
         <p>Encounter percentages are species shares within the listed method, time and area after an encounter starts. Radio entries require the matching broadcast after the National Pokédex; outbreak entries require the announced outbreak and replace normal slots. Headbutt groups depend on the tree and Trainer ID; special trees require Rock Climb.</p>
         <p>Safari’s mini Atlas has manual six-area navigation and the existing encounter reference. Safari layout/progression is not decoded from saves; its encounter/block mechanics audit and calculator remain separate work.</p>
       </details>
+    </section>
+
+    <section class="world-panel atlas-landing" id="kanto-home" aria-labelledby="kanto-home-title" hidden>
+      <h2 id="kanto-home-title" tabindex="-1">Kanto · SoulSilver</h2>
+      <p>Explore Kanto after the Pokémon League, from the S.S. Aqua’s Vermilion port to the eight Kanto Gyms. Locations remain browsable before their story requirements are met.</p>
+      <div class="atlas-card-grid" aria-label="Kanto features">
+        <a href="#location=Vermilion%20City" class="atlas-feature-card"><strong>Navigation</strong><span>Start at Vermilion City, follow connections or search both regions.</span></a>
+        <a href="#ev-training" class="atlas-feature-card"><strong>EV Training</strong><span>Find SoulSilver training locations across both regions.</span></a>
+      </div>
+      <details class="atlas-about"><summary>About the Kanto guide</summary><p>Routes and cities group their floors and related rooms. Route 10’s north and south sections connect through Rock Tunnel. The Magnet Train and S.S. Aqua connect to Johto. HM and story conditions are reference annotations; browsing never assumes your save has unlocked them.</p></details>
     </section>
 
     <section class="world-panel ev-training-panel" id="ev-training" aria-labelledby="ev-training-title" hidden>

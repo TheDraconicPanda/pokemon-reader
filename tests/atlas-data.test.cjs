@@ -8,10 +8,10 @@ async function locations() {
   return (await import(`data:text/javascript;base64,${Buffer.from(source).toString("base64")}`)).ATLAS_LOCATIONS;
 }
 
-test("all 70 location groups have static information and pinned sources", async () => {
+test("all 122 location groups have static information and pinned sources", async () => {
   const data = await locations();
-  assert.equal(data.length, 70);
-  assert.equal(new Set(data.map((entry) => entry.name)).size, 70);
+  assert.equal(data.length, 122);
+  assert.equal(new Set(data.map((entry) => entry.name)).size, 122);
   for (const entry of data) {
     for (const field of ["name", "region", "details"]) assert.ok(entry[field].trim(), `${entry.name}: ${field}`);
     assert.ok(["town", "route", "landmark", "facility"].includes(entry.type));
@@ -26,7 +26,7 @@ test("all 70 location groups have static information and pinned sources", async 
       const url = new URL(source.url);
       assert.equal(url.protocol, "https:");
       assert.ok(["github.com", "www.serebii.net", "bulbapedia.bulbagarden.net"].includes(url.hostname));
-      if (url.hostname === "github.com") assert.match(url.pathname, /^\/pret\/pokeheartgold\/blob\/e3f671ad1d060140c587f925f4ab8ec3596f62b9\/files\//);
+      if (url.hostname === "github.com") assert.match(url.pathname, /^\/pret\/pokeheartgold\/blob\/(?:e3f671ad1d060140c587f925f4ab8ec3596f62b9|d2355244ac42b3c6e40d8c36aa3564ee8706dea4)\/(?:files|src)\//);
     }
     assert.ok(entry.sources.some((source) => source.url.startsWith("https://www.serebii.net/pokearth/")));
     assert.ok(entry.sources.some((source) => source.url.startsWith("https://bulbapedia.bulbagarden.net/wiki/")));
@@ -77,8 +77,8 @@ test("the static audit accounts for every location with two reviewed reference s
   const data = await locations();
   const audit = JSON.parse(await readFile(path.join(__dirname, "../docs/atlas-static-audit.json"), "utf8"));
   assert.equal(audit.release, "0.25.37");
-  assert.equal(audit.locations.length, data.length);
-  assert.deepEqual(audit.locations.map((row) => row.location).sort(), data.map((row) => row.name).sort());
+  assert.equal(audit.locations.length, 70);
+  assert.deepEqual(audit.locations.map((row) => row.location).sort(), data.filter(row=>!row.audit.primaryRevision).map((row) => row.name).sort());
   for (const row of audit.locations) {
     assert.equal(row.status, "reviewed");
     assert.deepEqual(row.checked, ["name", "summary", "landmarks", "access", "connections"]);

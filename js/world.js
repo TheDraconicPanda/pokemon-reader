@@ -14,7 +14,9 @@ import { mapsForLocation } from "./data/atlas-maps.js";
 
 // Explicit orientation for existing overland links. Unresolved links and interiors
 // remain available under Other connections; never infer direction from list order.
+import { KANTO_COMPASS } from "./data/games/soulsilver/kanto-compass.js";
 const COMPASS_PAIRS = [
+  ...KANTO_COMPASS,
   ["New Bark Town", "Route 29", "west"],
   ["New Bark Town", "Route 27", "east"],
   ["Route 27", "Route 26", "east"],
@@ -65,7 +67,7 @@ const COMPASS_PAIRS = [
   ["Route 48", "Safari Zone Gate", "north"],
   ["Safari Zone Gate", "Safari Zone", "north"]
 ];
-const OPPOSITE = { north: "south", south: "north", east: "west", west: "east" };
+const OPPOSITE = { north: "south", south: "north", east: "west", west: "east", other: "other" };
 function connectionDirection(source, target) {
   for (const [from, to, direction] of COMPASS_PAIRS) {
     if (source === from && target === to) return direction;
@@ -442,11 +444,12 @@ const atlasPanel = document.querySelector("#atlas-browser");
 const evPanel = document.querySelector("#ev-training");
 const homePanel = document.querySelector("#atlas-home");
 const johtoPanel = document.querySelector("#johto-home");
+const kantoPanel = document.querySelector("#kanto-home");
 const toolNav = document.querySelector("#johto-tool-nav");
 const safariPanel = document.querySelector("#safari-mini-atlas");
 function setAtlasView(panel) {
   if(panel!==safariPanel)safariAtlas.hide();
-  for (const view of [homePanel, johtoPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
+  for (const view of [homePanel, johtoPanel, kantoPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
   toolNav.hidden = panel === homePanel;
 }
 const caughtIndicators = mountCaughtIndicators({gameId:ATLAS_GAME_ID,root:document.querySelector('.world-app'),status:document.querySelector('#atlas-save-status')});
@@ -492,8 +495,9 @@ function showAtlasRoute(focus = true) {
     openAtlasLocation(name, false, focus);
   } else {
     const johto = location.hash === "#johto";
-    setAtlasView(johto ? johtoPanel : homePanel);
-    if (focus) document.querySelector(johto ? "#johto-home-title" : "#atlas-home-title").focus();
+    const kanto = location.hash === "#kanto";
+    setAtlasView(johto ? johtoPanel : kanto ? kantoPanel : homePanel);
+    if (focus) document.querySelector(johto ? "#johto-home-title" : kanto ? "#kanto-home-title" : "#atlas-home-title").focus();
   }
 }
 function searchLocations() {

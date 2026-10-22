@@ -15,7 +15,7 @@ test('every directed non-Safari connection has a scoped travel review and source
   for(const url of r.sources)assert.ok(['bulbapedia.bulbagarden.net','www.serebii.net'].includes(new URL(url).hostname));
   for(const hm of r.hms){assert.ok(travelHm('soulsilver',hm.id));assert.ok(['passage','through','alternative','optional'].includes(hm.usage));}
  }
- assert.equal(count,154);assert.equal(travel.connections.length,count);
+ assert.equal(count,274);assert.equal(travel.connections.length,154);
  assert.equal(travelConnection('soulsilver','Safari Zone Gate','Safari Zone'),null);
  for(const game of ['heartgold','platinum','__proto__',undefined]){assert.equal(travelConnection(game,'New Bark Town','Route 27'),null);assert.equal(travelHm(game,'surf'),null);}
  assert.equal(travelHm('soulsilver','__proto__'),null);

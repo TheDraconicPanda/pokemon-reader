@@ -10,7 +10,7 @@ test('all 69 non-Safari locations have explicit verified encounter coverage', as
   const { ATLAS_LOCATIONS } = await load('js/data/atlas-locations.js');
   const { locationEncounterReference } = await load('js/data/atlas-route-reference.js');
   let empty = 0;
-  for (const location of ATLAS_LOCATIONS) {
+  for (const location of ATLAS_LOCATIONS.filter(l=>!l.audit.primaryRevision)) {
     const reference = locationEncounterReference('soulsilver', location.name);
     if (location.name === 'Safari Zone') { assert.equal(reference, null); continue; }
     assert.ok(reference, location.name);
@@ -127,7 +127,7 @@ test('the published audit accounts for every non-Safari location with current co
   const { ATLAS_LOCATIONS } = await load('js/data/atlas-locations.js');
   const { locationEncounterReference } = await load('js/data/atlas-route-reference.js');
   assert.equal(audit.locations.length,69);
-  assert.deepEqual(audit.locations.map(r=>r.location).sort(),ATLAS_LOCATIONS.filter(l=>l.name!=='Safari Zone').map(l=>l.name).sort());
+  assert.deepEqual(audit.locations.map(r=>r.location).sort(),ATLAS_LOCATIONS.filter(l=>l.name!=='Safari Zone'&&!l.audit.primaryRevision).map(l=>l.name).sort());
   for (const row of audit.locations) {
     const current = locationEncounterReference('soulsilver',row.location);
     assert.equal(row.encounter_status,current.status);

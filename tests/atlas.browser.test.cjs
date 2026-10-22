@@ -61,7 +61,7 @@ async function evaluate(expression) {
 let atlasVisit = 0;
 async function atlas({ directory = true } = {}) {
   await command("Page.navigate", { url: `${baseURL}/pokedex-earth/?test=${++atlasVisit}#atlas` });
-  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '1 of 70 locations'`),
+  await until(() => evaluate(`document.querySelector('#location-count')?.textContent === '1 of 122 locations'`),
     "Atlas did not finish rendering");
   if (directory) await evaluate(`document.querySelector('#location-search').value='';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
 }
@@ -164,9 +164,9 @@ test("Atlas renders the existing inventory and every connection has a destinatio
     name: card.querySelector('h2').textContent,
     connections: Array.from(card.querySelectorAll('.connection-link'), link => link.textContent)
   }))`);
-  assert.equal(cards.length, 70);
+  assert.equal(cards.length, 122);
   const names = new Set(cards.map((card) => card.name));
-  assert.equal(names.size, 70);
+  assert.equal(names.size, 122);
   for (let route = 29; route <= 48; route++) assert.ok(names.has(`Route ${route}`));
   for (const card of cards) for (const target of card.connections) {
     assert.ok(names.has(target), `${card.name} links to missing ${target}`);
@@ -224,9 +224,9 @@ test("manual search, type filters, empty state, and reset still work", async () 
   })()`);
   assert.deepEqual(result.searchResults, ["Route 39", "Route 47", "Route 48", "Safari Zone Gate", "Safari Zone"]);
   assert.equal(result.empty, true);
-  assert.equal(result.routes.length, 23);
+  assert.equal(result.routes.length, 47);
   assert.ok(result.routes.every((name) => /^Route \d+$/.test(name)));
-  assert.equal(result.reset, 70);
+  assert.equal(result.reset, 122);
   assert.equal(result.emptyHidden, true);
 });
 
@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.25.79') && document.querySelector('.eyebrow').textContent.includes('v0.25.79'),
+    version: document.title.includes('v0.25.80') && document.querySelector('.eyebrow').textContent.includes('v0.25.80'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.25\.79<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.25\.80<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.79'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.79");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.80'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.25.80");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.79'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.80'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null) {
   await command('Fetch.enable', {patterns:[{urlPattern:'*/js/saves/soulsilver.js'},{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.79'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.80'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null) {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.79'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.80'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.79'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.25.80'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -838,7 +838,7 @@ test('Atlas separates overview and encounters for every location at mobile and d
         !overview.contains(card.querySelector('.location-connections')) || !overview.contains(card.querySelector('.location-static')) ||
         overview.contains(encounters) || overview.getBoundingClientRect().bottom+8>encounters.getBoundingClientRect().top ||
         !card.getAttribute('aria-labelledby') || !encounters.getAttribute('aria-label') ||
-        (encounters.querySelectorAll('.encounter-entry').length===0 && !encounters.textContent.includes('No fixed wild encounters'));
+        (encounters.querySelectorAll('.encounter-entry').length===0 && !/(No fixed wild encounters|Encounter data has not been added)/.test(encounters.textContent));
     }).map(card=>card.querySelector('h2').textContent)`),[],`Separate accessible blocks at ${width}`);
     assert.equal(await evaluate(`document.documentElement.scrollWidth <= innerWidth`),true);
   }
@@ -890,7 +890,7 @@ test('all 23 routes expose encounters and expandable items/NPCs on phones and de
   for (const width of [320, 390, 1440]) {
     await command('Emulation.setDeviceMetricsOverride', {width,height:844,deviceScaleFactor:1,mobile:width<800});
     const result = await evaluate(`(() => {
-      const routes = Array.from(document.querySelectorAll('.location-card')).filter(card => /^Route \\d+$/.test(card.querySelector('h2').textContent));
+      const routes = Array.from(document.querySelectorAll('.location-card')).filter(card => /^Route \\d+$/.test(card.querySelector('h2').textContent) && Number(card.querySelector('h2').textContent.slice(6))>=26);
       const missing = routes.filter(card => !card.querySelector('.encounter-entry') || card.querySelectorAll('.route-features').length !== 2).map(card => card.querySelector('h2').textContent);
       const route29 = routes.find(card => card.querySelector('h2').textContent === 'Route 29');
       for (const details of route29.querySelectorAll('.route-features')) details.querySelector('summary').click();
@@ -918,9 +918,9 @@ test('all 23 routes expose encounters and expandable items/NPCs on phones and de
 test('whole Atlas distinguishes verified empty locations and exposes city and cave encounters', async () => {
   await atlas();
   const cards = await evaluate(`Array.from(document.querySelectorAll('.location-card'),card=>({name:card.querySelector('h2').textContent,text:card.querySelector('.location-encounters').textContent,rows:new Set(Array.from(card.querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size}))`);
-  assert.equal(cards.length,70);
-  assert.equal(cards.filter(c=>c.rows===0).length,16);
-  assert.ok(cards.every(c=>!c.text.includes('not been added')));
+  assert.equal(cards.length,122);
+  assert.equal(cards.filter(c=>c.rows===0).length,68);
+  assert.equal(cards.filter(c=>c.text.includes('not been added')).length,52);
   for (const name of ['Cherrygrove City','Dark Cave','Ilex Forest','Mt. Mortar','Ice Path']) assert.ok(cards.find(c=>c.name===name).rows>0,name);
   assert.match(cards.find(c=>c.name==='Goldenrod City').text,/No fixed wild encounters/);
   assert.equal(cards.find(c=>c.name==='Safari Zone').rows,339);
@@ -1009,6 +1009,7 @@ test('all non-Safari location map choices render the matching catalogue view',as
       const name=card.querySelector('h2').textContent;
       const maps=mapsForLocation('soulsilver',name);
       if(name==='Safari Zone') {if(maps.length)failures.push(name+': excluded');continue;}
+      if(!maps.length)continue; // Kanto maps are tracked by their expansion audit.
       locations++;
       const select=card.querySelector('.map-select');
       if(!maps.length||!!select!==(maps.length>1))failures.push(name+': controls');
@@ -1031,7 +1032,7 @@ test('structured location details expand, search and fit mobile without changing
   for(const width of [320,390,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
     await atlas();
-    const coverage=await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(c=>c.querySelector('h2').textContent!=='Safari Zone').map(c=>({name:c.querySelector('h2').textContent,count:c.querySelectorAll('.location-reference').length}))`);
+    const coverage=await evaluate(`Array.from(document.querySelectorAll('.location-card')).filter(c=>c.querySelector('.location-reference')).map(c=>({name:c.querySelector('h2').textContent,count:c.querySelectorAll('.location-reference').length}))`);
     assert.equal(coverage.length,69);assert.ok(coverage.every(c=>c.count===5));
     await evaluate(`(()=>{const search=document.querySelector('#location-search');search.value='Primo';search.dispatchEvent(new Event('input'));})()`);
     assert.ok((await evaluate(`Array.from(document.querySelectorAll('.location-card h2'),h=>h.textContent)`)).includes('Violet City'));
@@ -1113,10 +1114,10 @@ test('EV finder paginates and opens exact Atlas destinations while preserving fi
   await until(()=>evaluate(`document.querySelector('#ev-result-count')?.textContent.includes('matching training spots')`),'Direct EV training link');
   assert.equal(await evaluate(`document.querySelector('#atlas-browser').hidden`),true);
   await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Violet%20City'});
-  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 70 locations'`),'Direct Atlas location');
+  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 122 locations'`),'Direct Atlas location');
   assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Violet City');
   await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=%E0%A4%A'});
-  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 70 locations'`),'Invalid deep link fallback');
+  await until(()=>evaluate(`document.querySelector('#location-count')?.textContent==='1 of 122 locations'`),'Invalid deep link fallback');
   assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'New Bark Town');
   assert.deepEqual(exceptions,[]);
 });
@@ -1265,7 +1266,7 @@ test('Compact Atlas cards and optional search preserve connection-first navigati
     assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Route 29');
     await evaluate(`document.querySelector('#location-search-panel summary').click();document.querySelector('#location-search').value='Cherrygrove City';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
     assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Cherrygrove City');
-    assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'3 of 70 locations');
+    assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'3 of 122 locations');
     await evaluate(`document.querySelector('#location-search-panel summary').click();document.querySelector('.compass-north button').click()`);
     assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Route 30');
     assert.equal(await evaluate(`document.querySelector('#location-search-panel').open`),false);
@@ -2824,7 +2825,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.25.79'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.25.80'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3003,4 +3004,22 @@ test('Safari final audit links Gate, Atlas, simulator and species reference with
  assert.doesNotMatch(await evaluate(`document.querySelector('#scenario-differences').textContent`),/Hypothetical/,'Returning reconstructs saved state rather than persisting a proposal');
  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('/js/adventures.js')).getActiveProfile()))()`),saved);
  assert.deepEqual(exceptions,[]);
+});
+
+test('Kanto landing, border travel and region search fit phone and desktop without saved progress',async()=>{
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<800});
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#kanto'});
+  await until(()=>evaluate(`document.querySelector('#kanto-home')&&!document.querySelector('#kanto-home').hidden`),'Kanto landing');
+  await evaluate(`document.querySelector('#kanto-home a').click()`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Vermilion City'`),'Kanto navigation');
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  await evaluate(`Array.from(document.querySelectorAll('.connection-link')).find(b=>b.textContent==='S.S. Aqua').click()`);
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'S.S. Aqua');
+  await evaluate(`Array.from(document.querySelectorAll('.connection-link')).find(b=>b.textContent==='Olivine City').click()`);
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Olivine City');
+  await evaluate(`(()=>{const s=document.querySelector('#location-search');s.value='Kanto';s.dispatchEvent(new Event('input'));})()`);
+  assert.ok(await evaluate(`Array.from(document.querySelectorAll('.location-card h2')).some(h=>h.textContent==='Pallet Town')`));
+ }
+ await command('Emulation.clearDeviceMetricsOverride');assert.deepEqual(exceptions,[]);
 });

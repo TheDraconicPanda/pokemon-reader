@@ -1,0 +1,1797 @@
+{
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "headersSha256": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539",
+  "maps": [
+    {
+      "mapId": "MAP_ROUTE_1",
+      "section": "MAPSEC_ROUTE_1",
+      "location": "Route 1",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R01",
+      "events": "006_R01"
+    },
+    {
+      "mapId": "MAP_ROUTE_2",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R02",
+      "events": "007_R02"
+    },
+    {
+      "mapId": "MAP_ROUTE_3",
+      "section": "MAPSEC_ROUTE_3",
+      "location": "Route 3",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R03",
+      "events": "008_R03"
+    },
+    {
+      "mapId": "MAP_ROUTE_4",
+      "section": "MAPSEC_ROUTE_4",
+      "location": "Route 4",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R04",
+      "events": "009_R04"
+    },
+    {
+      "mapId": "MAP_ROUTE_5",
+      "section": "MAPSEC_ROUTE_5",
+      "location": "Route 5",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R05",
+      "events": "010_R05"
+    },
+    {
+      "mapId": "MAP_ROUTE_6",
+      "section": "MAPSEC_ROUTE_6",
+      "location": "Route 6",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R06",
+      "events": "011_R06"
+    },
+    {
+      "mapId": "MAP_ROUTE_7",
+      "section": "MAPSEC_ROUTE_7",
+      "location": "Route 7",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R07",
+      "events": "012_R07"
+    },
+    {
+      "mapId": "MAP_ROUTE_8",
+      "section": "MAPSEC_ROUTE_8",
+      "location": "Route 8",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R08",
+      "events": "013_R08"
+    },
+    {
+      "mapId": "MAP_ROUTE_9",
+      "section": "MAPSEC_ROUTE_9",
+      "location": "Route 9",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R09",
+      "events": "014_R09"
+    },
+    {
+      "mapId": "MAP_ROUTE_10",
+      "section": "MAPSEC_ROUTE_10",
+      "location": "Route 10",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R10",
+      "events": "015_R10"
+    },
+    {
+      "mapId": "MAP_ROUTE_11",
+      "section": "MAPSEC_ROUTE_11",
+      "location": "Route 11",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R11",
+      "events": "016_R11"
+    },
+    {
+      "mapId": "MAP_ROUTE_12",
+      "section": "MAPSEC_ROUTE_12",
+      "location": "Route 12",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R12",
+      "events": "017_R12"
+    },
+    {
+      "mapId": "MAP_ROUTE_13",
+      "section": "MAPSEC_ROUTE_13",
+      "location": "Route 13",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R13",
+      "events": "018_R13"
+    },
+    {
+      "mapId": "MAP_ROUTE_14",
+      "section": "MAPSEC_ROUTE_14",
+      "location": "Route 14",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R14",
+      "events": "019_R14"
+    },
+    {
+      "mapId": "MAP_ROUTE_15",
+      "section": "MAPSEC_ROUTE_15",
+      "location": "Route 15",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R15",
+      "events": "020_R15"
+    },
+    {
+      "mapId": "MAP_ROUTE_16",
+      "section": "MAPSEC_ROUTE_16",
+      "location": "Route 16",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "021_R16"
+    },
+    {
+      "mapId": "MAP_ROUTE_17",
+      "section": "MAPSEC_ROUTE_17",
+      "location": "Route 17",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R17",
+      "events": "022_R17"
+    },
+    {
+      "mapId": "MAP_ROUTE_18",
+      "section": "MAPSEC_ROUTE_18",
+      "location": "Route 18",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R18",
+      "events": "023_R18"
+    },
+    {
+      "mapId": "MAP_ROUTE_22",
+      "section": "MAPSEC_ROUTE_22",
+      "location": "Route 22",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R22",
+      "events": "024_R22"
+    },
+    {
+      "mapId": "MAP_ROUTE_24",
+      "section": "MAPSEC_ROUTE_24",
+      "location": "Route 24",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R24",
+      "events": "025_R24"
+    },
+    {
+      "mapId": "MAP_ROUTE_25",
+      "section": "MAPSEC_ROUTE_25",
+      "location": "Route 25",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R25",
+      "events": "026_R25"
+    },
+    {
+      "mapId": "MAP_ROUTE_26",
+      "section": "MAPSEC_ROUTE_26",
+      "location": "Route 26",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R26",
+      "events": "027_R26"
+    },
+    {
+      "mapId": "MAP_ROUTE_27",
+      "section": "MAPSEC_ROUTE_27",
+      "location": "New Bark Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R27",
+      "events": "028_R27"
+    },
+    {
+      "mapId": "MAP_ROUTE_28",
+      "section": "MAPSEC_ROUTE_28",
+      "location": "Route 28",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R28",
+      "events": "029_R28"
+    },
+    {
+      "mapId": "MAP_PALLET",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T01",
+      "events": "046_T01"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T02",
+      "events": "047_T02"
+    },
+    {
+      "mapId": "MAP_PEWTER",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "048_T03"
+    },
+    {
+      "mapId": "MAP_CERULEAN",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T04",
+      "events": "049_T04"
+    },
+    {
+      "mapId": "MAP_LAVENDER",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "050_T05"
+    },
+    {
+      "mapId": "MAP_VERMILION",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T06",
+      "events": "051_T06"
+    },
+    {
+      "mapId": "MAP_CELADON",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T07",
+      "events": "052_T07"
+    },
+    {
+      "mapId": "MAP_FUCHSIA",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T08",
+      "events": "053_T08"
+    },
+    {
+      "mapId": "MAP_CINNABAR_ISLAND",
+      "section": "MAPSEC_CINNABAR_ISLAND",
+      "location": "Cinnabar Island",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "T09",
+      "events": "054_T09"
+    },
+    {
+      "mapId": "MAP_INDIGO_PLATEAU",
+      "section": "MAPSEC_INDIGO_PLATEAU",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "055_T10"
+    },
+    {
+      "mapId": "MAP_SAFFRON",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "056_T11"
+    },
+    {
+      "mapId": "MAP_ROUTE_19",
+      "section": "MAPSEC_ROUTE_19",
+      "location": "Route 19",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "W19",
+      "events": "088_W19"
+    },
+    {
+      "mapId": "MAP_ROUTE_20",
+      "section": "MAPSEC_ROUTE_20",
+      "location": "Route 20",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "W20",
+      "events": "089_W20"
+    },
+    {
+      "mapId": "MAP_ROUTE_21",
+      "section": "MAPSEC_ROUTE_21",
+      "location": "Route 21",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "W21",
+      "events": "090_W21"
+    },
+    {
+      "mapId": "MAP_DIGLETT_CAVE",
+      "section": "MAPSEC_DIGLETTS_CAVE",
+      "location": "Diglett’s Cave",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D01R0101",
+      "events": "103_D01R0101"
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON",
+      "section": "MAPSEC_MT_MOON",
+      "location": "Mt. Moon",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D02R0101",
+      "events": "104_D02R0101"
+    },
+    {
+      "mapId": "MAP_ROCK_TUNNEL_1F",
+      "section": "MAPSEC_ROCK_TUNNEL",
+      "location": "Rock Tunnel",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D05R0101",
+      "events": "105_D05R0101"
+    },
+    {
+      "mapId": "MAP_PAL_PARK",
+      "section": "MAPSEC_PAL_PARK",
+      "location": "Pal Park",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "106_D10R0101"
+    },
+    {
+      "mapId": "MAP_VICTORY_ROAD_1F",
+      "section": "MAPSEC_VICTORY_ROAD_JK",
+      "location": "Victory Road",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D43R0101",
+      "events": "121_D43R0101"
+    },
+    {
+      "mapId": "MAP_TOHJO_FALLS",
+      "section": "MAPSEC_TOHJO_FALLS",
+      "location": "Tohjo Falls",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D45R0101",
+      "events": "123_D45R0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_CAVE_1F",
+      "section": "MAPSEC_CERULEAN_CAVE",
+      "location": "Cerulean Cave",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D03R0101",
+      "events": "141_D03R0101"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_1F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D11R0101",
+      "events": "142_D11R0101"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_FOREST",
+      "section": "MAPSEC_VIRIDIAN_FOREST",
+      "location": "Viridian Forest",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D46R0101",
+      "events": "143_D46R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_9_UNUSED",
+      "section": "MAPSEC_POWER_PLANT",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header; not a traversable released-HGSS location.",
+      "encounterBank": "NA",
+      "events": "000_DUMMY"
+    },
+    {
+      "mapId": "MAP_VICTORY_ROAD_2F",
+      "section": "MAPSEC_VICTORY_ROAD_JK",
+      "location": "Victory Road",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D43R0102",
+      "events": "171_D43R0102"
+    },
+    {
+      "mapId": "MAP_VICTORY_ROAD_3F",
+      "section": "MAPSEC_VICTORY_ROAD_JK",
+      "location": "Victory Road",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D43R0103",
+      "events": "172_D43R0103"
+    },
+    {
+      "mapId": "MAP_ROUTE_26_NORTH_HOUSE",
+      "section": "MAPSEC_ROUTE_26",
+      "location": "Route 26",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "267_R26R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_26_WEEK_SIBLINGS_HOUSE",
+      "section": "MAPSEC_ROUTE_26",
+      "location": "Route 26",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "268_R26R0201"
+    },
+    {
+      "mapId": "MAP_TOHJO_FALLS_HIDDEN_ROOM",
+      "section": "MAPSEC_TOHJO_FALLS",
+      "location": "Tohjo Falls",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "269_D45R0102"
+    },
+    {
+      "mapId": "MAP_ROUTE_22_POKEMON_LEAGUE_RECEPTION_GATE",
+      "section": "MAPSEC_ROUTE_26",
+      "location": "Pokémon League Reception Gate",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "270_R22R0101"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_ENTRANCE",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "271_T10R0101"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_WILL_ROOM",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "272_T10R0201"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_KOGA_ROOM",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "273_T10R0301"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_BRUNO_ROOM",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "274_T10R0401"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_KAREN_ROOM",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "275_T10R0501"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_LANCE_ROOM",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "276_T10R0601"
+    },
+    {
+      "mapId": "MAP_POKEMON_LEAGUE_HALL_OF_FAME",
+      "section": "MAPSEC_POKEMON_LEAGUE",
+      "location": "Indigo Plateau",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "277_T10R0701"
+    },
+    {
+      "mapId": "MAP_ROUTE_27_HOUSE",
+      "section": "MAPSEC_ROUTE_27",
+      "location": "Route 27",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "293_R27R0101"
+    },
+    {
+      "mapId": "MAP_VERMILION_POKECENTER_1F",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "315_T06PC0101"
+    },
+    {
+      "mapId": "MAP_VERMILION_POKECENTER_B1F",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "316_T06PC0102"
+    },
+    {
+      "mapId": "MAP_VERMILION_POKEMART",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "317_T06FS0101"
+    },
+    {
+      "mapId": "MAP_VERMILION_FISHING_DUDE_HOUSE",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "318_T06R0101"
+    },
+    {
+      "mapId": "MAP_VERMILION_POKEMON_FAN_CLUB",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "319_T06R0301"
+    },
+    {
+      "mapId": "MAP_VERMILION_CENTRAL_HOUSE",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "320_T06R0401"
+    },
+    {
+      "mapId": "MAP_VERMILION_SOUTH_HOUSE",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "321_T06R0601"
+    },
+    {
+      "mapId": "MAP_VERMILION_GYM",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "322_T06GYM0101"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_1F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "327_T07R0101"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_2F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "328_T07R0102"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_3F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "329_T07R0103"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_4F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "330_T07R0104"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_5F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "331_T07R0105"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_ROOF",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "332_T07R0106"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_1F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "333_T07R0201"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_2F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "334_T07R0202"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_3F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "335_T07R0203"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_ROOF",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "336_T07R0204"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_ROOF_ROOM",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "337_T07R0205"
+    },
+    {
+      "mapId": "MAP_CELADON_GAME_CORNER_JP",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Game Corner",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "338_T07R0401"
+    },
+    {
+      "mapId": "MAP_CELADON_PRIZE_CORNER",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Game Corner",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "339_T07R0501"
+    },
+    {
+      "mapId": "MAP_CELADON_RESTAURANT",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "340_T07R0701"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "343_P01R0103"
+    },
+    {
+      "mapId": "MAP_SS_AQUA_VERMILION_PORT_EXTERIOR",
+      "section": "MAPSEC_VERMILION_CITY",
+      "location": "Vermilion City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "344_P01R0104"
+    },
+    {
+      "mapId": "MAP_ROUTE_10_SOUTH",
+      "section": "MAPSEC_ROUTE_10",
+      "location": "Route 10",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "345_R10R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_6",
+      "location": "Route 6",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "346_R06R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_8",
+      "location": "Route 8",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "347_R08R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_5",
+      "location": "Route 5",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "348_R05R0301"
+    },
+    {
+      "mapId": "MAP_ROUTE_15_FUCHSIA_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_15",
+      "location": "Route 15",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "349_R15R0101"
+    },
+    {
+      "mapId": "MAP_CELADON_POKECENTER_1F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "350_T07PC0101"
+    },
+    {
+      "mapId": "MAP_CELADON_POKECENTER_B1F",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "351_T07PC0102"
+    },
+    {
+      "mapId": "MAP_CELADON_GYM",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "352_T07GYM0101"
+    },
+    {
+      "mapId": "MAP_SAFFRON_FIGHTING_DOJO",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Fighting Dojo",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "355_T11R0101"
+    },
+    {
+      "mapId": "MAP_SAFFRON_MR_PSYCHIC_HOUSE",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "356_T11R0501"
+    },
+    {
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_1F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron Magnet Train Station",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "357_T11R0601"
+    },
+    {
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron Magnet Train Station",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "358_T11R0602"
+    },
+    {
+      "mapId": "MAP_SAFFRON_SILPH_CO_HQ",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Silph Co.",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "359_T11R0701"
+    },
+    {
+      "mapId": "MAP_SAFFRON_SILPH_CO_ROTOM_ROOM",
+      "section": "MAPSEC_ROTOMS_ROOM",
+      "location": "Silph Co.",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "360_T11R0702"
+    },
+    {
+      "mapId": "MAP_SAFFRON_COPYCAT_HOUSE_1F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "361_T11R0801"
+    },
+    {
+      "mapId": "MAP_SAFFRON_COPYCAT_HOUSE_2F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "362_T11R0802"
+    },
+    {
+      "mapId": "MAP_SAFFRON_UNUSED",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header; not a traversable released-HGSS location.",
+      "encounterBank": "NA",
+      "events": "000_DUMMY"
+    },
+    {
+      "mapId": "MAP_SAFFRON_POKECENTER_1F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "363_T11PC0101"
+    },
+    {
+      "mapId": "MAP_SAFFRON_POKECENTER_2F",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "364_T11PC0102"
+    },
+    {
+      "mapId": "MAP_SAFFRON_POKEMART",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "365_T11FS0101"
+    },
+    {
+      "mapId": "MAP_SAFFRON_GYM",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "366_T11GYM0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_2_EAST",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R02R0101",
+      "events": "370_R02R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_16_HOUSE",
+      "section": "MAPSEC_ROUTE_16",
+      "location": "Route 16",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "371_R16R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_20_UNUSED",
+      "section": "MAPSEC_ROUTE_20",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header; not a traversable released-HGSS location.",
+      "encounterBank": "NA",
+      "events": "000_DUMMY"
+    },
+    {
+      "mapId": "MAP_ROUTE_2_HOUSE",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "372_R02R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "373_R02R0301"
+    },
+    {
+      "mapId": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "374_R02R0401"
+    },
+    {
+      "mapId": "MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_2",
+      "location": "Route 2",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "375_R02R0501"
+    },
+    {
+      "mapId": "MAP_ROUTE_16_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_16",
+      "location": "Route 16",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "376_R16R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_16_EAST",
+      "section": "MAPSEC_ROUTE_16",
+      "location": "Route 16",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "R16R0301",
+      "events": "377_R16R0301"
+    },
+    {
+      "mapId": "MAP_ROUTE_18_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_18",
+      "location": "Route 18",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "378_R18R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_19",
+      "location": "Route 19",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "379_W19R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_11",
+      "location": "Route 11",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "380_R11R0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_POKEMART",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "381_T04FS0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_GYM",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "382_T04GYM0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_POKECENTER_1F",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "383_T04PC0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_NORTH_HOUSE",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "384_T04R0101"
+    },
+    {
+      "mapId": "MAP_CERULEAN_EAST_HOUSE",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "385_T04R0201"
+    },
+    {
+      "mapId": "MAP_CERULEAN_WEST_HOUSE",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "386_T04R0301"
+    },
+    {
+      "mapId": "MAP_CERULEAN_BIKE_MANIAC_HOUSE",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "387_T04R0401"
+    },
+    {
+      "mapId": "MAP_LAVENDER_POKEMART",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "388_T05FS0101"
+    },
+    {
+      "mapId": "MAP_LAVENDER_POKECENTER_1F",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "389_T05PC0101"
+    },
+    {
+      "mapId": "MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "390_T05R0201"
+    },
+    {
+      "mapId": "MAP_LAVENDER_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "391_T05R0301"
+    },
+    {
+      "mapId": "MAP_LAVENDER_NAME_RATER",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "392_T05R0401"
+    },
+    {
+      "mapId": "MAP_LAVENDER_HOUSE_OF_MEMORIES",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "393_T05R0601"
+    },
+    {
+      "mapId": "MAP_LAVENDER_RADIO_STATION",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Kanto Radio Tower",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "394_T05R0701"
+    },
+    {
+      "mapId": "MAP_ROUTE_25_SEA_COTTAGE",
+      "section": "MAPSEC_ROUTE_25",
+      "location": "Route 25",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "395_R25R0101"
+    },
+    {
+      "mapId": "MAP_CELADON_DEPARTMENT_STORE_ELEVATOR",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Department Store",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "397_T07R0107"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_LEFT_ELEVATOR",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "398_T07R0206"
+    },
+    {
+      "mapId": "MAP_CELADON_CONDOMINIUMS_RIGHT_ELEVATOR",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "399_T07R0207"
+    },
+    {
+      "mapId": "MAP_SAFFRON_SILPH_CO_ELEVATOR",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Silph Co.",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "400_T11R0703"
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON_SQUARE_ENTRANCE",
+      "section": "MAPSEC_MT_MOON",
+      "location": "Mt. Moon Square",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D02R0102",
+      "events": "403_D02R0102"
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON_SQUARE",
+      "section": "MAPSEC_MT_MOON",
+      "location": "Mt. Moon Square",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D02R0103",
+      "events": "404_D02R0103"
+    },
+    {
+      "mapId": "MAP_CERULEAN_CAVE_2F",
+      "section": "MAPSEC_CERULEAN_CAVE",
+      "location": "Cerulean Cave",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D03R0102",
+      "events": "405_D03R0102"
+    },
+    {
+      "mapId": "MAP_CERULEAN_CAVE_B1F",
+      "section": "MAPSEC_CERULEAN_CAVE",
+      "location": "Cerulean Cave",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D03R0103",
+      "events": "406_D03R0103"
+    },
+    {
+      "mapId": "MAP_ROCK_TUNNEL_B1F",
+      "section": "MAPSEC_ROCK_TUNNEL",
+      "location": "Rock Tunnel",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D05R0102",
+      "events": "407_D05R0102"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_B1F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D11R0102",
+      "events": "408_D11R0102"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_B2F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D11R0103",
+      "events": "409_D11R0103"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_B3F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D11R0104",
+      "events": "410_D11R0104"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_B4F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D11R0105",
+      "events": "411_D11R0105"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_CINNABAR_GYM",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": "Seafoam Islands",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "412_D11R0106"
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_UNUSED",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header; not a traversable released-HGSS location.",
+      "encounterBank": "NA",
+      "events": "000_DUMMY"
+    },
+    {
+      "mapId": "MAP_ROUTE_10_POKECENTER_1F",
+      "section": "MAPSEC_ROUTE_10",
+      "location": "Route 10",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "420_R10PC0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_10_POWER_PLANT_REPAIRED",
+      "section": "MAPSEC_POWER_PLANT",
+      "location": "Power Plant",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "421_R10R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_5_UNUSED",
+      "section": "MAPSEC_ROUTE_5",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header; not a traversable released-HGSS location.",
+      "encounterBank": "NA",
+      "events": "000_DUMMY"
+    },
+    {
+      "mapId": "MAP_ROUTE_5_UNDERGROUND_PATH_GATE",
+      "section": "MAPSEC_ROUTE_5",
+      "location": "Route 5",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "422_R05R0201"
+    },
+    {
+      "mapId": "MAP_ROUTE_6_UNDERGROUND_PATH_GATE",
+      "section": "MAPSEC_ROUTE_6",
+      "location": "Route 6",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "423_R06R0101"
+    },
+    {
+      "mapId": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter Museum of Science",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "424_T03R0101"
+    },
+    {
+      "mapId": "MAP_PEWTER_NORTHEAST_HOUSE",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "425_T03R0201"
+    },
+    {
+      "mapId": "MAP_PEWTER_GYM",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "426_T03GYM0101"
+    },
+    {
+      "mapId": "MAP_PEWTER_POKEMART",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "427_T03FS0101"
+    },
+    {
+      "mapId": "MAP_PEWTER_POKECENTER_1F",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "428_T03PC0101"
+    },
+    {
+      "mapId": "MAP_PEWTER_POKECENTER_B1F",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "429_T03PC0102"
+    },
+    {
+      "mapId": "MAP_PEWTER_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_PEWTER_CITY",
+      "location": "Pewter City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "430_T03R0601"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_POKEMART",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "431_T08FS0101"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
+      "section": "MAPSEC_PAL_PARK",
+      "location": "Pal Park",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "432_T08R0201"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_GYM",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "433_T08GYM0101"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "434_T08R0401"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_POKECENTER_1F",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "435_T08PC0101"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_SAFARI_ZONE_WARDEN_HOUSE",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "436_T08R0601"
+    },
+    {
+      "mapId": "MAP_ROUTE_10_POKECENTER_B1F",
+      "section": "MAPSEC_ROUTE_10",
+      "location": "Route 10",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "437_R10PC0102"
+    },
+    {
+      "mapId": "MAP_FUCHSIA_POKECENTER_B1F",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "location": "Fuchsia City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "438_T08PC0102"
+    },
+    {
+      "mapId": "MAP_ROUTE_10_POWER_PLANT_BROKEN",
+      "section": "MAPSEC_POWER_PLANT",
+      "location": "Power Plant",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "441_R10R0202"
+    },
+    {
+      "mapId": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_7",
+      "location": "Route 7",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "445_R07R0101"
+    },
+    {
+      "mapId": "MAP_LAVENDER_POKECENTER_B1F",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "location": "Lavender Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "446_T05PC0102"
+    },
+    {
+      "mapId": "MAP_CERULEAN_POKECENTER_B1F",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "location": "Cerulean City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "447_T04PC0102"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_GYM",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "448_T02GYM0101"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_NORTHEAST_HOUSE",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "449_T02R0201"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_1F",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Trainer House",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "450_T02R0301"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_B1F",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Trainer House",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "451_T02R0302"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_POKEMART",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "452_T02FS0101"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_POKECENTER_1F",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "453_T02PC0101"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_POKECENTER_B1F",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "location": "Viridian City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "454_T02PC0102"
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_REDS_HOUSE_1F",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "455_T01R0101"
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_BLUES_HOUSE_1F",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "456_T01R0201"
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_OAKS_LAB",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "457_T01R0301"
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_REDS_HOUSE_2F",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "458_T01R0102"
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_BLUES_HOUSE_2F",
+      "section": "MAPSEC_PALLET_TOWN",
+      "location": "Pallet Town",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "459_T01R0202"
+    },
+    {
+      "mapId": "MAP_CINNABAR_ISLAND_POKECENTER_1F",
+      "section": "MAPSEC_CINNABAR_ISLAND",
+      "location": "Cinnabar Island",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "460_T09PC0101"
+    },
+    {
+      "mapId": "MAP_CINNABAR_ISLAND_POKECENTER_B1F",
+      "section": "MAPSEC_CINNABAR_ISLAND",
+      "location": "Cinnabar Island",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "461_T09PC0102"
+    },
+    {
+      "mapId": "MAP_ROUTE_28_HOUSE",
+      "section": "MAPSEC_ROUTE_28",
+      "location": "Route 28",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "462_R28R0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_3_POKECENTER_1F",
+      "section": "MAPSEC_ROUTE_3",
+      "location": "Route 3",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "463_R03PC0101"
+    },
+    {
+      "mapId": "MAP_ROUTE_3_POKECENTER_B1F",
+      "section": "MAPSEC_ROUTE_3",
+      "location": "Route 3",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "464_R03PC0102"
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON_SQUARE_CLEFAIRY_EVENT",
+      "section": "MAPSEC_MT_MOON",
+      "location": "Mt. Moon Square",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "D02R0104",
+      "events": "465_D02R0104"
+    },
+    {
+      "mapId": "MAP_ROUTE_5_HOUSE",
+      "section": "MAPSEC_ROUTE_5",
+      "location": "Route 5",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "469_R05R0401"
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON_SQUARE_SHOP",
+      "section": "MAPSEC_MT_MOON",
+      "location": "Mt. Moon Square",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "470_D02FS0101"
+    },
+    {
+      "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F_EMPTY",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "location": "Saffron Magnet Train Station",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "472_T11R0603"
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_ROUTE_1_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_1",
+      "location": "Route 1",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "479_T02R0401"
+    },
+    {
+      "mapId": "MAP_ROUTE_5_UNDERGROUND_PATH",
+      "section": "MAPSEC_ROUTE_5",
+      "location": "Underground Path",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "484_R05R0202"
+    },
+    {
+      "mapId": "MAP_ROUTE_12_FISHING_BROTHER_HOUSE",
+      "section": "MAPSEC_ROUTE_12",
+      "location": "Route 12",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "485_R12R0101"
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GAME_CORNER",
+      "section": "MAPSEC_GOLDENROD_CITY",
+      "location": "Goldenrod City",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "488_T25SP0101"
+    },
+    {
+      "mapId": "MAP_CELADON_GAME_CORNER",
+      "section": "MAPSEC_CELADON_CITY",
+      "location": "Celadon Game Corner",
+      "status": "assigned",
+      "reason": null,
+      "encounterBank": "NA",
+      "events": "489_T07SP0101"
+    }
+  ]
+}

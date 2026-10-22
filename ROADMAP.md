@@ -1,3 +1,9 @@
+# Kanto Atlas — geography, v0.25.80
+
+Step 1 adds 52 Kanto groups, a pinned primary-map census and navigation across both
+regions. Encounters, map integration and final two-region audit follow in Steps
+2–4. See [implementation status](docs/atlas-kanto-implementation.md).
+
 # Pokémon Reader Roadmap
 
 ## Safari v1 — Milestone 5 final audit (v0.25.79)

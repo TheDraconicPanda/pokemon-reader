@@ -1,0 +1,1052 @@
+{
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "locations": [
+    {
+      "name": "Route 1",
+      "section": "MAPSEC_ROUTE_1",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 1 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 2",
+      "section": "MAPSEC_ROUTE_2",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 2 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 3",
+      "section": "MAPSEC_ROUTE_3",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 3 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 4",
+      "section": "MAPSEC_ROUTE_4",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 4 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 5",
+      "section": "MAPSEC_ROUTE_5",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 5 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 6",
+      "section": "MAPSEC_ROUTE_6",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 6 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 7",
+      "section": "MAPSEC_ROUTE_7",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 7 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 8",
+      "section": "MAPSEC_ROUTE_8",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 8 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 9",
+      "section": "MAPSEC_ROUTE_9",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 9 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 10",
+      "section": "MAPSEC_ROUTE_10",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 10 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 11",
+      "section": "MAPSEC_ROUTE_11",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 11 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 12",
+      "section": "MAPSEC_ROUTE_12",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 12 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 13",
+      "section": "MAPSEC_ROUTE_13",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 13 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 14",
+      "section": "MAPSEC_ROUTE_14",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 14 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 15",
+      "section": "MAPSEC_ROUTE_15",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 15 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 16",
+      "section": "MAPSEC_ROUTE_16",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 16 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 17",
+      "section": "MAPSEC_ROUTE_17",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 17 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 18",
+      "section": "MAPSEC_ROUTE_18",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 18 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 19",
+      "section": "MAPSEC_ROUTE_19",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 19 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 20",
+      "section": "MAPSEC_ROUTE_20",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 20 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 21",
+      "section": "MAPSEC_ROUTE_21",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 21 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 22",
+      "section": "MAPSEC_ROUTE_22",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 22 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 24",
+      "section": "MAPSEC_ROUTE_24",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 24 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Route 25",
+      "section": "MAPSEC_ROUTE_25",
+      "type": "route",
+      "landmarks": [
+        "Kanto Route 25 in HeartGold/SoulSilver",
+        "Floors, gatehouses and related rooms are grouped with this route"
+      ]
+    },
+    {
+      "name": "Pallet Town",
+      "section": "MAPSEC_PALLET_TOWN",
+      "type": "town",
+      "landmarks": [
+        "Oak’s laboratory",
+        "Red’s and Blue’s houses"
+      ]
+    },
+    {
+      "name": "Viridian City",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "type": "town",
+      "landmarks": [
+        "Blue’s Gym",
+        "Trainer House"
+      ]
+    },
+    {
+      "name": "Pewter City",
+      "section": "MAPSEC_PEWTER_CITY",
+      "type": "town",
+      "landmarks": [
+        "Brock’s Gym",
+        "Museum of Science"
+      ]
+    },
+    {
+      "name": "Cerulean City",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "type": "town",
+      "landmarks": [
+        "Misty’s Gym",
+        "northern cape and Cerulean Cave approach"
+      ]
+    },
+    {
+      "name": "Lavender Town",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "type": "town",
+      "landmarks": [
+        "Kanto Radio Tower",
+        "House of Memories"
+      ]
+    },
+    {
+      "name": "Vermilion City",
+      "section": "MAPSEC_VERMILION_CITY",
+      "type": "town",
+      "landmarks": [
+        "Lt. Surge’s Gym",
+        "S.S. Aqua port and Pokémon Fan Club"
+      ]
+    },
+    {
+      "name": "Celadon City",
+      "section": "MAPSEC_CELADON_CITY",
+      "type": "town",
+      "landmarks": [
+        "Erika’s Gym",
+        "Department Store and Game Corner"
+      ]
+    },
+    {
+      "name": "Fuchsia City",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "type": "town",
+      "landmarks": [
+        "Janine’s Gym",
+        "Pal Park"
+      ]
+    },
+    {
+      "name": "Cinnabar Island",
+      "section": "MAPSEC_CINNABAR_ISLAND",
+      "type": "town",
+      "landmarks": [
+        "Volcanic ruins",
+        "Blue directs challengers to Viridian after the other seven Kanto Badges"
+      ]
+    },
+    {
+      "name": "Saffron City",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "type": "town",
+      "landmarks": [
+        "Sabrina’s Gym",
+        "Silph Co., Fighting Dojo and Magnet Train"
+      ]
+    },
+    {
+      "name": "Diglett’s Cave",
+      "section": "MAPSEC_DIGLETTS_CAVE",
+      "type": "landmark",
+      "landmarks": [
+        "Underground passage between Route 2 and Route 11",
+        "Snorlax blocks the eastern entrance until the radio event"
+      ]
+    },
+    {
+      "name": "Mt. Moon",
+      "section": "MAPSEC_MT_MOON",
+      "type": "landmark",
+      "landmarks": [
+        "Cave between Routes 3 and 4",
+        "access to Mt. Moon Square"
+      ]
+    },
+    {
+      "name": "Rock Tunnel",
+      "section": "MAPSEC_ROCK_TUNNEL",
+      "type": "landmark",
+      "landmarks": [
+        "1F and B1F passage",
+        "links the north and south portions of Route 10"
+      ]
+    },
+    {
+      "name": "Seafoam Islands",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "type": "landmark",
+      "landmarks": [
+        "Five cave floors and Articuno",
+        "Blaine’s relocated Cinnabar Gym"
+      ]
+    },
+    {
+      "name": "Cerulean Cave",
+      "section": "MAPSEC_CERULEAN_CAVE",
+      "type": "landmark",
+      "landmarks": [
+        "1F, 2F and B1F",
+        "Mewtwo after all sixteen Badges"
+      ]
+    },
+    {
+      "name": "Viridian Forest",
+      "section": "MAPSEC_VIRIDIAN_FOREST",
+      "type": "landmark",
+      "landmarks": [
+        "Forest passage on Route 2",
+        "Headbutt and walking encounters"
+      ]
+    },
+    {
+      "name": "Pal Park",
+      "section": "MAPSEC_PAL_PARK",
+      "type": "facility",
+      "landmarks": [
+        "Generation III migration facility north of Fuchsia",
+        "transferred Pokémon are not fixed wild encounters"
+      ]
+    },
+    {
+      "name": "Power Plant",
+      "section": "MAPSEC_POWER_PLANT",
+      "type": "facility",
+      "landmarks": [
+        "Broken and repaired story variants",
+        "restore the stolen Machine Part"
+      ]
+    },
+    {
+      "name": "Mt. Moon Square",
+      "parent": "Mt. Moon",
+      "pattern": "MAP_MOUNT_MOON_SQUARE",
+      "type": "landmark",
+      "landmarks": [
+        "Monday-night Clefairy dance",
+        "shop and Moon Stone event"
+      ]
+    },
+    {
+      "name": "Underground Path",
+      "parent": "Route 5",
+      "pattern": "MAP_ROUTE_5_UNDERGROUND_PATH$",
+      "type": "facility",
+      "landmarks": [
+        "Passage between Routes 5 and 6",
+        "reopens after power is restored"
+      ]
+    },
+    {
+      "name": "Kanto Radio Tower",
+      "parent": "Lavender Town",
+      "pattern": "MAP_LAVENDER_RADIO_STATION",
+      "type": "facility",
+      "landmarks": [
+        "EXPN Card after restoring the Power Plant",
+        "not the Goldenrod Radio Tower"
+      ]
+    },
+    {
+      "name": "Saffron Magnet Train Station",
+      "parent": "Saffron City",
+      "pattern": "MAP_SAFFRON_MAGNET_TRAIN",
+      "type": "facility",
+      "landmarks": [
+        "Train to Goldenrod",
+        "restored power and Copycat’s Pass required"
+      ]
+    },
+    {
+      "name": "Fighting Dojo",
+      "parent": "Saffron City",
+      "pattern": "MAP_SAFFRON_FIGHTING_DOJO",
+      "type": "facility",
+      "landmarks": [
+        "Gym Leader rematches",
+        "scheduled opponents require their telephone registrations"
+      ]
+    },
+    {
+      "name": "Silph Co.",
+      "parent": "Saffron City",
+      "pattern": "MAP_SAFFRON_SILPH",
+      "type": "facility",
+      "landmarks": [
+        "Steven’s Hoenn starter gift",
+        "Rotom room requires an eligible Rotom"
+      ]
+    },
+    {
+      "name": "Celadon Department Store",
+      "parent": "Celadon City",
+      "pattern": "MAP_CELADON_DEPARTMENT_STORE",
+      "type": "facility",
+      "landmarks": [
+        "Multi-floor shops",
+        "rooftop and elevator"
+      ]
+    },
+    {
+      "name": "Celadon Game Corner",
+      "parent": "Celadon City",
+      "pattern": "MAP_CELADON_(GAME_CORNER|PRIZE_CORNER)",
+      "type": "facility",
+      "landmarks": [
+        "Voltorb Flip in international HGSS",
+        "Japanese slots room is a regional variant"
+      ]
+    },
+    {
+      "name": "Trainer House",
+      "parent": "Viridian City",
+      "pattern": "MAP_VIRIDIAN_TRAINER_HOUSE",
+      "type": "facility",
+      "landmarks": [
+        "Battle facility",
+        "linked trainer and daily battle conditions"
+      ]
+    },
+    {
+      "name": "Pewter Museum of Science",
+      "parent": "Pewter City",
+      "pattern": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+      "type": "facility",
+      "landmarks": [
+        "Fossil restoration",
+        "museum exhibits"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "fromLocation": "Pallet Town",
+      "toLocation": "Route 1",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 1",
+      "toLocation": "Viridian City",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Viridian City",
+      "toLocation": "Route 2",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 2",
+      "toLocation": "Pewter City",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Pewter City",
+      "toLocation": "Route 3",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 3",
+      "toLocation": "Mt. Moon",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Mt. Moon",
+      "toLocation": "Route 4",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 4",
+      "toLocation": "Cerulean City",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Cerulean City",
+      "toLocation": "Route 24",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 24",
+      "toLocation": "Route 25",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Cerulean City",
+      "toLocation": "Route 9",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 9",
+      "toLocation": "Route 10",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 10",
+      "toLocation": "Lavender Town",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": [
+        "South Route 10: travel from the northern section requires passing through Rock Tunnel."
+      ]
+    },
+    {
+      "fromLocation": "Cerulean City",
+      "toLocation": "Route 5",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 5",
+      "toLocation": "Saffron City",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron City",
+      "toLocation": "Route 6",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 6",
+      "toLocation": "Vermilion City",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Celadon City",
+      "toLocation": "Route 7",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 7",
+      "toLocation": "Saffron City",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron City",
+      "toLocation": "Route 8",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 8",
+      "toLocation": "Lavender Town",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Vermilion City",
+      "toLocation": "Route 11",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 11",
+      "toLocation": "Route 12",
+      "direction": "east",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Lavender Town",
+      "toLocation": "Route 12",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 12",
+      "toLocation": "Route 13",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 13",
+      "toLocation": "Route 14",
+      "direction": "west",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 14",
+      "toLocation": "Route 15",
+      "direction": "south",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 15",
+      "toLocation": "Fuchsia City",
+      "direction": "west",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Celadon City",
+      "toLocation": "Route 16",
+      "direction": "west",
+      "hms": [],
+      "conditions": [
+        "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 16",
+      "toLocation": "Route 17",
+      "direction": "south",
+      "hms": [],
+      "conditions": [
+        "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 17",
+      "toLocation": "Route 18",
+      "direction": "south",
+      "hms": [],
+      "conditions": [
+        "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 18",
+      "toLocation": "Fuchsia City",
+      "direction": "east",
+      "hms": [],
+      "conditions": [
+        "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Fuchsia City",
+      "toLocation": "Route 19",
+      "direction": "south",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [
+        "The southern construction barrier opens after approaching from Route 20 and earning Blaine’s Volcano Badge."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 19",
+      "toLocation": "Route 20",
+      "direction": "west",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 20",
+      "toLocation": "Cinnabar Island",
+      "direction": "west",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Cinnabar Island",
+      "toLocation": "Route 21",
+      "direction": "north",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 21",
+      "toLocation": "Pallet Town",
+      "direction": "north",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Viridian City",
+      "toLocation": "Route 22",
+      "direction": "west",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 22",
+      "toLocation": "Pokémon League Reception Gate",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 2",
+      "toLocation": "Viridian Forest",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 11",
+      "toLocation": "Diglett’s Cave",
+      "direction": "west",
+      "hms": [],
+      "conditions": [
+        "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Diglett’s Cave",
+      "toLocation": "Route 2",
+      "direction": "west",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 10",
+      "toLocation": "Rock Tunnel",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 10",
+      "toLocation": "Power Plant",
+      "direction": "other",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 20",
+      "toLocation": "Seafoam Islands",
+      "direction": "other",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        },
+        {
+          "id": "strength",
+          "usage": "optional"
+        }
+      ],
+      "conditions": [],
+      "notes": [
+        "Blaine’s Gym is reached upstairs; Articuno is on B4F."
+      ]
+    },
+    {
+      "fromLocation": "Cerulean City",
+      "toLocation": "Cerulean Cave",
+      "direction": "west",
+      "hms": [
+        {
+          "id": "surf",
+          "usage": "passage"
+        }
+      ],
+      "conditions": [
+        "All sixteen Badges are required to enter Cerulean Cave."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Fuchsia City",
+      "toLocation": "Pal Park",
+      "direction": "north",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Vermilion City",
+      "toLocation": "S.S. Aqua",
+      "direction": "south",
+      "hms": [],
+      "conditions": [
+        "S.S. Ticket and scheduled sailing: Vermilion to Olivine on Wednesday and Sunday; first Kanto arrival follows the initial Olivine voyage."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron Magnet Train Station",
+      "toLocation": "Magnet Train Station",
+      "direction": "other",
+      "hms": [],
+      "conditions": [
+        "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Mt. Moon",
+      "toLocation": "Mt. Moon Square",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Route 5",
+      "toLocation": "Underground Path",
+      "direction": "other",
+      "hms": [],
+      "conditions": [
+        "The Underground Path reopens after power is restored."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Lavender Town",
+      "toLocation": "Kanto Radio Tower",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron City",
+      "toLocation": "Saffron Magnet Train Station",
+      "direction": "other",
+      "hms": [],
+      "conditions": [
+        "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+      ],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron City",
+      "toLocation": "Fighting Dojo",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Saffron City",
+      "toLocation": "Silph Co.",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Celadon City",
+      "toLocation": "Celadon Department Store",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Celadon City",
+      "toLocation": "Celadon Game Corner",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Viridian City",
+      "toLocation": "Trainer House",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Pewter City",
+      "toLocation": "Pewter Museum of Science",
+      "direction": "other",
+      "hms": [],
+      "conditions": [],
+      "notes": []
+    },
+    {
+      "fromLocation": "Underground Path",
+      "toLocation": "Route 6",
+      "direction": "other",
+      "hms": [],
+      "conditions": [
+        "Restore power to reopen the Underground Path."
+      ],
+      "notes": []
+    }
+  ],
+  "excluded": [
+    {
+      "name": "Route 23",
+      "reason": "Not traversable in HGSS; the League approach uses the Reception Gate and Victory Road."
+    },
+    {
+      "name": "Sinjoh Ruins",
+      "reason": "Event-only location outside Johto and Kanto; not part of this two-region inventory."
+    },
+    {
+      "name": "Pokéwalker courses",
+      "reason": "Accessory encounter systems, not Johto/Kanto Atlas geography."
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const load=async()=>{
 test('structured references account for every current non-Safari location and retain source provenance',async()=>{
   const {locationDetails,ATLAS_LOCATIONS}=await load();
   const audit=JSON.parse(await readFile(path.join(root,'docs/atlas-location-details-audit.json'),'utf8'));
-  const names=ATLAS_LOCATIONS.filter(l=>l.name!=='Safari Zone').map(l=>l.name);
+  const names=ATLAS_LOCATIONS.filter(l=>l.name!=='Safari Zone'&&!l.audit.primaryRevision).map(l=>l.name);
   assert.equal(names.length,69);assert.deepEqual(Object.keys(audit.locations).sort(),names.sort());
   const counts={items:0,gifts:0,offers:0,services:0,trainers:0};
   for(const name of names){
