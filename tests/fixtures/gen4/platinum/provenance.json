@@ -1,0 +1,15 @@
+{
+  "source": "kwsch/PKHeX",
+  "revision": "a9ff30657073b26825929a65ef58e61f99a1fe6f",
+  "synthetic": true,
+  "realGameSaves": 0,
+  "files": {
+    "early.expected.json": "046b86fbc51ff39e70f8bed9897fa165ca278de3632e195b5af3823a5417e601",
+    "early.sav": "5f1b63e378a9caafdc1d5ce3a5686627b7e8aa35a0ec7baf81894d6db07efe5d",
+    "middle.expected.json": "1f5561234b987570c534a08750b7e631dfae620772158b23de9e4a1ab67d8519",
+    "middle.sav": "69b0efa4352818f9471297d18090ac2e173c73deeb536b9386088aa0485825f6",
+    "postgame.expected.json": "bb864a5faaff52ca6038cb6e0bd61fa86b8ceaf11ae1385837cf35709399edf8",
+    "postgame.sav": "ef041acf55c38bd11cca239687c69b022789b59c71058bad1052a2d559f89e4a",
+    "shuffles.json": "fc9015d4aa1c2455acf1d771bfb0fee7820ed4b6634e12b4a8a0bb1eacea209e"
+  }
+}

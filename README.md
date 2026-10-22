@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Platinum Reader — v0.26.1
+
+Load a raw SoulSilver or Platinum save in the existing Reader. Game detection
+uses validated save blocks, with Platinum trainer/badges/progress, party and
+18-box storage, detailed Pokémon fields, local Gen IV metadata and separate
+Adventure Profiles. Existing SoulSilver features and navigation remain available.
+
+Three PKHeX-generated synthetic saves and independently read expected values
+cover early/middle/postgame, backup recovery, eggs, shiny/forms, PP and training;
+all 32 PK4 shuffle values are checked. No real player-save validation is claimed.
+Platinum editing, standalone Pokédex, Sinnoh Atlas and Great Marsh are subsequent
+milestones. All **249 automated checks pass**. See [data evidence and limitations](docs/platinum-reader.md).
+
 ## Generation IV foundation — v0.26.0
 
 The Platinum expansion now has an explicit game-profile interface and shared

@@ -1,3 +1,6 @@
+import { gameProfile } from './saves/profiles.js';
+import { PLATINUM_READER } from './data/games/platinum/reader-reference.js';
+import { PLANNER_REFERENCE as GEN4_IDENTIFIERS } from './data/games/soulsilver/planner-reference.js';
 import { moveName } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges } from './species-presentation.js';
 import { snapshotSave, rememberSave } from './planner-save.js';
@@ -7,7 +10,7 @@ import { getAvailableEvolutions, evolveSoulSilverPokemon } from "./saves/soulsil
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.26.0";
+const APP_VERSION = "0.26.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -58,6 +61,7 @@ let collectionRevision = 0;
 let currentSaveBytes = null;
 let currentSaveFileName = "pokemon-save.sav";
 let currentActivePartition = null;
+let currentGameId = "soulsilver";
 const itemNameCache = new Map();
 const moveDataCache = new Map();
 const appVersion = document.querySelector("#app-version");
@@ -171,6 +175,8 @@ async function handleFile(file) {
 async function renderDecodedSave(result, revision) {
     if (result.save) {
       const { trainer } = result.save;
+      currentGameId = result.gameId || "soulsilver";
+      document.querySelector(".view-intro .eyebrow").textContent = `YOUR ${gameProfile(currentGameId).shortName.toUpperCase()} COMPANION`;
 
       trainerNameValue.textContent = trainer.name || "—";
       trainerIdValue.textContent = trainer.trainerId;
@@ -178,7 +184,7 @@ async function renderDecodedSave(result, revision) {
       genderValue.textContent = trainer.gender;
       moneyValue.textContent = formatNumber(trainer.money);
       playTimeValue.textContent = formatPlayTime(trainer.playTime);
-      badgesValue.textContent = `${trainer.badgeCount} / 16`;
+      badgesValue.textContent = `${trainer.badgeCount} / ${gameProfile(currentGameId).badgeCount}`;
       renderBadges(trainer.badges);
       renderCollectionStats(result.party, result.storage);
       renderCollectionDetails(result.save.pokedex, result.party, result.storage);
@@ -208,7 +214,7 @@ async function refreshProfiles(selectedId) {
   if (!profiles.length) adventureSelect.add(new Option('No saved adventures', ''));
   for (const profile of profiles.sort((a,b) => b.updatedAt.localeCompare(a.updatedAt))) {
     const trainer = profile.snapshot.trainer;
-    adventureSelect.add(new Option(`${trainer.name || 'Trainer'} · SoulSilver · ${trainer.trainerId} · ${new Date(profile.updatedAt).toLocaleString()} · ${profile.id.slice(0,8)}`, profile.id));
+    adventureSelect.add(new Option(`${trainer.name || 'Trainer'} · ${gameProfile(profile.gameId).shortName} · ${trainer.trainerId} · ${new Date(profile.updatedAt).toLocaleString()} · ${profile.id.slice(0,8)}`, profile.id));
   }
   if (selectedId) adventureSelect.value = selectedId;
   adventureRestore.disabled = !adventureSelect.value;
@@ -304,13 +310,19 @@ function renderOverview(result) {
     button.addEventListener("click", () => {
       if (destination === "party" || destination === "storage") location.hash = destination;
       else if (destination === "seen" || destination === "caught") {
-        location.href = `pokedex/#scope=national&filter=${destination}`;
+        location.href = `pokedex/#${currentGameId === "platinum" ? "game=platinum&" : ""}scope=national&filter=${destination}`;
       } else {
         collectionListMode.value = destination; collectionSearch.value = "";
         collectionVisibleLimit = 40; renderCollectionSpeciesList(); location.hash = "collection-details-info";
       }
     });
     list.append(button);
+  }
+  document.querySelector('#game-progress')?.remove();
+  if (currentGameId === 'platinum') {
+    const progress = document.createElement('p'); progress.id='game-progress'; progress.className='collection-note';
+    progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. Platinum reference Pokédex, Atlas and evolution exports are not yet enabled. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
+    document.querySelector('#overview-summary').append(progress);
   }
   document.querySelector("#overview-summary").hidden = false;
 }
@@ -505,6 +517,7 @@ function fetchMetadata(url) {
 }
 
 function getSpeciesIndex() {
+  if (currentGameId === "platinum") return Promise.resolve(new Map(Object.entries(GEN4_IDENTIFIERS.species).map(([id, name]) => [Number(id), name])));
   if (!speciesIndexPromise) {
     speciesIndexPromise = fetchMetadata("https://pokeapi.co/api/v2/pokemon-species?limit=493")
       .then((response) => response.ok ? response.json() : null)
@@ -622,13 +635,14 @@ async function renderCollectionSpeciesList() {
 function renderBadges(badges) {
   badgeGrid.replaceChildren();
 
-  for (const region of ["johto", "kanto"]) {
-    const regionBadges = HGSS_BADGES.filter((badge) => badge.region === region);
+  const badgeData = currentGameId === 'platinum' ? SINNOH_BADGES : HGSS_BADGES;
+  for (const region of gameProfile(currentGameId).regions.map(name => name.toLowerCase())) {
+    const regionBadges = badgeData.filter((badge) => badge.region === region);
     const section = document.createElement("section");
     section.className = "badge-region";
 
     const heading = document.createElement("h3");
-    heading.textContent = region === "johto" ? "Johto" : "Kanto";
+    heading.textContent = region[0].toUpperCase() + region.slice(1);
     section.append(heading);
 
     const grid = document.createElement("div");
@@ -642,7 +656,8 @@ function renderBadges(badges) {
       item.title = `${badge.name}: ${earned ? "Obtained" : "Not obtained"}`;
 
       const image = document.createElement("img");
-      image.src = badge.image;
+      image.hidden = !badge.image;
+      if (badge.image) image.src = badge.image;
       image.alt = badge.name;
       image.width = 40;
       image.height = 40;
@@ -687,6 +702,7 @@ function getSoulSilverTypes(data) {
 async function enrichPokemon(pokemon, includeMoves = false) {
   if (pokemon.empty) return pokemon;
 
+  if (currentGameId === 'platinum') return enrichPlatinumPokemon(pokemon, includeMoves);
   const data = await getPokemonData(pokemon.speciesId);
   const heldItemName = await getItemName(pokemon.heldItemId);
 
@@ -736,6 +752,7 @@ async function enrichMoves(moves) {
 }
 
 async function getMoveData(moveId) {
+  if (currentGameId === 'platinum') return PLATINUM_READER.moves[moveId] || {name:`Move #${moveId}`,basePP:null};
   if (!moveId) return { name: "—", basePP: null };
   if (moveDataCache.has(moveId)) return moveDataCache.get(moveId);
 
@@ -977,7 +994,7 @@ async function getItemName(itemId) {
 }
 
 const POKEBALL_NAMES = Object.freeze({
-  1: "Poké Ball", 2: "Great Ball", 3: "Ultra Ball", 4: "Master Ball",
+  1: "Master Ball", 2: "Ultra Ball", 3: "Great Ball", 4: "Poké Ball",
   5: "Safari Ball", 6: "Net Ball", 7: "Dive Ball", 8: "Nest Ball",
   9: "Repeat Ball", 10: "Timer Ball", 11: "Luxury Ball", 12: "Premier Ball",
   13: "Dusk Ball", 14: "Heal Ball", 15: "Quick Ball", 16: "Cherish Ball",
@@ -1116,7 +1133,7 @@ function renderBox(boxNumber) {
 
 
 function storageMatches(pokemon, query) {
-  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId} ${(pokemon.moves || []).filter(move => move.id).map(move => moveName("soulsilver", move.id)).join(" ")}`.toLowerCase().includes(query);
+  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId} ${(pokemon.moves || []).filter(move => move.id).map(move => (currentGameId === "platinum" ? PLATINUM_READER.moves[move.id]?.name || `Move #${move.id}` : moveName("soulsilver", move.id))).join(" ")}`.toLowerCase().includes(query);
 }
 function renderStorageSearch() {
   const results = document.querySelector("#storage-results"); results.replaceChildren();
@@ -1410,6 +1427,11 @@ function experienceForLevel(level, growthRate) {
 }
 
 function addEvolutionControl(container, pokemon) {
+  if (currentGameId === 'platinum') {
+    const note = document.createElement('p'); note.className = 'collection-note';
+    note.textContent = 'Platinum evolution exports are not enabled in this Reader milestone.';
+    container.append(note); return;
+  }
   const options = getAvailableEvolutions(pokemon);
   if (!options.length) return;
   if (!currentSaveBytes) {
@@ -1516,6 +1538,8 @@ function resetFileInfo() {
   document.querySelector('#adventure-match-dialog')?.close('cancel');
   document.querySelector(".app").dataset.saveLoaded = "false";
   currentSaveFileName = "pokemon-save.sav";
+  currentGameId = "soulsilver";
+  document.querySelector(".view-intro .eyebrow").textContent = "YOUR POKÉMON COMPANION";
   activeBoxNumber = 1;
   collectionVisibleLimit = 40;
   document.querySelectorAll(".app details").forEach(details => { details.open = false; });
@@ -1598,4 +1622,20 @@ function formatPlayTime(playTime) {
   const seconds = String(playTime.seconds).padStart(2, "0");
 
   return `${hours}h ${minutes}m ${seconds}s`;
+}
+
+const SINNOH_BADGES = ['Coal','Forest','Cobble','Fen','Relic','Mine','Icicle','Beacon'].map((name, bit) => ({region:'sinnoh',name:`${name} Badge`,bit}));
+function enrichPlatinumPokemon(pokemon, includeMoves) {
+  const reference = PLATINUM_READER.species[pokemon.speciesId];
+  const level = pokemon.level ?? estimateLevelFromExperience(pokemon.experience, reference?.growthRate);
+  return {...pokemon, types:reference?.types || [], speciesName:GEN4_IDENTIFIERS.species[pokemon.speciesId] || null,
+    growthRate:reference?.growthRate || null, level, formName:getPokemonFormName(pokemon),
+    gender:['Male','Female','Genderless'][pokemon.genderId] || 'Unknown',
+    abilityName:PLATINUM_READER.abilities[pokemon.abilityId] || `Ability #${pokemon.abilityId}`,
+    natureName:getNatureName(pokemon.natureId), statusText:pokemon.status === undefined ? 'Not stored in PC record' : getStatusText(pokemon.status),
+    experienceText:formatNumber(pokemon.experience), heldItemName:pokemon.heldItemId ? PLATINUM_READER.items[pokemon.heldItemId] || `Item #${pokemon.heldItemId}` : 'None',
+    pokeballName:getPokeballName(pokemon.pokeballId), metDateText:formatPokemonDate(pokemon.metDate), eggDateText:formatPokemonDate(pokemon.eggDate),
+    metLocationText:formatLocation(pokemon.metLocationId), eggLocationText:formatLocation(pokemon.eggLocationId),
+    moves:includeMoves ? pokemon.moves.map(move => ({...move,name:move.id ? PLATINUM_READER.moves[move.id]?.name || `Move #${move.id}` : '—',maxPP:move.id ? Math.floor((PLATINUM_READER.moves[move.id]?.basePP || 0) * (5 + move.ppUps) / 5) : null})) : pokemon.moves,
+    hiddenPower:getHiddenPower(pokemon.ivs)};
 }

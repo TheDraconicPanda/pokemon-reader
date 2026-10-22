@@ -1,3 +1,4 @@
+import { PLATINUM_READER } from '../data/games/platinum/reader-reference.js';
 // Explicit layouts; unsupported games never inherit another game's data.
 const REGIONAL_DEX = Object.freeze([
   152, 153, 154, 155, 156, 157, 158, 159, 160, 16, 17, 18, 21, 22,
@@ -53,5 +54,20 @@ export const SOULSILVER_PROFILE = Object.freeze({
 });
 
 
-export const GAME_PROFILES = Object.freeze({soulsilver: SOULSILVER_PROFILE});
+export const PLATINUM_PROFILE = Object.freeze({
+  id: 'platinum', shortName: 'Platinum', game: 'Pokémon Platinum',
+  regions: Object.freeze(['Sinnoh']), badgeCount: 8,
+  fileSize: 0x80000, partitionSize: 0x40000,
+  generalSize: 0xCF2C, storageOffset: 0xCF2C, storageSize: 0x121E4,
+  footerSize: 0x14, trainerOffset: 0x68, romCodeOffset: 0x1C, romCode: 12,
+  partyOffset: 0x9C, boxCount: 18, boxSlots: 30, boxSize: 0xFF0,
+  boxDataOffset: 4, boxNamesOffset: 0x11EE4, boxNameSize: 40,
+  currentBoxOffset: 0, totalCountOffset: null,
+  pokedexOffset: 0x1328, nationalFlagOffset: 0x85,
+  regionalDex: Object.freeze([...PLATINUM_READER.regional]),
+  magic: 0x20060623, koreanMagic: 0x20070903,
+  independentStorage: true, strictFooter: true, extendedPokemonFields: true,
+});
+
+export const GAME_PROFILES = Object.freeze({soulsilver: SOULSILVER_PROFILE, platinum: PLATINUM_PROFILE});
 export function gameProfile(id) { return GAME_PROFILES[id] || null; }

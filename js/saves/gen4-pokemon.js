@@ -1,3 +1,4 @@
+import { PLATINUM_READER } from '../data/games/platinum/reader-reference.js';
 import { readUint16, readUint32 } from './gen4-binary.js';
 
 const GEN4_FORM_SPECIES = new Set([172, 201, 386, 412, 413, 422, 423, 479, 487, 492, 493]);
@@ -9,11 +10,11 @@ function getGen4FormId(speciesId, formByte) {
   return formByte >>> 3;
 }
 
-export function decryptGen4StoredPokemon(data) {
+export function decryptGen4StoredPokemon(data, extended = false) {
   const result = new Uint8Array(data);
   const pid = readUint32(result, 0);
 
-  if (pid === 0) {
+  if (data.every(byte => byte === 0)) {
     return { empty: true };
   }
 
@@ -35,9 +36,12 @@ export function decryptGen4StoredPokemon(data) {
   }
   result.set(unshuffled, 8);
 
+  if (readUint16(result, 8) === 0 && pokemonChecksum(result) === checksum) return {empty: true};
+
   return {
     empty: false,
     checksumValid: pokemonChecksum(result) === checksum,
+    ...(extended ? extendedFields(result) : {}),
     personality: pid,
     formId: getGen4FormId(readUint16(result, 8), result[0x40]),
     speciesId: readUint16(result, 8),
@@ -53,11 +57,11 @@ export function decryptGen4StoredPokemon(data) {
     otName: decodeTrainerName(result, 0x68, 16),
     eggDate: readPokemonDate(result, 0x78),
     metDate: readPokemonDate(result, 0x7B),
-    eggLocationId: readUint16(result, 0x44),
-    metLocationId: readUint16(result, 0x46),
-    pokeballId: result[0x86],
+    eggLocationId: readUint16(result, 0x44) || readUint16(result, 0x7E),
+    metLocationId: readUint16(result, 0x46) || readUint16(result, 0x80),
+    pokeballId: Math.max(result[0x83], result[0x86]),
     metLevel: result[0x84] & 0x7F,
-    shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+    shiny: (((pid ^ (pid >>> 16) ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
     natureId: pid % 25,
     moves: readGen4Moves(result),
     evs: readGen4EVs(result),
@@ -65,7 +69,7 @@ export function decryptGen4StoredPokemon(data) {
   };
 }
 
-export function decryptGen4PartyPokemon(data) {
+export function decryptGen4PartyPokemon(data, extended = false) {
   const result = new Uint8Array(data);
   const pid = readUint32(result, 0);
   const checksum = readUint16(result, 6);
@@ -92,6 +96,7 @@ export function decryptGen4PartyPokemon(data) {
   result.set(unshuffled, 8);
 
   return {
+    ...(extended ? extendedFields(result) : {}),
     personality: pid,
     checksumValid: pokemonChecksum(result) === checksum,
     formId: getGen4FormId(readUint16(result, 8), result[0x40]),
@@ -108,11 +113,11 @@ export function decryptGen4PartyPokemon(data) {
     otName: decodeTrainerName(result, 0x68, 16),
     eggDate: readPokemonDate(result, 0x78),
     metDate: readPokemonDate(result, 0x7B),
-    eggLocationId: readUint16(result, 0x44),
-    metLocationId: readUint16(result, 0x46),
-    pokeballId: result[0x86],
+    eggLocationId: readUint16(result, 0x44) || readUint16(result, 0x7E),
+    metLocationId: readUint16(result, 0x46) || readUint16(result, 0x80),
+    pokeballId: Math.max(result[0x83], result[0x86]),
     metLevel: result[0x84] & 0x7F,
-    shiny: (((pid ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
+    shiny: (((pid ^ (pid >>> 16) ^ readUint16(result, 0x0C) ^ readUint16(result, 0x0E)) & 0xFFFF) < 8),
     natureId: pid % 25,
     level: result[0x8C],
     currentHp: readUint16(result, 0x8E),
@@ -186,7 +191,7 @@ function readPokemonDate(data, offset) {
   const month = data[offset + 1];
   const day = data[offset + 2];
 
-  if (!year || !month || !day) return null;
+  if (!month || !day) return null;
 
   return {
     year: 2000 + year,
@@ -262,6 +267,12 @@ function decodeGen4Character(value) {
     [0x1BD, "-"],
   ]);
 
-  return punctuation.get(value) ?? "?";
+  return punctuation.get(value) ?? PLATINUM_READER.characters[value] ?? "�";
 }
 
+
+function extendedFields(data) {
+  return {genderId: (data[0x40] >>> 1) & 3, fatefulEncounter: Boolean(data[0x40] & 1),
+    originGameId: data[0x5F], languageId: data[0x17], pokerus: data[0x82],
+    otGenderId: data[0x84] >>> 7, groundTile: data[0x85]};
+}

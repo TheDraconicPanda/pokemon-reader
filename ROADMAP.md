@@ -2,7 +2,7 @@
 
 - [x] Audit current architecture and save the [implementation plan](docs/platinum-implementation-plan.md).
 - [x] Extract profile-driven Generation IV parser/writer primitives with captured SoulSilver equivalence fixtures (0.26.0).
-- [ ] Platinum detection and full Reader integration.
+- [x] Platinum detection and Reader/profile integration with independent synthetic PKHeX fixtures (0.26.1).
 - [ ] Platinum transactional evolution and container-preserving export.
 - [ ] Platinum 210-entry Sinnoh/National Pokédex.
 - [ ] Complete sourced Sinnoh Atlas, repeatable census/audit and Great Marsh.

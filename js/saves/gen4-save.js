@@ -21,13 +21,13 @@ export function detectGen4Save(buffer, profile, mechanics = {}) {
 
   const partitions = [0, profile.partitionSize];
   const generalBlocks = partitions.map((partition) =>
-    validateBlock(data, partition, profile.generalSize)
+    validateBlock(data, partition, profile.generalSize, profile.footerSize, profile.strictFooter ? 0 : null)
   );
   const storageBlocks = partitions.map((partition) =>
     validateBlock(
       data,
       partition + profile.storageOffset,
-      profile.storageSize
+      profile.storageSize, profile.footerSize, profile.strictFooter ? 1 : null
     )
   );
 
@@ -36,20 +36,35 @@ export function detectGen4Save(buffer, profile, mechanics = {}) {
       data[partition + profile.trainerOffset + profile.romCodeOffset] ===
       profile.romCode
   );
-  const activePartition = getActivePartition(data, generalBlocks, profile);
+  let activePartition = getActivePartition(data, generalBlocks, profile);
   const magicValid = generalBlocks.some(
     (block) =>
       block.magic === profile.magic ||
       block.magic === profile.koreanMagic
   );
-  const activeStorageValid =
-    activePartition !== null && storageBlocks[activePartition].valid;
+  let storagePartition = profile.independentStorage
+    ? getActivePartition(data, storageBlocks, profile, profile.storageOffset, profile.storageSize)
+    : activePartition;
+  if (profile.independentStorage && activePartition !== null && storagePartition !== null) {
+    const generalOrder = [activePartition, 1 - activePartition].filter(i => generalBlocks[i].valid);
+    const storageOrder = [storagePartition, 1 - storagePartition].filter(i => storageBlocks[i].valid);
+    const pair = generalOrder.flatMap(g => storageOrder.map(b => [g, b])).find(([g, b]) =>
+      readUint32(data, g * profile.partitionSize + profile.generalSize - 0x14) ===
+      readUint32(data, b * profile.partitionSize + profile.storageOffset + profile.storageSize - 0x14));
+    if (pair) [activePartition, storagePartition] = pair;
+    else { result.reason = 'Platinum general and PC save counters disagree; no coherent backup pair is available.'; return result; }
+  }
+  const activeStorageValid = storagePartition !== null && storageBlocks[storagePartition].valid;
+  const selectedGameValid = activePartition !== null && (!profile.strictFooter ||
+    data[activePartition * profile.partitionSize + profile.trainerOffset + profile.romCodeOffset] === profile.romCode);
+  const selectedMagicValid = !profile.strictFooter || [generalBlocks[activePartition], storageBlocks[storagePartition]]
+    .every(block => block && [profile.magic, profile.koreanMagic].includes(block.magic));
 
   if (
     activePartition === null ||
     !generalBlocks[activePartition].valid ||
     !activeStorageValid ||
-    !romCodeValid ||
+    !romCodeValid || !selectedGameValid || !selectedMagicValid ||
     !magicValid
   ) {
     result.reason =
@@ -59,9 +74,21 @@ export function detectGen4Save(buffer, profile, mechanics = {}) {
 
   const trainer = readTrainerInfo(data, activePartition, profile);
   const party = readParty(data, activePartition, profile);
-  const storage = readStorage(data, activePartition, profile);
+  const storage = readStorage(data, storagePartition, profile);
   const pokedex = readPokedex(data, activePartition, profile);
 
+  if (profile.extendedPokemonFields) {
+    const records = [...party, ...storage.boxes.flatMap(box => box.pokemon)].filter(p => !p.empty);
+    if (records.some(p => !p.checksumValid || p.speciesId < 1 || p.speciesId > 493) || data[activePartition * profile.partitionSize + profile.partyOffset] > 6) {
+      result.reason = 'Platinum contains an invalid Pokémon checksum, identifier or party count.';
+      return result;
+    }
+    result.gameId = profile.id;
+    result.progress = {mainStoryCleared: Boolean(data[activePartition * profile.partitionSize + profile.nationalFlagOffset] & 1), nationalDex: pokedex.nationalDex};
+    result.activeStoragePartition = storagePartition;
+    result.blockMetadata = {general: blockMetadata(data, activePartition, 0, profile.generalSize, profile), storage: blockMetadata(data, storagePartition, profile.storageOffset, profile.storageSize, profile)};
+    result.limitations = ['Hall of Fame, Battle Frontier records, Underground and linked-game communication are not decoded.'];
+  }
   result.game = profile.game;
   result.activePartition = activePartition;
   result.trainer = trainer;
@@ -97,7 +124,7 @@ function readParty(data, activePartition, profile) {
     if (offset + 236 > data.length) break;
 
     const encrypted = data.slice(offset, offset + 236);
-    const pokemon = decryptGen4PartyPokemon(encrypted);
+    const pokemon = decryptGen4PartyPokemon(encrypted, profile.extendedPokemonFields);
 
     if (pokemon.speciesId === 0) continue;
     party.push({
@@ -122,7 +149,7 @@ function readStorage(data, activePartition, profile) {
     for (let slot = 0; slot < profile.boxSlots; slot++) {
       const offset = boxBase + slot * 136;
       const encrypted = data.slice(offset, offset + 136);
-      const parsed = decryptGen4StoredPokemon(encrypted);
+      const parsed = decryptGen4StoredPokemon(encrypted, profile.extendedPokemonFields);
 
       pokemon.push({
         slot: slot + 1,
@@ -142,17 +169,17 @@ function readStorage(data, activePartition, profile) {
 
   return {
     currentBox: readUint32(data, base + profile.currentBoxOffset),
-    totalCount: readUint32(data, base + profile.totalCountOffset),
+    totalCount: profile.totalCountOffset === null ? boxes.reduce((sum, box) => sum + box.pokemon.filter(p => !p.empty).length, 0) : readUint32(data, base + profile.totalCountOffset),
     boxes,
   };
 }
 
-function getActivePartition(data, blocks, profile) {
+function getActivePartition(data, blocks, profile, blockOffset = 0, blockSize = profile.generalSize) {
   if (blocks[0].valid && !blocks[1].valid) return 0;
   if (blocks[1].valid && !blocks[0].valid) return 1;
   if (!blocks[0].valid && !blocks[1].valid) return null;
 
-  const footer0 = profile.generalSize - 0x14;
+  const footer0 = blockOffset + blockSize - 0x14;
   const footer1 = profile.partitionSize + footer0;
   const major0 = readUint32(data, footer0);
   const major1 = readUint32(data, footer1);
@@ -236,7 +263,7 @@ function readTrainerInfo(data, activePartition, profile) {
   const base = activePartition * profile.partitionSize;
   const trainer = base + profile.trainerOffset;
   const badgesJohto = data[trainer + 0x1A];
-  const badgesKanto = data[trainer + 0x1F];
+  const badgesKanto = profile.badgeCount === 16 ? data[trainer + 0x1F] : 0;
   const badges = badgesJohto | (badgesKanto << 8);
 
   return {
@@ -276,4 +303,10 @@ function formatBytes(bytes) {
   );
 
   return `${(bytes / 1024 ** exponent).toFixed(1)} ${units[exponent]}`;
+}
+
+function blockMetadata(data, partition, offset, size, profile) {
+  const footer = partition * profile.partitionSize + offset + size - 0x14;
+  return {partition, offset: partition * profile.partitionSize + offset, size,
+    saveCounter: readUint32(data, footer), blockCounter: readUint32(data, footer + 4)};
 }

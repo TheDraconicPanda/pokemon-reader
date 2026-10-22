@@ -1,5 +1,5 @@
 // Shared little-endian access and Gen IV save CRC.
-export function validateBlock(data, offset, size) {
+export function validateBlock(data, offset, size, footerSize = 0x10, blockId = null) {
   const end = offset + size;
   if (end > data.length || size < 0x10) {
     return { valid: false, magic: null };
@@ -10,11 +10,11 @@ export function validateBlock(data, offset, size) {
   const magic = readUint32(data, footerOffset + 0x08);
   const storedChecksum = readUint16(data, end - 0x02);
   const calculatedChecksum = crc16Ccitt(
-    data.subarray(offset, end - 0x10)
+    data.subarray(offset, end - footerSize)
   );
 
   return {
-    valid: storedSize === size && storedChecksum === calculatedChecksum,
+    valid: storedSize === size && storedChecksum === calculatedChecksum && (blockId === null || data[end - 4] === blockId),
     magic,
   };
 }

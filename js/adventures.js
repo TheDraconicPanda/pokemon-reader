@@ -1,3 +1,4 @@
+import { gameProfile } from './saves/profiles.js';
 import { sanitizeSafariSave } from './saves/soulsilver-safari.js';
 // Decoded data only. Binary bytes remain owned by the Reader's current session.
 export const ADVENTURE_SCHEMA = 1;
@@ -14,11 +15,12 @@ export function trainerKey(snapshot) {
 
 export function validateSnapshot(snapshot) {
   requireValue(snapshot?.schemaVersion === ADVENTURE_SCHEMA && snapshot.snapshotVersion === 1, 'Unsupported adventure snapshot version.');
-  requireValue(snapshot.gameId === 'soulsilver', 'Unsupported adventure game.');
+  const profile = gameProfile(snapshot.gameId);
+  requireValue(profile, 'Unsupported adventure game.');
   requireValue(typeof snapshot.loadedAt === 'string' && Number.isFinite(Date.parse(snapshot.loadedAt)), 'Missing successful-load time.');
   const trainer = snapshot.trainer;
   requireValue(trainer && typeof trainer.name === 'string' && uint(trainer.trainerId, 65535) && uint(trainer.secretId, 65535), 'Incomplete trainer identity.');
-  requireValue(uint(trainer.money, 0xFFFFFFFF) && uint(trainer.badges, 65535) && uint(trainer.badgeCount, 16) && ['Male','Female'].includes(trainer.gender), 'Incomplete trainer information.');
+  requireValue(uint(trainer.money, 0xFFFFFFFF) && uint(trainer.badges, (1 << profile.badgeCount) - 1) && uint(trainer.badgeCount, profile.badgeCount) && ['Male','Female'].includes(trainer.gender), 'Incomplete trainer information.');
   requireValue(uint(trainer.playTime?.hours, 65535) && uint(trainer.playTime?.minutes, 59) && uint(trainer.playTime?.seconds, 59), 'Invalid play time.');
   requireValue(Array.isArray(snapshot.party) && snapshot.party.length <= 6, 'Incomplete party.');
   const boxes = snapshot.storage?.boxes;
@@ -54,9 +56,11 @@ export function validateSnapshot(snapshot) {
 }
 
 export function createSnapshot(result, fileName, loadedAt = new Date().toISOString()) {
-  requireValue(result?.valid === true && result.game === 'Pokémon SoulSilver', 'Select a valid SoulSilver save.');
+  const gameId = result?.gameId || (result?.game === 'Pokémon SoulSilver' ? 'soulsilver' : null);
+  const profile = gameProfile(gameId);
+  requireValue(result?.valid === true && profile && result.game === profile.game, 'Select a valid supported save.');
   requireValue(result.decodeComplete !== false, 'Save contains an invalid party count.');
-  const pokemonKeys = ['empty','slot','personality','formId','speciesId','heldItemId','otId','secretId','experience','friendship','abilityId','isEgg','isNicknamed','nickname','otName','eggDate','metDate','eggLocationId','metLocationId','pokeballId','metLevel','shiny','natureId','moves','evs','ivs','level','currentHp','maxHp','stats','status','checksumValid'];
+  const pokemonKeys = ['empty','slot','personality','formId','speciesId','heldItemId','otId','secretId','experience','friendship','abilityId','isEgg','isNicknamed','nickname','otName','eggDate','metDate','eggLocationId','metLocationId','pokeballId','metLevel','shiny','natureId','moves','evs','ivs','level','currentHp','maxHp','stats','status','checksumValid','genderId','fatefulEncounter','originGameId','languageId','pokerus','otGenderId','groundTile'];
   const decodedPokemon = p => {
     const value = pick(p, pokemonKeys);
     for (const key of ['evs','ivs','stats']) if (p[key]) value[key] = pick(p[key], STATS);
@@ -70,11 +74,12 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
     boxes:result.storage.boxes?.map(box => ({ number:box.number, name:box.name, pokemon:box.pokemon?.map(p => ({ ...decodedPokemon(p), recordKind:'storage', boxNumber:box.number })) }))
   };
   const snapshot = {
-    schemaVersion:ADVENTURE_SCHEMA, snapshotVersion:1, gameId:'soulsilver', loadedAt,
-    fileName:String(fileName || 'SoulSilver save'),
+    schemaVersion:ADVENTURE_SCHEMA, snapshotVersion:1, gameId, loadedAt,
+    fileName:String(fileName || `${profile.shortName} save`),
     trainer:result.save?.trainer && pick(result.save.trainer, ['name','trainerId','secretId','money','gender','badges','badgeCount','playTime']),
     party, storage,
     pokedex:result.save?.pokedex && pick(result.save.pokedex, ['nationalDex','speciesIds','seenSpecies','caughtSpecies','speciesCount','seenCount','caughtCount','seenPercent','caughtPercent','allCaughtSpecies','allSeenSpecies']),
+    ...(gameId === 'platinum' && result.progress ? {progress:pick(result.progress,['mainStoryCleared','nationalDex'])} : {}),
     safari:sanitizeSafariSave(result.save?.safari)
   };
   if (snapshot.trainer?.playTime) snapshot.trainer.playTime = pick(snapshot.trainer.playTime, ['hours','minutes','seconds']);
@@ -85,9 +90,9 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
 
 export function snapshotResult(snapshot) {
   validateSnapshot(snapshot);
-  return { valid:true, supported:true, game:'Pokémon SoulSilver', reason:'Restored decoded adventure.',
-    trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage,
-    save:{trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, pokedex:snapshot.pokedex, safari:sanitizeSafariSave(snapshot.safari)}
+  return { valid:true, supported:true, game:gameProfile(snapshot.gameId).game, gameId:snapshot.gameId, reason:'Restored decoded adventure.',
+    trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, progress:snapshot.progress,
+    save:{trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, progress:snapshot.progress, pokedex:snapshot.pokedex, safari:sanitizeSafariSave(snapshot.safari)}
   };
 }
 

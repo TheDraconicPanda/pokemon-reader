@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.26.0</title>
+  <title>Pokémon Reader — v0.26.1</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/app-shell.css">
   <script src="js/app-shell.js"></script>
@@ -14,7 +14,7 @@
     <app-menu tool="reader"></app-menu>
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>SoulSilver save-file reader · Version <span id="app-version">v0.26.0</span></p>
+      <p>Generation IV save-file reader · Version <span id="app-version">v0.26.1</span></p>
     </header>
       <nav class="dashboard-nav" aria-label="Reader views">
         <a href="#overview" data-view="overview">Overview</a>
@@ -22,13 +22,13 @@
         <a data-view="storage" role="link" aria-disabled="true" tabindex="-1">PC Storage</a>
         <a data-view="collection" role="link" aria-disabled="true" tabindex="-1">Collection</a>
       </nav>
-    <div class="view-intro"><p class="eyebrow">YOUR SOULSILVER COMPANION</p><h2 id="view-heading" tabindex="-1">Overview</h2>
+    <div class="view-intro"><p class="eyebrow">YOUR POKÉMON COMPANION</p><h2 id="view-heading" tabindex="-1">Overview</h2>
     <details class="reader-info"><summary aria-label="About this view">ⓘ</summary><p id="view-description">Load a save to explore your adventure. Your file stays in this browser.</p></details></div>
-    <p id="view-empty" class="card" hidden>Load a SoulSilver save in <a href="#overview">Overview</a> to use this view.</p>
+    <p id="view-empty" class="card" hidden>Load a supported save in <a href="#overview">Overview</a> to use this view.</p>
 
     <section id="upload-area" class="card" data-reader-view="overview">
       <h2 id="upload-heading">Your adventure starts here</h2>
-      <details class="reader-info"><summary aria-label="Save file requirements">ⓘ</summary><p id="upload-help">Choose a raw 512 KB Pokémon SoulSilver save. Emulator containers must be exported as raw saves first. Files are processed locally and never uploaded.</p></details>
+      <details class="reader-info"><summary aria-label="Save file requirements">ⓘ</summary><p id="upload-help">Choose a raw 512 KB Pokémon SoulSilver or Platinum save. Emulator containers must be exported as raw saves first. Files are processed locally and never uploaded.</p></details>
       <label id="drop-zone" class="file-picker" for="save-file">
         <span class="file-picker-text">Choose a save file or drop one here</span>
         <input id="save-file" type="file" accept=".sav,.dsv,.dat,application/octet-stream">
