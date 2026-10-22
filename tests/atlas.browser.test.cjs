@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.26.4') && document.querySelector('.eyebrow').textContent.includes('v0.26.4'),
+    version: document.title.includes('v0.26.5') && document.querySelector('.eyebrow').textContent.includes('v0.26.5'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.26\.4<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.26\.5<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.4");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.5'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.5");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.5'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
   await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.5'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes, fileName);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
@@ -501,7 +501,7 @@ test('Loaded dashboard and dialogs fit mobile/desktop in both themes', async () 
   await command('Fetch.disable');
 });
 
-test('Metadata outage retains parsed data with honest fallback labels', async () => {
+test('Metadata outage retains parsed data and locally verified ability names', async () => {
   apiUnavailable=true;
   try {
     await fixtureReader();
@@ -512,7 +512,7 @@ test('Metadata outage retains parsed data with honest fallback labels', async ()
     await evaluate(`document.querySelector('#party-grid .pokemon-detail-button').click()`);
     await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`),'Fallback detail');
     const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
-    assert.ok(content.includes('AbilityUnknown'));
+    assert.ok(content.includes('AbilityStatic'));
     assert.ok(content.includes('20/?'));
     assert.equal(await evaluate(`document.querySelector('.training-section tbody tr').textContent`),'HP311');
   } finally { apiUnavailable=false; await command('Fetch.disable'); }
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.5'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.5'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1421,6 +1421,53 @@ test('Evolution export downloads constructed save bytes without replacing loaded
   assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
   assert.equal(await evaluate(`document.querySelector('#pokemon-detail-dialog-title').textContent`),'A','Export must leave the original individual displayed');
   await command('Fetch.disable');
+});
+
+test('SoulSilver ability repair previews Poison Point → Swift Swim, requires confirmation and preserves the loaded adventure', async () => {
+  const {abilityFixture}=require('./fixtures/hgss-abilities.cjs');
+  const {dsv}=require('./fixtures/gen4/evolution.cjs');
+  const {detectSave}=await import('../js/saves/index.js');
+  const input=dsv(abilityFixture().bytes), original=input.slice();
+  await fixtureReader(detectSave(input),input,true,'SoulSilver.DSV');
+  await until(()=>evaluate(`document.querySelector('#ability-validation summary')?.textContent === 'Ability validation: 1 invalid'`),'Invalid-ability summary missing');
+  const before=await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`);
+  await evaluate(`document.querySelector('#ability-validation').open=true;document.querySelector('#ability-validation button').click()`);
+  await until(()=>evaluate(`Boolean(document.querySelector('.repair-ability-button'))`),'Repair action missing');
+  assert.match(await evaluate(`document.querySelector('.ability-validation').textContent`),/Ability: Poison Point.*Invalid ability for Kingdra.*Suggested repair: Swift Swim/);
+  assert.equal(await evaluate(`[...document.querySelectorAll('.pokemon-detail-list dt')].find(n=>n.textContent==='Ability').nextElementSibling.textContent`),'Poison Point');
+  await evaluate(`globalThis.__downloaded=null;globalThis.__downloadName=null;globalThis.__confirmation='';
+    URL.createObjectURL=blob=>{globalThis.__downloaded=blob;return 'blob:test-repair';};
+    HTMLAnchorElement.prototype.click=function(){globalThis.__downloadName=this.download;};
+    window.confirm=message=>{globalThis.__confirmation=message;return false;};
+    document.querySelector('.repair-ability-button').click()`);
+  assert.equal(await evaluate(`globalThis.__downloaded`),null);
+  assert.match(await evaluate(`globalThis.__confirmation`),/Poison Point → Swift Swim/);
+  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:true});
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  if(process.env.ABILITY_SCREENSHOT_DIR){
+    await require('node:fs/promises').mkdir(process.env.ABILITY_SCREENSHOT_DIR,{recursive:true});
+    for(const theme of ['light','dark']){
+      await evaluate(`document.documentElement.dataset.theme='${theme}';document.querySelector('.ability-validation').scrollIntoView({block:'center'})`);
+      const shot=await command('Page.captureScreenshot',{format:'png'});
+      await require('node:fs/promises').writeFile(path.join(process.env.ABILITY_SCREENSHOT_DIR,`repair-${theme}.png`),Buffer.from(shot.data,'base64'));
+    }
+  }
+  await evaluate(`window.confirm=()=>true;document.querySelector('.repair-ability-button').click()`);
+  await until(()=>evaluate(`Boolean(globalThis.__downloaded)`),'Repair did not download');
+  assert.equal(await evaluate(`globalThis.__downloadName`),'SoulSilver.ability-repaired.DSV');
+  const output=Uint8Array.from(await evaluate(`(async()=>Array.from(new Uint8Array(await globalThis.__downloaded.arrayBuffer())))()`));
+  const loaded=detectSave(output);assert.equal(loaded.valid,true);assert.equal(loaded.storage.boxes[0].pokemon[0].abilityId,33);
+  assert.deepEqual(output.subarray(0x80000),input.subarray(0x80000));assert.deepEqual(input,original);
+  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('./js/adventures.js')).getActiveProfile()))()`),before);
+  assert.match(await evaluate(`document.querySelector('.ability-validation').textContent`),/Load that file explicitly/);
+  await evaluate(`document.querySelector('#pokemon-detail-close').click();document.querySelector('#load-save').click()`);
+  await uploadFixture(loaded,true,output,'SoulSilver.ability-repaired.DSV');
+  await until(()=>evaluate(`document.querySelector('#ability-validation summary')?.textContent === 'Ability validation: 0 invalid'`),'Repaired save still flagged');
+  await evaluate(`location.hash='storage';document.querySelector('#box-grid .pokemon-detail-button').click()`);
+  await until(()=>evaluate(`document.querySelector('#pokemon-detail-content')?.getAttribute('aria-busy')==='false'`),'Repaired Pokémon details missing');
+  assert.equal(await evaluate(`document.querySelector('.repair-ability-button')===null`),true);
+  await command('Emulation.clearDeviceMetricsOverride');await command('Fetch.disable');
 });
 
 async function openLinkedPlanner(data) {
@@ -2787,7 +2834,7 @@ test('Safari audited catalogue shows corrected species, score requirements and a
 let safariScenarioVisitNumber=0;
 async function visitSafariScenario(prefix=''){
  await command('Page.navigate',{url:baseURL+prefix+'/safari-zone/?test='+(++safariScenarioVisitNumber)});
- await until(()=>evaluate(`document.documentElement.dataset.safariScenarioReady==='true'`),'Safari starting configuration did not initialize');
+ await until(()=>evaluate(`document.documentElement?.dataset.safariScenarioReady==='true'`),'Safari starting configuration did not initialize');
 }
 async function setScenarioField(key,value){
  await evaluate(`(()=>{const input=document.querySelector('[data-scenario-field="${key}"]');input.value=${JSON.stringify(value)};input.dispatchEvent(new Event('change'));})()`);
@@ -2825,7 +2872,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.4'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.5'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -2989,7 +3036,7 @@ test('Safari final audit links Gate, Atlas, simulator and species reference with
  await evaluate(`document.querySelector('.compass-north button').click()`);
  await until(()=>evaluate(`!document.querySelector('#safari-mini-atlas').hidden`),'Gate enters Safari Atlas');
  await evaluate(`document.querySelector('#safari-mini-atlas a[href*="safari-zone/"]').click()`);
- await until(()=>evaluate(`document.documentElement.dataset.safariScenarioReady==='true'`),'Atlas opens simulator');
+ await until(()=>evaluate(`document.documentElement?.dataset.safariScenarioReady==='true'`),'Atlas opens simulator');
  await configureSafariSimulator();await setScenarioField('open','true');await setScenarioField('time','morning');await findSafariTarget('Bagon');
  await evaluate(`document.querySelector('.safari-plan button').focus()`);
  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});
@@ -3000,7 +3047,7 @@ test('Safari final audit links Gate, Atlas, simulator and species reference with
  await evaluate(`document.querySelector('#safari-proposed-encounters a[href*="species=371&"]').click()`);
  await until(()=>evaluate(`document.querySelector('#reference-detail')?.open&&document.querySelector('#reference-title')?.textContent==='Bagon'`),'Simulator species opens reference');
  await evaluate(`history.back()`);
- await until(()=>evaluate(`document.documentElement.dataset.safariScenarioReady==='true'`),'Back returns to simulator');
+ await until(()=>evaluate(`document.documentElement?.dataset.safariScenarioReady==='true'`),'Back returns to simulator');
  assert.doesNotMatch(await evaluate(`document.querySelector('#scenario-differences').textContent`),/Hypothetical/,'Returning reconstructs saved state rather than persisting a proposal');
  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('/js/adventures.js')).getActiveProfile()))()`),saved);
  assert.deepEqual(exceptions,[]);
@@ -3049,7 +3096,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.4'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.5'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');

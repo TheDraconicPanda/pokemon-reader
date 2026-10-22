@@ -1,6 +1,8 @@
 import { platinumEvolutions } from './platinum-evolution-rules.js';
-import { readUint16, readUint32, writeUint16, crc16Ccitt } from './gen4-binary.js';
-import { cryptGen4, GEN4_BLOCK_UNSHUFFLES, pokemonChecksum, decryptGen4Record } from './gen4-pokemon.js';
+import { readUint16, readUint32, writeUint16 } from './gen4-binary.js';
+import { pokemonChecksum, decryptGen4Record } from './gen4-pokemon.js';
+import { evolutionAbility } from './gen4-abilities.js';
+import { writeGen4Record } from './gen4-record-writer.js';
 import { recalculatePartyStats, validBaseStats } from './gen4-stats.js';
 
 const TRADE_EVOLUTIONS = Object.freeze([
@@ -76,7 +78,10 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
   if (offset < 0 || offset + length > output.length) throw new Error("Pokémon record is outside the save file.");
 
   const record = decryptGen4Record(output.slice(offset, offset + length), pokemon.recordKind === 'party');
-  const pid = readUint32(record, 0), shuffle = GEN4_BLOCK_UNSHUFFLES[(pid >>> 13) & 31];
+  const pid = readUint32(record, 0);
+  if (pokemonChecksum(record) !== readUint16(record, 6) || pid !== pokemon.personality) {
+    throw new Error('The Pokémon checksum or personality does not match. Reload the save before evolving.');
+  }
 
   const currentSpecies = readUint16(record, 8);
   const currentItem = readUint16(record, 10);
@@ -85,6 +90,9 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
   }
 
   writeUint16(record, 8, rule.to);
+  const ability = evolutionAbility(pid, rule.to, profile.id);
+  if (ability === null) throw new Error('The evolved ability could not be established. No changes were made.');
+  record[0x15] = ability;
   if (rule.consumesItem) writeUint16(record, 10, 0);
   options.transform?.(record);
   const oldMaxHp = pokemon.recordKind === "party" ? readUint16(record, 0x90) : 0;
@@ -94,27 +102,8 @@ export function evolveGen4Pokemon(buffer, pokemon, evolution, activePartition, e
     recalculatePartyStats(record, evolvedBaseStats, oldMaxHp, oldHp);
   }
 
-  const checksum = pokemonChecksum(record);
-  writeUint16(record, 6, checksum);
-
-  const shuffledBlocks = new Uint8Array(128);
-  for (let i = 0; i < 4; i++) shuffledBlocks.set(record.slice(8 + i * 32, 40 + i * 32), shuffle[i] * 32);
-  record.set(shuffledBlocks, 8);
-  cryptGen4(record, 8, 136, checksum);
-  if (pokemon.recordKind === "party") cryptGen4(record, 136, 236, pid);
-  output.set(record, offset);
-
-  const partitionBase = activePartition * profile.partitionSize;
-  if (pokemon.recordKind === "party") {
-    writeBlockChecksum(output, partitionBase, profile.generalSize, profile.footerSize);
-  } else {
-    writeBlockChecksum(output, (options.storagePartition ?? activePartition) * profile.partitionSize + profile.storageOffset, profile.storageSize, profile.footerSize);
-  }
+  writeGen4Record(output, record, offset, pokemon.recordKind, profile,
+    pokemon.recordKind === 'party' ? activePartition : options.storagePartition ?? activePartition);
   return output;
-}
-
-function writeBlockChecksum(data, offset, size, footerSize) {
-  const end = offset + size;
-  writeUint16(data, end - 2, crc16Ccitt(data.subarray(offset, end - footerSize)));
 }
 

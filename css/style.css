@@ -693,7 +693,9 @@ dd {
 }
 
 .evolution-control select,
-.evolve-button {
+.evolve-button,
+.repair-ability-button,
+#ability-validation button {
   width: 100%;
   min-width: 0;
   padding: 0.55rem 0.65rem;
@@ -704,7 +706,8 @@ dd {
   font: inherit;
 }
 
-.evolve-button {
+.evolve-button,
+.repair-ability-button {
   border-color: var(--success);
   background: var(--elevated);
   color: var(--success);
@@ -712,7 +715,8 @@ dd {
   cursor: pointer;
 }
 
-.evolve-button:hover:not(:disabled) {
+.evolve-button:hover:not(:disabled),
+.repair-ability-button:hover {
   background: var(--elevated);
 }
 

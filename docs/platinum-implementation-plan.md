@@ -185,10 +185,18 @@ both daily pools, validated save initialization, explicit unknown shares and
 read-only hypothetical conditions. Shared EV finder uses native yields and
 Sinnoh badge requirements. No Johto Safari mechanics are copied into Great Marsh.
 
-Release 0.26.4 gate: **277/277 tests**, zero mandatory failures, 100% reviewed
+Pre-integration 0.26.4 gate: **277/277 tests**, zero mandatory failures, 100% reviewed
 Sinnoh coverage and unchanged 100% Johto/Kanto coverage. Focused browser journeys
 cover 320/1440px, native floor navigation, Great Marsh unknown/loaded conditions,
 profile immutability, exact-area EV links and game switching. Repeated offline
 Atlas/map/comparison generation reproduces all 507 checked outputs byte for byte.
 Sources, scope and limitations: `platinum-atlas.md`, `platinum-great-marsh.md`,
 `platinum-source-decisions.json`, and the JSON coverage/map/comparison reports.
+
+Milestone 5 integration: main advanced to `1db68a9` with the urgent SoulSilver
+ability repair (0.26.4). It is preserved in full, with combined dependency
+fingerprints and version 0.26.5. **285/285 checks pass** after fixing a browser
+test's premature document-element read; no Safari product behavior changed.
+A fresh PKHeX invocation validates all 114 Platinum exports and all three Reader
+fixtures after integration. Original SoulSilver parser equivalence still passes;
+the intentional ability writer correction retains the incoming repair tests.

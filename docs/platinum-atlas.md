@@ -114,7 +114,7 @@ Synthetic saves, primary evidence and executable independent comparisons do not
 constitute a new emulator or real-player-save playthrough. The final integrated
 release audit follows as milestone 6.
 
-Milestone gate (0.26.4): **277/277 automated tests pass**, zero mandatory
+Milestone gate (0.26.5, including the separately published SoulSilver ability repair): **285/285 automated tests pass**, zero mandatory
 failures, 100% reviewed Sinnoh catalogue coverage and unchanged 100% existing
 Johto/Kanto coverage. Rebuilding the Atlas, maps and independent comparison
 reproduces all **507 checked outputs byte for byte**.

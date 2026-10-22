@@ -8,11 +8,13 @@ import { createSnapshot, snapshotResult, listProfiles, getActiveProfile, persist
 import { detectSave } from "./saves/index.js";
 import { getAvailableEvolutions } from "./saves/gen4-evolution.js";
 import { evolveSavePokemon } from './saves/evolution-transaction.js';
-import { evolutionExportName } from './saves/gen4-container.js';
+import { evolutionExportName, abilityRepairExportName } from './saves/gen4-container.js';
+import { validateSoulSilverAbility, hgssAbilityName } from './saves/gen4-abilities.js';
+import { repairSoulSilverAbility } from './saves/soulsilver-ability-repair.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.26.4";
+const APP_VERSION = "0.26.5";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -323,6 +325,7 @@ function renderOverview(result) {
     list.append(button);
   }
   document.querySelector('#game-progress')?.remove();
+  renderAbilityValidation(result);
   if (currentGameId === 'platinum') {
     const progress = document.createElement('p'); progress.id='game-progress'; progress.className='collection-note';
     progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. The Platinum Pokédex and Sinnoh Atlas include native encounters, special encounters and Great Marsh daily planning. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
@@ -721,7 +724,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
     ),
     formName: getPokemonFormName(pokemon),
     gender: getGender(pokemon.personality, data?.species?.gender_rate),
-    abilityName: getAbilityName(data?.pokemon, pokemon.abilityId),
+    abilityName: hgssAbilityName(pokemon.abilityId),
     natureName: getNatureName(pokemon.natureId),
     statusText: pokemon.status === undefined ? "Not stored in PC record" : getStatusText(pokemon.status),
     experienceText: formatNumber(pokemon.experience),
@@ -828,19 +831,6 @@ const NATURE_NAMES = Object.freeze([
 
 function getNatureName(natureId) {
   return NATURE_NAMES[natureId] || "Unknown";
-}
-
-function getAbilityName(data, abilityId) {
-  if (!data?.abilities || abilityId == null) return "Unknown";
-
-  const ability = data.abilities.find((entry) => {
-    const match = entry.ability?.url?.match(/\/(\d+)\/?$/);
-    return match && Number(match[1]) === abilityId;
-  });
-
-  return ability?.ability?.name
-    ? formatPokemonName(ability.ability.name)
-    : "Unknown";
 }
 
 function getStatusText(status) {
@@ -1264,6 +1254,7 @@ function renderPokemonDetail(pokemon) {
     ["Shiny", pokemon.shiny ? "Yes" : "No"],
     ["Egg", pokemon.isEgg ? "Yes" : "No"],
   ]);
+  addAbilityRepairControl(pokemonDetailContent, pokemon);
 
   addSection("Stats", [
     ["HP", `${pokemon.currentHp ?? "—"} / ${pokemon.maxHp ?? "—"}`],
@@ -1430,6 +1421,71 @@ function experienceForLevel(level, growthRate) {
   }
 }
 
+function renderAbilityValidation(result) {
+  document.querySelector('#ability-validation')?.remove();
+  if (currentGameId !== 'soulsilver') return;
+  const records = [...result.party, ...result.storage.boxes.flatMap(box => box.pokemon)];
+  const checked = records.map(pokemon => ({pokemon, check:validateSoulSilverAbility(pokemon)}));
+  const invalid = checked.filter(row => row.check.status === 'invalid');
+  const unknown = checked.filter(row => row.check.status === 'unknown').length;
+  const section = document.createElement('details'); section.id = 'ability-validation'; section.className = 'reader-info';
+  const summary = document.createElement('summary');
+  summary.textContent = `Ability validation: ${invalid.length} invalid${unknown ? ` · ${unknown} could not be checked` : ''}`;
+  section.append(summary);
+  for (const {pokemon, check} of invalid) {
+    const row = document.createElement('p'), button = document.createElement('button'); button.type = 'button';
+    button.textContent = `${getKnownSpeciesName(pokemon.speciesId)} · ${pokemon.recordKind === 'party' ? `Party slot ${pokemon.slot}` : `Box ${pokemon.boxNumber}, slot ${pokemon.slot}`} · ${hgssAbilityName(check.current)} → ${hgssAbilityName(check.replacement)}`;
+    button.addEventListener('click', () => openPokemonDetails(pokemon)); row.append(button); section.append(row);
+  }
+  const note = document.createElement('p');
+  note.textContent = 'Checks party and PC abilities against HGSS species and forms. Eggs are excluded. Species-valid abilities are left unchanged, including transferred Pokémon. No save data is changed by validation.';
+  if (unknown) note.textContent += ' Some records have an unverified checksum, species, form or PID; no replacement is guessed.';
+  section.append(note); document.querySelector('#overview-summary').append(section);
+}
+
+function addAbilityRepairControl(container, pokemon) {
+  if (currentGameId !== 'soulsilver') return;
+  const check = validateSoulSilverAbility(pokemon);
+  if (!['invalid', 'unknown'].includes(check.status)) return;
+  const section = document.createElement('section'); section.className = 'pokemon-detail-section ability-validation';
+  const message = document.createElement('p');
+  if (check.status === 'unknown') {
+    message.textContent = `Ability could not be checked. ${check.reason}`;
+    section.append(message); container.append(section); return;
+  }
+  const current = hgssAbilityName(check.current), replacement = hgssAbilityName(check.replacement);
+  message.textContent = `Ability: ${current}. Invalid ability for ${getKnownSpeciesName(pokemon.speciesId)} in SoulSilver. Suggested repair: ${replacement}.`;
+  section.append(message);
+  if (!currentSaveBytes) {
+    const note = document.createElement('p'); note.textContent = 'Reload the original save file to repair this ability. Restored adventures contain decoded progress only.'; section.append(note);
+  } else {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'repair-ability-button'; button.textContent = 'Repair Ability';
+    const feedback = document.createElement('p'); feedback.setAttribute('aria-live', 'polite');
+    button.addEventListener('click', () => {
+      if (!window.confirm(`Repair ${getKnownSpeciesName(pokemon.speciesId)}'s ability?\n\n${current} → ${replacement}\n\nOnly the ability and required checksums/encryption will change. A separate modified save will be downloaded. Your original file is not overwritten. Load the downloaded file explicitly to use the repair.`)) return;
+      try {
+        const output = repairSoulSilverAbility(currentSaveBytes, pokemon);
+        feedback.textContent = downloadModifiedSave(output, abilityRepairExportName(currentSaveFileName));
+      } catch (error) {
+        feedback.textContent = error?.message || 'Ability repair failed; no save was changed.';
+      }
+    });
+    section.append(button, feedback);
+  }
+  container.append(section);
+}
+
+function downloadModifiedSave(output, outputName) {
+  const url = URL.createObjectURL(new Blob([output], {type:'application/octet-stream'}));
+  const link = document.createElement('a'); link.href = url; link.download = outputName;
+  document.body.append(link); link.click(); link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  fileStatus.className = 'status success';
+  fileStatus.textContent = `Downloaded ${outputName}. Load that file explicitly to update your adventure. Your loaded progress is unchanged.`;
+  adventureStatus.textContent = fileStatus.textContent;
+  return fileStatus.textContent;
+}
+
 function addEvolutionControl(container, pokemon) {
   const options = getAvailableEvolutions(pokemon, currentGameId, {party:currentParty});
   if (!options.length) return;
@@ -1483,19 +1539,7 @@ function addEvolutionControl(container, pokemon) {
       if (revision !== loadRevision) return;
       const output = evolveSavePokemon(currentSaveBytes, pokemon, evolution, {time:timeSelect?.value || undefined});
       const outputName = evolutionExportName(currentSaveFileName);
-      const blob = new Blob([output], { type: "application/octet-stream" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = outputName;
-      document.body.append(link);
-      link.click();
-      link.remove();
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-      fileStatus.className = "status success";
-      fileStatus.textContent = `Downloaded ${outputName}. Load that file explicitly to update your adventure. Your loaded progress is unchanged.`;
-      feedback.textContent = fileStatus.textContent;
-      adventureStatus.textContent = fileStatus.textContent;
+      feedback.textContent = downloadModifiedSave(output, outputName);
       button.disabled = false;
       button.textContent = 'Evolve';
     } catch (error) {

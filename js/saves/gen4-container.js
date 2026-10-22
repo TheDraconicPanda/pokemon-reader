@@ -27,3 +27,12 @@ export function evolutionExportName(name = 'pokemon-save.sav') {
   const next = previous ? `${previous[1]}.evolved-${BigInt(previous[2] || '1') + 1n}` : `${base}.evolved`;
   return `${next}${extension}`;
 }
+
+export function abilityRepairExportName(name = 'pokemon-save.sav') {
+  const match = name.match(/(\.[^./\\]+)$/);
+  const extension = match ? match[1] : '.sav';
+  const base = match ? name.slice(0, -extension.length) : name;
+  const previous = base.match(/^(.*)\.ability-repaired(?:-(\d+))?$/i);
+  const next = previous ? `${previous[1]}.ability-repaired-${BigInt(previous[2] || '1') + 1n}` : `${base}.ability-repaired`;
+  return `${next}${extension}`;
+}

@@ -8,6 +8,7 @@ import { savedLevel } from '../pokemon-level.js';
 import { SOULSILVER_POKEDEX as soulSilver } from '../data/games/soulsilver/pokedex-reference.js';
 import { decryptGen4Record, decryptGen4PartyPokemon, decryptGen4StoredPokemon, decodeTrainerName } from './gen4-pokemon.js';
 import { writeUint16, crc16Ccitt } from './gen4-binary.js';
+import { gen4AbilityForPid } from './gen4-abilities.js';
 
 const records = result => [...result.party, ...result.storage.boxes.flatMap(box => box.pokemon)];
 const statNames = ['hp','attack','defense','special-attack','special-defense','speed'];
@@ -46,7 +47,8 @@ export function evolveSavePokemon(input, displayed, selected, context = {}) {
     const name = actual.isNicknamed ? null : GEN4_DEFAULT_NAMES[language]?.[rule.to];
     if (!actual.isNicknamed && (!name || name.length > 11 || name.at(-1) !== 0xFFFF)) throw new Error('The save language has no verified default species name. No export was created.');
     // Gender thresholds are intrinsic Gen IV species data in both games.
-    expectedAbility = target.abilities[actual.personality & 1] || target.abilities[0];
+    expectedAbility = gen4AbilityForPid(actual.personality, target.abilities);
+    if (expectedAbility === null) throw new Error('The evolved ability could not be established. No changes were made.');
     if (name) {
       const encoded = new Uint8Array(name.length * 2); name.forEach((value,i)=>writeUint16(encoded,i*2,value));
       expectedNickname = decodeTrainerName(encoded,0,encoded.length);

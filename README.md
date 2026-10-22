@@ -1,6 +1,6 @@
 # Pokémon Reader
 
-## Sinnoh Atlas and Great Marsh — v0.26.4
+## Sinnoh Atlas and Great Marsh — v0.26.5
 
 The existing Atlas now has Platinum’s complete reviewed Sinnoh catalogue: 125
 location groups, 501 native terrain plans, ordinary/conditional/special encounters,
@@ -12,6 +12,16 @@ Coverage is checked against all 593 native headers and an independent CSV audit;
 source differences and exclusions are recorded. See [Atlas coverage and limits](docs/platinum-atlas.md)
 and [Great Marsh evidence](docs/platinum-great-marsh.md). Final integrated release
 validation is the next milestone.
+
+## HGSS ability bug fix and SoulSilver repair — v0.26.4
+
+Evolution writers now share PID-based Generation IV ability selection. The
+SoulSilver Reader identifies species-invalid party/PC abilities, previews the
+replacement and offers **Repair Ability** with explicit confirmation and a
+separate save download. Valid abilities, unrelated Pokémon data, original files,
+container footers and file extensions are preserved. See [repair instructions,
+mechanics, evidence and limits](docs/hgss-ability-repair.md). All **272 automated
+checks pass**; actual SoulSilver in-game validation remains separate.
 
 ## Platinum Pokédex — v0.26.3
 
