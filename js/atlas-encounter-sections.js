@@ -20,7 +20,7 @@ export function encounterSections(encounters) {
       keys=['morning','day','night'].filter(time=>/all times|any time/.test(times)||times.includes(time));
       // Retain any unexpected time label without silently assigning a time.
       if(!keys.length)keys=['special'];
-    } else if (['Ho-Oh','Lugia','Moltres','Groudon','Rayquaza'].includes(encounter.pokemon)) {
+    } else if (['Ho-Oh','Lugia','Moltres','Groudon','Rayquaza','Articuno','Zapdos','Mewtwo','Suicune','Latias','Latios'].includes(encounter.pokemon)) {
       keys=['legendary'];
     } else {
       keys=[method.includes('Surfing')?'surfing':method.some(part=>['Old Rod','Good Rod','Super Rod'].includes(part))?'fishing':method.includes('Headbutt')?'headbutt':method.includes('Rock Smash')?'rock-smash':method.includes('Bug-Catching Contest')?'contest':'special'];

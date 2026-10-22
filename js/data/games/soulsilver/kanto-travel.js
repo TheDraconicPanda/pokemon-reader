@@ -139,7 +139,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Mt._Moon"
     ]
   },
@@ -150,7 +150,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Mt._Moon"
     ]
   },
@@ -987,7 +987,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/diglettscave.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/diglett%27scave.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Diglett%27s_Cave"
     ]
   },
@@ -998,7 +998,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/diglettscave.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/diglett%27scave.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Diglett%27s_Cave"
     ]
   },
@@ -1217,7 +1217,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Mt._Moon"
     ]
   },
@@ -1228,7 +1228,7 @@ export const KANTO_TRAVEL = Object.freeze([
     "conditions": [],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Mt._Moon"
     ]
   },
@@ -1447,7 +1447,7 @@ export const KANTO_TRAVEL = Object.freeze([
     ],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/undergroundpath.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/undergroundpath5-6.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Underground_Path"
     ]
   },
@@ -1460,7 +1460,7 @@ export const KANTO_TRAVEL = Object.freeze([
     ],
     "notes": [],
     "sources": [
-      "https://www.serebii.net/pokearth/kanto/4th/undergroundpath.shtml",
+      "https://www.serebii.net/pokearth/kanto/4th/undergroundpath5-6.shtml",
       "https://bulbapedia.bulbagarden.net/wiki/Underground_Path"
     ]
   }

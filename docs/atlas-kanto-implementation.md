@@ -23,3 +23,32 @@ Real-save and in-game acceptance remain distinct from automated validation.
 
 Validation: all 224 regression checks pass, plus the new Kanto landing/ship/phone
 journey. The browser checks every Atlas connection. No real-save claim is made.
+
+## Step 2 — encounter data, v0.25.81
+
+The pinned primary extractor supplies 847 Kanto rows across all 52 new groups,
+including separate Route 2/16 banks and all represented cave floors. It reuses the
+existing SoulSilver slot rules, keeps morning/day/night and radio/outbreak rows
+separate, and accounts for every primary Kanto map. Eight groups have no fixed
+encounters; gifts, prizes and variable-level NPC trades are identified explicitly.
+The reverse Pokédex location catalogue and EV finder use the same runtime data.
+
+The five NPC trades are decoded from the primary trade archive. Gifts include
+Oak’s Kanto starter choice, Steven’s Hoenn starter choice, Celadon’s three prizes
+and seven fossil revivals, with transfer requirements retained. The historical
+Enigma Stone Latias is not an ordinary SoulSilver roamer. Suicune’s return to
+Burned Tower after an unsuccessful Route 25 encounter and another Hall of Fame
+entry is included as a conditional continuation, not a second capture.
+
+Reproduce with `python scripts/build-kanto-encounters.py PATH`. The evidence JSON
+pins every input, per-map method accounting and runtime row hashes. Unused Route
+12 Snorlax code and the noncatchable Clefairy dance are explicitly excluded.
+
+Serebii Generation IV and Bulbapedia examples verify independent fixtures. Page
+availability and remaining secondary uncertainties are recorded in
+`atlas-kanto-reference-checks.json`; page retrieval is not represented as a full
+row-by-row verification. Primary-scene water differences at Mt. Moon Square are
+kept separate and labelled rather than combined into an invalid distribution.
+
+Step 2 validation: all 227 automated checks pass. Source regeneration is byte-for-byte
+reproducible; Safari data and mechanics remain unchanged.

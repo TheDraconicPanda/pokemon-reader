@@ -5097,7 +5097,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "sources": [
       {
         "label": "Serebii HGSS location reference",
-        "url": "https://www.serebii.net/pokearth/kanto/4th/diglettscave.shtml"
+        "url": "https://www.serebii.net/pokearth/kanto/4th/diglett%27scave.shtml"
       },
       {
         "label": "Bulbapedia HGSS location reference",
@@ -5137,7 +5137,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "sources": [
       {
         "label": "Serebii HGSS location reference",
-        "url": "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml"
+        "url": "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml"
       },
       {
         "label": "Bulbapedia HGSS location reference",
@@ -5337,7 +5337,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "sources": [
       {
         "label": "Serebii HGSS location reference",
-        "url": "https://www.serebii.net/pokearth/kanto/4th/palpark.shtml"
+        "url": "https://www.serebii.net/pokearth/kanto/4th/fuchsiacity.shtml"
       },
       {
         "label": "Bulbapedia HGSS location reference",
@@ -5415,7 +5415,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "sources": [
       {
         "label": "Serebii HGSS location reference",
-        "url": "https://www.serebii.net/pokearth/kanto/4th/mtmoon.shtml"
+        "url": "https://www.serebii.net/pokearth/kanto/4th/mt.moon.shtml"
       },
       {
         "label": "Bulbapedia HGSS location reference",
@@ -5459,7 +5459,7 @@ export const ATLAS_LOCATIONS = Object.freeze([
     "sources": [
       {
         "label": "Serebii HGSS location reference",
-        "url": "https://www.serebii.net/pokearth/kanto/4th/undergroundpath.shtml"
+        "url": "https://www.serebii.net/pokearth/kanto/4th/undergroundpath5-6.shtml"
       },
       {
         "label": "Bulbapedia HGSS location reference",

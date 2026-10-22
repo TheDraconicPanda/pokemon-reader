@@ -1,3 +1,4 @@
+import { KANTO_ENCOUNTERS } from "./games/soulsilver/kanto-encounters.js";
 import { ATLAS_LOCATIONS } from './atlas-locations.js';
 import { SOULSILVER_ROUTE_ENCOUNTERS } from './games/soulsilver/route-encounters.js';
 import { SOULSILVER_LOCATION_ENCOUNTERS } from './games/soulsilver/location-encounters.js';
@@ -8,8 +9,8 @@ export const EV_METHODS = Object.freeze({surfing:'Surfing',walking:'Walking',old
 const CONDITIONS = Object.freeze({'tree-a':'Headbutt tree group A','tree-b':'Headbutt tree group B','special-tree':'Special Headbutt trees · Rock Climb required','unown-puzzle':'At least one Ruins of Alph tile puzzle solved','unown-complete':'All 26 letters, four puzzles, four secret rooms and entrance panel unlocked'});
 const GAMES = new Map([['soulsilver', {
   locations: ATLAS_LOCATIONS,
-  encounters: {...SOULSILVER_ROUTE_ENCOUNTERS.routes, ...Object.fromEntries(Object.entries(SOULSILVER_LOCATION_ENCOUNTERS.locations).map(([name, reference])=>[name,reference.encounters]))},
-  notes: Object.fromEntries(Object.entries(SOULSILVER_LOCATION_ENCOUNTERS.locations).map(([name, reference])=>[name,reference.notes]))
+  encounters: {...SOULSILVER_ROUTE_ENCOUNTERS.routes, ...Object.fromEntries(Object.entries({...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations}).map(([name, reference])=>[name,reference.encounters]))},
+  notes: Object.fromEntries(Object.entries({...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations}).map(([name, reference])=>[name,reference.notes]))
 }]]);
 
 export function evYieldForSpecies(gameId, name) {

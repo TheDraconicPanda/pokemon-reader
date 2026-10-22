@@ -1,0 +1,2674 @@
+{
+  "gameId": "soulsilver",
+  "primaryRevision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "inputs": {
+    "files/a/1/1/2": "0fd192ccd1e2a89efa9fda6631ca67aa92f50d81150c5a7a9fc921dee984f991",
+    "files/arc/headbutt.json": "b1eb4b3263e89f89f9e1ebe5fdbf2bc4aa3e27bb7a3145c20903f455cfbbf08d",
+    "files/fielddata/encountdata/gs_enc_data.json": "ae0895407231448bbf12be33480e534e5ca812d9f172ffd0b0918c29070f4ab1",
+    "files/fielddata/script/scr_seq/scr_seq_0005_D01R0101.s": "cce7dd2e2ec43c0cf5c968fcf4900c859110106901a2048cf9fb4206d1accf12",
+    "files/fielddata/script/scr_seq/scr_seq_0006_D02FS0101.s": "464f5d6e0b1276985a3e571cabf277160548036df987a0a65381a5a2d77e2668",
+    "files/fielddata/script/scr_seq/scr_seq_0007_D02R0101.s": "88031d6db83b6bc126fe41c17404ab2d74f84b2d349fe1d6085c0174062aa9c1",
+    "files/fielddata/script/scr_seq/scr_seq_0008_D02R0102.s": "9b5e5022cf08c59e90d88467901e709c83d01e282928988938226bcf5d0a600a",
+    "files/fielddata/script/scr_seq/scr_seq_0009_D02R0103.s": "a672c9e6570a1d5412679ac67c9cf4eba8d80d1ade94ee0d17f4cee7f251d071",
+    "files/fielddata/script/scr_seq/scr_seq_0010_D02R0104.s": "a88c4fa3ebe49d2d0ff21f324e14265be4c8277caf2dba72502a5a1891695e9c",
+    "files/fielddata/script/scr_seq/scr_seq_0011_D03R0103.s": "39b9dc4044499d9959ac2f950fbcf8aad6eec914d0894dbd921a6dba81692e6a",
+    "files/fielddata/script/scr_seq/scr_seq_0012_D10R0101.s": "974f8fa5f56be0b274bce665aa9db942aa8bfb26edbe0fe9f16d29fbf2103cc8",
+    "files/fielddata/script/scr_seq/scr_seq_0013_D11R0102.s": "828da957166c635bce5f49d27e58727406dbd52034b7e72bb9bce288d7677af8",
+    "files/fielddata/script/scr_seq/scr_seq_0014_D11R0105.s": "f4ed453dd9bf6dfdf20aeb6bdb5a49713977687678df7a3c535f5cf6e388c74d",
+    "files/fielddata/script/scr_seq/scr_seq_0015_D11R0106.s": "0076c5c7df57866bc76b61ca7c971792eefccee2e13a1b596a13954df628c024",
+    "files/fielddata/script/scr_seq/scr_seq_0024_D18R0102.s": "82a8858665647fa76928c0f60f5ec7841ac2acb865bc846382e53f23b5625ae9",
+    "files/fielddata/script/scr_seq/scr_seq_0115_D46R0101.s": "3ca163eaca648c4840596650c6c54e6f28d79391ec83bae68175841e9c2451d4",
+    "files/fielddata/script/scr_seq/scr_seq_0139_EVERYWHERE.s": "30fee246b7f7546ddf86a0a896a34ca27f8b2ff2894a531dda51ba3853ca31bc",
+    "files/fielddata/script/scr_seq/scr_seq_0154_P01R0103.s": "4335c77181674bdaf82d615f1eb35f1be32619d7912789c33fa2bd5e8dbcc1ba",
+    "files/fielddata/script/scr_seq/scr_seq_0155_P01R0104.s": "736a92dd6950a8c2b2a0359d802afc2c2aa6296886d43adb1f30ed5852e1b77c",
+    "files/fielddata/script/scr_seq/scr_seq_0168_R01.s": "67cb92e638d6015e6944f0550a1a95cefc05cf491ee611d2fcd947bf53567796",
+    "files/fielddata/script/scr_seq/scr_seq_0169_R02.s": "7f5c938a872f49c40e50ebc7ffb49705f6d7d6379834025f74ab99af349cf696",
+    "files/fielddata/script/scr_seq/scr_seq_0170_R02R0101.s": "8d2e30e104e399b74c640b7a70b03f11a8c2300504968e4781394da4890e3a0d",
+    "files/fielddata/script/scr_seq/scr_seq_0171_R02R0201.s": "78aa340e11188ece6af554bcfa9df64025be78fa6389633271f46fe86fb4f449",
+    "files/fielddata/script/scr_seq/scr_seq_0172_R02R0301.s": "5bbbf73d41506d514962f7657659ce17f8ab3c4d0da82ab58e0e96085e363829",
+    "files/fielddata/script/scr_seq/scr_seq_0173_R02R0401.s": "944d70671501fb5c394e00939903754e3987061514b9e860f378b3209d733cbf",
+    "files/fielddata/script/scr_seq/scr_seq_0174_R02R0501.s": "ccda62d5685e48ae43bca9402d31ad0df77e5b2331516872a54f9578644102cd",
+    "files/fielddata/script/scr_seq/scr_seq_0175_R03.s": "6d9a1912dfbe1e8dec45957baaaa24d438a1fea80516e5da30d74301451b1a1d",
+    "files/fielddata/script/scr_seq/scr_seq_0176_R03PC0101.s": "c3cb89200e8949c69cbbaf041a38d35759fdac6218455ec0b63520c59c871c89",
+    "files/fielddata/script/scr_seq/scr_seq_0177_R03PC0102.s": "59ba546609ffa178037588d91a94b53856697edeaf37232f5dfcfb173d1ceeee",
+    "files/fielddata/script/scr_seq/scr_seq_0178_R04.s": "1256c32b43bf32de8fdbec6f14fef519e2c291663124c6364b0e95ad87e0e2b1",
+    "files/fielddata/script/scr_seq/scr_seq_0179_R05.s": "770707399c0e705826535e1f6a9541859c0d98161ba437c8827861d48aa96da3",
+    "files/fielddata/script/scr_seq/scr_seq_0180_R05R0201.s": "7482514994df4eafb5cbc2ca34bae77aab24b486450c1601179a6866d7a4ffe1",
+    "files/fielddata/script/scr_seq/scr_seq_0181_R05R0202.s": "f84a5c7911a4100f463c5503b05e10699b00352a85be7632c1db843dc6de30a5",
+    "files/fielddata/script/scr_seq/scr_seq_0182_R05R0301.s": "99f33ebad619838d3cd612b3260f8a71d34d40e50251f5dc435716ee5e39ec8b",
+    "files/fielddata/script/scr_seq/scr_seq_0183_R05R0401.s": "338eaa07401091edaf784116857ecba913d27210be720c840e66ff80d5ab13ea",
+    "files/fielddata/script/scr_seq/scr_seq_0184_R06.s": "041d2c29f3827fefe9000376b1cf603a9c583d4ef67e7574aa2543dc9de97cac",
+    "files/fielddata/script/scr_seq/scr_seq_0185_R06R0201.s": "41237df61abb86a6cfc8f0023037fbbdc8e533f13f782fefb9e76e18edf5c610",
+    "files/fielddata/script/scr_seq/scr_seq_0186_R07.s": "7aa8751d0efaed562e64a68d0488de8d54245c645e058c7eb4ef8a9b217b1112",
+    "files/fielddata/script/scr_seq/scr_seq_0187_R07R0101.s": "d608d0ba8008d3388b18f7c442991981bac597a1f2d63dfd6150ad4641584022",
+    "files/fielddata/script/scr_seq/scr_seq_0188_R08.s": "4f721baef9929a787c4348871e67b21afbee863196f91db0a01a69372166fe75",
+    "files/fielddata/script/scr_seq/scr_seq_0189_R08R0201.s": "bf2b6aa8ef97383405f5db0234019c8d67d873b53560d23dd826daaed5a61fac",
+    "files/fielddata/script/scr_seq/scr_seq_0190_R09.s": "250a841498c195154fd769deedcf052c202ad8fc997757f54b2b61ba1e4d4f02",
+    "files/fielddata/script/scr_seq/scr_seq_0191_R10.s": "29520fb9675276d0da7adfd973737fce1a22b49e5a89c633fbf40cd672ad9a41",
+    "files/fielddata/script/scr_seq/scr_seq_0192_R10PC0101.s": "aa26e55e0f136b8d00aff937ddaf4f669ba312e73ce4b6dd9d6fbd0f813c22c4",
+    "files/fielddata/script/scr_seq/scr_seq_0193_R10PC0102.s": "ad91f90c36a338609f5f3d67717f62a1648232449b91b7999d8746ef247c8b46",
+    "files/fielddata/script/scr_seq/scr_seq_0194_R10R0101.s": "77c40194111488a238405ac40feda84a5c3c51497550d5c143604232384269d5",
+    "files/fielddata/script/scr_seq/scr_seq_0195_R10R0201.s": "67e81c60e099c5fff0994fce970c65e0c3813556846bee1d8502e489b513130c",
+    "files/fielddata/script/scr_seq/scr_seq_0196_R10R0202.s": "801f201207c71faa36791cc5069a96a2eef91c3bb92a955aa0b93d38f94aec4e",
+    "files/fielddata/script/scr_seq/scr_seq_0197_R11.s": "9c08798bd247ea73193bb5db514f09e028c67be7333d7334899ccf8f8762296b",
+    "files/fielddata/script/scr_seq/scr_seq_0198_R11R0101.s": "1ca87375125de4276afc61b2a6884b93e122bd37acaf14c2336447fc940bf958",
+    "files/fielddata/script/scr_seq/scr_seq_0199_R12.s": "3e41ddedbb1002f6b03ef1e6ffe18aff20a467f3d2205b56726d9664799456f0",
+    "files/fielddata/script/scr_seq/scr_seq_0200_R12R0101.s": "e8cc2e7e6bdceea917af27628dee4cdf69340cabe951658935b44255ff109282",
+    "files/fielddata/script/scr_seq/scr_seq_0201_R13.s": "acf464cf86b4dba92bccef6841bbbf2df5042715329205a0481099cb799e9069",
+    "files/fielddata/script/scr_seq/scr_seq_0202_R14.s": "a2794096d1f48e1b89742614578141ba4655003687006353048c760b0787432f",
+    "files/fielddata/script/scr_seq/scr_seq_0203_R15.s": "6d27841d4319bbd8691bc70d218b173a0d26b8e00a8680d8903e3d3333fbef77",
+    "files/fielddata/script/scr_seq/scr_seq_0204_R15R0101.s": "c7d7b7f2f17178ffef1c4d0ad210ee7e9a60b6c3c431b137226b80ff32b59441",
+    "files/fielddata/script/scr_seq/scr_seq_0205_R16.s": "8c74b150e4d90fe67a72aa47db72d17a115cde0a384821aba42035d84884ee2c",
+    "files/fielddata/script/scr_seq/scr_seq_0206_R16R0101.s": "c1f058d264f9d5cdb01bd8dca5dc255fcb6d6b278423075c384e3bd8037fa527",
+    "files/fielddata/script/scr_seq/scr_seq_0207_R16R0201.s": "86800dcfefd53e3be20a6664e90f99ff1dcbe069b6ebc4e3a67d2aca5833c7de",
+    "files/fielddata/script/scr_seq/scr_seq_0208_R16R0301.s": "2afac60bca1ef56a8bdce8ee8cb676da73c38678e909e81e07776fce2a9dda8f",
+    "files/fielddata/script/scr_seq/scr_seq_0209_R17.s": "80304db0431bc9fd2656199956a78f43ed2bb47a02734798b0476d448bcc260d",
+    "files/fielddata/script/scr_seq/scr_seq_0210_R18.s": "3f249887829786334e0e767cd08fc287ca3f445d856e72650dcd1dd219616270",
+    "files/fielddata/script/scr_seq/scr_seq_0211_R18R0101.s": "8c4e49cacf56bd486488831e80522f58664ccaaaa66191974ec011e5b5f2944a",
+    "files/fielddata/script/scr_seq/scr_seq_0212_R22.s": "be78e824df31e212839809f04dcebf35885111840e91e417e3af179a4161e4fe",
+    "files/fielddata/script/scr_seq/scr_seq_0215_R24.s": "60e2542a80b7b02955a8bb00269aace9e7c86e9695a1c3cf578c36600c269635",
+    "files/fielddata/script/scr_seq/scr_seq_0216_R25.s": "69cda4c82cbb90649fec3dd22e0469a83803ab747582ce56b4292b4f2eef9dcd",
+    "files/fielddata/script/scr_seq/scr_seq_0217_R25R0101.s": "6172342734ec85fff4b4d5879e4c98de88394de3aa759abb709bbbb9664a51ca",
+    "files/fielddata/script/scr_seq/scr_seq_0735_T01.s": "e799e8dbdbc2bc4fdda4740e6a8e6994592a4b59e41575ae0cbf116b67a84797",
+    "files/fielddata/script/scr_seq/scr_seq_0736_T01R0101.s": "110d89a6a632a042e5ade71fca0fefcd641dfa911dc93bb14708613b1cc15d85",
+    "files/fielddata/script/scr_seq/scr_seq_0737_T01R0102.s": "46dc4373e5128155ffb5c52205a69baaa9672cd3b14e42c2ab21db2bf9f5b3c7",
+    "files/fielddata/script/scr_seq/scr_seq_0738_T01R0201.s": "339ce3aa1bd2e6fd7d7dc73ec4860149cfa91f4a0d1f550b72db734616efa278",
+    "files/fielddata/script/scr_seq/scr_seq_0739_T01R0202.s": "fce0b1f09fd5de7d19ffc48f60d6e4f3a2c3b1e4f599f8f9cf7dc5f27383a1ce",
+    "files/fielddata/script/scr_seq/scr_seq_0740_T01R0301.s": "36c99d594e41ec94db284b747f5e09aa22371380f15f4c76d357dbdf52943be2",
+    "files/fielddata/script/scr_seq/scr_seq_0741_T02.s": "900c65df01f7ec087f63dc05c1a2a3a271ec818f88e513a6fdbe0c752c37aecb",
+    "files/fielddata/script/scr_seq/scr_seq_0742_T02FS0101.s": "a1f430055ac2c35c7ed2899017c48fcdf4c9eefea4f0f9358668f7ccb837fbe4",
+    "files/fielddata/script/scr_seq/scr_seq_0743_T02GYM0101.s": "bcefeed9081eeacc36a5f9449fe16f1c9990e2125563c2709bd765cc7b6141e2",
+    "files/fielddata/script/scr_seq/scr_seq_0744_T02PC0101.s": "51f056aa2ae50d5582dd53d498895e4b71bb18b4a808e7f3568d58cb5ce10b4b",
+    "files/fielddata/script/scr_seq/scr_seq_0745_T02PC0102.s": "78ade16b9822d383b134e5e4d0209ddc1704ae35b081b152a4be11ebec70d7ac",
+    "files/fielddata/script/scr_seq/scr_seq_0746_T02R0201.s": "cd6e3cd4f0c4b88616abde1633e0a78b2938d74ca16bcb00d7c77b6ffc7e4d0a",
+    "files/fielddata/script/scr_seq/scr_seq_0747_T02R0301.s": "eda22261d8009bf8032d1400c4e9887e1ce60093c3827f265b286e2ac47801ca",
+    "files/fielddata/script/scr_seq/scr_seq_0748_T02R0302.s": "1b3b62bb0d072641960ca0e54b235f34bb87198a0720685f7b41f5cbda7fdc39",
+    "files/fielddata/script/scr_seq/scr_seq_0749_T02R0401.s": "134ac490d8da2558986271ea46f374b243a7414337b99eecfebb53ada3f9fe52",
+    "files/fielddata/script/scr_seq/scr_seq_0750_T03.s": "47b7e48a5e44e97cef4829d50aa467b236e15d29c50efb570ec330221a61fa19",
+    "files/fielddata/script/scr_seq/scr_seq_0751_T03FS0101.s": "f614509d367676e54033dda15ffe35e65132d52f89f006863cebdce6e376eceb",
+    "files/fielddata/script/scr_seq/scr_seq_0752_T03GYM0101.s": "09b4334e81ad1186b3203aa711234ae9d532f647dd283470157444a7daffc825",
+    "files/fielddata/script/scr_seq/scr_seq_0753_T03PC0101.s": "6efb09cdfb8807e38ba0006a4811f894f392da8bd25f80a05191067e53e7e2fb",
+    "files/fielddata/script/scr_seq/scr_seq_0754_T03PC0102.s": "1c000e92f7858add252c73f71157feab0c5be2ea94d11bf4680c05f715cbcd06",
+    "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s": "ae52d847426cb11a65f4128860f2ecc873fb580f06d5b010aef57eea5e8c80a3",
+    "files/fielddata/script/scr_seq/scr_seq_0756_T03R0201.s": "ba91fd8468d60a3f3ec46e45dadf7b694287f9dd0d8f36041dba04b09e768e4f",
+    "files/fielddata/script/scr_seq/scr_seq_0757_T03R0601.s": "6181236c3c6f3aa4c725aeaba0e85a7ab491ccb99c95d243e6717e165c2b0768",
+    "files/fielddata/script/scr_seq/scr_seq_0758_T04.s": "88aa9f9a7de3e35cc2903e716cee6a2a7c87183bea955a929f1972f10bee0c97",
+    "files/fielddata/script/scr_seq/scr_seq_0759_T04FS0101.s": "79434553b2b38422cbcbf40c7c8786aa960e7d797891ba622d15a9417f558be2",
+    "files/fielddata/script/scr_seq/scr_seq_0760_T04GYM0101.s": "b3243b7081a618828f82e991cc0d442f92a5d7b1cd1afc6934f6053731ed059a",
+    "files/fielddata/script/scr_seq/scr_seq_0761_T04PC0101.s": "e2f5cfbca3ab0a831149562bc7ed011d1382c0e9637a69b68e2d53dd3257344b",
+    "files/fielddata/script/scr_seq/scr_seq_0762_T04PC0102.s": "ceec25232393913439028d22eaee369c871ff65b9a70ccd0cd3f5cbeb55dd5d3",
+    "files/fielddata/script/scr_seq/scr_seq_0763_T04R0101.s": "088e7473504675f90ca1ce2b4aec407830d95f153e987dbaea5dc5b23a479af8",
+    "files/fielddata/script/scr_seq/scr_seq_0764_T04R0201.s": "daab92a8c3c5976ca71532dc20415ee50fee62a39a6bea620264f951b963fd61",
+    "files/fielddata/script/scr_seq/scr_seq_0765_T04R0301.s": "c1dc5eadb823f21db28ccced8e89ec63b1d41a86393356fd09dc5148aa96984d",
+    "files/fielddata/script/scr_seq/scr_seq_0766_T04R0401.s": "a56ad365d00d00e475014da43904efb411e410de18bcc616fc38dc054719e12f",
+    "files/fielddata/script/scr_seq/scr_seq_0767_T05.s": "7003a2db90b92dc619d6e930f59248bbb29628b24067bb51e08449cb0933f368",
+    "files/fielddata/script/scr_seq/scr_seq_0768_T05FS0101.s": "da51f6c877fa9b4b9f7cef8af272bfc57d5c3a9a1561c8481c2bfcf07ae222e7",
+    "files/fielddata/script/scr_seq/scr_seq_0769_T05PC0101.s": "ae13c6fb3df51416b555d931f263f4fd59842d660b793345703fbb965e91fbbf",
+    "files/fielddata/script/scr_seq/scr_seq_0770_T05PC0102.s": "3825aa4eeee18cf368f63b59a5168879b4e48be43a932cba0939b790cc89749e",
+    "files/fielddata/script/scr_seq/scr_seq_0771_T05R0201.s": "ba9337d64d11d5016b8a89fd24903a0f55599c6c3b90832c8dce9f00bbaa3038",
+    "files/fielddata/script/scr_seq/scr_seq_0772_T05R0301.s": "372fe61dda9204f4faf709efcd601c213e4193538200c1ec748fb23bf2428b19",
+    "files/fielddata/script/scr_seq/scr_seq_0773_T05R0401.s": "5e39c2f97749909a3df49d7d918485bffdc5871d89529cb225d7bf37e6cd98a3",
+    "files/fielddata/script/scr_seq/scr_seq_0774_T05R0601.s": "a1ba405e9f09357cd4aa202c8be8ebdfb8f249dd19e0e2fec47239b34002dacf",
+    "files/fielddata/script/scr_seq/scr_seq_0775_T05R0701.s": "073ce2cbc4392e33712da5ca869521c617004b3b1e8e42a6ae482354e543ef35",
+    "files/fielddata/script/scr_seq/scr_seq_0776_T06.s": "963fbb7577a621cc5bbf50ff21599b062fb391cc4b58001b27547f4dc874e181",
+    "files/fielddata/script/scr_seq/scr_seq_0777_T06FS0101.s": "6999247876e22f875bb031bf3e14e717e7cb4ff4cfb43211ee199ba2c74ac597",
+    "files/fielddata/script/scr_seq/scr_seq_0778_T06GYM0101.s": "7d4961141c8f45c3fa125894f9e61527d7d19b2255236d667a1ec5fff441ecbf",
+    "files/fielddata/script/scr_seq/scr_seq_0779_T06PC0101.s": "f82f5b53596cd3f39fba6410748f81ad3c02441473ac8c506a22b77f9d26e02a",
+    "files/fielddata/script/scr_seq/scr_seq_0780_T06PC0102.s": "832406007bf7e1c86da1e47654302762938122404581af9ab23e2b4ec0c28ccf",
+    "files/fielddata/script/scr_seq/scr_seq_0781_T06R0101.s": "cd895dbbc23e6b4690619651ae9f6e27cc0b85434e3acbdb35fbae2ab65076e2",
+    "files/fielddata/script/scr_seq/scr_seq_0782_T06R0301.s": "f696a65daf8bb885e0038979fefa08c2f0d2b88ad8b173120c818813a6b32fce",
+    "files/fielddata/script/scr_seq/scr_seq_0783_T06R0401.s": "24ee45a2a4f61835a40990103849f0e7eecf412df6aa676368f8b34045db6247",
+    "files/fielddata/script/scr_seq/scr_seq_0784_T06R0601.s": "abd42b4c5199487ca3835aa43cf726ebd65d12f182b00180d3b8d4e6f8ded58f",
+    "files/fielddata/script/scr_seq/scr_seq_0785_T07.s": "969e9434ca71a056ee690816d245b495e10a427e6282e60c8d90ca2a80096337",
+    "files/fielddata/script/scr_seq/scr_seq_0786_T07GYM0101.s": "cf209814914c94d1af29e35cd1402b994577fde8e9c1ab8856a24ee50d592033",
+    "files/fielddata/script/scr_seq/scr_seq_0787_T07PC0101.s": "00fd5d1bd1b61c1e9b7643beb317650e8cec0248d9565fbc0111e3e1c4bd1ca3",
+    "files/fielddata/script/scr_seq/scr_seq_0788_T07PC0102.s": "77d7e26feeb22778746baecbf0cd269a446ff6cd557869dd706e3c67cc969f33",
+    "files/fielddata/script/scr_seq/scr_seq_0789_T07R0101.s": "18fe2c0ef69fdd801cf2ed74f0aa64d73634dd7348c65010aa10e01770ea53f3",
+    "files/fielddata/script/scr_seq/scr_seq_0790_T07R0102.s": "ebf3c243d5fc5a76e5fff1e4826ac1b66af8fa925338c785f0d48692d35cbf61",
+    "files/fielddata/script/scr_seq/scr_seq_0791_T07R0103.s": "25cc68c98347f134b9d9ffc47cdc3bd42dfbec1387ffb46c8d5c8f9aad7f1ecd",
+    "files/fielddata/script/scr_seq/scr_seq_0792_T07R0104.s": "447f7b210916b4667e8f4f8840bdf1dee921dbd733eac064d20af7e61297d52f",
+    "files/fielddata/script/scr_seq/scr_seq_0793_T07R0105.s": "17131346bf0f557f1c71837ac651f5e35ab97974724e549e241cfabe60e2e1ac",
+    "files/fielddata/script/scr_seq/scr_seq_0794_T07R0106.s": "5718350b8096bcc8b042f6f58b4c466387db9634d0e70493e3e96b4241ff22ba",
+    "files/fielddata/script/scr_seq/scr_seq_0795_T07R0107.s": "26742681ea00ee1c57ce55c8b2fc32596d463d4f08a272d074ee2ab9ed12c195",
+    "files/fielddata/script/scr_seq/scr_seq_0796_T07R0201.s": "9fc3a63261674089c2c2c43f4cd3bb462f781a6c17cef867373d499852db53a1",
+    "files/fielddata/script/scr_seq/scr_seq_0797_T07R0202.s": "278ed2643fadbd81a255186eb93c41624065fab49fbd04b30cc063d4214f8119",
+    "files/fielddata/script/scr_seq/scr_seq_0798_T07R0203.s": "b1896ca994f8c60b25ea334f7b9c25e0a3952d9a8c9da3df8bf573bf7bef0b3e",
+    "files/fielddata/script/scr_seq/scr_seq_0799_T07R0204.s": "78de2a5d001cd3ac8622907be9745c79541e23ad5d76bcffd708f2262d67ea57",
+    "files/fielddata/script/scr_seq/scr_seq_0800_T07R0205.s": "3326ad3bf4cd5b1bc0c617d77bb3e12b2b46413462be9516b4b058ddcd8bb478",
+    "files/fielddata/script/scr_seq/scr_seq_0801_T07R0206.s": "195d08cb107f2a669b42bb5a6d52c922449060eebf96b5d057340cb6912d8a21",
+    "files/fielddata/script/scr_seq/scr_seq_0802_T07R0207.s": "e63f9716803bec0c0d7876cc28e6e6cad39745ae1ae1bcf7640afa6884b2f6ec",
+    "files/fielddata/script/scr_seq/scr_seq_0803_T07R0401.s": "2b9f03ec2f0197395d69832b8653481981b751deb156e633f2ee79758ed20715",
+    "files/fielddata/script/scr_seq/scr_seq_0804_T07R0501.s": "76f776069950b76bcfb9cbecf31fa4c10af5cd18ad7e9ea5e1065efd62a5fcc6",
+    "files/fielddata/script/scr_seq/scr_seq_0805_T07R0701.s": "7d6602c2d021b1931e016a2c996a64787eb3f8097d674a2dc3d359c3066415d8",
+    "files/fielddata/script/scr_seq/scr_seq_0806_T07SP0101.s": "96fae105a735b9caac280bf244b83e093db6e112ef01934bcd9041d1083f6a5e",
+    "files/fielddata/script/scr_seq/scr_seq_0807_T08.s": "4a0b6d80a85052e50c3d1691d73a28da57add97d9fbd90ac265df6092249676a",
+    "files/fielddata/script/scr_seq/scr_seq_0808_T08FS0101.s": "dafad0882539da9de1293187a5b87e2dbdb61e38870b2f5dd3e108148ac17a02",
+    "files/fielddata/script/scr_seq/scr_seq_0809_T08GYM0101.s": "9da134de93c49d3a80a25178e3c5b9b2f6995f769fcc94cd3916f3c4ee9186b1",
+    "files/fielddata/script/scr_seq/scr_seq_0810_T08PC0101.s": "5b0da1a2a1bac591f8172db376097e5b5f8bd6b269a9dfaac76c137964edc0ff",
+    "files/fielddata/script/scr_seq/scr_seq_0811_T08PC0102.s": "ae8bb68cc739cee084114a55e56b82a50e565d4943baaddbf10d4e82cd1302d0",
+    "files/fielddata/script/scr_seq/scr_seq_0812_T08R0201.s": "ec9dcc8e6db92afdb0298b7bf93bc848111cd9656cd9a1220f3b6b3453409921",
+    "files/fielddata/script/scr_seq/scr_seq_0813_T08R0401.s": "687b19d62916f7243affa97b5e883dd46f2bccf6afc997f4170d8cdde9fa8662",
+    "files/fielddata/script/scr_seq/scr_seq_0814_T08R0601.s": "c09ea1abe40d077bbdc310fae2bc2e2d92a823e56503f2fa530a4afd5ca160d8",
+    "files/fielddata/script/scr_seq/scr_seq_0815_T09.s": "fb86d49c4d93c8ce6a57714100efcc8317e2e0e15dc5208aba925a6575b7dc6b",
+    "files/fielddata/script/scr_seq/scr_seq_0816_T09PC0101.s": "74124240d937c00d937c34bac3ab3266c6f8388737a149fc3ee8fb3d3ea3ddd4",
+    "files/fielddata/script/scr_seq/scr_seq_0817_T09PC0102.s": "ba9515acef9461f6053b587fc9108a4ce829eadebf35e0927d1ff8422398a6b6",
+    "files/fielddata/script/scr_seq/scr_seq_0827_T11.s": "6a42093bcfb56b18322d9c89ec846936aab3bb807e97c5a549f9cfcf5ffcbdd5",
+    "files/fielddata/script/scr_seq/scr_seq_0828_T11FS0101.s": "1c0024fcfec3b805a597d536c20892297905cbdd0fc66497e8ede873a32d9548",
+    "files/fielddata/script/scr_seq/scr_seq_0829_T11GYM0101.s": "f773d71264f3b2799ee4a996a58cec780ff8a1a289404d8df154e303631ed143",
+    "files/fielddata/script/scr_seq/scr_seq_0830_T11PC0101.s": "4e163eb5513560adaf4b5ca61324ae790d24b814464db6b7239c0fb81934e8ac",
+    "files/fielddata/script/scr_seq/scr_seq_0831_T11PC0102.s": "3da36e2a09531e8fa2e5701dbadaa14ba26c0b8a62a1bc3fb92c639d7e2fd2c5",
+    "files/fielddata/script/scr_seq/scr_seq_0832_T11R0101.s": "f3b4caae3a032cbf1ba0af522da88390c8ffe01a8b408403974edc1bb8d1615f",
+    "files/fielddata/script/scr_seq/scr_seq_0833_T11R0501.s": "02b009c71b4d1b90decb636b0397fe2a52d81bc60e1237cca8c9be899d059604",
+    "files/fielddata/script/scr_seq/scr_seq_0834_T11R0601.s": "ae2ba1ea520a235bf3c7912543ff6ca52c956fe86ba1ae7bb95e4875acf0f429",
+    "files/fielddata/script/scr_seq/scr_seq_0835_T11R0602.s": "e98a431726dcaf4a14f3fc45cbaa1ac39dc52b92afb8e0cb4cc99749aec8e5c2",
+    "files/fielddata/script/scr_seq/scr_seq_0836_T11R0603.s": "564a59d82b994e1b886c6f74357690f5fc83f6b99ad9e3fd495da135b2589940",
+    "files/fielddata/script/scr_seq/scr_seq_0837_T11R0701.s": "e27ca51588cf18ecd215e6b6a42de0544508d57f9738573f7fb8331f22075e20",
+    "files/fielddata/script/scr_seq/scr_seq_0838_T11R0702.s": "d1acb536434ae599c87116ea98e663da233340a0917fee002190d8132887ad1e",
+    "files/fielddata/script/scr_seq/scr_seq_0839_T11R0703.s": "49a8229c7e0fe3b5bd7abb98a777ab0ef548ee4e94fedbe5534c0068c7161b9e",
+    "files/fielddata/script/scr_seq/scr_seq_0840_T11R0801.s": "74e29d1ed26176341bad4fdf98ef335934d54c0dddb677b8ac03281f0a4d5463",
+    "files/fielddata/script/scr_seq/scr_seq_0841_T11R0802.s": "1ccf635941b39b5c1f4cefd9a9176e943d81c07b8eec2ef11f5a2f9a94cc1134",
+    "files/fielddata/script/scr_seq/scr_seq_0958_W19.s": "098c9efe33a69cf50cdfdb64edc97ff08154210af38912a5cdfdc406af5c2efb",
+    "files/fielddata/script/scr_seq/scr_seq_0959_W19R0101.s": "dde3d895057fe482e1ac4b85a8e9f62ad299bb11f1434c6e7000988222db831d",
+    "files/fielddata/script/scr_seq/scr_seq_0960_W20.s": "02596d7605379d60df9106a09fd84e793ca9586d1bb2b10d1fe2be574e68291e",
+    "files/fielddata/script/scr_seq/scr_seq_0961_W21.s": "5203524314e5a41302a1d61d7439e0579c912fdbf6e72c465979d4ec67fda7cb",
+    "src/data/map_headers.h": "0712113afa3ec909a496662af91ed776a7705067f7a73afddb2cf906e1359539",
+    "src/field/encounter_check.c": "a91dad88736b55698c9d06485c98167b48b732f81469c75234327cb5d9dc1c18",
+    "src/field_roamer.c": "a413683ab55d410ddcf57e13d0931a1db5f700829e92d4e557c1d080f017b19d",
+    "src/npc_trade.c": "8d54779b3b4e8aa5ad2613a56cf121d19f822b3a84027db3bfa906901ea41e13",
+    "src/scrcmd_fossils.c": "3e57880fb518846914d5912488a3e12864e86bd8b556fc43c7317cb4b3f983b1",
+    "src/unk_02097F6C.c": "59bed4aca31cb35d948ce5a667ebc8afb295b82fd4d41c3565713b0451f8c401"
+  },
+  "locations": [
+    {
+      "location": "Route 1",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_1",
+          "bank": "R01",
+          "head": "R01",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 28,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_ROUTE_1_GATEHOUSE",
+          "bank": "NA",
+          "head": "T02R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 16,
+      "encountersSha256": "c403fc95b7476dda5bea2330b4f706f5bf46a1bdf2663f229a138e95a0c4cad3"
+    },
+    {
+      "location": "Route 2",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_2",
+          "bank": "R02",
+          "head": "R02",
+          "area": "West / south",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 31,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_2_EAST",
+          "bank": "R02R0101",
+          "head": "R02R0101",
+          "area": "East / north",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 31,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_2_HOUSE",
+          "bank": "NA",
+          "head": "R02R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_2_SOUTHEAST_GATEHOUSE",
+          "bank": "NA",
+          "head": "R02R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_2_VIRIDIAN_FOREST_SOUTH_GATEHOUSE",
+          "bank": "NA",
+          "head": "R02R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_2_VIRIDIAN_FOREST_NORTH_GATEHOUSE",
+          "bank": "NA",
+          "head": "R02R0501",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 48,
+      "encountersSha256": "bf2ae19f04899ec701d4187201bd8712bef874e21207ebe141231f89670adb1c"
+    },
+    {
+      "location": "Route 3",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_3",
+          "bank": "R03",
+          "head": "R03",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 32,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_3_POKECENTER_1F",
+          "bank": "NA",
+          "head": "R03PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_3_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "R03PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 16,
+      "encountersSha256": "bdde7b4b61c4d9e25ff47a4a3655aadff46275dcd74314524c3b1db0c10f2712"
+    },
+    {
+      "location": "Route 4",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_4",
+          "bank": "R04",
+          "head": "R04",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 41,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 25,
+      "encountersSha256": "62aeb93a406895096c1960b26b23b347866bc78675928c71ad9959d7a2951129"
+    },
+    {
+      "location": "Route 5",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_5",
+          "bank": "R05",
+          "head": "R05",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 27,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_5_SAFFRON_GATEHOUSE",
+          "bank": "NA",
+          "head": "R05R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_5_UNDERGROUND_PATH_GATE",
+          "bank": "NA",
+          "head": "R05R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_5_HOUSE",
+          "bank": "NA",
+          "head": "R05R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 16,
+      "encountersSha256": "9c0e7176772bfaa875dad66587d9ff57022406a78c57b2d832bf7092e3c81d26"
+    },
+    {
+      "location": "Route 6",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_6",
+          "bank": "R06",
+          "head": "R06",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 40,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_6_SAFFRON_GATEHOUSE",
+          "bank": "NA",
+          "head": "R06R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_6_UNDERGROUND_PATH_GATE",
+          "bank": "NA",
+          "head": "R06R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 25,
+      "encountersSha256": "aee890f11a522ba22b295c721c7be4d44ebafd9db8acdf6356e802d9b6d257ba"
+    },
+    {
+      "location": "Route 7",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_7",
+          "bank": "R07",
+          "head": "R07",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 31,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_7_SAFFRON_GATEHOUSE",
+          "bank": "NA",
+          "head": "R07R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 17,
+      "encountersSha256": "d504997ea6301cadbe941a807246b125b013be8673fec741e423079d52dfff5f"
+    },
+    {
+      "location": "Route 8",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_8",
+          "bank": "R08",
+          "head": "R08",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 30,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_8_SAFFRON_GATEHOUSE",
+          "bank": "NA",
+          "head": "R08R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 16,
+      "encountersSha256": "569debe3deff143e435aa9bffc6422b2a04071c55ce899c1835068b892c105c5"
+    },
+    {
+      "location": "Route 9",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_9",
+          "bank": "R09",
+          "head": "R09",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 34,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 20,
+      "encountersSha256": "9b23830fd2ee9f02fa1b51fa2f18307895ed65ceae9efbea8ed12b483e209265"
+    },
+    {
+      "location": "Route 10",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_10",
+          "bank": "R10",
+          "head": "R10",
+          "area": "North",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 35,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_10_SOUTH",
+          "bank": "NA",
+          "head": "R10R0101",
+          "area": "South",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_10_POKECENTER_1F",
+          "bank": "NA",
+          "head": "R10PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_10_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "R10PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Zapdos",
+          "level": 50,
+          "condition": "kanto-sixteen-badges",
+          "method": "interaction",
+          "primaryMap": "MAP_ROUTE_10",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0191_R10.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 22,
+      "encountersSha256": "fd8fc3e95cb810ecc48b388e851952e81eafd5c70976e79181fe4c7d90eb54a1"
+    },
+    {
+      "location": "Route 11",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_11",
+          "bank": "R11",
+          "head": "R11",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 26,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_19_ROUTE_12_GATEHOUSE",
+          "bank": "NA",
+          "head": "R11R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Snorlax",
+          "level": 50,
+          "condition": "kanto-snorlax",
+          "method": "interaction",
+          "primaryMap": "MAP_ROUTE_11",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0197_R11.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 13,
+      "encountersSha256": "2343060f3898416eeb9dee79351d9692d0c9c2f470ec74cc6dccb1ada8b0edda"
+    },
+    {
+      "location": "Route 12",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_12",
+          "bank": "R12",
+          "head": "R12",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 19,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_12_FISHING_BROTHER_HOUSE",
+          "bank": "NA",
+          "head": "R12R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 19,
+      "encountersSha256": "0b369da7fcf51409fc50657ca36379191c7b1846ac2b186d72bd1684bed67b13"
+    },
+    {
+      "location": "Route 13",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_13",
+          "bank": "R13",
+          "head": "R13",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 46,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 28,
+      "encountersSha256": "1a3c0fd102130bd8d2dfbb815d1c4ab62654a851ce297b92c86abf5825397252"
+    },
+    {
+      "location": "Route 14",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_14",
+          "bank": "R14",
+          "head": "R14",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 32,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 17,
+      "encountersSha256": "5091d1f6b2f637ce98448876b14a211b47251d0394a1a986589603912a3541ea"
+    },
+    {
+      "location": "Route 15",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_15",
+          "bank": "R15",
+          "head": "R15",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 30,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_15_FUCHSIA_GATEHOUSE",
+          "bank": "NA",
+          "head": "R15R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 16,
+      "encountersSha256": "aebb9c92e14d32cddd4031e651990d4f9e5290452ce3020b4f493964a8196001"
+    },
+    {
+      "location": "Route 16",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_16",
+          "bank": "NA",
+          "head": "R16",
+          "area": "",
+          "methods": [
+            "headbutt"
+          ],
+          "rowCount": 5,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_16_HOUSE",
+          "bank": "NA",
+          "head": "R16R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_16_GATEHOUSE",
+          "bank": "NA",
+          "head": "R16R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_16_EAST",
+          "bank": "R16R0301",
+          "head": "R16R0301",
+          "area": "East grass",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 26,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 19,
+      "encountersSha256": "9abc360bd7344544e91084588b6011fdb6f47bf57b0d2395aa11ec6b8e061132"
+    },
+    {
+      "location": "Route 17",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_17",
+          "bank": "R17",
+          "head": "R17",
+          "area": "",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 20,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 11,
+      "encountersSha256": "1b63794b8393caece020217298a2cda6b892a1a1670b104c7edd6fd4768598a9"
+    },
+    {
+      "location": "Route 18",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_18",
+          "bank": "R18",
+          "head": "R18",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 26,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_18_GATEHOUSE",
+          "bank": "NA",
+          "head": "R18R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 15,
+      "encountersSha256": "56843c9f6fa4ed2f088933b638fc6693e6e21835ef66716653a0704ce40a3d37"
+    },
+    {
+      "location": "Route 19",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_19",
+          "bank": "W19",
+          "head": "W19",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "rock-smash",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 19,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_19_FUCHSIA_GATEHOUSE",
+          "bank": "NA",
+          "head": "W19R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 15,
+      "encountersSha256": "e9642459da71e302170bb567910b848d316275664d4f928f937ecda66f91a7e7"
+    },
+    {
+      "location": "Route 20",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_20",
+          "bank": "W20",
+          "head": "W20",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 12,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 12,
+      "encountersSha256": "9fe78478e809e26eeca9afd43257e0d9f5a00a80bbcfdf295ee07b77efea4516"
+    },
+    {
+      "location": "Route 21",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_21",
+          "bank": "W21",
+          "head": "W21",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 36,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 26,
+      "encountersSha256": "d44064bc6b6b2ae315501b1dff07d127501f1bac239cc46c94ce840881abb4b9"
+    },
+    {
+      "location": "Route 22",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_22",
+          "bank": "R22",
+          "head": "R22",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 38,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 24,
+      "encountersSha256": "95f45ce6093162f6ee945475af41f181147fe0618eee56b54c9c977a8ea34e3c"
+    },
+    {
+      "location": "Route 24",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_24",
+          "bank": "R24",
+          "head": "R24",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 35,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 24,
+      "encountersSha256": "d8bb42ecfddad38e1cff1a54e5f4b495f504c545d429b4b35f54e87955aa52f2"
+    },
+    {
+      "location": "Route 25",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_25",
+          "bank": "R25",
+          "head": "R25",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 48,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROUTE_25_SEA_COTTAGE",
+          "bank": "NA",
+          "head": "R25R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Suicune",
+          "level": 40,
+          "condition": "kanto-suicune",
+          "method": "interaction",
+          "primaryMap": "MAP_ROUTE_25",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0216_R25.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 34,
+      "encountersSha256": "932be5fa1d95f5bc425c6c1f48575b566b4f2d656413337343befc1261b00de5"
+    },
+    {
+      "location": "Pallet Town",
+      "maps": [
+        {
+          "mapId": "MAP_PALLET",
+          "bank": "T01",
+          "head": "T01",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 18,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_PALLET_TOWN_REDS_HOUSE_1F",
+          "bank": "NA",
+          "head": "T01R0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PALLET_TOWN_BLUES_HOUSE_1F",
+          "bank": "NA",
+          "head": "T01R0201",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PALLET_TOWN_OAKS_LAB",
+          "bank": "NA",
+          "head": "T01R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PALLET_TOWN_REDS_HOUSE_2F",
+          "bank": "NA",
+          "head": "T01R0102",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PALLET_TOWN_BLUES_HOUSE_2F",
+          "bank": "NA",
+          "head": "T01R0202",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Bulbasaur",
+          "level": 5,
+          "condition": "oak-kanto-starter",
+          "method": "gift",
+          "primaryMap": "MAP_PALLET_TOWN_OAKS_LAB",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0740_T01R0301.s"
+        },
+        {
+          "pokemon": "Charmander",
+          "level": 5,
+          "condition": "oak-kanto-starter",
+          "method": "gift",
+          "primaryMap": "MAP_PALLET_TOWN_OAKS_LAB",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0740_T01R0301.s"
+        },
+        {
+          "pokemon": "Squirtle",
+          "level": 5,
+          "condition": "oak-kanto-starter",
+          "method": "gift",
+          "primaryMap": "MAP_PALLET_TOWN_OAKS_LAB",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0740_T01R0301.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 21,
+      "encountersSha256": "7d01b3dff71316c8cc58df75da4304bc444dcee57feab2d0f777ba823f2fc46f"
+    },
+    {
+      "location": "Viridian City",
+      "maps": [
+        {
+          "mapId": "MAP_VIRIDIAN",
+          "bank": "T02",
+          "head": "T02",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 14,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_GYM",
+          "bank": "NA",
+          "head": "T02GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_NORTHEAST_HOUSE",
+          "bank": "NA",
+          "head": "T02R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_POKEMART",
+          "bank": "NA",
+          "head": "T02FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T02PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T02PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 14,
+      "encountersSha256": "655bc43b8f47a652d9af1229e530f55c49f4c80067dcce018574266cfb6f743c"
+    },
+    {
+      "location": "Pewter City",
+      "maps": [
+        {
+          "mapId": "MAP_PEWTER",
+          "bank": "NA",
+          "head": "T03",
+          "area": "",
+          "methods": [
+            "headbutt"
+          ],
+          "rowCount": 7,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_PEWTER_NORTHEAST_HOUSE",
+          "bank": "NA",
+          "head": "T03R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PEWTER_GYM",
+          "bank": "NA",
+          "head": "T03GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PEWTER_POKEMART",
+          "bank": "NA",
+          "head": "T03FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PEWTER_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T03PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PEWTER_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T03PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_PEWTER_SOUTHWEST_HOUSE",
+          "bank": "NA",
+          "head": "T03R0601",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Latias",
+          "level": 40,
+          "condition": "enigma-stone",
+          "method": "interaction",
+          "primaryMap": "MAP_PEWTER",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0750_T03.s"
+        },
+        {
+          "pokemon": "Xatu",
+          "level": null,
+          "condition": "trade-pewter",
+          "method": "trade",
+          "primaryMap": "MAP_PEWTER_POKECENTER_1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0753_T03PC0101.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 9,
+      "encountersSha256": "8f625d3a6ecd9606dd93e531e36c44714e2f3a516f3c4fa929af7076f7625b30"
+    },
+    {
+      "location": "Cerulean City",
+      "maps": [
+        {
+          "mapId": "MAP_CERULEAN",
+          "bank": "T04",
+          "head": "T04",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 14,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_CERULEAN_POKEMART",
+          "bank": "NA",
+          "head": "T04FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_GYM",
+          "bank": "NA",
+          "head": "T04GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T04PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_NORTH_HOUSE",
+          "bank": "NA",
+          "head": "T04R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_EAST_HOUSE",
+          "bank": "NA",
+          "head": "T04R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_WEST_HOUSE",
+          "bank": "NA",
+          "head": "T04R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_BIKE_MANIAC_HOUSE",
+          "bank": "NA",
+          "head": "T04R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CERULEAN_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T04PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 14,
+      "encountersSha256": "2c8396a1485d73837570cc46a3fa37a45a976fc9a0962c779b9ed559e2038a20"
+    },
+    {
+      "location": "Lavender Town",
+      "maps": [
+        {
+          "mapId": "MAP_LAVENDER",
+          "bank": "NA",
+          "head": "T05",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_POKEMART",
+          "bank": "NA",
+          "head": "T05FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T05PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_VOLUNTEER_POKEMON_HOUSE",
+          "bank": "NA",
+          "head": "T05R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_SOUTHWEST_HOUSE",
+          "bank": "NA",
+          "head": "T05R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_NAME_RATER",
+          "bank": "NA",
+          "head": "T05R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_HOUSE_OF_MEMORIES",
+          "bank": "NA",
+          "head": "T05R0601",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_LAVENDER_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T05PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Vermilion City",
+      "maps": [
+        {
+          "mapId": "MAP_VERMILION",
+          "bank": "T06",
+          "head": "T06",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "rock-smash",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 20,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_VERMILION_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T06PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T06PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_POKEMART",
+          "bank": "NA",
+          "head": "T06FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_FISHING_DUDE_HOUSE",
+          "bank": "NA",
+          "head": "T06R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_POKEMON_FAN_CLUB",
+          "bank": "NA",
+          "head": "T06R0301",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_CENTRAL_HOUSE",
+          "bank": "NA",
+          "head": "T06R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_SOUTH_HOUSE",
+          "bank": "NA",
+          "head": "T06R0601",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VERMILION_GYM",
+          "bank": "NA",
+          "head": "T06GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SS_AQUA_VERMILION_PORT_INTERIOR",
+          "bank": "NA",
+          "head": "P01R0103",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SS_AQUA_VERMILION_PORT_EXTERIOR",
+          "bank": "NA",
+          "head": "P01R0104",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 20,
+      "encountersSha256": "bef3e4597c91e7865e49c8c2e246a55bef061a455f5bd1e63519a7acac36f79e"
+    },
+    {
+      "location": "Celadon City",
+      "maps": [
+        {
+          "mapId": "MAP_CELADON",
+          "bank": "T07",
+          "head": "T07",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "surfing"
+          ],
+          "rowCount": 7,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_1F",
+          "bank": "NA",
+          "head": "T07R0201",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_2F",
+          "bank": "NA",
+          "head": "T07R0202",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_3F",
+          "bank": "NA",
+          "head": "T07R0203",
+          "area": "3F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_ROOF",
+          "bank": "NA",
+          "head": "T07R0204",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_ROOF_ROOM",
+          "bank": "NA",
+          "head": "T07R0205",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_RESTAURANT",
+          "bank": "NA",
+          "head": "T07R0701",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T07PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T07PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_GYM",
+          "bank": "NA",
+          "head": "T07GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_LEFT_ELEVATOR",
+          "bank": "NA",
+          "head": "T07R0206",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_CONDOMINIUMS_RIGHT_ELEVATOR",
+          "bank": "NA",
+          "head": "T07R0207",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 7,
+      "encountersSha256": "6a6a990408c625cee2b8821861453bf623e99ffef0309de2d002542eac445800"
+    },
+    {
+      "location": "Fuchsia City",
+      "maps": [
+        {
+          "mapId": "MAP_FUCHSIA",
+          "bank": "T08",
+          "head": "T08",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "headbutt",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 12,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_FUCHSIA_POKEMART",
+          "bank": "NA",
+          "head": "T08FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_GYM",
+          "bank": "NA",
+          "head": "T08GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_SOUTHWEST_HOUSE",
+          "bank": "NA",
+          "head": "T08R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T08PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_SAFARI_ZONE_WARDEN_HOUSE",
+          "bank": "NA",
+          "head": "T08R0601",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T08PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 12,
+      "encountersSha256": "41c560ddd115ef7693659d9cc568d6fd7b450659e800cd46aadfafba1f58c0fe"
+    },
+    {
+      "location": "Cinnabar Island",
+      "maps": [
+        {
+          "mapId": "MAP_CINNABAR_ISLAND",
+          "bank": "T09",
+          "head": "T09",
+          "area": "",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 12,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_CINNABAR_ISLAND_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T09PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CINNABAR_ISLAND_POKECENTER_B1F",
+          "bank": "NA",
+          "head": "T09PC0102",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 12,
+      "encountersSha256": "9fe78478e809e26eeca9afd43257e0d9f5a00a80bbcfdf295ee07b77efea4516"
+    },
+    {
+      "location": "Saffron City",
+      "maps": [
+        {
+          "mapId": "MAP_SAFFRON",
+          "bank": "NA",
+          "head": "T11",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_MR_PSYCHIC_HOUSE",
+          "bank": "NA",
+          "head": "T11R0501",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_COPYCAT_HOUSE_1F",
+          "bank": "NA",
+          "head": "T11R0801",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_COPYCAT_HOUSE_2F",
+          "bank": "NA",
+          "head": "T11R0802",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_POKECENTER_1F",
+          "bank": "NA",
+          "head": "T11PC0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_POKECENTER_2F",
+          "bank": "NA",
+          "head": "T11PC0102",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_POKEMART",
+          "bank": "NA",
+          "head": "T11FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_GYM",
+          "bank": "NA",
+          "head": "T11GYM0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Diglett’s Cave",
+      "maps": [
+        {
+          "mapId": "MAP_DIGLETT_CAVE",
+          "bank": "D01R0101",
+          "head": "D01R0101",
+          "area": "",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 18,
+          "wildAbsent": false
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Rhyhorn",
+          "level": null,
+          "condition": "trade-brock",
+          "method": "trade",
+          "primaryMap": "MAP_DIGLETT_CAVE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0005_D01R0101.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 7,
+      "encountersSha256": "ee1fe1d61f3e436e73462d787ae667a7bacdc603dd073b608d30a506ff9d569b"
+    },
+    {
+      "location": "Mt. Moon",
+      "maps": [
+        {
+          "mapId": "MAP_MOUNT_MOON",
+          "bank": "D02R0101",
+          "head": "D02R0101",
+          "area": "Cave",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 24,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 8,
+      "encountersSha256": "6737eb8cc7e0e4f513274d437e379927abded101babf6aa65bc7732b175a386d"
+    },
+    {
+      "location": "Rock Tunnel",
+      "maps": [
+        {
+          "mapId": "MAP_ROCK_TUNNEL_1F",
+          "bank": "D05R0101",
+          "head": "D05R0101",
+          "area": "1F",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 27,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_ROCK_TUNNEL_B1F",
+          "bank": "D05R0102",
+          "head": "D05R0102",
+          "area": "B1F",
+          "methods": [
+            "rock-smash",
+            "walking"
+          ],
+          "rowCount": 31,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 20,
+      "encountersSha256": "d668ae7a0cc8950e5a61fb16decee630e2ff53b631b057dacfb4dab3eee35d61"
+    },
+    {
+      "location": "Seafoam Islands",
+      "maps": [
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_1F",
+          "bank": "D11R0101",
+          "head": "D11R0101",
+          "area": "1F",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 24,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_B1F",
+          "bank": "D11R0102",
+          "head": "D11R0102",
+          "area": "B1F",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 27,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_B2F",
+          "bank": "D11R0103",
+          "head": "D11R0103",
+          "area": "B2F",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 27,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_B3F",
+          "bank": "D11R0104",
+          "head": "D11R0104",
+          "area": "B3F",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 30,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_B4F",
+          "bank": "D11R0105",
+          "head": "D11R0105",
+          "area": "B4F",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 43,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_SEAFOAM_ISLANDS_CINNABAR_GYM",
+          "bank": "NA",
+          "head": "D11R0106",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Articuno",
+          "level": 50,
+          "condition": "kanto-articuno",
+          "method": "interaction",
+          "primaryMap": "MAP_SEAFOAM_ISLANDS_B4F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0014_D11R0105.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 60,
+      "encountersSha256": "2f4f5b2cff30b959ce4e8462296dca3467aaca1cc43183e78636287eab9cfeda"
+    },
+    {
+      "location": "Cerulean Cave",
+      "maps": [
+        {
+          "mapId": "MAP_CERULEAN_CAVE_1F",
+          "bank": "D03R0101",
+          "head": "D03R0101",
+          "area": "1F",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "rock-smash",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 52,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_CERULEAN_CAVE_2F",
+          "bank": "D03R0102",
+          "head": "D03R0102",
+          "area": "2F",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 50,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_CERULEAN_CAVE_B1F",
+          "bank": "D03R0103",
+          "head": "D03R0103",
+          "area": "B1F",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "rock-smash",
+            "super_rod",
+            "surfing",
+            "walking"
+          ],
+          "rowCount": 52,
+          "wildAbsent": false
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Mewtwo",
+          "level": 70,
+          "condition": "kanto-sixteen-badges",
+          "method": "interaction",
+          "primaryMap": "MAP_CERULEAN_CAVE_B1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0011_D03R0103.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 85,
+      "encountersSha256": "fb02649536b63cafe527fec7302fc1d7c1cabaed4abe0eaf97a10f5ee3d06c07"
+    },
+    {
+      "location": "Viridian Forest",
+      "maps": [
+        {
+          "mapId": "MAP_VIRIDIAN_FOREST",
+          "bank": "D46R0101",
+          "head": "D46R0101",
+          "area": "",
+          "methods": [
+            "headbutt",
+            "walking"
+          ],
+          "rowCount": 38,
+          "wildAbsent": false
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 25,
+      "encountersSha256": "723140ac58c84d9039be0fd2932ef0116ff764b850bd1abf498d79468cec6224"
+    },
+    {
+      "location": "Pal Park",
+      "maps": [
+        {
+          "mapId": "MAP_PAL_PARK",
+          "bank": "NA",
+          "head": "D10R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_FUCHSIA_PAL_PARK_ENTRANCE",
+          "bank": "NA",
+          "head": "T08R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Power Plant",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_10_POWER_PLANT_REPAIRED",
+          "bank": "NA",
+          "head": "R10R0201",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_ROUTE_10_POWER_PLANT_BROKEN",
+          "bank": "NA",
+          "head": "R10R0202",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Magneton",
+          "level": null,
+          "condition": "trade-power-plant",
+          "method": "trade",
+          "primaryMap": "MAP_ROUTE_10_POWER_PLANT_REPAIRED",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0195_R10R0201.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 1,
+      "encountersSha256": "270ee58d4951290054116cf44259ac7d412c301bfb9a590af4b62e0202b6652e"
+    },
+    {
+      "location": "Mt. Moon Square",
+      "maps": [
+        {
+          "mapId": "MAP_MOUNT_MOON_SQUARE_ENTRANCE",
+          "bank": "D02R0102",
+          "head": "D02R0102",
+          "area": "Square entrance",
+          "methods": [
+            "walking"
+          ],
+          "rowCount": 24,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_MOUNT_MOON_SQUARE",
+          "bank": "D02R0103",
+          "head": "D02R0103",
+          "area": "Square",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 6,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_MOUNT_MOON_SQUARE_CLEFAIRY_EVENT",
+          "bank": "D02R0104",
+          "head": "D02R0104",
+          "area": "Square",
+          "methods": [
+            "good_rod",
+            "old_rod",
+            "super_rod",
+            "surfing"
+          ],
+          "rowCount": 9,
+          "wildAbsent": false
+        },
+        {
+          "mapId": "MAP_MOUNT_MOON_SQUARE_SHOP",
+          "bank": "NA",
+          "head": "D02FS0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "verified",
+      "rowCount": 23,
+      "encountersSha256": "fd6d21632ffe0a59b26f359c83dd2d9a7c18d0615d09b6ec331144929ce28a19"
+    },
+    {
+      "location": "Underground Path",
+      "maps": [
+        {
+          "mapId": "MAP_ROUTE_5_UNDERGROUND_PATH",
+          "bank": "NA",
+          "head": "R05R0202",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Kanto Radio Tower",
+      "maps": [
+        {
+          "mapId": "MAP_LAVENDER_RADIO_STATION",
+          "bank": "NA",
+          "head": "T05R0701",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Saffron Magnet Train Station",
+      "maps": [
+        {
+          "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_1F",
+          "bank": "NA",
+          "head": "T11R0601",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F",
+          "bank": "NA",
+          "head": "T11R0602",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_MAGNET_TRAIN_STATION_2F_EMPTY",
+          "bank": "NA",
+          "head": "T11R0603",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Pikachu",
+          "level": null,
+          "condition": "trade-surge",
+          "method": "trade",
+          "primaryMap": "MAP_SAFFRON_MAGNET_TRAIN_STATION_1F",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0834_T11R0601.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 1,
+      "encountersSha256": "e6152e7831be1eb68b2f93ca8f37a05605058b7ffb9b0a542245fbdd3d7d2944"
+    },
+    {
+      "location": "Fighting Dojo",
+      "maps": [
+        {
+          "mapId": "MAP_SAFFRON_FIGHTING_DOJO",
+          "bank": "NA",
+          "head": "T11R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Silph Co.",
+      "maps": [
+        {
+          "mapId": "MAP_SAFFRON_SILPH_CO_HQ",
+          "bank": "NA",
+          "head": "T11R0701",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_SILPH_CO_ROTOM_ROOM",
+          "bank": "NA",
+          "head": "T11R0702",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_SAFFRON_SILPH_CO_ELEVATOR",
+          "bank": "NA",
+          "head": "T11R0703",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Treecko",
+          "level": 5,
+          "condition": "steven-hoenn-starter",
+          "method": "gift",
+          "primaryMap": "MAP_SAFFRON_SILPH_CO_HQ",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0837_T11R0701.s"
+        },
+        {
+          "pokemon": "Torchic",
+          "level": 5,
+          "condition": "steven-hoenn-starter",
+          "method": "gift",
+          "primaryMap": "MAP_SAFFRON_SILPH_CO_HQ",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0837_T11R0701.s"
+        },
+        {
+          "pokemon": "Mudkip",
+          "level": 5,
+          "condition": "steven-hoenn-starter",
+          "method": "gift",
+          "primaryMap": "MAP_SAFFRON_SILPH_CO_HQ",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0837_T11R0701.s"
+        },
+        {
+          "pokemon": "Beldum",
+          "level": null,
+          "condition": "trade-steven",
+          "method": "trade",
+          "primaryMap": "MAP_SAFFRON_SILPH_CO_HQ",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0837_T11R0701.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 4,
+      "encountersSha256": "276b6f49c1bc6181f6385e8e0230941ea24dcf86dec7321978ff1d0a712869c5"
+    },
+    {
+      "location": "Celadon Department Store",
+      "maps": [
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_1F",
+          "bank": "NA",
+          "head": "T07R0101",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_2F",
+          "bank": "NA",
+          "head": "T07R0102",
+          "area": "2F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_3F",
+          "bank": "NA",
+          "head": "T07R0103",
+          "area": "3F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_4F",
+          "bank": "NA",
+          "head": "T07R0104",
+          "area": "4F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_5F",
+          "bank": "NA",
+          "head": "T07R0105",
+          "area": "5F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_ROOF",
+          "bank": "NA",
+          "head": "T07R0106",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_DEPARTMENT_STORE_ELEVATOR",
+          "bank": "NA",
+          "head": "T07R0107",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Celadon Game Corner",
+      "maps": [
+        {
+          "mapId": "MAP_CELADON_GAME_CORNER_JP",
+          "bank": "NA",
+          "head": "T07R0401",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_PRIZE_CORNER",
+          "bank": "NA",
+          "head": "T07R0501",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_CELADON_GAME_CORNER",
+          "bank": "NA",
+          "head": "T07SP0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Mr. Mime",
+          "level": 15,
+          "condition": "celadon-prize",
+          "method": "gift",
+          "primaryMap": "MAP_CELADON_PRIZE_CORNER",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0804_T07R0501.s"
+        },
+        {
+          "pokemon": "Eevee",
+          "level": 15,
+          "condition": "celadon-prize",
+          "method": "gift",
+          "primaryMap": "MAP_CELADON_PRIZE_CORNER",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0804_T07R0501.s"
+        },
+        {
+          "pokemon": "Porygon",
+          "level": 15,
+          "condition": "celadon-prize",
+          "method": "gift",
+          "primaryMap": "MAP_CELADON_PRIZE_CORNER",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0804_T07R0501.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 3,
+      "encountersSha256": "942b43951d3fcc5c40e4c896bc23af6e0565d518ff6f75a0dbe144ce725f5d6c"
+    },
+    {
+      "location": "Trainer House",
+      "maps": [
+        {
+          "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_1F",
+          "bank": "NA",
+          "head": "T02R0301",
+          "area": "1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        },
+        {
+          "mapId": "MAP_VIRIDIAN_TRAINER_HOUSE_B1F",
+          "bank": "NA",
+          "head": "T02R0302",
+          "area": "B1F",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [],
+      "status": "no-fixed-wild",
+      "rowCount": 0,
+      "encountersSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "location": "Pewter Museum of Science",
+      "maps": [
+        {
+          "mapId": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "bank": "NA",
+          "head": "T03R0101",
+          "area": "",
+          "methods": [],
+          "rowCount": 0,
+          "wildAbsent": true
+        }
+      ],
+      "special": [
+        {
+          "pokemon": "Aerodactyl",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Omanyte",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Kabuto",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Lileep",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Anorith",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Shieldon",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        },
+        {
+          "pokemon": "Cranidos",
+          "level": 20,
+          "condition": "fossil-revival",
+          "method": "gift",
+          "primaryMap": "MAP_PEWTER_MUSEUM_OF_SCIENCE",
+          "script": "files/fielddata/script/scr_seq/scr_seq_0755_T03R0101.s"
+        }
+      ],
+      "status": "verified",
+      "rowCount": 7,
+      "encountersSha256": "c6eeb485487b20a2eb8fcd976f4c424baf0119122d795a6a7249e85509ad20d7"
+    }
+  ],
+  "supplemental": {
+    "Burned Tower": [
+      {
+        "method": "interaction",
+        "pokemon": "Suicune",
+        "levels": [
+          40
+        ],
+        "times": [],
+        "percent": null,
+        "conditions": [
+          "suicune-return"
+        ],
+        "area": "B1F",
+        "availability": "Stationary · return encounter"
+      }
+    ]
+  },
+  "excluded": [
+    {
+      "location": "Route 12",
+      "pokemon": "Snorlax",
+      "reason": "Unused battle script; no Snorlax object in the released Route 12 event table."
+    },
+    {
+      "location": "Mt. Moon Square",
+      "pokemon": "Clefairy dance",
+      "reason": "Scripted dance, not another catchable/static Pokémon."
+    }
+  ]
+}

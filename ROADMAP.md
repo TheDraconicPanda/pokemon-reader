@@ -1,3 +1,9 @@
+# Kanto Atlas — encounters, v0.25.81
+
+Step 2 adds 847 source-derived Kanto encounter records, gifts/trades and explicit
+empty-location status. Secondary reference uncertainties remain documented.
+See [implementation status](docs/atlas-kanto-implementation.md).
+
 # Kanto Atlas — geography, v0.25.80
 
 Step 1 adds 52 Kanto groups, a pinned primary-map census and navigation across both

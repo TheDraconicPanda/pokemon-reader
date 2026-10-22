@@ -1,12 +1,30 @@
+import { KANTO_ENCOUNTERS } from "./games/soulsilver/kanto-encounters.js";
 import { SOULSILVER_LOCATION_ENCOUNTERS } from './games/soulsilver/location-encounters.js';
 import { SOULSILVER_ROUTE_ENCOUNTERS } from './games/soulsilver/route-encounters.js';
 import { SOULSILVER_ROUTE_FEATURES } from './games/soulsilver/route-features.js';
 import { speciesIdForName } from './game-reference.js';
 
 // Explicit game selection keeps future versions from inheriting SoulSilver data.
-const REFERENCES = new Map([["soulsilver", { encounters: SOULSILVER_ROUTE_ENCOUNTERS.routes, features: SOULSILVER_ROUTE_FEATURES.routes, locations: SOULSILVER_LOCATION_ENCOUNTERS.locations }]]);
-const METHODS = { walking: 'Walking', surfing: 'Surfing', old_rod: 'Old Rod', good_rod: 'Good Rod', super_rod: 'Super Rod', headbutt: 'Headbutt', 'rock-smash': 'Rock Smash', interaction: 'Special encounter', gift: 'Gift Pokémon', contest: 'Bug-Catching Contest' };
-const CONDITIONS = { 'hoenn-sound': 'Hoenn Sound · Wednesday · National Pokédex', 'sinnoh-sound': 'Sinnoh Sound · Thursday · National Pokédex', swarm: 'Active outbreak · National Pokédex', 'tree-a': 'Tree group A', 'tree-b': 'Tree group B', 'special-tree': 'Special trees · Rock Climb', squirtbottle: 'Use SquirtBottle · once', 'kenya-mail': 'Webster’s Kenya · Mail delivery',
+const REFERENCES = new Map([["soulsilver", { encounters: SOULSILVER_ROUTE_ENCOUNTERS.routes, features: SOULSILVER_ROUTE_FEATURES.routes, locations: {...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations} }]]);
+const METHODS = { walking: 'Walking', surfing: 'Surfing', old_rod: 'Old Rod', good_rod: 'Good Rod', super_rod: 'Super Rod', headbutt: 'Headbutt', 'rock-smash': 'Rock Smash', interaction: 'Special encounter', gift: 'Gift Pokémon', trade: 'In-game trade', contest: 'Bug-Catching Contest' };
+const CONDITIONS = {
+  'moon-square-ordinary':'Ordinary Mt. Moon Square scene',
+  'moon-square-clefairy':'Alternate Clefairy scene · Monday night / early Tuesday · before the dance reward is collected',
+  'suicune-return':'If Suicune was not caught on Route 25, enter the Hall of Fame again to make it return to Burned Tower · not a second capture',
+  'kanto-snorlax':'Restore power, receive the EXPN Card and play the Poké Flute radio channel beside Snorlax · once',
+  'kanto-suicune':'Complete Suicune’s earlier sightings and defeat Misty · once',
+  'kanto-sixteen-badges':'All sixteen Badges · once',
+  'kanto-articuno':'B4F · Surf and Strength for the deeper cave route · once',
+  'enigma-stone':'Historical Enigma Stone distribution required · SoulSilver’s stationary Latias · once',
+  'oak-kanto-starter':'Defeat Red, then choose one of Oak’s three Kanto starters · once',
+  'steven-hoenn-starter':'Defeat Red and speak to Steven at Silph Co. · choose one Hoenn starter · once',
+  'celadon-prize':'Exchange Game Corner coins at the Prize Corner',
+  'fossil-revival':'Bring the matching fossil to the museum; leave and return with party space · some fossils require transfer',
+  'trade-power-plant':'Offer Dugtrio for Magneton at the Power Plant',
+  'trade-pewter':'Offer Haunter for Xatu in Pewter’s Pokémon Center',
+  'trade-surge':'After catching Zapdos and registering Lt. Surge’s number, offer Pikachu for his foreign Pikachu',
+  'trade-brock':'Offer Bonsly for Rhyhorn when Brock visits Diglett’s Cave after phone registration; appearance follows his rematch schedule',
+  'trade-steven':'After receiving Steven’s starter, offer Forretress for Beldum at Silph Co.', 'hoenn-sound': 'Hoenn Sound · Wednesday · National Pokédex', 'sinnoh-sound': 'Sinnoh Sound · Thursday · National Pokédex', swarm: 'Active outbreak · National Pokédex', 'tree-a': 'Tree group A', 'tree-b': 'Tree group B', 'special-tree': 'Special trees · Rock Climb', squirtbottle: 'Use SquirtBottle · once', 'kenya-mail': 'Webster’s Kenya · Mail delivery',
   'unown-puzzle': 'At least one tile puzzle solved', 'unown-complete': '26 letters, four puzzles, four secret rooms and entrance panel unlocked',
   'friday-lapras': 'Friday · Surf required', 'rainbow-wing': 'Rainbow Wing · SoulSilver',
   'silver-wing-tidal-bell': 'Silver Wing, Tidal Bell and Kimono Girls', 'red-gyarados': 'Guaranteed shiny · story interaction',
@@ -40,10 +58,10 @@ export function routeEncounters(gameId, name) {
 
 function formatEncounter(row,gameId) {
   return {
-    method: [row.area, METHODS[row.method], ...row.conditions.map(condition => CONDITIONS[condition])].filter(Boolean).join(' · '),
+    method: [row.area, METHODS[row.method], ...row.conditions.map(condition => CONDITIONS[condition] || condition)].filter(Boolean).join(' · '),
     pokemon: row.pokemon,
     speciesId: speciesIdForName(gameId,row.pokemon),
-    levels: formatLevels(row.levels),
+    levels: row.levelsLabel || formatLevels(row.levels),
     times: !row.times.length || row.times.length === 3 ? 'All times' : row.times.map(time => TIMES[time]).join(', '),
     rate: row.availability || (row.percent === null ? 'One-time' : `${row.percent}%`)
   };
@@ -63,5 +81,6 @@ export function locationEncounterReference(gameId, name) {
   }
   if (!Object.hasOwn(game.locations, name)) return null;
   const reference = game.locations[name];
-  return { ...reference, encounters: reference.encounters.map(row=>formatEncounter(row,gameId)) };
+  const extra = gameId==='soulsilver' ? KANTO_ENCOUNTERS.supplemental[name] || [] : [];
+  return { ...reference, encounters: [...reference.encounters,...extra].map(row=>formatEncounter(row,gameId)) };
 }
