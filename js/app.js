@@ -12,7 +12,7 @@ import { evolutionExportName } from './saves/gen4-container.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.26.2";
+const APP_VERSION = "0.26.3";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -325,7 +325,7 @@ function renderOverview(result) {
   document.querySelector('#game-progress')?.remove();
   if (currentGameId === 'platinum') {
     const progress = document.createElement('p'); progress.id='game-progress'; progress.className='collection-note';
-    progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. Platinum reference Pokédex and Atlas are not yet enabled. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
+    progress.textContent = `Platinum · Main story cleared: ${result.progress?.mainStoryCleared === undefined ? 'Unknown' : result.progress.mainStoryCleared ? 'Yes' : 'No'} · National Pokédex: ${result.save.pokedex.nationalDex ? 'Unlocked' : 'Not unlocked'}. The Platinum reference Pokédex is available; the Sinnoh Atlas currently includes native random encounters. Hall of Fame, Battle Frontier and Underground records are not decoded.`;
     document.querySelector('#overview-summary').append(progress);
   }
   document.querySelector("#overview-summary").hidden = false;

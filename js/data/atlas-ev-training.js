@@ -14,7 +14,7 @@ const GAMES = new Map([['soulsilver', {
 }]]);
 
 export function evYieldForSpecies(gameId, name) {
-  return speciesEvYield(gameId,name);
+  return GAMES.has(gameId)?speciesEvYield(gameId,name):null;
 }
 
 // Scores a complete distribution, never a list of conditional replacement slots.

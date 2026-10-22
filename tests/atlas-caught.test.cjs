@@ -14,9 +14,11 @@ test('shared SoulSilver identifiers and audited yields cover every existing Atla
   for(const row of rows)assert.ok(speciesReference('soulsilver',speciesIdForName('soulsilver',row.pokemon)),row.pokemon);
   for(let id=1;id<=493;id++)assert.ok(speciesReference('soulsilver',id).evYield,id);
   assert.equal(gameReference('soulsilver').generation,4);
-  for(const game of ['heartgold','platinum','__proto__',undefined]) {
+  for(const game of ['heartgold','__proto__',undefined]) {
     assert.equal(gameReference(game),null);assert.equal(speciesIdForName(game,'Rattata'),null);assert.equal(speciesReference(game,19),null);
   }
+  assert.equal(gameReference('platinum').gameId,'platinum');
+  assert.deepEqual(speciesReference('platinum',19).evYield,[0,0,0,0,0,1]);
   assert.equal(speciesReference('soulsilver',494),null);
   assert.equal(speciesIdForName('soulsilver','Unknown Pokémon'),null);
   assert.equal(speciesIdForName('soulsilver','Nidoran♀'),29);assert.equal(speciesIdForName('soulsilver','Nidoran♂'),32);

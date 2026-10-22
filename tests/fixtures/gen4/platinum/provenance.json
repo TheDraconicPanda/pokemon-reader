@@ -10,6 +10,9 @@
     "middle.sav": "69b0efa4352818f9471297d18090ac2e173c73deeb536b9386088aa0485825f6",
     "postgame.expected.json": "bb864a5faaff52ca6038cb6e0bd61fa86b8ceaf11ae1385837cf35709399edf8",
     "postgame.sav": "ef041acf55c38bd11cca239687c69b022789b59c71058bad1052a2d559f89e4a",
-    "shuffles.json": "fc9015d4aa1c2455acf1d771bfb0fee7820ed4b6634e12b4a8a0bb1eacea209e"
+    "shuffles.json": "fc9015d4aa1c2455acf1d771bfb0fee7820ed4b6634e12b4a8a0bb1eacea209e",
+    "early.dex.json": "4163d39690812af9aaa5a12e5e37fe940b9097b53df69e0efdf60d448725261d",
+    "middle.dex.json": "4163d39690812af9aaa5a12e5e37fe940b9097b53df69e0efdf60d448725261d",
+    "postgame.dex.json": "4163d39690812af9aaa5a12e5e37fe940b9097b53df69e0efdf60d448725261d"
   }
 }

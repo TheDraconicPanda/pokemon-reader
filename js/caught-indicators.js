@@ -37,5 +37,5 @@ export function mountCaughtIndicators({gameId,root,status}) {
   window.addEventListener('focus',refresh);
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
   refresh();
-  return {decorate,refresh};
+  return {decorate,refresh,setGame(id){gameId=id;caught=new Set();refresh();}};
 }

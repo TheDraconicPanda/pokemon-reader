@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Platinum Pokédex — v0.26.3
+
+Use the existing Pokédex’s Game selector to browse Platinum’s 210-entry Sinnoh or
+493-entry National list. It shares search, filters, evolution views and forms with
+SoulSilver, with native Platinum learnsets, Defog HM05 and shard tutors. Seen,
+Caught and party/PC ownership remain scoped to the matching Adventure Profile.
+
+All 1,972 move-list comparisons and the regional order match independent pinned
+PokéAPI data. Species links open the new primary Sinnoh random-encounter reference
+in the existing Atlas (123 location groups). Special encounters, full Atlas
+auditing and Great Marsh simulation remain the next milestone. See
+[Pokédex evidence](docs/platinum-pokedex.md).
+
 ## Platinum evolution and container exports — v0.26.2
 
 The existing Reader now simulates 47 verified Platinum trade/special evolution

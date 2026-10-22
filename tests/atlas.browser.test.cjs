@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.26.2') && document.querySelector('.eyebrow').textContent.includes('v0.26.2'),
+    version: document.title.includes('v0.26.3') && document.querySelector('.eyebrow').textContent.includes('v0.26.3'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.26\.2<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.26\.3<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.2");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.3");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
   await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes, fileName);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.2'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2825,7 +2825,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.2'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.3'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3049,7 +3049,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.2'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.3'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');
@@ -3104,4 +3104,60 @@ test('Platinum evolution exports preserve DSV containers and profiles, with expl
   assert.deepEqual(output.subarray(0x80000),input.subarray(0x80000));
   assert.equal(await evaluate(`(async()=>{const api=await import('/js/adventures.js');return JSON.stringify((await api.getActiveProfile()).snapshot);})()`),before);
  }
+});
+
+test('Platinum Pokédex preserves native learnsets and game selection, with working Sinnoh links on phone and desktop',async()=>{
+ for(const width of [320,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
+  await referenceDex('#scope=regional&game=platinum');
+  assert.equal(await evaluate(`document.querySelector('#reference-game').value`),'platinum');
+  assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),210);
+  assert.equal(await evaluate(`document.querySelector('.species-row strong').textContent`),'Turtwig');
+  await evaluate(`document.querySelector('[data-species-id="387"]').click()`);
+  await until(()=>evaluate(`document.querySelector('#reference-detail').open`),'Turtwig');
+  assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Sinnoh #001/);
+  assert.doesNotMatch(await evaluate(`document.querySelector('#reference-content').textContent`),/Available HGSS|in SoulSilver/);
+  await evaluate(`document.querySelector('#reference-close').click()`);
+  await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Close');
+  await evaluate(`document.querySelector('#species-search').value='396';document.querySelector('#reference-search').requestSubmit();document.querySelector('[data-species-id="396"]').click()`);
+  await until(()=>evaluate(`document.querySelector('#reference-detail').open`),'Starly');
+  const href=await evaluate(`[...document.querySelectorAll('.reference-locations a')].find(a=>a.textContent==='Open Route 201 in Atlas').href`);
+  assert.match(href,/game=platinum/);
+  await command('Page.navigate',{url:href});
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Route 201'`),'Platinum Atlas');
+  assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'1 of 123 locations');
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  assert.equal(await evaluate(`!!document.querySelector('.encounter-name[href*="game=platinum"]')`),true);
+  await evaluate(`document.querySelector('.connection-link').click()`);
+  assert.equal(await evaluate(`location.hash.includes('game=platinum')`),true);
+  await evaluate(`location.hash='johto'`);
+  await until(()=>evaluate(`!document.querySelector('#johto-home').hidden`),'SoulSilver region');
+  await evaluate(`location.hash='atlas'`);
+  await until(()=>evaluate(`document.querySelector('#location-count').textContent==='1 of 122 locations'`),'SoulSilver navigation');
+ }
+ await referenceDex('#game=platinum');
+ await evaluate(`document.querySelector('#reference-game').value='soulsilver';document.querySelector('#reference-game').dispatchEvent(new Event('change'))`);
+ assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),256);
+ assert.equal(await evaluate(`location.hash.includes('platinum')`),false);
+ assert.deepEqual(exceptions,[]);
+});
+
+test('Platinum Pokédex save filters count party and PC ownership separately from registrations and hide other-game flags',async()=>{
+ const bytes=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));const {detectSave}=await import('../js/saves/index.js');
+ await fixtureReader(detectSave(bytes),bytes,true,'save.sav');
+ await referenceDex('#scope=national&game=platinum');
+ assert.equal(await evaluate(`document.querySelector('#save-filter').disabled`),false);
+ assert.match(await evaluate(`document.querySelector('#species-487').textContent`),/Owned: 2/);
+ assert.equal(await evaluate(`document.querySelector('#species-487 [aria-label="Caught: No"]')!==null`),true);
+ await evaluate(`document.querySelector('#save-filter').value='owned';document.querySelector('#save-filter').dispatchEvent(new Event('change'))`);
+ assert.equal(await evaluate(`document.querySelector('#species-487')!==null`),true);
+ await evaluate(`document.querySelector('#reference-game').value='soulsilver';document.querySelector('#reference-game').dispatchEvent(new Event('change'))`);
+ assert.equal(await evaluate(`document.querySelector('#save-filter').disabled`),true);
+ assert.equal(await evaluate(`document.querySelectorAll('.save-status').length`),0);
+ assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),493);
+ // Legacy SoulSilver species URLs retain their meaning even with an active Pt save.
+ await referenceDex('#species=25&scope=national');
+ assert.equal(await evaluate(`document.querySelector('#reference-game').value`),'soulsilver');
+ assert.equal(await evaluate(`document.querySelector('#save-filter').disabled`),true);
+ assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Available SoulSilver abilities/);
 });

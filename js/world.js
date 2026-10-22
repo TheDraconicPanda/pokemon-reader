@@ -1,3 +1,4 @@
+import { PLATINUM_ATLAS } from './data/games/platinum/atlas.js';
 import { createMapLinks } from './atlas-map-links.js';
 import { createTravelConditions } from './atlas-travel.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS as SAFARI_ZONE_ENCOUNTERS } from './data/games/soulsilver/safari-encounters.js';
@@ -8,10 +9,11 @@ import { mountSafariAtlas } from "./safari-atlas.js";
 import { mountEvTraining } from "./atlas-ev-training.js";
 import { locationEncounterReference } from "./data/atlas-route-reference.js";
 import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
-const ATLAS_GAME_ID = "soulsilver";
-import { ATLAS_LOCATIONS as LOCATIONS } from "./data/atlas-locations.js";
+let ATLAS_GAME_ID = "soulsilver";
+import { ATLAS_LOCATIONS as SS_LOCATIONS } from "./data/atlas-locations.js";
 import { mapsForLocation } from "./data/atlas-maps.js";
 
+let LOCATIONS=SS_LOCATIONS;
 // Explicit orientation for existing overland links. Unresolved links and interiors
 // remain available under Other connections; never infer direction from list order.
 import { KANTO_COMPASS } from "./data/games/soulsilver/kanto-compass.js";
@@ -69,6 +71,7 @@ const COMPASS_PAIRS = [
 ];
 const OPPOSITE = { north: "south", south: "north", east: "west", west: "east", other: "other" };
 function connectionDirection(source, target) {
+  if(ATLAS_GAME_ID!=="soulsilver")return "other";
   for (const [from, to, direction] of COMPASS_PAIRS) {
     if (source === from && target === to) return direction;
     if (source === to && target === from) return OPPOSITE[direction];
@@ -259,6 +262,11 @@ function renderLocations({ exactName = null } = {}) {
       entry.append(link);
       sourceList.append(entry);
     }
+    if(ATLAS_GAME_ID==='platinum') {
+      sourceList.replaceChildren();
+      const entry=document.createElement('li'),a=document.createElement('a');
+      a.href='../docs/platinum-atlas-inventory.json';a.textContent='Platinum primary data inventory and pinned sources';entry.append(a);sourceList.append(entry);
+    }
     sources.append(sourcesHeading, sourceList);
     staticSection.append(sources);
 
@@ -445,11 +453,12 @@ const evPanel = document.querySelector("#ev-training");
 const homePanel = document.querySelector("#atlas-home");
 const johtoPanel = document.querySelector("#johto-home");
 const kantoPanel = document.querySelector("#kanto-home");
+const sinnohPanel=document.querySelector("#sinnoh-home");
 const toolNav = document.querySelector("#johto-tool-nav");
 const safariPanel = document.querySelector("#safari-mini-atlas");
 function setAtlasView(panel) {
   if(panel!==safariPanel)safariAtlas.hide();
-  for (const view of [homePanel, johtoPanel, kantoPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
+  for (const view of [homePanel, johtoPanel, kantoPanel, sinnohPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
   toolNav.hidden = panel === homePanel;
 }
 const caughtIndicators = mountCaughtIndicators({gameId:ATLAS_GAME_ID,root:document.querySelector('.world-app'),status:document.querySelector('#atlas-save-status')});
@@ -465,8 +474,8 @@ function openSafariPosition(position=4,push=true,focus=true) {
 }
 
 function openAtlasLocation(name, push = true, focus = true) {
-  if (!LOCATIONS.some(location => location.name === name)) name = "New Bark Town";
-  if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}`);
+  if (!LOCATIONS.some(location => location.name === name)) name = ATLAS_GAME_ID==='platinum'?'Twinleaf Town':'New Bark Town';
+  if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}${ATLAS_GAME_ID==='platinum'?'&game=platinum':''}`);
   setAtlasView(atlasPanel);
   searchInput.value = name;
   typeSelect.value = "all";
@@ -478,7 +487,20 @@ function openAtlasLocation(name, push = true, focus = true) {
   }
 }
 
+function selectAtlasGame(id) {
+  if(ATLAS_GAME_ID===id)return;
+  ATLAS_GAME_ID=id;LOCATIONS=id==='platinum'?PLATINUM_ATLAS.locations:SS_LOCATIONS;
+  caughtIndicators.setGame(id);searchInput.value='';typeSelect.value='all';
+}
 function showAtlasRoute(focus = true) {
+  const params=new URLSearchParams(location.hash.slice(1));
+  selectAtlasGame(params.get('game')==='platinum'||location.hash==='#sinnoh'?'platinum':'soulsilver');
+  toolNav.setAttribute('aria-label',`${ATLAS_GAME_ID==='platinum'?'Platinum':'SoulSilver'} Atlas tools`);
+  for(const a of toolNav.querySelectorAll('a')) {
+    const target=a.getAttribute('href');
+    if(a.id==='atlas-browse-link')a.href=ATLAS_GAME_ID==='platinum'?'#location=Twinleaf%20Town&game=platinum':'#atlas';
+    a.hidden=ATLAS_GAME_ID==='platinum'&&['#johto','#kanto','#safari','#ev-training'].includes(target);
+  }
   if(location.hash==='#safari'||location.hash.startsWith('#safari=')) {
     const value=location.hash==='#safari'?4:Number(location.hash.slice(8));
     openSafariPosition(value,false,focus);
@@ -488,20 +510,21 @@ function showAtlasRoute(focus = true) {
     if (focus) document.querySelector("#ev-training-title").focus();
   } else if (location.hash.startsWith("#location=")) {
     let name;
-    try { name = decodeURIComponent(location.hash.slice(10)); } catch { name = "New Bark Town"; }
+    try { name = params.get("location"); } catch { name = "New Bark Town"; }
     openAtlasLocation(name, false, focus);
-  } else if (location.hash === "#atlas") {
-    const name = LOCATIONS.some(location => location.name === searchInput.value) ? searchInput.value : "New Bark Town";
+  } else if (location.hash === "#atlas" || params.has("atlas")) {
+    const name = LOCATIONS.some(location => location.name === searchInput.value) ? searchInput.value : ATLAS_GAME_ID==='platinum'?"Twinleaf Town":"New Bark Town";
     openAtlasLocation(name, false, focus);
   } else {
+    const sinnoh = location.hash === "#sinnoh";
     const johto = location.hash === "#johto";
     const kanto = location.hash === "#kanto";
-    setAtlasView(johto ? johtoPanel : kanto ? kantoPanel : homePanel);
-    if (focus) document.querySelector(johto ? "#johto-home-title" : kanto ? "#kanto-home-title" : "#atlas-home-title").focus();
+    setAtlasView(sinnoh ? sinnohPanel : johto ? johtoPanel : kanto ? kantoPanel : homePanel);
+    if (focus) document.querySelector(sinnoh ? "#sinnoh-home-title" : johto ? "#johto-home-title" : kanto ? "#kanto-home-title" : "#atlas-home-title").focus();
   }
 }
 function searchLocations() {
-  if (location.hash.startsWith("#location=")) history.replaceState(null, "", "#atlas");
+  if (location.hash.startsWith("#location=")) history.replaceState(null, "", ATLAS_GAME_ID==='platinum'?"#atlas&game=platinum":"#atlas");
   renderLocations();
 }
 searchInput.addEventListener("input", searchLocations);

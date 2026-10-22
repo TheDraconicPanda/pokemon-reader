@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.26.2 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.26.3 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/safari.css">
   <link rel="stylesheet" href="../css/app-shell.css">
@@ -14,7 +14,7 @@
   <main class="world-app">
     <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.26.2</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.26.3</p>
       <h1>Pokémon Atlas</h1>
       <p id="atlas-save-status" class="atlas-save-status" role="status" hidden></p>
       <nav class="atlas-tools" id="johto-tool-nav" aria-label="SoulSilver Atlas tools" hidden>
@@ -34,7 +34,7 @@
         <a href="#kanto" class="atlas-feature-card"><strong>Kanto</strong><span>Generation I</span><span>Available</span></a>
         <a href="#johto" class="atlas-feature-card"><strong>Johto</strong><span>Generation II</span><span>Available</span></a>
         <button class="atlas-feature-card" disabled><strong>Hoenn</strong><span>Generation III</span><span>Planned</span></button>
-        <button class="atlas-feature-card" disabled><strong>Sinnoh</strong><span>Generation IV</span><span>Planned</span></button>
+        <a href="#sinnoh" class="atlas-feature-card"><strong>Sinnoh</strong><span>Generation IV</span><span>Available</span></a>
         <button class="atlas-feature-card" disabled><strong>Unova</strong><span>Generation V</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Kalos</strong><span>Generation VI</span><span>Planned</span></button>
         <button class="atlas-feature-card" disabled><strong>Alola</strong><span>Generation VII</span><span>Planned</span></button>
@@ -64,6 +64,13 @@
         <a href="#ev-training" class="atlas-feature-card"><strong>EV Training</strong><span>Find SoulSilver training locations across both regions.</span></a>
       </div>
       <details class="atlas-about"><summary>About the Kanto guide</summary><p>Routes and cities group their floors and related rooms. Route 10’s north and south sections connect through Rock Tunnel. The Magnet Train and S.S. Aqua connect to Johto. HM and story conditions are reference annotations; browsing never assumes your save has unlocked them.</p></details>
+    </section>
+
+    <section class="world-panel atlas-landing" id="sinnoh-home" aria-labelledby="sinnoh-home-title" hidden>
+      <h2 id="sinnoh-home-title" tabindex="-1">Sinnoh · Platinum</h2>
+      <p>Browse Sinnoh’s towns, routes, caves and floors. Conditions remain visible; reference navigation does not assume your save has unlocked a location.</p>
+      <div class="atlas-card-grid" aria-label="Sinnoh features"><a href="#location=Twinleaf%20Town&amp;game=platinum" class="atlas-feature-card"><strong>Navigation</strong><span>Start at Twinleaf Town, follow connections or search Sinnoh.</span></a></div>
+      <details class="atlas-about"><summary>About the Sinnoh guide</summary><p>Native map areas are grouped by their game location name. Ordinary encounter tables and conditional replacements come from pinned Platinum data. Geographic adjacency is distinct from traversable paths. Special encounters and Great Marsh simulation are the next Atlas milestone.</p></details>
     </section>
 
     <section class="world-panel ev-training-panel" id="ev-training" aria-labelledby="ev-training-title" hidden>

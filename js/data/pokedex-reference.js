@@ -1,3 +1,5 @@
+import { PLATINUM_ATLAS } from './games/platinum/atlas.js';
+import { PLATINUM_POKEDEX as PT } from './games/platinum/pokedex-reference.js';
 import { SOULSILVER_POKEDEX as SS } from './games/soulsilver/pokedex-reference.js';
 import { gameReference } from './game-reference.js';
 import { ATLAS_LOCATIONS } from './atlas-locations.js';
@@ -6,7 +8,7 @@ import { locationDetails } from './atlas-location-reference.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS } from './games/soulsilver/safari-encounters.js';
 import { speciesIdForName } from './game-reference.js';
 export const STAT_LABELS = ['HP','Attack','Defense','Special Attack','Special Defense','Speed'];
-export function pokedexReference(gameId) { return gameId === 'soulsilver' ? SS : null; }
+export function pokedexReference(gameId) { return gameId === 'soulsilver' ? SS : gameId === 'platinum' ? PT : null; }
 export function referenceSpecies(gameId, key) { return pokedexReference(gameId)?.species[key] || null; }
 export function speciesForms(gameId,id) { return Object.entries(pokedexReference(gameId)?.species || {}).filter(([,p])=>p.id===id).map(([key,record])=>({key:Number(key),record})); }
 export function evolutionFamily(gameId,id) {
@@ -17,7 +19,8 @@ export function evolutionFamily(gameId,id) {
   const depth=id=>{ const parent=data.evolutions.find(e=>e.to===id); return parent ? depth(parent.from)+1:0; };
   return [...ids].sort((a,b)=>depth(a)-depth(b)||a-b);
 }
-export function evolutionRequirement(edge) {
+export function evolutionRequirement(edge,gameId='soulsilver') {
+  if(gameId==='platinum' && ['EVO_CORONET','EVO_ETERNA','EVO_ROUTE217'].includes(edge.method))return {EVO_CORONET:'Level up at Mt. Coronet',EVO_ETERNA:'Level up near Eterna Forest’s Moss Rock',EVO_ROUTE217:'Level up near Route 217’s Ice Rock'}[edge.method];
   const p=edge.param;
   const rules={
     EVO_LEVEL:`Level ${p}`, EVO_FRIENDSHIP:'Level up with friendship ≥220',
@@ -95,15 +98,17 @@ export function speciesLocations(gameId,id) {
   if(!locationsCache.has(gameId)) {
     const bySpecies=new Map();
     const add=(id,location,detail,notes=[])=>{if(!id)return; if(!bySpecies.has(id))bySpecies.set(id,[]); const rows=bySpecies.get(id); let group=rows.find(g=>g.location===location);if(!group){group={location,details:[],notes:[]};rows.push(group);} if(!group.details.includes(detail))group.details.push(detail);for(const note of notes)if(!group.notes.includes(note))group.notes.push(note);};
-    for(const location of ATLAS_LOCATIONS) {
+    for(const location of gameId==='platinum'?PLATINUM_ATLAS.locations:ATLAS_LOCATIONS) {
       const reference=locationEncounterReference(gameId,location.name);
-      for(const row of reference?.encounters||[])add(row.speciesId,location.name,`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rate}`,speciesLocationNotes(reference,location.name,row.speciesId,row.method));
+      for(const row of reference?.encounters||[])add(row.speciesId,location.name,`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rate}`,gameId==='platinum'?[]:speciesLocationNotes(reference,location.name,row.speciesId,row.method));
       for(const row of locationDetails(gameId,location.name)?.gifts||[])add(speciesIdForName(gameId,row.name),location.name,[row.kind,row.location,row.level?`Lv. ${row.level}`:'',...row.conditions,row.availability].filter(Boolean).join(' · '));
     }
+    if(gameId==='soulsilver') {
     for(const row of SOULSILVER_SAFARI_ENCOUNTERS)add(speciesIdForName(gameId,row.pokemon),'Safari Zone',`${row.method} · Lv. ${row.levels} · ${row.times} · ${row.rarity}`,['Existing Safari records: encounter/block mechanics audit remains pending.']);
     // These are moving encounters, deliberately not fixed walking-table rows.
     for(const n of [29,30,31,32,33,34,35,36,37,38,39,42,43,44,45,46])for(const id of [243,244])add(id,`Route ${n}`,'Roaming · Lv. 40 · after release at Burned Tower; check the Pokégear map');
     for(const n of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,26,28])add(381,`Route ${n}`,'Roaming · Lv. 35 · after Steven’s Vermilion City event; check the Pokégear map');
+    }
     locationsCache.set(gameId,bySpecies);
   }
   return locationsCache.get(gameId).get(id)||[];

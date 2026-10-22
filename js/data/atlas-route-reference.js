@@ -1,3 +1,4 @@
+import { PLATINUM_ATLAS } from './games/platinum/atlas.js';
 import { KANTO_ENCOUNTERS } from "./games/soulsilver/kanto-encounters.js";
 import { SOULSILVER_LOCATION_ENCOUNTERS } from './games/soulsilver/location-encounters.js';
 import { SOULSILVER_ROUTE_ENCOUNTERS } from './games/soulsilver/route-encounters.js';
@@ -68,6 +69,11 @@ function formatEncounter(row,gameId) {
 }
 
 export function locationEncounterReference(gameId, name) {
+  if(gameId==='platinum') {
+    if(!Object.hasOwn(PLATINUM_ATLAS.encounters,name))return null;
+    const encounters=PLATINUM_ATLAS.encounters[name].map(row=>({...row,method:[row.area,METHODS[row.method],...row.conditions].filter(Boolean).join(' · '),levels:formatLevels(row.levels),times:row.times.length?row.times.map(t=>t[0].toUpperCase()+t.slice(1)).join(', '):'All times',rate:`${row.percent}%`}));
+    return {status:encounters.length?'verified':'no-fixed-wild',encounters,notes:['Primary Platinum slot data. Percentages are conditional slot shares before lead abilities and Repel, not encounter-per-step or capture chances. Replacement rows replace their numbered ordinary slots; do not add overlapping conditions together. Special scripted encounters are being audited separately.']};
+  }
   const game = REFERENCES.get(gameId);
   if (!game) return null;
   if (Object.hasOwn(game.encounters, name)) {

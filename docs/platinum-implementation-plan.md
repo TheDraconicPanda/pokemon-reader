@@ -150,3 +150,22 @@ Final-regression leads retained for milestone 6: review SoulSilver's legacy
 same-partition storage policy against primary HGSS save recovery; extend semantic
 corruption cases (empty declared party slots and invalid trainer fields). These
 are separate from a claim of Pokémon legality or real-save outcome validation.
+
+## Milestone 4 evidence
+
+Platinum's shared reference view has 210 Sinnoh / 493 National entries, 505
+species/form records, native learnsets/abilities/items/tutors and 246 evolution
+edges. All 1972 move-list comparisons and regional positions match pinned PokéAPI
+Platinum data. Independent PKHeX `dex` output covers all registration bits in
+three synthetic fixtures. Browser checks cover desktop/phone, matching-save
+ownership versus registrations, selection, and native/legacy game-scoped links.
+
+The initial Sinnoh location dependency adds 123 groups, a full 593-header census
+with 64 reasoned exclusions, 154 header-assigned random tables and native warps /
+geographic adjacency. Unreachable placeholder Radar/swarm conditions are excluded.
+This is not the complete Atlas milestone: scripted travel, special encounters,
+full independent coverage and Great Marsh simulation remain required in phase 5.
+
+Release gate: **264/264 tests**, zero mandatory failures; original Johto/Kanto
+coverage remains 100%. Version 0.26.3. Details and repeatable source commands:
+`platinum-pokedex.md`, `platinum-pokedex-audit.json`, `platinum-atlas-inventory.json`.

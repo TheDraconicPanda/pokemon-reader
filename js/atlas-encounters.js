@@ -58,7 +58,7 @@ export function renderAtlasEncounters({gameId,locationName,encounters,status,not
         row.dataset.encounterIndex = String(encounter.sourceIndex ?? index);
         row.dataset.encounterTimes = encounter.times;
         const name = document.createElement("a");
-        name.href = `../pokedex/#species=${encounter.speciesId ?? speciesIdForName(gameId,encounter.pokemon)}&scope=national`;
+        name.href = `../pokedex/#species=${encounter.speciesId ?? speciesIdForName(gameId,encounter.pokemon)}&scope=national${gameId==='platinum'?'&game=platinum':''}`;
         name.className = "encounter-name";
         name.textContent = encounter.pokemon;
         decorateSpecies(name,encounter.speciesId ?? speciesIdForName(gameId,encounter.pokemon));

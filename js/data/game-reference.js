@@ -1,3 +1,5 @@
+import { PLATINUM_POKEDEX } from './games/platinum/pokedex-reference.js';
+import { PLATINUM_READER } from './games/platinum/reader-reference.js';
 import { PLANNER_REFERENCE } from './games/soulsilver/planner-reference.js';
 import { SOULSILVER_EV_YIELDS } from './games/soulsilver/ev-yields.js';
 
@@ -12,15 +14,17 @@ const SOULSILVER = Object.freeze({
   evYieldSource:SOULSILVER_EV_YIELDS.source,
   evYieldSourceSha256:SOULSILVER_EV_YIELDS.sourceSha256,
 });
-export function gameReference(gameId) { return gameId === 'soulsilver' ? SOULSILVER : null; }
+const PLATINUM=Object.freeze({gameId:'platinum',generation:4,dataSchemaVersion:1,species:PLANNER_REFERENCE.species,moves:Object.fromEntries(Object.entries(PLATINUM_READER.moves).map(([id,m])=>[id,m.name])),natures:PLANNER_REFERENCE.natures});
+const platinumYield=id=>PLATINUM_POKEDEX.species[id]?.evYield || null;
+export function gameReference(gameId) { return gameId === 'soulsilver' ? SOULSILVER : gameId==='platinum' ? PLATINUM : null; }
 export function speciesIdForName(gameId, name) { return gameReference(gameId) ? names.get(normalize(name)) ?? null : null; }
 export function speciesReference(gameId, id) {
   const game=gameReference(gameId);
-  return game && Number.isInteger(id) && Object.hasOwn(game.species,id) ? {id,name:game.species[id],evYield:yields.get(id) || null} : null;
+  return game && Number.isInteger(id) && Object.hasOwn(game.species,id) ? {id,name:game.species[id],evYield:gameId==='platinum' ? platinumYield(id) : yields.get(id) || null} : null;
 }
 export function speciesEvYield(gameId,name) {
   const id=speciesIdForName(gameId,name);
-  return id===null ? null : yields.get(id) || null;
+  return id===null ? null : gameId==='platinum' ? platinumYield(id) : yields.get(id) || null;
 }
 
 export function caughtRegistrations(profile,gameId) {
