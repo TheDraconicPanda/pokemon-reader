@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172554">
-  <title>Pokémon Atlas — v0.26.3 · Pokémon Reader</title>
+  <title>Pokémon Atlas — v0.26.4 · Pokémon Reader</title>
   <link rel="stylesheet" href="../css/world.css">
   <link rel="stylesheet" href="../css/safari.css">
   <link rel="stylesheet" href="../css/app-shell.css">
@@ -14,7 +14,7 @@
   <main class="world-app">
     <app-menu tool="atlas"></app-menu>
     <header class="world-header atlas-header">
-      <p class="eyebrow">POKÉMON READER · ATLAS · v0.26.3</p>
+      <p class="eyebrow">POKÉMON READER · ATLAS · v0.26.4</p>
       <h1>Pokémon Atlas</h1>
       <p id="atlas-save-status" class="atlas-save-status" role="status" hidden></p>
       <nav class="atlas-tools" id="johto-tool-nav" aria-label="SoulSilver Atlas tools" hidden>
@@ -23,7 +23,7 @@
         <a href="#kanto" class="atlas-tool-link">Kanto</a>
         <a href="#atlas" class="atlas-tool-link" id="atlas-browse-link">Navigation</a>
         <a href="#safari" class="atlas-tool-link">Safari</a>
-        <a href="#ev-training" class="atlas-tool-link">EV Training</a>
+        <a href="#ev-training" class="atlas-tool-link" id="atlas-ev-link">EV Training</a>
       </nav>
     </header>
 
@@ -69,13 +69,15 @@
     <section class="world-panel atlas-landing" id="sinnoh-home" aria-labelledby="sinnoh-home-title" hidden>
       <h2 id="sinnoh-home-title" tabindex="-1">Sinnoh · Platinum</h2>
       <p>Browse Sinnoh’s towns, routes, caves and floors. Conditions remain visible; reference navigation does not assume your save has unlocked a location.</p>
-      <div class="atlas-card-grid" aria-label="Sinnoh features"><a href="#location=Twinleaf%20Town&amp;game=platinum" class="atlas-feature-card"><strong>Navigation</strong><span>Start at Twinleaf Town, follow connections or search Sinnoh.</span></a></div>
-      <details class="atlas-about"><summary>About the Sinnoh guide</summary><p>Native map areas are grouped by their game location name. Ordinary encounter tables and conditional replacements come from pinned Platinum data. Geographic adjacency is distinct from traversable paths. Special encounters and Great Marsh simulation are the next Atlas milestone.</p></details>
+      <div class="atlas-card-grid" aria-label="Sinnoh features"><a href="#location=Twinleaf%20Town&amp;game=platinum" class="atlas-feature-card"><strong>Navigation</strong><span>Start at Twinleaf Town, follow connections or search Sinnoh.</span></a><a href="#great-marsh&amp;game=platinum" class="atlas-feature-card"><strong>Great Marsh</strong><span>Six areas, daily visitors and save-based encounter planning.</span></a><a href="#ev-training&amp;game=platinum" class="atlas-feature-card"><strong>EV Training</strong><span>Find Sinnoh training spots with native Generation IV yields and complete encounter tables.</span></a></div>
+      <details class="atlas-about"><summary>About the Sinnoh guide</summary><p>Native map areas are grouped by their game location name. Ordinary encounter tables and conditional replacements come from pinned Platinum data. Geographic adjacency is distinct from traversable paths. Scripted encounters, historical distributions and the unreleased Azure Flute event remain explicitly distinguished. All areas have native terrain reference plans; these are not screenshots or complete movement simulations.</p></details>
     </section>
+
+    <section class="world-panel" id="great-marsh" aria-labelledby="great-marsh-title" hidden></section>
 
     <section class="world-panel ev-training-panel" id="ev-training" aria-labelledby="ev-training-title" hidden>
       <h2 id="ev-training-title" tabindex="-1">EV training finder</h2>
-      <p>Choose a stat to find places to train in SoulSilver. Surfing spots come first. “100% useful” means every possible Pokémon in that encounter table awards the chosen EV; it does not mean a guaranteed encounter every step.</p>
+      <p id="ev-intro">Choose a stat to find places to train in SoulSilver. Surfing spots come first. “100% useful” means every possible Pokémon in that encounter table awards the chosen EV; it does not mean a guaranteed encounter every step.</p>
       <div class="ev-controls">
         <label for="ev-stat">Train this stat
           <select id="ev-stat">

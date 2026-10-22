@@ -1,0 +1,39 @@
+{
+  "gameId": "platinum",
+  "schemaVersion": 1,
+  "primaryRevision": "49f78f35ccd8c6880e189d23a630eef2976c44ac",
+  "coverage": {
+    "expectedLocations": 125,
+    "implementedLocations": 125,
+    "locationCoveragePercent": 100,
+    "nativeHeaders": 593,
+    "includedAreas": 501,
+    "excludedHeaders": 92,
+    "terrainPlans": 501,
+    "encounterRows": 5724,
+    "headerEncounterTables": 154,
+    "directedNativeConnections": 1062,
+    "referenceDestinations": 273,
+    "warpReferences": 488
+  },
+  "independent": {
+    "ordinaryAreas": 144,
+    "exactAreas": 142,
+    "slotComparisons": 7920,
+    "resolvedDiscrepancies": [
+      63,
+      82
+    ]
+  },
+  "specialSystems": {
+    "fixedScriptCommands": 21,
+    "npcTrades": 4,
+    "roamers": 5,
+    "honeyTrees": 21,
+    "trophyGardenVisitors": 16
+  },
+  "mandatoryFailures": [],
+  "completionPassed": true,
+  "realSaveOrInGameValidation": false,
+  "scope": "All native named Sinnoh geographic/facility groups, Lost Tower as a distinct dungeon, and Underground reference access; unused/network/system headers explicitly excluded. Unreleased event areas remain labelled reference-only."
+}

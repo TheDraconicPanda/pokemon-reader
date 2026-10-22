@@ -1,0 +1,74 @@
+{
+  "primaryRevision": "49f78f35ccd8c6880e189d23a630eef2976c44ac",
+  "conditions": {
+    "acuity_cavern": [
+      "Surf to the cavern; Uxie returns after the Spear Pillar / Distortion World story"
+    ],
+    "valor_cavern": [
+      "Lake Valor restored after the Galactic story; Surf to the cavern"
+    ],
+    "valley_windworks_outside": [
+      "Friday after Team Galactic is driven out; not on the day of clearing the Windworks; weekly Drifloon"
+    ],
+    "distortion_world_giratina_room": [
+      "Distortion World story encounter; Origin Forme"
+    ],
+    "veilstone_city_northeast_house": [
+      "Receive from the house resident once; party space required"
+    ],
+    "eterna_city": [
+      "Cynthia after the Galactic Eterna Building story; Egg; party space required"
+    ],
+    "flower_paradise": [
+      "National Pokédex; historical Oak’s Letter distribution and event flag; reach via Route 224 / Seabreak Path"
+    ],
+    "hall_of_origin": [
+      "Unreleased Azure Flute event: unobtainable through any official Generation IV distribution; not a normally available encounter"
+    ],
+    "hearthome_city_northwest_house": [
+      "Receive from Bebe once; party space required"
+    ],
+    "iceberg_ruins": [
+      "Hall of Fame; fateful-encounter distribution Regigigas in party; activate every floor dot then the statue"
+    ],
+    "iron_ruins": [
+      "Hall of Fame; fateful-encounter distribution Regigigas in party; activate every floor dot then the statue"
+    ],
+    "rock_peak_ruins": [
+      "Hall of Fame; fateful-encounter distribution Regigigas in party; activate every floor dot then the statue"
+    ],
+    "turnback_cave_giratina_room": [
+      "Postgame; only if Giratina was not caught in the Distortion World; not a second capture"
+    ],
+    "spear_pillar_dialga": [
+      "Postgame; Adamant Orb and the Celestic Town grandmother’s story; enter Dialga’s rift"
+    ],
+    "spear_pillar_palkia": [
+      "Postgame; Lustrous Orb and the Celestic Town grandmother’s story; enter Palkia’s rift"
+    ],
+    "stark_mountain_room_3": [
+      "Complete the postgame Stark Mountain / Buck story, return after the Magma Stone is restored"
+    ],
+    "snowpoint_temple_b5f": [
+      "National Pokédex / temple access; Regirock, Regice and Registeel in party to awaken it"
+    ],
+    "iron_island_b2f_left_room": [
+      "Help Riley through Iron Island; receive Riolu Egg once; party space required"
+    ],
+    "route_209": [
+      "Odd Keystone placed in Hallowed Tower; speak with Underground players 32 times (not NPC hikers); consumed encounter counter must be rebuilt for another Spiritomb"
+    ],
+    "newmoon_island_forest": [
+      "National Pokédex; historical Member Card distribution and event flag; complete the sailor’s son / Lunar Wing event"
+    ],
+    "old_chateau_back_middle_west_room": [
+      "Night 20:00–03:59; interact with the television; one successful capture; a failed encounter may be retried on another day"
+    ]
+  },
+  "secondaryReferences": [
+    "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Generation_IV",
+    "https://bulbapedia.bulbagarden.net/wiki/Great_Marsh",
+    "https://bulbapedia.bulbagarden.net/wiki/Honey_Tree",
+    "https://bulbapedia.bulbagarden.net/wiki/Trophy_Garden"
+  ]
+}

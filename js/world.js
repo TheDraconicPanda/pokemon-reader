@@ -1,4 +1,5 @@
-import { PLATINUM_ATLAS } from './data/games/platinum/atlas.js';
+import { mountGreatMarsh } from './great-marsh.js';
+import { atlasGameReference } from './data/atlas-game-reference.js';
 import { createMapLinks } from './atlas-map-links.js';
 import { createTravelConditions } from './atlas-travel.js';
 import { SOULSILVER_SAFARI_ENCOUNTERS as SAFARI_ZONE_ENCOUNTERS } from './data/games/soulsilver/safari-encounters.js';
@@ -10,10 +11,9 @@ import { mountEvTraining } from "./atlas-ev-training.js";
 import { locationEncounterReference } from "./data/atlas-route-reference.js";
 import { locationDetails, locationDetailSearchText } from "./data/atlas-location-reference.js";
 let ATLAS_GAME_ID = "soulsilver";
-import { ATLAS_LOCATIONS as SS_LOCATIONS } from "./data/atlas-locations.js";
 import { mapsForLocation } from "./data/atlas-maps.js";
 
-let LOCATIONS=SS_LOCATIONS;
+let LOCATIONS=atlasGameReference(ATLAS_GAME_ID).locations;
 // Explicit orientation for existing overland links. Unresolved links and interiors
 // remain available under Other connections; never infer direction from list order.
 import { KANTO_COMPASS } from "./data/games/soulsilver/kanto-compass.js";
@@ -137,10 +137,15 @@ function renderLocations({ exactName = null } = {}) {
     badge.textContent = TYPE_LABELS[location.type];
 
     overview.append(text, badge);
+    if(ATLAS_GAME_ID==='platinum'&&location.name==='Great Marsh'){const a=document.createElement('a');a.href='#great-marsh&game=platinum';a.textContent='Open Great Marsh encounter planner';text.append(a);}
     if(location.name==='Safari Zone') {
       const mini=document.createElement('a');mini.href='#safari';mini.textContent='Open Safari mini Atlas';mini.className='safari-mini-link';text.append(mini);
     }
 
+    if(ATLAS_GAME_ID==='platinum'&&location.accessRequirements?.length){
+      const d=document.createElement('details'),s=document.createElement('summary');s.textContent='Access and progression';d.append(s);
+      for(const rule of location.accessRequirements){const p=document.createElement('p');p.textContent=rule.text;d.append(p);}text.append(d);
+    }
     const staticSection = document.createElement("section");
     staticSection.className = "location-static";
     staticSection.setAttribute("aria-label", `${location.name} location information`);
@@ -265,7 +270,7 @@ function renderLocations({ exactName = null } = {}) {
     if(ATLAS_GAME_ID==='platinum') {
       sourceList.replaceChildren();
       const entry=document.createElement('li'),a=document.createElement('a');
-      a.href='../docs/platinum-atlas-inventory.json';a.textContent='Platinum primary data inventory and pinned sources';entry.append(a);sourceList.append(entry);
+      a.href='../docs/platinum-atlas.md';a.textContent='Platinum data coverage, source decisions and pinned references';entry.append(a);sourceList.append(entry);
     }
     sources.append(sourcesHeading, sourceList);
     staticSection.append(sources);
@@ -336,10 +341,10 @@ function renderLocations({ exactName = null } = {}) {
           mapNotice.textContent=[selected.notice,selected.kind ? `${selected.context==='outdoor'?'Area':'Interior'} view; compass connections and encounter tables describe ${location.name} as a whole.` : ""].filter(Boolean).join(" ");
           mapNotice.hidden=!mapNotice.textContent;
           image.alt = selected.kind === "terrain-plan"
-            ? `${description} in HeartGold and SoulSilver; static blocked tiles and exits, north is up`
+            ? `${description} in ${ATLAS_GAME_ID==='platinum'?'Platinum':'HeartGold and SoulSilver'}; static blocked tiles and exits, north is up`
             : selected.kind === "reference" || selected.label.includes("reference view")
-            ? `${description} in HeartGold and SoulSilver`
-            : `${description} map in HeartGold and SoulSilver; north is up`;
+            ? `${description} in ${ATLAS_GAME_ID==='platinum'?'Platinum':'HeartGold and SoulSilver'}`
+            : `${description} map in ${ATLAS_GAME_ID==='platinum'?'Platinum':'HeartGold and SoulSilver'}; north is up`;
           image.width = selected.width;
           image.height = selected.height;
           image.decoding = "async";
@@ -412,7 +417,8 @@ function renderLocations({ exactName = null } = {}) {
           frame.append(mapLink, stairLinks.overlay);
           current.append(frame, fallback, announcement);
         } else current.append(mapLink, fallback, announcement);
-        showMap(0);
+        const requestedArea=new URLSearchParams(window.location.hash.slice(1)).get('area');
+        showMap(Math.max(0,maps.findIndex(m=>m.id===requestedArea)));
       }
       links.append(current);
       for (const name of connectedNames) {
@@ -454,15 +460,17 @@ const homePanel = document.querySelector("#atlas-home");
 const johtoPanel = document.querySelector("#johto-home");
 const kantoPanel = document.querySelector("#kanto-home");
 const sinnohPanel=document.querySelector("#sinnoh-home");
+const marshPanel=document.querySelector("#great-marsh");
 const toolNav = document.querySelector("#johto-tool-nav");
 const safariPanel = document.querySelector("#safari-mini-atlas");
 function setAtlasView(panel) {
   if(panel!==safariPanel)safariAtlas.hide();
-  for (const view of [homePanel, johtoPanel, kantoPanel, sinnohPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
+  for (const view of [homePanel, johtoPanel, kantoPanel, sinnohPanel, marshPanel, atlasPanel, evPanel, safariPanel]) view.hidden = view !== panel;
   toolNav.hidden = panel === homePanel;
 }
 const caughtIndicators = mountCaughtIndicators({gameId:ATLAS_GAME_ID,root:document.querySelector('.world-app'),status:document.querySelector('#atlas-save-status')});
-const evFinder = mountEvTraining({panel: evPanel, onOpenLocation: openAtlasLocation,decorateSpecies:(node,name)=>caughtIndicators.decorate(node,speciesIdForName(ATLAS_GAME_ID,name))});
+const marsh=mountGreatMarsh({panel:marshPanel,onOpenLocation:(name,area)=>{openAtlasLocation(name,true,true,area);},decorateSpecies:(node,id)=>caughtIndicators.decorate(node,id)});
+const evFinder = mountEvTraining({gameId:()=>ATLAS_GAME_ID,panel: evPanel, onOpenLocation:(name,area)=>openAtlasLocation(name,true,true,area),decorateSpecies:(node,name)=>caughtIndicators.decorate(node,speciesIdForName(ATLAS_GAME_ID,name))});
 
 const safariAtlas=mountSafariAtlas({gameId:ATLAS_GAME_ID,panel:safariPanel,
   decorateSpecies:(node,id)=>caughtIndicators.decorate(node,id),
@@ -473,9 +481,9 @@ function openSafariPosition(position=4,push=true,focus=true) {
   setAtlasView(safariPanel);safariAtlas.render(position,{focus,preserveScroll});
 }
 
-function openAtlasLocation(name, push = true, focus = true) {
-  if (!LOCATIONS.some(location => location.name === name)) name = ATLAS_GAME_ID==='platinum'?'Twinleaf Town':'New Bark Town';
-  if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}${ATLAS_GAME_ID==='platinum'?'&game=platinum':''}`);
+function openAtlasLocation(name, push = true, focus = true, area = null) {
+  if (!LOCATIONS.some(location => location.name === name)) name = atlasGameReference(ATLAS_GAME_ID).homeLocation;
+  if (push) history.pushState(null, "", `#location=${encodeURIComponent(name)}${ATLAS_GAME_ID==='platinum'?'&game=platinum':''}${area?'&area='+encodeURIComponent(area):''}`);
   setAtlasView(atlasPanel);
   searchInput.value = name;
   typeSelect.value = "all";
@@ -489,7 +497,8 @@ function openAtlasLocation(name, push = true, focus = true) {
 
 function selectAtlasGame(id) {
   if(ATLAS_GAME_ID===id)return;
-  ATLAS_GAME_ID=id;LOCATIONS=id==='platinum'?PLATINUM_ATLAS.locations:SS_LOCATIONS;
+  const game=atlasGameReference(id);if(!game)return;
+  ATLAS_GAME_ID=id;LOCATIONS=game.locations;
   caughtIndicators.setGame(id);searchInput.value='';typeSelect.value='all';
 }
 function showAtlasRoute(focus = true) {
@@ -498,13 +507,15 @@ function showAtlasRoute(focus = true) {
   toolNav.setAttribute('aria-label',`${ATLAS_GAME_ID==='platinum'?'Platinum':'SoulSilver'} Atlas tools`);
   for(const a of toolNav.querySelectorAll('a')) {
     const target=a.getAttribute('href');
+    if(a.id==='atlas-ev-link')a.href=ATLAS_GAME_ID==='platinum'?'#ev-training&game=platinum':'#ev-training';
     if(a.id==='atlas-browse-link')a.href=ATLAS_GAME_ID==='platinum'?'#location=Twinleaf%20Town&game=platinum':'#atlas';
-    a.hidden=ATLAS_GAME_ID==='platinum'&&['#johto','#kanto','#safari','#ev-training'].includes(target);
+    a.hidden=ATLAS_GAME_ID==='platinum'&&['#johto','#kanto','#safari'].includes(target);
   }
-  if(location.hash==='#safari'||location.hash.startsWith('#safari=')) {
+  if(params.has('great-marsh')&&ATLAS_GAME_ID==='platinum'){setAtlasView(marshPanel);marsh.show();if(focus)document.querySelector('#great-marsh-title')?.focus();}
+  else if(location.hash==='#safari'||location.hash.startsWith('#safari=')) {
     const value=location.hash==='#safari'?4:Number(location.hash.slice(8));
     openSafariPosition(value,false,focus);
-  } else if (location.hash === "#ev-training") {
+  } else if ((location.hash === "#ev-training" || params.has("ev-training"))) {
     setAtlasView(evPanel);
     evFinder.render();
     if (focus) document.querySelector("#ev-training-title").focus();
@@ -513,7 +524,7 @@ function showAtlasRoute(focus = true) {
     try { name = params.get("location"); } catch { name = "New Bark Town"; }
     openAtlasLocation(name, false, focus);
   } else if (location.hash === "#atlas" || params.has("atlas")) {
-    const name = LOCATIONS.some(location => location.name === searchInput.value) ? searchInput.value : ATLAS_GAME_ID==='platinum'?"Twinleaf Town":"New Bark Town";
+    const name = LOCATIONS.some(location => location.name === searchInput.value) ? searchInput.value : atlasGameReference(ATLAS_GAME_ID).homeLocation;
     openAtlasLocation(name, false, focus);
   } else {
     const sinnoh = location.hash === "#sinnoh";

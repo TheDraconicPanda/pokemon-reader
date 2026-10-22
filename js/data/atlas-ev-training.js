@@ -1,3 +1,4 @@
+import { PLATINUM_ATLAS } from './games/platinum/atlas.js';
 import { KANTO_ENCOUNTERS } from "./games/soulsilver/kanto-encounters.js";
 import { ATLAS_LOCATIONS } from './atlas-locations.js';
 import { SOULSILVER_ROUTE_ENCOUNTERS } from './games/soulsilver/route-encounters.js';
@@ -6,12 +7,20 @@ import { speciesEvYield } from './game-reference.js';
 
 export const EV_STATS = Object.freeze({hp:'HP',attack:'Attack',defense:'Defense',spAttack:'Special Attack',spDefense:'Special Defense',speed:'Speed'});
 export const EV_METHODS = Object.freeze({surfing:'Surfing',walking:'Walking',old_rod:'Old Rod',good_rod:'Good Rod',super_rod:'Super Rod',headbutt:'Headbutt','rock-smash':'Rock Smash'});
-const CONDITIONS = Object.freeze({'tree-a':'Headbutt tree group A','tree-b':'Headbutt tree group B','special-tree':'Special Headbutt trees · Rock Climb required','unown-puzzle':'At least one Ruins of Alph tile puzzle solved','unown-complete':'All 26 letters, four puzzles, four secret rooms and entrance panel unlocked'});
+const CONDITIONS = Object.freeze({'platinum-ordinary':'Ordinary reference conditions: no outbreak, Poké Radar or GBA replacement; Trophy Garden before daily visitors are selected; outside Feebas tiles.','tree-a':'Headbutt tree group A','tree-b':'Headbutt tree group B','special-tree':'Special Headbutt trees · Rock Climb required','unown-puzzle':'At least one Ruins of Alph tile puzzle solved','unown-complete':'All 26 letters, four puzzles, four secret rooms and entrance panel unlocked'});
 const GAMES = new Map([['soulsilver', {
   locations: ATLAS_LOCATIONS,
   encounters: {...SOULSILVER_ROUTE_ENCOUNTERS.routes, ...Object.fromEntries(Object.entries({...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations}).map(([name, reference])=>[name,reference.encounters]))},
   notes: Object.fromEntries(Object.entries({...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations}).map(([name, reference])=>[name,reference.notes]))
 }]]);
+
+// Only complete ordinary tables enter recommendations. Safari capture areas and
+// conditional replacement fragments cannot become probability distributions.
+GAMES.set('platinum',{
+ locations:PLATINUM_ATLAS.locations,
+ encounters:Object.fromEntries(Object.entries(PLATINUM_ATLAS.encounters).map(([name,rows])=>[name,name==='Great Marsh'?[]:rows.filter(r=>r.method==='walking'&&r.conditions[0]?.startsWith('Ordinary slots;')||['surfing','old_rod','good_rod','super_rod'].includes(r.method)&&r.conditions.length===0).map(r=>({...r,area:PLATINUM_ATLAS.areas[r.area].label===name?'':PLATINUM_ATLAS.areas[r.area].label,areaId:r.area,times:r.times.map(t=>({morning:'morn',day:'day',night:'nite'})[t]),conditions:['platinum-ordinary']}))])),
+ notes:Object.fromEntries(PLATINUM_ATLAS.locations.map(l=>[l.name,l.accessRequirements.map(r=>r.text)]))
+});
 
 export function evYieldForSpecies(gameId, name) {
   return GAMES.has(gameId)?speciesEvYield(gameId,name):null;
@@ -57,7 +66,7 @@ export function evEncounterTables(gameId,time='day') {
     }
     for(const [key,rows] of groups) {
       const [area,method,conditions]=JSON.parse(key);
-      tables.push({id:JSON.stringify([location.name,area,method,conditions]),location:location.name,area,method,conditions:conditions.map(key=>CONDITIONS[key]),access:location.access,notes:game.notes[location.name]||[],rows});
+      tables.push({id:JSON.stringify([location.name,area,method,conditions]),location:location.name,area,areaId:rows[0].areaId||null,method,conditions:conditions.map(key=>CONDITIONS[key]),access:location.access,notes:game.notes[location.name]||[],rows});
     }
   }
   return tables;

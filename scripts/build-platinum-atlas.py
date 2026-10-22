@@ -2,9 +2,11 @@
 Usage: python scripts/build-platinum-atlas.py PINNED_POKEPLATINUM_CHECKOUT
 All rates are conditional slot shares, not per-step/capture probabilities.
 """
-import collections,hashlib,json,pathlib,re,subprocess,sys
+import collections,hashlib,json,pathlib,re,subprocess,sys,struct
+from platinum_atlas_specials import add_specials
 ROOT=pathlib.Path(__file__).resolve().parents[1];src=pathlib.Path(sys.argv[1]);REV='49f78f35ccd8c6880e189d23a630eef2976c44ac'
 assert subprocess.check_output(['git','-C',str(src),'rev-parse','HEAD'],text=True).strip()==REV
+assert not subprocess.check_output(['git','-C',str(src),'status','--porcelain','--untracked-files=no'],text=True).strip()
 sources={}
 def read(path):
  raw=(src/path).read_bytes();sources[path]={'url':f'https://github.com/pret/pokeplatinum/blob/{REV}/{path}','sha256':hashlib.sha256(raw).hexdigest()};return raw.decode()
@@ -16,13 +18,24 @@ labels={m['id']:m['en_US'] for m in doc('res/text/location_names.json')['message
 headers={key:dict(re.findall(r'\.(\w+) = (\w+)',body)) for key,body in re.findall(r'\[(MAP_HEADER_\w+)\] = \{(.*?)\n    \}',read('include/data/map_headers.h'),re.S)}
 assert len(headers)==593
 allids=read('generated/map_headers.txt').splitlines();assert set(allids)-set(headers)=={'MAP_HEADER_COUNT','MAP_HEADER_DYNAMIC = 4095','MAP_HEADER_INVALID = MAP_HEADER_COUNT'}
+# Exclude empty unnamed legacy/debug headers only after proving that no native
+# C/script/warp/matrix names them. The 593-header census still records each one.
+unknown_candidates={k for k,h in headers.items() if k.startswith('MAP_HEADER_UNKNOWN_') and h['wildEncountersArchiveID']=='ENCOUNTERS_NONE' and h['scriptsArchiveID']=='scripts_empty'}
+unknown_references={k:[] for k in sorted(unknown_candidates)}
+for directory,pattern in [('src','*.c'),('res/field/events','*.json'),('res/field/scripts','*.s'),('res/field/matrices','*.json')]:
+ for file in sorted((src/directory).rglob(pattern)):
+  text=file.read_text()
+  for k in set(re.findall(r'MAP_HEADER_UNKNOWN_\d+',text))&unknown_candidates:unknown_references[k].append(file.relative_to(src).as_posix())
 excluded={};groups=collections.defaultdict(list);owner={}
 for key,h in headers.items():
- name=labels[h['mapLabelTextID']]
- reason='Mystery Zone/system/unused header' if name=='Mystery Zone' else 'Explicit unused/Diamond-Pearl legacy header' if '_UNUSED_' in key or '_DP_' in key or name=='Battle Park' else None
+ name='Underground' if key=='MAP_HEADER_UNDERGROUND' else 'Lost Tower' if key.startswith('MAP_HEADER_ROUTE_209_LOST_TOWER_') else labels[h['mapLabelTextID']]
+ reason='Unreferenced unnamed legacy/debug header; empty script and no encounters' if key in unknown_candidates and not unknown_references[key] else 'Mystery Zone/system/unused header' if name=='Mystery Zone' else 'Explicit unused/Diamond-Pearl legacy header' if '_UNUSED_' in key or '_DP_' in key or name=='Battle Park' else None
  if reason:excluded[key]=reason;continue
  groups[name].append(key);owner[key]=name
-links={n:set() for n in groups};edges=[];seen=set()
+links={n:set() for n in groups};edges=[];seen=set();events={};scripts={}
+macro_source='asm/macros/scrcmd.inc';macro_code=read(macro_source)
+ship_macros={name:re.search(r'MAP_HEADER_\w+',body)[0] for name,body in re.findall(r'\.macro (TakeShipTo\w+)\n(.*?)\.endm',macro_code,re.S) if 'PlayBoatCutscene' in body and re.search(r'MAP_HEADER_\w+',body)}
+assert ship_macros=={'TakeShipToCanalave':'MAP_HEADER_CANALAVE_CITY','TakeShipToSnowpoint':'MAP_HEADER_SNOWPOINT_CITY'}
 def link(a,b,kind,source):
  if a not in owner or b not in owner:return
  key=(a,b,kind)
@@ -33,7 +46,20 @@ for key,h in headers.items():
  if key not in owner:continue
  path='res/field/events/'+h['eventsArchiveID']+'.json'
  if not (src/path).exists():continue
- for w in doc(path).get('warp_events',[]):link(key,w['dest_header_id'],'warp',path)
+ events[key]=doc(path)
+ for w in events[key].get('warp_events',[]):link(key,w['dest_header_id'],'warp',path)
+ script='res/field/scripts/'+h['scriptsArchiveID']+'.s'
+ if (src/script).exists():
+  code=read(script);scripts[key]={'source':script,'code':code}
+  for command,target in re.findall(r'^    (Warp|TakeShip\w*) [^\n]*?(MAP_HEADER_\w+)',code,re.M):link(key,target,'script-'+command,script)
+  for command,target in ship_macros.items():
+   if re.search(r'^    '+command+r'$',code,re.M):link(key,target,'script-'+command,script)
+# The Azure Flute common script is called from Spear Pillar; it was never
+# officially distributed. Explorer Kit is a separate underground field mode.
+read('res/field/scripts/scripts_common.s');read('src/item_use_functions.c')
+link('MAP_HEADER_SPEAR_PILLAR','MAP_HEADER_HALL_OF_ORIGIN','unreleased-event','res/field/scripts/scripts_common.s')
+link('MAP_HEADER_HALL_OF_ORIGIN','MAP_HEADER_SPEAR_PILLAR','event-return','res/field/scripts/scripts_hall_of_origin.s')
+for a,b in [('MAP_HEADER_ETERNA_CITY','MAP_HEADER_UNDERGROUND'),('MAP_HEADER_UNDERGROUND','MAP_HEADER_ETERNA_CITY')]:link(a,b,'explorer-kit-reference','src/item_use_functions.c')
 # Shared outdoor matrices establish geographic adjacency; these edges do not assert
 # passability. Water, ledges, object blockers and script gates remain independent.
 for matrix in sorted({h['mapMatrixID'] for key,h in headers.items() if key in owner}):
@@ -51,6 +77,20 @@ swarm_code=read('src/overlay006/swarm.c')
 swarm_headers=set(re.findall(r'MAP_HEADER_\w+',swarm_code.split('sSwarmMapIdTable[NUM_SWARMS] = {',1)[1].split('};',1)[0]))
 assert len(swarm_headers)==22
 read('src/item_use_functions.c')
+habitats={}
+for key in owner:
+ matrix=doc('res/field/matrices/'+headers[key]['mapMatrixID']+'.json');cells=[]
+ for y,row in enumerate(matrix['maps']):
+  for x,tile in enumerate(row):
+   if tile=='MAP_NONE' or matrix.get('headers') and matrix['headers'][y][x]!=key:continue
+   raw=(src/f'res/field/maps/data/map_data_{int(tile[4:]):03}.bin').read_bytes()
+   path=f'res/field/maps/data/map_data_{int(tile[4:]):03}.bin'
+   sources[path]={'url':f'https://github.com/pret/pokeplatinum/blob/{REV}/{path}','sha256':hashlib.sha256(raw).hexdigest()}
+   assert struct.unpack_from('<I',raw)[0]==0x800
+   attributes=struct.unpack_from('<1024H',raw,0x10)
+   cells.extend(attributes)
+ habitats[key]={'tallGrassTiles':sum((v&255)==2 for v in cells),'terrainTiles':len(cells)}
+read('src/pokeradar.c');read('src/overlay005/field_control.c');read('include/constants/field/map.h');read('src/special_encounter.c');read('include/struct_defs/special_encounter.h');read('src/scrcmd.c');read('src/map_tile_behavior.c');read('src/overlay005/land_data.c');read('include/constants/field/map_tile_behaviors.h')
 land_weights=[20,20,10,10,10,10,5,5,4,4,1,1];water=[60,30,5,4,1];rod=[40,40,15,4,1]
 rows={n:[] for n in groups};tables={};referenced=set()
 def area_label(key,name):
@@ -70,7 +110,7 @@ for name,keys in groups.items():
   enc=headers[key]['wildEncountersArchiveID']
   if enc=='ENCOUNTERS_NONE':continue
   path='res/field/encounters/'+enc+'.json';d=doc(path);referenced.add(path)
-  area=area_label(key,name);tables[key]={'source':path,'data':d}
+  area=key;tables[key]={'source':path,'data':d}
   if d['land_rate']:
    for time in ['morning','day','night']:
     slots=[dict(s) for s in d['land_encounters']]
@@ -78,13 +118,13 @@ for name,keys in groups.items():
      for i,s in zip([2,3],d[time]):slots[i]['species']=s
     if name=='Great Marsh':slots[6]=slots[7]=None
     emit(name,area,'walking',slots,land_weights,[time],['Ordinary slots; no swarm, Radar-exclusive replacement or GBA dual-slot replacement'],path)
-   for field,indices,condition in [('swarms',[0,1],['Active outbreak on this map']),('radar',[4,5,10,11],['Vigorous Poké Radar patch; new chain, before lead abilities']),*[(g,[8,9],[f'National Pokédex; {g.title()} in GBA slot']) for g in ['ruby','sapphire','emerald','firered','leafgreen']]]:
+   for field,indices,condition in [('swarms',[0,1],['Active outbreak on this map']),('radar',[4,5,10,11],['Poké Radar; charged for 50 steps; tall grass on foot without a partner; vigorous patch and new chain; before lead abilities']),*[(g,[8,9],[f'National Pokédex; {g.title()} in GBA slot']) for g in ['ruby','sapphire','emerald','firered','leafgreen']]]:
     # Replacement fields also exist as placeholders on unreachable habitats.
     # Swarm selection has an explicit 22-header whitelist. Radar requires actual
     # tall grass: cave/indoor tables cannot be used; Eterna Forest is the native
     # cave-typed forest exception. The independent Atlas audit checks habitats.
     if field=='swarms' and key not in swarm_headers:continue
-    if field=='radar' and headers[key]['mapType'] not in ['MAP_TYPE_OUTDOORS','MAP_TYPE_TOWN_CITY'] and key!='MAP_HEADER_ETERNA_FOREST':continue
+    if field=='radar' and not habitats[key]['tallGrassTiles']:continue
     # A no-op replacement is not an additional availability condition.
     if all(d[field][j]==d['land_encounters'][i]['species'] for j,i in enumerate(indices)):continue
     emit(name,area,'walking',[dict(d['land_encounters'][i],species=d[field][j]) for j,i in enumerate(indices)],[land_weights[i] for i in indices],[],condition,path)
@@ -93,14 +133,21 @@ for name,keys in groups.items():
      for s in sorted(set(marsh[pool])):emit(name,area,'walking',[dict(d['land_encounters'][i],species=s) for i in [6,7]],[5,5],[],[label,'Daily selection for this area: replaces slots 6 and 7; conditional share, not daily selection probability'],path)
   for field,method,weights in [('surf','surfing',water),('old_rod','old_rod',water),('good_rod','good_rod',rod),('super_rod','super_rod',rod)]:
    if d[field+'_rate']:emit(name,area,method,d[field+'_encounters'],weights,[],[],path)
+access_requirements,special_systems,travel=add_specials(ROOT,src,REV,sp,names,headers,owner,scripts,read,doc,emit,rows,tables)
 locations=[]
 for name,keys in groups.items():
  kinds={headers[k]['mapType'] for k in keys}
  typ='route' if name.startswith('Route ') else 'town' if 'MAP_TYPE_TOWN_CITY' in kinds else 'landmark' if kinds&{'MAP_TYPE_CAVE','MAP_TYPE_OUTDOORS'} else 'facility'
- locations.append({'id':re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-'),'name':name,'region':'Sinnoh','gameId':'platinum','type':typ,'details':f'{len(keys)} native map area'+('s' if len(keys)!=1 else '')+'.','landmarks':[area_label(k,name) for k in keys], 'access':['Connections are reference links; geographic adjacency does not establish a traversable tile path or automatic progression access.'],'connections':sorted(links[name]),'headers':keys,'sources':[{'url':f'https://github.com/pret/pokeplatinum/blob/{REV}/include/data/map_headers.h','label':'Platinum native map headers'}],'validationStatus':'primary-verified'})
+ locations.append({'id':re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-'),'name':name,'region':'Sinnoh','gameId':'platinum','type':typ,'details':f'{len(keys)} native map area'+('s' if len(keys)!=1 else '')+'.','landmarks':[area_label(k,name) for k in keys], 'access':['Connections are reference links; geographic adjacency does not establish a traversable tile path or automatic progression access.'],'connections':sorted(links[name]),'headers':keys,'accessRequirements':access_requirements.get(name,[]),'sources':[{'url':f'https://github.com/pret/pokeplatinum/blob/{REV}/include/data/map_headers.h','label':'Platinum native map headers'}],'validationStatus':'primary-verified'})
+for location in locations:
+ for target in location['connections']:
+  reqs=access_requirements.get(target,[])
+  relevant=[e for e in edges if owner[e['from']]==location['name'] and owner[e['to']]==target]
+  travel['connections'].append({'fromLocation':location['name'],'toLocation':target,'hms':[{'id':r['id'],'usage':'optional'} for r in reqs if r['kind']=='hm'],'conditions':[r['text'] for r in reqs if r['kind']!='hm'],'notes':[r['text'] for r in reqs if r['kind']=='hm']+(['Geographic adjacency: terrain, height, story blockers and one-way paths determine actual passage.'] if any(e['kind']=='geographic-adjacency' for e in relevant) else ['Native warp / scripted travel; story-dependent variants remain reference choices.']),'sources':sorted({e['source'] for e in relevant})})
 allenc={p.relative_to(src).as_posix() for p in (src/'res/field/encounters').glob('encounters_*.json') if 'land_rate' in json.loads(p.read_text())}
-report={'gameId':'platinum','revision':REV,'totalHeaders':len(headers),'includedHeaders':len(owner),'excludedHeaders':excluded,'locations':len(locations),'encounterTables':len(tables),'uniqueEncounterFiles':len(referenced),'unreferencedEncounterFiles':sorted(allenc-referenced),'connections':len(edges),'sources':sources}
-data={'gameId':'platinum','schemaVersion':1,'revision':REV,'locations':locations,'encounters':rows,'headers':{k:{**v,'location':owner.get(k),'excludedReason':excluded.get(k)} for k,v in headers.items()},'connections':edges,'tables':tables,'greatMarshPools':{k:[sp[s] for s in marsh[k]] for k in ['before_national_dex','after_national_dex']}}
+report={'gameId':'platinum','revision':REV,'totalHeaders':len(headers),'includedHeaders':len(owner),'excludedHeaders':excluded,'unnamedHeaderReferenceChecks':unknown_references,'locations':len(locations),'encounterTables':len(tables),'uniqueEncounterFiles':len(referenced),'unreferencedEncounterFiles':sorted(allenc-referenced),'connections':len(edges),'sources':sources}
+data={'gameId':'platinum','schemaVersion':2,'generation':4,'region':'Sinnoh','revision':REV,'locations':locations,'encounters':rows,'headers':{k:{**v,'location':owner.get(k),'excludedReason':excluded.get(k)} for k,v in headers.items()},'connections':edges,'tables':tables,'habitats':habitats,'areas':{k:{'id':k,'label':area_label(k,owner[k]),'location':owner[k],'eventSource':'res/field/events/'+headers[k]['eventsArchiveID']+'.json','warps':events.get(k,{}).get('warp_events',[])} for k in owner},'specialSystems':special_systems,'travel':travel,'greatMarshPools':{k:[sp[s] for s in marsh[k]] for k in ['before_national_dex','after_national_dex']}}
 (ROOT/'js/data/games/platinum/atlas.js').write_text('// Generated by scripts/build-platinum-atlas.py; native Platinum inventory.\nexport const PLATINUM_ATLAS = '+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n')
+(ROOT/'js/data/games/platinum/species-identifiers.js').write_text('// Primary Platinum species constants.\nexport const PLATINUM_SPECIES_IDS = '+json.dumps({k:v for k,v in sp.items() if 1<=v<=493},separators=(',',':'))+';\n')
 (ROOT/'docs/platinum-atlas-inventory.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 print(f'{len(locations)} locations, {len(owner)}/{len(headers)} included headers, {len(tables)} encounter tables, {sum(map(len,rows.values()))} rows, {len(edges)} connections.')

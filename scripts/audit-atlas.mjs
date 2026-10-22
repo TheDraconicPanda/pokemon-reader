@@ -1,3 +1,4 @@
+import { auditPlatinumAtlas } from './audit-platinum-atlas.mjs';
 // Regenerate the two-region report from runtime data + the independent reference inventory.
 // npm run validate:atlas runs all automated tests and fails on mandatory defects.
 import {readFile,writeFile,readdir,mkdir} from 'node:fs/promises';
@@ -167,7 +168,7 @@ export function assessAtlas(input){
 async function fingerprints(){
  const files=[];async function walk(dir){for(const entry of await readdir(path.join(ROOT,dir),{withFileTypes:true})){const f=path.posix.join(dir,entry.name);if(entry.isDirectory()){if(!['bin','obj','__pycache__'].includes(entry.name))await walk(f);}else if(/\.(?:js|mjs|cjs|json|py|css|html|cs|csproj|sav)$/.test(f)&&!f.includes('__pycache__'))files.push(f);}}
  for(const dir of ['js','scripts','tests','css'])await walk(dir);
- for(const f of ['package.json','package-lock.json','index.html','pokedex-earth/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json'])files.push(f);
+ for(const f of ['package.json','package-lock.json','index.html','pokedex-earth/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json','docs/platinum-atlas-inventory.json','docs/platinum-encounter-comparison.json','docs/platinum-map-audit.json','docs/platinum-source-decisions.json','docs/schemas/gen4-atlas.schema.json'])files.push(f);
  return Object.fromEntries(await Promise.all(files.sort().map(async f=>[f,sha(await readFile(path.join(ROOT,f)))])));
 }
 async function runTests(){
@@ -193,6 +194,9 @@ export async function main(args=process.argv.slice(2)){
  let report;
  try{
   const input=await loadAtlasInputs();report=assessAtlas(input);
+  report.platinum=await auditPlatinumAtlas();
+  report.mandatoryFailures.push(...report.platinum.mandatoryFailures.map(f=>({...f,gameId:'platinum'})));
+  await writeFile(path.join(ROOT,'docs/platinum-atlas-coverage.json'),JSON.stringify(report.platinum,null,2)+'\n');
   const meta=await json('package.json');report.applicationVersion=meta.version;report.generatedAt=new Date().toISOString();report.generator='scripts/audit-atlas.mjs';report.referenceInventorySha256=sha(await readFile(path.join(ROOT,'scripts/soulsilver-atlas-reference-inventory.json')));report.inputSha256=await fingerprints();
   report.automatedTests=args.includes('--report-only')?{status:'not-run',reason:'Report-only mode cannot satisfy completion.'}:await runTests();
   if(JSON.stringify(report.inputSha256)!==JSON.stringify(await fingerprints()))report.mandatoryFailures.push({code:'inputs-changed-during-validation',location:null,detail:'Application or test inputs changed while validation was running; regenerate the report.'});
@@ -201,7 +205,7 @@ export async function main(args=process.argv.slice(2)){
   if(args.includes('--check-committed')&&(!previous||stableReport(previous)!==stableReport(report))){report.mandatoryFailures.push({code:'stale-committed-report',location:null,detail:'Run npm run validate:atlas and commit the regenerated report.'});report.completionPassed=false;}
  }catch(e){report={schemaVersion:1,gameId:'soulsilver',completionPassed:false,mandatoryFailures:[{code:'audit-error',location:null,detail:e.stack||String(e)}]};}
  await writeFile(path.join(ROOT,reportFile),JSON.stringify(report,null,2)+'\n');
- console.log(JSON.stringify({report:reportFile,coverage:report.coverage,automatedTests:report.automatedTests,mandatoryFailures:report.mandatoryFailures,completionPassed:report.completionPassed},null,2));
+ console.log(JSON.stringify({report:reportFile,coverage:report.coverage,platinumCoverage:report.platinum?.coverage,automatedTests:report.automatedTests,mandatoryFailures:report.mandatoryFailures,completionPassed:report.completionPassed},null,2));
  if(!report.completionPassed)process.exitCode=1;
  return report;
 }

@@ -273,7 +273,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.26.3') && document.querySelector('.eyebrow').textContent.includes('v0.26.3'),
+    version: document.title.includes('v0.26.4') && document.querySelector('.eyebrow').textContent.includes('v0.26.4'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -281,16 +281,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.26\.3<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.26\.4<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.3");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.26.4");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -351,7 +351,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
   await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes, fileName);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
@@ -599,7 +599,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -783,7 +783,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.3'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.26.4'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2825,7 +2825,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.3'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.4'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3049,7 +3049,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.3'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.26.4'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');
@@ -3125,7 +3125,7 @@ test('Platinum Pokédex preserves native learnsets and game selection, with work
   assert.match(href,/game=platinum/);
   await command('Page.navigate',{url:href});
   await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Route 201'`),'Platinum Atlas');
-  assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'1 of 123 locations');
+  assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'1 of 125 locations');
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
   assert.equal(await evaluate(`!!document.querySelector('.encounter-name[href*="game=platinum"]')`),true);
   await evaluate(`document.querySelector('.connection-link').click()`);
@@ -3160,4 +3160,80 @@ test('Platinum Pokédex save filters count party and PC ownership separately fro
  assert.equal(await evaluate(`document.querySelector('#reference-game').value`),'soulsilver');
  assert.equal(await evaluate(`document.querySelector('#save-filter').disabled`),true);
  assert.match(await evaluate(`document.querySelector('#reference-content').textContent`),/Available SoulSilver abilities/);
+});
+
+test('Platinum Atlas exposes every location and native floor plan with working warp navigation on phones and desktop',async()=>{
+ for(const width of [320,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#location=Mt.%20Coronet&game=platinum'});
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Mt. Coronet'`),'Sinnoh Coronet');
+  await until(()=>evaluate(`document.querySelector('.location-map')?.naturalWidth>0`),'Native map');
+  assert.equal(await evaluate(`document.querySelectorAll('.map-controls select option').length`),14);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  assert.match(await evaluate(`document.querySelector('.map-notice')?.textContent || document.querySelector('.location-card').textContent`),/Platinum native tile plan/);
+  assert.equal(await evaluate(`document.querySelector('.location-map').alt.includes('SoulSilver')`),false);
+  await evaluate(`document.querySelector('.map-controls select').value='1';document.querySelector('.map-controls select').dispatchEvent(new Event('change'))`);
+  await until(()=>evaluate(`document.querySelector('.location-map').src.includes('mt_coronet_2f.png')`),'Second floor');
+  await until(()=>evaluate(`document.querySelector('.map-stair-marker')!==null`),'Native warp marker');
+  const before=await evaluate(`document.querySelector('.map-controls select').value`);
+  await evaluate(`document.querySelector('.map-stair-marker:not(.is-one-way)').click()`);
+  assert.notEqual(await evaluate(`document.querySelector('.map-controls select').value`),before);
+  await evaluate(`document.querySelector('.location-map-link').click()`);
+  await until(()=>evaluate(`document.querySelector('.map-viewer').open`),'Full-size native map');
+  assert.equal(await evaluate(`document.querySelector('.map-viewer').scrollWidth<=document.querySelector('.map-viewer').clientWidth`),true);
+  await evaluate(`document.querySelector('.map-viewer-header button').click();document.querySelector('#location-search').value='Lost Tower';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+  assert.equal(await evaluate(`document.querySelector('.location-card h2').textContent`),'Lost Tower');
+  assert.equal(await evaluate(`document.querySelectorAll('.map-controls select option').length`),5);
+  await evaluate(`document.querySelector('#location-search').value='';document.querySelector('#location-search').dispatchEvent(new Event('input'))`);
+  assert.equal(await evaluate(`document.querySelector('#location-count').textContent`),'125 of 125 locations');
+  for(const n of ['Route 201','Route 230','Distortion World','Hall of Origin','Underground','Great Marsh'])assert.equal(await evaluate(`[...document.querySelectorAll('.location-card h2')].some(h=>h.textContent===${JSON.stringify(n)})`),true);
+ }
+ assert.deepEqual(exceptions,[]);
+});
+
+test('Great Marsh keeps unknown slots explicit and restores only matching Platinum daily state without changing the profile',async()=>{
+ await command('Page.navigate',{url:baseURL+'/pokedex-earth/#great-marsh&game=platinum'});
+ await until(()=>evaluate(`document.querySelector('#great-marsh-status')?.textContent.includes('unknown')`),'Unknown daily selection');
+ assert.match(await evaluate(`document.querySelector('#great-marsh').textContent`),/10% daily slots remain unknown/);
+ const bytes=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));const {detectSave}=await import('../js/saves/index.js');await fixtureReader(detectSave(bytes),bytes,true,'Pt.sav');
+ const snapshot=await evaluate(`(async()=>JSON.stringify((await (await import('/js/adventures.js')).getActiveProfile()).snapshot))()`);
+ for(const width of [320,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
+  await command('Page.navigate',{url:baseURL+'/pokedex-earth/#great-marsh&game=platinum'});
+  await until(()=>evaluate(`document.querySelector('#great-marsh-status')?.textContent.includes('Saved daily selection')`),'Loaded daily selection');
+  assert.equal(await evaluate(`document.querySelectorAll('#great-marsh-area option').length`),6);
+  assert.equal(await evaluate(`document.querySelector('#great-marsh-visitor').value`),'454');
+  assert.match(await evaluate(`document.querySelector('#great-marsh').textContent`),/Complete 100% distribution/);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true);
+  await evaluate(`document.querySelector('#great-marsh-area').value='3';document.querySelector('#great-marsh-area').dispatchEvent(new Event('change'));document.querySelector('#great-marsh-time').value='night';document.querySelector('#great-marsh-time').dispatchEvent(new Event('change'))`);
+  assert.match(await evaluate(`document.querySelector('#great-marsh-status').textContent`),/Hypothetical/);
+  assert.equal(await evaluate(`(async()=>JSON.stringify((await (await import('/js/adventures.js')).getActiveProfile()).snapshot))()`),snapshot);
+  await evaluate(`document.querySelector('#great-marsh button').click()`);
+  await until(()=>evaluate(`document.querySelector('#great-marsh-status').textContent.includes('Saved daily selection')`),'Restore saved conditions');
+  await evaluate(`[...document.querySelectorAll('#great-marsh button')].find(b=>b.textContent==='Open Area 3 in Atlas').click()`);
+  await until(()=>evaluate(`document.querySelector('.location-card h2')?.textContent==='Great Marsh'`),'Marsh Atlas');
+  assert.equal(await evaluate(`document.querySelector('.map-controls select').selectedOptions[0].textContent.includes('Great Marsh 3')`),true);
+ }
+ await fixtureReader();
+ await command('Page.navigate',{url:baseURL+'/pokedex-earth/#great-marsh&game=platinum'});
+ await until(()=>evaluate(`document.querySelector('#great-marsh-status')?.textContent.includes('unknown')`),'SoulSilver state isolated');
+ assert.equal(await evaluate(`document.querySelector('#great-marsh button').disabled`),true);
+ assert.deepEqual(exceptions,[]);
+});
+
+test('Platinum reuses the existing EV finder with native badge conditions and links to exact Sinnoh map areas',async()=>{
+ await command('Page.navigate',{url:baseURL+'/pokedex-earth/#ev-training&game=platinum'});
+ await until(()=>evaluate(`document.querySelector('#ev-results .ev-result')!==null`),'Platinum EV results');
+ assert.match(await evaluate(`document.querySelector('#ev-intro').textContent`),/Platinum/);
+ assert.match(await evaluate(`document.querySelector('#ev-results .ev-result').textContent`),/Fen Badge/);
+ assert.doesNotMatch(await evaluate(`document.querySelector('#ev-results .ev-result').textContent`),/Fog Badge|Johto|Kanto|Safari Zone/);
+ assert.equal(await evaluate(`document.querySelector('#ev-method option[value="headbutt"]').hidden`),true);
+ await evaluate(`document.querySelector('#ev-results .ev-open-location').click()`);
+ await until(()=>evaluate(`document.querySelector('.location-card')!==null`),'Sinnoh EV location');
+ assert.equal(await evaluate(`location.hash.includes('game=platinum')&&location.hash.includes('area=MAP_HEADER_')`),true);
+ assert.equal(await evaluate(`document.querySelector('#location-count').textContent.includes('125 locations')`),true);
+ await evaluate(`location.hash='ev-training'`);
+ await until(()=>evaluate(`document.querySelector('#ev-intro').textContent.includes('SoulSilver')`),'SoulSilver EV restored');
+ assert.equal(await evaluate(`document.querySelector('#ev-method option[value="headbutt"]').hidden`),false);
+ assert.deepEqual(exceptions,[]);
 });

@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Sinnoh Atlas and Great Marsh — v0.26.4
+
+The existing Atlas now has Platinum’s complete reviewed Sinnoh catalogue: 125
+location groups, 501 native terrain plans, ordinary/conditional/special encounters,
+scripted travel, progression notes and shared EV recommendations. The separate
+Great Marsh engine reads validated daily selection from a Platinum save or keeps
+unknown slots explicit. Johto Safari mechanics remain separate.
+
+Coverage is checked against all 593 native headers and an independent CSV audit;
+source differences and exclusions are recorded. See [Atlas coverage and limits](docs/platinum-atlas.md)
+and [Great Marsh evidence](docs/platinum-great-marsh.md). Final integrated release
+validation is the next milestone.
+
 ## Platinum Pokédex — v0.26.3
 
 Use the existing Pokédex’s Game selector to browse Platinum’s 210-entry Sinnoh or

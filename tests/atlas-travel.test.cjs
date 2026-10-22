@@ -17,7 +17,7 @@ test('every directed non-Safari connection has a scoped travel review and source
  }
  assert.equal(count,274);assert.equal(travel.connections.length,154);
  assert.equal(travelConnection('soulsilver','Safari Zone Gate','Safari Zone'),null);
- for(const game of ['heartgold','platinum','__proto__',undefined]){assert.equal(travelConnection(game,'New Bark Town','Route 27'),null);assert.equal(travelHm(game,'surf'),null);}
+ for(const game of ['heartgold','__proto__',undefined]){assert.equal(travelConnection(game,'New Bark Town','Route 27'),null);assert.equal(travelHm(game,'surf'),null);}
  assert.equal(travelHm('soulsilver','__proto__'),null);
 });
 

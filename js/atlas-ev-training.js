@@ -1,3 +1,5 @@
+import { atlasGameReference } from './data/atlas-game-reference.js';
+import { travelHm } from './data/atlas-travel.js';
 import { EV_STATS, EV_METHODS, rankEvTraining } from './data/atlas-ev-training.js';
 import { formatLevels } from './data/atlas-route-reference.js';
 
@@ -10,7 +12,8 @@ const el = (tag,text,className) => {
 };
 const yieldText = yields => Object.entries(yields).filter(([,value])=>value).map(([key,value])=>`${value} ${EV_STATS[key]}`).join(' + ')+' EVs';
 
-export function mountEvTraining({panel,onOpenLocation,decorateSpecies=node=>node}) {
+export function mountEvTraining({panel,onOpenLocation,decorateSpecies=node=>node,gameId='soulsilver'}) {
+  const currentGame=()=>typeof gameId==='function'?gameId():gameId;
   const stat=panel.querySelector('#ev-stat');
   const time=panel.querySelector('#ev-time');
   const method=panel.querySelector('#ev-method');
@@ -52,13 +55,13 @@ export function mountEvTraining({panel,onOpenLocation,decorateSpecies=node=>node
       const requirements=el('details',undefined,'ev-access');
       requirements.append(el('summary','Requirements & location notes'));
       const notes=el('ul');
-      const methodNote=result.method==='surfing'?'Surf requires HM03 and the Fog Badge.':result.method.includes('rod')?`Requires the ${EV_METHODS[result.method]}; percentages apply to Pokémon hooked, not each cast.`:result.method==='headbutt'?'Teach Headbutt to an eligible Pokémon and use the matching tree group.':result.method==='rock-smash'?'Requires Rock Smash and the Zephyr Badge; percentages apply when a Pokémon appears, not every rock.':'Walking encounters include grass, caves and forests.';
+      const methodNote=result.method==='surfing'?`Surf requires HM03 and the ${travelHm(currentGame(),'surf')?.badge || 'matching Badge'}.`:result.method.includes('rod')?`Requires the ${EV_METHODS[result.method]}; percentages apply to Pokémon hooked, not each cast.`:result.method==='headbutt'?'Teach Headbutt to an eligible Pokémon and use the matching tree group.':result.method==='rock-smash'?'Requires Rock Smash and the Zephyr Badge; percentages apply when a Pokémon appears, not every rock.':'Walking encounters include grass, caves and forests.';
       for(const note of [...new Set([methodNote,...result.conditions,...result.access,...result.notes])])notes.append(el('li',note));
       requirements.append(notes);
       const open=el('button','Open in Atlas','ev-open-location');
       open.type='button';
       open.setAttribute('aria-label',`Open ${result.location}${result.area?' · '+result.area:''} in Atlas`);
-      open.addEventListener('click',()=>onOpenLocation(result.location));
+      open.addEventListener('click',()=>onOpenLocation(result.location,result.areaId));
       card.append(requirements,open);
       list.append(card);
     }
@@ -70,7 +73,11 @@ export function mountEvTraining({panel,onOpenLocation,decorateSpecies=node=>node
   function render() {
     list.replaceChildren();shown=0;
     try {
-      results=rankEvTraining('soulsilver',{stat:stat.value,time:time.value,method:method.value,cleanOnly:clean.checked});
+      const game=currentGame();
+      for(const o of method.options)o.hidden=game==='platinum'&&['headbutt','rock-smash'].includes(o.value);
+      if(method.selectedOptions[0].hidden)method.value='all';
+      const intro=panel.querySelector('#ev-intro');if(intro)intro.textContent=`Choose a stat to find training spots in ${atlasGameReference(game).name}. Surfing comes first. “100% useful” describes the listed reference conditions, not a guaranteed encounter each step.`;
+      results=rankEvTraining(game,{stat:stat.value,time:time.value,method:method.value,cleanOnly:clean.checked});
       appendPage();
     } catch {
       more.hidden=true;

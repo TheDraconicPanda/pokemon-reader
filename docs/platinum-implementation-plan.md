@@ -169,3 +169,26 @@ full independent coverage and Great Marsh simulation remain required in phase 5.
 Release gate: **264/264 tests**, zero mandatory failures; original Johto/Kanto
 coverage remains 100%. Version 0.26.3. Details and repeatable source commands:
 `platinum-pokedex.md`, `platinum-pokedex-audit.json`, `platinum-atlas-inventory.json`.
+
+## Milestone 5 evidence
+
+Complete reviewed Sinnoh catalogue: 125 groups, all 30 routes, 501 native terrain
+plans, 593 accounted headers / 92 explained exclusions, 154 assigned ordinary
+banks, 5724 formatted records, 1062 native/script/geographic edges and 488
+within-location warp references. A separately reviewed census prevents missing
+locations, sources, prerequisites or tables from shrinking the denominator.
+
+Independent ordinary-area comparison: 142/144 exact, 7920 slot/time/method
+checks; two Turnback Cave differences resolved from native assignments and room
+selection, with decisions preserved. Great Marsh has its own six-area engine,
+both daily pools, validated save initialization, explicit unknown shares and
+read-only hypothetical conditions. Shared EV finder uses native yields and
+Sinnoh badge requirements. No Johto Safari mechanics are copied into Great Marsh.
+
+Release 0.26.4 gate: **277/277 tests**, zero mandatory failures, 100% reviewed
+Sinnoh coverage and unchanged 100% Johto/Kanto coverage. Focused browser journeys
+cover 320/1440px, native floor navigation, Great Marsh unknown/loaded conditions,
+profile immutability, exact-area EV links and game switching. Repeated offline
+Atlas/map/comparison generation reproduces all 507 checked outputs byte for byte.
+Sources, scope and limitations: `platinum-atlas.md`, `platinum-great-marsh.md`,
+`platinum-source-decisions.json`, and the JSON coverage/map/comparison reports.

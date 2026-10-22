@@ -2,7 +2,7 @@ import { encounterSections } from './atlas-encounter-sections.js';
 import { speciesIdForName } from './data/game-reference.js';
 
 // Shared Atlas/mini-Atlas presentation; encounter records and conditions stay intact.
-export function renderAtlasEncounters({gameId,locationName,encounters,status,notes=[],decorateSpecies}) {
+export function renderAtlasEncounters({gameId,locationName,encounters,status,notes=[],decorateSpecies,emptyMessage=null}) {
   const section = document.createElement("section");
   section.className = "location-encounters";
   section.setAttribute("aria-label", `${locationName} encounters`);
@@ -11,7 +11,7 @@ export function renderAtlasEncounters({gameId,locationName,encounters,status,not
   if (!encounters || encounters.length === 0) {
     const message = document.createElement("p");
     message.className = "encounter-note";
-    message.textContent = status === "no-fixed-wild" ? "No fixed wild encounters at this location. Gifts, trades and Trainer battles are separate from wild encounters." : "Encounter data has not been added for this location yet.";
+    message.textContent = emptyMessage || (status === "no-fixed-wild" ? "No fixed wild encounters at this location. Gifts, trades and Trainer battles are separate from wild encounters." : "Encounter data has not been added for this location yet.");
     section.append(heading, message);
     for (const text of notes) {
       const detail = document.createElement("p");

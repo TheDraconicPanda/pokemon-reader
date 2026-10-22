@@ -1,3 +1,4 @@
+import { sanitizeGreatMarsh } from './saves/platinum-special.js';
 import { gameProfile } from './saves/profiles.js';
 import { sanitizeSafariSave } from './saves/soulsilver-safari.js';
 // Decoded data only. Binary bytes remain owned by the Reader's current session.
@@ -52,6 +53,7 @@ export function validateSnapshot(snapshot) {
     requireValue(Array.isArray(dex[full]) && dex[full].every(id=>uint(id,493)&&id>0) && new Set(dex[full]).size===dex[full].length,'Invalid full Pokédex flags.');
     requireValue(dex[full].filter(id=>dex.speciesIds.includes(id)).length===dex[scoped].length && dex[scoped].every(id=>dex[full].includes(id)),'Full and scoped Pokédex flags disagree.');
   }
+  if(snapshot.greatMarsh!==undefined)requireValue(snapshot.gameId==='platinum' && Boolean(sanitizeGreatMarsh(snapshot.greatMarsh)) && snapshot.greatMarsh.nationalDex===snapshot.pokedex.nationalDex,'Invalid Great Marsh state.');
   return snapshot;
 }
 
@@ -80,6 +82,7 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
     party, storage,
     pokedex:result.save?.pokedex && pick(result.save.pokedex, ['nationalDex','speciesIds','seenSpecies','caughtSpecies','speciesCount','seenCount','caughtCount','seenPercent','caughtPercent','allCaughtSpecies','allSeenSpecies']),
     ...(gameId === 'platinum' && result.progress ? {progress:pick(result.progress,['mainStoryCleared','nationalDex'])} : {}),
+    ...(gameId==='platinum' && sanitizeGreatMarsh(result.greatMarsh) ? {greatMarsh:sanitizeGreatMarsh(result.greatMarsh)} : {}),
     safari:sanitizeSafariSave(result.save?.safari)
   };
   if (snapshot.trainer?.playTime) snapshot.trainer.playTime = pick(snapshot.trainer.playTime, ['hours','minutes','seconds']);
@@ -91,7 +94,7 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
 export function snapshotResult(snapshot) {
   validateSnapshot(snapshot);
   return { valid:true, supported:true, game:gameProfile(snapshot.gameId).game, gameId:snapshot.gameId, reason:'Restored decoded adventure.',
-    trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, progress:snapshot.progress,
+    trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, progress:snapshot.progress, ...(snapshot.gameId==='platinum'&&sanitizeGreatMarsh(snapshot.greatMarsh)?{greatMarsh:sanitizeGreatMarsh(snapshot.greatMarsh)}:{}),
     save:{trainer:snapshot.trainer, party:snapshot.party, storage:snapshot.storage, progress:snapshot.progress, pokedex:snapshot.pokedex, safari:sanitizeSafariSave(snapshot.safari)}
   };
 }

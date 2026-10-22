@@ -7,7 +7,7 @@ import { speciesIdForName } from './game-reference.js';
 
 // Explicit game selection keeps future versions from inheriting SoulSilver data.
 const REFERENCES = new Map([["soulsilver", { encounters: SOULSILVER_ROUTE_ENCOUNTERS.routes, features: SOULSILVER_ROUTE_FEATURES.routes, locations: {...SOULSILVER_LOCATION_ENCOUNTERS.locations,...KANTO_ENCOUNTERS.locations} }]]);
-const METHODS = { walking: 'Walking', surfing: 'Surfing', old_rod: 'Old Rod', good_rod: 'Good Rod', super_rod: 'Super Rod', headbutt: 'Headbutt', 'rock-smash': 'Rock Smash', interaction: 'Special encounter', gift: 'Gift Pokémon', trade: 'In-game trade', contest: 'Bug-Catching Contest' };
+const METHODS = { walking: 'Walking', surfing: 'Surfing', old_rod: 'Old Rod', good_rod: 'Good Rod', super_rod: 'Super Rod', headbutt: 'Headbutt', 'rock-smash': 'Rock Smash', interaction: 'Special encounter', gift: 'Gift Pokémon', honey_tree:'Honey Tree', roaming:'Roaming Pokémon', trade: 'In-game trade', contest: 'Bug-Catching Contest' };
 const CONDITIONS = {
   'moon-square-ordinary':'Ordinary Mt. Moon Square scene',
   'moon-square-clefairy':'Alternate Clefairy scene · Monday night / early Tuesday · before the dance reward is collected',
@@ -71,8 +71,8 @@ function formatEncounter(row,gameId) {
 export function locationEncounterReference(gameId, name) {
   if(gameId==='platinum') {
     if(!Object.hasOwn(PLATINUM_ATLAS.encounters,name))return null;
-    const encounters=PLATINUM_ATLAS.encounters[name].map(row=>({...row,method:[row.area,METHODS[row.method],...row.conditions].filter(Boolean).join(' · '),levels:formatLevels(row.levels),times:row.times.length?row.times.map(t=>t[0].toUpperCase()+t.slice(1)).join(', '):'All times',rate:`${row.percent}%`}));
-    return {status:encounters.length?'verified':'no-fixed-wild',encounters,notes:['Primary Platinum slot data. Percentages are conditional slot shares before lead abilities and Repel, not encounter-per-step or capture chances. Replacement rows replace their numbered ordinary slots; do not add overlapping conditions together. Special scripted encounters are being audited separately.']};
+    const encounters=PLATINUM_ATLAS.encounters[name].map(row=>({...row,method:[PLATINUM_ATLAS.areas[row.area]?.label || row.area,METHODS[row.method],...row.conditions].filter(Boolean).join(' · '),levels:row.levelsLabel || formatLevels(row.levels),times:row.times.length?row.times.map(t=>t[0].toUpperCase()+t.slice(1)).join(', '):'All times',rate:row.availability || `${row.percent}%`}));
+    return {status:encounters.length?'verified':'no-fixed-wild',encounters,notes:['Primary Platinum slot data. Percentages are conditional slot shares before lead abilities and Repel, not encounter-per-step or capture chances. Replacement rows replace their numbered ordinary slots; do not add overlapping conditions together. Special encounters, gifts, trades, Honey Trees and daily visitors retain their separate prerequisites.']};
   }
   const game = REFERENCES.get(gameId);
   if (!game) return null;

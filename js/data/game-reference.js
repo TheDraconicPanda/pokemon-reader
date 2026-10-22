@@ -15,7 +15,7 @@ const SOULSILVER = Object.freeze({
   evYieldSourceSha256:SOULSILVER_EV_YIELDS.sourceSha256,
 });
 const PLATINUM=Object.freeze({gameId:'platinum',generation:4,dataSchemaVersion:1,species:PLANNER_REFERENCE.species,moves:Object.fromEntries(Object.entries(PLATINUM_READER.moves).map(([id,m])=>[id,m.name])),natures:PLANNER_REFERENCE.natures});
-const platinumYield=id=>PLATINUM_POKEDEX.species[id]?.evYield || null;
+const platinumYield=id=>{const values=PLATINUM_POKEDEX.species[id]?.evYield;return values?Object.fromEntries(['hp','attack','defense','spAttack','spDefense','speed'].map((key,i)=>[key,values[i]])):null;};
 export function gameReference(gameId) { return gameId === 'soulsilver' ? SOULSILVER : gameId==='platinum' ? PLATINUM : null; }
 export function speciesIdForName(gameId, name) { return gameReference(gameId) ? names.get(normalize(name)) ?? null : null; }
 export function speciesReference(gameId, id) {

@@ -1,7 +1,8 @@
+import { PLATINUM_MAPS } from './games/platinum/maps.js';
 import { KANTO_MAPS } from "./games/soulsilver/kanto-maps.js";
 import { SOULSILVER_MAPS } from './games/soulsilver/maps.js';
 
-const GAMES = new Map([['soulsilver', {...SOULSILVER_MAPS.locations,...KANTO_MAPS.locations}]]);
+const GAMES = new Map([['soulsilver', {...SOULSILVER_MAPS.locations,...KANTO_MAPS.locations}],['platinum',PLATINUM_MAPS.locations]]);
 
 export function mapsForLocation(gameId, locationName) {
   const locations = GAMES.get(gameId);

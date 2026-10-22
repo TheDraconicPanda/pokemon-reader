@@ -1,0 +1,2767 @@
+{
+  "gameId": "platinum",
+  "independentRevision": "6fd69dfe90465ba96534f6816fc817737d1f97f6",
+  "atlasInputSha256": "c421b73d0e6957f0361d890e36941b77260b8ba84388a9bf1b0ea20d2dd99ae6",
+  "versionId": 14,
+  "ordinaryAreaCount": 144,
+  "exactAreas": 142,
+  "slotComparisons": 7920,
+  "matches": [
+    {
+      "apiArea": 1,
+      "location": "Canalave City",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_CANALAVE_CITY"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 2,
+      "location": "Eterna City",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ETERNA_CITY"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 3,
+      "location": "Pastoria City",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_PASTORIA_CITY"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 4,
+      "location": "Sunyshore City",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SUNYSHORE_CITY"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 5,
+      "location": "Pokémon League",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_POKEMON_LEAGUE"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 6,
+      "location": "Oreburgh Mine",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OREBURGH_MINE_B1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 7,
+      "location": "Oreburgh Mine",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OREBURGH_MINE_B2F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 8,
+      "location": "Valley Windworks",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 9,
+      "location": "Eterna Forest",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ETERNA_FOREST"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 10,
+      "location": "Fuego Ironworks",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 11,
+      "location": "Mt. Coronet",
+      "apiSection": "1f-route-207",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_1F_SOUTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 12,
+      "location": "Mt. Coronet",
+      "apiSection": "2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_2F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 13,
+      "location": "Mt. Coronet",
+      "apiSection": "3f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_3F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 14,
+      "location": "Mt. Coronet",
+      "apiSection": "exterior-snowfall",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 15,
+      "location": "Mt. Coronet",
+      "apiSection": "exterior-blizzard",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 16,
+      "location": "Mt. Coronet",
+      "apiSection": "4f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 17,
+      "location": "Mt. Coronet",
+      "apiSection": "4f-small-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_4F_ROOM_3"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 18,
+      "location": "Mt. Coronet",
+      "apiSection": "5f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_5F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 19,
+      "location": "Mt. Coronet",
+      "apiSection": "6f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_6F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 20,
+      "location": "Mt. Coronet",
+      "apiSection": "1f-from-exterior",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 21,
+      "location": "Mt. Coronet",
+      "apiSection": "1f-route-216",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 22,
+      "location": "Mt. Coronet",
+      "apiSection": "1f-route-211",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 23,
+      "location": "Mt. Coronet",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MT_CORONET_B1F"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 24,
+      "location": "Great Marsh",
+      "apiSection": "area-1",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_1",
+        "MAP_HEADER_GREAT_MARSH_2"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 25,
+      "location": "Great Marsh",
+      "apiSection": "area-2",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_1",
+        "MAP_HEADER_GREAT_MARSH_2"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 26,
+      "location": "Great Marsh",
+      "apiSection": "area-3",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_3",
+        "MAP_HEADER_GREAT_MARSH_4"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 27,
+      "location": "Great Marsh",
+      "apiSection": "area-4",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_3",
+        "MAP_HEADER_GREAT_MARSH_4"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 28,
+      "location": "Great Marsh",
+      "apiSection": "area-5",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_5",
+        "MAP_HEADER_GREAT_MARSH_6"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 29,
+      "location": "Great Marsh",
+      "apiSection": "area-6",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_GREAT_MARSH_5",
+        "MAP_HEADER_GREAT_MARSH_6"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 30,
+      "location": "Solaceon Ruins",
+      "apiSection": "2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 31,
+      "location": "Solaceon Ruins",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 32,
+      "location": "Solaceon Ruins",
+      "apiSection": "b1f-a",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 33,
+      "location": "Solaceon Ruins",
+      "apiSection": "b1f-b",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 34,
+      "location": "Solaceon Ruins",
+      "apiSection": "b1f-c",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 35,
+      "location": "Solaceon Ruins",
+      "apiSection": "b2f-a",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 36,
+      "location": "Solaceon Ruins",
+      "apiSection": "b2f-b",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 37,
+      "location": "Solaceon Ruins",
+      "apiSection": "b2f-c",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 38,
+      "location": "Solaceon Ruins",
+      "apiSection": "b3f-a",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 39,
+      "location": "Solaceon Ruins",
+      "apiSection": "b3f-b",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 40,
+      "location": "Solaceon Ruins",
+      "apiSection": "b3f-c",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 41,
+      "location": "Solaceon Ruins",
+      "apiSection": "b3f-d",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 42,
+      "location": "Solaceon Ruins",
+      "apiSection": "b3f-e",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 43,
+      "location": "Solaceon Ruins",
+      "apiSection": "b4f-a",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 44,
+      "location": "Solaceon Ruins",
+      "apiSection": "b4f-b",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 45,
+      "location": "Solaceon Ruins",
+      "apiSection": "b4f-c",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 46,
+      "location": "Solaceon Ruins",
+      "apiSection": "b4f-d",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 47,
+      "location": "Solaceon Ruins",
+      "apiSection": "b5f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 48,
+      "location": "Victory Road",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 49,
+      "location": "Victory Road",
+      "apiSection": "2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_2F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 50,
+      "location": "Victory Road",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_B1F"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 51,
+      "location": "Victory Road",
+      "apiSection": "inside-b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_2"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 52,
+      "location": "Victory Road",
+      "apiSection": "inside",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 53,
+      "location": "Victory Road",
+      "apiSection": "inside-exit",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 54,
+      "location": "Ravaged Path",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_RAVAGED_PATH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 55,
+      "location": "Oreburgh Gate",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OREBURGH_GATE_1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 56,
+      "location": "Oreburgh Gate",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OREBURGH_GATE_B1F"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 57,
+      "location": "Stark Mountain",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_STARK_MOUNTAIN_OUTSIDE"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 58,
+      "location": "Stark Mountain",
+      "apiSection": "entrance",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_1"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 59,
+      "location": "Stark Mountain",
+      "apiSection": "inside",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_2"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 60,
+      "location": "Sendoff Spring",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SENDOFF_SPRING"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 61,
+      "location": "Turnback Cave",
+      "apiSection": "pillar-1",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 62,
+      "location": "Turnback Cave",
+      "apiSection": "pillar-2",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 64,
+      "location": "Turnback Cave",
+      "apiSection": "before-pillar-1",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 70,
+      "location": "Turnback Cave",
+      "apiSection": "between-pillars-1-and-2",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 76,
+      "location": "Turnback Cave",
+      "apiSection": "between-pillars-2-and-3",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 107,
+      "location": "Snowpoint Temple",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 108,
+      "location": "Snowpoint Temple",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 109,
+      "location": "Snowpoint Temple",
+      "apiSection": "b2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B2F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B3F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 110,
+      "location": "Snowpoint Temple",
+      "apiSection": "b3f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B2F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B3F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 111,
+      "location": "Snowpoint Temple",
+      "apiSection": "b4f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B5F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 112,
+      "location": "Snowpoint Temple",
+      "apiSection": "b5f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B5F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 113,
+      "location": "Wayward Cave",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_WAYWARD_CAVE_1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 114,
+      "location": "Wayward Cave",
+      "apiSection": "b1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_WAYWARD_CAVE_B1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 115,
+      "location": "Ruin Maniac Cave",
+      "apiSection": "0-9-different-unown-caught",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 116,
+      "location": "Ruin Maniac Cave",
+      "apiSection": "10-25-different-unown-caught",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_RUIN_MANIAC_CAVE_LONG"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 117,
+      "location": "Maniac Tunnel",
+      "apiSection": "26-plus-different-unown-caught",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_MANIAC_TUNNEL"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 118,
+      "location": "Trophy Garden",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TROPHY_GARDEN"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 119,
+      "location": "Iron Island",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 120,
+      "location": "Iron Island",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_1F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 121,
+      "location": "Iron Island",
+      "apiSection": "b1f-left",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 122,
+      "location": "Iron Island",
+      "apiSection": "b1f-right",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 123,
+      "location": "Iron Island",
+      "apiSection": "b2f-right",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 124,
+      "location": "Iron Island",
+      "apiSection": "b2f-left",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 125,
+      "location": "Iron Island",
+      "apiSection": "b3f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_IRON_ISLAND_B3F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 126,
+      "location": "Old Chateau",
+      "apiSection": "entrance",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 127,
+      "location": "Old Chateau",
+      "apiSection": "dining-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 128,
+      "location": "Old Chateau",
+      "apiSection": "2f-private-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 129,
+      "location": "Old Chateau",
+      "apiSection": "2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 130,
+      "location": "Old Chateau",
+      "apiSection": "2f-leftmost-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 131,
+      "location": "Old Chateau",
+      "apiSection": "2f-left-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 132,
+      "location": "Old Chateau",
+      "apiSection": "2f-middle-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 133,
+      "location": "Old Chateau",
+      "apiSection": "2f-right-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 134,
+      "location": "Old Chateau",
+      "apiSection": "2f-rightmost-room",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 135,
+      "location": "Lake Verity",
+      "apiSection": "before-galactic-intervention",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_LAKE_VERITY_LOW_WATER"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 136,
+      "location": "Lake Verity",
+      "apiSection": "after-galactic-intervention",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_LAKE_VERITY"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 137,
+      "location": "Lake Valor",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_LAKE_VALOR"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 138,
+      "location": "Lake Acuity",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_LAKE_ACUITY"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 139,
+      "location": "Valor Lakefront",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_VALOR_LAKEFRONT"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 140,
+      "location": "Acuity Lakefront",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ACUITY_LAKEFRONT"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 141,
+      "location": "Route 201",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_201"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 142,
+      "location": "Route 202",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_202"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 143,
+      "location": "Route 203",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_203"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 144,
+      "location": "Route 204",
+      "apiSection": "south-towards-jubilife-city",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_204_SOUTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 145,
+      "location": "Route 204",
+      "apiSection": "north-towards-floaroma-town",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_204_NORTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 146,
+      "location": "Route 205",
+      "apiSection": "south-towards-floaroma-town",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_205_SOUTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 147,
+      "location": "Route 205",
+      "apiSection": "east-towards-eterna-city",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_205_NORTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 148,
+      "location": "Route 206",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_206"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 149,
+      "location": "Route 207",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_207"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 150,
+      "location": "Route 208",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_208"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 151,
+      "location": "Route 209",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 152,
+      "location": "Lost Tower",
+      "apiSection": "1f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_1F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_2F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 153,
+      "location": "Lost Tower",
+      "apiSection": "2f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_1F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_2F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 154,
+      "location": "Lost Tower",
+      "apiSection": "3f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_3F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 155,
+      "location": "Lost Tower",
+      "apiSection": "4f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_4F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 156,
+      "location": "Lost Tower",
+      "apiSection": "5f",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_5F"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 157,
+      "location": "Route 210",
+      "apiSection": "south-towards-solaceon-town",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_210_SOUTH"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 158,
+      "location": "Route 210",
+      "apiSection": "west-towards-celestic-town",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_210_NORTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 159,
+      "location": "Route 211",
+      "apiSection": "west-towards-eterna-city",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_211_WEST"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 160,
+      "location": "Route 211",
+      "apiSection": "east-towards-celestic-town",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_211_EAST"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 161,
+      "location": "Route 212",
+      "apiSection": "north-towards-hearthome-city",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_212_NORTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 162,
+      "location": "Route 212",
+      "apiSection": "east-towards-pastoria-city",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_212_SOUTH"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 163,
+      "location": "Route 213",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_213"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 164,
+      "location": "Route 214",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_214"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 165,
+      "location": "Route 215",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_215"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 166,
+      "location": "Route 216",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_216"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 167,
+      "location": "Route 217",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_217"
+      ],
+      "slotComparisons": 36
+    },
+    {
+      "apiArea": 168,
+      "location": "Route 218",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_218"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 169,
+      "location": "Route 219",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_219"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 170,
+      "location": "Route 221",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_221"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 171,
+      "location": "Route 222",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_222"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 172,
+      "location": "Route 224",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_224"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 173,
+      "location": "Route 225",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_225"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 174,
+      "location": "Route 227",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_227"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 175,
+      "location": "Route 228",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_228"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 176,
+      "location": "Route 229",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_229"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 177,
+      "location": "Twinleaf Town",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_TWINLEAF_TOWN"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 178,
+      "location": "Celestic Town",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_CELESTIC_TOWN"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 179,
+      "location": "Resort Area",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_RESORT_AREA"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 180,
+      "location": "Route 220",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_220"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 181,
+      "location": "Route 223",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_223"
+      ],
+      "slotComparisons": 60
+    },
+    {
+      "apiArea": 182,
+      "location": "Route 226",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_226"
+      ],
+      "slotComparisons": 96
+    },
+    {
+      "apiArea": 183,
+      "location": "Route 230",
+      "apiSection": "",
+      "matchingNativeHeaders": [
+        "MAP_HEADER_ROUTE_230"
+      ],
+      "slotComparisons": 96
+    }
+  ],
+  "differences": [
+    {
+      "apiArea": 63,
+      "location": "Turnback Cave",
+      "apiSection": "pillar-3",
+      "closestNativeHeader": "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1",
+      "differentSlots": [
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 8,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 9,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 10,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 11,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 8,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 9,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 10,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 11,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 8,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 9,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 10,
+          "primary": [
+            [
+              356,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              37,
+              37,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 11,
+          "primary": [
+            [
+              358,
+              38,
+              38,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              37,
+              37,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "apiArea": 82,
+      "location": "Turnback Cave",
+      "apiSection": "after-pillar-3",
+      "closestNativeHeader": "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1",
+      "differentSlots": [
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 0,
+          "primary": [
+            [
+              92,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 1,
+          "primary": [
+            [
+              436,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              437,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 2,
+          "primary": [
+            [
+              92,
+              16,
+              16,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 3,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              45,
+              45,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 4,
+          "primary": [
+            [
+              92,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              47,
+              47,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 5,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 6,
+          "primary": [
+            [
+              42,
+              18,
+              18,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              47,
+              47,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 7,
+          "primary": [
+            [
+              433,
+              16,
+              16,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              46,
+              46,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 8,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              47,
+              47,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 9,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              45,
+              45,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 10,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              48,
+              48,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "day",
+          "slot": 11,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              47,
+              47,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 0,
+          "primary": [
+            [
+              92,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 1,
+          "primary": [
+            [
+              436,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              437,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 2,
+          "primary": [
+            [
+              92,
+              16,
+              16,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 3,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              45,
+              45,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 4,
+          "primary": [
+            [
+              92,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              47,
+              47,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 5,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 6,
+          "primary": [
+            [
+              42,
+              18,
+              18,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              47,
+              47,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 7,
+          "primary": [
+            [
+              433,
+              16,
+              16,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              46,
+              46,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 8,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              47,
+              47,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 9,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              45,
+              45,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 10,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              48,
+              48,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "morning",
+          "slot": 11,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              47,
+              47,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 0,
+          "primary": [
+            [
+              92,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 1,
+          "primary": [
+            [
+              436,
+              15,
+              15,
+              20
+            ]
+          ],
+          "independent": [
+            [
+              437,
+              45,
+              45,
+              20
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 2,
+          "primary": [
+            [
+              356,
+              16,
+              16,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 3,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              45,
+              45,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 4,
+          "primary": [
+            [
+              92,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              93,
+              47,
+              47,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 5,
+          "primary": [
+            [
+              42,
+              17,
+              17,
+              10
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              46,
+              46,
+              10
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 6,
+          "primary": [
+            [
+              42,
+              18,
+              18,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              42,
+              47,
+              47,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 7,
+          "primary": [
+            [
+              433,
+              16,
+              16,
+              5
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              46,
+              46,
+              5
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 8,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              47,
+              47,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 9,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              4
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              45,
+              45,
+              4
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 10,
+          "primary": [
+            [
+              355,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              356,
+              48,
+              48,
+              1
+            ]
+          ]
+        },
+        {
+          "method": "land",
+          "time": "night",
+          "slot": 11,
+          "primary": [
+            [
+              433,
+              18,
+              18,
+              1
+            ]
+          ],
+          "independent": [
+            [
+              358,
+              47,
+              47,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "nativeHeadersWithoutExactIndependentMatch": [
+    "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2",
+    "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3",
+    "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4",
+    "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5",
+    "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6"
+  ],
+  "sources": {
+    "locations": {
+      "sha256": "2af5d6a1151d5ae402f9da1d5513bc1c7437795e69b140787c7aab3f6ed7eaa3",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/locations.csv"
+    },
+    "location_areas": {
+      "sha256": "4706b96842166a44ca619da0add34c212088669270a478d9e84bc78e9f581840",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/location_areas.csv"
+    },
+    "encounter_slots": {
+      "sha256": "597dc58df2b0a2c64cedce6d6a2a08feeecbd1cf860bdf926cd27f119417d87a",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/encounter_slots.csv"
+    },
+    "encounters": {
+      "sha256": "93ba8853ac871719d230a6406c91f8418754fdc773f2f4b9f476007f743b4955",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/encounters.csv"
+    },
+    "encounter_condition_value_map": {
+      "sha256": "e7e566eb07f53aab34065869a245359cc8c0313ca97872de5fd07d1867a46c7a",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/encounter_condition_value_map.csv"
+    },
+    "encounter_condition_values": {
+      "sha256": "f55fc7c4b4d821631695ff30d74f34b2122859c412d29b98d4d973cb6d2df902",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/encounter_condition_values.csv"
+    },
+    "encounter_methods": {
+      "sha256": "99327ac41c463b8bcca18d04b56cad3d5532fec70dd7eb869b9ca650a007e291",
+      "url": "https://github.com/PokeAPI/pokeapi/blob/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv/encounter_methods.csv"
+    }
+  },
+  "scope": "Ordinary grass time tables and Surf / all rods, comparing slot species, min/max levels and weights. Matching tables within one location do not establish floor-name equivalence. Dynamic replacement and scripted systems have separate audits."
+}

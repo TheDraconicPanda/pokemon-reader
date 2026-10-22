@@ -29,7 +29,7 @@ test('Platinum reference locations use real Sinnoh IDs and never leak Johto roam
  assert.ok(!a.encounters['Iron Island'].some(r=>r.conditions.includes('Active outbreak on this map')));
  for(const n of ['Wayward Cave','Turnback Cave','Oreburgh Mine'])assert.ok(!a.encounters[n].some(r=>r.conditions.some(c=>c.includes('Poké Radar'))));
  assert.ok(a.encounters['Eterna Forest'].some(r=>r.conditions.some(c=>c.includes('Poké Radar'))));
- assert.equal(a.locations.length,123);assert.equal(Object.keys(a.headers).length,593);
+ assert.equal(a.locations.length,125);assert.equal(Object.keys(a.headers).length,593);
 });
 test('Platinum Dex seen/caught flags agree with independent PKHeX fixtures and game-scoped caught adapters',async()=>{
  const {detectSave}=await import('../js/saves/index.js');const {caughtRegistrations,speciesReference}=await import('../js/data/game-reference.js');
@@ -39,5 +39,5 @@ test('Platinum Dex seen/caught flags agree with independent PKHeX fixtures and g
   const profile={gameId:'platinum',snapshot:{gameId:'platinum',pokedex:p.save.pokedex}};
   assert.deepEqual([...caughtRegistrations(profile,'platinum').species],expected.caught);assert.equal(caughtRegistrations(profile,'soulsilver').species.size,0);
  }
- assert.deepEqual(speciesReference('platinum',387).evYield,[0,1,0,0,0,0]);
+ assert.deepEqual(speciesReference('platinum',387).evYield,{hp:0,attack:1,defense:0,spAttack:0,spDefense:0,speed:0});
 });

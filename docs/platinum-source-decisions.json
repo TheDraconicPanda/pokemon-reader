@@ -1,0 +1,85 @@
+{
+  "gameId": "platinum",
+  "primaryRevision": "49f78f35ccd8c6880e189d23a630eef2976c44ac",
+  "decisions": [
+    {
+      "id": "turnback-api-63",
+      "status": "resolved-primary",
+      "apiArea": 63,
+      "topic": "Third room band slot levels",
+      "decision": "Use level 38 for native slots 8–11, as stored in all six pillar-3 room encounter records; PokéAPI lists level 37.",
+      "evidence": [
+        "res/field/encounters/encounters_turnback_cave_pillar_3_room_1.json",
+        "include/data/map_headers.h",
+        "src/scrcmd.c"
+      ],
+      "primarySlotLevels": [
+        38,
+        38,
+        38,
+        38
+      ]
+    },
+    {
+      "id": "turnback-api-82",
+      "status": "resolved-primary",
+      "apiArea": 82,
+      "topic": "After-third-pillar ordinary wild table",
+      "decision": "Do not attach the unassigned 45–47 table. Native ScrCmd_InitTurnbackCave sends pillarsSeen>=3 directly to the Giratina room, whose header has ENCOUNTERS_NONE. Its stationary level-47 Giratina is separately conditional on the Distortion World capture result.",
+      "evidence": [
+        "src/scrcmd.c",
+        "include/data/map_headers.h",
+        "res/field/scripts/scripts_turnback_cave_giratina_room.s"
+      ]
+    },
+    {
+      "id": "turnback-guide-bands",
+      "status": "resolved-primary",
+      "topic": "Serebii room-band labels",
+      "decision": "Keep native 15–18, 25–28 and 35–38 bands assigned through the native room-selection array. Serebii’s current Gen IV page has different later-band labels/levels; it is not used to override verified native header assignments.",
+      "references": [
+        "https://www.serebii.net/pokearth/sinnoh/4th/turnbackcave.shtml"
+      ],
+      "evidence": [
+        "src/scrcmd.c",
+        "include/data/map_headers.h"
+      ]
+    },
+    {
+      "id": "unused-headers",
+      "status": "resolved-primary",
+      "topic": "Unnamed scene/legacy headers",
+      "decision": "Exclude empty-script/no-encounter unnamed headers only after a repository-wide native C, event, script and matrix reference scan finds no incoming named reference. Retain every header and exclusion reason in the census. Do not turn unassigned encounter files into locations.",
+      "evidence": [
+        "include/data/map_headers.h",
+        "generated/map_headers.txt"
+      ]
+    },
+    {
+      "id": "great-marsh-daily",
+      "status": "verified",
+      "topic": "Great Marsh scope",
+      "decision": "Six fixed areas; one pool selection per area from the saved 32-bit daily value. Slots 6/7 contribute 10%, distinct from pool selection and capture chances. No Johto block/aging rules.",
+      "references": [
+        "https://bulbapedia.bulbagarden.net/wiki/Great_Marsh"
+      ],
+      "evidence": [
+        "src/overlay006/great_marsh_daily_encounters.c",
+        "res/field/encounters/encounters_great_marsh_lookout.json"
+      ]
+    },
+    {
+      "id": "source-rights",
+      "status": "documented",
+      "topic": "Licensing and access",
+      "decision": "Generate numeric game facts and our own terrain palette from pinned public source; retain source URLs/hashes and ownership. Do not ship ROMs, copied source code, screenshots or new scraped artwork. Existing HGSS sprite credits remain intact. Aggregated numeric comparison data retain PokéAPI attribution; guide prose and complete tables are not copied."
+    }
+  ],
+  "unresolvedCriticalMechanics": [],
+  "accessNotes": [
+    {
+      "source": "https://bulbapedia.bulbagarden.net/wiki/Turnback_Cave",
+      "result": "Maintenance response during review; no claims rely on unavailable page text."
+    }
+  ]
+}

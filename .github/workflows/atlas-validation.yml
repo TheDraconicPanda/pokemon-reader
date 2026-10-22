@@ -21,7 +21,7 @@ jobs:
       - name: Install test dependencies
         timeout-minutes: 3
         run: npm ci --no-audit --no-fund --fetch-retries=1 --fetch-timeout=30000
-      - name: Regenerate and validate the committed two-region report
+      - name: Regenerate and validate both games and committed reports
         run: npm run validate:atlas -- --check-committed
       - name: Preserve the generated report and test evidence
         if: always()
@@ -30,4 +30,7 @@ jobs:
           name: atlas-coverage
           path: |
             docs/atlas-coverage.json
+            docs/platinum-atlas-coverage.json
+            docs/platinum-encounter-comparison.json
+            docs/platinum-source-decisions.json
             work/atlas-validation.tap

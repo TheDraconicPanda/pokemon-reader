@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thedraconicpanda.github.io/pokemon-reader/docs/schemas/gen4-atlas.schema.json",
+  "title": "Generation IV Atlas core and native-area extension",
+  "description": "Version 2 structured game dataset. SoulSilver's established v1 files retain their shared adapter contracts; new datasets use this extended core. Game-specific native tables, dynamic systems and source ledgers are additionally checked by executable audits.",
+  "type": "object",
+  "required": ["schemaVersion", "gameId", "generation", "region", "locations", "encounters"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "gameId": {"type": "string", "pattern": "^[a-z][a-z0-9-]+$"},
+    "generation": {"const": 4},
+    "region": {"type": "string", "minLength": 1},
+    "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "locations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/location"}},
+    "encounters": {"type": "object", "additionalProperties": {"type": "array", "items": {"$ref": "#/$defs/encounter"}}},
+    "areas": {"type": "object", "additionalProperties": {"type": "object", "required": ["id", "label", "location", "eventSource", "warps"]}},
+    "connections": {"type": "array", "items": {"type": "object", "required": ["from", "to", "kind", "source"], "properties": {"kind": {"type": "string"}, "from": {"type": "string"}, "to": {"type": "string"}, "source": {"type": "string"}}}}
+  },
+  "$defs": {
+    "location": {
+      "type": "object",
+      "required": ["id", "name", "gameId", "region", "type", "connections", "accessRequirements", "headers", "sources", "validationStatus"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "gameId": {"type": "string"},
+        "region": {"type": "string"},
+        "type": {"enum": ["town", "route", "landmark", "facility"]},
+        "connections": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "headers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "accessRequirements": {"type": "array", "items": {"type": "object", "required": ["kind", "id", "text", "sources"], "properties": {"kind": {"enum": ["hm", "progress", "event", "unreleased", "mechanic", "item"]}, "id": {"type": "string"}, "text": {"type": "string"}, "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}}}}},
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["url", "label"]}},
+        "validationStatus": {"const": "primary-verified"}
+      }
+    },
+    "encounter": {
+      "type": "object",
+      "required": ["area", "method", "speciesId", "pokemon", "levels", "percent", "times", "conditions", "source", "validationStatus"],
+      "properties": {
+        "area": {"type": "string"},
+        "method": {"enum": ["walking", "surfing", "old_rod", "good_rod", "super_rod", "gift", "interaction", "trade", "roaming", "honey_tree"]},
+        "speciesId": {"type": "integer", "minimum": 1, "maximum": 493},
+        "pokemon": {"type": "string"},
+        "levels": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1, "maximum": 100}},
+        "levelsLabel": {"type": "string", "description": "Explicit rule for variable-level NPC trades; never invent a fixed level."},
+        "percent": {"type": ["number", "null"], "exclusiveMinimum": 0, "maximum": 100},
+        "availability": {"type": "string"},
+        "times": {"type": "array", "uniqueItems": true, "items": {"enum": ["morning", "day", "night"]}},
+        "conditions": {"type": "array", "items": {"type": "string"}},
+        "source": {"type": "string"},
+        "validationStatus": {"const": "primary-verified"}
+      }
+    }
+  }
+}

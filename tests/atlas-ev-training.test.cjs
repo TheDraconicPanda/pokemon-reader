@@ -78,7 +78,7 @@ test('incomplete distributions and missing EV yields fail rather than invent pro
   const {scoreEvEncounters:score,rankEvTraining:rank,evYieldForSpecies:y,evEncounterTables:tables}=await load();
   assert.throws(()=>score('soulsilver',[{pokemon:'Magikarp',percent:90,levels:[10]}],'speed'),/complete 100%/);
   assert.throws(()=>score('soulsilver',[{pokemon:'Unknown',percent:100,levels:[10]}],'speed'),/Missing Generation IV/);
-  for(const game of ['heartgold','platinum','__proto__',undefined]){assert.deepEqual(rank(game),[]);assert.deepEqual(tables(game),[]);assert.equal(y(game,'Magikarp'),null);}
+  for(const game of ['heartgold','__proto__',undefined]){assert.deepEqual(rank(game),[]);assert.deepEqual(tables(game),[]);assert.equal(y(game,'Magikarp'),null);}
   assert.equal(y('soulsilver','__proto__'),null);
   assert.deepEqual(rank('soulsilver',{stat:'__proto__'}),[]);
   assert.deepEqual(rank('soulsilver',{time:'unknown'}),[]);

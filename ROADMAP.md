@@ -5,7 +5,7 @@
 - [x] Platinum detection and Reader/profile integration with independent synthetic PKHeX fixtures (0.26.1).
 - [x] Platinum transactional evolution and container-preserving export: 47 verified paths, 114 independent PKHeX-inspected exports (0.26.2).
 - [x] Platinum 210-entry Sinnoh/National Pokédex, native forms/learnsets and game-scoped progress; primary Sinnoh random-encounter links (0.26.3).
-- [ ] Complete sourced Sinnoh Atlas, repeatable census/audit and Great Marsh.
+- [x] Complete sourced Sinnoh Atlas, repeatable census/audit and Great Marsh: 125 groups / 501 native plans, 277 passing tests (0.26.4).
 - [ ] Integrated two-game regression, independent save validation and final release.
 
 # Pokémon Reader Roadmap

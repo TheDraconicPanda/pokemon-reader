@@ -1,0 +1,2772 @@
+{
+  "gameId": "platinum",
+  "primaryRevision": "49f78f35ccd8c6880e189d23a630eef2976c44ac",
+  "scope": "All native named Sinnoh geographic/facility groups, Lost Tower as a distinct dungeon, and Underground reference access; unused/network/system headers explicitly excluded. Unreleased event areas remain labelled reference-only.",
+  "totalNativeHeaders": 593,
+  "locations": {
+    "Underground": {
+      "id": "underground",
+      "headers": [
+        "MAP_HEADER_UNDERGROUND"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_UNDERGROUND"
+      ],
+      "connections": [
+        "Eterna City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Jubilife City": {
+      "id": "jubilife-city",
+      "headers": [
+        "MAP_HEADER_JUBILIFE_CITY",
+        "MAP_HEADER_JUBILIFE_CITY_MART",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_2F",
+        "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F",
+        "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_B1F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_2F",
+        "MAP_HEADER_WIFI_PLAZA_ENTRANCE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_JUBILIFE_CITY",
+        "MAP_HEADER_JUBILIFE_CITY_MART",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_2F",
+        "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F",
+        "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_2F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F",
+        "MAP_HEADER_JUBILIFE_CITY_POKECENTER_B1F",
+        "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_2F",
+        "MAP_HEADER_WIFI_PLAZA_ENTRANCE"
+      ],
+      "connections": [
+        "Global Terminal",
+        "Jubilife TV",
+        "Pokétch Co.",
+        "Route 202",
+        "Route 203",
+        "Route 204",
+        "Route 218",
+        "Trainers’ School"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Pokétch Co.": {
+      "id": "pok-tch-co",
+      "headers": [
+        "MAP_HEADER_POKETCH_CO_1F",
+        "MAP_HEADER_POKETCH_CO_2F",
+        "MAP_HEADER_POKETCH_CO_3F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_POKETCH_CO_1F",
+        "MAP_HEADER_POKETCH_CO_2F",
+        "MAP_HEADER_POKETCH_CO_3F"
+      ],
+      "connections": [
+        "Jubilife City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Jubilife TV": {
+      "id": "jubilife-tv",
+      "headers": [
+        "MAP_HEADER_JUBILIFE_TV_1F",
+        "MAP_HEADER_JUBILIFE_TV_2F",
+        "MAP_HEADER_JUBILIFE_TV_3F",
+        "MAP_HEADER_JUBILIFE_TV_4F",
+        "MAP_HEADER_JUBILIFE_TV_2F_GALLERY",
+        "MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM",
+        "MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM",
+        "MAP_HEADER_JUBILIFE_TV_ELEVATOR"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_JUBILIFE_TV_1F",
+        "MAP_HEADER_JUBILIFE_TV_2F",
+        "MAP_HEADER_JUBILIFE_TV_3F",
+        "MAP_HEADER_JUBILIFE_TV_4F",
+        "MAP_HEADER_JUBILIFE_TV_2F_GALLERY",
+        "MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM",
+        "MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM",
+        "MAP_HEADER_JUBILIFE_TV_ELEVATOR"
+      ],
+      "connections": [
+        "Jubilife City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Global Terminal": {
+      "id": "global-terminal",
+      "headers": [
+        "MAP_HEADER_GLOBAL_TERMINAL_1F",
+        "MAP_HEADER_GLOBAL_TERMINAL_2F",
+        "MAP_HEADER_GLOBAL_TERMINAL_3F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_GLOBAL_TERMINAL_1F",
+        "MAP_HEADER_GLOBAL_TERMINAL_2F",
+        "MAP_HEADER_GLOBAL_TERMINAL_3F"
+      ],
+      "connections": [
+        "Jubilife City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Trainers’ School": {
+      "id": "trainers-school",
+      "headers": [
+        "MAP_HEADER_TRAINERS_SCHOOL"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_TRAINERS_SCHOOL"
+      ],
+      "connections": [
+        "Jubilife City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Canalave City": {
+      "id": "canalave-city",
+      "headers": [
+        "MAP_HEADER_CANALAVE_CITY",
+        "MAP_HEADER_CANALAVE_CITY_MART",
+        "MAP_HEADER_CANALAVE_CITY_GYM",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_1F",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_2F",
+        "MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_EAST_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_HARBOR_INN",
+        "MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_B1F",
+        "MAP_HEADER_CANALAVE_CITY_WEST_HOUSE"
+      ],
+      "encounterRows": 16,
+      "mapIds": [
+        "MAP_HEADER_CANALAVE_CITY",
+        "MAP_HEADER_CANALAVE_CITY_MART",
+        "MAP_HEADER_CANALAVE_CITY_GYM",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_1F",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_2F",
+        "MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_EAST_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_HARBOR_INN",
+        "MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE",
+        "MAP_HEADER_CANALAVE_CITY_POKECENTER_B1F",
+        "MAP_HEADER_CANALAVE_CITY_WEST_HOUSE"
+      ],
+      "connections": [
+        "Canalave Library",
+        "Fullmoon Island",
+        "Iron Island",
+        "Newmoon Island",
+        "Route 218"
+      ],
+      "encounterSha256": "4405a00c89228bf28477961b5cc618566002f44c86356dd295d6fc3295723507"
+    },
+    "Canalave Library": {
+      "id": "canalave-library",
+      "headers": [
+        "MAP_HEADER_CANALAVE_LIBRARY_1F",
+        "MAP_HEADER_CANALAVE_LIBRARY_2F",
+        "MAP_HEADER_CANALAVE_LIBRARY_3F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_CANALAVE_LIBRARY_1F",
+        "MAP_HEADER_CANALAVE_LIBRARY_2F",
+        "MAP_HEADER_CANALAVE_LIBRARY_3F"
+      ],
+      "connections": [
+        "Canalave City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Oreburgh City": {
+      "id": "oreburgh-city",
+      "headers": [
+        "MAP_HEADER_OREBURGH_CITY",
+        "MAP_HEADER_OREBURGH_CITY_MART",
+        "MAP_HEADER_OREBURGH_CITY_GYM",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_1F",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_2F",
+        "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_WEST_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_OREBURGH_CITY",
+        "MAP_HEADER_OREBURGH_CITY_MART",
+        "MAP_HEADER_OREBURGH_CITY_GYM",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_1F",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_2F",
+        "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_WEST_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F",
+        "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_2F",
+        "MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE",
+        "MAP_HEADER_OREBURGH_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Mining Museum",
+        "Oreburgh Gate",
+        "Oreburgh Mine",
+        "Route 203",
+        "Route 207"
+      ],
+      "encounterSha256": "ee198db96f82d95bb7a4f7388b1753f25cf257f505c4c1d0c53744c59f4bff86"
+    },
+    "Mining Museum": {
+      "id": "mining-museum",
+      "headers": [
+        "MAP_HEADER_MINING_MUSEUM"
+      ],
+      "encounterRows": 7,
+      "mapIds": [
+        "MAP_HEADER_MINING_MUSEUM"
+      ],
+      "connections": [
+        "Oreburgh City"
+      ],
+      "encounterSha256": "de4f52cde654b34ae8bb0e52dc3fb4b5465003e55c7a2c91bc81c7bb4a8cc2ff"
+    },
+    "Eterna City": {
+      "id": "eterna-city",
+      "headers": [
+        "MAP_HEADER_ETERNA_CITY",
+        "MAP_HEADER_ETERNA_CITY_MART",
+        "MAP_HEADER_ETERNA_CITY_GYM",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_1F",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_2F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_1F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_3F",
+        "MAP_HEADER_ETERNA_CITY_HERB_SHOP",
+        "MAP_HEADER_ETERNA_CITY_SOUTH_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_EAST_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_UNDERGROUND_MAN_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 19,
+      "mapIds": [
+        "MAP_HEADER_ETERNA_CITY",
+        "MAP_HEADER_ETERNA_CITY_MART",
+        "MAP_HEADER_ETERNA_CITY_GYM",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_1F",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_2F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_1F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F",
+        "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_3F",
+        "MAP_HEADER_ETERNA_CITY_HERB_SHOP",
+        "MAP_HEADER_ETERNA_CITY_SOUTH_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_EAST_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_UNDERGROUND_MAN_HOUSE",
+        "MAP_HEADER_ETERNA_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Cycle Shop",
+        "Route 205",
+        "Route 206",
+        "Route 211",
+        "T.G. Eterna Bldg",
+        "Underground"
+      ],
+      "encounterSha256": "64dbef6cbd9ad72b7351430b778d95e64f37b3d698d882eed3822476fe297e86"
+    },
+    "Cycle Shop": {
+      "id": "cycle-shop",
+      "headers": [
+        "MAP_HEADER_CYCLE_SHOP"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_CYCLE_SHOP"
+      ],
+      "connections": [
+        "Eterna City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "T.G. Eterna Bldg": {
+      "id": "t-g-eterna-bldg",
+      "headers": [
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_4F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_1F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_3F",
+        "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_4F"
+      ],
+      "connections": [
+        "Eterna City",
+        "ROTOM’s Room"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 206": {
+      "id": "route-206",
+      "headers": [
+        "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
+        "MAP_HEADER_ROUTE_206",
+        "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE"
+      ],
+      "encounterRows": 43,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
+        "MAP_HEADER_ROUTE_206",
+        "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE"
+      ],
+      "connections": [
+        "Eterna City",
+        "Route 207",
+        "Wayward Cave"
+      ],
+      "encounterSha256": "69dfa1320a2a6f331f65697e219bb0e50aae1b24fe722b21c297dfaa5761278b"
+    },
+    "Hearthome City": {
+      "id": "hearthome-city",
+      "headers": [
+        "MAP_HEADER_HEARTHOME_CITY",
+        "MAP_HEADER_HEARTHOME_CITY_MART",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_2F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR",
+        "MAP_HEADER_HEARTHOME_CITY_POKEMON_FAN_CLUB",
+        "MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE",
+        "MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_HEARTHOME_CITY",
+        "MAP_HEADER_HEARTHOME_CITY_MART",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_1",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2",
+        "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_2F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F",
+        "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR",
+        "MAP_HEADER_HEARTHOME_CITY_POKEMON_FAN_CLUB",
+        "MAP_HEADER_HEARTHOME_CITY_WEST_GATE_TO_AMITY_SQUARE",
+        "MAP_HEADER_HEARTHOME_CITY_EAST_GATE_TO_AMITY_SQUARE",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
+        "MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_HEARTHOME_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Amity Square",
+        "Contest Hall",
+        "Foreign Building",
+        "Poffin House",
+        "Route 208",
+        "Route 209",
+        "Route 212"
+      ],
+      "encounterSha256": "9ae4775fd3b7f368156b9aa1e53a3b9e7b9b162f3a0d1d38568963637ffda83b"
+    },
+    "Route 208": {
+      "id": "route-208",
+      "headers": [
+        "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_208",
+        "MAP_HEADER_ROUTE_208_HOUSE"
+      ],
+      "encounterRows": 61,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_208",
+        "MAP_HEADER_ROUTE_208_HOUSE"
+      ],
+      "connections": [
+        "Hearthome City",
+        "Mt. Coronet"
+      ],
+      "encounterSha256": "35bc01e08178bb2663ab7f7d8e21707d84f053b73c17382000546ad5160e2f12"
+    },
+    "Route 209": {
+      "id": "route-209",
+      "headers": [
+        "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_209"
+      ],
+      "encounterRows": 65,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_209"
+      ],
+      "connections": [
+        "Hearthome City",
+        "Lost Tower",
+        "Solaceon Town"
+      ],
+      "encounterSha256": "8a0ef79337288d24632b8c6d65877aa3f4210d1b666f8c60862f6661d88088a9"
+    },
+    "Route 212": {
+      "id": "route-212",
+      "headers": [
+        "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_212_NORTH",
+        "MAP_HEADER_ROUTE_212_SOUTH",
+        "MAP_HEADER_ROUTE_212_HOUSE"
+      ],
+      "encounterRows": 119,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
+        "MAP_HEADER_ROUTE_212_NORTH",
+        "MAP_HEADER_ROUTE_212_SOUTH",
+        "MAP_HEADER_ROUTE_212_HOUSE"
+      ],
+      "connections": [
+        "Hearthome City",
+        "Pastoria City",
+        "Pokémon Mansion"
+      ],
+      "encounterSha256": "b9c3983f1c3b9f2c346af230c3d757e2d17bc4a2bb11ececb9f3e1a29b9114b0"
+    },
+    "Poffin House": {
+      "id": "poffin-house",
+      "headers": [
+        "MAP_HEADER_POFFIN_HOUSE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_POFFIN_HOUSE"
+      ],
+      "connections": [
+        "Hearthome City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Contest Hall": {
+      "id": "contest-hall",
+      "headers": [
+        "MAP_HEADER_CONTEST_HALL_LOBBY",
+        "MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST",
+        "MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_CONTEST_HALL_LOBBY",
+        "MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST",
+        "MAP_HEADER_CONTEST_HALL_STAGE_NO_CONTEST"
+      ],
+      "connections": [
+        "Hearthome City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Foreign Building": {
+      "id": "foreign-building",
+      "headers": [
+        "MAP_HEADER_FOREIGN_BUILDING"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_FOREIGN_BUILDING"
+      ],
+      "connections": [
+        "Hearthome City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Pastoria City": {
+      "id": "pastoria-city",
+      "headers": [
+        "MAP_HEADER_PASTORIA_CITY",
+        "MAP_HEADER_PASTORIA_CITY_MART",
+        "MAP_HEADER_PASTORIA_CITY_GYM",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_1F",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_2F",
+        "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
+        "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_2F",
+        "MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_EAST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 17,
+      "mapIds": [
+        "MAP_HEADER_PASTORIA_CITY",
+        "MAP_HEADER_PASTORIA_CITY_MART",
+        "MAP_HEADER_PASTORIA_CITY_GYM",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_1F",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_2F",
+        "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
+        "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_2F",
+        "MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_EAST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Great Marsh",
+        "Route 212",
+        "Route 213"
+      ],
+      "encounterSha256": "6805c32ba072a0d629f5e488db7b534ff92a5eabc78ce7621f6477f87992a186"
+    },
+    "Veilstone City": {
+      "id": "veilstone-city",
+      "headers": [
+        "MAP_HEADER_VEILSTONE_CITY",
+        "MAP_HEADER_VEILSTONE_CITY_GYM",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_2F",
+        "MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE",
+        "MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_VEILSTONE_CITY",
+        "MAP_HEADER_VEILSTONE_CITY_GYM",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_2F",
+        "MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE",
+        "MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE",
+        "MAP_HEADER_VEILSTONE_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Galactic HQ",
+        "Game Corner",
+        "Route 214",
+        "Route 215",
+        "Veilstone Store"
+      ],
+      "encounterSha256": "48b9d65ab0802fcb1365f7886d9f5676a5e84096b391c1c50525c15bb7043bd9"
+    },
+    "Game Corner": {
+      "id": "game-corner",
+      "headers": [
+        "MAP_HEADER_GAME_CORNER"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_GAME_CORNER"
+      ],
+      "connections": [
+        "Veilstone City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Veilstone Store": {
+      "id": "veilstone-store",
+      "headers": [
+        "MAP_HEADER_VEILSTONE_STORE_1F",
+        "MAP_HEADER_VEILSTONE_STORE_2F",
+        "MAP_HEADER_VEILSTONE_STORE_3F",
+        "MAP_HEADER_VEILSTONE_STORE_4F",
+        "MAP_HEADER_VEILSTONE_STORE_5F",
+        "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
+        "MAP_HEADER_VEILSTONE_STORE_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_VEILSTONE_STORE_1F",
+        "MAP_HEADER_VEILSTONE_STORE_2F",
+        "MAP_HEADER_VEILSTONE_STORE_3F",
+        "MAP_HEADER_VEILSTONE_STORE_4F",
+        "MAP_HEADER_VEILSTONE_STORE_5F",
+        "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
+        "MAP_HEADER_VEILSTONE_STORE_B1F"
+      ],
+      "connections": [
+        "Veilstone City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 215": {
+      "id": "route-215",
+      "headers": [
+        "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
+        "MAP_HEADER_ROUTE_215"
+      ],
+      "encounterRows": 42,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
+        "MAP_HEADER_ROUTE_215"
+      ],
+      "connections": [
+        "Route 210",
+        "Veilstone City"
+      ],
+      "encounterSha256": "307490f580238e164a32cfdf00875ac980cb8d29c0c0857efa5c66fb5f52b6d9"
+    },
+    "Sunyshore City": {
+      "id": "sunyshore-city",
+      "headers": [
+        "MAP_HEADER_SUNYSHORE_CITY",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_2F",
+        "MAP_HEADER_SUNYSHORE_CITY_MART",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3",
+        "MAP_HEADER_SUNYSHORE_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_WEST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_EAST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 16,
+      "mapIds": [
+        "MAP_HEADER_SUNYSHORE_CITY",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_2F",
+        "MAP_HEADER_SUNYSHORE_CITY_MART",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_2",
+        "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3",
+        "MAP_HEADER_SUNYSHORE_CITY_NORTHEAST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_WEST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_NORTHWEST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_EAST_HOUSE",
+        "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Route 222",
+        "Route 223",
+        "Sunyshore Market",
+        "Vista Lighthouse"
+      ],
+      "encounterSha256": "f19bd8d41b58455f1b8ea95e1542f367073ad7029a869434208dd49e3c6e2ec7"
+    },
+    "Sunyshore Market": {
+      "id": "sunyshore-market",
+      "headers": [
+        "MAP_HEADER_SUNYSHORE_MARKET"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SUNYSHORE_MARKET"
+      ],
+      "connections": [
+        "Sunyshore City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Vista Lighthouse": {
+      "id": "vista-lighthouse",
+      "headers": [
+        "MAP_HEADER_VISTA_LIGHTHOUSE",
+        "MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_VISTA_LIGHTHOUSE",
+        "MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR"
+      ],
+      "connections": [
+        "Sunyshore City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Snowpoint City": {
+      "id": "snowpoint-city",
+      "headers": [
+        "MAP_HEADER_SNOWPOINT_CITY",
+        "MAP_HEADER_SNOWPOINT_CITY_MART",
+        "MAP_HEADER_SNOWPOINT_CITY_GYM",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F",
+        "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
+        "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_B1F"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_SNOWPOINT_CITY",
+        "MAP_HEADER_SNOWPOINT_CITY_MART",
+        "MAP_HEADER_SNOWPOINT_CITY_GYM",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_2F",
+        "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
+        "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
+        "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Acuity Lakefront",
+        "Fight Area",
+        "Snowpoint Temple"
+      ],
+      "encounterSha256": "abfaad6aceecccb217031f266ebaf0d55dd6ed4c3e96ba03168504f6265f197b"
+    },
+    "Pokémon League": {
+      "id": "pok-mon-league",
+      "headers": [
+        "MAP_HEADER_POKEMON_LEAGUE",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME",
+        "MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F"
+      ],
+      "encounterRows": 15,
+      "mapIds": [
+        "MAP_HEADER_POKEMON_LEAGUE",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM",
+        "MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME",
+        "MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME",
+        "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F",
+        "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Route 223",
+        "Route 224",
+        "Victory Road"
+      ],
+      "encounterSha256": "401fe8f75bea4b1919d1684ec85e04cb58f99769d04e01747f7563ff7afa9d83"
+    },
+    "Fight Area": {
+      "id": "fight-area",
+      "headers": [
+        "MAP_HEADER_FIGHT_AREA",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_1F",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_2F",
+        "MAP_HEADER_FIGHT_AREA_MART",
+        "MAP_HEADER_FIGHT_AREA_MIDDLE_HOUSE",
+        "MAP_HEADER_FIGHT_AREA_SOUTH_HOUSE",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_FIGHT_AREA",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_1F",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_2F",
+        "MAP_HEADER_FIGHT_AREA_MART",
+        "MAP_HEADER_FIGHT_AREA_MIDDLE_HOUSE",
+        "MAP_HEADER_FIGHT_AREA_SOUTH_HOUSE",
+        "MAP_HEADER_FIGHT_AREA_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Battle Frontier",
+        "Route 225",
+        "Route 230",
+        "Snowpoint City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 225": {
+      "id": "route-225",
+      "headers": [
+        "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
+        "MAP_HEADER_ROUTE_225",
+        "MAP_HEADER_ROUTE_225_HOUSE"
+      ],
+      "encounterRows": 49,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
+        "MAP_HEADER_ROUTE_225",
+        "MAP_HEADER_ROUTE_225_HOUSE"
+      ],
+      "connections": [
+        "Fight Area",
+        "Survival Area"
+      ],
+      "encounterSha256": "d63a354082a2a6e46510ca3bfe815299069cb93d9756675e38fac983a1bd5dce"
+    },
+    "Oreburgh Mine": {
+      "id": "oreburgh-mine",
+      "headers": [
+        "MAP_HEADER_OREBURGH_MINE_B1F",
+        "MAP_HEADER_OREBURGH_MINE_B2F"
+      ],
+      "encounterRows": 80,
+      "mapIds": [
+        "MAP_HEADER_OREBURGH_MINE_B1F",
+        "MAP_HEADER_OREBURGH_MINE_B2F"
+      ],
+      "connections": [
+        "Oreburgh City"
+      ],
+      "encounterSha256": "b312a07b61049f9fcbe8a7e3712fa5f173a634c14cf4878936f9bac863f4fa65"
+    },
+    "Valley Windworks": {
+      "id": "valley-windworks",
+      "headers": [
+        "MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE",
+        "MAP_HEADER_VALLEY_WINDWORKS_BUILDING"
+      ],
+      "encounterRows": 63,
+      "mapIds": [
+        "MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE",
+        "MAP_HEADER_VALLEY_WINDWORKS_BUILDING"
+      ],
+      "connections": [
+        "Route 205"
+      ],
+      "encounterSha256": "9f449511397830efb8575a85ccf5cfd6c215bf3484f28e8b3b0cb1f513e57245"
+    },
+    "Eterna Forest": {
+      "id": "eterna-forest",
+      "headers": [
+        "MAP_HEADER_ETERNA_FOREST_OUTSIDE",
+        "MAP_HEADER_ETERNA_FOREST"
+      ],
+      "encounterRows": 58,
+      "mapIds": [
+        "MAP_HEADER_ETERNA_FOREST_OUTSIDE",
+        "MAP_HEADER_ETERNA_FOREST"
+      ],
+      "connections": [
+        "Old Chateau",
+        "Route 205"
+      ],
+      "encounterSha256": "db9774baade13785f03fd32d406003126f907508fe71d91538ee351297e447fa"
+    },
+    "Fuego Ironworks": {
+      "id": "fuego-ironworks",
+      "headers": [
+        "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE",
+        "MAP_HEADER_FUEGO_IRONWORKS_BUILDING"
+      ],
+      "encounterRows": 59,
+      "mapIds": [
+        "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE",
+        "MAP_HEADER_FUEGO_IRONWORKS_BUILDING"
+      ],
+      "connections": [
+        "Floaroma Town",
+        "Route 205"
+      ],
+      "encounterSha256": "b308095bb7265a216ab2958e76eb3c6b3d63cd7bbc2d20f595e3194bbbc40b3b"
+    },
+    "Mt. Coronet": {
+      "id": "mt-coronet",
+      "headers": [
+        "MAP_HEADER_MT_CORONET_1F_SOUTH",
+        "MAP_HEADER_MT_CORONET_2F",
+        "MAP_HEADER_MT_CORONET_3F",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
+        "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
+        "MAP_HEADER_MT_CORONET_4F_ROOM_3",
+        "MAP_HEADER_MT_CORONET_5F",
+        "MAP_HEADER_MT_CORONET_6F",
+        "MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM",
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
+        "MAP_HEADER_MT_CORONET_B1F",
+        "MAP_HEADER_MT_CORONET_ICEBERG_RUINS"
+      ],
+      "encounterRows": 484,
+      "mapIds": [
+        "MAP_HEADER_MT_CORONET_1F_SOUTH",
+        "MAP_HEADER_MT_CORONET_2F",
+        "MAP_HEADER_MT_CORONET_3F",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
+        "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
+        "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
+        "MAP_HEADER_MT_CORONET_4F_ROOM_3",
+        "MAP_HEADER_MT_CORONET_5F",
+        "MAP_HEADER_MT_CORONET_6F",
+        "MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM",
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
+        "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
+        "MAP_HEADER_MT_CORONET_B1F",
+        "MAP_HEADER_MT_CORONET_ICEBERG_RUINS"
+      ],
+      "connections": [
+        "Iceberg Ruins",
+        "Route 207",
+        "Route 208",
+        "Route 211",
+        "Route 216",
+        "Spear Pillar"
+      ],
+      "encounterSha256": "eaa94c64499268c156b52ee3543c331600d163b3903039ed0d539cb4e51cf993"
+    },
+    "Spear Pillar": {
+      "id": "spear-pillar",
+      "headers": [
+        "MAP_HEADER_SPEAR_PILLAR",
+        "MAP_HEADER_SPEAR_PILLAR_DISTORTED",
+        "MAP_HEADER_SPEAR_PILLAR_DIALGA",
+        "MAP_HEADER_SPEAR_PILLAR_PALKIA"
+      ],
+      "encounterRows": 2,
+      "mapIds": [
+        "MAP_HEADER_SPEAR_PILLAR",
+        "MAP_HEADER_SPEAR_PILLAR_DISTORTED",
+        "MAP_HEADER_SPEAR_PILLAR_DIALGA",
+        "MAP_HEADER_SPEAR_PILLAR_PALKIA"
+      ],
+      "connections": [
+        "Distortion World",
+        "Hall of Origin",
+        "Mt. Coronet"
+      ],
+      "encounterSha256": "bb805001def92627b14800ce3e9d7011ff64e86891fcf1af22bb6a23c502d34d"
+    },
+    "Solaceon Ruins": {
+      "id": "solaceon-ruins",
+      "headers": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "encounterRows": 594,
+      "mapIds": [
+        "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_NORTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_1_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_2_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_3_SOUTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_7",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_4_SOUTHEAST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_6_NORTHWEST_DEAD_END",
+        "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND"
+      ],
+      "connections": [
+        "Maniac Tunnel",
+        "Solaceon Town"
+      ],
+      "encounterSha256": "93a31d84db3baaf6ea75ab1a99aacddee593beb2e41ec076249624504984cded"
+    },
+    "Victory Road": {
+      "id": "victory-road",
+      "headers": [
+        "MAP_HEADER_VICTORY_ROAD_1F",
+        "MAP_HEADER_VICTORY_ROAD_2F",
+        "MAP_HEADER_VICTORY_ROAD_B1F",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_2",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3"
+      ],
+      "encounterRows": 197,
+      "mapIds": [
+        "MAP_HEADER_VICTORY_ROAD_1F",
+        "MAP_HEADER_VICTORY_ROAD_2F",
+        "MAP_HEADER_VICTORY_ROAD_B1F",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_2",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
+        "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3"
+      ],
+      "connections": [
+        "Pokémon League",
+        "Route 224"
+      ],
+      "encounterSha256": "ea89a9b37db9dbcf2332a951d32844f279015f2e463a20ccd49982b8572d39f0"
+    },
+    "Pal Park": {
+      "id": "pal-park",
+      "headers": [
+        "MAP_HEADER_PAL_PARK",
+        "MAP_HEADER_PAL_PARK_LOBBY"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_PAL_PARK",
+        "MAP_HEADER_PAL_PARK_LOBBY"
+      ],
+      "connections": [
+        "Route 221"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Amity Square": {
+      "id": "amity-square",
+      "headers": [
+        "MAP_HEADER_AMITY_SQUARE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_AMITY_SQUARE"
+      ],
+      "connections": [
+        "Hearthome City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Ravaged Path": {
+      "id": "ravaged-path",
+      "headers": [
+        "MAP_HEADER_RAVAGED_PATH"
+      ],
+      "encounterRows": 37,
+      "mapIds": [
+        "MAP_HEADER_RAVAGED_PATH"
+      ],
+      "connections": [
+        "Route 204"
+      ],
+      "encounterSha256": "9e4f1cc54fe47cb3b991b6a3ab8032013937c2e5ca2cb22a994e8be16ae1834b"
+    },
+    "Floaroma Meadow": {
+      "id": "floaroma-meadow",
+      "headers": [
+        "MAP_HEADER_FLOAROMA_MEADOW",
+        "MAP_HEADER_FLOAROMA_MEADOW_HOUSE"
+      ],
+      "encounterRows": 11,
+      "mapIds": [
+        "MAP_HEADER_FLOAROMA_MEADOW",
+        "MAP_HEADER_FLOAROMA_MEADOW_HOUSE"
+      ],
+      "connections": [
+        "Floaroma Town"
+      ],
+      "encounterSha256": "6cb56708d4327bfaa3858b162c26a1acf040815bf75057b0de2141879f55af39"
+    },
+    "Oreburgh Gate": {
+      "id": "oreburgh-gate",
+      "headers": [
+        "MAP_HEADER_OREBURGH_GATE_1F",
+        "MAP_HEADER_OREBURGH_GATE_B1F"
+      ],
+      "encounterRows": 73,
+      "mapIds": [
+        "MAP_HEADER_OREBURGH_GATE_1F",
+        "MAP_HEADER_OREBURGH_GATE_B1F"
+      ],
+      "connections": [
+        "Oreburgh City",
+        "Route 203"
+      ],
+      "encounterSha256": "5b3d924508300609e924a129ddeefb3498ca8a08f854b76a67156e5586863870"
+    },
+    "Fullmoon Island": {
+      "id": "fullmoon-island",
+      "headers": [
+        "MAP_HEADER_FULLMOON_ISLAND",
+        "MAP_HEADER_FULLMOON_ISLAND_FOREST"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_FULLMOON_ISLAND",
+        "MAP_HEADER_FULLMOON_ISLAND_FOREST"
+      ],
+      "connections": [
+        "Canalave City"
+      ],
+      "encounterSha256": "0aecfdfaa9d8421f06b8f48264d8b680e5556735615c63130ec78da076944039"
+    },
+    "Stark Mountain": {
+      "id": "stark-mountain",
+      "headers": [
+        "MAP_HEADER_STARK_MOUNTAIN_OUTSIDE",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_1",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_2",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_3"
+      ],
+      "encounterRows": 91,
+      "mapIds": [
+        "MAP_HEADER_STARK_MOUNTAIN_OUTSIDE",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_1",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_2",
+        "MAP_HEADER_STARK_MOUNTAIN_ROOM_3"
+      ],
+      "connections": [
+        "Route 227"
+      ],
+      "encounterSha256": "ec3b767c3b8dc90aed5a94f249815b629620b3f74c9c933dbd739c88485c41f9"
+    },
+    "Sendoff Spring": {
+      "id": "sendoff-spring",
+      "headers": [
+        "MAP_HEADER_SENDOFF_SPRING"
+      ],
+      "encounterRows": 47,
+      "mapIds": [
+        "MAP_HEADER_SENDOFF_SPRING"
+      ],
+      "connections": [
+        "Spring Path",
+        "Turnback Cave"
+      ],
+      "encounterSha256": "8c1d3f7f83b0cba16caef3b34ef4d5cdb6465d89c1e69e3344efb2403f4239a4"
+    },
+    "Turnback Cave": {
+      "id": "turnback-cave",
+      "headers": [
+        "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM",
+        "MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6"
+      ],
+      "encounterRows": 602,
+      "mapIds": [
+        "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM",
+        "MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5",
+        "MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6"
+      ],
+      "connections": [
+        "Distortion World",
+        "Sendoff Spring"
+      ],
+      "encounterSha256": "78dff2476bd8fe828dbc293f79001fcf522cc3d884a9107352c2a14143faa4e0"
+    },
+    "Flower Paradise": {
+      "id": "flower-paradise",
+      "headers": [
+        "MAP_HEADER_FLOWER_PARADISE"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_FLOWER_PARADISE"
+      ],
+      "connections": [
+        "Seabreak Path"
+      ],
+      "encounterSha256": "c71343678ae8bf3ac149e211c5f6c1119769aac29a2d0bfd2deb4e0ceb2fc231"
+    },
+    "Snowpoint Temple": {
+      "id": "snowpoint-temple",
+      "headers": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B1F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B2F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B3F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B5F"
+      ],
+      "encounterRows": 127,
+      "mapIds": [
+        "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B1F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B2F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B3F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B4F",
+        "MAP_HEADER_SNOWPOINT_TEMPLE_B5F"
+      ],
+      "connections": [
+        "Snowpoint City"
+      ],
+      "encounterSha256": "f64efad073af2c9b3b9c1a9faac845a892eeddf376160877fc06aecd71977b0c"
+    },
+    "Wayward Cave": {
+      "id": "wayward-cave",
+      "headers": [
+        "MAP_HEADER_WAYWARD_CAVE_1F",
+        "MAP_HEADER_WAYWARD_CAVE_B1F"
+      ],
+      "encounterRows": 72,
+      "mapIds": [
+        "MAP_HEADER_WAYWARD_CAVE_1F",
+        "MAP_HEADER_WAYWARD_CAVE_B1F"
+      ],
+      "connections": [
+        "Route 206"
+      ],
+      "encounterSha256": "f0f6cdc9775abdfde68b86ec77d1a52bde41ea2f417a2c69812f1c7fbd9b14b5"
+    },
+    "Ruin Maniac Cave": {
+      "id": "ruin-maniac-cave",
+      "headers": [
+        "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
+        "MAP_HEADER_RUIN_MANIAC_CAVE_LONG"
+      ],
+      "encounterRows": 33,
+      "mapIds": [
+        "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
+        "MAP_HEADER_RUIN_MANIAC_CAVE_LONG"
+      ],
+      "connections": [
+        "Route 214"
+      ],
+      "encounterSha256": "4f589ea2f92c40a4f07080fd33605ca7455fda5b7f8889c99640b6f18da43e64"
+    },
+    "Trophy Garden": {
+      "id": "trophy-garden",
+      "headers": [
+        "MAP_HEADER_TROPHY_GARDEN"
+      ],
+      "encounterRows": 59,
+      "mapIds": [
+        "MAP_HEADER_TROPHY_GARDEN"
+      ],
+      "connections": [
+        "Pokémon Mansion"
+      ],
+      "encounterSha256": "e3f8ce52be189f65de5ae9339402bf05e175b5b531744b4c12203fc9ef3f1e29"
+    },
+    "Iron Island": {
+      "id": "iron-island",
+      "headers": [
+        "MAP_HEADER_IRON_ISLAND",
+        "MAP_HEADER_IRON_ISLAND_1F",
+        "MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B3F",
+        "MAP_HEADER_IRON_ISLAND_HOUSE",
+        "MAP_HEADER_IRON_ISLAND_IRON_RUINS"
+      ],
+      "encounterRows": 196,
+      "mapIds": [
+        "MAP_HEADER_IRON_ISLAND",
+        "MAP_HEADER_IRON_ISLAND_1F",
+        "MAP_HEADER_IRON_ISLAND_B1F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
+        "MAP_HEADER_IRON_ISLAND_B3F",
+        "MAP_HEADER_IRON_ISLAND_HOUSE",
+        "MAP_HEADER_IRON_ISLAND_IRON_RUINS"
+      ],
+      "connections": [
+        "Canalave City",
+        "Iron Ruins"
+      ],
+      "encounterSha256": "d142221553eda42bb5d50a4cd8909ebf64874daa336fb4582a75ffae8a44551b"
+    },
+    "Old Chateau": {
+      "id": "old-chateau",
+      "headers": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "encounterRows": 119,
+      "mapIds": [
+        "MAP_HEADER_OLD_CHATEAU",
+        "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
+        "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
+        "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
+        "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
+        "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM"
+      ],
+      "connections": [
+        "Eterna Forest"
+      ],
+      "encounterSha256": "d6c79cf34fab3d19b889018271a2a192259fc94818c1e2c965e9673220e767d1"
+    },
+    "Galactic HQ": {
+      "id": "galactic-hq",
+      "headers": [
+        "MAP_HEADER_GALACTIC_HQ_1F",
+        "MAP_HEADER_GALACTIC_HQ_2F",
+        "MAP_HEADER_GALACTIC_HQ_3F",
+        "MAP_HEADER_GALACTIC_HQ_4F",
+        "MAP_HEADER_GALACTIC_HQ_B1F",
+        "MAP_HEADER_GALACTIC_HQ_B2F",
+        "MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM",
+        "MAP_HEADER_GALACTIC_HQ_LABORATORY",
+        "MAP_HEADER_GALACTIC_HQ_HALL"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_GALACTIC_HQ_1F",
+        "MAP_HEADER_GALACTIC_HQ_2F",
+        "MAP_HEADER_GALACTIC_HQ_3F",
+        "MAP_HEADER_GALACTIC_HQ_4F",
+        "MAP_HEADER_GALACTIC_HQ_B1F",
+        "MAP_HEADER_GALACTIC_HQ_B2F",
+        "MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM",
+        "MAP_HEADER_GALACTIC_HQ_LABORATORY",
+        "MAP_HEADER_GALACTIC_HQ_HALL"
+      ],
+      "connections": [
+        "Veilstone City"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Lake Verity": {
+      "id": "lake-verity",
+      "headers": [
+        "MAP_HEADER_LAKE_VERITY_LOW_WATER",
+        "MAP_HEADER_LAKE_VERITY"
+      ],
+      "encounterRows": 72,
+      "mapIds": [
+        "MAP_HEADER_LAKE_VERITY_LOW_WATER",
+        "MAP_HEADER_LAKE_VERITY"
+      ],
+      "connections": [
+        "Verity Cavern",
+        "Verity Lakefront"
+      ],
+      "encounterSha256": "34b8e7b17ac6e07fd6cc2c16af5ca2d2b5a83cab86eea9365ef4a3380fb30af0"
+    },
+    "Verity Cavern": {
+      "id": "verity-cavern",
+      "headers": [
+        "MAP_HEADER_VERITY_CAVERN"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_VERITY_CAVERN"
+      ],
+      "connections": [
+        "Lake Verity"
+      ],
+      "encounterSha256": "c130412708b4cfff44ae5ccfc78f33767f79683f294c66b9b2c256d55f2e3554"
+    },
+    "Lake Valor": {
+      "id": "lake-valor",
+      "headers": [
+        "MAP_HEADER_LAKE_VALOR_DRAINED",
+        "MAP_HEADER_LAKE_VALOR"
+      ],
+      "encounterRows": 45,
+      "mapIds": [
+        "MAP_HEADER_LAKE_VALOR_DRAINED",
+        "MAP_HEADER_LAKE_VALOR"
+      ],
+      "connections": [
+        "Valor Cavern",
+        "Valor Lakefront"
+      ],
+      "encounterSha256": "27de0a8adb5f02d4e9db0289175bafdb7098e8e3aac10553c770afef8e7620db"
+    },
+    "Valor Cavern": {
+      "id": "valor-cavern",
+      "headers": [
+        "MAP_HEADER_VALOR_CAVERN"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_VALOR_CAVERN"
+      ],
+      "connections": [
+        "Lake Valor"
+      ],
+      "encounterSha256": "efc8817445ce3153b27b62e038f9634d8485c83bbe0b718ab9ee53332d21637b"
+    },
+    "Lake Acuity": {
+      "id": "lake-acuity",
+      "headers": [
+        "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
+        "MAP_HEADER_LAKE_ACUITY"
+      ],
+      "encounterRows": 50,
+      "mapIds": [
+        "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
+        "MAP_HEADER_LAKE_ACUITY"
+      ],
+      "connections": [
+        "Acuity Cavern",
+        "Acuity Lakefront"
+      ],
+      "encounterSha256": "901983ec0ae5e888b687ef2301e3522aa609c4f07262c6d7af7a74c5c731a0d5"
+    },
+    "Acuity Cavern": {
+      "id": "acuity-cavern",
+      "headers": [
+        "MAP_HEADER_ACUITY_CAVERN"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_ACUITY_CAVERN"
+      ],
+      "connections": [
+        "Lake Acuity"
+      ],
+      "encounterSha256": "06d57387a6e668443b22430deff9922f84c86bf5b963581eb51c4ee39ba8b08d"
+    },
+    "Newmoon Island": {
+      "id": "newmoon-island",
+      "headers": [
+        "MAP_HEADER_NEWMOON_ISLAND",
+        "MAP_HEADER_NEWMOON_ISLAND_FOREST"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_NEWMOON_ISLAND",
+        "MAP_HEADER_NEWMOON_ISLAND_FOREST"
+      ],
+      "connections": [
+        "Canalave City"
+      ],
+      "encounterSha256": "d799127dded8c5d1ae35d03f85d99801d547c488c89462f1b7724e684457b077"
+    },
+    "Battle Tower": {
+      "id": "battle-tower",
+      "headers": [
+        "MAP_HEADER_BATTLE_TOWER",
+        "MAP_HEADER_BATTLE_TOWER_ELEVATOR",
+        "MAP_HEADER_BATTLE_TOWER_CORRIDOR",
+        "MAP_HEADER_BATTLE_TOWER_CORRIDOR_MULTI",
+        "MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM",
+        "MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM",
+        "MAP_HEADER_BATTLE_TOWER_BATTLE_SALON"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_TOWER",
+        "MAP_HEADER_BATTLE_TOWER_ELEVATOR",
+        "MAP_HEADER_BATTLE_TOWER_CORRIDOR",
+        "MAP_HEADER_BATTLE_TOWER_CORRIDOR_MULTI",
+        "MAP_HEADER_BATTLE_TOWER_BATTLE_ROOM",
+        "MAP_HEADER_BATTLE_TOWER_MULTI_BATTLE_ROOM",
+        "MAP_HEADER_BATTLE_TOWER_BATTLE_SALON"
+      ],
+      "connections": [
+        "Battle Frontier"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Verity Lakefront": {
+      "id": "verity-lakefront",
+      "headers": [
+        "MAP_HEADER_VERITY_LAKEFRONT"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_VERITY_LAKEFRONT"
+      ],
+      "connections": [
+        "Lake Verity",
+        "Route 201"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Valor Lakefront": {
+      "id": "valor-lakefront",
+      "headers": [
+        "MAP_HEADER_VALOR_LAKEFRONT"
+      ],
+      "encounterRows": 33,
+      "mapIds": [
+        "MAP_HEADER_VALOR_LAKEFRONT"
+      ],
+      "connections": [
+        "Grand Lake",
+        "Lake Valor",
+        "Restaurant",
+        "Route 213",
+        "Route 214",
+        "Route 222"
+      ],
+      "encounterSha256": "e6d9b8c4bfe1d296eb6509dc8c939166dc90728aa3b87b3734d4f2644532a933"
+    },
+    "Restaurant": {
+      "id": "restaurant",
+      "headers": [
+        "MAP_HEADER_RESTAURANT"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_RESTAURANT"
+      ],
+      "connections": [
+        "Valor Lakefront"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Grand Lake": {
+      "id": "grand-lake",
+      "headers": [
+        "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE",
+        "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE"
+      ],
+      "connections": [
+        "Route 213",
+        "Valor Lakefront"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Acuity Lakefront": {
+      "id": "acuity-lakefront",
+      "headers": [
+        "MAP_HEADER_ACUITY_LAKEFRONT"
+      ],
+      "encounterRows": 25,
+      "mapIds": [
+        "MAP_HEADER_ACUITY_LAKEFRONT"
+      ],
+      "connections": [
+        "Lake Acuity",
+        "Route 217",
+        "Snowpoint City"
+      ],
+      "encounterSha256": "226aa2d552ded2f5682cbbaab9b3f8d8ed771a86b94c807d9ae267b3635f6bf6"
+    },
+    "Spring Path": {
+      "id": "spring-path",
+      "headers": [
+        "MAP_HEADER_SPRING_PATH"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SPRING_PATH"
+      ],
+      "connections": [
+        "Route 214",
+        "Sendoff Spring"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 201": {
+      "id": "route-201",
+      "headers": [
+        "MAP_HEADER_ROUTE_201"
+      ],
+      "encounterRows": 23,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_201"
+      ],
+      "connections": [
+        "Sandgem Town",
+        "Twinleaf Town",
+        "Verity Lakefront"
+      ],
+      "encounterSha256": "3352002ffeb8668ed09ce5aaa04076336696404b9331320a790379611cc51a16"
+    },
+    "Route 202": {
+      "id": "route-202",
+      "headers": [
+        "MAP_HEADER_ROUTE_202"
+      ],
+      "encounterRows": 28,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_202"
+      ],
+      "connections": [
+        "Jubilife City",
+        "Sandgem Town"
+      ],
+      "encounterSha256": "b6aa801228179a1d02a619b8e6dbe8a0d827fa3f5db56c7e90a0a5fefeadc0a6"
+    },
+    "Route 203": {
+      "id": "route-203",
+      "headers": [
+        "MAP_HEADER_ROUTE_203"
+      ],
+      "encounterRows": 54,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_203"
+      ],
+      "connections": [
+        "Jubilife City",
+        "Oreburgh City",
+        "Oreburgh Gate"
+      ],
+      "encounterSha256": "25376a78b3536c6edb0f0c88322272ddee43c94e20f632a808ee7d6c6ace9b4b"
+    },
+    "Route 204": {
+      "id": "route-204",
+      "headers": [
+        "MAP_HEADER_ROUTE_204_SOUTH",
+        "MAP_HEADER_ROUTE_204_NORTH"
+      ],
+      "encounterRows": 112,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_204_SOUTH",
+        "MAP_HEADER_ROUTE_204_NORTH"
+      ],
+      "connections": [
+        "Floaroma Town",
+        "Jubilife City",
+        "Ravaged Path"
+      ],
+      "encounterSha256": "f9c333b3635d115d3ecfb282628e1cc473dc1a03328ba3010046a9158980d786"
+    },
+    "Route 205": {
+      "id": "route-205",
+      "headers": [
+        "MAP_HEADER_ROUTE_205_SOUTH",
+        "MAP_HEADER_ROUTE_205_HOUSE",
+        "MAP_HEADER_ROUTE_205_NORTH"
+      ],
+      "encounterRows": 121,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_205_SOUTH",
+        "MAP_HEADER_ROUTE_205_HOUSE",
+        "MAP_HEADER_ROUTE_205_NORTH"
+      ],
+      "connections": [
+        "Eterna City",
+        "Eterna Forest",
+        "Floaroma Town",
+        "Fuego Ironworks",
+        "Valley Windworks"
+      ],
+      "encounterSha256": "b13fcca23853eaeac34164efdc3c6ace0c8b2cd01de4271ef031f284e18fb79a"
+    },
+    "Route 207": {
+      "id": "route-207",
+      "headers": [
+        "MAP_HEADER_ROUTE_207"
+      ],
+      "encounterRows": 46,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_207"
+      ],
+      "connections": [
+        "Mt. Coronet",
+        "Oreburgh City",
+        "Route 206"
+      ],
+      "encounterSha256": "722462406ccdd13b494b256176459f77d019301c30c8fd0fd7605c5dcba4c463"
+    },
+    "Lost Tower": {
+      "id": "lost-tower",
+      "headers": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_1F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_2F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_3F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_4F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_5F"
+      ],
+      "encounterRows": 129,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_1F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_2F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_3F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_4F",
+        "MAP_HEADER_ROUTE_209_LOST_TOWER_5F"
+      ],
+      "connections": [
+        "Route 209"
+      ],
+      "encounterSha256": "19fdc2645e8d80dba135786b9fd1b407a479e5f9f3b0286e75f8e8459ecfd962"
+    },
+    "Route 210": {
+      "id": "route-210",
+      "headers": [
+        "MAP_HEADER_ROUTE_210_SOUTH",
+        "MAP_HEADER_ROUTE_210_NORTH",
+        "MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE"
+      ],
+      "encounterRows": 112,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_210_SOUTH",
+        "MAP_HEADER_ROUTE_210_NORTH",
+        "MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE"
+      ],
+      "connections": [
+        "Café",
+        "Celestic Town",
+        "Route 215",
+        "Solaceon Town"
+      ],
+      "encounterSha256": "57fbafd373d0d2f3a70108b386afbc45759fbcb27672cfd4a586b5a27ad786ca"
+    },
+    "Route 211": {
+      "id": "route-211",
+      "headers": [
+        "MAP_HEADER_ROUTE_211_WEST",
+        "MAP_HEADER_ROUTE_211_EAST"
+      ],
+      "encounterRows": 73,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_211_WEST",
+        "MAP_HEADER_ROUTE_211_EAST"
+      ],
+      "connections": [
+        "Celestic Town",
+        "Eterna City",
+        "Mt. Coronet"
+      ],
+      "encounterSha256": "5824a705fd26a4c03b8645c1ab6958afe64ddad02c0b065a162329194bd775c3"
+    },
+    "Pokémon Mansion": {
+      "id": "pok-mon-mansion",
+      "headers": [
+        "MAP_HEADER_POKEMON_MANSION",
+        "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
+        "MAP_HEADER_POKEMON_MANSION_OFFICE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_POKEMON_MANSION",
+        "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
+        "MAP_HEADER_POKEMON_MANSION_OFFICE"
+      ],
+      "connections": [
+        "Route 212",
+        "Trophy Garden"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 213": {
+      "id": "route-213",
+      "headers": [
+        "MAP_HEADER_ROUTE_213",
+        "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY"
+      ],
+      "encounterRows": 59,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_213",
+        "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY"
+      ],
+      "connections": [
+        "Footstep House",
+        "Grand Lake",
+        "Pastoria City",
+        "Valor Lakefront"
+      ],
+      "encounterSha256": "1d694711e5582baa13f993e970845d5b5ac02de2ea84b4c2fadeef327d4bbc69"
+    },
+    "Footstep House": {
+      "id": "footstep-house",
+      "headers": [
+        "MAP_HEADER_FOOTSTEP_HOUSE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_FOOTSTEP_HOUSE"
+      ],
+      "connections": [
+        "Route 213"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 214": {
+      "id": "route-214",
+      "headers": [
+        "MAP_HEADER_ROUTE_214",
+        "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY"
+      ],
+      "encounterRows": 60,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_214",
+        "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY"
+      ],
+      "connections": [
+        "Maniac Tunnel",
+        "Ruin Maniac Cave",
+        "Spring Path",
+        "Valor Lakefront",
+        "Veilstone City"
+      ],
+      "encounterSha256": "9521bf9116111fc0644082fa4496790849d1d1ac9345f870c0e52f9089d0a06f"
+    },
+    "Route 216": {
+      "id": "route-216",
+      "headers": [
+        "MAP_HEADER_ROUTE_216",
+        "MAP_HEADER_ROUTE_216_HOUSE"
+      ],
+      "encounterRows": 31,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_216",
+        "MAP_HEADER_ROUTE_216_HOUSE"
+      ],
+      "connections": [
+        "Mt. Coronet",
+        "Route 217"
+      ],
+      "encounterSha256": "4abe5ebb8ebf5fdbb1c0bd6d08c0b7104b39e24c829b7f77deb873683c12359c"
+    },
+    "Route 217": {
+      "id": "route-217",
+      "headers": [
+        "MAP_HEADER_ROUTE_217",
+        "MAP_HEADER_ROUTE_217_WEST_HOUSE",
+        "MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE"
+      ],
+      "encounterRows": 34,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_217",
+        "MAP_HEADER_ROUTE_217_WEST_HOUSE",
+        "MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE"
+      ],
+      "connections": [
+        "Acuity Lakefront",
+        "Route 216"
+      ],
+      "encounterSha256": "f63e3b43c976b562b3223212dfdcd11701552c34e8b70fb92c9d933d7f576cc1"
+    },
+    "Route 218": {
+      "id": "route-218",
+      "headers": [
+        "MAP_HEADER_ROUTE_218",
+        "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
+        "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY"
+      ],
+      "encounterRows": 57,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_218",
+        "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
+        "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY"
+      ],
+      "connections": [
+        "Canalave City",
+        "Jubilife City"
+      ],
+      "encounterSha256": "576b3155e0ef56da6b39d813cd4a473c0f232893cf9b58dd27a046471a5e2081"
+    },
+    "Route 219": {
+      "id": "route-219",
+      "headers": [
+        "MAP_HEADER_ROUTE_219"
+      ],
+      "encounterRows": 16,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_219"
+      ],
+      "connections": [
+        "Route 220",
+        "Sandgem Town"
+      ],
+      "encounterSha256": "1c834b6335a687bfb0ee92f27cd7ff4dae65b91cddf34667c25d129e5a967ec2"
+    },
+    "Route 221": {
+      "id": "route-221",
+      "headers": [
+        "MAP_HEADER_ROUTE_221",
+        "MAP_HEADER_ROUTE_221_HOUSE"
+      ],
+      "encounterRows": 61,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_221",
+        "MAP_HEADER_ROUTE_221_HOUSE"
+      ],
+      "connections": [
+        "Pal Park",
+        "Route 220"
+      ],
+      "encounterSha256": "36672b926e9e72afb62b64339abc7f5bb2e86e470708e59914c1a517fb0e62a0"
+    },
+    "Route 222": {
+      "id": "route-222",
+      "headers": [
+        "MAP_HEADER_ROUTE_222",
+        "MAP_HEADER_ROUTE_222_WEST_HOUSE",
+        "MAP_HEADER_ROUTE_222_EAST_HOUSE",
+        "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY"
+      ],
+      "encounterRows": 63,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_222",
+        "MAP_HEADER_ROUTE_222_WEST_HOUSE",
+        "MAP_HEADER_ROUTE_222_EAST_HOUSE",
+        "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY"
+      ],
+      "connections": [
+        "Sunyshore City",
+        "Valor Lakefront"
+      ],
+      "encounterSha256": "bfea5f7f086807130031bc7eb75f84d11590a51bce2f216c3edf937a63cdb775"
+    },
+    "Route 224": {
+      "id": "route-224",
+      "headers": [
+        "MAP_HEADER_ROUTE_224"
+      ],
+      "encounterRows": 44,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_224"
+      ],
+      "connections": [
+        "Pokémon League",
+        "Seabreak Path",
+        "Victory Road"
+      ],
+      "encounterSha256": "b5a9a6ed9aa98b9754ce385535fae0bc24ee86917847d900f372a5b393d6be11"
+    },
+    "Route 227": {
+      "id": "route-227",
+      "headers": [
+        "MAP_HEADER_ROUTE_227",
+        "MAP_HEADER_ROUTE_227_HOUSE"
+      ],
+      "encounterRows": 49,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_227",
+        "MAP_HEADER_ROUTE_227_HOUSE"
+      ],
+      "connections": [
+        "Route 226",
+        "Stark Mountain"
+      ],
+      "encounterSha256": "0d1c5274e1e612db7c23ac41b9fac913e125300aeaff0cf5f2dd0b94791e102c"
+    },
+    "Route 228": {
+      "id": "route-228",
+      "headers": [
+        "MAP_HEADER_ROUTE_228",
+        "MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226",
+        "MAP_HEADER_ROUTE_228_NORTH_HOUSE",
+        "MAP_HEADER_ROUTE_228_SOUTH_HOUSE",
+        "MAP_HEADER_ROUTE_228_ROCK_PEAK_RUINS"
+      ],
+      "encounterRows": 47,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_228",
+        "MAP_HEADER_ROUTE_228_GATE_TO_ROUTE_226",
+        "MAP_HEADER_ROUTE_228_NORTH_HOUSE",
+        "MAP_HEADER_ROUTE_228_SOUTH_HOUSE",
+        "MAP_HEADER_ROUTE_228_ROCK_PEAK_RUINS"
+      ],
+      "connections": [
+        "Rock Peak Ruins",
+        "Route 226",
+        "Route 229"
+      ],
+      "encounterSha256": "cacfaa1dbb942356f1595e197946968f7ed3713abcab6b4d6bf233053e298e74"
+    },
+    "Route 229": {
+      "id": "route-229",
+      "headers": [
+        "MAP_HEADER_ROUTE_229"
+      ],
+      "encounterRows": 48,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_229"
+      ],
+      "connections": [
+        "Resort Area",
+        "Route 228",
+        "Route 230"
+      ],
+      "encounterSha256": "a223682f4b3c44f4133294b0e093fce6261c84d47902dd878949cabae294b953"
+    },
+    "Twinleaf Town": {
+      "id": "twinleaf-town",
+      "headers": [
+        "MAP_HEADER_TWINLEAF_TOWN",
+        "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+        "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_2F",
+        "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
+        "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_2F",
+        "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE"
+      ],
+      "encounterRows": 14,
+      "mapIds": [
+        "MAP_HEADER_TWINLEAF_TOWN",
+        "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
+        "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_2F",
+        "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
+        "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_2F",
+        "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE"
+      ],
+      "connections": [
+        "Route 201"
+      ],
+      "encounterSha256": "0b5f48f73280764ddfbad3f314651de6a471a02b0696bd29e256de2f4ed62c0f"
+    },
+    "Sandgem Town": {
+      "id": "sandgem-town",
+      "headers": [
+        "MAP_HEADER_SANDGEM_TOWN",
+        "MAP_HEADER_SANDGEM_TOWN_MART",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
+        "MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB",
+        "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
+        "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_2F",
+        "MAP_HEADER_SANDGEM_TOWN_HOUSE",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SANDGEM_TOWN",
+        "MAP_HEADER_SANDGEM_TOWN_MART",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
+        "MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB",
+        "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_1F",
+        "MAP_HEADER_SANDGEM_TOWN_COUNTERPART_HOUSE_2F",
+        "MAP_HEADER_SANDGEM_TOWN_HOUSE",
+        "MAP_HEADER_SANDGEM_TOWN_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Route 201",
+        "Route 202",
+        "Route 219"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Floaroma Town": {
+      "id": "floaroma-town",
+      "headers": [
+        "MAP_HEADER_FLOAROMA_TOWN",
+        "MAP_HEADER_FLOAROMA_TOWN_MART",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_2F",
+        "MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
+        "MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_FLOAROMA_TOWN",
+        "MAP_HEADER_FLOAROMA_TOWN_MART",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_2F",
+        "MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
+        "MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE",
+        "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Floaroma Meadow",
+        "Flower Shop",
+        "Fuego Ironworks",
+        "Route 204",
+        "Route 205"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Flower Shop": {
+      "id": "flower-shop",
+      "headers": [
+        "MAP_HEADER_FLOWER_SHOP"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_FLOWER_SHOP"
+      ],
+      "connections": [
+        "Floaroma Town"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Solaceon Town": {
+      "id": "solaceon-town",
+      "headers": [
+        "MAP_HEADER_SOLACEON_TOWN",
+        "MAP_HEADER_SOLACEON_TOWN_MART",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F",
+        "MAP_HEADER_SOLACEON_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_POKEMON_NEWS_PRESS",
+        "MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SOLACEON_TOWN",
+        "MAP_HEADER_SOLACEON_TOWN_MART",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_2F",
+        "MAP_HEADER_SOLACEON_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_POKEMON_NEWS_PRESS",
+        "MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE",
+        "MAP_HEADER_SOLACEON_TOWN_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Pokémon Day Care",
+        "Route 209",
+        "Route 210",
+        "Solaceon Ruins"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Pokémon Day Care": {
+      "id": "pok-mon-day-care",
+      "headers": [
+        "MAP_HEADER_POKEMON_DAY_CARE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_POKEMON_DAY_CARE"
+      ],
+      "connections": [
+        "Solaceon Town"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Celestic Town": {
+      "id": "celestic-town",
+      "headers": [
+        "MAP_HEADER_CELESTIC_TOWN",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F",
+        "MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_SOUTHWEST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_CAVE",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_B1F"
+      ],
+      "encounterRows": 14,
+      "mapIds": [
+        "MAP_HEADER_CELESTIC_TOWN",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F",
+        "MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_NORTHEAST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_SOUTHWEST_HOUSE",
+        "MAP_HEADER_CELESTIC_TOWN_CAVE",
+        "MAP_HEADER_CELESTIC_TOWN_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Route 210",
+        "Route 211"
+      ],
+      "encounterSha256": "b819e38f4f0a61c797f27bc26b187a2c8a2db187b814ae548844975d1b9aeef2"
+    },
+    "Survival Area": {
+      "id": "survival-area",
+      "headers": [
+        "MAP_HEADER_SURVIVAL_AREA",
+        "MAP_HEADER_SURVIVAL_AREA_MART",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F",
+        "MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE",
+        "MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_B1F"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SURVIVAL_AREA",
+        "MAP_HEADER_SURVIVAL_AREA_MART",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F",
+        "MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE",
+        "MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE",
+        "MAP_HEADER_SURVIVAL_AREA_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Battleground",
+        "Route 225",
+        "Route 226"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Battleground": {
+      "id": "battleground",
+      "headers": [
+        "MAP_HEADER_BATTLEGROUND"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLEGROUND"
+      ],
+      "connections": [
+        "Survival Area"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Resort Area": {
+      "id": "resort-area",
+      "headers": [
+        "MAP_HEADER_RESORT_AREA",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_1F",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_2F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR",
+        "MAP_HEADER_RESORT_AREA_HOUSE",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_B1F"
+      ],
+      "encounterRows": 14,
+      "mapIds": [
+        "MAP_HEADER_RESORT_AREA",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_1F",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_2F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F",
+        "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR",
+        "MAP_HEADER_RESORT_AREA_HOUSE",
+        "MAP_HEADER_RESORT_AREA_POKECENTER_B1F"
+      ],
+      "connections": [
+        "Route 229",
+        "Villa"
+      ],
+      "encounterSha256": "510f02c4661ccd91559ff34b6c711d4e3c52fdfae15bef3fa273bcf98c51cf50"
+    },
+    "Villa": {
+      "id": "villa",
+      "headers": [
+        "MAP_HEADER_VILLA"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_VILLA"
+      ],
+      "connections": [
+        "Resort Area"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Route 220": {
+      "id": "route-220",
+      "headers": [
+        "MAP_HEADER_ROUTE_220"
+      ],
+      "encounterRows": 16,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_220"
+      ],
+      "connections": [
+        "Route 219",
+        "Route 221"
+      ],
+      "encounterSha256": "22baf747fe2280d9f1d026270ba6c056b5e583212db43d2bfaf627535a2cd4ac"
+    },
+    "Route 223": {
+      "id": "route-223",
+      "headers": [
+        "MAP_HEADER_ROUTE_223"
+      ],
+      "encounterRows": 15,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_223"
+      ],
+      "connections": [
+        "Pokémon League",
+        "Sunyshore City"
+      ],
+      "encounterSha256": "029e95be1ef65cabf810c6ae19f4fb0d77b1fcbaca4a6d40707ef4de646142ac"
+    },
+    "Route 226": {
+      "id": "route-226",
+      "headers": [
+        "MAP_HEADER_ROUTE_226",
+        "MAP_HEADER_ROUTE_226_HOUSE"
+      ],
+      "encounterRows": 51,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_226",
+        "MAP_HEADER_ROUTE_226_HOUSE"
+      ],
+      "connections": [
+        "Route 227",
+        "Route 228",
+        "Survival Area"
+      ],
+      "encounterSha256": "975c8c433ae69b785a6536d7f3b2d4b4786c22b3be5b19719f24a034c6050dcb"
+    },
+    "Route 230": {
+      "id": "route-230",
+      "headers": [
+        "MAP_HEADER_ROUTE_230"
+      ],
+      "encounterRows": 56,
+      "mapIds": [
+        "MAP_HEADER_ROUTE_230"
+      ],
+      "connections": [
+        "Fight Area",
+        "Route 229"
+      ],
+      "encounterSha256": "283b1f8dee47347804e4d4ab1b2e5068fc8fc2c7c407488cf1fd7b2d93f36db6"
+    },
+    "Seabreak Path": {
+      "id": "seabreak-path",
+      "headers": [
+        "MAP_HEADER_SEABREAK_PATH"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_SEABREAK_PATH"
+      ],
+      "connections": [
+        "Flower Paradise",
+        "Route 224"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Café": {
+      "id": "caf",
+      "headers": [
+        "MAP_HEADER_CAFE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_CAFE"
+      ],
+      "connections": [
+        "Route 210"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Great Marsh": {
+      "id": "great-marsh",
+      "headers": [
+        "MAP_HEADER_GREAT_MARSH_1",
+        "MAP_HEADER_GREAT_MARSH_2",
+        "MAP_HEADER_GREAT_MARSH_3",
+        "MAP_HEADER_GREAT_MARSH_4",
+        "MAP_HEADER_GREAT_MARSH_5",
+        "MAP_HEADER_GREAT_MARSH_6"
+      ],
+      "encounterRows": 546,
+      "mapIds": [
+        "MAP_HEADER_GREAT_MARSH_1",
+        "MAP_HEADER_GREAT_MARSH_2",
+        "MAP_HEADER_GREAT_MARSH_3",
+        "MAP_HEADER_GREAT_MARSH_4",
+        "MAP_HEADER_GREAT_MARSH_5",
+        "MAP_HEADER_GREAT_MARSH_6"
+      ],
+      "connections": [
+        "Pastoria City"
+      ],
+      "encounterSha256": "6cf0a5cad64a24dfecd593c2185b4147555a19c8ceb887803b7de4e83610c481"
+    },
+    "Hall of Origin": {
+      "id": "hall-of-origin",
+      "headers": [
+        "MAP_HEADER_HALL_OF_ORIGIN",
+        "MAP_HEADER_UNKNOWN_511"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_HALL_OF_ORIGIN",
+        "MAP_HEADER_UNKNOWN_511"
+      ],
+      "connections": [
+        "Mt. Coronet",
+        "Spear Pillar"
+      ],
+      "encounterSha256": "43012c08e728cfc0b171cf33ade6ee4c026b52b019c0901d761d21244caa70e5"
+    },
+    "Maniac Tunnel": {
+      "id": "maniac-tunnel",
+      "headers": [
+        "MAP_HEADER_MANIAC_TUNNEL"
+      ],
+      "encounterRows": 18,
+      "mapIds": [
+        "MAP_HEADER_MANIAC_TUNNEL"
+      ],
+      "connections": [
+        "Route 214",
+        "Solaceon Ruins"
+      ],
+      "encounterSha256": "ad519b96ab79410e639aeda12f53f979759dd07ca7aef3a2b16465769f4f9ad2"
+    },
+    "Battle Frontier": {
+      "id": "battle-frontier",
+      "headers": [
+        "MAP_HEADER_BATTLE_FRONTIER",
+        "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_FRONTIER",
+        "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA"
+      ],
+      "connections": [
+        "Battle Arcade",
+        "Battle Castle",
+        "Battle Factory",
+        "Battle Hall",
+        "Battle Tower",
+        "Fight Area"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Battle Factory": {
+      "id": "battle-factory",
+      "headers": [
+        "MAP_HEADER_BATTLE_FACTORY"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_FACTORY"
+      ],
+      "connections": [
+        "Battle Frontier"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Battle Hall": {
+      "id": "battle-hall",
+      "headers": [
+        "MAP_HEADER_BATTLE_HALL"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_HALL"
+      ],
+      "connections": [
+        "Battle Frontier"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Battle Castle": {
+      "id": "battle-castle",
+      "headers": [
+        "MAP_HEADER_BATTLE_CASTLE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_CASTLE"
+      ],
+      "connections": [
+        "Battle Frontier"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Battle Arcade": {
+      "id": "battle-arcade",
+      "headers": [
+        "MAP_HEADER_BATTLE_ARCADE"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_BATTLE_ARCADE"
+      ],
+      "connections": [
+        "Battle Frontier"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ROTOM’s Room": {
+      "id": "rotom-s-room",
+      "headers": [
+        "MAP_HEADER_ROTOMS_ROOM"
+      ],
+      "encounterRows": 0,
+      "mapIds": [
+        "MAP_HEADER_ROTOMS_ROOM"
+      ],
+      "connections": [
+        "T.G. Eterna Bldg"
+      ],
+      "encounterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Distortion World": {
+      "id": "distortion-world",
+      "headers": [
+        "MAP_HEADER_DISTORTION_WORLD_1F",
+        "MAP_HEADER_DISTORTION_WORLD_B1F",
+        "MAP_HEADER_DISTORTION_WORLD_B2F",
+        "MAP_HEADER_DISTORTION_WORLD_B3F",
+        "MAP_HEADER_DISTORTION_WORLD_B4F",
+        "MAP_HEADER_UNKNOWN_578",
+        "MAP_HEADER_DISTORTION_WORLD_B5F",
+        "MAP_HEADER_DISTORTION_WORLD_B6F",
+        "MAP_HEADER_DISTORTION_WORLD_B7F",
+        "MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM",
+        "MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_DISTORTION_WORLD_1F",
+        "MAP_HEADER_DISTORTION_WORLD_B1F",
+        "MAP_HEADER_DISTORTION_WORLD_B2F",
+        "MAP_HEADER_DISTORTION_WORLD_B3F",
+        "MAP_HEADER_DISTORTION_WORLD_B4F",
+        "MAP_HEADER_UNKNOWN_578",
+        "MAP_HEADER_DISTORTION_WORLD_B5F",
+        "MAP_HEADER_DISTORTION_WORLD_B6F",
+        "MAP_HEADER_DISTORTION_WORLD_B7F",
+        "MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM",
+        "MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM"
+      ],
+      "connections": [
+        "Mt. Coronet",
+        "Sendoff Spring",
+        "Spear Pillar",
+        "Turnback Cave"
+      ],
+      "encounterSha256": "db591c5e7cf7c8d53f128a7ef7631ad43c6c41633e32de5d9c69b1123abd1506"
+    },
+    "Iron Ruins": {
+      "id": "iron-ruins",
+      "headers": [
+        "MAP_HEADER_IRON_RUINS"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_IRON_RUINS"
+      ],
+      "connections": [
+        "Iron Island"
+      ],
+      "encounterSha256": "04fbda8a50c1cfaec9a53f477fa9b0ac073599b9777740345d64bad11e685ebd"
+    },
+    "Iceberg Ruins": {
+      "id": "iceberg-ruins",
+      "headers": [
+        "MAP_HEADER_ICEBERG_RUINS"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_ICEBERG_RUINS"
+      ],
+      "connections": [
+        "Mt. Coronet"
+      ],
+      "encounterSha256": "497b06879662a26feecb1e8e818c2d235a6124aef5bb210f6e4faa9537141f4f"
+    },
+    "Rock Peak Ruins": {
+      "id": "rock-peak-ruins",
+      "headers": [
+        "MAP_HEADER_ROCK_PEAK_RUINS"
+      ],
+      "encounterRows": 1,
+      "mapIds": [
+        "MAP_HEADER_ROCK_PEAK_RUINS"
+      ],
+      "connections": [
+        "Route 228"
+      ],
+      "encounterSha256": "6f4b204c882e1754fa2910fd6ff8220bd42519d7b56d9f23c62935811acd266e"
+    }
+  },
+  "excludedHeaders": {
+    "MAP_HEADER_EVERYWHERE": "Mystery Zone/system/unused header",
+    "MAP_HEADER_NOTHING": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_1": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_3F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_SOUTH_HOUSE_4F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_2": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_3F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_CONDOMINIUMS_4F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_3": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_JUBILIFE_CITY_HOUSE_4": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_OREBURGH_CITY_NORTHWEST_HOUSE_3F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_OREBURGH_CITY_NORTHWEST_HOUSE_4F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_OREBURGH_CITY_NORTH_HOUSE_3F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_OREBURGH_CITY_NORTH_HOUSE_4F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_OREBURGH_CITY_EAST_HOUSE_3F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_ETERNA_CITY_DP_GYM": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_ETERNA_CITY_CONDOMINIUMS_4F": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_ETERNA_CITY_HOUSE": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_1": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_2": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_2": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_3": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_4": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_5": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_TRAINER_ROOM_6": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_SUNYSHORE_CITY_HOUSE_1": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_SUNYSHORE_CITY_HOUSE_2": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_BATTLE_PARK_GATE_TO_FIGHT_AREA": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_FIGHT_AREA_HOUSE": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNKNOWN_197": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_206": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_222": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_PASTORIA_CITY_DP_GREAT_MARSH": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNKNOWN_224": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_243": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_250": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_252": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_255": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_266": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNKNOWN_275": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_276": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_277": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_304": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNUSED_BATTLE_PARK": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_BATTLE_PARK_EXCHANGE_SERVICE_CORNER": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNKNOWN_324": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_325": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_2P": "Mystery Zone/system/unused header",
+    "MAP_HEADER_COMMUNICATION_CLUB_COLOSSEUM_4P": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNUSED_VERITY_LAKEFRONT_HOUSE": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNUSED_GATE_BETWEEN_ETERNA_CITY_ROUTE_206": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNKNOWN_401": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_402": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_404": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_405": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_408": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_409": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_RECORD_MIXING_ROOM": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNUSED_RESORT_AREA_MART": "Explicit unused/Diamond-Pearl legacy header",
+    "MAP_HEADER_UNION_ROOM": "Mystery Zone/system/unused header",
+    "MAP_HEADER_UNKNOWN_470": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_473": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_533": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_534": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_535": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_536": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_537": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_538": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_539": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_540": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_541": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_542": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_543": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_544": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_545": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_546": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_547": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_548": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_549": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_550": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_551": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_552": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_553": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_554": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_555": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_556": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_557": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_561": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_570": "Unreferenced unnamed legacy/debug header; empty script and no encounters",
+    "MAP_HEADER_UNKNOWN_572": "Unreferenced unnamed legacy/debug header; empty script and no encounters"
+  },
+  "counts": {
+    "locations": 125,
+    "includedHeaders": 501,
+    "headerEncounterTables": 154,
+    "ordinaryIndependentAreas": 144,
+    "ordinaryExactAreas": 142,
+    "fixedScriptCommands": 21,
+    "npcTrades": 4,
+    "roamers": 5,
+    "honeyTrees": 21,
+    "trophyGardenVisitors": 16,
+    "greatMarshAreas": 6
+  },
+  "sources": {
+    "primaryHeaderUrl": "https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/include/data/map_headers.h",
+    "primaryHeaderSha256": "e95c9d5f4ac6ce213f87894b68b901da4bcd1c1ba582668186fdf1843ba4d6f5",
+    "independentComparison": "docs/platinum-encounter-comparison.json",
+    "sourceDecisions": "docs/platinum-source-decisions.json"
+  },
+  "sourceLedgerSha256": "8d23cfaa84acb5f2cb91f3173d9f37a5fcce189fd4897fd772658d818ddc97b2"
+}
