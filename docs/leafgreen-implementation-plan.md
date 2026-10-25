@@ -1,6 +1,7 @@
 # Pokémon LeafGreen expansion — phase 27
 
-Status: Reader milestone technically validated (0.27.0); publication pending.
+Status: Reader milestone technically validated and published (0.27.0 / `0e7c076`).
+Pages run 40237758274 succeeded. User and real-save acceptance remain pending.
 Remaining evolution/export, reference Pokédex, Atlas and final expansion audit are
 not yet implemented. All 306 release checks pass without skips or failures.
 Baseline: `08ff2d9690603300ef20308e67c6e546826deb2a`, application 0.26.6.
@@ -97,4 +98,6 @@ Never describe parser-generated expected output as independent evidence.
 Working tree was clean. Default-sandbox `npm test` passed 25 test files and failed
 two files (`atlas.browser`, `safari-audit`); this is not a passing release gate.
 Browser/network-permitted rerun and direct failure investigation are in progress.
-No LeafGreen application change or release is claimed by this planning document.
+The initial audit above is historical. The Reader milestone now passes 306/306
+checks, all 386 species match independent PKHeX vectors, the generated outputs
+rebuild unchanged, and Pages deployment succeeded. See `leafgreen-reader.md`.

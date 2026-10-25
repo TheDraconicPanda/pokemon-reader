@@ -3,7 +3,8 @@
 - [x] Confirm full Platinum-equivalent expansion scope, original English LeafGreen target, and one game confirmation per profile.
 - [x] Pin native FRLG and independent PKHeX sources; document implementation and evidence plan.
 - [x] Implement Generation III sectors/PK3/text, fourteen-box Reader and profile integration; independent 434-record / 386-species comparison.
-- [ ] Complete Reader release gate and publish v0.27.0 for online validation.
+- [x] Complete Reader release gate (306/306) and publish v0.27.0 (`0e7c076`); Pages run 40237758274 succeeded.
+- [ ] Reader user acceptance and real-save / in-game validation.
 - [ ] LeafGreen evolution and native save export.
 - [ ] LeafGreen 151/386 reference Pokédex.
 - [ ] Full LeafGreen Kanto/Sevii Atlas and native special encounters.

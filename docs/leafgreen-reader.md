@@ -86,5 +86,10 @@ The full release gate passes **306/306 checks**, with zero skips/failures and ze
 mandatory integrity failures. Both generated LeafGreen outputs rebuild byte for
 byte. Existing 114 Platinum exports retain their independently observed hashes;
 that report explicitly records reuse of the same byte-identical observations.
-Publication is being verified separately in the release result. A push alone
-does not prove Pages deployment.
+Release `0e7c076` is published on the existing
+[Reader site](https://thedraconicpanda.github.io/pokemon-reader/).
+[Pages run 40237758274](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40237758274)
+completed successfully. The separate
+[CI run 40237758627](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40237758627)
+records GitHub's post-publication checks. User acceptance and real-save/in-game
+validation remain pending.

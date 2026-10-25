@@ -12,8 +12,9 @@ This is the first milestone of the agreed full LeafGreen expansion. Evolution/
 export, reference Pokédex and the LeafGreen Atlas follow separately. See the
 [Reader guide and evidence](docs/leafgreen-reader.md) and
 [implementation plan](docs/leafgreen-implementation-plan.md). The final release
-gate passes all **306 checks**, with zero mandatory integrity failures. Publication
-is being verified separately; no real-save playthrough is claimed.
+gate passes all **306 checks**, with zero mandatory integrity failures. The
+[Pages deployment](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40237758274)
+succeeded for release `0e7c076`; no real-save playthrough is claimed.
 
 ## Platinum expansion — v0.26.6
 
