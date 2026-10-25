@@ -69,5 +69,11 @@ export const PLATINUM_PROFILE = Object.freeze({
   independentStorage: true, strictFooter: true, extendedPokemonFields: true,
 });
 
-export const GAME_PROFILES = Object.freeze({soulsilver: SOULSILVER_PROFILE, platinum: PLATINUM_PROFILE});
+export const LEAFGREEN_PROFILE = Object.freeze({
+  id:'leafgreen',shortName:'LeafGreen',game:'Pokémon LeafGreen',generation:3,
+  regions:Object.freeze(['Kanto']),badgeCount:8,fileSize:0x20000,
+  boxCount:14,boxSlots:30,maxSpecies:386,maxMove:354,
+  regionalDex:Object.freeze(Array.from({length:151},(_,i)=>i+1)),
+});
+export const GAME_PROFILES = Object.freeze({soulsilver: SOULSILVER_PROFILE, platinum: PLATINUM_PROFILE,leafgreen:LEAFGREEN_PROFILE});
 export function gameProfile(id) { return GAME_PROFILES[id] || null; }

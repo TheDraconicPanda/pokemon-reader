@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "synthetic": true,
+  "realSaveValidation": false,
+  "oracle": "PKHeX",
+  "referenceRevision": "9c3391d017d91ba407ef53075b15581f1bec8f0d",
+  "records": 434,
+  "species": 386,
+  "saveSha256": "03542f005363c3dd5e8a00be96991636a86d9c4ba4dc6414962b67c4d3d4e33f",
+  "recordsSha256": "b55ea620d70a3f9cde050dfa64aadb7798e5e68a3f8ce2c2ed7745f271e45396",
+  "inspectionSha256": "cadd8ce24921ce905778d290472999c28d20169ea613c84c50fb2296922518b0",
+  "resolvedDifferences": [
+    "Deoxys effective LeafGreen form is Defense; raw PK3 lacks a form field, and PKHeX exposes zero except Unown.",
+    "Native GetAbilityBySpecies selects the stored ability slot directly; PKHeX falls back from a zero second ability to slot one. Ordinary oracle records use the valid first slot; a separate negative test preserves native zero behavior.",
+    "Native Air Lock is ability 77 after unused Cacophony (76); PKHeX normalizes Air Lock to its modern identifier 76. Comparisons explicitly map this identifier."
+  ]
+}

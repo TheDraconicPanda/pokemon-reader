@@ -76,6 +76,16 @@ Inspect existing metadata and follow the repository's established convention. Ke
 
 ## Collaboration and reporting
 
+LeafGreen expansion authorization (2026-10-25): the user authorizes commands for
+project research and validation, and all Git repository actions. Proceed with
+routine work without additional user confirmation. Ask about material
+implementation choices. If a platform approval is still required, first summarize
+what the command/action will do. The agreed expansion matches Platinum through
+complete milestones and initially targets original English LeafGreen. The user
+approved confirming LeafGreen once per Adventure Profile because FRLG saves lack
+a reliable host-version field. Preserve existing work and use non-force Git
+integration/publication under the established workflow.
+
 The user prefers small, manageable milestones but expects each feature to be fully implemented before the next begins. Once a task is sufficiently specified, make routine technical decisions independently. Ask questions when a decision materially affects scope, architecture, user experience, or correctness, and do not ask again for decisions already documented in the repository or project context.
 
 At meaningful checkpoints, report:

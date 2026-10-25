@@ -25,15 +25,15 @@ export function validateSnapshot(snapshot) {
   requireValue(uint(trainer.playTime?.hours, 65535) && uint(trainer.playTime?.minutes, 59) && uint(trainer.playTime?.seconds, 59), 'Invalid play time.');
   requireValue(Array.isArray(snapshot.party) && snapshot.party.length <= 6, 'Incomplete party.');
   const boxes = snapshot.storage?.boxes;
-  requireValue(Array.isArray(boxes) && boxes.length === 18 && boxes.every((box, i) => box.number === i + 1 && Array.isArray(box.pokemon) && box.pokemon.length === 30), 'Incomplete PC storage.');
+  requireValue(Array.isArray(boxes) && boxes.length === profile.boxCount && boxes.every((box, i) => box.number === i + 1 && Array.isArray(box.pokemon) && box.pokemon.length === profile.boxSlots), 'Incomplete PC storage.');
   const validatePokemon = (pokemon, slotLimit) => {
     requireValue(pokemon && uint(pokemon.slot, slotLimit) && pokemon.slot > 0, 'Invalid Pokémon slot.');
     if (pokemon.empty === true) return;
-    requireValue(uint(pokemon.speciesId, 493) && pokemon.speciesId > 0 && pokemon.checksumValid === true, 'Invalid or corrupt Pokémon record.');
+    requireValue(uint(pokemon.speciesId, profile.maxSpecies ?? 493) && pokemon.speciesId > 0 && pokemon.checksumValid === true, 'Invalid or corrupt Pokémon record.');
     requireValue(uint(pokemon.personality, 0xFFFFFFFF) && uint(pokemon.otId, 65535) && uint(pokemon.secretId, 65535), 'Incomplete Pokémon identity.');
     requireValue(STATS.every(stat => uint(pokemon.evs?.[stat], 255) && uint(pokemon.ivs?.[stat], 31)), 'Incomplete Pokémon training values.');
     requireValue(STATS.reduce((sum, stat) => sum + pokemon.evs[stat], 0) <= 510, 'Invalid Pokémon EV total.');
-    requireValue(Array.isArray(pokemon.moves) && pokemon.moves.length === 4 && pokemon.moves.every(move => uint(move.id, 467)), 'Incomplete Pokémon moves.');
+    requireValue(Array.isArray(pokemon.moves) && pokemon.moves.length === 4 && pokemon.moves.every(move => uint(move.id, profile.maxMove ?? 467)), 'Incomplete Pokémon moves.');
   };
   snapshot.party.forEach(p => validatePokemon(p, 6));
   requireValue(new Set(snapshot.party.map(p => p.slot)).size === snapshot.party.length, 'Duplicate party slots.');
@@ -43,14 +43,14 @@ export function validateSnapshot(snapshot) {
   });
   const dex = snapshot.pokedex;
   for (const key of ['speciesIds', 'seenSpecies', 'caughtSpecies']) {
-    requireValue(Array.isArray(dex?.[key]) && dex[key].every(id => uint(id, 493) && id > 0) && new Set(dex[key]).size === dex[key].length, 'Incomplete Pokédex flags.');
+    requireValue(Array.isArray(dex?.[key]) && dex[key].every(id => uint(id, profile.maxSpecies ?? 493) && id > 0) && new Set(dex[key]).size === dex[key].length, 'Incomplete Pokédex flags.');
   }
   requireValue(dex.speciesCount === dex.speciesIds.length && dex.seenCount === dex.seenSpecies.length && dex.caughtCount === dex.caughtSpecies.length, 'Inconsistent Pokédex counts.');
   requireValue(typeof dex.nationalDex === 'boolean' && dex.speciesCount > 0 && [dex.seenPercent,dex.caughtPercent].every(p => Number.isFinite(p) && p >= 0 && p <= 100), 'Incomplete Pokédex summary.');
   requireValue([...dex.seenSpecies,...dex.caughtSpecies].every(id => dex.speciesIds.includes(id)), 'Registration outside the selected Pokédex scope.');
   for (const [full,scoped] of [['allCaughtSpecies','caughtSpecies'],['allSeenSpecies','seenSpecies']]) {
     if(dex[full]===undefined)continue; // v0.25.53/54 snapshots remain restorable.
-    requireValue(Array.isArray(dex[full]) && dex[full].every(id=>uint(id,493)&&id>0) && new Set(dex[full]).size===dex[full].length,'Invalid full Pokédex flags.');
+    requireValue(Array.isArray(dex[full]) && dex[full].every(id=>uint(id,profile.maxSpecies ?? 493)&&id>0) && new Set(dex[full]).size===dex[full].length,'Invalid full Pokédex flags.');
     requireValue(dex[full].filter(id=>dex.speciesIds.includes(id)).length===dex[scoped].length && dex[scoped].every(id=>dex[full].includes(id)),'Full and scoped Pokédex flags disagree.');
   }
   if(snapshot.greatMarsh!==undefined)requireValue(snapshot.gameId==='platinum' && Boolean(sanitizeGreatMarsh(snapshot.greatMarsh)) && snapshot.greatMarsh.nationalDex===snapshot.pokedex.nationalDex,'Invalid Great Marsh state.');
@@ -81,7 +81,7 @@ export function createSnapshot(result, fileName, loadedAt = new Date().toISOStri
     trainer:result.save?.trainer && pick(result.save.trainer, ['name','trainerId','secretId','money','gender','badges','badgeCount','playTime']),
     party, storage,
     pokedex:result.save?.pokedex && pick(result.save.pokedex, ['nationalDex','speciesIds','seenSpecies','caughtSpecies','speciesCount','seenCount','caughtCount','seenPercent','caughtPercent','allCaughtSpecies','allSeenSpecies']),
-    ...(gameId === 'platinum' && result.progress ? {progress:pick(result.progress,['mainStoryCleared','nationalDex'])} : {}),
+    ...(['platinum','leafgreen'].includes(gameId) && result.progress ? {progress:pick(result.progress,['mainStoryCleared','nationalDex'])} : {}),
     ...(gameId==='platinum' && sanitizeGreatMarsh(result.greatMarsh) ? {greatMarsh:sanitizeGreatMarsh(result.greatMarsh)} : {}),
     safari:sanitizeSafariSave(result.save?.safari)
   };

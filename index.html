@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokémon Reader — v0.26.6</title>
+  <title>Pokémon Reader — v0.27.0</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/app-shell.css">
   <script src="js/app-shell.js"></script>
@@ -14,7 +14,7 @@
     <app-menu tool="reader"></app-menu>
     <header class="app-header">
       <h1>Pokémon Reader</h1>
-      <p>Generation IV save-file reader · Version <span id="app-version">v0.26.6</span></p>
+      <p>Generation III & IV save-file reader · Version <span id="app-version">v0.27.0</span></p>
     </header>
       <nav class="dashboard-nav" aria-label="Reader views">
         <a href="#overview" data-view="overview">Overview</a>
@@ -28,7 +28,7 @@
 
     <section id="upload-area" class="card" data-reader-view="overview">
       <h2 id="upload-heading">Your adventure starts here</h2>
-      <details class="reader-info"><summary aria-label="Save file requirements">ⓘ</summary><p id="upload-help">Choose a raw 512 KB Pokémon SoulSilver or Platinum save, or a supported DeSmuME .dsv container. Files are processed locally and never uploaded.</p></details>
+      <details class="reader-info"><summary aria-label="Save file requirements">ⓘ</summary><p id="upload-help">Choose a raw 128 KB original English Pokémon LeafGreen save, a raw 512 KB SoulSilver or Platinum save, or a supported DeSmuME .dsv container for those DS games. LeafGreen requires a game confirmation when creating an Adventure Profile. Files are processed locally and never uploaded.</p></details>
       <label id="drop-zone" class="file-picker" for="save-file">
         <span class="file-picker-text">Choose a save file or drop one here</span>
         <input id="save-file" type="file" accept=".sav,.dsv,.dat,application/octet-stream">
@@ -130,7 +130,7 @@
     <section data-reader-view="collection" id="unown-form-info" class="card" hidden>
       <h2>Alternate Form Collection</h2>
       <details><summary>Alternate forms details</summary>
-      <p class="collection-note">Tracks supported alternate forms among Pokémon in your party and PC, excluding Eggs. Form IDs are read from the Generation IV form field in each decrypted Pokémon record.</p>
+      <p class="collection-note">Tracks supported alternate forms among Pokémon in your party and PC, excluding Eggs, using the loaded game's form rules.</p>
       <p class="unown-form-summary">Tracked Pokémon: <strong id="unown-form-total">—</strong></p>
       <div id="unown-form-list" class="unown-form-list"></div>
 

@@ -6,3 +6,5 @@ __pycache__/
 # Optional independent PKHeX reference harness build output
 scripts/pkhex-reference/bin/
 scripts/pkhex-reference/obj/
+scripts/leafgreen-reference/bin/
+scripts/leafgreen-reference/obj/

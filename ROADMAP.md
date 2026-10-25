@@ -1,3 +1,16 @@
+# LeafGreen expansion — phase 27
+
+- [x] Confirm full Platinum-equivalent expansion scope, original English LeafGreen target, and one game confirmation per profile.
+- [x] Pin native FRLG and independent PKHeX sources; document implementation and evidence plan.
+- [x] Implement Generation III sectors/PK3/text, fourteen-box Reader and profile integration; independent 434-record / 386-species comparison.
+- [ ] Complete Reader release gate and publish v0.27.0 for online validation.
+- [ ] LeafGreen evolution and native save export.
+- [ ] LeafGreen 151/386 reference Pokédex.
+- [ ] Full LeafGreen Kanto/Sevii Atlas and native special encounters.
+- [ ] Integrated three-game release audit; user and real-save validation remain separate.
+
+See [scope and acceptance criteria](docs/leafgreen-implementation-plan.md).
+
 # Focused HGSS ability bug fix — v0.26.4
 
 - [x] Verify the historical stale ability byte and PID/species/form rules against HGSS primary code and all 505 personal-data records.

@@ -1,6 +1,6 @@
 {
   "name": "pokemon-reader",
-  "version": "0.26.6",
+  "version": "0.27.0",
   "description": "A personal, browser-based tool for reading Pok\u00e9mon game save files and exposing information that is normally hidden from the player.",
   "main": "index.js",
   "scripts": {

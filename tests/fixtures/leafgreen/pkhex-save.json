@@ -1,0 +1,144 @@
+{
+  "trainer": {
+    "name": "A",
+    "trainerId": 12345,
+    "secretId": 54321,
+    "money": 50000,
+    "badges": 5,
+    "gender": 0,
+    "playTime": {
+      "hours": 25,
+      "minutes": 30,
+      "seconds": 45
+    }
+  },
+  "nationalDex": false,
+  "party": [
+    {
+      "speciesId": 252,
+      "personality": 0,
+      "nickname": "T",
+      "otName": "A",
+      "otId": 52445,
+      "secretId": 43707,
+      "experience": 1000,
+      "abilityId": 65,
+      "heldItemId": 13,
+      "natureId": 0,
+      "friendship": 70,
+      "isEgg": false,
+      "shiny": false,
+      "genderId": 1,
+      "metLocationId": 88,
+      "metLevel": 17,
+      "pokeballId": 4,
+      "languageId": 2,
+      "originGameId": 5,
+      "checksumValid": true,
+      "moves": [
+        {
+          "id": 1,
+          "pp": 12,
+          "ppUps": 0
+        },
+        {
+          "id": 15,
+          "pp": 20,
+          "ppUps": 1
+        },
+        {
+          "id": 0,
+          "pp": 0,
+          "ppUps": 2
+        },
+        {
+          "id": 0,
+          "pp": 0,
+          "ppUps": 3
+        }
+      ],
+      "ivs": {
+        "hp": 1,
+        "attack": 2,
+        "defense": 3,
+        "speed": 4,
+        "specialAttack": 5,
+        "specialDefense": 6
+      },
+      "evs": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 6,
+        "speed": 9,
+        "specialAttack": 12,
+        "specialDefense": 15
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "box": 14,
+      "slot": 30,
+      "pokemon": {
+        "speciesId": 386,
+        "personality": 7,
+        "nickname": "T",
+        "otName": "A",
+        "otId": 52445,
+        "secretId": 43707,
+        "experience": 1000,
+        "abilityId": 46,
+        "heldItemId": 13,
+        "natureId": 7,
+        "friendship": 70,
+        "isEgg": false,
+        "shiny": false,
+        "genderId": 2,
+        "metLocationId": 88,
+        "metLevel": 17,
+        "pokeballId": 4,
+        "languageId": 2,
+        "originGameId": 5,
+        "checksumValid": true,
+        "moves": [
+          {
+            "id": 1,
+            "pp": 12,
+            "ppUps": 0
+          },
+          {
+            "id": 15,
+            "pp": 20,
+            "ppUps": 1
+          },
+          {
+            "id": 0,
+            "pp": 0,
+            "ppUps": 2
+          },
+          {
+            "id": 0,
+            "pp": 0,
+            "ppUps": 3
+          }
+        ],
+        "ivs": {
+          "hp": 1,
+          "attack": 2,
+          "defense": 3,
+          "speed": 4,
+          "specialAttack": 5,
+          "specialDefense": 6
+        },
+        "evs": {
+          "hp": 0,
+          "attack": 3,
+          "defense": 6,
+          "speed": 9,
+          "specialAttack": 12,
+          "specialDefense": 15
+        }
+      }
+    }
+  ]
+}

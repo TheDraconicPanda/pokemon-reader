@@ -1,5 +1,20 @@
 # Pokémon Reader
 
+## LeafGreen Reader — v0.27.0
+
+The Reader adds original English LeafGreen raw 128 KB saves, with one game
+confirmation per Adventure Profile. It reads trainer information, party, all
+420 PC slots, native Pokémon details and Kanto/National registration counts.
+Generation III sectors and Pokémon records have their own verified codecs;
+SoulSilver and Platinum retain their existing support.
+
+This is the first milestone of the agreed full LeafGreen expansion. Evolution/
+export, reference Pokédex and the LeafGreen Atlas follow separately. See the
+[Reader guide and evidence](docs/leafgreen-reader.md) and
+[implementation plan](docs/leafgreen-implementation-plan.md). The final release
+gate passes all **306 checks**, with zero mandatory integrity failures. Publication
+is being verified separately; no real-save playthrough is claimed.
+
 ## Platinum expansion — v0.26.6
 
 SoulSilver and Platinum now share the existing Reader, evolution/export tools,

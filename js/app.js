@@ -1,5 +1,6 @@
 import { gameProfile } from './saves/profiles.js';
 import { PLATINUM_READER } from './data/games/platinum/reader-reference.js';
+import { LEAFGREEN_READER } from './data/games/leafgreen/reader-reference.js';
 import { PLANNER_REFERENCE as GEN4_IDENTIFIERS } from './data/games/soulsilver/planner-reference.js';
 import { moveName } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges } from './species-presentation.js';
@@ -14,7 +15,7 @@ import { repairSoulSilverAbility } from './saves/soulsilver-ability-repair.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.26.6";
+const APP_VERSION = "0.27.0";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -120,7 +121,17 @@ async function handleFile(file) {
   try {
     const buffer = await file.arrayBuffer();
     if (revision !== loadRevision) return;
-    const result = detectSave(buffer);
+    let result = detectSave(buffer);
+    if (result.requiresGameConfirmation) {
+      let knownProfile = false;
+      try { knownProfile = !newAdventure && (await listProfiles()).some(profile => profile.trainerKey === trainerKey(result) && profile.snapshot.trainer.name === result.trainer.name && profile.snapshot.trainer.gender === result.trainer.gender); } catch {}
+      if (revision !== loadRevision) return;
+      if (!knownProfile && !window.confirm('Is this an original English Pokémon LeafGreen save?\n\nFireRed and LeafGreen share a save layout. Confirm LeafGreen to read it with LeafGreen rules. This selection will be remembered with your Adventure Profile. Cancel for FireRed, another language, a ROM hack, or if unsure.')) {
+        fileStatus.textContent = 'Game selection cancelled. Stored adventures were preserved.';
+        return;
+      }
+      result = detectSave(buffer, {gameId:'leafgreen'});
+    }
     currentSaveBytes = result.valid ? new Uint8Array(buffer) : null;
     currentSaveFileName = file.name || "pokemon-save.sav";
     currentActivePartition = result.valid ? result.activePartition : null;
@@ -157,7 +168,7 @@ async function handleFile(file) {
         adventureStatus.textContent = `This save could not update your stored adventure: ${error.message} Previous profiles are preserved. Reader remains usable for this session.`;
       }
       if (revision !== loadRevision) return;
-      if (decodedSnapshot) rememberSave(snapshotSave(result, currentSaveFileName));
+      if (decodedSnapshot && result.gameId === 'soulsilver') rememberSave(snapshotSave(result, currentSaveFileName));
     }
 
     await renderDecodedSave(result, revision);
@@ -247,7 +258,7 @@ async function restoreAdventure(profile, revision) {
   if (revision !== loadRevision) return;
   document.querySelector('.app').dataset.saveLoaded = 'true';
   document.querySelector('.app').setAttribute('aria-busy', 'false');
-  rememberSave(snapshotSave(result, profile.snapshot.fileName));
+  if (result.gameId === 'soulsilver') rememberSave(snapshotSave(result, profile.snapshot.fileName));
   adventureStatus.textContent = `Restored ${profile.snapshot.trainer.name}'s progress from ${new Date(profile.snapshot.loadedAt).toLocaleString()}. Reload the original save to export an evolution. Original save files are never stored.`;
 }
 adventureRestore.addEventListener('click', async () => {
@@ -313,6 +324,9 @@ function renderOverview(result) {
     const title = document.createElement("span"); title.textContent = label;
     const count = document.createElement("strong"); count.textContent = value;
     button.append(title, count);
+    if (currentGameId === 'leafgreen' && ['seen','caught'].includes(destination)) {
+      button.disabled = true; button.title = 'LeafGreen Pokédex reference is a later milestone.';
+    }
     button.addEventListener("click", () => {
       if (destination === "party" || destination === "storage") location.hash = destination;
       else if (destination === "seen" || destination === "caught") {
@@ -381,8 +395,9 @@ function getPokemonFormName(pokemon) {
 }
 
 function renderAlternateForms(party, storage) {
+  const trackedSpecies = currentGameId === 'leafgreen' ? ALTERNATE_FORM_SPECIES.filter(species=>[201,386].includes(species.id)) : ALTERNATE_FORM_SPECIES;
   const counts = new Map();
-  for (const species of ALTERNATE_FORM_SPECIES) {
+  for (const species of trackedSpecies) {
     counts.set(species.id, species.forms.map(() => 0));
   }
 
@@ -395,7 +410,7 @@ function renderAlternateForms(party, storage) {
   for (const pokemon of ownedPokemon) {
     if (pokemon.isEgg) continue;
     const species = ALTERNATE_FORM_BY_SPECIES.get(pokemon.speciesId);
-    if (!species || !Number.isInteger(pokemon.formId)) continue;
+    if (!species || !counts.has(species.id) || !Number.isInteger(pokemon.formId)) continue;
     const speciesCounts = counts.get(species.id);
     if (pokemon.formId < 0 || pokemon.formId >= speciesCounts.length) continue;
     speciesCounts[pokemon.formId]++;
@@ -405,7 +420,7 @@ function renderAlternateForms(party, storage) {
   const list = document.querySelector("#unown-form-list");
   list.className = "alternate-form-groups";
   list.replaceChildren();
-  for (const species of ALTERNATE_FORM_SPECIES) {
+  for (const species of trackedSpecies) {
     const group = document.createElement("section");
     group.className = "alternate-form-group";
 
@@ -524,6 +539,7 @@ function fetchMetadata(url) {
 }
 
 function getSpeciesIndex() {
+  if (currentGameId === 'leafgreen') return Promise.resolve(new Map(Object.entries(LEAFGREEN_READER.species).map(([id, value]) => [Number(id), value.name])));
   if (currentGameId === "platinum") return Promise.resolve(new Map(Object.entries(GEN4_IDENTIFIERS.species).map(([id, name]) => [Number(id), name])));
   if (!speciesIndexPromise) {
     speciesIndexPromise = fetchMetadata("https://pokeapi.co/api/v2/pokemon-species?limit=493")
@@ -642,7 +658,7 @@ async function renderCollectionSpeciesList() {
 function renderBadges(badges) {
   badgeGrid.replaceChildren();
 
-  const badgeData = currentGameId === 'platinum' ? SINNOH_BADGES : HGSS_BADGES;
+  const badgeData = currentGameId === 'platinum' ? SINNOH_BADGES : currentGameId === 'leafgreen' ? HGSS_BADGES.filter(b=>b.region==='kanto').map(b=>({...b,bit:b.bit-8})) : HGSS_BADGES;
   for (const region of gameProfile(currentGameId).regions.map(name => name.toLowerCase())) {
     const regionBadges = badgeData.filter((badge) => badge.region === region);
     const section = document.createElement("section");
@@ -710,6 +726,7 @@ async function enrichPokemon(pokemon, includeMoves = false) {
   if (pokemon.empty) return pokemon;
 
   if (currentGameId === 'platinum') return enrichPlatinumPokemon(pokemon, includeMoves);
+  if (currentGameId === 'leafgreen') return enrichLeafGreenPokemon(pokemon, includeMoves);
   const data = await getPokemonData(pokemon.speciesId);
   const heldItemName = await getItemName(pokemon.heldItemId);
 
@@ -759,6 +776,7 @@ async function enrichMoves(moves) {
 }
 
 async function getMoveData(moveId) {
+  if (currentGameId === 'leafgreen') return LEAFGREEN_READER.moves[moveId] || {name:`Move #${moveId}`,basePP:null};
   if (currentGameId === 'platinum') return PLATINUM_READER.moves[moveId] || {name:`Move #${moveId}`,basePP:null};
   if (!moveId) return { name: "—", basePP: null };
   if (moveDataCache.has(moveId)) return moveDataCache.get(moveId);
@@ -1033,6 +1051,7 @@ function getDisplaySpeciesName(pokemon) {
 
 function renderStorage(storage) {
   currentStorage = storage;
+  document.querySelector('.storage-summary').textContent = `${storage.boxes.length} boxes · 30 slots each`;
   boxTabs.replaceChildren();
   document.querySelector("#box-select").replaceChildren();
 
@@ -1127,7 +1146,7 @@ function renderBox(boxNumber) {
 
 
 function storageMatches(pokemon, query) {
-  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId} ${(pokemon.moves || []).filter(move => move.id).map(move => (currentGameId === "platinum" ? PLATINUM_READER.moves[move.id]?.name || `Move #${move.id}` : moveName("soulsilver", move.id))).join(" ")}`.toLowerCase().includes(query);
+  return !pokemon.empty && `${pokemon.nickname || ""} ${getDisplaySpeciesName(pokemon)} #${pokemon.speciesId} ${(pokemon.moves || []).filter(move => move.id).map(move => (currentGameId === 'leafgreen' ? LEAFGREEN_READER.moves[move.id]?.name || `Move #${move.id}` : currentGameId === "platinum" ? PLATINUM_READER.moves[move.id]?.name || `Move #${move.id}` : moveName("soulsilver", move.id))).join(" ")}`.toLowerCase().includes(query);
 }
 function renderStorageSearch() {
   const results = document.querySelector("#storage-results"); results.replaceChildren();
@@ -1673,5 +1692,19 @@ function enrichPlatinumPokemon(pokemon, includeMoves) {
     pokeballName:getPokeballName(pokemon.pokeballId), metDateText:formatPokemonDate(pokemon.metDate), eggDateText:formatPokemonDate(pokemon.eggDate),
     metLocationText:formatLocation(pokemon.metLocationId), eggLocationText:formatLocation(pokemon.eggLocationId),
     moves:includeMoves ? pokemon.moves.map(move => ({...move,name:move.id ? PLATINUM_READER.moves[move.id]?.name || `Move #${move.id}` : '—',maxPP:move.id ? Math.floor((PLATINUM_READER.moves[move.id]?.basePP || 0) * (5 + move.ppUps) / 5) : null})) : pokemon.moves,
+    hiddenPower:getHiddenPower(pokemon.ivs)};
+}
+
+function enrichLeafGreenPokemon(pokemon, includeMoves) {
+  const reference = LEAFGREEN_READER.species[pokemon.speciesId];
+  return {...pokemon,types:reference?.types || [],speciesName:reference?.name || null,
+    growthRate:reference?.growthRate || null,level:pokemon.level ?? estimateLevelFromExperience(pokemon.experience,reference?.growthRate),
+    formName:getPokemonFormName(pokemon),gender:['Male','Female','Genderless'][pokemon.genderId] || 'Unknown',
+    abilityName:LEAFGREEN_READER.abilities[pokemon.abilityId] || `Ability #${pokemon.abilityId}`,
+    natureName:getNatureName(pokemon.natureId),statusText:pokemon.status===undefined?'Not stored in PC record':getStatusText(pokemon.status),
+    experienceText:formatNumber(pokemon.experience),heldItemName:pokemon.heldItemId?LEAFGREEN_READER.items[pokemon.heldItemId] || `Item #${pokemon.heldItemId}`:'None',
+    pokeballName:getPokeballName(pokemon.pokeballId),metDateText:'Not stored in Generation III',eggDateText:'Not stored in Generation III',
+    metLocationText:LEAFGREEN_READER.locations[pokemon.metLocationId] || `Generation III location #${pokemon.metLocationId}`,eggLocationText:'Not stored in Generation III',
+    moves:includeMoves?pokemon.moves.map(move=>({...move,name:move.id?LEAFGREEN_READER.moves[move.id]?.name || `Move #${move.id}`:'—',maxPP:move.id?Math.floor((LEAFGREEN_READER.moves[move.id]?.basePP || 0)*(5+move.ppUps)/5):null})):pokemon.moves,
     hiddenPower:getHiddenPower(pokemon.ivs)};
 }

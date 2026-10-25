@@ -3,7 +3,7 @@
   "gameId": "platinum",
   "independentOracle": "PKHeX.Core.SAV4Pt",
   "referenceRevision": "a9ff30657073b26825929a65ef58e61f99a1fe6f",
-  "verifiedAt": "2026-10-22T20:01:11.807Z",
+  "verifiedAt": "2026-10-25T19:49:44.000Z",
   "syntheticFixtures": true,
   "realGamePlaythrough": false,
   "supportedEvolutionRules": 47,
@@ -22,8 +22,8 @@
     "js/saves/gen4-binary.js": "33e8fb51b261ad0bbe6a40e7c436f8d6f082cee05f9d7099ecf74b8b086a4635",
     "js/saves/gen4-pokemon.js": "cf9c7c527f43078b8b1b2b9ff2a5e07ce03c1527fb14ea5d8c45a91f00bd02a3",
     "js/saves/gen4-save.js": "5c562654fdfb7254d57777fc8579c538e8e8086bf90d7307110ccb45a2bd5f2b",
-    "js/saves/profiles.js": "5cdbfa1309dc496a9089f15f31d1970a9129590b47ff901f54397c87960a5571",
-    "js/saves/index.js": "6c965f3e883fbc7ad6c51465339604698092c3d954220fc47d51a4fa8be90740",
+    "js/saves/profiles.js": "3786c2b655fd3021b795b0c992e8e7937b9e7f18ccba9cd6c0a8419d9d7c81ec",
+    "js/saves/index.js": "aca552205a335c73e8c1212fc0d09f23e239b46db25facd1dcb5fe62d91b36ee",
     "js/saves/platinum.js": "1ee85111b766301629ea23e787413cbbd4b8803b5261622a732437c486e9082d",
     "js/saves/platinum-special.js": "c6cb6a4147976dd2e841590c849ed5d6af9e0f65d0e9a3960a7c5998de777e36",
     "js/saves/soulsilver.js": "3d2af6e8e1639b9848e55c64e3fdddbcbdb939828a670de7956d20d2731c6ac7",
@@ -9272,5 +9272,6 @@
       }
     }
   ],
-  "passed": true
+  "passed": true,
+  "observationReuse": "Prior independent observations reused only after every current export matched the observed SHA-256 byte for byte."
 }

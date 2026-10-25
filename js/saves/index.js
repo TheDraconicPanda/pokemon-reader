@@ -1,10 +1,12 @@
 import { splitSaveContainer } from './gen4-container.js';
 import { detectPlatinum } from './platinum.js';
 import { detectSoulSilver } from './soulsilver.js';
+import { detectLeafGreen } from './leafgreen.js';
 
 // Registry is intentionally explicit: game identification never uses a filename.
 const readers = Object.freeze([detectSoulSilver, detectPlatinum]);
-export function detectSave(buffer) {
+export function detectSave(buffer, {gameId = null} = {}) {
+  if ((buffer.byteLength ?? buffer.length) === 0x20000) return detectLeafGreen(buffer, {confirmed:gameId === 'leafgreen'});
   let container;
   try { container = splitSaveContainer(buffer); }
   catch (error) { return {game:'Not detected', supported:false, valid:false, reason:error.message, activePartition:null, trainer:null, party:[], save:null}; }
