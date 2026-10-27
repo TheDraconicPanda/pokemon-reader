@@ -85,16 +85,27 @@ requested milestone; preserve the existing website. Native app delivery requires
 a real iOS build/install route, not a Pages deployment. Device/performance tests
 cannot be claimed from simulator tests or successful compilation.
 
-The user authorizes project-related investigation, commands and Git operations
-without routine conversational approval. Clarified explicitly: any files inside
-the project repository, including new source files and build output, may be
-created or modified. Commands that write outside the repository or the user's
-Google Drive folder require approval first. The Drive folder path is not known;
-do not infer it. Keep scratch files in repository-local `work/`; redirect caches,
-temporary output and tool state locally where supported. External toolchain,
-cache or signing-file writes need a bounded approval before the command runs.
-Follow normal non-force Git workflow and preserve user changes. Runtime/platform
-approval requirements still apply; report actual blockers and their source.
+The user's latest authorization explicitly covers the `Emulator` branch of
+`TheDraconicPanda/pokemon-reader` and this verified Google Drive folder:
+https://drive.google.com/drive/folders/1065tfo0qpmwMqhTH12TfORae0rFivN91
+(folder name: Emulator; ID: `1065tfo0qpmwMqhTH12TfORae0rFivN91`).
+Use connected Drive tools for this folder; no local sync path has been verified.
+File work in these locations, including new project source and build output,
+needs no routine conversational approval. Commit and push emulator work to
+`Emulator` by default; do not infer authorization to merge this track into other
+branches from older main-publication instructions. Preserve unrelated work and
+use normal non-force Git operations.
+
+Commands needed to research, investigate and implement the requested project
+tasks are authorized within those file-write boundaries. Any modification to
+other files requires approval first, including external toolchain, cache,
+temporary-output or signing-file writes. Keep scratch files in repository-local
+`work/` and redirect tool state locally where supported. When approval is needed,
+give a concise plain-language explanation of the intended action, target and
+purpose (for example, "I'll update this file to configure the iOS build"). Do not
+ask again for permission to research or work in the authorized locations.
+Runtime/platform approval requirements still apply; explain any actual blocker
+and its source without inventing an additional routine approval step.
 
 User device: iPhone 16 Plus; iOS version and Mac/signing access still unknown.
 melonDS is the initial candidate, pending measured performance/battery evidence.

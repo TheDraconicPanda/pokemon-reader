@@ -65,21 +65,26 @@ without a new implementation request. Routine technical choices within the
 milestone are delegated. Ask only about missing essential inputs, material scope
 changes, external file writes, or an actual platform authorization blocker.
 
-Project-related investigation, commands and Git operations are authorized.
-All files inside this repository, including new source files, ignored scratch
-files and build output, may be created or modified without further permission.
-Use repository-local `work/` for scratch material. The user also permits file
-work in their Google Drive folder, but its exact location has not been supplied;
-do not infer a path. Commands that write anywhere else require approval first.
-This includes external toolchain installs, caches, signing files and temporary
-outputs; redirect these into the repository where supported. Authorization to
-run a Git command does not authorize unrelated external file writes.
+The user's latest explicit working locations are the `Emulator` branch in this
+repository and the verified [Emulator Google Drive folder](https://drive.google.com/drive/folders/1065tfo0qpmwMqhTH12TfORae0rFivN91)
+(ID: `1065tfo0qpmwMqhTH12TfORae0rFivN91`). File work in these locations,
+including new source, ignored scratch files and build output, needs no routine
+approval. Use connected Drive tools; a local Drive sync path is not known.
+Use repository-local `work/` for scratch material.
 
-Use feature branches in the existing checkout, preserve user/remote changes,
-and use non-force integration/pushes. No routine conversational Git approval is
-needed. Actual tool/platform approval requirements still apply; explain a concrete
-blocker rather than repeatedly asking for Git permission. Commit completed work
-and publish through the existing repository when transport and access permit.
+Project-related research, investigation and commands are authorized within those
+file-write boundaries. Any modification to other files requires approval first.
+This includes external toolchain installs, caches, signing files and temporary
+outputs; redirect these into the repository where supported. For a required
+approval, briefly explain what the command will do, its target and its purpose.
+Do not request permission again for authorized research or work in these two
+locations. Authorization to run a Git command does not authorize unrelated writes.
+
+Work on and push to `Emulator` by default in the existing checkout. This latest
+direction supersedes older feature-branch/main-publication defaults for this
+emulator track; integration into another branch needs explicit direction.
+Preserve user/remote changes and use non-force pushes. Actual tool/platform
+approval requirements still apply; explain concrete blockers and their source.
 No new repository, hosting service or paid service is implied by this plan.
 
 For native milestones, delivery means reproducible source/build instructions and
