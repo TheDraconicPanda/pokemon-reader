@@ -300,7 +300,7 @@ std::vector<uint8_t> bytes(NSData *data) {
         for(;bin<s.histogram.size();++bin){sum+=s.histogram[bin];if(sum>=std::ceil(s.frames*0.95))break;}
         NSDictionary *stats=@{@"frames":@(s.frames),@"activeSeconds":@(wall),@"emulatedSeconds":@(s.emulated),
           @"speedRatio":@(wall>0?s.emulated/wall:0),@"meanFrameMs":@(s.frames?s.coreWall*1000/s.frames:0),
-          @"p95FrameMsUpperBound":@((bin+1)*0.1),@"maxFrameMs":@(s.maxFrame*1000),@"slowCoreFrames":@(s.slowFrames),
+          @"p95FrameMsUpperBound":bin<1000?@((bin+1)*0.1):NSNull.null,@"maxFrameMs":@(s.maxFrame*1000),@"slowCoreFrames":@(s.slowFrames),
           @"audioMissingFrames":@(pipe->missingFrames.load()),@"audioOverflowFrames":@(pipe->overflowFrames.load())};
         dispatch_async(dispatch_get_main_queue(),^{
             self->_lastStats=stats;
@@ -339,7 +339,10 @@ std::vector<uint8_t> bytes(NSData *data) {
     // A queue barrier follows pending frame/stat work; UIKit/report data stay on main.
     dispatch_async(_emulation,^{dispatch_async(dispatch_get_main_queue(),^{
         struct utsname device{};uname(&device);
+        NSData *buildData=[NSData dataWithContentsOfURL:[NSBundle.mainBundle URLForResource:@"BuildInfo" withExtension:@"json"]];
+        NSDictionary *build=buildData?[NSJSONSerialization JSONObjectWithData:buildData options:0 error:nil]:@{};
         NSDictionary *report=@{@"schema":@1,@"appVersion":@READER_BUILD_VERSION,@"core":@"melonDS 1.1",
+          @"build":build?:@{},
           @"coreRevision":@READER_CORE_REVISION,@"candidateAccepted":@NO,@"romSHA256":self->_romHash?:@"",
           @"gameSaveSHA256":self->_save?digest(self->_save):@"none imported",
           @"device":@(device.machine),@"iOS":UIDevice.currentDevice.systemVersion,

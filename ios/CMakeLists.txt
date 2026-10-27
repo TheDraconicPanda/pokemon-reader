@@ -30,7 +30,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
   add_executable(ReaderEmulator MACOSX_BUNDLE App/main.mm App/EmulatorController.mm App/ScreenView.mm)
   target_compile_options(ReaderEmulator PRIVATE -fobjc-arc)
   target_link_libraries(ReaderEmulator PRIVATE reader_core
-    "-framework UIKit" "-framework Foundation" "-framework Metal"
+    "-framework UIKit" "-framework Foundation" "-framework CoreGraphics" "-framework QuartzCore" "-framework Metal"
     "-framework MetalKit" "-framework AVFoundation" "-framework UniformTypeIdentifiers")
   target_compile_definitions(ReaderEmulator PRIVATE READER_BUILD_VERSION="${PROJECT_VERSION}")
   set_target_properties(ReaderEmulator PROPERTIES

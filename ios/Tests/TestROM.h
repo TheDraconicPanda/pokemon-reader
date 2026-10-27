@@ -18,7 +18,7 @@ inline std::vector<uint8_t> rom() {
     // write a CPU fingerprint and continuously mirror KEYINPUT into main RAM.
     ldr(4,0x04000240);code.push_back(0xE3A01080);code.push_back(0xE5C41000); // VRAM A -> LCDC
     ldr(4,0x04000000);ldr(1,0x00020000);code.push_back(0xE5841000);
-    ldr(4,0x06800000);code.push_back(0xE3A0101F);ldr(2,Pixels);
+    ldr(4,0x06800000);code.push_back(0xE3A0101F);ldr(2,256*192);
     unsigned fill=unsigned(code.size());
     code.push_back(0xE1C410B0);code.push_back(0xE2844002);code.push_back(0xE2522001);
     code.push_back(0x1A000000 | ((int(fill)-int(code.size())-2)&0xFFFFFF));

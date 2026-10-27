@@ -31,7 +31,7 @@ def main():
     work = ROOT / "work/e1"
     build = work / f"build-{args.sdk}"
     artifacts = work / "artifacts"
-    for path in (work / "tmp", work / "clang-cache", work / "swift-cache", artifacts):
+    for path in (work / "tmp", work / "clang-cache", work / "swift-cache", work / "xcode-cache", artifacts):
         path.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     env.update({"TMPDIR": str(work / "tmp") + "/", "CLANG_MODULE_CACHE_PATH": str(work / "clang-cache"),
@@ -43,6 +43,10 @@ def main():
          f"-DCMAKE_OSX_SYSROOT={sdk}", f"-DCMAKE_OSX_ARCHITECTURES={arch}",
          "-DCMAKE_OSX_DEPLOYMENT_TARGET=17.0", "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO",
          f"-DCMAKE_XCODE_ATTRIBUTE_CLANG_MODULE_CACHE_PATH={work / 'clang-cache'}",
+         f"-DCMAKE_XCODE_ATTRIBUTE_MODULE_CACHE_DIR={work / 'clang-cache'}",
+         f"-DCMAKE_XCODE_ATTRIBUTE_CACHE_ROOT={work / 'xcode-cache'}",
+         f"-DCMAKE_XCODE_ATTRIBUTE_SDK_STAT_CACHE_DIR={work / 'xcode-cache' / 'SDKStatCaches.noindex'}",
+         f"-DCMAKE_XCODE_ATTRIBUTE_SHARED_PRECOMPS_DIR={work / 'xcode-cache' / 'precompiled'}",
          f"-DCMAKE_XCODE_ATTRIBUTE_SWIFT_MODULE_CACHE_PATH={work / 'swift-cache'}"], env)
     run(["cmake", "--build", build, "--config", "Release", "--target", "ReaderEmulator", "--parallel", "4"], env)
     apps = [p for p in build.rglob("ReaderEmulator.app") if (p / "Info.plist").is_file()]
@@ -66,6 +70,20 @@ def main():
         raise RuntimeError("Pinned core license was not found; refusing to package a binary.")
     shutil.copyfile(license_path, app / "COPYING")
     shutil.copyfile(ROOT / "ios/THIRD-PARTY.txt", app / "THIRD-PARTY.txt")
+    notices = app / "Notices"
+    notices.mkdir(exist_ok=True)
+    for relative in ("freebios/drastic_bios_readme.txt", "src/teakra/LICENSE",
+                     "src/tiny-AES-c/unlicense.txt", "src/blip-buf/license.txt"):
+        source_notice = core_source / relative
+        shutil.copyfile(source_notice, notices / relative.replace("/", "-"))
+    # These components carry their notices in the opening source comment.
+    for relative in ("src/xxhash/xxhash.h", "src/sha1/sha1.c", "src/fatfs/ff.c"):
+        text = (core_source / relative).read_text()
+        if relative.endswith("sha1.c"):
+            end = text.index("*/", text.index("/*", 4)) + 2
+        else:
+            end = text.index("*/") + 2
+        (notices / (relative.replace("/", "-") + ".txt")).write_text(text[:end] + "\n")
     archive = artifacts / f"ReaderEmulator-E1-{args.sdk}-unsigned.{'ipa' if args.sdk == 'iphoneos' else 'zip'}"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as package:
         prefix = Path("Payload") if args.sdk == "iphoneos" else Path()
