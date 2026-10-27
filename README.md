@@ -1,5 +1,18 @@
 # Pokémon Reader
 
+## Planned native iPhone emulator
+
+The [iPhone emulator v1 plan](docs/iphone-emulator-v1-plan.md) defines five finite
+implementation milestones: a measured native prototype, durable game saves,
+manual/automatic recovery states, completed-save Reader integration and final
+device acceptance. The target phone is iPhone 16 Plus; melonDS is the first core
+candidate, subject to performance and battery testing against Delta.
+
+This is planning only. No iPhone app or benchmark has been delivered, and the
+existing Reader release remains v0.27.0. Implementation starts only when a
+milestone is requested; desktop, live data and emulator fast-forward are later
+work. See the plan for build/signing prerequisites and command/file permissions.
+
 ## LeafGreen Reader — v0.27.0
 
 The Reader adds original English LeafGreen raw 128 KB saves, with one game

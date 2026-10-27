@@ -1,3 +1,24 @@
+# Native iPhone emulator v1 — separate implementation track
+
+The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
+permissions, dependencies, completion criteria and device acceptance. Request one
+finite milestone by ID, for example "Implement Emulator E1."
+
+- [x] Document iPhone-first scope, command/file permissions and finite milestones.
+- [ ] **E1:** Installable native prototype, iPhone 16 Plus/Delta performance and
+  battery comparison, and evidence-based core decision. Build/signing setup and
+  exact iOS version are outstanding; melonDS is the first candidate.
+- [ ] **E2:** Offline game library, controls and durable in-game save import/export.
+- [ ] **E3:** Manual save states, rotating automatic recovery and failure handling.
+- [ ] **E4:** Bundled Reader integration using validated completed in-game saves.
+- [ ] **E5:** Integrated compatibility/performance audit, signed test release and
+  user/device acceptance for SoulSilver and Platinum.
+
+No emulator implementation or device benchmark is claimed. Fast-forward, live
+Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
+build milestones have their own artifact/install requirements; they are not
+fulfilled by publishing the existing GitHub Pages website.
+
 # LeafGreen expansion — phase 27
 
 - [x] Confirm full Platinum-equivalent expansion scope, original English LeafGreen target, and one game confirmation per profile.

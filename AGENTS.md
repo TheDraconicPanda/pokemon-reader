@@ -76,6 +76,34 @@ Inspect existing metadata and follow the repository's established convention. Ke
 
 ## Collaboration and reporting
 
+### iPhone emulator planning and authorization (2026-10-27)
+
+The agreed native iPhone emulator v1 scope, finite milestone IDs E1–E5, acceptance
+criteria and delivery rules are in `docs/iphone-emulator-v1-plan.md`. This is a
+separate development track from LeafGreen and Atlas work. Implement only the
+requested milestone; preserve the existing website. Native app delivery requires
+a real iOS build/install route, not a Pages deployment. Device/performance tests
+cannot be claimed from simulator tests or successful compilation.
+
+The user authorizes project-related investigation, commands and Git operations
+without routine conversational approval. Clarified explicitly: any files inside
+the project repository, including new source files and build output, may be
+created or modified. Commands that write outside the repository or the user's
+Google Drive folder require approval first. The Drive folder path is not known;
+do not infer it. Keep scratch files in repository-local `work/`; redirect caches,
+temporary output and tool state locally where supported. External toolchain,
+cache or signing-file writes need a bounded approval before the command runs.
+Follow normal non-force Git workflow and preserve user changes. Runtime/platform
+approval requirements still apply; report actual blockers and their source.
+
+User device: iPhone 16 Plus; iOS version and Mac/signing access still unknown.
+melonDS is the initial candidate, pending measured performance/battery evidence.
+v1 includes normal-speed play, durable game saves, manual states, automatic
+recovery and Reader integration from completed in-game saves. Blanket emulator
+fast-forward is excluded; granular acceleration belongs to the separate ROM
+project. Live Reader memory access, desktop/browser/GBA emulation and cloud sync
+are future work. Never promise zero progress loss after an abrupt termination.
+
 LeafGreen expansion authorization (2026-10-25): the user authorizes commands for
 project research and validation, and all Git repository actions. Proceed with
 routine work without additional user confirmation. Ask about material
