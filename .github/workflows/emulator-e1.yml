@@ -1,0 +1,47 @@
+name: Emulator E1 native build
+on:
+  push:
+    branches: [Emulator]
+    paths: ['ios/**', '.github/workflows/emulator-e1.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: emulator-e1-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    name: Native core integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prepare repository-local temporary storage
+        run: mkdir -p work/e1/tmp
+      - name: Build the pinned core without JIT or desktop dependencies
+        run: |
+          export TMPDIR="$PWD/work/e1/tmp"
+          cmake -S ios -B work/e1/build-linux -DCMAKE_BUILD_TYPE=Release
+          cmake --build work/e1/build-linux --parallel 4
+          ctest --test-dir work/e1/build-linux --output-on-failure
+  ios:
+    name: iOS release builds
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile and package iPhone release
+        run: python3 ios/scripts/build.py --sdk iphoneos
+      - name: Compile and package simulator release
+        run: python3 ios/scripts/build.py --sdk iphonesimulator
+      - name: Upload unsigned binaries and build provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReaderEmulator-E1-unsigned
+          path: work/e1/artifacts/
+          if-no-files-found: error
+          retention-days: 30

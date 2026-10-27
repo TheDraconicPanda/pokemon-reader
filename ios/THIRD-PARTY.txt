@@ -1,0 +1,20 @@
+Reader Emulator E1 uses melonDS 1.1, pinned by ios/core.lock.json.
+melonDS: Copyright 2016-2025 melonDS team, GPL-3.0-or-later.
+Upstream source and notices: https://github.com/melonDS-emu/melonDS
+
+melonDS includes other components with their own notices and compatible terms,
+including FreeBIOS, Teakra (MIT), fatfs (FatFs license), tiny-AES-c (Unlicense),
+SHA-1 code, xxHash (BSD-2-Clause) and blip-buf (LGPL-2.1-or-later).
+Their full source, copyright and license notices are retained unmodified in the
+pinned upstream source tree and are available with that revision. The app's
+Source.txt identifies the exact revisions for each distributed binary.
+
+New code under ios/ is GPL-3.0-or-later. The browser Reader's existing license
+metadata is not changed by this separate native prototype.
+
+No Nintendo ROM, personal game save, proprietary BIOS or firmware dump is
+included. FreeBIOS and generated DS firmware are supplied by the pinned core.
+Networking, DSi emulation, microphone, accessories and GBA emulation are outside
+this E1 frontend's supported scope. The source contains explicit no-op platform
+implementations for these interfaces; the candidate has not passed iPhone game
+compatibility or performance acceptance.
