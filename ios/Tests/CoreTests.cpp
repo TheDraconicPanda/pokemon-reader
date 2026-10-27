@@ -21,6 +21,7 @@ int main() {
     for(int i=0;i<8;++i){time+=core.step(1,20,30);sound+=core.readAudio(audio.data(),2048);}
     CHECK(core.diagnosticWord(0x1000)==42);CHECK(core.running());
     CHECK((core.diagnosticWord(0x1004)&1)==0);
+    CHECK((core.diagnosticWord(0x1008)&0x40)==0);
     CHECK(time>0.10 && time<0.15);CHECK(sound>4000);
     std::array<uint32_t,Pixels*2> video{};core.copyVideo(video.data());
     std::cerr<<"Diagnostic screen colors: "<<std::hex<<video[0]<<" / "<<video[Pixels]<<std::dec<<"\n";
@@ -31,6 +32,19 @@ int main() {
     CHECK(!core.load(nullptr,0,nullptr,0,error));CHECK(core.running());
     CHECK(core.diagnosticWord(0x1000)==42);
     core.step(0);CHECK(core.diagnosticWord(0x1000)==42);CHECK((core.diagnosticWord(0x1004)&1)==1);
+    CHECK((core.diagnosticWord(0x1008)&0x40)!=0);
+    // Exercise both real retail cartridge types (Platinum and SoulSilver IR)
+    // with our original CPU programs and synthetic SRAM, not commercial ROMs.
+    auto retail=rom;retail.resize(0x10000);
+    std::copy_n(rom.data()+0x1000,0x1000,retail.data()+0x8000);
+    std::copy_n(rom.data()+0x2000,0x1000,retail.data()+0x9000);
+    retail[0x21]=0x80;retail[0x31]=0x90;
+    std::vector<uint8_t> saved(0x80000);for(size_t i=0;i<saved.size();++i)saved[i]=uint8_t((i*13+5)&255);
+    for(const char* code:{"CPUE","IPGE"}){
+        std::copy_n(code,4,retail.data()+12);
+        CHECK(core.load(retail.data(),retail.size(),saved.data(),saved.size(),error));
+        CHECK(core.copySave()==saved);core.step(0);CHECK(core.copySave()==saved);
+    }
     AudioRing<8> ring;int16_t input[24],output[24];
     for(int i=0;i<24;++i)input[i]=int16_t(i+1);
     CHECK(ring.write(input,6)==6);CHECK(ring.read(output,4)==4);

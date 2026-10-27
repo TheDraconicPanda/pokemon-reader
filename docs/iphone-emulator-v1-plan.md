@@ -1,14 +1,15 @@
 # iPhone emulator v1 implementation plan
 
-Agreed scope and execution rules, 27 October 2026. Status: planning only;
-no native emulator, signed build, device benchmark or recovery implementation
-has been delivered. Request milestones by the stable IDs below, for example:
+Agreed scope and execution rules, 27 October 2026. E1 implementation is underway:
+native prototype 0.1.0 and unsigned hosted release builds exist; signed iPhone
+installation, game/battery benchmarks and core acceptance are still pending.
+Recovery implementation belongs to E3. Request milestones by stable ID, for example:
 "Implement Emulator E1."
 
 ## Product scope
 
 - Native iPhone app first; acceptance device: iPhone 16 Plus. iOS version is
-  still to be supplied. Delta runs acceptably on this device, but its blanket
+  user-reported as 26.6.1. Delta runs acceptably on this device, but its blanket
   fast-forward and extra battery use are not the desired model.
 - Native melonDS is the first candidate, not an established performance winner.
   Pin the actual core/adapter revision after checking buildability, licensing,
@@ -140,9 +141,11 @@ Acceptance:
 - [ ] Record the core decision and evidence. If it fails, report the failure and
   one bounded alternative evaluation; further core search is a separate request.
 
-Essential user inputs: exact iOS version; available Mac/Xcode or acceptable
-hosted build route; signing/install route; access to the user's ROM/save and
-device test results. Never commit ROMs, personal saves or signing credentials.
+Confirmed user setup: iPhone 16 Plus, user-reported iOS 26.6.1, no Mac, Windows
+computer available. Hosted macOS release compilation is implemented. The
+[Windows install route](emulator-e1-windows.md) is documented but not yet tested
+on the user's phone; ROM/save access and device results remain user-side gates.
+Never commit ROMs, personal saves or signing credentials.
 Complete independent investigation while waiting; report an exact blocker if a
 signed build or phone test cannot be produced. E2 depends on the E1 decision.
 
@@ -278,7 +281,7 @@ Acceptance:
 | ID | Milestone | Current status |
 | --- | --- | --- |
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
-| E1 | Installable prototype and performance decision | Not started; setup inputs outstanding |
+| E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision pending |
 | E2 | Library and durable in-game saves | Not started; depends on E1 |
 | E3 | Save states and automatic recovery | Not started; depends on E2 |
 | E4 | Completed-save Reader integration | Not started; depends on E3 |

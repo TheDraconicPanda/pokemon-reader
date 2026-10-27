@@ -10,7 +10,7 @@ inline std::vector<uint8_t> rom() {
     auto set=[&](unsigned at,uint32_t value){for(unsigned i=0;i<4;++i)bytes[at+i]=uint8_t(value>>(8*i));};
     memcpy(bytes.data(),"READER TEST",11);memcpy(bytes.data()+12,"####",4);
     set(0x20,0x1000);set(0x24,0x02000000);set(0x28,0x02000000);
-    set(0x30,0x2000);set(0x34,0x03800000);set(0x38,0x03800000);set(0x3C,4);
+    set(0x30,0x2000);set(0x34,0x03800000);set(0x38,0x03800000);set(0x3C,28);
     std::vector<uint32_t> code;
     struct Literal { unsigned at,reg; uint32_t value; };std::vector<Literal> literals;
     auto ldr=[&](unsigned reg,uint32_t value){literals.push_back({unsigned(code.size()),reg,value});code.push_back(0);};
@@ -35,7 +35,9 @@ inline std::vector<uint8_t> rom() {
     }
     set(0x2C,uint32_t(code.size()*4));
     for(unsigned i=0;i<code.size();++i)set(0x1000+4*i,code[i]);
-    set(0x2000,0xEAFFFFFE); // ARM7: b .
+    // ARM7 mirrors EXTKEYIN (including the touch flag) into shared main RAM.
+    const uint32_t arm7[]={0xE59F000C,0xE59F200C,0xE1D210B0,0xE5801000,0xEAFFFFFC,0x02001008,0x04000136};
+    for(unsigned i=0;i<7;++i)set(0x2000+4*i,arm7[i]);
     return bytes;
 }
 }

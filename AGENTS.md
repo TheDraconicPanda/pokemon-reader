@@ -107,7 +107,12 @@ ask again for permission to research or work in the authorized locations.
 Runtime/platform approval requirements still apply; explain any actual blocker
 and its source without inventing an additional routine approval step.
 
-User device: iPhone 16 Plus; iOS version and Mac/signing access still unknown.
+User device: iPhone 16 Plus on user-reported iOS 26.6.1. The user has no Mac but
+does have a Windows computer. Use the hosted macOS build route; signing and
+actual installation are still to be validated. The Windows runbook is
+`docs/emulator-e1-windows.md`. E1 native source is under `ios/`; host and GitHub
+release builds do not establish device acceptance. Keep binary delivery and
+test evidence distinct from pending game/battery results.
 melonDS is the initial candidate, pending measured performance/battery evidence.
 v1 includes normal-speed play, durable game saves, manual states, automatic
 recovery and Reader integration from completed in-game saves. Blanket emulator
