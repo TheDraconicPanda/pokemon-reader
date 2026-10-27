@@ -1,0 +1,32 @@
+Reader Emulator E1 — prototype 0.1.0
+
+Download the successful final build:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459
+
+On that page, open Artifacts and download ReaderEmulator-E1-unsigned.
+GitHub may ask you to sign in. The artifact is retained for 30 days.
+
+Extract the downloaded ZIP on Windows. The iPhone file is:
+ReaderEmulator-E1-iphoneos-unsigned.ipa
+
+Use START-HERE-E1-Windows.md in this folder to sign/install it with AltServer.
+The simulator ZIP is for macOS development and is not the iPhone package.
+
+Exact source: 76122eb5d78df969fdc9c0f554c741630eb7f6c5
+Core: melonDS 1.1 at b86390e4428bf38ce4c1ce0e9ca446d6d25955e8
+Outer artifact ZIP SHA-256 (GitHub metadata):
+ca7edd81895540be961211867eb042fc02925a17325e9d58a99a48202e06cde2
+
+Passed: native core tests, iPhone/simulator release compilation, and all 306
+existing website regression checks. This is not a signed or phone-tested build.
+
+First phone check: install, launch, run Diagnostic (red top / green bottom),
+then try a copied SoulSilver or Platinum ROM/in-game save at normal speed.
+Save normally inside the game, then Export save before ending a test session.
+Automatic persistence and recovery are E2/E3 features, not present in E1.
+
+E1 remains open until signing, real game compatibility and performance/battery
+comparison against Delta are completed on the iPhone 16 Plus.
+
+The binary remains in GitHub's build artifacts. This Drive folder contains the
+download link, installation guide, benchmark protocol and verification record.

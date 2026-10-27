@@ -106,6 +106,13 @@ that concludes "blocked" is finite and useful, but is not an accepted release.
 **Outcome:** an iPhone prototype and measured decision on the core before full
 app development. This is the next implementation milestone.
 
+Implementation checkpoint: native prototype **0.1.0**, source `76122eb`, has
+passed [GitHub device/simulator release compilation](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459),
+the actual-core host tests and all 306 existing website regression checks.
+The package is unsigned. [Evidence and remaining gates](emulator-e1-evidence.json)
+keep signing, phone launch, game compatibility and Delta comparisons pending;
+none of the acceptance boxes below is satisfied by compilation alone.
+
 Work:
 
 - Inspect current upstream core/adapter options; choose and pin one buildable

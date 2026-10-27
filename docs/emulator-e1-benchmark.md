@@ -72,9 +72,9 @@ whole-session summary as a fresh benchmark baseline.
 
 | Gate | Evidence | Status |
 | --- | --- | --- |
-| Pinned source + no-JIT host build | CMake/native integration test | Host validation in progress |
-| iOS device + simulator release compile | Exact GitHub run + artifacts | Pending |
-| Signing and target-phone installation | Install route + build SHA | Pending; no Mac/signing setup supplied |
+| Pinned source + no-JIT host build | CMake/native integration test | Passed locally and on GitHub |
+| iOS device + simulator release compile | [Run 40533051459](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459), source `76122eb` | Both passed; unsigned binaries |
+| Signing and target-phone installation | [Windows runbook](emulator-e1-windows.md) + build SHA | Pending on user's iPhone; Windows available, no Mac |
 | SoulSilver scene/save matrix | Phone observations + report | Pending |
 | Platinum scene/save matrix | Phone observations + report | Pending |
 | Sustained speed and audio | Scene reports from both games | Pending |
@@ -83,3 +83,6 @@ whole-session summary as a fresh benchmark baseline.
 
 If the candidate fails, identify the concrete failure and one bounded alternative
 evaluation. Do not start E2 or search indefinitely for new cores under E1.
+
+The [machine-readable build record](emulator-e1-evidence.json) identifies actual
+checks, artifact digest, source revision and remaining acceptance gates.

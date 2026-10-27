@@ -8,9 +8,9 @@ by the application.
 
 ## Get the correct file
 
-Download the latest validated E1 build from the project's **Emulator** Google
-Drive folder, or the `ReaderEmulator-E1-unsigned` artifact of the matching
-successful GitHub workflow. Extract the outer artifact ZIP on Windows. The phone
+Open `DOWNLOAD-E1-0.1.0.txt` in the project's **Emulator** Google Drive folder and
+follow its link to the successful GitHub build. Download the
+`ReaderEmulator-E1-unsigned` artifact. Extract the outer ZIP on Windows. The phone
 package inside is `ReaderEmulator-E1-iphoneos-unsigned.ipa`; the simulator ZIP is
 for macOS development and will not run on an iPhone or Windows.
 

@@ -17,6 +17,11 @@ See the [Windows installation guide](docs/emulator-e1-windows.md) and
 [benchmark protocol](docs/emulator-e1-benchmark.md). No E2–E5 implementation is
 claimed. Desktop, live data and emulator fast-forward remain later work.
 
+The [E1 verification record](docs/emulator-e1-evidence.json) identifies source
+`76122eb`, successful unsigned device/simulator builds and 306 passing website
+regressions. The [download pointer](docs/emulator-e1-download.txt) links to the
+validated artifact; signed installation and measured iPhone acceptance are pending.
+
 ## LeafGreen Reader — v0.27.0
 
 The Reader adds original English LeafGreen raw 128 KB saves, with one game
