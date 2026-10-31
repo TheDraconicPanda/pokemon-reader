@@ -22,6 +22,44 @@ function migrateOriginalTyphlosionGoals(plan) {
 }
 
 
+ 
+// Keep untouched, stock move-goal descriptions aligned with the published
+// party reference. Existing custom move orders and move annotations are not
+// replaced. Machamp is deliberately excluded.
+function syncStockPartyGoals(plan) {
+  if (plan.schemaVersion !== 2) return false;
+  const ids = new Set(['kingdra', 'dragonite', 'ampharos', 'gengar']);
+  const defaults = defaultGoals().team;
+  let changed = false;
+  for (const member of plan.goals?.team || []) {
+    if (!ids.has(member.id)) continue;
+    const target = defaults.find(p => p.id === member.id);
+    if (!target || member.moves?.length !== target.moves.length ||
+        member.moves.some((move, i) => move[0] !== target.moves[i][0])) continue;
+    // Same move order: retain existing move completions and Pokémon links.
+    // Only refresh descriptions which still use a known default description.
+    const descriptions = new Map([
+      ['kingdra', ['Final set · locked', 'Coverage', "Clair's TM59 reward", 'Final set · weather control']],
+      ['dragonite', ['Teach as Dragonair at level 53', 'TM26 reserved', 'TM02 · Route 27', 'Final set · locked']],
+      ['ampharos', ['Repeatable Game Corner TM', 'Coverage', 'Coverage', 'Utility']],
+      ['gengar', ['TM30 reserved', 'TM36 · Route 43', 'Coverage', 'Repeatable Game Corner TM']]
+    ]);
+    const original = descriptions.get(member.id);
+    if (member.moves.some((move, i) => move[1] !== original[i])) continue;
+    // The stock members already agree today; this sync is intentionally
+    // idempotent and won't alter plans unless the canonical metadata changes.
+    if (JSON.stringify(member.moves) !== JSON.stringify(target.moves)) {
+      member.moves = structuredClone(target.moves); changed = true;
+    }
+  }
+  if (changed) {
+    plan.revision = (plan.revision || 0) + 1;
+    plan.updatedAt = new Date().toISOString();
+  }
+  return changed;
+}
+
+
 export async function initializePlanners(storage = localStorage) {
   const raw=storage.getItem(LEGACY_PLANNER_KEY);
   return transaction(['planners','settings'],'readwrite',async tx=>{
@@ -44,7 +82,9 @@ export async function initializePlanners(storage = localStorage) {
       const plan=newPlanner(); plan.revision=1; store.add(plan); plans.push(plan);
     }
     for (const plan of plans) {
-      if (migrateOriginalTyphlosionGoals(plan)) {
+      const typhlosionChanged = migrateOriginalTyphlosionGoals(plan);
+      const otherGoalsChanged = syncStockPartyGoals(plan);
+      if (typhlosionChanged || otherGoalsChanged) {
         validatePlanner(plan);
         store.put(plan);
       }
