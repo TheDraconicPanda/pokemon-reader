@@ -82,7 +82,9 @@ export async function initializePlanners(storage = localStorage) {
       const plan=newPlanner(); plan.revision=1; store.add(plan); plans.push(plan);
     }
     for (const plan of plans) {
-      if (migrateOriginalTyphlosionGoals(plan) | syncStockPartyGoals(plan)) {
+      const typhlosionChanged = migrateOriginalTyphlosionGoals(plan);
+      const otherGoalsChanged = syncStockPartyGoals(plan);
+      if (typhlosionChanged || otherGoalsChanged) {
         validatePlanner(plan);
         store.put(plan);
       }
