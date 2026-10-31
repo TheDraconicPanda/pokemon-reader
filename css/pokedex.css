@@ -88,9 +88,12 @@
 .save-status-icon.is-unregistered { opacity: .55; }
 .save-status-icon.is-unregistered img[src*="caught-gen4"] { filter: grayscale(1); opacity: .5; }
 
-.machine-obtain { font-weight: normal; font-size: 13px; max-width: 260px; }
-#reference-detail .machine-obtain summary { min-height: 44px; display: list-item; box-sizing: border-box; padding: 12px 0; color: var(--accent); }
+.machine-label { display: flex; align-items: center; gap: 6px; }
+#reference-detail .machine-obtain-button { flex: none; width: 44px; padding: 6px; }
+.machine-obtain { width: min(380px, calc(100vw - 48px)); max-height: min(70dvh, 560px); overflow: auto; box-sizing: border-box; padding: 16px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 32px #0005; font-weight: normal; font-size: 14px; }
+.machine-obtain::backdrop { background: #0002; }
+.machine-obtain-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.machine-obtain-header h3 { margin: 0; font-size: 16px; }
 .machine-obtain ul { padding-left: 18px; }
 .machine-obtain li + li { margin-top: 12px; }
 .machine-obtain p { margin: 6px 0; }
-.machine-table th:first-child:has(.machine-obtain[open]) { min-width: min(240px, 55vw); }

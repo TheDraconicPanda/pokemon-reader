@@ -10,6 +10,10 @@ let savedDex=null, owned=new Map(), activeProfile=null, unsupportedGame=false;
 const gameName=()=>gameId==='platinum'?'Platinum':'SoulSilver';
 const regionName=()=>gameId==='platinum'?'Sinnoh':'Johto';
 const gameParam=()=>gameId==='platinum'?'&game=platinum':'';
+content.addEventListener('keydown',event=>{
+  const panel=content.querySelector('.machine-obtain:popover-open');
+  if(event.key==='Escape'&&panel){event.preventDefault();event.stopPropagation();panel.hidePopover();}
+},true);
 const saveFilter=document.querySelector('#save-filter');
 const requestedFilter=new URLSearchParams(location.hash.slice(1)).get('filter');
 if([...saveFilter.options].some(o=>o.value===requestedFilter))saveFilter.value=requestedFilter;
@@ -30,9 +34,15 @@ function table(parent,headers,rows,caption) {
 }
 function speciesButton(id,label) { const b=node('button',label||species(id).name);b.type='button';b.addEventListener('click',()=>openSpecies(id));return b; }
 function machineCell(machine) {
-  const cell=node('div');cell.append(node('span',`${machine} · ${moveName(gameId,data().machines[machine])}`));
-  const info=machineObtainInfo(gameId,machine),details=node('details',undefined,'machine-obtain');
-  const summary=node('summary','ⓘ Where to get');summary.setAttribute('aria-label',`Where to get ${machine} in ${gameName()}`);details.append(summary);
+  const cell=node('div',undefined,'machine-label');cell.append(node('span',`${machine} · ${moveName(gameId,data().machines[machine])}`));
+  const info=machineObtainInfo(gameId,machine),panel=node('div',undefined,'machine-obtain');
+  panel.id=`machine-obtain-${machine}`;panel.popover='auto';panel.setAttribute('role','dialog');panel.setAttribute('aria-labelledby',`${panel.id}-title`);
+  const header=node('div',undefined,'machine-obtain-header'),title=node('h3',`${machine} · ${moveName(gameId,data().machines[machine])}`);
+  title.id=`${panel.id}-title`;
+  const close=node('button','Close');close.type='button';close.popoverTargetElement=panel;close.popoverTargetAction='hide';
+  header.append(title,close);panel.append(header);
+  const button=node('button','ⓘ', 'machine-obtain-button');button.type='button';button.setAttribute('aria-label',`Where to get ${machine} in ${gameName()}`);button.popoverTargetElement=panel;
+  panel.addEventListener('beforetoggle',event=>{if(event.newState==='closed'&&panel.contains(document.activeElement))button.focus({preventScroll:true});});
   const ul=node('ul');
   for(const entry of info.locations) {
     const li=node('li'),link=node('a',entry.location);link.href=entry.href;
@@ -40,9 +50,9 @@ function machineCell(machine) {
     if(entry.source){const source=node('a','Source');source.href=entry.source;li.append(source);}
     ul.append(li);
   }
-  if(info.locations.length){details.append(ul);note(details,'Recorded Atlas sources; other obtain methods may exist.');}
-  else note(details,`Obtain details are not yet recorded in the ${gameName()} Atlas. Use the game guide below to find ${machine}.`);
-  const guide=node('a',`${gameName()} TM/HM guide`);guide.href=info.guide;details.append(guide);cell.append(details);return cell;
+  if(info.locations.length){panel.append(ul);note(panel,'Recorded Atlas sources; other obtain methods may exist.');}
+  else note(panel,`Obtain details are not yet recorded in the ${gameName()} Atlas.`);
+  content.append(panel);cell.append(button);return cell;
 }
 function saveStatus(flags, count) {
   const row=node('small',undefined,'save-status');

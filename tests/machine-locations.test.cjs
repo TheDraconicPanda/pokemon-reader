@@ -15,10 +15,10 @@ test('machine obtain sources retain alternative pickups, costs, conditions and e
  assert.equal(strength.filter(r=>r.location==='Route 42').length,1);
  assert.match(strength[0].instruction,/Hiker/);
  for(const m of Object.keys(pokedexReference('soulsilver').machines)){
-  const result=info('soulsilver',m);assert.match(result.guide,/heartgoldsoulsilver/);
+  const result=info('soulsilver',m);assert.equal('guide' in result,false);
   const seen=new Set();for(const r of result.locations){assert.ok(names.has(r.location));assert.ok(r.instruction);assert.equal(new URLSearchParams(r.href.split('#')[1]).get('location'),r.location);const key=JSON.stringify([r.location,r.instruction,r.cost]);assert.ok(!seen.has(key));seen.add(key);}
  }
  assert.deepEqual(info('platinum','TM35').locations,[]);
- assert.match(info('platinum','TM35').guide,/platinum/);
+ assert.equal('guide' in info('platinum','TM35'),false);
  for(const [g,m] of [['leafgreen','TM35'],['toString','TM35'],['soulsilver','TM00'],['soulsilver','TM350']])assert.equal(info(g,m),null);
 });

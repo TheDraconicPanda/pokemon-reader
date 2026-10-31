@@ -1,10 +1,12 @@
-# Pokédex TM/HM obtain links — v0.27.1
+# Pokédex TM/HM obtain popovers — v0.27.2
 
 - [x] Add accessible per-machine obtain disclosures with Atlas instructions, costs, conditions, sources and location links.
 - [x] Preserve evolution compatibility and explicit game scoping; deduplicate route records and retain alternate obtain methods.
-- [x] Provide game-specific guide links for acquisition records outside current Atlas coverage (24 SoulSilver machines and Platinum).
+- [x] Remove Serebii TM/HM guide links; retain explicit missing-data notices (24 SoulSilver machines and Platinum).
+- [x] Move obtain details to accessible popovers preserving table size and scroll, with Close, Escape, outside dismissal and keyboard focus return.
 - [x] Pass all 308 automated checks and the mandatory Atlas integrity audit.
-- [ ] User validation of Typhlosion’s TM/HM instructions and Atlas navigation online.
+- [x] User accepted v0.27.1 obtain details and Atlas navigation.
+- [ ] User validation of v0.27.2 popover presentation online.
 - [ ] Complete acquisition-data expansion/audit remains a separate milestone.
 
 # Native iPhone emulator v1 — separate implementation track

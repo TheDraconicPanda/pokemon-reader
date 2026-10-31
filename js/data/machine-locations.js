@@ -2,15 +2,11 @@ import { atlasGameReference } from './atlas-game-reference.js';
 import { locationDetails } from './atlas-location-reference.js';
 import { routeFeatures } from './atlas-route-reference.js';
 
-const guides = {
-  soulsilver: 'https://www.serebii.net/heartgoldsoulsilver/tmhm.shtml',
-  platinum: 'https://www.serebii.net/platinum/tmhm.shtml'
-};
 const indexes = new Map();
 
 // Reuse the Atlas's reviewed records; never infer availability from compatibility.
 export function machineObtainInfo(gameId, machine) {
-  if (!Object.hasOwn(guides, gameId) || !/^(TM(?:0[1-9]|[1-8][0-9]|9[0-2])|HM0[1-8])$/.test(machine)) return null;
+  if (!atlasGameReference(gameId) || !/^(TM(?:0[1-9]|[1-8][0-9]|9[0-2])|HM0[1-8])$/.test(machine)) return null;
   if (!indexes.has(gameId)) {
     const index = new Map();
     for (const place of atlasGameReference(gameId).locations) {
@@ -31,5 +27,5 @@ export function machineObtainInfo(gameId, machine) {
     }
     indexes.set(gameId, index);
   }
-  return { locations: indexes.get(gameId).get(machine) || [], guide: guides[gameId] };
+  return { locations: indexes.get(gameId).get(machine) || [] };
 }
