@@ -1,3 +1,4 @@
+import { machineObtainInfo } from './data/machine-locations.js';
 import { pokedexReference, referenceSpecies, speciesForms, evolutionFamily, evolutionRequirement, typeMultipliers, statRange, heldItems, speciesLocations, moveName, STAT_LABELS } from './data/pokedex-reference.js';
 import { hgssSprite, typeBadges, speciesHeading } from './species-presentation.js';
 import { getActiveProfile, subscribeAdventureChanges } from './adventures.js';
@@ -28,6 +29,21 @@ function table(parent,headers,rows,caption) {
   const body=node('tbody');for(const row of rows){const tr=node('tr');row.forEach((value,i)=>{const td=node(i===0?'th':'td');if(i===0)td.scope='row';value instanceof Node?td.append(value):td.textContent=String(value);tr.append(td);});body.append(tr);}t.append(body);wrap.append(t);parent.append(wrap);return t;
 }
 function speciesButton(id,label) { const b=node('button',label||species(id).name);b.type='button';b.addEventListener('click',()=>openSpecies(id));return b; }
+function machineCell(machine) {
+  const cell=node('div');cell.append(node('span',`${machine} · ${moveName(gameId,data().machines[machine])}`));
+  const info=machineObtainInfo(gameId,machine),details=node('details',undefined,'machine-obtain');
+  const summary=node('summary','ⓘ Where to get');summary.setAttribute('aria-label',`Where to get ${machine} in ${gameName()}`);details.append(summary);
+  const ul=node('ul');
+  for(const entry of info.locations) {
+    const li=node('li'),link=node('a',entry.location);link.href=entry.href;
+    li.append(link,node('p',[entry.section,entry.instruction,entry.cost,...entry.conditions].filter(Boolean).join(' · ')));
+    if(entry.source){const source=node('a','Source');source.href=entry.source;li.append(source);}
+    ul.append(li);
+  }
+  if(info.locations.length){details.append(ul);note(details,'Recorded Atlas sources; other obtain methods may exist.');}
+  else note(details,`Obtain details are not yet recorded in the ${gameName()} Atlas. Use the game guide below to find ${machine}.`);
+  const guide=node('a',`${gameName()} TM/HM guide`);guide.href=info.guide;details.append(guide);cell.append(details);return cell;
+}
 function saveStatus(flags, count) {
   const row=node('small',undefined,'save-status');
   for(const [label,active,icon] of [
@@ -113,7 +129,7 @@ function renderDetail(key,referenceType=null) {
   for(const id of family)for(const f of speciesForms(gameId,id).slice(1))if(JSON.stringify(f.record.machines)!==JSON.stringify(species(id).machines))stages.push(f);
   const columns=stages.map(({record:r})=>{const h=node('div');const img=node('img');img.src=hgssSprite(r.sprite);img.alt='';img.width=48;img.height=48;h.append(img,document.createTextNode(r.name+(r.form==='Standard'?'':` (${r.form})`)));return h;});
   const machineIds=Object.keys(data().machines).filter(m=>stages.some(s=>s.record.machines.includes(m)));
-  const mt=table(machines,['Machine / move',...columns],machineIds.map(m=>[`${m} · ${moveName(gameId,data().machines[m])}`,...stages.map(s=>{const yes=s.record.machines.includes(m);const cell=node('span',yes?'✓':'—',yes?'compatible':'');cell.setAttribute('aria-label',yes?'Compatible':'Not compatible');return cell;})]),`${gameName()} compatibility by evolution stage`);mt.classList.add('machine-table');note(machines,`✓ can learn directly from that machine in ${gameName()}. — cannot learn directly. Earlier-stage moves can sometimes be retained through evolution.`);if(!machineIds.length)machines.append(node('p','No TM/HM compatibility for this family.'));
+  const mt=table(machines,['Machine / move',...columns],machineIds.map(m=>[machineCell(m),...stages.map(s=>{const yes=s.record.machines.includes(m);const cell=node('span',yes?'✓':'—',yes?'compatible':'');cell.setAttribute('aria-label',yes?'Compatible':'Not compatible');return cell;})]),`${gameName()} compatibility by evolution stage`);mt.classList.add('machine-table');note(machines,`✓ can learn directly from that machine in ${gameName()}. — cannot learn directly. Earlier-stage moves can sometimes be retained through evolution.`);if(!machineIds.length)machines.append(node('p','No TM/HM compatibility for this family.'));
   const tutor=section('Tutor moves',false);if(p.tutorMoves.length)table(tutor,['Move','Tutor / cost'],p.tutorMoves.map(id=>{const info=data().tutors[id];return [moveName(gameId,id),`${info.location}${info.costLabel?` · ${info.costLabel}`:info.cost?` · ${info.cost} BP`:''}${info.condition?` · ${info.condition}`:''}`];}),`${gameName()} tutors`);else tutor.append(node('p','No tutor moves for this species/form.'));
   const egg=section('Egg moves',false);if(p.eggMoves.length){const ul=node('ul');for(const id of p.eggMoves)ul.append(node('li',moveName(gameId,id)));egg.append(ul);note(egg,`${gameName()} inherited Egg moves for this species. Parent compatibility and move inheritance still apply; this list does not include every inherited TM or level-up move.`);}else egg.append(node('p','No Egg moves listed for this species. Check the base/baby stage for breeding.'));
   const stats=section('Base stats and possible ranges',false);const levelLabel=node('label','Level '),level=node('input');level.type='number';level.min=1;level.max=100;level.value=50;level.id='reference-level';levelLabel.append(level);stats.append(levelLabel);const statBody=node('div');stats.append(statBody);

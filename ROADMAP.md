@@ -1,3 +1,12 @@
+# Pokédex TM/HM obtain links — v0.27.1
+
+- [x] Add accessible per-machine obtain disclosures with Atlas instructions, costs, conditions, sources and location links.
+- [x] Preserve evolution compatibility and explicit game scoping; deduplicate route records and retain alternate obtain methods.
+- [x] Provide game-specific guide links for acquisition records outside current Atlas coverage (24 SoulSilver machines and Platinum).
+- [x] Pass all 308 automated checks and the mandatory Atlas integrity audit.
+- [ ] User validation of Typhlosion’s TM/HM instructions and Atlas navigation online.
+- [ ] Complete acquisition-data expansion/audit remains a separate milestone.
+
 # Native iPhone emulator v1 — separate implementation track
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,

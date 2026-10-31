@@ -87,3 +87,10 @@
 .species-row .save-status-icon img { width: 20px; height: 20px; margin: 0; }
 .save-status-icon.is-unregistered { opacity: .55; }
 .save-status-icon.is-unregistered img[src*="caught-gen4"] { filter: grayscale(1); opacity: .5; }
+
+.machine-obtain { font-weight: normal; font-size: 13px; max-width: 260px; }
+#reference-detail .machine-obtain summary { min-height: 44px; display: list-item; box-sizing: border-box; padding: 12px 0; color: var(--accent); }
+.machine-obtain ul { padding-left: 18px; }
+.machine-obtain li + li { margin-top: 12px; }
+.machine-obtain p { margin: 6px 0; }
+.machine-table th:first-child:has(.machine-obtain[open]) { min-width: min(240px, 55vw); }

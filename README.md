@@ -1,5 +1,21 @@
 # Pokémon Reader
 
+## Pokédex TM/HM obtain links — v0.27.1
+
+Every TM/HM compatibility row now has an accessible **ⓘ Where to get**
+disclosure. SoulSilver reuses the Atlas’s recorded pickups, gifts and shop/prize
+offers, including instructions, floors, costs, conditions, sources and direct
+location links. Alternative recorded sources appear together; duplicate route
+records are removed. Compatibility across evolutions is preserved.
+
+The current Atlas records obtain details for 76 of SoulSilver’s 100 machines.
+Unrecorded machines and Platinum explicitly link to their own game’s TM/HM guide;
+these gaps are not claims of unavailability. This release connects existing
+reviewed data and does not claim a complete machine acquisition audit.
+Release validation passes all **308 automated checks**, including phone/desktop
+Atlas navigation and Reader/Planner regressions, with zero mandatory audit
+failures. User and real-game validation remain pending.
+
 ## Planned native iPhone emulator
 
 The [iPhone emulator v1 plan](docs/iphone-emulator-v1-plan.md) defines five finite
