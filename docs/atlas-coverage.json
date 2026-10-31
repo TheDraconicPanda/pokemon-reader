@@ -18114,7 +18114,7 @@
     "scope": "All native named Sinnoh geographic/facility groups, Lost Tower as a distinct dungeon, and Underground reference access; unused/network/system headers explicitly excluded. Unreleased event areas remain labelled reference-only."
   },
   "applicationVersion": "0.27.2",
-  "generatedAt": "2026-10-31T14:24:01.863Z",
+  "generatedAt": "2026-10-31T14:28:21.956Z",
   "generator": "scripts/audit-atlas.mjs",
   "referenceInventorySha256": "7435df68355e128b271defcb787b6e86c8e7256c55fda7aeeb5a246e4c47a90f",
   "inputSha256": {
@@ -18287,7 +18287,7 @@
     "tests/atlas-maps.test.cjs": "c4263bf7a334bba1253536ed3fa18db365448eeff8944834083c6c626f03476a",
     "tests/atlas-route-reference.test.cjs": "3d0b77da278482e2ccd86b24eb2ce543f2a30fbcc31e317da5e3deab4ff870ec",
     "tests/atlas-travel.test.cjs": "757a00d0a340d531990c576ed5937e659bf5affc5dbf4c72fe95914cdc7614ea",
-    "tests/atlas.browser.test.cjs": "db349588df9c01882db9647eea907b0881e287963e0bc1186217fbc9e07d6449",
+    "tests/atlas.browser.test.cjs": "2cd69a8e3c690dd40d5f8833c944f1503ac70b6d61cc0a280d0414c9314293f0",
     "tests/fixtures/gen3.cjs": "22f087fb2f02cdb458a077fb5aa388b04bc1384f4979c52673085d19140099be",
     "tests/fixtures/gen4/default-names.expected.json": "89bc7b8dc79d9e0999ae77a10b90e896ef48f7689f2375a1dcca4e2b40443be4",
     "tests/fixtures/gen4/evolution-oracle.json": "e2db8e8f89992b5a93e18068657e36edebe597409911f69dc56aa73e4f0d0236",
@@ -18336,8 +18336,8 @@
   },
   "automatedTests": {
     "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs",
-    "startedAt": "2026-10-31T14:24:01.900Z",
-    "completedAt": "2026-10-31T14:27:25.862Z",
+    "startedAt": "2026-10-31T14:28:21.993Z",
+    "completedAt": "2026-10-31T14:31:37.806Z",
     "status": "passed",
     "tests": 308,
     "pass": 308,
@@ -18347,7 +18347,7 @@
     "exitCode": 0,
     "error": null,
     "log": "work/atlas-validation.tap",
-    "logSha256": "a8070a63e35c308a28d40345e6425e7552643979bba94a7e584c477ad1a66a3a",
+    "logSha256": "74da4b6fc2f211f14549231b76fbda5f29c3bab14e1ff2035ccc0dc9c5c1f45c",
     "testFiles": [
       "tests/adventures.test.cjs",
       "tests/atlas-caught.test.cjs",

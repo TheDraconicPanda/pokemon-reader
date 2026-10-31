@@ -115,6 +115,7 @@ before(async () => {
     server.listen(0, "127.0.0.1", resolve);
   });
   baseURL = `http://127.0.0.1:${server.server.address().port}`;
+  await mkdir(path.join(root, "work"), {recursive:true});
   profile = await mkdtemp(path.join(root, "work/pokemon-atlas-test-"));
   // Optional proxy CA trust for cloud visual testing; verification stays enabled.
   if (process.env.CHROMIUM_CA_CERT) {
