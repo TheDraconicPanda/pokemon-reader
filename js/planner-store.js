@@ -3,6 +3,25 @@ import { newPlanner, validatePlanner, normalizeProgress, defaultGoals } from './
 
 const selectionKey = adventureId => `activePlanner:${adventureId || 'reference'}`;
 
+// One-time data correction for the original Typhlosion goals. Never replace
+// user-edited movesets or any other member, links, or training progress.
+function migrateOriginalTyphlosionGoals(plan) {
+  if (plan.schemaVersion !== 2) return false;
+  const member = plan.goals?.team?.find(p => p.id === 'typhlosion');
+  const original = ['Flamethrower','Focus Blast','Dig','Fourth move — undecided'];
+  if (!member || member.moves?.map(([name]) => name).join('|') !== original.join('|')) return false;
+  const target = defaultGoals().team.find(p => p.id === 'typhlosion');
+  member.moves = structuredClone(target.moves);
+  member.moveIds = [...target.moveIds];
+  member.note = target.note;
+  // Only slots 2–4 change meaning. Retain slot 1 and all other progress.
+  for (const index of [1,2,3]) delete plan.state.moves['typhlosion:'+index];
+  plan.revision = (plan.revision || 0) + 1;
+  plan.updatedAt = new Date().toISOString();
+  return true;
+}
+
+
 export async function initializePlanners(storage = localStorage) {
   const raw=storage.getItem(LEGACY_PLANNER_KEY);
   return transaction(['planners','settings'],'readwrite',async tx=>{
@@ -23,6 +42,12 @@ export async function initializePlanners(storage = localStorage) {
     const plans=await valueOf(store.getAll());
     if (!plans.length) {
       const plan=newPlanner(); plan.revision=1; store.add(plan); plans.push(plan);
+    }
+    for (const plan of plans) {
+      if (migrateOriginalTyphlosionGoals(plan)) {
+        validatePlanner(plan);
+        store.put(plan);
+      }
     }
     plans.forEach(validatePlanner);
     return plans;
