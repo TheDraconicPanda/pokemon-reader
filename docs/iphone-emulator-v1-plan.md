@@ -4,9 +4,9 @@ Agreed scope and execution rules, 27 October 2026. E1 implementation is underway
 native prototype 0.1.0 and unsigned hosted release builds exist; signed iPhone
 installation, game/battery benchmarks and core acceptance are still pending.
 Recovery implementation belongs to E3. On 2 November 2026 the user requested
-continued progress without first testing E1. E2 source is implemented as native 0.2.0; build verification is in progress
-and device acceptance remains pending. Request milestones by stable ID,
-for example: "Implement Emulator E2."
+continued progress without first testing E1. E2 is engineering-ready as native 0.2.0 with passing hosted release builds;
+device acceptance remains pending. Request milestones by stable ID,
+for example: "Implement Emulator E3."
 
 ## Product scope
 
@@ -185,9 +185,10 @@ engineering readiness from device acceptance for E1–E4:
   of affected milestones before v1 acceptance. Do not claim that later feature
   development proves the core is suitable.
 
-The current finite implementation request is **E2: library and durable in-game
-saves**. E3 recovery and E4 Reader integration retain their technical dependencies;
-they may follow engineering-ready predecessors without waiting for phone tests.
+**E2: library and durable in-game saves** is engineering-ready for device testing.
+E3 is the next finite implementation milestone. E3 recovery and E4 Reader
+integration retain their technical dependencies; they may follow engineering-ready
+predecessors without waiting for phone tests.
 E5 retains the complete device and user acceptance gate. This policy supersedes
 the earlier requirement to wait for E1 device/core acceptance before starting E2.
 
@@ -324,7 +325,7 @@ Acceptance:
 | --- | --- | --- |
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
 | E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
-| E2 | Library and durable in-game saves | Native 0.2.0 source/host checks implemented; hosted build verification in progress, phone acceptance deferred |
+| E2 | Library and durable in-game saves | Native 0.2.0 engineering checks/unsigned device and simulator builds pass; ready for device testing, acceptance deferred |
 | E3 | Save states and automatic recovery | Not started; depends on E2 engineering readiness; device checks may be deferred |
 | E4 | Completed-save Reader integration | Not started; depends on E3 engineering readiness; device checks may be deferred |
 | E5 | Integrated release and device acceptance | Not started; depends on E4 |

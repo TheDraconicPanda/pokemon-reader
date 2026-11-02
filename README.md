@@ -6,7 +6,9 @@ The `Emulator` branch contains native [Reader Emulator 0.2.0](ios/README.md):
 an offline ROM library, separate durable cartridge saves per ROM, checked save
 import/export, backup recovery, portrait/landscape screens and touch/controller/
 keyboard input. It uses pinned no-JIT melonDS 1.1. The web Reader stays **0.27.0**.
-See [E2 delivery, checks and remaining phone tests](docs/emulator-e2.md).
+[Unsigned release builds pass](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41473961486),
+alongside native save/fault/export checks and all 306 web regressions. See
+[E2 delivery, checks and remaining phone tests](docs/emulator-e2.md).
 
 E1 phone testing is deferred by user direction. melonDS remains provisional;
 signing, phone playback, compatibility and battery/performance acceptance are

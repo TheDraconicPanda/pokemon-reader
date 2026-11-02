@@ -120,6 +120,11 @@ earlier user/device checks alone. Carry those checks forward explicitly; E1 and
 the core remain unaccepted until measured on the phone. Do not waive any release
 gate or claim device performance from host/simulator results. See the plan's
 deferred device-testing policy. This supersedes the earlier E1-before-E2 gate.
+E2 engineering checkpoint (2026-11-02): native 0.2.0 source `3a994d5`, unsigned
+iPhone/simulator builds in run 41473961486, Linux core/storage/export checks,
+macOS storage fault tests and 306 web regressions pass. See `docs/emulator-e2.md`
+and its verification JSON. Phone runtime/save/controls and energy acceptance
+remain deferred. E3 is next, only on a new implementation request.
 melonDS is the initial candidate, pending measured performance/battery evidence.
 v1 includes normal-speed play, durable game saves, manual states, automatic
 recovery and Reader integration from completed in-game saves. Blanket emulator

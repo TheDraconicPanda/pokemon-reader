@@ -1,12 +1,34 @@
-Reader Emulator E2 — 0.2.0
+Reader Emulator E2 — 0.2.0 — unsigned test build
 
-Unsigned iPhone/simulator builds are being verified. The definitive build run,
-source revision, artifact ID and checksum will be recorded here after success.
+Successful device/simulator build:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41473961486
+Source: 3a994d5484a07fea56023611c8fc748ad9a3789b (Emulator branch)
 
-Build workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
-Artifact name: ReaderEmulator-E2-unsigned
-iPhone package inside: ReaderEmulator-E2-iphoneos-unsigned.ipa
+Download artifact ReaderEmulator-E2-unsigned from that run.
+Artifact ID: 13156028378
+Outer artifact ZIP: 1,478,867 bytes
+Outer ZIP SHA-256: 79c331bc83ae9a42dec58e57d585ef229d34405e37e9b263c2b7b70c77fc9a53
+Expires: 2 December 2026 (GitHub's 30-day retention).
+GitHub may require you to sign in to download an Actions artifact.
 
-An unsigned IPA requires signing before installation. The Windows signing route
-is documented in docs/emulator-e1-windows.md. No phone acceptance is claimed.
-Usage and deferred device checks: docs/emulator-e2.md
+Inside:
+- ReaderEmulator-E2-iphoneos-unsigned.ipa (iPhone; signing required)
+- ReaderEmulator-E2-iphonesimulator-unsigned.zip (macOS simulator)
+- build-iphoneos.json and build-iphonesimulator.json (provenance)
+
+Signing on Windows:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e1-windows.md
+Usage/remaining checks:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e2.md
+Verification:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e2-evidence.json
+
+E2 implements an offline ROM library, durable cartridge saves with backup,
+checked import/export and touch/controller/keyboard layouts. Save normally
+inside the game. Abrupt termination can lose changes since the last disk commit.
+Manual/automatic recovery states are E3 and are not included yet.
+
+The binary remains on GitHub; this file is its download pointer. Signing,
+installation, real-game save round trips, controls, lifecycle behavior and
+Delta performance/battery comparisons on the iPhone remain untested. E1/E2
+acceptance remains open. Phone testing is deferred; no efficiency win is claimed.

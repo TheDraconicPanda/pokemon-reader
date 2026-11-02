@@ -1,7 +1,10 @@
 # E2 — Offline library and durable cartridge saves
 
-Native test build **0.2.0**, 2 November 2026. Source and host checks implemented;
-hosted release build verification is in progress. Actual iPhone testing is deferred
+Native test build **0.2.0**, 2 November 2026. Engineering implementation and
+unsigned release delivery are complete.
+[Successful device/simulator build](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41473961486),
+source `3a994d5`; [download details](emulator-e2-download.txt) and
+[machine-readable verification](emulator-e2-evidence.json). Actual iPhone testing is deferred
 by user direction. melonDS remains provisional; E1 performance/battery acceptance
 and E2 phone acceptance are open. This is not a signed or accepted v1 release.
 
@@ -76,7 +79,8 @@ These are filesystem fault tests, not an iPhone power-loss experiment.
 
 Local results: **4/4 native CTest checks pass**, and **306/306 existing website
 regressions pass**. Hosted macOS storage checks and unsigned iPhone/simulator
-release builds are pending verification. See [build instructions](../ios/README.md).
+release builds also pass. The app has not been launched in a simulator or on a phone;
+compilation is separate from runtime acceptance. See [build instructions](../ios/README.md).
 
 Saving normally in-game is still required. Abrupt termination can lose changes
 since the last completed disk commit; no zero-loss guarantee is made. E3 manual

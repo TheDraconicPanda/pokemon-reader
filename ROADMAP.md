@@ -2,7 +2,7 @@
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
 permissions, dependencies, completion criteria and device acceptance. Request one
-finite milestone by ID, for example "Implement Emulator E2."
+finite milestone by ID, for example "Implement Emulator E3."
 
 - [x] Document iPhone-first scope, command/file permissions and finite milestones.
 - [ ] **E1:** Installable native prototype, iPhone 16 Plus/Delta performance and
@@ -12,7 +12,7 @@ finite milestone by ID, for example "Implement Emulator E2."
   no Mac. Signing, actual installation and game/battery acceptance are pending.
 - [ ] **E2:** Offline game library, controls and durable in-game save import/export.
   Native 0.2.0 source implemented; host save/fault/export checks and all 306 web
-  regressions pass. Hosted release build verification is in progress; phone save
+  regressions pass. Hosted macOS storage and device/simulator release builds also pass; phone save
   round trips, offline startup and physical controls remain deferred. See
   [E2 evidence and remaining tests](docs/emulator-e2.md).
 - [ ] **E3:** Manual save states, rotating automatic recovery and failure handling.
@@ -26,7 +26,7 @@ device/core acceptance gates pass; no device benchmark is claimed. Per the user'
 2 November direction, E2–E4 implementation may proceed sequentially while phone
 checks are deferred, using the provisional core. Each milestone still needs its
 automated checks and build delivery; E5 retains all device acceptance gates.
-E2 is the current implementation milestone. Fast-forward, live
+E2 is engineering-ready for device testing; E3 is the next implementation milestone. Fast-forward, live
 Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
 build milestones have their own artifact/install requirements; they are not
 fulfilled by publishing the existing GitHub Pages website.
