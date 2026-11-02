@@ -32,6 +32,11 @@ public:
     void copyVideo(uint32_t* destination) const;
     size_t readAudio(int16_t* destination, size_t frames);
     std::vector<uint8_t> copySave() const;
+    std::vector<uint8_t> captureState();
+    // Restore only into a freshly loaded candidate; discard it on failure.
+    bool restoreState(std::vector<uint8_t> state, std::string& error);
+    static std::string stateFormat();
+    std::string stateCompatibility;
     bool running() const;
     std::atomic<bool> stopped{false};
     std::string gameCode;

@@ -4,6 +4,8 @@
 #include "Args.h"
 #include "NDS.h"
 #include "GPU3D_Soft.h"
+#include "Savestate.h"
+#include <stdexcept>
 #include <algorithm>
 #include <cstring>
 #include <ctime>
@@ -60,7 +62,50 @@ bool Core::load(const uint8_t* rom, size_t size, const uint8_t* save, size_t sav
     stopped.store(false);
     gameCode.assign(reinterpret_cast<const char*>(rom+0x0C), 4);
     saveRevision=0;
+    auto identity=stateFormat()+"\n"+sha256(bios7)+"\n"+sha256(bios9)+"\n"+sha256(firmware);
+    stateCompatibility=sha256(reinterpret_cast<const uint8_t*>(identity.data()),identity.size());
     return true;
+}
+std::string Core::stateFormat() {
+#if defined(__aarch64__) || defined(__arm64__)
+    const char* arch="arm64";
+#elif defined(__x86_64__)
+    const char* arch="x86_64";
+#else
+    const char* arch="unsupported";
+#endif
+    return std::string("reader-state-1/melonDS-")+READER_CORE_REVISION+"/13.0/"+arch+"/le64/software-nojit";
+}
+std::vector<uint8_t> Core::captureState() {
+    if(!running())throw std::runtime_error("No running console to checkpoint.");
+    auto& renderer=static_cast<melonDS::SoftRenderer&>(nds->GetRenderer3D());
+    renderer.SetThreaded(false,nds->GPU); // join rendering before serializing
+    melonDS::Savestate state;
+    bool ok=nds->DoSavestate(&state)&&!state.Error;
+    renderer.SetThreaded(true,nds->GPU);
+    if(!ok)throw std::runtime_error("The core could not capture a complete state.");
+    auto begin=static_cast<const uint8_t*>(state.Buffer());return {begin,begin+state.Length()};
+}
+bool Core::restoreState(std::vector<uint8_t> state,std::string& error) {
+    // Upstream FindSection does not reject zero-length sections. Validate the
+    // complete section chain before it can read or loop on a malformed buffer.
+    error="Invalid or incompatible state structure.";
+    if(!nds||state.size()<32||state.size()>64*1024*1024||memcmp(state.data(),"MELN",4)||
+       state[4]!=SAVESTATE_MAJOR||state[5]||state[6]!=SAVESTATE_MINOR||state[7]||word(state.data()+8)!=state.size())return false;
+    size_t at=16;
+    while(at<state.size()){
+        if(state.size()-at<16)return false;size_t n=word(state.data()+at+4);
+        if(n<16||n>state.size()-at)return false;at+=n;
+    }
+    auto& renderer=static_cast<melonDS::SoftRenderer&>(nds->GetRenderer3D());renderer.SetThreaded(false,nds->GPU);
+    melonDS::Savestate file(state.data(),uint32_t(state.size()),false);
+    bool ok=!file.Error&&nds->DoSavestate(&file)&&!file.Error;
+    renderer.SetThreaded(true,nds->GPU);
+    if(!ok)return false;
+    nds->SetKeyMask(0xFFF);nds->ReleaseScreen();
+    // Loading SRAM invokes WriteNDSSave. Suppress that restoration callback:
+    // only a later real cartridge write may replace the durable game save.
+    saveRevision=0;stopped=false;error.clear();return true;
 }
 void Core::diagnosticSaveByte(unsigned address,uint8_t value) {
     if(!nds||!nds->GetNDSCart()||address>=nds->GetNDSSaveLength())return;

@@ -1,6 +1,6 @@
-# Reader Emulator E2 — native test build 0.2.0
+# Reader Emulator E3 — native test build 0.3.0
 
-This implements the E2 library/save milestone; it is not an accepted v1 release.
+This implements E3 manual states/recovery alongside the E2 library and saves; device acceptance remains pending.
 It runs a pinned native melonDS 1.1 candidate, with JIT and OpenGL disabled,
 threaded software DS rendering, Metal screen presentation and a 48 kHz native
 audio pipeline. No Delta application/framework code is incorporated.
@@ -15,7 +15,7 @@ commercial game runs correctly. Other DS games are not certified; save import is
 The [native build workflow](../.github/workflows/emulator-e1.yml) builds the portable
 core integration test on Linux and release device/simulator apps on macOS.
 It runs on `Emulator` source pushes; rerun an existing run to rebuild its revision.
-Download the `ReaderEmulator-E2-unsigned` artifact from the matching successful
+Download the `ReaderEmulator-E3-unsigned` artifact from the matching successful
 run. It contains an **unsigned .ipa**, simulator archive and exact build metadata.
 
 An unsigned IPA cannot be installed by simply opening it on an iPhone. It must
@@ -36,7 +36,7 @@ Builds, downloaded sources, module caches and archives stay under repository-loc
 Native compilation is not possible on this Linux workspace. A successful build
 does not establish installed-device, playback or energy acceptance.
 
-## Use the E2 player
+## Use the E3 test build
 
 1. **Import ROM** copies an uncompressed `.nds` into the offline library. Use
    **Library** to reopen it. Identical contents reuse the entry; patched or
@@ -49,7 +49,10 @@ does not establish installed-device, playback or energy acceptance.
    storage automatically, with a checksum-protected backup. Pause/backgrounding
    also requests a flush. **Export save** makes a raw `.sav` backup in Files.
    Saving may take a short time to reach disk; sudden termination can still lose
-   recent progress. Manual/automatic recovery states belong to E3.
+   recent progress. Use **States** for three manual slots and rotating automatic recovery.
+   On reopening a library game, choose its recovery checkpoint or in-game save.
+   **More → Recovery interval** offers two/five minutes or pause-only checkpoints.
+   See [E3 behavior, storage and remaining tests](../docs/emulator-e3.md).
 4. Portrait stacks the screens; landscape places them side by side when space
    permits. Touch the bottom/right screen. Virtual buttons, extended gamepads
    and keyboards are supported. See [E2 controls and storage](../docs/emulator-e2.md).
@@ -58,8 +61,8 @@ does not establish installed-device, playback or energy acceptance.
    FreeBIOS/generated firmware remain the default. **More → Diagnostic** runs
    the original red/green test program without storing a personal game session.
 6. Leaving the app, locking the phone or an audio interruption pauses play.
-   Resume explicitly. **Record test** and **Report** retain the E1 measurement
-   tools. No ROMs, saves or reports are automatically uploaded.
+   Resume explicitly. **Record test** and **More → Performance report** retain the E1
+   measurement tools and add checkpoint capture/write/size diagnostics. No ROMs, saves or reports are automatically uploaded.
 
 Keep normal speed in both this prototype and Delta. Emulator fast-forward is
 outside v1. Granular acceleration stays with the independent ROM project.
@@ -76,7 +79,11 @@ tests actual cartridge SPI writes through durable storage/reload and independent
 checks both raw exports using the existing Reader. Storage fault tests cover
 ENOSPC, partial writes, process termination, integrity fallback, import recovery,
 ROM isolation and portrait/landscape input geometry. The storage tests also run
-on the hosted macOS filesystem before iOS compilation.
+on the hosted macOS filesystem before iOS compilation. E3 adds actual-core state
+restoration and SRAM rollback/backup tests, three-slot/three-generation rotation,
+corrupt-newest fallback, compatibility rejection and checkpoint write/crash faults.
+The host checks require CMake, a C++17 compiler, system zlib development headers
+and Node.js; iOS uses SDK/system zlib without a bundled extra library.
 
 ```sh
 cmake -S ios -B work/e1/build-linux -DCMAKE_BUILD_TYPE=Release

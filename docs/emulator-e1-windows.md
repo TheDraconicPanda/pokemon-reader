@@ -1,10 +1,10 @@
 # Install the native test build using Windows
 
-For the current **E2 0.2.0** build, use the [E2 download pointer](emulator-e2-download.txt),
-extract `ReaderEmulator-E2-unsigned` and select
-`ReaderEmulator-E2-iphoneos-unsigned.ipa` in the signing steps below. The app
-is named **Reader Emulator**. E2 stores cartridge saves automatically; its
-[usage and remaining phone checks](emulator-e2.md) supersede the E1 smoke test.
+For the current **E3 0.3.0** build, use the [E3 download pointer](emulator-e3-download.txt),
+extract `ReaderEmulator-E3-unsigned` and select
+`ReaderEmulator-E3-iphoneos-unsigned.ipa` in the signing steps below. The app
+is named **Reader Emulator**. E3 includes manual states and automatic recovery; its
+[usage and remaining phone checks](emulator-e3.md) supersede the E1 smoke test.
 The older E1-specific instructions below remain historical reference.
 
 The E1 package is an **unsigned iPhone app**, not an executable for Windows.

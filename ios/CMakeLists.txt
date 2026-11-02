@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(ReaderEmulator VERSION 0.2.0 LANGUAGES C CXX)
+project(ReaderEmulator VERSION 0.3.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -18,7 +18,9 @@ FetchContent_Declare(melonds
   GIT_PROGRESS TRUE)
 FetchContent_MakeAvailable(melonds)
 find_package(Threads REQUIRED)
-add_library(reader_storage STATIC Core/Library.cpp)
+find_package(ZLIB REQUIRED)
+add_library(reader_storage STATIC Core/Library.cpp Core/Checkpoint.cpp)
+target_link_libraries(reader_storage PUBLIC ZLIB::ZLIB)
 target_include_directories(reader_storage PUBLIC Core)
 add_library(reader_core STATIC Core/Core.cpp Core/Platform.cpp)
 target_include_directories(reader_core PUBLIC Core)
@@ -44,7 +46,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
     XCODE_ATTRIBUTE_CLANG_ENABLE_MODULES "YES"
     XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED "NO"
     XCODE_ATTRIBUTE_GENERATE_INFOPLIST_FILE "NO"
-    XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION "2"
+    XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION "3"
     XCODE_ATTRIBUTE_MARKETING_VERSION "${PROJECT_VERSION}")
 else()
   enable_testing()
@@ -60,4 +62,7 @@ else()
   add_executable(reader_storage_tests Tests/LibraryTests.cpp)
   target_link_libraries(reader_storage_tests PRIVATE reader_storage)
   add_test(NAME reader-storage-faults COMMAND reader_storage_tests "${CMAKE_CURRENT_SOURCE_DIR}/../tests/fixtures/gen4/platinum/early.sav")
+  add_executable(reader_checkpoint_tests Tests/CheckpointTests.cpp)
+  target_link_libraries(reader_checkpoint_tests PRIVATE reader_storage)
+  add_test(NAME reader-checkpoint-faults COMMAND reader_checkpoint_tests)
 endif()

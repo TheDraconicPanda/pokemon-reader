@@ -1,0 +1,11 @@
+Reader Emulator E3 — 0.3.0
+
+Hosted unsigned release builds are being verified. Source revision, successful
+run, artifact ID and checksum will be recorded here after validation.
+
+Workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
+Artifact: ReaderEmulator-E3-unsigned
+iPhone package: ReaderEmulator-E3-iphoneos-unsigned.ipa
+
+Phone signing/install and E1–E3 device acceptance remain pending. See
+docs/emulator-e3.md for behavior, controls and deferred phone checks.

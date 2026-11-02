@@ -55,7 +55,37 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 @end
 
+@interface StateSlotsController : UITableViewController
+@property(nonatomic,copy) NSArray<NSDictionary *> *entries;
+@property(nonatomic,copy) void (^saveSlot)(NSString *slot);
+@property(nonatomic,copy) void (^loadFile)(NSString *file);
+@end
+@implementation StateSlotsController
+- (void)viewDidLoad { [super viewDidLoad];self.title=@"Save states";self.tableView.rowHeight=72;
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)]; }
+- (void)done { [self dismissViewControllerAnimated:YES completion:nil]; }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 2; }
+- (NSString *)tableView:(UITableView *)t titleForHeaderInSection:(NSInteger)s { return s==0?@"Manual slots":@"Automatic recovery · newest first"; }
+- (NSArray *)automatic { return [self.entries filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSDictionary *e,NSDictionary *bindings){return [e[@"slot"] isEqual:@"auto"];}]]; }
+- (NSDictionary *)manual:(NSInteger)row { NSString *slot=[NSString stringWithFormat:@"manual-%ld",(long)row+1];for(NSDictionary *entry in self.entries)if([entry[@"slot"] isEqual:slot])return entry;return nil; }
+- (NSInteger)tableView:(UITableView *)t numberOfRowsInSection:(NSInteger)s { return s==0?3:self.automatic.count; }
+- (UITableViewCell *)tableView:(UITableView *)t cellForRowAtIndexPath:(NSIndexPath *)p {
+    NSDictionary *e=p.section==0?[self manual:p.row]:self.automatic[p.row];UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    cell.textLabel.text=p.section==0?[NSString stringWithFormat:@"Slot %ld",(long)p.row+1]:e[@"time"];
+    cell.detailTextLabel.text=e?([e[@"usable"] boolValue]?e[@"time"]:e[@"reason"]):@"Empty";cell.detailTextLabel.numberOfLines=2;return cell;
+}
+- (void)tableView:(UITableView *)t didSelectRowAtIndexPath:(NSIndexPath *)p {
+    NSDictionary *entry=p.section==0?[self manual:p.row]:self.automatic[p.row];
+    UIAlertController *a=[UIAlertController alertControllerWithTitle:p.section==0?[NSString stringWithFormat:@"Slot %ld",(long)p.row+1]:@"Automatic recovery" message:entry?([entry[@"usable"] boolValue]?@"Loading returns gameplay and cartridge memory to this checkpoint. Your current stored game save will be backed up first.":entry[@"reason"]):@"Save your current position in this slot." preferredStyle:UIAlertControllerStyleAlert];
+    if(p.section==0)[a addAction:[UIAlertAction actionWithTitle:entry?@"Overwrite this slot":@"Save in this slot" style:entry?UIAlertActionStyleDestructive:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        NSString *slot=[NSString stringWithFormat:@"manual-%ld",(long)p.row+1];[self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{if(self.saveSlot)self.saveSlot(slot);}];}]];
+    if([entry[@"usable"] boolValue])[a addAction:[UIAlertAction actionWithTitle:@"Load this checkpoint" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){[self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{if(self.loadFile)self.loadFile(entry[@"file"]);}];}]];
+    [a addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
+}
+@end
+
 @interface EmulatorController () <UIDocumentPickerDelegate>
+- (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save identity:(NSString *)identity replacing:(BOOL)replacing recovered:(BOOL)recovered checkpoint:(std::shared_ptr<reader::StateRecord>)checkpoint;
 @end
 @implementation EmulatorController {
     dispatch_queue_t _emulation,_storage;
@@ -83,6 +113,13 @@ std::vector<uint8_t> bytes(NSData *data) {
     NSData *_rom,*_save,*_bios7,*_bios9,*_firmware;
     NSString *_romName,*_romHash,*_purpose,*_scene,*_gameID;
     NSDictionary *_lastStats,*_activeSystemFiles;
+    NSString *_stateCompatibility;
+    NSData *_sessionBIOS7,*_sessionBIOS9,*_sessionFirmware;
+    NSMutableArray *_checkpointWaiters;
+    BOOL _checkpointBusy,_checkpointFailure,_checkpointInternalPause,_checkpointFollowup;
+    double _checkpointInterval,_lastCheckpointActive;
+    double _checkpointPauseTotal;
+    NSDictionary *_checkpointMetrics;
     NSMutableArray *_samples,*_events;
     BOOL _loaded,_loading,_recording,_storageReady,_saveFailure;
     double _activeBeforePause,_resumedAt,_benchmarkStart;
@@ -96,7 +133,11 @@ std::vector<uint8_t> bytes(NSData *data) {
     _storage=dispatch_queue_create("dev.thedraconicpanda.storage",DISPATCH_QUEUE_SERIAL);
     _samples=[NSMutableArray new];_events=[NSMutableArray new];_scene=@"unlabelled";
     self.view.backgroundColor=UIColor.systemBackgroundColor;
-    _title=[UILabel new];_title.text=@"Reader Emulator · 0.2.0";_title.font=[UIFont boldSystemFontOfSize:19];
+    _checkpointWaiters=[NSMutableArray new];
+    NSNumber *interval=[NSUserDefaults.standardUserDefaults objectForKey:@"reader.checkpointInterval"];
+    _checkpointInterval=interval?interval.doubleValue:120;
+    if(_checkpointInterval!=0&&_checkpointInterval!=120&&_checkpointInterval!=300)_checkpointInterval=120;
+    _title=[UILabel new];_title.text=@"Reader Emulator · 0.3.0";_title.font=[UIFont boldSystemFontOfSize:19];
     _status=[UILabel new];_status.text=@"Open a SoulSilver/Platinum ROM, or run the built-in diagnostic.";
     _status.font=[UIFont systemFontOfSize:12];_status.numberOfLines=2;
     UIStackView *files=[self row:@[
@@ -106,7 +147,7 @@ std::vector<uint8_t> bytes(NSData *data) {
       [self action:@"More" selector:@selector(more)]]];
     _pause=[self action:@"Resume" selector:@selector(togglePause)];_pause.enabled=NO;
     _record=[self action:@"Record test" selector:@selector(recordTest)];
-    UIStackView *actions=[self row:@[_pause,[self action:@"Export save" selector:@selector(exportSave)],_record,[self action:@"Report" selector:@selector(exportReport)]]];
+    UIStackView *actions=[self row:@[_pause,[self action:@"States" selector:@selector(showStates)],[self action:@"Export save" selector:@selector(exportSave)],_record]];
     _metrics=[UILabel new];_metrics.text=@"Normal speed · melonDS 1.1 · no fast-forward";
     _metrics.font=[UIFont monospacedDigitSystemFontOfSize:11 weight:UIFontWeightRegular];_metrics.numberOfLines=2;
     id<MTLDevice> device=MTLCreateSystemDefaultDevice();
@@ -119,7 +160,7 @@ std::vector<uint8_t> bytes(NSData *data) {
     _controlWidth=[_controls.widthAnchor constraintEqualToConstant:260];
     _controlHeight=[_controls.heightAnchor constraintEqualToConstant:148];
     _warning=[UILabel new];_warning.numberOfLines=2;_warning.font=[UIFont systemFontOfSize:11];_warning.textColor=UIColor.secondaryLabelColor;
-    _warning.text=@"Save normally in-game to keep progress. Cartridge saves are stored automatically. Recovery states arrive in E3. Keep exported backups.";
+    _warning.text=@"Recovery checkpoints preserve recent play. Save normally in-game too, and keep exported backups. Sudden termination can lose changes since the last checkpoint.";
     UIStackView *root=[[UIStackView alloc] initWithArrangedSubviews:@[_title,_status,files,actions,_metrics,_playArea,_warning]];
     root.axis=UILayoutConstraintAxisVertical;root.spacing=6;root.translatesAutoresizingMaskIntoConstraints=NO;[self.view addSubview:root];
     UILayoutGuide *safe=self.view.safeAreaLayoutGuide;
@@ -143,6 +184,121 @@ std::vector<uint8_t> bytes(NSData *data) {
     _statusTimer=[NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer *timer){[weakSelf sample];}];
     [self prepareLibrary];
 }
+- (NSString *)checkpointTime:(uint64_t)timestamp {
+    if(!timestamp)return @"Unavailable checkpoint";
+    return [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:timestamp/1000.0] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+}
+- (void)waitForCheckpoint:(void (^)(BOOL))completion {
+    if(_checkpointBusy)[_checkpointWaiters addObject:[completion copy]];else completion(!_checkpointFailure);
+}
+- (void)captureCheckpoint:(NSString *)slot resume:(BOOL)resume completion:(void (^)(BOOL))completion {
+    if(!_loaded||!_gameID.length){if(completion)completion(YES);return;}
+    if(_checkpointBusy){if(completion)[self waitForCheckpoint:completion];return;}
+    _checkpointBusy=YES;_lastCheckpointActive=[self activeWall];
+    if(resume&&_recording)[_events addObject:@{@"event":@"periodicCheckpointCapture",@"activeSeconds":@([self activeWall])}];
+    NSUInteger lifecycleEpoch=_lifecycleEpoch;double pausedAt=CACurrentMediaTime();
+    _checkpointInternalPause=YES;[self pauseEmulation];_checkpointInternalPause=NO;
+    if(resume)_pause.enabled=NO;
+    NSString *identity=_gameID;uint64_t timestamp=uint64_t(NSDate.date.timeIntervalSince1970*1000);
+    dispatch_async(_emulation,^{@autoreleasepool{
+        auto started=std::chrono::steady_clock::now();
+        auto record=std::make_shared<reader::StateRecord>();NSString *captureError=nil;
+        try{record->state=self->_core->captureState();record->save=self->_core->copySave();record->info.compatibility=self->_core->stateCompatibility;}
+        catch(const std::exception& error){captureError=@(error.what());}
+        double captureMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-started).count();
+        // Bytes are detached from the core before play can resume. Disk work
+        // never references live core memory, even if the next frame starts.
+        if(!captureError&&resume)dispatch_async(dispatch_get_main_queue(),^{
+            self->_pause.enabled=self->_loaded;
+            if(lifecycleEpoch==self->_lifecycleEpoch&&!self.presentedViewController&&!self->_loading){
+                // Include the capture gap in measured active time so recovery
+                // overhead cannot inflate the reported emulated-time ratio.
+                self->_checkpointPauseTotal+=CACurrentMediaTime()-pausedAt;[self resumeEmulation];
+                if(self->_recording)[self->_events addObject:@{@"event":@"periodicCheckpointResumed",@"activeSeconds":@([self activeWall])}];
+            }
+        });
+        dispatch_async(self->_storage,^{@autoreleasepool{
+            auto beforeWrite=std::chrono::steady_clock::now();BOOL ok=!captureError;NSString *message=captureError;
+            if(ok)try{record->info=self->_library->writeState(identity.UTF8String,slot.UTF8String,record->info.compatibility,reader::Core::stateFormat(),record->state,record->save,timestamp);}
+                catch(const std::exception& error){ok=NO;message=@(error.what());}
+            double writeMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-beforeWrite).count();
+            dispatch_async(dispatch_get_main_queue(),^{
+                self->_checkpointBusy=NO;self->_checkpointFailure=!ok;
+                self->_pause.enabled=self->_loaded;
+                self->_checkpointMetrics=@{@"captureMs":@(captureMs),@"writeMs":@(writeMs),@"stateBytes":@(record->state.size()),@"storedBytes":@(record->info.storedBytes),@"saveBytes":@(record->save.size()),@"completed":@(ok),@"timestampMs":@(timestamp)};
+                if(ok)self->_status.text=[NSString stringWithFormat:@"%@ checkpoint stored · %@",[slot isEqual:@"auto"]?@"Recovery":@"Manual",[self checkpointTime:timestamp]];
+                else [self error:[@"Checkpoint could not be stored. Previous checkpoints remain available. " stringByAppendingString:message?:@""]];
+                if(self->_checkpointFollowup){
+                    self->_checkpointFollowup=NO;
+                    [self captureCheckpoint:@"auto" resume:self->_playing.load() completion:completion];return;
+                }
+                NSArray *waiters=[self->_checkpointWaiters copy];[self->_checkpointWaiters removeAllObjects];
+                if(completion)completion(ok);for(id item in waiters){void (^done)(BOOL)=item;done(ok);}
+            });
+        }});
+    }});
+}
+- (void)showStates {
+    if(!_gameID.length||_loading){if(!_loading)[self error:@"Choose a library game before using save states."];return;}
+    [self pauseEmulation];_loading=YES;self.view.userInteractionEnabled=NO;
+    [self waitForCheckpoint:^(BOOL ignored){
+        NSString *identity=self->_gameID,*compatibility=self->_stateCompatibility;
+        dispatch_async(self->_storage,^{@autoreleasepool{try{
+            NSMutableArray *entries=[NSMutableArray new];
+            for(const auto& info:self->_library->states(identity.UTF8String,compatibility.UTF8String))
+                [entries addObject:@{@"file":@(info.file.c_str()),@"slot":@(info.slot.c_str()),@"time":[self checkpointTime:info.timestamp],@"usable":@(info.usable),@"reason":@(info.reason.c_str())}];
+            dispatch_async(dispatch_get_main_queue(),^{
+                self->_loading=NO;self.view.userInteractionEnabled=YES;if(self.presentedViewController)return;
+                StateSlotsController *list=[StateSlotsController new];list.entries=entries;__weak EmulatorController *weakSelf=self;
+                list.saveSlot=^(NSString *slot){[weakSelf captureCheckpoint:slot resume:NO completion:nil];};
+                list.loadFile=^(NSString *file){[weakSelf loadCheckpoint:file];};
+                [self presentViewController:[[UINavigationController alloc] initWithRootViewController:list] animated:YES completion:nil];
+            });
+        }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+    }];
+}
+- (void)loadCheckpoint:(NSString *)file {
+    if(_loading||!_gameID.length)return;[self pauseEmulation];_loading=YES;self.view.userInteractionEnabled=NO;
+    NSString *identity=_gameID,*compatibility=_stateCompatibility;
+    dispatch_async(_storage,^{@autoreleasepool{try{
+        auto record=std::make_shared<reader::StateRecord>(self->_library->state(identity.UTF8String,file.UTF8String,compatibility.UTF8String));
+        dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;
+            [self withSavedSession:^{NSData *saved=[NSData dataWithBytes:record->save.data() length:record->save.size()];
+                [self launchROM:self->_rom name:self->_romName save:saved identity:identity replacing:NO recovered:NO checkpoint:record];}];
+        });
+    }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+}
+- (void)offerRecovery {
+    if(!_gameID.length)return;NSString *identity=_gameID,*compatibility=_stateCompatibility;
+    _loading=YES;self.view.userInteractionEnabled=NO;
+    dispatch_async(_storage,^{@autoreleasepool{try{
+        auto entries=self->_library->states(identity.UTF8String,compatibility.UTF8String);NSString *file=nil,*time=nil;NSUInteger skipped=0;
+        for(const auto& entry:entries){if(!entry.usable)++skipped;else if(entry.slot=="auto"&&!file){file=@(entry.file.c_str());time=[self checkpointTime:entry.timestamp];}}
+        dispatch_async(dispatch_get_main_queue(),^{
+            self->_loading=NO;self.view.userInteractionEnabled=YES;if(self.presentedViewController)return;
+            if(!file&&!skipped){[self resumeEmulation];return;}
+            NSString *message=file?[NSString stringWithFormat:@"Recovery checkpoint: %@. Loading may roll back cartridge memory; the current stored game save will be backed up first.",time]:@"No compatible recovery checkpoint is available. Existing files are preserved.";
+            if(skipped)message=[message stringByAppendingFormat:@" %lu unavailable checkpoint(s) were skipped. See States for details.",(unsigned long)skipped];
+            UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Resume last session?" message:message preferredStyle:UIAlertControllerStyleAlert];
+            if(file)[a addAction:[UIAlertAction actionWithTitle:@"Resume checkpoint" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self loadCheckpoint:file];}]];
+            [a addAction:[UIAlertAction actionWithTitle:@"Continue from in-game save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self resumeEmulation];}]];
+            [a addAction:[UIAlertAction actionWithTitle:@"Stay paused" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
+        });
+    }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+}
+- (void)recoveryInterval {
+    UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Recovery interval" message:@"Checkpoints also run when leaving gameplay. A shorter interval reduces recent progress at risk but adds capture and storage work. The two-minute test default still needs phone battery testing." preferredStyle:UIAlertControllerStyleAlert];
+    for(NSNumber *seconds in @[@120,@300,@0]){
+        NSString *title=seconds.intValue==0?@"When pausing only":seconds.intValue==120?@"Every 2 minutes":@"Every 5 minutes";
+        [a addAction:[UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){self->_checkpointInterval=seconds.doubleValue;[NSUserDefaults.standardUserDefaults setObject:seconds forKey:@"reader.checkpointInterval"];}]];
+    }[a addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
+}
+- (void)exportBeforeState {
+    if(!_gameID.length)return;[self pauseEmulation];NSString *identity=_gameID;
+    dispatch_async(_storage,^{try{auto bytes=self->_library->saveBeforeState(identity.UTF8String);NSData *data=[NSData dataWithBytes:bytes.data() length:bytes.size()];
+        dispatch_async(dispatch_get_main_queue(),^{[self share:data extension:@"sav"];});}
+        catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{[self error:[@"No readable pre-restore cartridge backup is available. " stringByAppendingString:message]];});}});
+}
 - (void)prepareLibrary {
     NSURL *base=[NSFileManager.defaultManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
     NSURL *folder=[base URLByAppendingPathComponent:@"ReaderEmulator" isDirectory:YES];
@@ -161,6 +317,9 @@ std::vector<uint8_t> bytes(NSData *data) {
     if(_loading)return;[self pauseEmulation];
     UIAlertController *menu=[UIAlertController alertControllerWithTitle:@"More" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [menu addAction:[UIAlertAction actionWithTitle:@"DS system files" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self systemFiles];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Recovery interval" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self recoveryInterval];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Export pre-restore cartridge backup" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self exportBeforeState];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Performance report" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self exportReport];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Diagnostic" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self diagnostic];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:menu animated:YES completion:nil];
 }
@@ -184,9 +343,12 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (void)withSavedSession:(void (^)(void))next {
     if(_loading)return;[self pauseEmulation];
+    if(!_checkpointBusy&&_loaded&&_gameID.length)[self captureCheckpoint:@"auto" resume:NO completion:nil];
     _loading=YES;self.view.userInteractionEnabled=NO;
-    [self flushSave:^(BOOL ok){self->_loading=NO;self.view.userInteractionEnabled=YES;
-        if(ok)next();else [self error:@"The current cartridge save could not be stored. Free storage or finish saving in-game, then retry. Export save is also available; this session remains open."];}];
+    [self flushSave:^(BOOL ok){[self waitForCheckpoint:^(BOOL checkpointOK){
+        self->_loading=NO;self.view.userInteractionEnabled=YES;
+        if(ok||(!self->_saveFailure&&checkpointOK))next();else [self error:@"The current progress could not be stored. Free storage or finish saving in-game, then retry. Export save is also available; this session remains open."];
+    }];}];
 }
 - (void)openEntry:(NSString *)identity {
     [self withSavedSession:^{
@@ -312,10 +474,11 @@ std::vector<uint8_t> bytes(NSData *data) {
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [self releaseInput];[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
-- (double)activeWall { return _activeBeforePause+(_playing.load()?CACurrentMediaTime()-_resumedAt:0); }
+- (double)activeWall { return _activeBeforePause+_checkpointPauseTotal+(_playing.load()?CACurrentMediaTime()-_resumedAt:0); }
 - (void)pauseEmulation {
     ++_timerEpoch;
-    if(_playing.exchange(false)){
+    BOOL wasPlaying=_playing.exchange(false);
+    if(wasPlaying){
         _activeBeforePause+=CACurrentMediaTime()-_resumedAt;
         if(_recording){++_pauseCount;[_events addObject:@{@"event":@"pause",@"activeSeconds":@([self activeWall])}];}
     }
@@ -325,6 +488,8 @@ std::vector<uint8_t> bytes(NSData *data) {
     [AVAudioSession.sharedInstance setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     UIApplication.sharedApplication.idleTimerDisabled=NO;
     [self flushSave:nil];
+    if(wasPlaying&&_checkpointBusy&&!_checkpointInternalPause)_checkpointFollowup=YES;
+    if(wasPlaying&&!_checkpointBusy&&_gameID.length)[self captureCheckpoint:@"auto" resume:NO completion:nil];
 }
 - (void)background:(NSNotification *)note {
     if(!NSThread.isMainThread){dispatch_async(dispatch_get_main_queue(),^{[self background:note];});return;}
@@ -340,7 +505,7 @@ std::vector<uint8_t> bytes(NSData *data) {
         if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}
     }];
     [self pauseEmulation];
-    [self flushSave:^(BOOL ok){if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}}];
+    [self flushSave:^(BOOL ok){[self waitForCheckpoint:^(BOOL checkpointOK){if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}}];}];
 }
 - (void)togglePause { if(_playing.load())[self pauseEmulation];else [self resumeEmulation]; }
 - (void)resumeEmulation {
@@ -474,16 +639,31 @@ std::vector<uint8_t> bytes(NSData *data) {
     [self withSavedSession:^{auto rom=reader::test::rom();[self launchROM:[NSData dataWithBytes:rom.data() length:rom.size()] name:@"Original diagnostic ROM" save:nil identity:nil replacing:NO recovered:NO];}];
 }
 - (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save identity:(NSString *)identity replacing:(BOOL)replacing recovered:(BOOL)recovered {
+    [self launchROM:rom name:name save:save identity:identity replacing:replacing recovered:recovered checkpoint:nullptr];
+}
+- (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save identity:(NSString *)identity replacing:(BOOL)replacing recovered:(BOOL)recovered checkpoint:(std::shared_ptr<reader::StateRecord>)checkpoint {
     [self pauseEmulation];_loading=YES;self.view.userInteractionEnabled=NO;_status.text=@"Loading native melonDS…";
     NSUInteger lifecycleEpoch=_lifecycleEpoch;BOOL foregroundLaunch=UIApplication.sharedApplication.applicationState==UIApplicationStateActive;
-    NSData *b7=_bios7,*b9=_bios9,*fw=_firmware;_audio=nil;
+    NSData *b7=checkpoint?_sessionBIOS7:_bios7,*b9=checkpoint?_sessionBIOS9:_bios9,*fw=checkpoint?_sessionFirmware:_firmware;_audio=nil;
     dispatch_async(_emulation,^{@autoreleasepool{
         auto next=std::make_shared<reader::Core>();std::string reason;
-        bool loaded=next->load(static_cast<const uint8_t*>(rom.bytes),rom.length,static_cast<const uint8_t*>(save.bytes),save.length,reason,bytes(b7),bytes(b9),bytes(fw));
+        bool loaded=false;
+        try{
+            loaded=next->load(static_cast<const uint8_t*>(rom.bytes),rom.length,static_cast<const uint8_t*>(save.bytes),save.length,reason,bytes(b7),bytes(b9),bytes(fw));
+            if(loaded&&checkpoint){
+                if(next->stateCompatibility!=checkpoint->info.compatibility){loaded=false;reason="Checkpoint requires different DS system files or a different core.";}
+                else {loaded=next->restoreState(checkpoint->state,reason);
+                    if(loaded&&next->copySave()!=checkpoint->save){loaded=false;reason="State and associated cartridge memory disagree. Existing session preserved.";}}
+            }
+        }catch(const std::exception& error){loaded=false;reason=error.what();}
         NSString *loadError=loaded?nil:@(reason.c_str());
         dispatch_async(self->_storage,^{@autoreleasepool{
             BOOL ok=loaded;NSString *message=loadError;
             if(ok&&replacing)try{self->_library->writeSave(identity.UTF8String,bytes(save));}catch(const std::exception& error){ok=NO;message=@(error.what());}
+            if(ok&&checkpoint)try{
+                self->_library->backupBeforeState(identity.UTF8String);
+                self->_library->writeState(identity.UTF8String,"auto",checkpoint->info.compatibility,checkpoint->info.format,checkpoint->state,checkpoint->save,uint64_t(NSDate.date.timeIntervalSince1970*1000));
+            }catch(const std::exception& error){ok=NO;message=@(error.what());}
             dispatch_async(self->_emulation,^{
                 if(ok){self->_core=next;self->_stats={};self->_emulatedID=identity.length?identity.UTF8String:"";
                     ++self->_generation;self->_storedRevision=0;self->_observedRevision=0;self->_savePending=false;self->_lastAttempt=0;}
@@ -492,12 +672,16 @@ std::vector<uint8_t> bytes(NSData *data) {
                     if(!ok){[self error:message];return;}
                     self->_loaded=YES;self->_rom=rom;self->_romName=name;self->_save=save;self->_romHash=identity?:digest(rom);self->_gameID=identity;
                     self->_activeSystemFiles=@{@"bios7":b7.length?digest(b7):@"FreeBIOS",@"bios9":b9.length?digest(b9):@"FreeBIOS",@"firmware":fw.length?digest(fw):@"generated"};
-                    self->_pipe=std::make_shared<AudioPipe>();self->_activeBeforePause=0;self->_lastStats=nil;self->_saveFailure=NO;
+                    self->_sessionBIOS7=b7;self->_sessionBIOS9=b9;self->_sessionFirmware=fw;
+                    self->_stateCompatibility=@(next->stateCompatibility.c_str());self->_lastCheckpointActive=0;self->_checkpointFailure=NO;
+                    self->_pipe=std::make_shared<AudioPipe>();self->_activeBeforePause=0;self->_checkpointPauseTotal=0;self->_lastStats=nil;self->_saveFailure=NO;
                     self->_recording=NO;[self->_samples removeAllObjects];[self->_events removeAllObjects];self->_pause.enabled=YES;
                     [self->_record setTitle:@"Record test" forState:UIControlStateNormal];
                     self->_status.text=[name stringByAppendingString:recovered?@" · Recovered previous cartridge save":@" · Save normally in-game to keep progress"];
                     if(recovered)[self error:@"The newest cartridge save failed its integrity check. The previous valid copy was loaded. Corrupt files are preserved until a new in-game save is stored."];
-                    else if(foregroundLaunch&&lifecycleEpoch==self->_lifecycleEpoch)[self resumeEmulation];
+                    else if(foregroundLaunch&&lifecycleEpoch==self->_lifecycleEpoch){
+                        if(!checkpoint&&!replacing&&identity.length)[self offerRecovery];else [self resumeEmulation];
+                    }
                 });
             });
         }});
@@ -512,6 +696,8 @@ std::vector<uint8_t> bytes(NSData *data) {
       @"brightness":@(UIScreen.mainScreen.brightness)};
 }
 - (void)sample {
+    if(_loaded&&!_loading&&_playing.load()&&!_checkpointBusy&&_checkpointInterval>0&&[self activeWall]-_lastCheckpointActive>=_checkpointInterval)
+        [self captureCheckpoint:@"auto" resume:YES completion:nil];
     if(!_loaded||_loading)return;double wall=[self activeWall];auto pipe=_pipe;
     dispatch_async(_emulation,^{
         FrameStats s=self->_stats;uint64_t sum=0;size_t bin=0;
@@ -561,6 +747,7 @@ std::vector<uint8_t> bytes(NSData *data) {
         NSDictionary *build=buildData?[NSJSONSerialization JSONObjectWithData:buildData options:0 error:nil]:@{};
         NSDictionary *report=@{@"schema":@1,@"appVersion":@READER_BUILD_VERSION,@"core":@"melonDS 1.1",
           @"build":build?:@{},
+          @"recovery":@{@"intervalSeconds":@(self->_checkpointInterval),@"lastCheckpoint":self->_checkpointMetrics?:@{},@"phoneOverheadAccepted":@NO},
           @"coreRevision":@READER_CORE_REVISION,@"candidateAccepted":@NO,@"romSHA256":self->_romHash?:@"",
           @"gameSaveSHA256":self->_save?digest(self->_save):@"none imported",
           @"device":@(device.machine),@"iOS":UIDevice.currentDevice.systemVersion,

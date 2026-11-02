@@ -18,3 +18,6 @@ Networking, DSi emulation, microphone, accessories and GBA emulation are outside
 this E1 frontend's supported scope. The source contains explicit no-op platform
 implementations for these interfaces; the candidate has not passed iPhone game
 compatibility or performance acceptance.
+
+E3 checkpoint compression uses the operating system zlib library (https://zlib.net).
+No separate zlib binary is bundled; iOS links its system libz.

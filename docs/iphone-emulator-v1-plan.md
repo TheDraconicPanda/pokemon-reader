@@ -186,7 +186,8 @@ engineering readiness from device acceptance for E1–E4:
   development proves the core is suitable.
 
 **E2: library and durable in-game saves** is engineering-ready for device testing.
-E3 is the next finite implementation milestone. E3 recovery and E4 Reader
+E3 is the current implementation milestone; native 0.3.0 source and host checks
+are implemented while hosted build verification is in progress. E3 recovery and E4 Reader
 integration retain their technical dependencies; they may follow engineering-ready
 predecessors without waiting for phone tests.
 E5 retains the complete device and user acceptance gate. This policy supersedes
@@ -326,6 +327,6 @@ Acceptance:
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
 | E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
 | E2 | Library and durable in-game saves | Native 0.2.0 engineering checks/unsigned device and simulator builds pass; ready for device testing, acceptance deferred |
-| E3 | Save states and automatic recovery | Not started; depends on E2 engineering readiness; device checks may be deferred |
+| E3 | Save states and automatic recovery | Native 0.3.0 source and host checks implemented; hosted builds in progress, device acceptance deferred |
 | E4 | Completed-save Reader integration | Not started; depends on E3 engineering readiness; device checks may be deferred |
 | E5 | Integrated release and device acceptance | Not started; depends on E4 |

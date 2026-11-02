@@ -38,9 +38,11 @@ jobs:
         run: |
           mkdir -p work/e1/tmp
           export TMPDIR="$PWD/work/e1/tmp"
-          c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Tests/LibraryTests.cpp -o work/e1/storage-tests
+          c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Core/Checkpoint.cpp ios/Tests/LibraryTests.cpp -o work/e1/storage-tests -lz
+          c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Core/Checkpoint.cpp ios/Tests/CheckpointTests.cpp -o work/e1/checkpoint-tests -lz
           cd work/e1
           ./storage-tests ../../tests/fixtures/gen4/platinum/early.sav
+          ./checkpoint-tests
       - name: Compile and package iPhone release
         run: python3 ios/scripts/build.py --sdk iphoneos
       - name: Compile and package simulator release
@@ -48,7 +50,7 @@ jobs:
       - name: Upload unsigned binaries and build provenance
         uses: actions/upload-artifact@v4
         with:
-          name: ReaderEmulator-E2-unsigned
+          name: ReaderEmulator-E3-unsigned
           path: work/e1/artifacts/
           if-no-files-found: error
           retention-days: 30

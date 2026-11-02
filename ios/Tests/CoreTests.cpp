@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <cmath>
 #include <fstream>
+#include <chrono>
 #define CHECK(x) do { if(!(x)) throw std::runtime_error("Failed: " #x); } while(0)
 int main(int argc,char** argv) {
     using namespace reader;
@@ -64,6 +65,28 @@ int main(int argc,char** argv) {
         core.step(0);core.diagnosticSaveByte(0x30000,0x53);CHECK(core.saveRevision>0);
         auto changed=core.copySave();CHECK(validImport(changed,code,error));
         Library library("native-export-test");auto entry=library.importROM(retail,game+".nds");library.writeSave(entry.id,changed);
+        core.step(1,20,30);auto memory=core.diagnosticWord(0x1004);
+        auto started=std::chrono::steady_clock::now();auto state=core.captureState();
+        double captureMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-started).count();
+        auto diskStart=std::chrono::steady_clock::now();auto checkpoint=library.writeState(entry.id,"manual-1",core.stateCompatibility,Core::stateFormat(),state,changed,1000);
+        double writeMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-diskStart).count();
+        auto storedSize=std::filesystem::file_size(std::filesystem::path("native-export-test")/"games"/entry.id/"states"/checkpoint.file);
+        // Advance cartridge progress and RAM after the checkpoint, then reload
+        // on a brand-new core, with the durable current save backed up first.
+        core.step(0);core.diagnosticSaveByte(0x30000,0x61);library.writeSave(entry.id,core.copySave());
+        auto current=library.save(entry.id).bytes;library.backupBeforeState(entry.id);
+        auto savedState=Library("native-export-test").state(entry.id,checkpoint.file,core.stateCompatibility);
+        Core restored;CHECK(restored.load(retail.data(),retail.size(),savedState.save.data(),savedState.save.size(),error));
+        CHECK(restored.restoreState(savedState.state,error));CHECK(restored.saveRevision==0);
+        CHECK(restored.copySave()==changed);CHECK(restored.diagnosticWord(0x1004)==memory);
+        CHECK(library.save(entry.id).bytes==current);CHECK(library.saveBeforeState(entry.id)==current);
+        for(int frame=0;frame<3;++frame)restored.step(0);
+        CHECK((restored.diagnosticWord(0x1004)&1)==1);CHECK(restored.running());
+        auto malformed=state;malformed[20]=0;malformed[21]=0;malformed[22]=0;malformed[23]=0;
+        CHECK(!restored.restoreState(malformed,error));CHECK(restored.running());
+        restored.diagnosticSaveByte(0x30000,0x53);CHECK(restored.saveRevision>0);
+        library.writeSave(entry.id,restored.copySave());CHECK(library.saveBeforeState(entry.id)==current);
+        std::cout<<"State sample "<<game<<": "<<state.size()<<" raw bytes, "<<storedSize<<" stored bytes, capture "<<captureMs<<" ms, write "<<writeMs<<" ms (host only)\n";
         auto reloaded=Library("native-export-test").save(entry.id).bytes;
         Core restarted;CHECK(restarted.load(retail.data(),retail.size(),reloaded.data(),reloaded.size(),error));CHECK(restarted.copySave()==changed);
         std::ofstream input("e2-"+game+"-input.sav",std::ios::binary);input.write(reinterpret_cast<const char*>(imported.data()),imported.size());

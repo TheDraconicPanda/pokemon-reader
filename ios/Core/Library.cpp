@@ -185,4 +185,18 @@ Bytes Library::system(const std::string& kind) const {
 void Library::clearSystem() {
     for(auto kind:{"bios7","bios9","firmware"})fs::remove(root/"system"/systemName(kind));syncDirectory(root/"system");
 }
+void Library::backupBeforeState(const std::string& id) {
+    SavedGame prior;
+    try{prior=save(id);}catch(const std::exception&){
+        // A good checkpoint can recover a game even when both cartridge files
+        // are damaged. Preserve those raw files before any later normal save.
+        for(const auto& name:{"save.current","save.previous"})if(std::filesystem::exists(game(id)/name))
+            atomicWrite(game(id)/(std::string(name)+".before-state-damaged"),read(game(id)/name,8*1024*1024+138));
+        return;
+    }
+    if(!prior.bytes.empty())atomicWrite(game(id)/"save.before-state",envelope(id,prior.bytes));
+}
+Bytes Library::saveBeforeState(const std::string& id) const {
+    return decode(game(id)/"save.before-state",id);
+}
 }

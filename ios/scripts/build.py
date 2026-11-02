@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build unsigned iOS device/simulator E2 artifacts; all output stays in work/."""
+"""Build unsigned iOS device/simulator E3 artifacts; all output stays in work/."""
 import argparse
 import json
 import os
@@ -54,12 +54,12 @@ def main():
         raise RuntimeError(f"Expected one built application, found {apps}")
     app = apps[0]
     source = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-    info = {"appVersion": "0.2.0", "sourceCommit": source, "core": LOCK,
+    info = {"appVersion": "0.3.0", "sourceCommit": source, "core": LOCK,
             "sdk": args.sdk, "architecture": arch, "signed": False,
             "iPhoneAcceptance": "not yet tested", "xcode": subprocess.check_output(["xcodebuild", "-version"], text=True).strip()}
     (app / "BuildInfo.json").write_text(json.dumps(info, indent=2) + "\n")
     (app / "Source.txt").write_text(
-        f"Reader Emulator E2 0.2.0 — GPL-3.0-or-later\n"
+        f"Reader Emulator E3 0.3.0 — GPL-3.0-or-later\n"
         f"Corresponding application source: https://github.com/TheDraconicPanda/pokemon-reader/tree/{source}/ios\n"
         f"melonDS source: https://github.com/melonDS-emu/melonDS/tree/{LOCK['revision']}\n"
         "Includes FreeBIOS and upstream third-party components; see bundled COPYING and THIRD-PARTY.txt.\n")
@@ -84,7 +84,7 @@ def main():
         else:
             end = text.index("*/") + 2
         (notices / (relative.replace("/", "-") + ".txt")).write_text(text[:end] + "\n")
-    archive = artifacts / f"ReaderEmulator-E2-{args.sdk}-unsigned.{'ipa' if args.sdk == 'iphoneos' else 'zip'}"
+    archive = artifacts / f"ReaderEmulator-E3-{args.sdk}-unsigned.{'ipa' if args.sdk == 'iphoneos' else 'zip'}"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as package:
         prefix = Path("Payload") if args.sdk == "iphoneos" else Path()
         for file in sorted(app.rglob("*")):

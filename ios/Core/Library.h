@@ -15,6 +15,13 @@ bool validROM(const uint8_t* data, size_t size, std::string& error);
 bool validImport(const Bytes& data, const std::string& gameCode, std::string& error);
 struct GameEntry { std::string id, name, code; };
 struct SavedGame { Bytes bytes; bool recovered = false; };
+struct StateInfo {
+    std::string file,slot,compatibility,format,reason;
+    uint64_t timestamp=0,sequence=0;
+    bool usable=false;
+    uint64_t storedBytes=0;
+};
+struct StateRecord { StateInfo info;Bytes state,save; };
 
 // Confined to one storage queue. No dependency on an emulator or UIKit. Files
 // are durable, local app data. An entry becomes visible only after its ROM and
@@ -31,6 +38,12 @@ public:
     void writeSystem(const std::string& kind, const Bytes& data);
     Bytes system(const std::string& kind) const;
     void clearSystem();
+    StateInfo writeState(const std::string& id,const std::string& slot,const std::string& compatibility,
+                         const std::string& format,const Bytes& state,const Bytes& save,uint64_t timestamp);
+    std::vector<StateInfo> states(const std::string& id,const std::string& compatibility) const;
+    StateRecord state(const std::string& id,const std::string& file,const std::string& compatibility) const;
+    void backupBeforeState(const std::string& id);
+    Bytes saveBeforeState(const std::string& id) const;
     // Deterministic ENOSPC/I/O/interruption injection, also used on macOS CI.
     std::function<void(const std::string&, const std::filesystem::path&)> fault;
 private:

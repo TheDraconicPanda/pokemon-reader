@@ -16,6 +16,10 @@ finite milestone by ID, for example "Implement Emulator E3."
   round trips, offline startup and physical controls remain deferred. See
   [E2 evidence and remaining tests](docs/emulator-e2.md).
 - [ ] **E3:** Manual save states, rotating automatic recovery and failure handling.
+  Native 0.3.0 source implemented; host state/rollback/fault/export checks and all
+  306 web regressions pass. Hosted unsigned release builds are being verified.
+  Actual phone lifecycle/update/offload and energy checks remain deferred. See
+  [E3 evidence and remaining checks](docs/emulator-e3.md).
 - [ ] **E4:** Bundled Reader integration using validated completed in-game saves.
 - [ ] **E5:** Integrated compatibility/performance audit, signed test release and
   user/device acceptance for SoulSilver and Platinum.
@@ -26,7 +30,7 @@ device/core acceptance gates pass; no device benchmark is claimed. Per the user'
 2 November direction, E2–E4 implementation may proceed sequentially while phone
 checks are deferred, using the provisional core. Each milestone still needs its
 automated checks and build delivery; E5 retains all device acceptance gates.
-E2 is engineering-ready for device testing; E3 is the next implementation milestone. Fast-forward, live
+E2 is engineering-ready for device testing; E3 is the current implementation milestone. Fast-forward, live
 Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
 build milestones have their own artifact/install requirements; they are not
 fulfilled by publishing the existing GitHub Pages website.
