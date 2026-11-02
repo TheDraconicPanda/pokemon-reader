@@ -313,14 +313,17 @@ std::vector<uint8_t> bytes(NSData *data) {
         }catch(const std::exception& error){NSString *message=[NSString stringWithUTF8String:error.what()];dispatch_async(dispatch_get_main_queue(),^{[self error:message];});}
     }});
 }
+- (void)closeMenuAnd:(void (^)(void))next {
+    if(self.presentedViewController)[self dismissViewControllerAnimated:YES completion:next];else next();
+}
 - (void)more {
     if(_loading)return;[self pauseEmulation];
     UIAlertController *menu=[UIAlertController alertControllerWithTitle:@"More" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [menu addAction:[UIAlertAction actionWithTitle:@"DS system files" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self systemFiles];}]];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Recovery interval" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self recoveryInterval];}]];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Export pre-restore cartridge backup" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self exportBeforeState];}]];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Performance report" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self exportReport];}]];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Diagnostic" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self diagnostic];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"DS system files" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self systemFiles];}];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Recovery interval" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self recoveryInterval];}];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Export pre-restore cartridge backup" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self exportBeforeState];}];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Performance report" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self exportReport];}];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Diagnostic" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self diagnostic];}];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:menu animated:YES completion:nil];
 }
 - (void)showLibrary {
@@ -578,7 +581,7 @@ std::vector<uint8_t> bytes(NSData *data) {
     if(!_storageReady){[self error:@"Library storage is not ready."];return;}
     [self pauseEmulation];UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Optional DS system files" message:@"The prototype defaults to melonDS FreeBIOS and generated firmware. Import your DS dumps to compare compatibility. Files take effect on the next ROM launch." preferredStyle:UIAlertControllerStyleAlert];
     for(NSString *kind in @[@"bios7",@"bios9",@"firmware"])
-      [a addAction:[UIAlertAction actionWithTitle:kind style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self pick:kind];}]];
+      [a addAction:[UIAlertAction actionWithTitle:kind style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self closeMenuAnd:^{[self pick:kind];}];}]];
     [a addAction:[UIAlertAction actionWithTitle:@"Use built-in replacements" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self clearSystemFiles];}]];
     [a addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
 }
