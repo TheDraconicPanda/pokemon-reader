@@ -28,7 +28,7 @@ jobs:
           ctest --test-dir work/e1/build-linux --output-on-failure
   ios:
     name: iOS release builds
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
