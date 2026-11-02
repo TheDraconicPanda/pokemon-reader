@@ -40,6 +40,8 @@ jobs:
         run: |
           mkdir -p work/e1/tmp
           export TMPDIR="$PWD/work/e1/tmp"
+          xcrun --sdk iphoneos clang++ -std=c++17 -fobjc-arc -fsyntax-only -target arm64-apple-ios17.0 -isysroot "$(xcrun --sdk iphoneos --show-sdk-path)" -Iios/Core '-DREADER_BUILD_VERSION="0.4.0"' '-DREADER_CORE_REVISION="b86390e4428bf38ce4c1ce0e9ca446d6d25955e8"' ios/App/EmulatorController.mm ios/App/ReaderWebController.mm
+          xcrun --sdk macosx clang++ -std=c++17 -O2 -fobjc-arc -Iios/Core ios/Core/ReaderServer.cpp ios/Tests/WebKitSmoke.mm -framework AppKit -framework WebKit -o work/e1/webkit-smoke
           c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Core/Checkpoint.cpp ios/Tests/LibraryTests.cpp -o work/e1/storage-tests -lz
           c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Core/Checkpoint.cpp ios/Tests/CheckpointTests.cpp -o work/e1/checkpoint-tests -lz
           cd work/e1
@@ -55,7 +57,6 @@ jobs:
           node ios/scripts/reader-fixtures.cjs work/e1
           cp work/e1/reader-soulsilver-after.sav work/e1/reader-soulsilver-completed.sav
           cp work/e1/reader-platinum-after.sav work/e1/reader-platinum-completed.sav
-          c++ -std=c++17 -O2 -fobjc-arc -Iios/Core ios/Core/ReaderServer.cpp ios/Tests/WebKitSmoke.mm -framework AppKit -framework WebKit -o work/e1/webkit-smoke
           work/e1/webkit-smoke work/e1/Reader work/e1
       - name: Upload unsigned binaries and build provenance
         uses: actions/upload-artifact@v4

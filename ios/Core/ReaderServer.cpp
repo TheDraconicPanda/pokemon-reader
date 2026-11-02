@@ -50,7 +50,7 @@ void ReaderServer::request(int client){
     try{
         if((method!="GET"&&method!="HEAD")||target.empty()||target[0]!='/')throw std::runtime_error("Unsupported request");
         target=decode(target.substr(0,target.find('?')));fs::path relative=target.substr(1);
-        for(auto& component:relative){auto text=component.string();if(component==".."||(!text.empty()&&text.front()=='.'))throw std::runtime_error("Invalid path");}
+        for(const auto& component:relative){auto text=component.string();if(component==".."||(!text.empty()&&text.front()=='.'))throw std::runtime_error("Invalid path");}
         auto path=root/relative;if(fs::is_directory(path))path/="index.html";path=fs::canonical(path);
         auto rel=path.lexically_relative(root);if(rel.empty()||*rel.begin()==".."||!fs::is_regular_file(path)||fs::file_size(path)>64*1024*1024)throw std::runtime_error("Invalid path");
         std::ifstream f(path,std::ios::binary);if(!f)throw std::runtime_error("Unavailable");body.assign(std::istreambuf_iterator<char>(f),{});type=mime(path);
