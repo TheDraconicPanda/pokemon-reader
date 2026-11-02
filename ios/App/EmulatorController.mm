@@ -63,11 +63,13 @@ std::vector<uint8_t> bytes(NSData *data) {
     std::shared_ptr<reader::Core> _core;
     std::unique_ptr<reader::Library> _library; // storage queue only
     std::string _emulatedID;
-    uint64_t _generation=0,_storedRevision=0,_observedRevision=0;
-    double _dirtySince=0,_lastChange=0,_lastAttempt=0;
-    bool _savePending=false;
+    uint64_t _generation,_storedRevision,_observedRevision;
+    double _dirtySince,_lastChange,_lastAttempt;
+    bool _savePending;
     std::shared_ptr<AudioPipe> _pipe;
     std::atomic<bool> _playing;
+    std::atomic<uint64_t> _timerEpoch;
+    NSUInteger _lifecycleEpoch;
     reader::InputState _input;
     FrameStats _stats; // confined to _emulation
     std::array<uint32_t,reader::Pixels*2> _video;
@@ -88,7 +90,7 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _playing=false;_input.clear();
+    _playing=false;_timerEpoch=0;_input.clear();
     _emulation=dispatch_queue_create("dev.thedraconicpanda.emulation",DISPATCH_QUEUE_SERIAL);
     dispatch_set_target_queue(_emulation,dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE,0));
     _storage=dispatch_queue_create("dev.thedraconicpanda.storage",DISPATCH_QUEUE_SERIAL);
@@ -250,10 +252,11 @@ std::vector<uint8_t> bytes(NSData *data) {
         controller.extendedGamepad.valueChangedHandler=^(GCExtendedGamepad *pad,GCControllerElement *element){[weakSelf updateControllerKeys];};}
     GCKeyboard.coalescedKeyboard.keyboardInput.keyChangedHandler=^(GCKeyboardInput *keyboard,GCControllerButtonInput *key,GCKeyCode code,BOOL pressed){
         EmulatorController *s=weakSelf;if(!s||!s->_playing.load())return;int bit=-1;
-        switch(code){case GCKeyCodeKeyZ:bit=0;break;case GCKeyCodeKeyX:bit=1;break;case GCKeyCodeRightShift:bit=2;break;
-          case GCKeyCodeReturnOrEnter:bit=3;break;case GCKeyCodeRightArrow:bit=4;break;case GCKeyCodeLeftArrow:bit=5;break;
-          case GCKeyCodeUpArrow:bit=6;break;case GCKeyCodeDownArrow:bit=7;break;case GCKeyCodeKeyW:bit=8;break;
-          case GCKeyCodeKeyQ:bit=9;break;case GCKeyCodeKeyS:bit=10;break;case GCKeyCodeKeyA:bit=11;break;default:break;}
+        const std::pair<GCKeyCode,int> bindings[]={
+          {GCKeyCodeKeyZ,0},{GCKeyCodeKeyX,1},{GCKeyCodeRightShift,2},{GCKeyCodeReturnOrEnter,3},
+          {GCKeyCodeRightArrow,4},{GCKeyCodeLeftArrow,5},{GCKeyCodeUpArrow,6},{GCKeyCodeDownArrow,7},
+          {GCKeyCodeKeyW,8},{GCKeyCodeKeyQ,9},{GCKeyCodeKeyS,10},{GCKeyCodeKeyA,11}};
+        for(auto binding:bindings)if(code==binding.first){bit=binding.second;break;}
         if(bit>=0){if(pressed)s->_input.keyboardKeys.fetch_or(uint16_t(1u<<bit));else s->_input.keyboardKeys.fetch_and(uint16_t(~(1u<<bit)));}
     };
 }
@@ -311,6 +314,7 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (double)activeWall { return _activeBeforePause+(_playing.load()?CACurrentMediaTime()-_resumedAt:0); }
 - (void)pauseEmulation {
+    ++_timerEpoch;
     if(_playing.exchange(false)){
         _activeBeforePause+=CACurrentMediaTime()-_resumedAt;
         if(_recording){++_pauseCount;[_events addObject:@{@"event":@"pause",@"activeSeconds":@([self activeWall])}];}
@@ -330,6 +334,7 @@ std::vector<uint8_t> bytes(NSData *data) {
     }
     if([note.name isEqual:AVAudioSessionInterruptionNotification] &&
        [note.userInfo[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue]!=AVAudioSessionInterruptionTypeBegan)return;
+    ++_lifecycleEpoch;
     __block UIBackgroundTaskIdentifier task=UIBackgroundTaskInvalid;
     task=[UIApplication.sharedApplication beginBackgroundTaskWithName:@"Finish cartridge save" expirationHandler:^{
         if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}
@@ -369,10 +374,11 @@ std::vector<uint8_t> bytes(NSData *data) {
     _resumedAt=CACurrentMediaTime();_playing=true;_pipe->playing=true;_screen.paused=NO;
     UIApplication.sharedApplication.idleTimerDisabled=YES;[_pause setTitle:@"Pause" forState:UIControlStateNormal];
     _frameTimer=dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,0,0,_emulation);auto pipe=_pipe;
+    uint64_t timerEpoch=++_timerEpoch;
     const uint64_t period=uint64_t(reader::FrameSeconds*NSEC_PER_SEC);
     dispatch_source_set_timer(_frameTimer,dispatch_time(DISPATCH_TIME_NOW,0),period,100000);
     dispatch_source_set_event_handler(_frameTimer,^{@autoreleasepool{
-        if(!self->_playing.load()||!self->_core)return;
+        if(!self->_playing.load()||!self->_core||timerEpoch!=self->_timerEpoch.load())return;
         auto before=std::chrono::steady_clock::now();
         uint32_t touch=self->_input.touch.load();
         double seconds=self->_core->step(self->_input.keys(),touch==0xFFFFFFFF?-1:int(touch&255),touch==0xFFFFFFFF?-1:int((touch>>8)&255));
@@ -469,6 +475,7 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save identity:(NSString *)identity replacing:(BOOL)replacing recovered:(BOOL)recovered {
     [self pauseEmulation];_loading=YES;self.view.userInteractionEnabled=NO;_status.text=@"Loading native melonDS…";
+    NSUInteger lifecycleEpoch=_lifecycleEpoch;BOOL foregroundLaunch=UIApplication.sharedApplication.applicationState==UIApplicationStateActive;
     NSData *b7=_bios7,*b9=_bios9,*fw=_firmware;_audio=nil;
     dispatch_async(_emulation,^{@autoreleasepool{
         auto next=std::make_shared<reader::Core>();std::string reason;
@@ -490,7 +497,7 @@ std::vector<uint8_t> bytes(NSData *data) {
                     [self->_record setTitle:@"Record test" forState:UIControlStateNormal];
                     self->_status.text=[name stringByAppendingString:recovered?@" · Recovered previous cartridge save":@" · Save normally in-game to keep progress"];
                     if(recovered)[self error:@"The newest cartridge save failed its integrity check. The previous valid copy was loaded. Corrupt files are preserved until a new in-game save is stored."];
-                    else [self resumeEmulation];
+                    else if(foregroundLaunch&&lifecycleEpoch==self->_lifecycleEpoch)[self resumeEmulation];
                 });
             });
         }});
