@@ -1,4 +1,4 @@
-name: Emulator E1 native build
+name: Emulator native build
 on:
   push:
     branches: [Emulator]
@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: emulator-e1-${{ github.ref }}
+  group: emulator-native-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   core:
@@ -34,6 +34,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Check durable storage on macOS
+        run: |
+          mkdir -p work/e1/tmp
+          export TMPDIR="$PWD/work/e1/tmp"
+          c++ -std=c++17 -O2 -Wall -Wextra -Iios/Core ios/Core/Library.cpp ios/Tests/LibraryTests.cpp -o work/e1/storage-tests
+          cd work/e1
+          ./storage-tests ../../tests/fixtures/gen4/platinum/early.sav
       - name: Compile and package iPhone release
         run: python3 ios/scripts/build.py --sdk iphoneos
       - name: Compile and package simulator release
@@ -41,7 +48,7 @@ jobs:
       - name: Upload unsigned binaries and build provenance
         uses: actions/upload-artifact@v4
         with:
-          name: ReaderEmulator-E1-unsigned
+          name: ReaderEmulator-E2-unsigned
           path: work/e1/artifacts/
           if-no-files-found: error
           retention-days: 30

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #import "ScreenView.h"
 #include "Core.h"
+#include "Input.h"
 #include <mutex>
 @implementation ScreenView {
     id<MTLCommandQueue> _commands;
@@ -20,8 +21,8 @@
     _commands=[device newCommandQueue];_inFlight=dispatch_semaphore_create(3);
     NSString *source=@"#include <metal_stdlib>\nusing namespace metal;\n"
       "struct V { float4 p [[position]]; float2 uv; };\n"
-      "vertex V vertexMain(uint id [[vertex_id]]) { float2 p[3]={float2(-1,1),float2(-1,-3),float2(3,1)};"
-      " float2 uv[3]={float2(0,0),float2(0,2),float2(2,0)}; return {float4(p[id],0,1),uv[id]}; }\n"
+      "vertex V vertexMain(uint id [[vertex_id]], constant float4& transform [[buffer(0)]]) { float2 p[3]={float2(-1,1),float2(-1,-3),float2(3,1)};"
+      " float2 uv[3]={float2(0,0),float2(0,2),float2(2,0)}; return {float4(p[id],0,1),uv[id]*transform.xy+transform.zw}; }\n"
       "fragment float4 fragmentMain(V v [[stage_in]], texture2d<float> image [[texture(0)]]) {"
       " constexpr sampler s(filter::nearest,address::clamp_to_edge); return image.sample(s,v.uv); }";
     NSError *error=nil;id<MTLLibrary> library=[device newLibraryWithSource:source options:nil error:&error];
@@ -44,8 +45,7 @@
     std::lock_guard<std::mutex> l(_pixelLock);std::copy_n(pixels,reader::Pixels*2,_pixels.begin());
 }
 - (CGRect)paintRect:(CGSize)size {
-    double scale=std::min(size.width/256.0,size.height/384.0);
-    return CGRectMake((size.width-256*scale)/2,(size.height-384*scale)/2,256*scale,384*scale);
+    auto r=reader::screenLayout(size.width,size.height);return CGRectMake(r.left,r.top,r.width,r.height);
 }
 - (void)drawInMTKView:(MTKView *)view {
     // Drop a presentation rather than block the UI or queue unlimited GPU work.
@@ -57,19 +57,24 @@
       [texture replaceRegion:MTLRegionMake2D(0,0,256,384) mipmapLevel:0 withBytes:_pixels.data() bytesPerRow:256*4];}
     id<MTLCommandBuffer> command=[_commands commandBuffer];auto encoder=[command renderCommandEncoderWithDescriptor:pass];
     CGRect r=[self paintRect:view.drawableSize];
-    [encoder setViewport:(MTLViewport){r.origin.x,r.origin.y,r.size.width,r.size.height,0,1}];
     [encoder setRenderPipelineState:_pipeline];[encoder setFragmentTexture:texture atIndex:0];
-    [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];[encoder endEncoding];
+    BOOL wide=view.drawableSize.width>view.drawableSize.height;
+    for(int screen=0;screen<(wide?2:1);++screen){
+        float transform[4]={1,wide?0.5f:1.0f,0,screen*0.5f};
+        [encoder setVertexBytes:transform length:sizeof(transform) atIndex:0];
+        double width=wide?r.size.width/2:r.size.width;
+        [encoder setViewport:(MTLViewport){r.origin.x+screen*width,r.origin.y,width,r.size.height,0,1}];
+        [encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
+    }[encoder endEncoding];
     auto semaphore=_inFlight;
     [command addCompletedHandler:^(id<MTLCommandBuffer> buffer){dispatch_semaphore_signal(semaphore);}];
     [command presentDrawable:drawable];[command commit];
 }
 - (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size { [self releaseTouch]; }
 - (void)updateTouch:(UITouch *)touch {
-    CGRect r=[self paintRect:self.bounds.size];CGPoint p=[touch locationInView:self];
-    if(!CGRectContainsPoint(r,p)){if(self.touchHandler)self.touchHandler(-1,-1);return;}
-    int x=int((p.x-r.origin.x)*256/r.size.width),y=int((p.y-r.origin.y)*384/r.size.height)-192;
-    if(self.touchHandler)self.touchHandler(x,y>=0&&y<192?y:-1);
+    CGPoint p=[touch locationInView:self];
+    auto point=reader::mapTouch(self.bounds.size.width,self.bounds.size.height,p.x,p.y);
+    if(self.touchHandler)self.touchHandler(point.x,point.y);
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if(!_activeTouch){_activeTouch=touches.anyObject;[self updateTouch:_activeTouch];}

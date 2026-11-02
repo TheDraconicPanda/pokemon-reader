@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "Core.h"
 #include "TestROM.h"
+#include "Library.h"
 #include "Platform.h"
 #include <cstdlib>
 #include <iostream>
 #include <thread>
 #include <stdexcept>
 #include <cmath>
+#include <fstream>
 #define CHECK(x) do { if(!(x)) throw std::runtime_error("Failed: " #x); } while(0)
-int main() {
+int main(int argc,char** argv) {
     using namespace reader;
     Core core;std::string error;auto rom=test::rom();
     CHECK(!core.load(nullptr,0,nullptr,0,error));CHECK(!error.empty());
@@ -44,6 +46,29 @@ int main() {
         std::copy_n(code,4,retail.data()+12);
         CHECK(core.load(retail.data(),retail.size(),saved.data(),saved.size(),error));
         CHECK(core.copySave()==saved);core.step(0);CHECK(core.copySave()==saved);
+        auto revision=core.saveRevision;
+        core.diagnosticSaveByte(0x100,0x53);
+        CHECK(core.copySave()[0x100]==0x53);CHECK(core.saveRevision>revision);
+        Library library("core-save-test");auto entry=library.importROM(retail,std::string(code)+".nds");
+        library.writeSave(entry.id,core.copySave());
+        auto persisted=Library("core-save-test").save(entry.id).bytes;
+        Core relaunched;CHECK(relaunched.load(retail.data(),retail.size(),persisted.data(),persisted.size(),error));
+        CHECK(relaunched.copySave()[0x100]==0x53);std::filesystem::remove_all("core-save-test");
+    }
+    CHECK(argc==3);
+    for(int i=1;i<=2;++i){
+        std::ifstream f(argv[i],std::ios::binary);Bytes imported((std::istreambuf_iterator<char>(f)),{});
+        const char* code=i==1?"IPGE":"CPUE";std::string game=i==1?"soulsilver":"platinum";
+        CHECK(validImport(imported,code,error));std::copy_n(code,4,retail.data()+12);
+        CHECK(core.load(retail.data(),retail.size(),imported.data(),imported.size(),error));
+        core.step(0);core.diagnosticSaveByte(0x30000,0x53);CHECK(core.saveRevision>0);
+        auto changed=core.copySave();CHECK(validImport(changed,code,error));
+        Library library("native-export-test");auto entry=library.importROM(retail,game+".nds");library.writeSave(entry.id,changed);
+        auto reloaded=Library("native-export-test").save(entry.id).bytes;
+        Core restarted;CHECK(restarted.load(retail.data(),retail.size(),reloaded.data(),reloaded.size(),error));CHECK(restarted.copySave()==changed);
+        std::ofstream input("e2-"+game+"-input.sav",std::ios::binary);input.write(reinterpret_cast<const char*>(imported.data()),imported.size());
+        std::ofstream output("e2-"+game+"-export.sav",std::ios::binary);output.write(reinterpret_cast<const char*>(reloaded.data()),reloaded.size());
+        std::filesystem::remove_all("native-export-test");
     }
     AudioRing<8> ring;int16_t input[24],output[24];
     for(int i=0;i<24;++i)input[i]=int16_t(i+1);

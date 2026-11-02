@@ -4,7 +4,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #import <CommonCrypto/CommonDigest.h>
+#import <GameController/GameController.h>
 #include "Core.h"
+#include "Library.h"
+#include "Input.h"
 #include "../Tests/TestROM.h"
 #include <sys/utsname.h>
 #include <chrono>
@@ -30,48 +33,75 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 }
 
+@interface GameLibraryController : UITableViewController
+@property(nonatomic,copy) NSArray<NSDictionary *> *entries;
+@property(nonatomic,copy) void (^openGame)(NSString *identity);
+@end
+@implementation GameLibraryController
+- (void)viewDidLoad { [super viewDidLoad];self.title=@"Game library";
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+    UILabel *note=[[UILabel alloc] initWithFrame:CGRectMake(0,0,300,76)];note.numberOfLines=3;note.textAlignment=NSTextAlignmentCenter;note.font=[UIFont systemFontOfSize:12];
+    note.text=@"Choose a game to continue from its cartridge save.\nUse Import ROM to add a game.\nDifferent ROM versions keep separate saves.";self.tableView.tableHeaderView=note;
+}
+- (void)done { [self dismissViewControllerAnimated:YES completion:nil]; }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return self.entries.count; }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)path {
+    UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];NSDictionary *entry=self.entries[path.row];
+    cell.textLabel.text=entry[@"name"];cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ · ROM %@",entry[@"code"],[entry[@"id"] substringToIndex:12]];
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)path {
+    NSString *identity=self.entries[path.row][@"id"];[self dismissViewControllerAnimated:YES completion:^{if(self.openGame)self.openGame(identity);}];
+}
+@end
+
 @interface EmulatorController () <UIDocumentPickerDelegate>
 @end
 @implementation EmulatorController {
-    dispatch_queue_t _emulation;
+    dispatch_queue_t _emulation,_storage;
     dispatch_source_t _frameTimer;
-    std::unique_ptr<reader::Core> _core;
+    std::shared_ptr<reader::Core> _core;
+    std::unique_ptr<reader::Library> _library; // storage queue only
+    std::string _emulatedID;
+    uint64_t _generation=0,_storedRevision=0,_observedRevision=0;
+    double _dirtySince=0,_lastChange=0,_lastAttempt=0;
+    bool _savePending=false;
     std::shared_ptr<AudioPipe> _pipe;
     std::atomic<bool> _playing;
-    std::atomic<uint16_t> _keys;
-    std::atomic<int> _touchX,_touchY;
+    reader::InputState _input;
     FrameStats _stats; // confined to _emulation
     std::array<uint32_t,reader::Pixels*2> _video;
     ScreenView *_screen;
     UIStackView *_playArea,*_controls;
     NSLayoutConstraint *_controlWidth,*_controlHeight;
-    UILabel *_status,*_metrics;
+    UILabel *_status,*_metrics,*_title,*_warning;
     UIButton *_pause,*_record;
     AVAudioEngine *_audio;
     NSTimer *_statusTimer;
     NSData *_rom,*_save,*_bios7,*_bios9,*_firmware;
-    NSString *_romName,*_romHash,*_purpose,*_scene;
-    NSDictionary *_lastStats;
+    NSString *_romName,*_romHash,*_purpose,*_scene,*_gameID;
+    NSDictionary *_lastStats,*_activeSystemFiles;
     NSMutableArray *_samples,*_events;
-    BOOL _loaded,_loading,_recording;
+    BOOL _loaded,_loading,_recording,_storageReady,_saveFailure;
     double _activeBeforePause,_resumedAt,_benchmarkStart;
     NSInteger _pauseCount;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _playing=false;_keys=0;_touchX=-1;_touchY=-1;
+    _playing=false;_input.clear();
     _emulation=dispatch_queue_create("dev.thedraconicpanda.emulation",DISPATCH_QUEUE_SERIAL);
     dispatch_set_target_queue(_emulation,dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE,0));
+    _storage=dispatch_queue_create("dev.thedraconicpanda.storage",DISPATCH_QUEUE_SERIAL);
     _samples=[NSMutableArray new];_events=[NSMutableArray new];_scene=@"unlabelled";
     self.view.backgroundColor=UIColor.systemBackgroundColor;
-    UILabel *title=[UILabel new];title.text=@"Reader Emulator · E1 prototype";title.font=[UIFont boldSystemFontOfSize:19];
+    _title=[UILabel new];_title.text=@"Reader Emulator · 0.2.0";_title.font=[UIFont boldSystemFontOfSize:19];
     _status=[UILabel new];_status.text=@"Open a SoulSilver/Platinum ROM, or run the built-in diagnostic.";
     _status.font=[UIFont systemFontOfSize:12];_status.numberOfLines=2;
     UIStackView *files=[self row:@[
-      [self action:@"Open ROM" selector:@selector(openROM)],
+      [self action:@"Library" selector:@selector(showLibrary)],
+      [self action:@"Import ROM" selector:@selector(openROM)],
       [self action:@"Game save" selector:@selector(openSave)],
-      [self action:@"System files" selector:@selector(systemFiles)],
-      [self action:@"Diagnostic" selector:@selector(diagnostic)]]];
+      [self action:@"More" selector:@selector(more)]]];
     _pause=[self action:@"Resume" selector:@selector(togglePause)];_pause.enabled=NO;
     _record=[self action:@"Record test" selector:@selector(recordTest)];
     UIStackView *actions=[self row:@[_pause,[self action:@"Export save" selector:@selector(exportSave)],_record,[self action:@"Report" selector:@selector(exportReport)]]];
@@ -81,14 +111,14 @@ std::vector<uint8_t> bytes(NSData *data) {
     if(!device){[self error:@"Metal is unavailable on this device."];return;}
     _screen=[[ScreenView alloc] initWithFrame:CGRectZero device:device];_screen.paused=YES;
     __weak EmulatorController *weakSelf=self;
-    _screen.touchHandler=^(int x,int y){EmulatorController *s=weakSelf;if(s){s->_touchX=x;s->_touchY=y;}};
+    _screen.touchHandler=^(int x,int y){EmulatorController *s=weakSelf;if(s)s->_input.setTouch(s->_playing.load()?x:-1,y);};
     _controls=[self buildControls];
     _playArea=[[UIStackView alloc] initWithArrangedSubviews:@[_screen,_controls]];_playArea.spacing=8;
     _controlWidth=[_controls.widthAnchor constraintEqualToConstant:260];
     _controlHeight=[_controls.heightAnchor constraintEqualToConstant:148];
-    UILabel *warning=[UILabel new];warning.numberOfLines=2;warning.font=[UIFont systemFontOfSize:11];warning.textColor=UIColor.secondaryLabelColor;
-    warning.text=@"Test build: save in-game, then Export save before ending a session. Automatic persistence and recovery come in E2/E3.";
-    UIStackView *root=[[UIStackView alloc] initWithArrangedSubviews:@[title,_status,files,actions,_metrics,_playArea,warning]];
+    _warning=[UILabel new];_warning.numberOfLines=2;_warning.font=[UIFont systemFontOfSize:11];_warning.textColor=UIColor.secondaryLabelColor;
+    _warning.text=@"Save normally in-game to keep progress. Cartridge saves are stored automatically. Recovery states arrive in E3. Keep exported backups.";
+    UIStackView *root=[[UIStackView alloc] initWithArrangedSubviews:@[_title,_status,files,actions,_metrics,_playArea,_warning]];
     root.axis=UILayoutConstraintAxisVertical;root.spacing=6;root.translatesAutoresizingMaskIntoConstraints=NO;[self.view addSubview:root];
     UILayoutGuide *safe=self.view.safeAreaLayoutGuide;
     [NSLayoutConstraint activateConstraints:@[[root.leadingAnchor constraintEqualToAnchor:safe.leadingAnchor constant:12],
@@ -97,15 +127,149 @@ std::vector<uint8_t> bytes(NSData *data) {
       [root.bottomAnchor constraintEqualToAnchor:safe.bottomAnchor constant:-6],
       [_screen.heightAnchor constraintGreaterThanOrEqualToConstant:96],
       [_screen.widthAnchor constraintGreaterThanOrEqualToConstant:64]]];
-    [title setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [warning setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [_title setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [_warning setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     UIDevice.currentDevice.batteryMonitoringEnabled=YES;
     NSNotificationCenter *n=NSNotificationCenter.defaultCenter;
     [n addObserver:self selector:@selector(background:) name:UIApplicationWillResignActiveNotification object:nil];
     [n addObserver:self selector:@selector(background:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [n addObserver:self selector:@selector(background:) name:AVAudioSessionInterruptionNotification object:nil];
     [n addObserver:self selector:@selector(background:) name:AVAudioSessionRouteChangeNotification object:nil];
+    for(NSString *name in @[GCControllerDidConnectNotification,GCControllerDidDisconnectNotification,GCKeyboardDidConnectNotification,GCKeyboardDidDisconnectNotification])
+        [n addObserver:self selector:@selector(inputDevicesChanged:) name:name object:nil];
+    [self inputDevicesChanged:nil];
     _statusTimer=[NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer *timer){[weakSelf sample];}];
+    [self prepareLibrary];
+}
+- (void)prepareLibrary {
+    NSURL *base=[NSFileManager.defaultManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
+    NSURL *folder=[base URLByAppendingPathComponent:@"ReaderEmulator" isDirectory:YES];
+    dispatch_async(_storage,^{@autoreleasepool{
+        try {
+            self->_library=std::make_unique<reader::Library>(folder.fileSystemRepresentation);
+            NSData *b7=nil,*b9=nil,*fw=nil;
+            auto data=[](const reader::Bytes& b)->NSData *{return b.empty()?nil:[NSData dataWithBytes:b.data() length:b.size()];};
+            b7=data(self->_library->system("bios7"));b9=data(self->_library->system("bios9"));fw=data(self->_library->system("firmware"));
+            dispatch_async(dispatch_get_main_queue(),^{self->_storageReady=YES;self->_bios7=b7;self->_bios9=b9;self->_firmware=fw;
+                self->_status.text=@"Library ready. Import a ROM or choose a stored game.";});
+        }catch(const std::exception& error){NSString *message=[NSString stringWithUTF8String:error.what()];dispatch_async(dispatch_get_main_queue(),^{[self error:message];});}
+    }});
+}
+- (void)more {
+    if(_loading)return;[self pauseEmulation];
+    UIAlertController *menu=[UIAlertController alertControllerWithTitle:@"More" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [menu addAction:[UIAlertAction actionWithTitle:@"DS system files" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self systemFiles];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Diagnostic" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self diagnostic];}]];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:menu animated:YES completion:nil];
+}
+- (void)showLibrary {
+    if(_loading)return;if(!_storageReady){[self error:@"Library storage is not ready."];return;}[self pauseEmulation];
+    _loading=YES;self.view.userInteractionEnabled=NO;
+    dispatch_async(_storage,^{@autoreleasepool{try {
+        NSMutableArray *entries=[NSMutableArray new];
+        for(const auto& e:self->_library->list()){
+            NSString *display=[[NSString alloc] initWithBytes:e.name.data() length:e.name.size() encoding:NSUTF8StringEncoding]?:@"DS game";
+            [entries addObject:@{@"id":@(e.id.c_str()),@"name":display,@"code":@(e.code.c_str())?:@"DS"}];
+        }
+        dispatch_async(dispatch_get_main_queue(),^{
+            self->_loading=NO;self.view.userInteractionEnabled=YES;
+            if(self.presentedViewController)return;
+            GameLibraryController *list=[GameLibraryController new];list.entries=entries;
+            __weak EmulatorController *weakSelf=self;list.openGame=^(NSString *identity){[weakSelf openEntry:identity];};
+            [self presentViewController:[[UINavigationController alloc] initWithRootViewController:list] animated:YES completion:nil];
+        });
+    }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+}
+- (void)withSavedSession:(void (^)(void))next {
+    if(_loading)return;[self pauseEmulation];
+    _loading=YES;self.view.userInteractionEnabled=NO;
+    [self flushSave:^(BOOL ok){self->_loading=NO;self.view.userInteractionEnabled=YES;
+        if(ok)next();else [self error:@"The current cartridge save could not be stored. Free storage or finish saving in-game, then retry. Export save is also available; this session remains open."];}];
+}
+- (void)openEntry:(NSString *)identity {
+    [self withSavedSession:^{
+        self->_loading=YES;self.view.userInteractionEnabled=NO;
+        dispatch_async(self->_storage,^{@autoreleasepool{try {
+            std::string id=identity.UTF8String;auto rom=self->_library->rom(id);reader::SavedGame saved;NSString *saveError=nil,*name=@"DS game";
+            try{saved=self->_library->save(id);}catch(const std::exception& error){saveError=@(error.what());}
+            for(const auto& entry:self->_library->list())if(entry.id==id){name=[[NSString alloc] initWithBytes:entry.name.data() length:entry.name.size() encoding:NSUTF8StringEncoding]?:@"DS game";break;}
+            NSData *romData=[NSData dataWithBytes:rom.data() length:rom.size()],*saveData=[NSData dataWithBytes:saved.bytes.data() length:saved.bytes.size()];
+            BOOL recovered=saved.recovered;
+            dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;
+                if(saveError){
+                    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Stored saves need recovery" message:[saveError stringByAppendingString:@" You can open the ROM without saved progress, then use Game save to import a backup. Stored files remain until replacement or a new in-game save."] preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Open ROM to import backup" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *a){[self launchROM:romData name:name save:nil identity:identity replacing:NO recovered:NO];}]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:alert animated:YES completion:nil];return;
+                }
+                [self launchROM:romData name:name save:saveData identity:identity replacing:NO recovered:recovered];});
+        }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+    }];
+}
+// Called only on the emulation queue. Snapshot first, then serialize file work
+// on the storage queue; no filesystem calls run in the audio callback or frame.
+- (void)captureSave:(void (^)(BOOL))completion {
+    if(!_core||_emulatedID.empty()||_core->saveRevision==_storedRevision){
+        if(completion)dispatch_async(dispatch_get_main_queue(),^{completion(YES);});return;
+    }
+    auto save=std::make_shared<reader::Bytes>(_core->copySave());
+    auto id=_emulatedID,code=_core->gameCode;uint64_t revision=_core->saveRevision,generation=_generation;
+    _savePending=true;_lastAttempt=CACurrentMediaTime();
+    dispatch_async(_storage,^{@autoreleasepool{
+        BOOL ok=YES,incomplete=NO;NSString *message=nil;
+        try {
+            std::string reason;
+            if((code=="IPGE"||code=="CPUE")&&!reader::validImport(*save,code,reason)){ok=NO;incomplete=YES;}
+            else self->_library->writeSave(id,*save);
+        }catch(const std::exception& error){ok=NO;message=@(error.what());}
+        dispatch_async(self->_emulation,^{
+            if(generation==self->_generation){self->_savePending=false;if(ok)self->_storedRevision=std::max(self->_storedRevision,revision);}
+            dispatch_async(dispatch_get_main_queue(),^{
+                if(ok){self->_status.text=@"Cartridge save stored. Export a backup whenever needed.";self->_saveFailure=NO;}
+                else if(!incomplete){BOOL firstFailure=!self->_saveFailure;self->_saveFailure=YES;
+                    if(firstFailure){[self pauseEmulation];[self error:[@"Save could not be stored. Previous copy preserved. " stringByAppendingString:message?:@""]];}}
+                if(completion)completion(ok);
+            });
+        });
+    }});
+}
+- (void)flushSave:(void (^)(BOOL))completion {
+    if(!_emulation){if(completion)completion(YES);return;}
+    dispatch_async(_emulation,^{[self captureSave:completion];});
+}
+- (void)autosaveIfNeeded {
+    if(_emulatedID.empty()||!_core)return;
+    double now=CACurrentMediaTime();uint64_t revision=_core->saveRevision;
+    if(revision!=_observedRevision){if(_observedRevision==_storedRevision)_dirtySince=now;_lastChange=now;_observedRevision=revision;}
+    if(revision!=_storedRevision&&!_savePending&&now-_lastAttempt>=2 && (now-_lastChange>=0.25||now-_dirtySince>=2))
+        [self captureSave:nil];
+}
+- (void)inputDevicesChanged:(NSNotification *)note {
+    if(!NSThread.isMainThread){dispatch_async(dispatch_get_main_queue(),^{[self inputDevicesChanged:note];});return;}
+    [self releaseInput];__weak EmulatorController *weakSelf=self;
+    for(GCController *controller in GCController.controllers){controller.handlerQueue=dispatch_get_main_queue();
+        controller.extendedGamepad.valueChangedHandler=^(GCExtendedGamepad *pad,GCControllerElement *element){[weakSelf updateControllerKeys];};}
+    GCKeyboard.coalescedKeyboard.keyboardInput.keyChangedHandler=^(GCKeyboardInput *keyboard,GCControllerButtonInput *key,GCKeyCode code,BOOL pressed){
+        EmulatorController *s=weakSelf;if(!s||!s->_playing.load())return;int bit=-1;
+        switch(code){case GCKeyCodeKeyZ:bit=0;break;case GCKeyCodeKeyX:bit=1;break;case GCKeyCodeRightShift:bit=2;break;
+          case GCKeyCodeReturnOrEnter:bit=3;break;case GCKeyCodeRightArrow:bit=4;break;case GCKeyCodeLeftArrow:bit=5;break;
+          case GCKeyCodeUpArrow:bit=6;break;case GCKeyCodeDownArrow:bit=7;break;case GCKeyCodeKeyW:bit=8;break;
+          case GCKeyCodeKeyQ:bit=9;break;case GCKeyCodeKeyS:bit=10;break;case GCKeyCodeKeyA:bit=11;break;default:break;}
+        if(bit>=0){if(pressed)s->_input.keyboardKeys.fetch_or(uint16_t(1u<<bit));else s->_input.keyboardKeys.fetch_and(uint16_t(~(1u<<bit)));}
+    };
+}
+- (void)updateControllerKeys {
+    uint16_t keys=0;
+    if(_playing.load())for(GCController *controller in GCController.controllers){GCExtendedGamepad *p=controller.extendedGamepad;if(!p)continue;
+        // Physical bottom/right buttons map to DS B/A, top/left to X/Y.
+        if(p.buttonB.pressed)keys|=1<<0;if(p.buttonA.pressed)keys|=1<<1;
+        if(p.buttonOptions.pressed)keys|=1<<2;if(p.buttonMenu.pressed)keys|=1<<3;
+        if(p.dpad.right.pressed||p.leftThumbstick.xAxis.value>0.5)keys|=1<<4;
+        if(p.dpad.left.pressed||p.leftThumbstick.xAxis.value< -0.5)keys|=1<<5;
+        if(p.dpad.up.pressed||p.leftThumbstick.yAxis.value>0.5)keys|=1<<6;
+        if(p.dpad.down.pressed||p.leftThumbstick.yAxis.value< -0.5)keys|=1<<7;
+        if(p.rightShoulder.pressed)keys|=1<<8;if(p.leftShoulder.pressed)keys|=1<<9;
+        if(p.buttonY.pressed)keys|=1<<10;if(p.buttonX.pressed)keys|=1<<11;
+    }_input.controllerKeys=keys;
 }
 - (UIButton *)action:(NSString *)title selector:(SEL)selector {
     UIButton *b=[UIButton buttonWithType:UIButtonTypeSystem];[b setTitle:title forState:UIControlStateNormal];
@@ -131,15 +295,19 @@ std::vector<uint8_t> bytes(NSData *data) {
       [self row:@[[self key:@"Select" bit:2],[self key:@"Start" bit:3],[self key:@"B" bit:1],[self key:@"A" bit:0]]]]];
     s.axis=UILayoutConstraintAxisVertical;s.spacing=5;s.distribution=UIStackViewDistributionFillEqually;return s;
 }
-- (void)keyDown:(UIButton *)b { if(_playing.load())_keys.fetch_or(uint16_t(1u<<b.tag)); }
-- (void)keyUp:(UIButton *)b { _keys.fetch_and(uint16_t(~(1u<<b.tag))); }
-- (void)releaseInput { _keys=0;[_screen releaseTouch]; }
+- (void)keyDown:(UIButton *)b { if(_playing.load())_input.touchKeys.fetch_or(uint16_t(1u<<b.tag)); }
+- (void)keyUp:(UIButton *)b { _input.touchKeys.fetch_and(uint16_t(~(1u<<b.tag))); }
+- (void)releaseInput { _input.clear();[_screen releaseTouch]; }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];BOOL wide=self.view.bounds.size.width>self.view.bounds.size.height;
     if(_controlWidth.active==wide && _controlHeight.active==!wide)return;
+    [self releaseInput];_title.hidden=wide;_warning.hidden=wide;_metrics.numberOfLines=wide?1:2;
     _controlHeight.active=NO;_controlWidth.active=NO;
     _playArea.axis=wide?UILayoutConstraintAxisHorizontal:UILayoutConstraintAxisVertical;
     if(wide)_controlWidth.active=YES;else _controlHeight.active=YES;
+}
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self releaseInput];[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 - (double)activeWall { return _activeBeforePause+(_playing.load()?CACurrentMediaTime()-_resumedAt:0); }
 - (void)pauseEmulation {
@@ -150,7 +318,9 @@ std::vector<uint8_t> bytes(NSData *data) {
     if(_frameTimer){dispatch_source_cancel(_frameTimer);_frameTimer=nil;}
     if(_pipe){_pipe->playing=false;_pipe->primed=false;}
     [_audio stop];_screen.paused=YES;[self releaseInput];[_pause setTitle:@"Resume" forState:UIControlStateNormal];
+    [AVAudioSession.sharedInstance setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     UIApplication.sharedApplication.idleTimerDisabled=NO;
+    [self flushSave:nil];
 }
 - (void)background:(NSNotification *)note {
     if(!NSThread.isMainThread){dispatch_async(dispatch_get_main_queue(),^{[self background:note];});return;}
@@ -160,11 +330,16 @@ std::vector<uint8_t> bytes(NSData *data) {
     }
     if([note.name isEqual:AVAudioSessionInterruptionNotification] &&
        [note.userInfo[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue]!=AVAudioSessionInterruptionTypeBegan)return;
+    __block UIBackgroundTaskIdentifier task=UIBackgroundTaskInvalid;
+    task=[UIApplication.sharedApplication beginBackgroundTaskWithName:@"Finish cartridge save" expirationHandler:^{
+        if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}
+    }];
     [self pauseEmulation];
+    [self flushSave:^(BOOL ok){if(task!=UIBackgroundTaskInvalid){[UIApplication.sharedApplication endBackgroundTask:task];task=UIBackgroundTaskInvalid;}}];
 }
 - (void)togglePause { if(_playing.load())[self pauseEmulation];else [self resumeEmulation]; }
 - (void)resumeEmulation {
-    if(!_loaded||_loading||_playing.load())return;
+    if(!_loaded||_loading||_playing.load()||UIApplication.sharedApplication.applicationState!=UIApplicationStateActive)return;
     NSError *error=nil;
     AVAudioSession *session=AVAudioSession.sharedInstance;
     if(![session setCategory:AVAudioSessionCategoryPlayback mode:AVAudioSessionModeDefault options:0 error:&error] ||
@@ -199,7 +374,9 @@ std::vector<uint8_t> bytes(NSData *data) {
     dispatch_source_set_event_handler(_frameTimer,^{@autoreleasepool{
         if(!self->_playing.load()||!self->_core)return;
         auto before=std::chrono::steady_clock::now();
-        double seconds=self->_core->step(self->_keys.load(),self->_touchX.load(),self->_touchY.load());
+        uint32_t touch=self->_input.touch.load();
+        double seconds=self->_core->step(self->_input.keys(),touch==0xFFFFFFFF?-1:int(touch&255),touch==0xFFFFFFFF?-1:int((touch>>8)&255));
+        [self autosaveIfNeeded];
         if(!self->_core->running()){
             dispatch_async(dispatch_get_main_queue(),^{[self pauseEmulation];[self error:@"The emulated console stopped. Export any available game save before replacing this session."];});return;
         }
@@ -217,72 +394,106 @@ std::vector<uint8_t> bytes(NSData *data) {
 - (void)error:(NSString *)message {
     _status.text=message;UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Reader Emulator" message:message preferredStyle:UIAlertControllerStyleAlert];
     [a addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    if(!self.presentedViewController)[self presentViewController:a animated:YES completion:nil];
+    if(UIApplication.sharedApplication.applicationState==UIApplicationStateActive&&!self.presentedViewController)[self presentViewController:a animated:YES completion:nil];
 }
 - (void)pick:(NSString *)purpose {
-    if(_loading)return;[self pauseEmulation];_purpose=purpose;
+    if(_loading)return;if(!_storageReady){[self error:@"Library storage is not ready."];return;}[self pauseEmulation];_purpose=purpose;
     UIDocumentPickerViewController *picker=[[UIDocumentPickerViewController alloc] initForOpeningContentTypes:@[UTTypeData] asCopy:YES];
     picker.delegate=self;picker.allowsMultipleSelection=NO;[self presentViewController:picker animated:YES completion:nil];
 }
 - (void)openROM { [self pick:@"rom"]; }
-- (void)openSave { if(!_loaded){[self error:@"Open a ROM first, then import its raw 512 KB in-game save."];return;}[self pick:@"save"]; }
+- (void)openSave { if(!_gameID.length){[self error:@"Choose a library game first, then import its raw 512 KB in-game save."];return;}[self pick:@"save"]; }
 - (void)systemFiles {
+    if(!_storageReady){[self error:@"Library storage is not ready."];return;}
     [self pauseEmulation];UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Optional DS system files" message:@"The prototype defaults to melonDS FreeBIOS and generated firmware. Import your DS dumps to compare compatibility. Files take effect on the next ROM launch." preferredStyle:UIAlertControllerStyleAlert];
     for(NSString *kind in @[@"bios7",@"bios9",@"firmware"])
       [a addAction:[UIAlertAction actionWithTitle:kind style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self pick:kind];}]];
-    [a addAction:[UIAlertAction actionWithTitle:@"Use built-in replacements" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){self->_bios7=nil;self->_bios9=nil;self->_firmware=nil;}]];
+    [a addAction:[UIAlertAction actionWithTitle:@"Use built-in replacements" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self clearSystemFiles];}]];
     [a addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
 }
+- (void)clearSystemFiles {
+    _loading=YES;
+    dispatch_async(_storage,^{try{self->_library->clearSystem();dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self->_bios7=nil;self->_bios9=nil;self->_firmware=nil;self->_status.text=@"Built-in system replacements selected for the next launch.";});}
+        catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;[self error:message];});}});
+}
+- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller { _purpose=nil; }
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
-    NSURL *url=urls.firstObject;if(!url)return;NSString *purpose=_purpose;
-    BOOL access=[url startAccessingSecurityScopedResource];NSError *error=nil;NSNumber *size=nil;
-    [url getResourceValue:&size forKey:NSURLFileSizeKey error:&error];
-    uint64_t limit=[purpose isEqual:@"rom"]?512ull*1024*1024:0x80000;
-    if(error||!size||size.unsignedLongLongValue>limit){if(access)[url stopAccessingSecurityScopedResource];[self error:@"This file could not be read or exceeds the supported size."];return;}
-    NSData *data=[NSData dataWithContentsOfURL:url options:0 error:&error];if(access)[url stopAccessingSecurityScopedResource];
-    if(!data){[self error:error.localizedDescription];return;}
+    NSURL *url=urls.firstObject;if(!url)return;NSString *purpose=_purpose;_loading=YES;
+    BOOL access=[url startAccessingSecurityScopedResource];
+    dispatch_async(_storage,^{@autoreleasepool{
+        NSError *error=nil;NSNumber *size=nil;[url getResourceValue:&size forKey:NSURLFileSizeKey error:&error];
+        uint64_t limit=[purpose isEqual:@"rom"]?512ull*1024*1024:0x80000;
+        NSData *data=nil;
+        if(!error&&size&&size.unsignedLongLongValue<=limit)data=[NSData dataWithContentsOfURL:url options:0 error:&error];
+        NSString *message=error.localizedDescription?:@"This file could not be read or exceeds the supported size.";
+        if(access)[url stopAccessingSecurityScopedResource];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [controller dismissViewControllerAnimated:YES completion:^{
+                self->_loading=NO;if(!data){[self error:message];return;}
+                [self acceptDocument:data name:url.lastPathComponent purpose:purpose];
+            }];
+        });
+    }});
+}
+- (void)acceptDocument:(NSData *)data name:(NSString *)name purpose:(NSString *)purpose {
     if([purpose isEqual:@"rom"]){
-        [self confirmReplacement:^{[self launchROM:data name:url.lastPathComponent save:nil];}];
+        [self withSavedSession:^{self->_loading=YES;self.view.userInteractionEnabled=NO;
+            dispatch_async(self->_storage,^{@autoreleasepool{try {
+                auto entry=self->_library->importROM(bytes(data),name.UTF8String);NSString *identity=@(entry.id.c_str());
+                dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self openEntry:identity];});
+            }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{self->_loading=NO;self.view.userInteractionEnabled=YES;[self error:message];});}}});
+        }];
     }else if([purpose isEqual:@"save"]){
-        if(data.length!=0x80000){[self error:@"Choose a raw 512 KB in-game save. Save states and .dsv containers are not accepted by E1."];return;}
-        [self confirmReplacement:^{[self launchROM:self->_rom name:self->_romName save:data];}];
+        if(!_gameID.length){[self error:@"Choose a game from the library first. Diagnostic sessions do not accept personal saves."];return;}
+        std::string code(reinterpret_cast<const char*>(static_cast<const uint8_t*>(_rom.bytes)+12),4),error;
+        if(!reader::validImport(bytes(data),code,error)){[self error:@(error.c_str())];return;}
+        NSString *message=[NSString stringWithFormat:@"Associate %@ with %@ (ROM %@)? A save cannot identify a patched ROM uniquely. This replaces the cartridge save for this library entry and restarts the game. The previous copy is retained. Imported files are unchanged.",name,_romName,[_gameID substringToIndex:12]];
+        UIAlertController *confirm=[UIAlertController alertControllerWithTitle:@"Replace this game's save?" message:message preferredStyle:UIAlertControllerStyleAlert];
+        [confirm addAction:[UIAlertAction actionWithTitle:@"Replace and restart" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+            [self withSavedSession:^{[self launchROM:self->_rom name:self->_romName save:data identity:self->_gameID replacing:YES recovered:NO];}];
+        }]];
+        [confirm addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:confirm animated:YES completion:nil];
     }else{
         BOOL valid=[purpose isEqual:@"bios7"]?data.length==0x4000:[purpose isEqual:@"bios9"]?data.length==0x1000:
-           data.length==0x20000||data.length==0x40000||data.length==0x80000;
+          data.length==0x20000||data.length==0x40000||data.length==0x80000;
         if(!valid){[self error:@"Incorrect DS system-file size (ARM7 16 KB, ARM9 4 KB, firmware 128/256/512 KB)."];return;}
-        if([purpose isEqual:@"bios7"])_bios7=data;else if([purpose isEqual:@"bios9"])_bios9=data;else _firmware=data;
-        _status.text=[purpose stringByAppendingString:@" loaded for the next ROM launch."];
+        dispatch_async(_storage,^{@autoreleasepool{try {
+            self->_library->writeSystem(purpose.UTF8String,bytes(data));
+            dispatch_async(dispatch_get_main_queue(),^{if([purpose isEqual:@"bios7"])self->_bios7=data;else if([purpose isEqual:@"bios9"])self->_bios9=data;else self->_firmware=data;
+                self->_status.text=[purpose stringByAppendingString:@" stored for the next game launch."];});
+        }catch(const std::exception& error){NSString *message=@(error.what());dispatch_async(dispatch_get_main_queue(),^{[self error:message];});}}});
     }
 }
-- (void)confirmReplacement:(void (^)(void))replace {
-    if(!_loaded){replace();return;}
-    UIAlertController *a=[UIAlertController alertControllerWithTitle:@"Replace this test session?" message:@"Export its in-game save first if you want to keep progress. Automatic persistence is not implemented in this E1 prototype." preferredStyle:UIAlertControllerStyleAlert];
-    [a addAction:[UIAlertAction actionWithTitle:@"Export current save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self exportSave];}]];
-    [a addAction:[UIAlertAction actionWithTitle:@"Replace session" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){replace();}]];
-    [a addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];[self presentViewController:a animated:YES completion:nil];
-}
 - (void)diagnostic {
-    [self pauseEmulation];[self confirmReplacement:^{auto rom=reader::test::rom();[self launchROM:[NSData dataWithBytes:rom.data() length:rom.size()] name:@"Original diagnostic ROM" save:nil];}];
+    [self withSavedSession:^{auto rom=reader::test::rom();[self launchROM:[NSData dataWithBytes:rom.data() length:rom.size()] name:@"Original diagnostic ROM" save:nil identity:nil replacing:NO recovered:NO];}];
 }
-- (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save {
+- (void)launchROM:(NSData *)rom name:(NSString *)name save:(NSData *)save identity:(NSString *)identity replacing:(BOOL)replacing recovered:(BOOL)recovered {
     [self pauseEmulation];_loading=YES;self.view.userInteractionEnabled=NO;_status.text=@"Loading native melonDS…";
     NSData *b7=_bios7,*b9=_bios9,*fw=_firmware;_audio=nil;
     dispatch_async(_emulation,^{@autoreleasepool{
-        std::string error;auto next=std::make_unique<reader::Core>();
-        bool ok=next->load(static_cast<const uint8_t*>(rom.bytes),rom.length,static_cast<const uint8_t*>(save.bytes),save.length,error,bytes(b7),bytes(b9),bytes(fw));
-        if(ok){self->_core=std::move(next);self->_stats={};}
-        NSString *message=ok?@"Loaded":[NSString stringWithUTF8String:error.c_str()];
-        NSString *hash=ok?digest(rom):nil;
-        dispatch_async(dispatch_get_main_queue(),^{
-            self->_loading=NO;self.view.userInteractionEnabled=YES;
-            if(!ok){[self error:message];return;}
-            self->_loaded=YES;self->_rom=rom;self->_romName=name;self->_save=save;self->_romHash=hash;
-            self->_pipe=std::make_shared<AudioPipe>();self->_activeBeforePause=0;self->_lastStats=nil;
-            self->_recording=NO;[self->_samples removeAllObjects];[self->_events removeAllObjects];self->_pause.enabled=YES;
-            [self->_record setTitle:@"Record test" forState:UIControlStateNormal];
-            self->_status.text=[name stringByAppendingString:@" · E1 test session"];
-            [self resumeEmulation];
-        });
+        auto next=std::make_shared<reader::Core>();std::string reason;
+        bool loaded=next->load(static_cast<const uint8_t*>(rom.bytes),rom.length,static_cast<const uint8_t*>(save.bytes),save.length,reason,bytes(b7),bytes(b9),bytes(fw));
+        NSString *loadError=loaded?nil:@(reason.c_str());
+        dispatch_async(self->_storage,^{@autoreleasepool{
+            BOOL ok=loaded;NSString *message=loadError;
+            if(ok&&replacing)try{self->_library->writeSave(identity.UTF8String,bytes(save));}catch(const std::exception& error){ok=NO;message=@(error.what());}
+            dispatch_async(self->_emulation,^{
+                if(ok){self->_core=next;self->_stats={};self->_emulatedID=identity.length?identity.UTF8String:"";
+                    ++self->_generation;self->_storedRevision=0;self->_observedRevision=0;self->_savePending=false;self->_lastAttempt=0;}
+                dispatch_async(dispatch_get_main_queue(),^{
+                    self->_loading=NO;self.view.userInteractionEnabled=YES;
+                    if(!ok){[self error:message];return;}
+                    self->_loaded=YES;self->_rom=rom;self->_romName=name;self->_save=save;self->_romHash=identity?:digest(rom);self->_gameID=identity;
+                    self->_activeSystemFiles=@{@"bios7":b7.length?digest(b7):@"FreeBIOS",@"bios9":b9.length?digest(b9):@"FreeBIOS",@"firmware":fw.length?digest(fw):@"generated"};
+                    self->_pipe=std::make_shared<AudioPipe>();self->_activeBeforePause=0;self->_lastStats=nil;self->_saveFailure=NO;
+                    self->_recording=NO;[self->_samples removeAllObjects];[self->_events removeAllObjects];self->_pause.enabled=YES;
+                    [self->_record setTitle:@"Record test" forState:UIControlStateNormal];
+                    self->_status.text=[name stringByAppendingString:recovered?@" · Recovered previous cartridge save":@" · Save normally in-game to keep progress"];
+                    if(recovered)[self error:@"The newest cartridge save failed its integrity check. The previous valid copy was loaded. Corrupt files are preserved until a new in-game save is stored."];
+                    else [self resumeEmulation];
+                });
+            });
+        }});
     }});
 }
 - (NSDictionary *)deviceSample {
@@ -348,7 +559,7 @@ std::vector<uint8_t> bytes(NSData *data) {
           @"device":@(device.machine),@"iOS":UIDevice.currentDevice.systemVersion,
           @"renderer":@"threaded software, native-resolution Metal presentation",@"jit":@NO,
           @"audioSourceRate":@(reader::SampleRate),@"hardwareAudioRate":@(AVAudioSession.sharedInstance.sampleRate),
-          @"systemFiles":@{@"bios7":self->_bios7?digest(self->_bios7):@"FreeBIOS",@"bios9":self->_bios9?digest(self->_bios9):@"FreeBIOS",@"firmware":self->_firmware?digest(self->_firmware):@"generated"},
+          @"systemFiles":self->_activeSystemFiles?:@{},
           @"summary":self->_lastStats?:@{},@"recordedSamples":self->_samples,@"events":self->_events,
           @"recordedActiveSeconds":@(self->_samples.count?[self activeWall]-self->_benchmarkStart:0),@"recordingPauses":@(self->_pauseCount),
           @"finalDeviceSample":[self deviceSample],
@@ -359,9 +570,9 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (void)share:(NSData *)data extension:(NSString *)extension {
     NSError *error=nil;NSURL *folder=[NSFileManager.defaultManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].firstObject;
-    folder=[folder URLByAppendingPathComponent:@"E1Exports" isDirectory:YES];
+    folder=[folder URLByAppendingPathComponent:@"Exports" isDirectory:YES];
     if(![NSFileManager.defaultManager createDirectoryAtURL:folder withIntermediateDirectories:YES attributes:nil error:&error]){[self error:error.localizedDescription];return;}
-    NSURL *url=[folder URLByAppendingPathComponent:[NSString stringWithFormat:@"reader-e1-%@.%@",NSUUID.UUID.UUIDString,extension]];
+    NSURL *url=[folder URLByAppendingPathComponent:[NSString stringWithFormat:@"reader-%@.%@",NSUUID.UUID.UUIDString,extension]];
     if(![data writeToURL:url options:NSDataWritingAtomic error:&error]){[self error:error.localizedDescription];return;}
     UIActivityViewController *sheet=[[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:nil];
     sheet.popoverPresentationController.sourceView=self.view;sheet.popoverPresentationController.sourceRect=CGRectMake(self.view.bounds.size.width/2,self.view.bounds.size.height/2,1,1);

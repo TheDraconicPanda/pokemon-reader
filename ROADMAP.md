@@ -11,6 +11,10 @@ finite milestone by ID, for example "Implement Emulator E2."
   release builds are implemented. User-reported iOS: 26.6.1; Windows available,
   no Mac. Signing, actual installation and game/battery acceptance are pending.
 - [ ] **E2:** Offline game library, controls and durable in-game save import/export.
+  Native 0.2.0 source implemented; host save/fault/export checks and all 306 web
+  regressions pass. Hosted release build verification is in progress; phone save
+  round trips, offline startup and physical controls remain deferred. See
+  [E2 evidence and remaining tests](docs/emulator-e2.md).
 - [ ] **E3:** Manual save states, rotating automatic recovery and failure handling.
 - [ ] **E4:** Bundled Reader integration using validated completed in-game saves.
 - [ ] **E5:** Integrated compatibility/performance audit, signed test release and
@@ -22,7 +26,7 @@ device/core acceptance gates pass; no device benchmark is claimed. Per the user'
 2 November direction, E2–E4 implementation may proceed sequentially while phone
 checks are deferred, using the provisional core. Each milestone still needs its
 automated checks and build delivery; E5 retains all device acceptance gates.
-E2 is the next implementation milestone. Fast-forward, live
+E2 is the current implementation milestone. Fast-forward, live
 Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
 build milestones have their own artifact/install requirements; they are not
 fulfilled by publishing the existing GitHub Pages website.

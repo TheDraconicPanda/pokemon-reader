@@ -1,4 +1,11 @@
-# Install the E1 test build using Windows
+# Install the native test build using Windows
+
+For the current **E2 0.2.0** build, use the [E2 download pointer](emulator-e2-download.txt),
+extract `ReaderEmulator-E2-unsigned` and select
+`ReaderEmulator-E2-iphoneos-unsigned.ipa` in the signing steps below. The app
+is named **Reader Emulator**. E2 stores cartridge saves automatically; its
+[usage and remaining phone checks](emulator-e2.md) supersede the E1 smoke test.
+The older E1-specific instructions below remain historical reference.
 
 The E1 package is an **unsigned iPhone app**, not an executable for Windows.
 Windows is used to sign/install it onto your iPhone 16 Plus. The target iOS

@@ -1,6 +1,6 @@
-# Reader Emulator E1 — native prototype 0.1.0
+# Reader Emulator E2 — native test build 0.2.0
 
-This is the first implementation milestone, not a finished emulator release.
+This implements the E2 library/save milestone; it is not an accepted v1 release.
 It runs a pinned native melonDS 1.1 candidate, with JIT and OpenGL disabled,
 threaded software DS rendering, Metal screen presentation and a 48 kHz native
 audio pipeline. No Delta application/framework code is incorporated.
@@ -8,14 +8,14 @@ audio pipeline. No Delta application/framework code is incorporated.
 The target acceptance device is iPhone 16 Plus on user-reported iOS 26.6.1.
 Original English SoulSilver and Platinum are the initial test matrix. The app
 also includes an original tiny diagnostic ROM; this is not evidence that either
-commercial game runs correctly. Other DS games are not certified by E1.
+commercial game runs correctly. Other DS games are not certified; save import is scoped to the two English games.
 
 ## Build and install
 
-The [Emulator E1 workflow](../.github/workflows/emulator-e1.yml) builds the portable
+The [native build workflow](../.github/workflows/emulator-e1.yml) builds the portable
 core integration test on Linux and release device/simulator apps on macOS.
-It runs on `Emulator` source pushes and can also be dispatched from GitHub.
-Download the `ReaderEmulator-E1-unsigned` artifact from the matching successful
+It runs on `Emulator` source pushes; rerun an existing run to rebuild its revision.
+Download the `ReaderEmulator-E2-unsigned` artifact from the matching successful
 run. It contains an **unsigned .ipa**, simulator archive and exact build metadata.
 
 An unsigned IPA cannot be installed by simply opening it on an iPhone. It must
@@ -36,40 +36,47 @@ Builds, downloaded sources, module caches and archives stay under repository-loc
 Native compilation is not possible on this Linux workspace. A successful build
 does not establish installed-device, playback or energy acceptance.
 
-## Use the prototype
+## Use the E2 player
 
-1. Run **Diagnostic**. It displays a red top screen and green bottom screen,
-   executes both emulated CPUs and exercises input/audio-buffer plumbing.
-2. Choose **Open ROM** for an uncompressed `.nds` file, then **Game save** to
-   restart with a copy of the game's raw 512 KB `.sav`. E1 rejects save states
-   and DeSmuME containers as game-save input. Original files are unchanged.
-3. Optional **System files** imports your DS ARM7 BIOS (16 KB), ARM9 BIOS (4 KB)
-   and firmware (128/256/512 KB). Defaults use upstream FreeBIOS/generated
-   firmware; record which configuration you benchmark. Imports take effect on
-   the next ROM launch. Do not mix configurations in a paired comparison.
-4. Use touch controls and the lower screen; **Pause/Resume** controls playback.
-   Leaving the app, locking the phone or an audio interruption pauses it.
-   Emulation does not continue in the background.
-5. Save normally inside Pokémon, then **Export save** to keep the cartridge
-   save in Files. Export pauses the game. This E1 test build does **not** yet
-   persist sessions automatically. E2 adds durable library/saves; E3 adds states
-   and automatic recovery. Export before replacing a session or ending testing.
-6. **Record test** starts a 30-active-minute sample log. Mark overworld, battle
-   entry, battle and menu scenes as they occur; use **Report** to export JSON.
-   No reports, ROMs or saves are uploaded automatically. A pause is recorded and
-   makes a continuous energy comparison unsuitable unless explicitly controlled.
+1. **Import ROM** copies an uncompressed `.nds` into the offline library. Use
+   **Library** to reopen it. Identical contents reuse the entry; patched or
+   different ROM contents receive separate saves, even when filenames match.
+2. **Game save** imports a copy of a raw 512 KB SoulSilver (`IPGE`) or Platinum
+   (`CPUE`) save after structural checksum/game checks and explicit association.
+   Confirm replacement to restart the selected game; a previous copy is retained.
+   States and `.dsv` containers are not accepted as cartridge saves in this build.
+3. Save normally inside Pokémon. Cartridge writes are copied to durable app
+   storage automatically, with a checksum-protected backup. Pause/backgrounding
+   also requests a flush. **Export save** makes a raw `.sav` backup in Files.
+   Saving may take a short time to reach disk; sudden termination can still lose
+   recent progress. Manual/automatic recovery states belong to E3.
+4. Portrait stacks the screens; landscape places them side by side when space
+   permits. Touch the bottom/right screen. Virtual buttons, extended gamepads
+   and keyboards are supported. See [E2 controls and storage](../docs/emulator-e2.md).
+5. **More → DS system files** retains optional ARM7 BIOS (16 KB), ARM9 BIOS
+   (4 KB) and firmware (128/256/512 KB) dumps for future launches. Built-in
+   FreeBIOS/generated firmware remain the default. **More → Diagnostic** runs
+   the original red/green test program without storing a personal game session.
+6. Leaving the app, locking the phone or an audio interruption pauses play.
+   Resume explicitly. **Record test** and **Report** retain the E1 measurement
+   tools. No ROMs, saves or reports are automatically uploaded.
 
 Keep normal speed in both this prototype and Delta. Emulator fast-forward is
 outside v1. Granular acceleration stays with the independent ROM project.
 
 ## Validation and remaining gates
 
-The local C++ integration test builds and links the actual pinned core. Its
+The local C++ integration tests build and link the actual pinned core. Its
 original ARM ROM writes a fingerprint, renders known red/green pixels and mirrors
 KEYINPUT into RAM. Tests check these effects, emulated-time advancement, audio
 buffer production, invalid import preservation, the concurrent audio ring,
 semaphore behavior and non-truncating file access. These are host tests, not
-claims about iPhone GPU/audio behavior or Pokémon compatibility.
+claims about iPhone GPU/audio behavior or Pokémon compatibility. E2 additionally
+tests actual cartridge SPI writes through durable storage/reload and independently
+checks both raw exports using the existing Reader. Storage fault tests cover
+ENOSPC, partial writes, process termination, integrity fallback, import recovery,
+ROM isolation and portrait/landscape input geometry. The storage tests also run
+on the hosted macOS filesystem before iOS compilation.
 
 ```sh
 cmake -S ios -B work/e1/build-linux -DCMAKE_BUILD_TYPE=Release

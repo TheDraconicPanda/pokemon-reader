@@ -36,6 +36,12 @@ public:
     std::atomic<bool> stopped{false};
     std::string gameCode;
     uint32_t diagnosticWord(unsigned offset) const;
+    // Called synchronously by melonDS on the emulation queue. This marks dirty
+    // cartridge memory; it does not mean a complete Pokémon save transaction.
+    void saveWritten() { ++saveRevision; }
+    uint64_t saveRevision = 0;
+    // Original diagnostic programs use this to exercise real cartridge SPI.
+    void diagnosticSaveByte(unsigned address, uint8_t value);
 private:
     std::unique_ptr<melonDS::NDS> nds;
 };

@@ -1,0 +1,12 @@
+Reader Emulator E2 — 0.2.0
+
+Unsigned iPhone/simulator builds are being verified. The definitive build run,
+source revision, artifact ID and checksum will be recorded here after success.
+
+Build workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
+Artifact name: ReaderEmulator-E2-unsigned
+iPhone package inside: ReaderEmulator-E2-iphoneos-unsigned.ipa
+
+An unsigned IPA requires signing before installation. The Windows signing route
+is documented in docs/emulator-e1-windows.md. No phone acceptance is claimed.
+Usage and deferred device checks: docs/emulator-e2.md

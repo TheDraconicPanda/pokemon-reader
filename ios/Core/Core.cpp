@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "Core.h"
+#include "Library.h"
 #include "Args.h"
 #include "NDS.h"
 #include "GPU3D_Soft.h"
@@ -17,19 +18,9 @@ bool Core::load(const uint8_t* rom, size_t size, const uint8_t* save, size_t sav
                 std::string& error, const std::vector<uint8_t>& bios7,
                 const std::vector<uint8_t>& bios9, const std::vector<uint8_t>& firmware) {
     error.clear();
-    if(!rom || size < 4096 || size > 512ull*1024*1024) {
-        error = "Choose an uncompressed Nintendo DS ROM (4 KB to 512 MB)."; return false;
-    }
-    if(rom[0x12] != 0) { error = "This E1 build supports original DS mode, not DSi titles."; return false; }
-    for(unsigned offset : {0x20u, 0x30u}) {
-        uint32_t at = word(rom+offset), length = word(rom+offset+12);
-        if(at < 0x200 || length < 4 || (at & 3) || (length & 3) ||
-            at > size || length > size-at) {
-            error = "The ROM has an invalid or truncated CPU program."; return false;
-        }
-    }
-    if(saveSize && (!save || saveSize != 0x80000)) {
-        error = "E1 accepts raw 512 KB SoulSilver/Platinum game saves, not save states."; return false;
+    if(!validROM(rom,size,error))return false;
+    if(saveSize && (!save || saveSize<512 || saveSize>8*1024*1024 || (saveSize&(saveSize-1)))) {
+        error = "Invalid raw cartridge save size."; return false;
     }
     if((!bios7.empty() && bios7.size()!=0x4000) || (!bios9.empty() && bios9.size()!=0x1000) ||
        (!firmware.empty() && firmware.size()!=0x20000 && firmware.size()!=0x40000 && firmware.size()!=0x80000)) {
@@ -68,7 +59,17 @@ bool Core::load(const uint8_t* rom, size_t size, const uint8_t* save, size_t sav
     nds = std::move(next);
     stopped.store(false);
     gameCode.assign(reinterpret_cast<const char*>(rom+0x0C), 4);
+    saveRevision=0;
     return true;
+}
+void Core::diagnosticSaveByte(unsigned address,uint8_t value) {
+    if(!nds||!nds->GetNDSCart()||address>=nds->GetNDSSaveLength())return;
+    auto cart=nds->GetNDSCart();
+    auto command=[&](std::initializer_list<uint8_t> data){
+        unsigned pos=0;if(gameCode=="IPGE")cart->SPIWrite(0,pos++,false);
+        for(auto b:data){cart->SPIWrite(b,pos,pos==(data.size()+(gameCode=="IPGE"?1:0)-1));++pos;}
+    };
+    command({0x06});command({0x0A,uint8_t(address>>16),uint8_t(address>>8),uint8_t(address),value});
 }
 bool Core::running() const { return nds && nds->IsRunning() && !stopped.load(); }
 double Core::step(uint16_t pressed, int x, int y) {

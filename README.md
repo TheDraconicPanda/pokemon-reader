@@ -1,29 +1,19 @@
 # Pokémon Reader
 
-## Native iPhone emulator — E1 prototype
+## Native iPhone emulator — E2 test build
 
-The [iPhone emulator v1 plan](docs/iphone-emulator-v1-plan.md) defines five finite
-implementation milestones: a measured native prototype, durable game saves,
-manual/automatic recovery states, completed-save Reader integration and final
-device acceptance. The target phone is iPhone 16 Plus; melonDS is the first core
-candidate, subject to performance and battery testing against Delta.
+The `Emulator` branch contains native [Reader Emulator 0.2.0](ios/README.md):
+an offline ROM library, separate durable cartridge saves per ROM, checked save
+import/export, backup recovery, portrait/landscape screens and touch/controller/
+keyboard input. It uses pinned no-JIT melonDS 1.1. The web Reader stays **0.27.0**.
+See [E2 delivery, checks and remaining phone tests](docs/emulator-e2.md).
 
-The `Emulator` branch now has a native [E1 prototype](ios/README.md), a pinned
-no-JIT melonDS core and a hosted macOS build workflow for unsigned iPhone and
-simulator packages. Native app version: **0.1.0**; the existing web Reader stays
-**0.27.0**. The original diagnostic/host tests and release compilation are
-separate from pending signed installation and iPhone game/battery acceptance.
-See the [Windows installation guide](docs/emulator-e1-windows.md) and
-[benchmark protocol](docs/emulator-e1-benchmark.md). No E2–E5 implementation is
-claimed. The user has deferred E1 phone testing; the plan now allows sequential
-E2–E4 development using the provisional core, with outstanding device checks
-required before v1 acceptance. E2 (offline library and durable saves) is next.
-Desktop, live data and emulator fast-forward remain later work.
-
-The [E1 verification record](docs/emulator-e1-evidence.json) identifies source
-`76122eb`, successful unsigned device/simulator builds and 306 passing website
-regressions. The [download pointer](docs/emulator-e1-download.txt) links to the
-validated artifact; signed installation and measured iPhone acceptance are pending.
+E1 phone testing is deferred by user direction. melonDS remains provisional;
+signing, phone playback, compatibility and battery/performance acceptance are
+pending. The [finite E1–E5 plan](docs/iphone-emulator-v1-plan.md) permits sequential
+engineering work while those checks wait. E3 recovery states and E4 integrated
+Reader are not implemented. Emulator fast-forward, live data and desktop/browser
+emulation remain outside v1.
 
 ## LeafGreen Reader — v0.27.0
 
