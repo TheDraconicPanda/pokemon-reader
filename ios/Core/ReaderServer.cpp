@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <poll.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <fstream>
 #include <sstream>
@@ -33,6 +34,7 @@ ReaderServer::ReaderServer(fs::path path,uint16_t port):root(fs::canonical(std::
     int reuse=1;setsockopt(listener,SOL_SOCKET,SO_REUSEADDR,&reuse,sizeof(reuse));
     sockaddr_in address{};address.sin_family=AF_INET;address.sin_addr.s_addr=htonl(INADDR_LOOPBACK);address.sin_port=htons(port);
     if(bind(listener,reinterpret_cast<sockaddr*>(&address),sizeof(address))||listen(listener,128)){close(listener);listener=-1;throw std::runtime_error("Reader's local port is unavailable. Close the other app using it and retry; stored profiles are preserved.");}
+    if(fcntl(listener,F_SETFL,O_NONBLOCK)<0){close(listener);listener=-1;throw std::runtime_error("Cannot configure Reader listener.");}
     socklen_t size=sizeof(address);getsockname(listener,reinterpret_cast<sockaddr*>(&address),&size);boundPort=ntohs(address.sin_port);
     if(pipe(wake)){close(listener);listener=-1;throw std::runtime_error("Cannot initialize Reader shutdown notification.");}
     worker=std::thread([this]{serve();});
@@ -47,7 +49,9 @@ void ReaderServer::serve(){while(!stopping.load()){
     pollfd ready[2]={{listener,POLLIN,0},{wake[0],POLLIN,0}};
     int count=poll(ready,2,-1);if(count<0){if(errno==EINTR)continue;break;}
     if(stopping.load()||ready[1].revents)break;if(!(ready[0].revents&POLLIN))continue;
-    int client=accept(listener,nullptr,nullptr);if(client<0){if(errno==EINTR)continue;break;}
+    int client=accept(listener,nullptr,nullptr);if(client<0){if(errno==EINTR||errno==EAGAIN||errno==EWOULDBLOCK)continue;break;}
+    // BSD may inherit listener flags; per-client reads use bounded blocking I/O.
+    if(fcntl(client,F_SETFL,0)<0){close(client);continue;}
     timeval timeout{2,0};setsockopt(client,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout));setsockopt(client,SOL_SOCKET,SO_SNDTIMEO,&timeout,sizeof(timeout));
 #ifdef SO_NOSIGPIPE
     int yes=1;setsockopt(client,SOL_SOCKET,SO_NOSIGPIPE,&yes,sizeof(yes));
