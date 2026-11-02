@@ -28,6 +28,7 @@
     [self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.origin]]];
 }
 - (void)start {
+    std::cout<<"Starting macOS WebKit smoke"<<std::endl;
     WKWebViewConfiguration *config=[WKWebViewConfiguration new];config.websiteDataStore=WKWebsiteDataStore.nonPersistentDataStore;
     [config.userContentController addScriptMessageHandler:self name:@"reader"];
     self.web=[[WKWebView alloc] initWithFrame:NSMakeRect(0,0,430,932) configuration:config];self.web.navigationDelegate=self;
@@ -44,6 +45,7 @@
 }
 - (void)userContentController:(WKUserContentController *)controller didReceiveScriptMessage:(WKScriptMessage *)message {
     if(![message.body isKindOfClass:NSDictionary.class])return;NSDictionary *body=message.body;NSString *type=body[@"type"];
+    std::cout<<"WebKit "<<self.game.UTF8String<<" stage "<<self.stage<<": "<<type.UTF8String<<std::endl;
     if([type isEqual:@"fatal"]||[type isEqual:@"error"]){[self fail:[NSString stringWithFormat:@"WebKit %@: %@",type,body[@"message"]]];return;}
     if([type isEqual:@"ready"]){[self deliver:@"before"];return;}
     if([type isEqual:@"loaded"]){
@@ -71,6 +73,7 @@ int main(int argc,char** argv){@autoreleasepool{
     try{reader::ReaderServer server(argv[1],0);Smoke *smoke=[Smoke new];smoke.origin=[NSString stringWithFormat:@"http://127.0.0.1:%u/",server.port()];smoke.fixtures=@(argv[2]);[smoke start];
         NSDate *deadline=[NSDate dateWithTimeIntervalSinceNow:90];while(!smoke.done&&deadline.timeIntervalSinceNow>0)[NSRunLoop.currentRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
         [smoke.web.configuration.userContentController removeScriptMessageHandlerForName:@"reader"];
-        if(!smoke.done||smoke.failed)return 1;std::cout<<"PASS: real macOS WKWebView, loopback ES modules, offline metadata, HGSS/Platinum completed saves, app-local IndexedDB updates and Great Marsh navigation.\n";return 0;
+        if(!smoke.done){std::cerr<<"WebKit timed out at stage "<<smoke.stage<<", URL "<<smoke.web.URL.absoluteString.UTF8String<<std::endl;return 1;}
+        if(smoke.failed)return 1;std::cout<<"PASS: real macOS WKWebView, loopback ES modules, offline metadata, HGSS/Platinum completed saves, app-local IndexedDB updates and Great Marsh navigation."<<std::endl;return 0;
     }catch(const std::exception& error){std::cerr<<error.what()<<"\n";return 1;}
 }}

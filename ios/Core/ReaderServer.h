@@ -17,6 +17,7 @@ public:
 private:
     std::filesystem::path root;
     int listener=-1;
+    int wake[2]={-1,-1};
     uint16_t boundPort=0;
     std::atomic<bool> stopping{false};
     std::thread worker;

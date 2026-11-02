@@ -2,6 +2,7 @@
 #include "ReaderServer.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <poll.h>
 #include <unistd.h>
 #include <fstream>
 #include <sstream>
@@ -33,10 +34,20 @@ ReaderServer::ReaderServer(fs::path path,uint16_t port):root(fs::canonical(std::
     sockaddr_in address{};address.sin_family=AF_INET;address.sin_addr.s_addr=htonl(INADDR_LOOPBACK);address.sin_port=htons(port);
     if(bind(listener,reinterpret_cast<sockaddr*>(&address),sizeof(address))||listen(listener,128)){close(listener);listener=-1;throw std::runtime_error("Reader's local port is unavailable. Close the other app using it and retry; stored profiles are preserved.");}
     socklen_t size=sizeof(address);getsockname(listener,reinterpret_cast<sockaddr*>(&address),&size);boundPort=ntohs(address.sin_port);
+    if(pipe(wake)){close(listener);listener=-1;throw std::runtime_error("Cannot initialize Reader shutdown notification.");}
     worker=std::thread([this]{serve();});
 }
-ReaderServer::~ReaderServer(){stopping=true;if(listener>=0)shutdown(listener,SHUT_RDWR);if(worker.joinable())worker.join();if(listener>=0)close(listener);}
-void ReaderServer::serve(){while(!stopping.load()){int client=accept(listener,nullptr,nullptr);if(client<0){if(errno==EINTR)continue;break;}
+ReaderServer::~ReaderServer(){
+    // shutdown() on a listening socket does not reliably interrupt accept() on
+    // Darwin. A pipe wakes poll without any idle timers or battery polling.
+    stopping=true;if(wake[1]>=0){char signal=1;while(write(wake[1],&signal,1)<0&&errno==EINTR){}}
+    if(worker.joinable())worker.join();if(listener>=0)close(listener);for(int fd:wake)if(fd>=0)close(fd);
+}
+void ReaderServer::serve(){while(!stopping.load()){
+    pollfd ready[2]={{listener,POLLIN,0},{wake[0],POLLIN,0}};
+    int count=poll(ready,2,-1);if(count<0){if(errno==EINTR)continue;break;}
+    if(stopping.load()||ready[1].revents)break;if(!(ready[0].revents&POLLIN))continue;
+    int client=accept(listener,nullptr,nullptr);if(client<0){if(errno==EINTR)continue;break;}
     timeval timeout{2,0};setsockopt(client,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout));setsockopt(client,SOL_SOCKET,SO_SNDTIMEO,&timeout,sizeof(timeout));
 #ifdef SO_NOSIGPIPE
     int yes=1;setsockopt(client,SOL_SOCKET,SO_NOSIGPIPE,&yes,sizeof(yes));
