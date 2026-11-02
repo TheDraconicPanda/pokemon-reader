@@ -1,11 +1,36 @@
-Reader Emulator E3 — 0.3.0
+Reader Emulator E3 — 0.3.0 — unsigned test build
 
-Hosted unsigned release builds are being verified. Source revision, successful
-run, artifact ID and checksum will be recorded here after validation.
+Successful iPhone/simulator release builds:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606
+Direct artifact page:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606/artifacts/13164184196
+Source: fbb5ef9ef26cd73ee4cdf0e9aece157f1e09d32e (Emulator branch)
 
-Workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
 Artifact: ReaderEmulator-E3-unsigned
-iPhone package: ReaderEmulator-E3-iphoneos-unsigned.ipa
+Artifact ID: 13164184196
+Outer ZIP: 1,647,060 bytes
+Outer ZIP SHA-256: 81ac6eb941ba3209f4290cfe201367ab033761b679857c5d2d9d803eb8de7155
+Expires: 2 December 2026 (GitHub 30-day retention).
+GitHub may require you to sign in to download an Actions artifact.
 
-Phone signing/install and E1–E3 device acceptance remain pending. See
-docs/emulator-e3.md for behavior, controls and deferred phone checks.
+Inside:
+- ReaderEmulator-E3-iphoneos-unsigned.ipa (signing required for iPhone)
+- ReaderEmulator-E3-iphonesimulator-unsigned.zip (macOS simulator)
+- Device/simulator build provenance JSON
+
+Windows signing/install route:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e1-windows.md
+Usage and deferred phone checks:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e3.md
+Verification:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e3-evidence.json
+
+E3 adds three manual slots per ROM, three rotating automatic checkpoints,
+compressed atomic storage, compatible-state validation, resume/game-save choices
+and pre-restore cartridge backups. The two-minute checkpoint interval is a test
+default, with five-minute and pause-only choices. Keep saving normally in-game.
+
+The binary remains on GitHub; this is its download pointer. Signing, installation,
+actual gameplay/recovery/lifecycle behavior, offload retention, stutter and matched
+Delta battery/performance checks remain deferred. Abrupt termination can lose
+changes since the last completed checkpoint. No zero-loss or energy claim is made.

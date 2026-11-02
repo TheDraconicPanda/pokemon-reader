@@ -8,8 +8,8 @@ a resume/checkpoint choice, state compatibility checks and pre-restore cartridge
 backups, alongside E2's offline library and durable game saves.
 See [E3 behavior, delivery and deferred phone checks](docs/emulator-e3.md).
 
-Host state/storage/export checks and all 306 web regressions pass; hosted unsigned
-release builds are being verified. Actual iPhone signing, gameplay, lifecycle and
+Host state/storage/export checks, macOS storage/checkpoint fault tests and all
+306 web regressions pass, alongside [unsigned iPhone/simulator release builds](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606). Actual iPhone signing, gameplay, lifecycle and
 performance/battery acceptance remain deferred. melonDS is provisional. The web
 Reader stays **0.27.0**. E4 integrated Reader is not implemented; emulator fast-forward,
 live data and desktop/browser emulation remain outside v1. See the [finite plan](docs/iphone-emulator-v1-plan.md).

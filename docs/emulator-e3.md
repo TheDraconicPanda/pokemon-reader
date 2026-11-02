@@ -1,7 +1,10 @@
 # E3 — Manual states and automatic recovery
 
-Native test build **0.3.0**, 2 November 2026. Engineering implementation and host
-checks pass; hosted unsigned release builds are being verified. E1–E3 phone
+Native test build **0.3.0**, 2 November 2026. Engineering implementation and
+unsigned release delivery are complete.
+[Successful iPhone/simulator build](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606),
+source `fbb5ef9`; [download details](emulator-e3-download.txt) and
+[verification record](emulator-e3-evidence.json). E1–E3 phone
 acceptance remains deferred. No phone performance/battery result is claimed.
 
 ## Using recovery
@@ -12,7 +15,9 @@ acceptance remains deferred. No phone performance/battery result is claimed.
 - Reopening a library game offers **Resume checkpoint**, its timestamp, and
   **Continue from in-game save**. Corrupt/incompatible entries are skipped visibly;
   the newest usable automatic predecessor is offered. **States** shows unavailable
-  entries and reasons; their files remain stored.
+  entries and reasons; their files remain stored. If the cartridge save itself
+  needed backup recovery, that notice appears first; use States to select a
+  recovery checkpoint afterward.
 - Automatic captures occur when pausing/leaving gameplay, switching apps, locking
   the phone or receiving an audio interruption. Periodic captures initially use
   two active minutes. **More → Recovery interval** selects two minutes, five
@@ -72,6 +77,9 @@ a state alone does not replace the on-disk cartridge save**. The next real
 cartridge write can persist the restored timeline, while the pre-restore backup
 remains available. Corrupt current/previous cartridge files are copied before
 restoration so a good checkpoint can recover them without discarding evidence.
+The native snapshot also restores the serialized console clock. This milestone
+does not add a clock-offset or wall-clock resynchronization control; verify
+Pokémon time-based behavior after long pauses/restoration during device testing.
 
 iOS may terminate an app without another callback, or stop unfinished background
 work. A crash/power loss can lose changes after the last completed checkpoint.
@@ -91,8 +99,10 @@ writes and independent JavaScript Reader parsing of exported cartridge saves.
 Checkpoint fault tests cover three manual/three automatic generations, newest
 corruption fallback, incompatible history, ROM mismatch, ENOSPC at creation,
 partial write, sync and pre-rename, and real process death at write/sync/rename
-boundaries. Both the native and storage paths are exercised; hosted macOS storage
-checks and unsigned device/simulator release compilation remain to be verified.
+boundaries. Both the native and storage paths are exercised. Hosted macOS storage/checkpoint
+fault tests and unsigned iPhone/simulator release compilation also pass. The app
+has not been launched on a phone or in a simulator; compilation and host tests
+do not establish UIKit, playback or lifecycle acceptance.
 
 Reports include last capture milliseconds, storage milliseconds, raw state/SRAM
 bytes and committed compressed bytes. Periodic capture gaps count toward measured
@@ -108,6 +118,7 @@ diagnostic measurements of original test programs, not phone/game energy results
   checkpoint in SoulSilver and Platinum after app relaunch.
 - Verify gameplay, sound/input, pause/resume, lock, switching apps, force termination,
   restart, audio interruptions and paused-only/five-minute/two-minute intervals.
+  Include day/night and time-based behavior after long pauses and old-state loads.
 - Confirm corrupt-newest fallback and ordinary-save/backup consistency after
   restoration followed by a complete normal in-game save; test real low storage.
 - Test fresh install, update retention and the selected route's offload/reinstall

@@ -6,7 +6,7 @@ installation, game/battery benchmarks and core acceptance are still pending.
 Recovery implementation belongs to E3. On 2 November 2026 the user requested
 continued progress without first testing E1. E2 is engineering-ready as native 0.2.0 with passing hosted release builds;
 device acceptance remains pending. Request milestones by stable ID,
-for example: "Implement Emulator E3."
+for example: "Implement Emulator E4."
 
 ## Product scope
 
@@ -186,10 +186,10 @@ engineering readiness from device acceptance for E1–E4:
   development proves the core is suitable.
 
 **E2: library and durable in-game saves** is engineering-ready for device testing.
-E3 is the current implementation milestone; native 0.3.0 source and host checks
-are implemented while hosted build verification is in progress. E3 recovery and E4 Reader
-integration retain their technical dependencies; they may follow engineering-ready
-predecessors without waiting for phone tests.
+E3 native 0.3.0 engineering checks, macOS storage/checkpoint fault tests and
+unsigned release builds pass. E4 is the next finite implementation milestone;
+Reader integration may follow these engineering-ready predecessors without
+waiting for phone tests. Its technical dependencies remain required.
 E5 retains the complete device and user acceptance gate. This policy supersedes
 the earlier requirement to wait for E1 device/core acceptance before starting E2.
 
@@ -327,6 +327,6 @@ Acceptance:
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
 | E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
 | E2 | Library and durable in-game saves | Native 0.2.0 engineering checks/unsigned device and simulator builds pass; ready for device testing, acceptance deferred |
-| E3 | Save states and automatic recovery | Native 0.3.0 source and host checks implemented; hosted builds in progress, device acceptance deferred |
+| E3 | Save states and automatic recovery | Native 0.3.0 engineering checks/unsigned builds pass; ready for device testing, acceptance deferred |
 | E4 | Completed-save Reader integration | Not started; depends on E3 engineering readiness; device checks may be deferred |
 | E5 | Integrated release and device acceptance | Not started; depends on E4 |
