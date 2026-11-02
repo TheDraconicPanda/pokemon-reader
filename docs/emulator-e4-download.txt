@@ -1,0 +1,9 @@
+Reader Emulator E4 — native 0.4.0
+
+Hosted device/simulator build verification is pending for this source revision.
+Workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
+Artifact name: ReaderEmulator-E4-unsigned
+
+An unsigned IPA must be signed before iPhone installation.
+Windows runbook: https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e1-windows.md
+Phone tests remain deferred.

@@ -6,6 +6,7 @@
 #include "GPU3D_Soft.h"
 #include "Savestate.h"
 #include <stdexcept>
+#include <chrono>
 #include <algorithm>
 #include <cstring>
 #include <ctime>
@@ -64,6 +65,7 @@ bool Core::load(const uint8_t* rom, size_t size, const uint8_t* save, size_t sav
     saveRevision=0;
     auto identity=stateFormat()+"\n"+sha256(bios7)+"\n"+sha256(bios9)+"\n"+sha256(firmware);
     stateCompatibility=sha256(reinterpret_cast<const uint8_t*>(identity.data()),identity.size());
+    readerBaseline(copySave(),uint64_t(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()),"loaded-save");
     return true;
 }
 std::string Core::stateFormat() {
@@ -105,8 +107,9 @@ bool Core::restoreState(std::vector<uint8_t> state,std::string& error) {
     nds->SetKeyMask(0xFFF);nds->ReleaseScreen();
     // Loading SRAM invokes WriteNDSSave. Suppress that restoration callback:
     // only a later real cartridge write may replace the durable game save.
-    saveRevision=0;stopped=false;error.clear();return true;
+    saveRevision=0;readerBaseline({},0,"restored-state");stopped=false;error.clear();return true;
 }
+void Core::readerBaseline(const Bytes& source,uint64_t capturedAt,const std::string& origin){saveObserver.initialize(gameCode,copySave(),source,capturedAt,origin);}
 void Core::diagnosticSaveByte(unsigned address,uint8_t value) {
     if(!nds||!nds->GetNDSCart()||address>=nds->GetNDSSaveLength())return;
     auto cart=nds->GetNDSCart();
@@ -124,8 +127,17 @@ double Core::step(uint16_t pressed, int x, int y) {
     else nds->ReleaseScreen();
     auto before = nds->GetSysClockCycles(0);
     nds->RunFrame();
+    saveObserver.poll(nds->GetNDSSave(),nds->GetNDSSaveLength(),uint64_t(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()));
     auto after = nds->GetSysClockCycles(0);
     return double(after-before)/ClockHz;
+}
+void Core::diagnosticSaveRange(unsigned address,const Bytes& values){
+    if(!nds||!nds->GetNDSCart()||address+values.size()>nds->GetNDSSaveLength())return;
+    auto cart=nds->GetNDSCart();bool ir=gameCode=="IPGE";
+    auto command=[&](const Bytes& data){unsigned pos=0;if(ir)cart->SPIWrite(0,pos++,false);for(auto byte:data){cart->SPIWrite(byte,pos,pos==data.size()+unsigned(ir)-1);++pos;}};
+    for(size_t at=0;at<values.size();){size_t n=std::min(values.size()-at,size_t(256-((address+at)&255)));
+        command({6});Bytes page={0x0A,uint8_t((address+at)>>16),uint8_t((address+at)>>8),uint8_t(address+at)};
+        page.insert(page.end(),values.begin()+at,values.begin()+at+n);command(page);at+=n;}
 }
 void Core::copyVideo(uint32_t* destination) const {
     if(!nds) { std::fill(destination, destination+Pixels*2, 0xFF000000); return; }

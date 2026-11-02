@@ -21,3 +21,17 @@ compatibility or performance acceptance.
 
 E3 checkpoint compression uses the operating system zlib library (https://zlib.net).
 No separate zlib binary is bundled; iOS links its system libz.
+
+E4 bundles the existing Pokemon Reader 0.27.0 HTML/CSS/JavaScript and local
+reference/maps/artwork under Reader/. Its original README, source attributions
+and asset notices are retained. Pokemon names, game facts, maps and sprites
+belong to their respective owners, including Nintendo, Game Freak and Creatures.
+No game executable or retail ROM is bundled. This project is unaffiliated.
+Native offline HGSS facts are generated from pret/pokeheartgold revision
+d2355244ac42b3c6e40d8c36aa3564ee8706dea4 (see native/hgss-offline-sources.json).
+Original HGSS shiny sprites are supplied by PokeAPI/sprites revision
+7a7d66b1620e646f69afd48dc1273da9033ede9c; see native/shiny-manifest.json.
+Safari's twelve original area screenshots remain online Bulbagarden references,
+with contributor/source links and the existing unavailable-image fallback.
+All Reader metadata, species sprites, local Atlas maps and simulator rules
+needed to decode and use the supported tools are bundled for offline use.

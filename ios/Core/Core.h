@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "CompletedSave.h"
 
 namespace melonDS { class NDS; }
 namespace reader {
@@ -43,12 +44,16 @@ public:
     uint32_t diagnosticWord(unsigned offset) const;
     // Called synchronously by melonDS on the emulation queue. This marks dirty
     // cartridge memory; it does not mean a complete Pokémon save transaction.
-    void saveWritten() { ++saveRevision; }
+    void saveWritten(unsigned offset,unsigned length) { ++saveRevision;saveObserver.wrote(offset,length); }
+    const CompletedSave& readerSave() const { return saveObserver.latest(); }
+    void readerBaseline(const Bytes& source,uint64_t capturedAt,const std::string& origin);
     uint64_t saveRevision = 0;
     // Original diagnostic programs use this to exercise real cartridge SPI.
     void diagnosticSaveByte(unsigned address, uint8_t value);
+    void diagnosticSaveRange(unsigned address,const Bytes& values);
 private:
     std::unique_ptr<melonDS::NDS> nds;
+    SaveObserver saveObserver;
 };
 
 // One producer (emulation), one consumer (audio render callback). No allocations,

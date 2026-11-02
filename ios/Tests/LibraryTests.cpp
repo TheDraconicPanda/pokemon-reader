@@ -38,6 +38,20 @@ int main(int argc,char** argv) {
         // ENOSPC at creation, after an actual partial write, sync failure, and
         // interruption before rename leave a committed old save available.
         auto latest=newer;latest[0x30000]=8;
+        library.writeReaderSave(first.id,{pt,123456});
+        CHECK(Library(root).readerSave(first.id).bytes==pt);CHECK(Library(root).readerSave(first.id).capturedAt==123456);
+        CHECK(Library(root).readerSave(second.id).bytes.empty());
+        library.writeSave(first.id,latest);CHECK(Library(root).readerSave(first.id).bytes==pt); // cartridge writes do not alter Reader copy
+        for(const char* stage:{"before-create","after-write","after-sync","before-rename"}){
+            library.fault=[&](const auto& at,const auto& path){if(at==stage&&path.filename()=="reader.completed")throw std::system_error(ENOSPC,std::generic_category());};
+            rejects([&]{library.writeReaderSave(first.id,{latest,234567});});CHECK(Library(root).readerSave(first.id).bytes==pt);
+        }
+        library.fault={};library.writeSave(first.id,newer);
+        rejects([&]{library.writeReaderSave(first.id,{Bytes(17),1});});
+        auto readerCopy=root/"games"/first.id/"reader.completed";
+        {std::ofstream f(readerCopy,std::ios::binary|std::ios::trunc);f<<"bad";}
+        rejects([&]{library.readerSave(first.id);}); // never silently substitute another source for a corrupt retained copy
+        library.writeReaderSave(first.id,{pt,123456});
         for(const char* target:{"save.previous","save.current"})for(const char* stage:{"before-create","after-write","after-sync","before-rename"}){
             library.fault=[&](const auto& at,const auto& path){if(at==stage&&path.filename()==target)throw std::system_error(ENOSPC,std::generic_category());};
             rejects([&]{library.writeSave(first.id,latest);});CHECK(Library(root).save(first.id).bytes==newer);

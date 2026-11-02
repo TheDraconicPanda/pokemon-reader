@@ -21,6 +21,8 @@ jobs:
       - name: Prepare repository-local temporary storage
         run: mkdir -p work/e1/tmp
       - name: Build the pinned core without JIT or desktop dependencies
+        env:
+          CHROMIUM_PATH: google-chrome
         run: |
           export TMPDIR="$PWD/work/e1/tmp"
           cmake -S ios -B work/e1/build-linux -DCMAKE_BUILD_TYPE=Release
@@ -47,10 +49,18 @@ jobs:
         run: python3 ios/scripts/build.py --sdk iphoneos
       - name: Compile and package simulator release
         run: python3 ios/scripts/build.py --sdk iphonesimulator
+      - name: Run the bundled Reader in real macOS WebKit
+        run: |
+          export TMPDIR="$PWD/work/e1/tmp"
+          node ios/scripts/reader-fixtures.cjs work/e1
+          cp work/e1/reader-soulsilver-after.sav work/e1/reader-soulsilver-completed.sav
+          cp work/e1/reader-platinum-after.sav work/e1/reader-platinum-completed.sav
+          c++ -std=c++17 -O2 -fobjc-arc -Iios/Core ios/Core/ReaderServer.cpp ios/Tests/WebKitSmoke.mm -framework AppKit -framework WebKit -o work/e1/webkit-smoke
+          work/e1/webkit-smoke work/e1/Reader work/e1
       - name: Upload unsigned binaries and build provenance
         uses: actions/upload-artifact@v4
         with:
-          name: ReaderEmulator-E3-unsigned
+          name: ReaderEmulator-E4-unsigned
           path: work/e1/artifacts/
           if-no-files-found: error
           retention-days: 30

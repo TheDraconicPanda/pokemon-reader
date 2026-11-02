@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #import "EmulatorController.h"
 #import "ScreenView.h"
+#import "ReaderWebController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <GameController/GameController.h>
 #include "Core.h"
 #include "Library.h"
+#include "ReaderServer.h"
 #include "Input.h"
 #include "../Tests/TestROM.h"
 #include <sys/utsname.h>
@@ -92,10 +94,14 @@ std::vector<uint8_t> bytes(NSData *data) {
     dispatch_source_t _frameTimer;
     std::shared_ptr<reader::Core> _core;
     std::unique_ptr<reader::Library> _library; // storage queue only
+    std::unique_ptr<reader::ReaderServer> _readerServer; // main thread; static assets only
     std::string _emulatedID;
     uint64_t _generation,_storedRevision,_observedRevision;
     double _dirtySince,_lastChange,_lastAttempt;
     bool _savePending;
+    bool _readerPending;
+    uint64_t _readerStoredSerial;
+    double _readerLastAttempt;
     std::shared_ptr<AudioPipe> _pipe;
     std::atomic<bool> _playing;
     std::atomic<uint64_t> _timerEpoch;
@@ -137,7 +143,7 @@ std::vector<uint8_t> bytes(NSData *data) {
     NSNumber *interval=[NSUserDefaults.standardUserDefaults objectForKey:@"reader.checkpointInterval"];
     _checkpointInterval=interval?interval.doubleValue:120;
     if(_checkpointInterval!=0&&_checkpointInterval!=120&&_checkpointInterval!=300)_checkpointInterval=120;
-    _title=[UILabel new];_title.text=@"Reader Emulator · 0.3.0";_title.font=[UIFont boldSystemFontOfSize:19];
+    _title=[UILabel new];_title.text=@"Reader Emulator · 0.4.0";_title.font=[UIFont boldSystemFontOfSize:19];
     _status=[UILabel new];_status.text=@"Open a SoulSilver/Platinum ROM, or run the built-in diagnostic.";
     _status.font=[UIFont systemFontOfSize:12];_status.numberOfLines=2;
     UIStackView *files=[self row:@[
@@ -147,7 +153,7 @@ std::vector<uint8_t> bytes(NSData *data) {
       [self action:@"More" selector:@selector(more)]]];
     _pause=[self action:@"Resume" selector:@selector(togglePause)];_pause.enabled=NO;
     _record=[self action:@"Record test" selector:@selector(recordTest)];
-    UIStackView *actions=[self row:@[_pause,[self action:@"States" selector:@selector(showStates)],[self action:@"Export save" selector:@selector(exportSave)],_record]];
+    UIStackView *actions=[self row:@[_pause,[self action:@"States" selector:@selector(showStates)],[self action:@"Reader" selector:@selector(openReader)],_record]];
     _metrics=[UILabel new];_metrics.text=@"Normal speed · melonDS 1.1 · no fast-forward";
     _metrics.font=[UIFont monospacedDigitSystemFontOfSize:11 weight:UIFontWeightRegular];_metrics.numberOfLines=2;
     id<MTLDevice> device=MTLCreateSystemDefaultDevice();
@@ -319,6 +325,7 @@ std::vector<uint8_t> bytes(NSData *data) {
 - (void)more {
     if(_loading)return;[self pauseEmulation];
     UIAlertController *menu=[UIAlertController alertControllerWithTitle:@"More" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [menu addAction:[UIAlertAction actionWithTitle:@"Export cartridge save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self exportSave];}];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"DS system files" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self systemFiles];}];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Recovery interval" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self recoveryInterval];}];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Export pre-restore cartridge backup" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){[self closeMenuAnd:^{[self exportBeforeState];}];}]];
@@ -401,10 +408,51 @@ std::vector<uint8_t> bytes(NSData *data) {
 }
 - (void)flushSave:(void (^)(BOOL))completion {
     if(!_emulation){if(completion)completion(YES);return;}
-    dispatch_async(_emulation,^{[self captureSave:completion];});
+    dispatch_async(_emulation,^{[self retainReaderSave];[self captureSave:completion];});
+}
+- (void)retainReaderSave {
+    if(!_core||_emulatedID.empty()||_readerPending)return;
+    const auto& ready=_core->readerSave();
+    if(ready.bytes.empty()||ready.serial==_readerStoredSerial||CACurrentMediaTime()-_readerLastAttempt<2)return;
+    auto snapshot=std::make_shared<reader::ReaderSave>(reader::ReaderSave{ready.bytes,ready.capturedAt});
+    auto id=_emulatedID;uint64_t serial=ready.serial,generation=_generation;
+    _readerPending=true;_readerLastAttempt=CACurrentMediaTime();
+    dispatch_async(_storage,^{
+        BOOL ok=YES;NSString *message=nil;
+        try{self->_library->writeReaderSave(id,*snapshot);}catch(const std::exception& error){ok=NO;message=@(error.what());}
+        dispatch_async(self->_emulation,^{if(generation==self->_generation){self->_readerPending=false;if(ok)self->_readerStoredSerial=serial;}});
+        if(!ok)dispatch_async(dispatch_get_main_queue(),^{self->_status.text=[@"Reader copy could not be retained. Previous adventure preserved. " stringByAppendingString:message?:@""];});
+    });
+}
+- (void)openReader {
+    if(_loading||self.presentedViewController)return;
+    if(!_loaded||!_gameID.length){[self error:@"Open a SoulSilver or Platinum library game first, then save normally in-game."];return;}
+    [self withSavedSession:^{
+        NSString *identity=self->_gameID,*name=self->_romName;
+        dispatch_async(self->_emulation,^{
+            if(!self->_core)return;
+            auto ready=std::make_shared<reader::CompletedSave>(self->_core->readerSave());
+            NSString *game=self->_core->gameCode=="IPGE"?@"soulsilver":self->_core->gameCode=="CPUE"?@"platinum":@"unsupported";
+            dispatch_async(dispatch_get_main_queue(),^{
+                if(![identity isEqual:self->_gameID]||self.presentedViewController)return;
+                if([game isEqual:@"unsupported"]){[self error:@"This Reader connection supports English SoulSilver and Platinum cartridges."];return;}
+                try{if(!self->_readerServer){NSString *root=[NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Reader"];self->_readerServer=std::make_unique<reader::ReaderServer>(root.UTF8String);}}
+                catch(const std::exception& error){[self error:@(error.what())];return;}
+                NSString *token=NSUUID.UUID.UUIDString;
+                NSDictionary *configuration=@{@"token":token,@"rom":identity,@"name":name?:@"DS game",@"game":game};
+                NSData *raw=[NSData dataWithBytes:ready->bytes.data() length:ready->bytes.size()];
+                NSDictionary *packet=@{@"token":token,@"rom":identity,@"game":game,@"base64":[raw base64EncodedStringWithOptions:0],@"digest":digest(raw),@"capturedAt":@(ready->capturedAt),@"general":@(ready->general),@"storage":@(ready->storage),@"origin":@(ready->origin.c_str())};
+                NSURL *origin=[NSURL URLWithString:[NSString stringWithFormat:@"http://127.0.0.1:%u/",self->_readerServer->port()]];
+                ReaderWebController *reader=[[ReaderWebController alloc] initWithOrigin:origin configuration:configuration packet:packet];
+                UINavigationController *navigation=[[UINavigationController alloc] initWithRootViewController:reader];navigation.modalPresentationStyle=UIModalPresentationFullScreen;
+                [self presentViewController:navigation animated:YES completion:nil];
+            });
+        });
+    }];
 }
 - (void)autosaveIfNeeded {
     if(_emulatedID.empty()||!_core)return;
+    [self retainReaderSave];
     double now=CACurrentMediaTime();uint64_t revision=_core->saveRevision;
     if(revision!=_observedRevision){if(_observedRevision==_storedRevision)_dirtySince=now;_lastChange=now;_observedRevision=revision;}
     if(revision!=_storedRevision&&!_savePending&&now-_lastAttempt>=2 && (now-_lastChange>=0.25||now-_dirtySince>=2))
@@ -663,12 +711,19 @@ std::vector<uint8_t> bytes(NSData *data) {
         dispatch_async(self->_storage,^{@autoreleasepool{
             BOOL ok=loaded;NSString *message=loadError;
             if(ok&&replacing)try{self->_library->writeSave(identity.UTF8String,bytes(save));}catch(const std::exception& error){ok=NO;message=@(error.what());}
+            auto readerBaseline=std::make_shared<reader::ReaderSave>();BOOL readerRetained=YES;
+            if(ok&&identity.length)try{
+                if(replacing){readerBaseline->bytes=bytes(save);readerBaseline->capturedAt=uint64_t(NSDate.date.timeIntervalSince1970*1000);self->_library->writeReaderSave(identity.UTF8String,*readerBaseline);}
+                else {*readerBaseline=self->_library->readerSave(identity.UTF8String);if(!readerBaseline->bytes.empty())self->_library->writeReaderSave(identity.UTF8String,*readerBaseline);}
+            }catch(const std::exception& error){readerRetained=NO;message=[@"Reader copy unavailable; the next completed in-game save can refresh it. " stringByAppendingString:@(error.what())];}
             if(ok&&checkpoint)try{
                 self->_library->backupBeforeState(identity.UTF8String);
                 self->_library->writeState(identity.UTF8String,"auto",checkpoint->info.compatibility,checkpoint->info.format,checkpoint->state,checkpoint->save,uint64_t(NSDate.date.timeIntervalSince1970*1000));
             }catch(const std::exception& error){ok=NO;message=@(error.what());}
             dispatch_async(self->_emulation,^{
-                if(ok){self->_core=next;self->_stats={};self->_emulatedID=identity.length?identity.UTF8String:"";
+                if(ok){next->readerBaseline(readerBaseline->bytes,readerBaseline->capturedAt,checkpoint?"retained before state restoration":"stored in-game save");
+                    self->_core=next;self->_stats={};self->_emulatedID=identity.length?identity.UTF8String:"";
+                    self->_readerStoredSerial=readerRetained?next->readerSave().serial:0;self->_readerPending=false;self->_readerLastAttempt=0;
                     ++self->_generation;self->_storedRevision=0;self->_observedRevision=0;self->_savePending=false;self->_lastAttempt=0;}
                 dispatch_async(dispatch_get_main_queue(),^{
                     self->_loading=NO;self.view.userInteractionEnabled=YES;

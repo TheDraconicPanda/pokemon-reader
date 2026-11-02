@@ -1,0 +1,24 @@
+{
+  "revision": "d2355244ac42b3c6e40d8c36aa3564ee8706dea4",
+  "sources": {
+    "personal.json": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/poketool/personal/personal.json",
+      "sha256": "8efcb2a809186a8ba85eb9dd123f4d210e06444405b613f9aa04876f19567f29"
+    },
+    "waza_tbl.narc": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/files/poketool/waza/waza_tbl.narc",
+      "sha256": "654d7edd0b0be66f6189ee87026dd701a2b8d98afa19a3991c8417803c50faea"
+    },
+    "items.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/constants/items.h",
+      "sha256": "20576a5dc04bd40cb1d212f1dad2de8e0083cf966e9535e3c10baac36cbd7193"
+    },
+    "move.h": {
+      "url": "https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/move.h",
+      "sha256": "0b4b639d6c6a26a9fcec337097462a96b10ce1125efa660c83d1e36f75fd7b7b"
+    }
+  },
+  "moveLayout": "include/move.h MoveTbl is 16 bytes; pp is byte 6",
+  "saveLayout": "include/save.h SaveChunkFooter is 16 bytes; src/save.c writes bodies/PC deltas then footers. Platinum uses a 20-byte footer and independent block counters.",
+  "generatedSHA256": "b999249d191c2e621672687bb8c63f92b31179fda596f3aee8854475330fc864"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "milestone": "E4",
+  "nativeVersion": "0.4.0",
+  "webReaderVersion": "0.27.0",
+  "branch": "Emulator",
+  "sourceCommit": null,
+  "status": "source implementation and local checks; hosted Apple build/runtime checks pending",
+  "accepted": false,
+  "coreRevision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+  "automatedChecks": {
+    "localCTest": {
+      "passed": 9,
+      "failed": 0
+    },
+    "webRegressions": {
+      "passed": 306,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 239147.412929
+    },
+    "hostedLinux": {
+      "status": "pending"
+    },
+    "hostedApple": {
+      "status": "pending"
+    }
+  },
+  "integration": {
+    "input": "completed cartridge saves only; no live RAM or checkpoint SRAM",
+    "supportedCodes": [
+      "IPGE",
+      "CPUE"
+    ],
+    "readerCache": "atomic ROM-bound SHA-256 envelope with capture time",
+    "webOrigin": "http://127.0.0.1:49621",
+    "profileStorage": "app-local persistent WebKit IndexedDB; no Safari sync",
+    "writesToActiveCartridge": false,
+    "offline": "Reader facts/species art/local Atlas maps/rules bundled; optional Safari area screenshots remain online"
+  },
+  "phoneAcceptance": "deferred; no signed installation, player-save, game compatibility, lifecycle/offload or performance/energy result claimed",
+  "nextMilestone": "E5 integrated release/device acceptance, on a new request"
+}

@@ -80,7 +80,7 @@ void Semaphore_Post(Semaphore* s,int count) {
 void Sleep(u64 us) { std::this_thread::sleep_for(std::chrono::microseconds(us)); }
 u64 GetUSCount() { return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now().time_since_epoch()).count(); }
 u64 GetMSCount() { return GetUSCount()/1000; }
-void WriteNDSSave(const u8*,u32,u32,u32,void* user) { if(user)static_cast<reader::Core*>(user)->saveWritten(); }
+void WriteNDSSave(const u8*,u32,u32 offset,u32 length,void* user) { if(user)static_cast<reader::Core*>(user)->saveWritten(offset,length); }
 void WriteGBASave(const u8*,u32,u32,u32,void*) {}
 void WriteFirmware(const Firmware&,u32,u32,void*) {}
 void WriteDateTime(int,int,int,int,int,int,void*) {}

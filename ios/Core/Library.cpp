@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <system_error>
 #include <unistd.h>
+#include <sys/stat.h>
 
 namespace reader {
 namespace fs = std::filesystem;
@@ -198,5 +199,22 @@ void Library::backupBeforeState(const std::string& id) {
 }
 Bytes Library::saveBeforeState(const std::string& id) const {
     return decode(game(id)/"save.before-state",id);
+}
+ReaderSave Library::readerSave(const std::string& id) const {
+    auto path=game(id)/"reader.completed";
+    if(fs::exists(path)){
+        auto data=decode(path,id);if(data.size()!=0x80008)throw std::runtime_error("Invalid stored Reader copy.");
+        uint64_t stamp=0;for(unsigned i=0;i<8;++i)stamp|=uint64_t(data[i])<<(8*i);
+        return {Bytes(data.begin()+8,data.end()),stamp};
+    }
+    auto prior=save(id);if(prior.bytes.empty())return {};
+    struct stat info{};auto file=game(id)/(prior.recovered?"save.previous":"save.current");
+    uint64_t stamp=stat(file.c_str(),&info)==0?uint64_t(info.st_mtime)*1000:0;
+    return {std::move(prior.bytes),stamp};
+}
+void Library::writeReaderSave(const std::string& id,const ReaderSave& snapshot){
+    if(snapshot.bytes.size()!=0x80000||!snapshot.capturedAt)throw std::runtime_error("Invalid Reader snapshot.");
+    Bytes data(8);for(unsigned i=0;i<8;++i)data[i]=uint8_t(snapshot.capturedAt>>(8*i));data.insert(data.end(),snapshot.bytes.begin(),snapshot.bytes.end());
+    atomicWrite(game(id)/"reader.completed",envelope(id,data));
 }
 }
