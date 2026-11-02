@@ -3,8 +3,10 @@
 Agreed scope and execution rules, 27 October 2026. E1 implementation is underway:
 native prototype 0.1.0 and unsigned hosted release builds exist; signed iPhone
 installation, game/battery benchmarks and core acceptance are still pending.
-Recovery implementation belongs to E3. Request milestones by stable ID, for example:
-"Implement Emulator E1."
+Recovery implementation belongs to E3. On 2 November 2026 the user requested
+continued progress without first testing E1. E2 is the next implementation
+milestone; device acceptance remains pending. Request milestones by stable ID,
+for example: "Implement Emulator E2."
 
 ## Product scope
 
@@ -103,8 +105,9 @@ that concludes "blocked" is finite and useful, but is not an accepted release.
 
 ## E1 — Installable prototype and performance decision
 
-**Outcome:** an iPhone prototype and measured decision on the core before full
-app development. This is the next implementation milestone.
+**Outcome:** an iPhone prototype and measured decision on the core. Under the
+deferred-testing policy below, further development may use the provisional core
+before the device decision is available.
 
 Implementation checkpoint: native prototype **0.1.0**, source `76122eb`, has
 passed [GitHub device/simulator release compilation](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459),
@@ -154,11 +157,43 @@ computer available. Hosted macOS release compilation is implemented. The
 on the user's phone; ROM/save access and device results remain user-side gates.
 Never commit ROMs, personal saves or signing credentials.
 Complete independent investigation while waiting; report an exact blocker if a
-signed build or phone test cannot be produced. E2 depends on the E1 decision.
+signed build or phone test cannot be produced. The E1 device/core decision is
+required for acceptance, but no longer blocks E2 implementation by itself.
+
+### Deferred device-testing policy — 2 November 2026
+
+The user has not installed/tested E1 and wants development to continue. Separate
+engineering readiness from device acceptance for E1–E4:
+
+- Finish each requested milestone's source, relevant automated integration and
+  failure tests, documentation and reproducible unsigned release build before
+  proceeding to the next requested milestone. Keep requests finite and sequential.
+- A milestone with those engineering checks complete may be ready for device
+  testing while its acceptance boxes remain open. Earlier phone-only checks do
+  not block the next implementation milestone. A failed build or unresolved
+  correctness/progress-loss defect still blocks dependent work.
+- Continue with pinned melonDS as a provisional candidate behind the native
+  adapter. Keep library storage and Reader interfaces separate from its state
+  format. Changing cores later may require adapter work and invalidate recovery
+  states; preserve ordinary saves and do not promise portable save states.
+- Carry all outstanding installation, real-game save/state round trips,
+  lifecycle/offload, compatibility and performance/energy checks into one device
+  test checklist for E5. Preserve the original per-milestone acceptance criteria
+  and evidence; deferring a check does not pass it.
+- Phone performance and battery efficiency remain unknown. A failed measured
+  budget still requires the bounded alternative evaluation in E1 and revalidation
+  of affected milestones before v1 acceptance. Do not claim that later feature
+  development proves the core is suitable.
+
+The next finite implementation request is **E2: library and durable in-game
+saves**. E3 recovery and E4 Reader integration retain their technical dependencies;
+they may follow engineering-ready predecessors without waiting for phone tests.
+E5 retains the complete device and user acceptance gate. This policy supersedes
+the earlier requirement to wait for E1 device/core acceptance before starting E2.
 
 ## E2 — Game library and durable in-game saves
 
-**Outcome:** the approved core becomes a usable offline player whose normal
+**Outcome:** the candidate core becomes a usable offline player whose normal
 Pokémon saves survive closing and reopening the app.
 
 - Import and retain local ROMs; identify games/variants by content hash, provide
@@ -288,8 +323,8 @@ Acceptance:
 | ID | Milestone | Current status |
 | --- | --- | --- |
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
-| E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision pending |
-| E2 | Library and durable in-game saves | Not started; depends on E1 |
-| E3 | Save states and automatic recovery | Not started; depends on E2 |
-| E4 | Completed-save Reader integration | Not started; depends on E3 |
+| E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
+| E2 | Library and durable in-game saves | Not started; next implementation milestone, using provisional E1 core |
+| E3 | Save states and automatic recovery | Not started; depends on E2 engineering readiness; device checks may be deferred |
+| E4 | Completed-save Reader integration | Not started; depends on E3 engineering readiness; device checks may be deferred |
 | E5 | Integrated release and device acceptance | Not started; depends on E4 |

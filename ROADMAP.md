@@ -2,7 +2,7 @@
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
 permissions, dependencies, completion criteria and device acceptance. Request one
-finite milestone by ID, for example "Implement Emulator E1."
+finite milestone by ID, for example "Implement Emulator E2."
 
 - [x] Document iPhone-first scope, command/file permissions and finite milestones.
 - [ ] **E1:** Installable native prototype, iPhone 16 Plus/Delta performance and
@@ -18,7 +18,11 @@ finite milestone by ID, for example "Implement Emulator E1."
 
 See [prototype use/build instructions](ios/README.md) and the
 [Windows install runbook](docs/emulator-e1-windows.md). E1 remains open until its
-device/core acceptance gates pass; no device benchmark is claimed. Fast-forward, live
+device/core acceptance gates pass; no device benchmark is claimed. Per the user's
+2 November direction, E2–E4 implementation may proceed sequentially while phone
+checks are deferred, using the provisional core. Each milestone still needs its
+automated checks and build delivery; E5 retains all device acceptance gates.
+E2 is the next implementation milestone. Fast-forward, live
 Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
 build milestones have their own artifact/install requirements; they are not
 fulfilled by publishing the existing GitHub Pages website.

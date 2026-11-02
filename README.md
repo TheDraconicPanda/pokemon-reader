@@ -15,7 +15,10 @@ simulator packages. Native app version: **0.1.0**; the existing web Reader stays
 separate from pending signed installation and iPhone game/battery acceptance.
 See the [Windows installation guide](docs/emulator-e1-windows.md) and
 [benchmark protocol](docs/emulator-e1-benchmark.md). No E2–E5 implementation is
-claimed. Desktop, live data and emulator fast-forward remain later work.
+claimed. The user has deferred E1 phone testing; the plan now allows sequential
+E2–E4 development using the provisional core, with outstanding device checks
+required before v1 acceptance. E2 (offline library and durable saves) is next.
+Desktop, live data and emulator fast-forward remain later work.
 
 The [E1 verification record](docs/emulator-e1-evidence.json) identifies source
 `76122eb`, successful unsigned device/simulator builds and 306 passing website

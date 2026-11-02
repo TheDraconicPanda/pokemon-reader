@@ -113,6 +113,13 @@ actual installation are still to be validated. The Windows runbook is
 `docs/emulator-e1-windows.md`. E1 native source is under `ios/`; host and GitHub
 release builds do not establish device acceptance. Keep binary delivery and
 test evidence distinct from pending game/battery results.
+User direction (2026-11-02): phone installation/testing may be deferred while
+development continues. Complete each requested milestone's implementation,
+automated checks and build delivery before the next, but do not block E2–E4 on
+earlier user/device checks alone. Carry those checks forward explicitly; E1 and
+the core remain unaccepted until measured on the phone. Do not waive any release
+gate or claim device performance from host/simulator results. See the plan's
+deferred device-testing policy. This supersedes the earlier E1-before-E2 gate.
 melonDS is the initial candidate, pending measured performance/battery evidence.
 v1 includes normal-speed play, durable game saves, manual states, automatic
 recovery and Reader integration from completed in-game saves. Blanket emulator

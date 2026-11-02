@@ -81,6 +81,10 @@ Follow [the device benchmark protocol](../docs/emulator-e1-benchmark.md). The co
 is **not accepted** until the signed build runs on the target phone, both target
 games pass the scene matrix and repeated Delta comparisons meet the agreed
 performance/battery gate. Simulator and host results cannot replace these checks.
+Per the user's 2 November 2026 direction, these phone checks may be deferred while
+E2–E4 are implemented and checked sequentially using the provisional core. See
+the [deferred device-testing policy](../docs/iphone-emulator-v1-plan.md#deferred-device-testing-policy--2-november-2026).
+Every outstanding acceptance check remains required before v1 is accepted.
 
 ## Licensing
 
