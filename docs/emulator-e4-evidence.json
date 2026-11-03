@@ -4,8 +4,8 @@
   "nativeVersion": "0.4.0",
   "webReaderVersion": "0.27.0",
   "branch": "Emulator",
-  "sourceCommit": null,
-  "status": "source implementation and local checks; hosted Apple build/runtime checks pending",
+  "sourceCommit": "f9463b2fa4900c91a280992d2eeeedb120f078df",
+  "status": "ready for device testing; engineering checks and unsigned delivery complete",
   "accepted": false,
   "coreRevision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
   "automatedChecks": {
@@ -20,10 +20,17 @@
       "durationMs": 239147.412929
     },
     "hostedLinux": {
-      "status": "pending"
+      "jobId": 125507375783,
+      "conclusion": "success",
+      "CTestPassed": 9
     },
     "hostedApple": {
-      "status": "pending"
+      "jobId": 125507375098,
+      "conclusion": "success",
+      "runner": "macos-15-intel",
+      "sourceSyntaxPreflight": "passed",
+      "storageAndCheckpointFaultTests": "passed",
+      "realWKWebView": "passed: both games, bundled ESM/offline metadata/IndexedDB updates and Great Marsh"
     }
   },
   "integration": {
@@ -39,5 +46,49 @@
     "offline": "Reader facts/species art/local Atlas maps/rules bundled; optional Safari area screenshots remain online"
   },
   "phoneAcceptance": "deferred; no signed installation, player-save, game compatibility, lifecycle/offload or performance/energy result claimed",
-  "nextMilestone": "E5 integrated release/device acceptance, on a new request"
+  "nextMilestone": "E5 integrated release/device acceptance, on a new request",
+  "buildHistory": [
+    {
+      "runId": 41509338706,
+      "sourceCommit": "91a322b21790e445bc8c516b2285d56e97493121",
+      "conclusion": "failure",
+      "reason": "Apple filesystem path iterator yields temporary values; use const references rather than mutable references. Fixed in ab580e7."
+    },
+    {
+      "runId": 41510222300,
+      "sourceCommit": "ab580e7e3604469b72f231e5563d81dc917e3235",
+      "conclusion": "cancelled after successful device/simulator compilation",
+      "reason": "WebKit harness hung while stopping the Darwin listener. Fixed with explicit pipe wakeup and nonblocking accept; real WebKit preflight subsequently passes."
+    }
+  ],
+  "binaryDelivery": {
+    "workflowRunId": 41512278571,
+    "workflowURL": "https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571",
+    "sourceCommit": "f9463b2fa4900c91a280992d2eeeedb120f078df",
+    "artifact": {
+      "id": 13174610992,
+      "name": "ReaderEmulator-E4-unsigned",
+      "size_in_bytes": 45373811,
+      "url": "https://api.github.com/repos/TheDraconicPanda/pokemon-reader/actions/artifacts/13174610992",
+      "archive_download_url": "https://api.github.com/repos/TheDraconicPanda/pokemon-reader/actions/artifacts/13174610992/zip",
+      "expired": false,
+      "created_at": "2026-11-02T19:48:40Z",
+      "expires_at": "2026-12-02T19:48:36Z",
+      "updated_at": "2026-11-02T19:48:40Z",
+      "digest": "sha256:a751cfa4c47b6f695bf2b0c370e2ee2df0642aa29bd693a60f902bcfdc371ade",
+      "workflow_run": {
+        "id": 41512278571,
+        "repository_id": 1410516576,
+        "head_repository_id": 1410516576,
+        "head_branch": "Emulator",
+        "head_sha": "f9463b2fa4900c91a280992d2eeeedb120f078df"
+      }
+    },
+    "packages": [
+      "ReaderEmulator-E4-iphoneos-unsigned.ipa",
+      "ReaderEmulator-E4-iphonesimulator-unsigned.zip"
+    ],
+    "signed": false,
+    "downloadedLocally": false
+  }
 }

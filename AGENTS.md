@@ -131,8 +131,14 @@ cartridge/checkpoint fault tests and 306 web regressions pass. Three manual slot
 three automatic generations, compressed atomic storage and guarded restoration
 are implemented. See `docs/emulator-e3.md` and its evidence JSON. The two-minute
 checkpoint interval is a test default; phone lifecycle/clock, offload/update,
-stutter and energy acceptance remain deferred. E4 is next, only on a new
-implementation request.
+stutter and energy acceptance remain deferred.
+E4 engineering checkpoint (2026-11-02): native 0.4.0 source `f9463b2`, unsigned
+builds in run 41512278571, nine native CTest groups, 306 web regressions, macOS
+storage/checkpoint faults and actual WKWebView completed-save/profile/Great Marsh
+checks pass. See `docs/emulator-e4.md` and its evidence JSON. Reader copies are
+read-only; checkpoint restoration never supplies Reader input. Phone/player-save,
+Files/share, offload/update persistence and performance/energy checks remain
+deferred. E5 is next only on a new implementation request.
 melonDS is the initial candidate, pending measured performance/battery evidence.
 v1 includes normal-speed play, durable game saves, manual states, automatic
 recovery and Reader integration from completed in-game saves. Blanket emulator

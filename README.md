@@ -1,18 +1,22 @@
 # Pokémon Reader
 
-## Native iPhone emulator — E3 test build
+## Native iPhone emulator — E4 test build
 
-The `Emulator` branch now contains native [Reader Emulator 0.3.0](ios/README.md):
-three manual save-state slots per ROM, three rotating automatic recovery generations,
-a resume/checkpoint choice, state compatibility checks and pre-restore cartridge
-backups, alongside E2's offline library and durable game saves.
-See [E3 behavior, delivery and deferred phone checks](docs/emulator-e3.md).
+The `Emulator` branch contains native [Reader Emulator 0.4.0](ios/README.md):
+open Reader inside the app using the latest completed in-game save, with offline
+metadata/artwork, ROM-bound Adventure Profiles and read-only integration. The
+library, ordinary saves, manual states and automatic recovery remain supported.
+See [E4 behavior, delivery and deferred phone checks](docs/emulator-e4.md).
 
-Host state/storage/export checks, macOS storage/checkpoint fault tests and all
-306 web regressions pass, alongside [unsigned iPhone/simulator release builds](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606). Actual iPhone signing, gameplay, lifecycle and
-performance/battery acceptance remain deferred. melonDS is provisional. The web
-Reader stays **0.27.0**. E4 integrated Reader is not implemented; emulator fast-forward,
-live data and desktop/browser emulation remain outside v1. See the [finite plan](docs/iphone-emulator-v1-plan.md).
+Nine native integration groups, all 306 web regressions, macOS storage/checkpoint
+faults and real WebKit Reader/profile/tool checks pass, alongside
+[unsigned iPhone/simulator release builds](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571).
+Actual signing, player-save/game compatibility, lifecycle/offload and iPhone
+performance/battery acceptance remain deferred; melonDS is provisional. Reader
+and encounter tools work offline; Safari's optional area screenshots remain
+online references. The web Reader stays **0.27.0**. E5 is the integrated release
+and device-acceptance milestone, on a new request. Emulator fast-forward, live
+data and desktop/browser emulation remain outside v1. See the [finite plan](docs/iphone-emulator-v1-plan.md).
 
 ## LeafGreen Reader — v0.27.0
 

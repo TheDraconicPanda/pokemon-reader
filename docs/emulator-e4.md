@@ -22,6 +22,8 @@ they never supply Reader input. Phone testing remains deferred.
   bundled. Safari's twelve area screenshots retain their existing optional
   online Bulbagarden sources and unavailable-image fallback; encounter planning
   remains usable offline. External reference links offer an explicit Safari action.
+  The Team Planner and Johto Safari retain their existing SoulSilver scope;
+  Platinum uses its supported Pokédex, Atlas and Great Marsh reference/planner.
 - Different ROM contents have separate bindings, even with the same trainer
   IDs. The first association with an existing trainer asks whether to create a
   separate adventure or use a selected one. Cancel preserves stored profiles.

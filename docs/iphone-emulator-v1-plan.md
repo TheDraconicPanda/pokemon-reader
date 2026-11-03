@@ -6,7 +6,7 @@ installation, game/battery benchmarks and core acceptance are still pending.
 Recovery implementation belongs to E3. On 2 November 2026 the user requested
 continued progress without first testing E1. E2 is engineering-ready as native 0.2.0 with passing hosted release builds;
 device acceptance remains pending. Request milestones by stable ID,
-for example: "Implement Emulator E4."
+for example: "Implement Emulator E5."
 
 ## Product scope
 
@@ -187,9 +187,10 @@ engineering readiness from device acceptance for E1–E4:
 
 **E2: library and durable in-game saves** is engineering-ready for device testing.
 E3 native 0.3.0 engineering checks, macOS storage/checkpoint fault tests and
-unsigned release builds pass. E4 is the next finite implementation milestone;
-Reader integration may follow these engineering-ready predecessors without
-waiting for phone tests. Its technical dependencies remain required.
+unsigned release builds pass. E4 native 0.4.0 also passes its engineering checks,
+real macOS WebKit integration and unsigned device/simulator builds. The completed-
+save Reader connection is ready for device testing. E5 is next on a new request;
+all deferred phone checks and the provisional core decision remain required.
 E5 retains the complete device and user acceptance gate. This policy supersedes
 the earlier requirement to wait for E1 device/core acceptance before starting E2.
 
@@ -296,6 +297,12 @@ Acceptance:
 - [ ] Meaningful integration checks and existing web regressions pass; actual
   phone/player-save checks and app-local profile behavior are recorded.
 
+E4 engineering delivery is recorded in [the guide](emulator-e4.md) and
+[verification JSON](emulator-e4-evidence.json). Nine native groups, all 306 existing
+web regressions, macOS storage/checkpoint faults, real WKWebView decoding/profile/
+Great Marsh checks and unsigned iPhone/simulator builds pass. The acceptance
+boxes above remain open for the actual phone/player-save and persistence checks.
+
 ## E5 — Integrated release and device acceptance
 
 **Outcome:** a reproducible v1 test release that meets all preceding criteria.
@@ -328,5 +335,5 @@ Acceptance:
 | E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
 | E2 | Library and durable in-game saves | Native 0.2.0 engineering checks/unsigned device and simulator builds pass; ready for device testing, acceptance deferred |
 | E3 | Save states and automatic recovery | Native 0.3.0 engineering checks/unsigned builds pass; ready for device testing, acceptance deferred |
-| E4 | Completed-save Reader integration | Not started; depends on E3 engineering readiness; device checks may be deferred |
-| E5 | Integrated release and device acceptance | Not started; depends on E4 |
+| E4 | Completed-save Reader integration | Native 0.4.0 engineering checks, macOS WebKit and unsigned builds pass; ready for device testing, acceptance deferred |
+| E5 | Integrated release and device acceptance | Next on a new request; all E1–E4 phone/core acceptance gates remain required |

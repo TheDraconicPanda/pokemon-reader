@@ -2,7 +2,7 @@
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
 permissions, dependencies, completion criteria and device acceptance. Request one
-finite milestone by ID, for example "Implement Emulator E4."
+finite milestone by ID, for example "Implement Emulator E5."
 
 - [x] Document iPhone-first scope, command/file permissions and finite milestones.
 - [ ] **E1:** Installable native prototype, iPhone 16 Plus/Delta performance and
@@ -22,6 +22,10 @@ finite milestone by ID, for example "Implement Emulator E4."
   Actual phone lifecycle/update/offload and energy checks remain deferred. See
   [E3 evidence and remaining checks](docs/emulator-e3.md).
 - [ ] **E4:** Bundled Reader integration using validated completed in-game saves.
+  Native 0.4.0 engineering delivery is implemented: nine native groups, 306 web
+  regressions, real macOS WebKit and storage faults, and unsigned iPhone/simulator
+  builds pass. Phone/player-save, Files/share, app-local persistence and Reader
+  overhead checks remain deferred. See [E4 evidence](docs/emulator-e4.md).
 - [ ] **E5:** Integrated compatibility/performance audit, signed test release and
   user/device acceptance for SoulSilver and Platinum.
 

@@ -1,9 +1,37 @@
-Reader Emulator E4 — native 0.4.0
+Reader Emulator E4 — 0.4.0 — unsigned test build
 
-Hosted device/simulator build verification is pending for this source revision.
-Workflow: https://github.com/TheDraconicPanda/pokemon-reader/actions/workflows/emulator-e1.yml
-Artifact name: ReaderEmulator-E4-unsigned
+Successful iPhone/simulator release builds and real macOS WebKit checks:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571
+Direct artifact page:
+https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571/artifacts/13174610992
+Application source: f9463b2fa4900c91a280992d2eeeedb120f078df (Emulator branch)
 
-An unsigned IPA must be signed before iPhone installation.
-Windows runbook: https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e1-windows.md
-Phone tests remain deferred.
+Artifact: ReaderEmulator-E4-unsigned
+Artifact ID: 13174610992
+Outer ZIP: 45,373,811 bytes
+Outer ZIP SHA-256: a751cfa4c47b6f695bf2b0c370e2ee2df0642aa29bd693a60f902bcfdc371ade
+Expires: 2026-12-02T19:48:36Z (GitHub 30-day retention).
+GitHub may require you to sign in to download an Actions artifact.
+
+Inside:
+- ReaderEmulator-E4-iphoneos-unsigned.ipa (signing required for iPhone)
+- ReaderEmulator-E4-iphonesimulator-unsigned.zip (macOS simulator)
+- Device/simulator build provenance JSON, bundled licenses and source links
+
+Windows signing/install route:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e1-windows.md
+E4 behavior and remaining phone checks:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e4.md
+Verification:
+https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/emulator-e4-evidence.json
+
+Save normally in Pokemon, then tap Reader. Emulation pauses. Reader uses the last
+completed in-game save; restoring a save state does not refresh it until the next
+real in-game save. Use Game, then Resume, to return to play. Automatic Reader copies
+are read-only. More -> Export cartridge save exports the active game's raw save.
+Reader imports/modified exports remain separate from the active cartridge.
+
+The binary is hosted on GitHub. This Drive file is a download pointer, not an IPA.
+Signing/installation, player saves, game compatibility, lifecycle/offload, app-local
+persistence and iPhone performance/battery tests remain deferred. melonDS is provisional.
+If the artifact expires, rebuild the pinned source revision; do not use a failed build.
