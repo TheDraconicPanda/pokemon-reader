@@ -1,64 +1,82 @@
-# Install the native test build using Windows
+# Install Reader Emulator E4 using Windows
 
-For the current **E4 0.4.0** build, use the [E4 download pointer](emulator-e4-download.txt),
-extract `ReaderEmulator-E4-unsigned` and select
-`ReaderEmulator-E4-iphoneos-unsigned.ipa` in the signing steps below. The app
-is named **Reader Emulator**. E4 includes the integrated Reader, manual states and automatic recovery; its
-[usage and remaining phone checks](emulator-e4.md) supersede the E1 smoke test.
-The older E1-specific instructions below remain historical reference.
+This guide applies to **Reader Emulator 0.4.0 (E4)**. Windows signs/installs the
+unsigned iPhone app; the IPA is not a Windows executable. No Mac or emulator-JIT
+activation is required by this application. Installation on the user's iPhone
+16 Plus/user-reported iOS 26.6.1 is still to be validated.
 
-The E1 package is an **unsigned iPhone app**, not an executable for Windows.
-Windows is used to sign/install it onto your iPhone 16 Plus. The target iOS
-version supplied by the user is 26.6.1; installation on that exact version is
-still to be validated. No Mac, jailbreak or emulator-JIT activation is required
-by the application.
+## Download the iPhone package
 
-## Get the correct file
+1. Open the [verified E4 build](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571).
+   Download the **ReaderEmulator-E4-unsigned** artifact at the bottom of the run.
+   GitHub may require sign-in.
+2. Extract the outer ZIP on Windows. Select
+   **ReaderEmulator-E4-iphoneos-unsigned.ipa** for installation.
+   The `iphonesimulator` ZIP is for macOS development.
+3. The [download pointer](emulator-e4-download.txt) records the source revision,
+   artifact checksum and expiration. If the artifact has expired, rebuild its
+   pinned source revision rather than downloading a failed/unverified build.
 
-Open `DOWNLOAD-E1-0.1.0.txt` in the project's **Emulator** Google Drive folder and
-follow its link to the successful GitHub build. Download the
-`ReaderEmulator-E1-unsigned` artifact. Extract the outer ZIP on Windows. The phone
-package inside is `ReaderEmulator-E1-iphoneos-unsigned.ipa`; the simulator ZIP is
-for macOS development and will not run on an iPhone or Windows.
+The same download instructions are in the project's
+[Emulator Drive folder](https://drive.google.com/drive/folders/1065tfo0qpmwMqhTH12TfORae0rFivN91),
+under **DOWNLOAD-E4-0.4.0.txt**.
 
 ## Sign and install with AltServer
 
-1. Follow AltStore's current [official Windows setup guide](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows)
-   for AltServer and the required Apple Windows software. Connect/unlock the
-   iPhone by USB and complete Apple's computer-trust prompt.
-2. AltServer supports direct IPA installation: hold **Shift** while clicking its
-   Windows system-tray icon, choose **Sideload .ipa…**, select your iPhone and
-   choose `ReaderEmulator-E1-iphoneos-unsigned.ipa`. This option is documented in
-   the [official AltServer release notes](https://faq.altstore.io/release-notes/altserver).
-3. Complete the Apple Account authentication in AltServer itself. Do not send
-   passwords, signing certificates or verification codes to this chat or Drive.
-4. If prompted, trust the developer entry in iPhone Settings → General →
-   VPN & Device Management. Enable Developer Mode under Settings → Privacy &
-   Security if required, following the phone's prompts.
-5. Open **Reader Emulator E1**. Directly sideloaded free-account builds expire
-   after seven days and need reinstallation/refresh through the signing method.
-   Keep the same app identity and export your test saves first. Do not delete
-   the app to refresh it. AltStore Classic is an alternative for managed refresh;
-   see its [official getting-started guide](https://faq.altstore.io/altstore-classic/your-altstore).
+1. Follow AltStore's [official Windows setup guide](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows)
+   to install AltServer and its required Apple Windows software.
+2. Connect and unlock the iPhone by USB. Complete Apple's **Trust This Computer**
+   prompt on the phone.
+3. Hold **Shift** while clicking AltServer's Windows system-tray icon.
+   Choose **Sideload .ipa…**, select your iPhone, and choose
+   **ReaderEmulator-E4-iphoneos-unsigned.ipa**.
+   Direct IPA installation is documented in the
+   [official AltServer release notes](https://faq.altstore.io/release-notes/altserver).
+4. Complete Apple Account authentication in AltServer itself. Do not send
+   passwords, verification codes or signing certificates to this chat or Drive.
+5. If prompted, trust the developer entry under iPhone **Settings → General →
+   VPN & Device Management**. Enable **Developer Mode** under **Settings →
+   Privacy & Security** if required, following the phone's prompts.
+6. Open **Reader Emulator** and confirm the visible version is **0.4.0**.
 
-This is a documented installation route, not a claim that signing has already
-succeeded on your computer or phone. If installation fails, record the exact
-AltServer/iPhone error. Signing/authentication failures and application launch
-failures are different checks; neither is a measured core-performance result.
+Free-account builds normally expire after seven days and need refresh/reinstallation
+through the signing method. Keep the same app identity and export backups first;
+do not delete the app to refresh it. AltStore Classic is an alternative for managed
+refresh; see its [getting-started guide](https://faq.altstore.io/altstore-classic/your-altstore).
 
-## First test: about five minutes
+This is a documented route, not a claim that signing already succeeded on the
+user's computer/phone. If it fails, report the exact AltServer/iPhone error text.
+Signing failures and app launch failures are separate from emulator performance.
 
-1. Tap **Diagnostic**: expect a red top screen and green bottom screen.
-2. Open your uncompressed SoulSilver ROM; import a **copy** of its normal raw
-   512 KB game save with **Game save**. Save states are not Reader input.
-3. Check touch input, buttons, music, walking and a battle at normal speed.
-4. Save normally inside Pokémon, then tap **Export save** to keep progress in
-   Files. This E1 prototype does not yet persist gameplay sessions automatically.
-5. Tap **Report** and save the JSON. This pauses the game. You can put that report
-   into the Emulator Drive folder and tell the assistant to inspect it.
-6. Repeat the smoke test with Platinum before beginning the longer matched
-   [Delta comparison](emulator-e1-benchmark.md).
+## First session: about ten minutes after installation
 
-The first feedback needed is whether installation, launch, the diagnostic and
-both games work. Battery/core acceptance remains pending until the controlled
-comparisons are recorded. E2 and E3 are not part of this E1 test build.
+1. Open **More → Diagnostic**. Expect a red top screen and green bottom screen.
+2. Use **Import ROM** for an uncompressed `.nds`, then **Library** to reopen it.
+   Optionally use **Game save** to import a copy of a raw 512 KiB save.
+   Initial save/Reader support is original English SoulSilver (`IPGE`) and
+   Platinum (`CPUE`). Other regions, hacks and revisions are not certified.
+3. At normal speed, check buttons, touch, audio, walking and one battle.
+   Fast-forward is excluded from v1. Note obvious slowdowns or audio crackling.
+4. Save normally inside Pokémon. Open **Reader**: play should pause and the banner
+   should show the ROM identity and save capture time. Check trainer, party and
+   PC boxes against the game. Reader metadata and supported encounter tools work
+   offline; Safari's optional area screenshots remain online references.
+5. Use **Game**, then **Resume**, to return to play. Use **More → Export cartridge
+   save** to keep a separate raw save backup in Files/share.
+6. Close/reopen the library game and check that progress/recovery is available.
+   **States** provides manual slots and automatic recovery. Restoring a state
+   does not refresh Reader data; the next completed normal in-game save does.
+
+The first feedback needed is whether installation/launch succeeds and whether
+controls, normal-speed play, ordinary saving and Reader work. Exact error messages
+or the relevant screen help identify failures. A short check cannot establish
+battery efficiency or full game compatibility.
+
+After the basic session works, follow [E4's remaining phone checklist](emulator-e4.md)
+for recovery, Files/share, app-local profile persistence, offline startup and
+lifecycle/offload/update checks, then the [matched Delta benchmark](emulator-e1-benchmark.md).
+**Record test** and **More → Performance report** provide the measurement tools;
+reports are exported explicitly, never uploaded automatically.
+
+E1–E4 phone/core acceptance remains open. E5 is the integrated release/device
+acceptance milestone; successful compilation or host tests do not pass it.
