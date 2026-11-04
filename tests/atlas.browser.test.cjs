@@ -17,7 +17,7 @@ test('LeafGreen Reader confirms once, preserves fourteen-box profiles, and shows
     await evaluate(`new Promise((resolve,reject)=>{const r=indexedDB.deleteDatabase('pokemon-reader-adventures');r.onsuccess=()=>resolve(true);r.onerror=()=>reject(r.error);})`);
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
     await command('Page.navigate',{url:baseURL+'/'});
-    await until(()=>evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`),'Reader initialization');
+    await until(()=>evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader initialization');
     await evaluate(`globalThis.leafgreenConfirmations=0;window.confirm=()=>{leafgreenConfirmations++;return true;}`);
     await uploadFixture({valid:true},true,leafgreenFixture(),'English LeafGreen.sav');
     assert.equal(await evaluate('leafgreenConfirmations'),1);
@@ -311,7 +311,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.27.3') && document.querySelector('.eyebrow').textContent.includes('v0.27.3'),
+    version: document.title.includes('v0.27.4') && document.querySelector('.eyebrow').textContent.includes('v0.27.4'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -319,16 +319,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.27\.3<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.27\.4<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.27.3");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.27.4");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -389,7 +389,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
   await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes, fileName);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
@@ -638,7 +638,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -822,7 +822,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.3'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -2911,7 +2911,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.3'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.4'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3135,7 +3135,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.3'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.4'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');
@@ -3205,7 +3205,7 @@ test('Platinum Pokédex preserves native learnsets and game selection, with work
   assert.doesNotMatch(await evaluate(`document.querySelector('#reference-content').textContent`),/Available HGSS|in SoulSilver/);
   await evaluate(`document.querySelector('#reference-close').click()`);
   await until(()=>evaluate(`!document.querySelector('#reference-detail').open`),'Close');
-  await evaluate(`document.querySelector('#species-search').value='396';document.querySelector('#reference-search').requestSubmit();document.querySelector('[data-species-id="396"]').click()`);
+  await evaluate(`document.querySelector('#species-search').value='Starly';document.querySelector('#reference-search').requestSubmit();document.querySelector('[data-species-id="396"]').click()`);
   await until(()=>evaluate(`document.querySelector('#reference-detail').open`),'Starly');
   const href=await evaluate(`[...document.querySelectorAll('.reference-locations a')].find(a=>a.textContent==='Open Route 201 in Atlas').href`);
   assert.match(href,/game=platinum/);
@@ -3459,11 +3459,32 @@ test('Pokédex typeahead ranks names live, retains typing focus and handles clea
   const partial=await type('dra');assert.equal(partial.match,'species-147');assert.equal(partial.next,true);
   await evaluate(`document.querySelector('#next-match').click()`);
   assert.equal(await evaluate(`document.querySelector('.search-match').id`),'species-148');
+  assert.equal((await type('Deoxys')).match,'species-386','name search can reveal an outside-regional species');
   const number=await type('386');assert.equal(number.match,'species-386');assert.equal(number.focus,true);assert.ok(number.y>0);
   assert.equal(await evaluate(`document.querySelector('#reference-scope').value`),'national');
   assert.equal(await evaluate(`document.querySelectorAll('.species-row').length`),493);
   const miss=await type('zzzzzz');assert.equal(miss.match,undefined);assert.equal(miss.y,number.y);assert.equal(miss.next,false);
   const clear=await type('');assert.equal(clear.match,undefined);assert.equal(clear.y,number.y);assert.equal(clear.focus,true);
   assert.equal((await type('Mr. Mime')).match,'species-122');
+ }
+});
+
+
+test('Pokédex number typeahead uses displayed regional and National numbering',async()=>{
+ for(const game of ['soulsilver','platinum']) {
+  await referenceDex('#scope=regional&game='+game);
+  for(const value of ['1','66','066']) {
+   const result=await evaluate(`(() => {const input=document.querySelector('#species-search');input.focus();input.value='${value}';input.dispatchEvent(new Event('input'));const row=document.querySelector('.search-match');return {number:row?.querySelector('.dex-number').textContent,scope:document.querySelector('#reference-scope').value,focus:document.activeElement===input};})()`);
+   assert.deepEqual(result,{number:String(Number(value)).padStart(3,'0'),scope:'regional',focus:true});
+  }
+  await evaluate(`document.querySelector('#species-search').value='493';document.querySelector('#species-search').dispatchEvent(new Event('input'))`);
+  assert.equal(await evaluate(`document.querySelector('.search-match')`),null);
+  assert.equal(await evaluate(`document.querySelector('#reference-scope').value`),'regional');
+  await evaluate(`document.querySelector('#reference-scope').value='national';document.querySelector('#reference-scope').dispatchEvent(new Event('change'))`);
+  for(const [value,id]of [['1',1],['66',66],['493',493]]) {
+   await evaluate(`document.querySelector('#species-search').value='${value}';document.querySelector('#reference-search').requestSubmit()`);
+   assert.equal(await evaluate(`document.querySelector('.search-match').id`),'species-'+id);
+   assert.equal(await evaluate(`document.querySelector('.search-match .dex-number').textContent`),String(id).padStart(3,'0'));
+  }
  }
 });

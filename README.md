@@ -1,5 +1,13 @@
 # Pokémon Reader
 
+## Pokédex number search correction — v0.27.4
+
+Number searches now use the selected Pokédex order: Johto/Sinnoh numbers in
+regional view and National numbers in National view. The highlighted row matches
+the displayed number; out-of-range regional numbers leave the order unchanged.
+Name search still finds species across the full reference. All 310 automated
+checks pass, with zero mandatory audit failures. User validation pending.
+
 ## Pokédex typeahead — v0.27.3
 
 Typing a name or National number now jumps to the best match immediately while

@@ -212,19 +212,22 @@ function revealSpecies(id) {
   return row.querySelector('button');
 }
 function jump(id,focus=true) {
-  if(!document.querySelector(`#species-${id}`)){scope='national';saveFilter.value='all';history.replaceState(null,'',`#scope=national${gameParam()}`);renderList();}
+  if(!document.querySelector(`#species-${id}`)){if(!data().regional.includes(id))scope='national';saveFilter.value='all';history.replaceState(null,'',`#scope=${scope}${gameParam()}`);renderList();}
   const target=revealSpecies(id);
   if(focus)target.focus({preventScroll:true});
-  status.textContent=`${species(id).name} · National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':regionName()} order; surrounding species remain visible.`;
+  const regional=scope==='regional'?`${regionName()} #${String(data().regional.indexOf(id)+1).padStart(3,'0')} · `:'';
+  status.textContent=`${species(id).name} · ${regional}National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':regionName()} order; surrounding species remain visible.`;
 }
 const normalize=s=>s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9♀♂]/g,'');
 function searchSpecies(focus=false) {
   const q=normalize(search.value);
   // Prefer complete names, then prefixes, then matches within a name.
   const ranked=[];
+  const numeric=/^\d+$/.test(q);
+  const numberId=numeric?(scope==='regional'?data().regional[Number(q)-1]:Number(q)):null;
   for(let id=1;q&&id<=493;id++) {
     const name=normalize(species(id).name);
-    const rank=/^\d+$/.test(q)?(id===Number(q)?0:-1):name===q?0:name.startsWith(q)?1:name.includes(q)?2:-1;
+    const rank=numeric?(id===numberId?0:-1):name===q?0:name.startsWith(q)?1:name.includes(q)?2:-1;
     if(rank>=0)ranked.push({id,rank});
   }
   matchIds=ranked.sort((a,b)=>a.rank-b.rank||a.id-b.id).map(m=>m.id);
@@ -232,7 +235,7 @@ function searchSpecies(focus=false) {
   if(matchIds.length)jump(matchIds[0],focus);
   else {
     for(const old of list.querySelectorAll('.search-match'))old.classList.remove('search-match');
-    status.textContent=q?`No matching ${gameName()} species. The list is unchanged.`:'Type a species name or National number to jump to a match.';
+    status.textContent=q?`No matching ${gameName()} species. The list is unchanged.`:'Type a species name or a number in the selected Pokédex order to jump to a match.';
   }
 }
 search.addEventListener('input',event=>{if(!event.isComposing)searchSpecies();});

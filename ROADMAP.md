@@ -1,3 +1,10 @@
+# Pokédex number search correction — v0.27.4
+
+- [x] Match the displayed regional or National number, including leading zeroes.
+- [x] Keep regional order for out-of-range numbers and preserve live search focus.
+- [x] Pass all 310 automated checks and the mandatory Atlas integrity audit.
+- [ ] User validation online.
+
 # Pokédex typeahead — v0.27.3
 
 - [x] Jump while typing, prioritizing exact names and prefixes; preserve search focus and Next matches.
