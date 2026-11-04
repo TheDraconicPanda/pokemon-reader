@@ -1,5 +1,16 @@
 # Pokémon Reader
 
+## Pokédex typeahead — v0.27.3
+
+Typing a name or National number now jumps to the best match immediately while
+keeping the cursor in the search field. Exact names and prefixes take priority
+over matches inside a name. Next cycles through matches; surrounding species
+remain visible. Clearing the search removes the highlight without moving the list.
+
+Validation: all 309 automated checks pass, including browser coverage for both
+Pokédex games and Reader/Planner/Atlas regressions; zero mandatory audit failures.
+Online user validation remains pending.
+
 ## Pokédex TM/HM obtain popovers — v0.27.2
 
 Every TM/HM compatibility row now has an accessible **ⓘ** button opening

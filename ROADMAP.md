@@ -1,3 +1,10 @@
+# Pokédex typeahead — v0.27.3
+
+- [x] Jump while typing, prioritizing exact names and prefixes; preserve search focus and Next matches.
+- [x] Preserve National-number searches, regional fallback and surrounding species.
+- [x] Pass all 309 automated checks and the mandatory Atlas integrity audit.
+- [ ] User validation online.
+
 # Pokédex TM/HM obtain popovers — v0.27.2
 
 - [x] Add accessible per-machine obtain disclosures with Atlas instructions, costs, conditions, sources and location links.

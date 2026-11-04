@@ -211,13 +211,33 @@ function revealSpecies(id) {
   list.scrollTo({top:row.offsetTop,behavior:'instant'});
   return row.querySelector('button');
 }
-function jump(id) {
+function jump(id,focus=true) {
   if(!document.querySelector(`#species-${id}`)){scope='national';saveFilter.value='all';history.replaceState(null,'',`#scope=national${gameParam()}`);renderList();}
-  revealSpecies(id).focus({preventScroll:true});
+  const target=revealSpecies(id);
+  if(focus)target.focus({preventScroll:true});
   status.textContent=`${species(id).name} · National #${String(id).padStart(3,'0')} · match ${matchIndex+1} of ${matchIds.length}. ${scope==='national'?'National':regionName()} order; surrounding species remain visible.`;
 }
 const normalize=s=>s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9♀♂]/g,'');
-document.querySelector('#reference-search').addEventListener('submit',event=>{event.preventDefault();const q=normalize(search.value);matchIds=q?Array.from({length:493},(_,i)=>i+1).filter(id=>/^\d+$/.test(q)?id===Number(q):normalize(species(id).name).includes(q)):[];matchIndex=0;next.hidden=matchIds.length<2;if(matchIds.length)jump(matchIds[0]);else status.textContent=q?`No matching ${gameName()} species. The list is unchanged.`:'Enter a species name or National number.';});
+function searchSpecies(focus=false) {
+  const q=normalize(search.value);
+  // Prefer complete names, then prefixes, then matches within a name.
+  const ranked=[];
+  for(let id=1;q&&id<=493;id++) {
+    const name=normalize(species(id).name);
+    const rank=/^\d+$/.test(q)?(id===Number(q)?0:-1):name===q?0:name.startsWith(q)?1:name.includes(q)?2:-1;
+    if(rank>=0)ranked.push({id,rank});
+  }
+  matchIds=ranked.sort((a,b)=>a.rank-b.rank||a.id-b.id).map(m=>m.id);
+  matchIndex=0;next.hidden=matchIds.length<2;
+  if(matchIds.length)jump(matchIds[0],focus);
+  else {
+    for(const old of list.querySelectorAll('.search-match'))old.classList.remove('search-match');
+    status.textContent=q?`No matching ${gameName()} species. The list is unchanged.`:'Type a species name or National number to jump to a match.';
+  }
+}
+search.addEventListener('input',event=>{if(!event.isComposing)searchSpecies();});
+search.addEventListener('compositionend',()=>searchSpecies());
+document.querySelector('#reference-search').addEventListener('submit',event=>{event.preventDefault();searchSpecies(true);});
 next.addEventListener('click',()=>{matchIndex=(matchIndex+1)%matchIds.length;jump(matchIds[matchIndex]);});
 // Reference selection and persisted save indicators are independently game scoped.
 function selectGame(id) {
