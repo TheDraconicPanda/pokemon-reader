@@ -5,7 +5,7 @@
 - [x] Implement receiving-game trade evolutions, held-item consumption, Everstone/Kadabra, moves/HM protection, friendship, Eggs and Pokédex registration.
 - [x] Enforce party, form/item, game and Korean-language restrictions with actionable explanations.
 - [x] Complete automated release audit: 322/322 checks pass, zero mandatory failures.
-- [ ] Verify publication to the existing Pages site.
+- [x] Publish feature commit `10addbe`; [Pages build/deploy 42704390989](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/42704390989) completed successfully.
 - [ ] User validation with real saves and in-game/emulator roundtrip.
 
 Scope: one SoulSilver plus one Platinum save. Other game pairs require a future

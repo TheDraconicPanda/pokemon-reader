@@ -137,3 +137,14 @@ Atlas integrity failures. The existing independently inspected evolution writer
 inputs remain unchanged. Original-trainer identity is preserved, so the games
 apply outsider experience and obedience normally; no badges or obedience
 exemptions are granted. Publication and real-save acceptance are separate checks.
+
+## Publication
+
+Feature commit `10addbe2e483e3653df52f8465c833c247bb589f` was published to
+`main`. [Pages build and deployment 42704390989](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/42704390989)
+completed successfully on 2026-11-09, including the deploy job.
+The production tool is <https://thedraconicpanda.github.io/pokemon-reader/trade/>.
+Direct live HTTP verification was blocked by the managed runtime proxy (403);
+this is distinct from the verified successful Pages deployment and the local
+production-subpath browser tests. Real-save and in-game/user acceptance remain
+pending.
