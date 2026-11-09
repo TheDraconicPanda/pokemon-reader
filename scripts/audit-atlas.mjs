@@ -168,24 +168,25 @@ export function assessAtlas(input){
 async function fingerprints(){
  const files=[];async function walk(dir){for(const entry of await readdir(path.join(ROOT,dir),{withFileTypes:true})){const f=path.posix.join(dir,entry.name);if(entry.isDirectory()){if(!['bin','obj','__pycache__'].includes(entry.name))await walk(f);}else if(/\.(?:js|mjs|cjs|json|py|css|html|cs|csproj|sav)$/.test(f)&&!f.includes('__pycache__'))files.push(f);}}
  for(const dir of ['js','scripts','tests','css'])await walk(dir);
- for(const f of ['package.json','package-lock.json','index.html','pokedex-earth/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json','docs/platinum-atlas-inventory.json','docs/platinum-encounter-comparison.json','docs/platinum-map-audit.json','docs/platinum-source-decisions.json','docs/schemas/gen4-atlas.schema.json'])files.push(f);
+ for(const f of ['package.json','package-lock.json','index.html','pokedex-earth/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','trade/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json','docs/platinum-atlas-inventory.json','docs/platinum-encounter-comparison.json','docs/platinum-map-audit.json','docs/platinum-source-decisions.json','docs/schemas/gen4-atlas.schema.json'])files.push(f);
  return Object.fromEntries(await Promise.all(files.sort().map(async f=>[f,sha(await readFile(path.join(ROOT,f)))])));
 }
 async function runTests(){
  const testFiles=(await readdir(path.join(ROOT,'tests'))).filter(f=>f.endsWith('.test.cjs')).sort().map(f=>'tests/'+f);
- const args=['--test','--test-reporter=tap',...testFiles];
+ const args=['--test','--test-reporter=tap',...(process.env.ATLAS_TEST_CONCURRENCY?['--test-concurrency='+process.env.ATLAS_TEST_CONCURRENCY]:[]),...testFiles];
  const startedAt=new Date().toISOString();let output='';
+ const timeoutMs=Number(process.env.ATLAS_TEST_TIMEOUT_MS)||300000;
  const result=await new Promise(resolve=>{
   const child=spawn(process.execPath,args,{cwd:ROOT,env:process.env,stdio:['ignore','pipe','pipe']});
   let error=null;child.on('error',e=>{error=e.message;});
   child.stdout.on('data',b=>{output+=b;});child.stderr.on('data',b=>{output+=b;});
-  const timer=setTimeout(()=>{error='Automated checks exceeded five minutes';child.kill('SIGTERM');},300000);
+  const timer=setTimeout(()=>{error=`Automated checks exceeded ${timeoutMs} ms`;child.kill('SIGTERM');},timeoutMs);
   child.on('close',(code,signal)=>{clearTimeout(timer);resolve({code,signal,error});});
  });
  const count=name=>Number([...output.matchAll(new RegExp('^# '+name+' (\\d+)\\s*$','gm'))].at(-1)?.[1]??0);
  const tests=count('tests'),pass=count('pass'),fail=count('fail'),skipped=count('skipped'),cancelled=count('cancelled');
  await mkdir(path.join(ROOT,'work'),{recursive:true});await writeFile(path.join(ROOT,'work/atlas-validation.tap'),output);
- return {command:'node '+args.join(' '),startedAt,completedAt:new Date().toISOString(),status:result.code===0&&tests>0&&pass===tests&&fail===0&&skipped===0&&cancelled===0?'passed':'failed',tests,pass,fail,skipped,cancelled,exitCode:result.code,error:result.error,log:'work/atlas-validation.tap',logSha256:sha(output),testFiles};
+ return {command:'node '+args.join(' '),timeoutMs,browserWaitMs:Number(process.env.BROWSER_TEST_WAIT_MS)||15000,startedAt,completedAt:new Date().toISOString(),status:result.code===0&&tests>0&&pass===tests&&fail===0&&skipped===0&&cancelled===0?'passed':'failed',tests,pass,fail,skipped,cancelled,exitCode:result.code,error:result.error,log:'work/atlas-validation.tap',logSha256:sha(output),testFiles};
 }
 export const stableReport=r=>JSON.stringify(Object.fromEntries(Object.entries(r).filter(([k])=>!['automatedTests','generatedAt'].includes(k))));
 export async function main(args=process.argv.slice(2)){

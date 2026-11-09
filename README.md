@@ -1,5 +1,23 @@
 # Pokémon Reader
 
+## SoulSilver ↔ Platinum Trade — v0.27.5
+
+Open **Trade** in the shared menu to load one save of each game and exchange one
+party Pokémon from each. Both outgoing Pokémon are replaced; eligible trade
+evolutions and required held-item consumption happen on receipt. Review evolution
+move choices, prepare both saves, then download and use **both** outputs. Originals
+and loaded Adventure Profiles remain unchanged. Reload the traded saves in Reader
+to refresh progress. Eggs, native party restrictions, Everstone/Kadabra, foreign
+language boundaries, receiving-game HM protection and Pokédex histories are handled.
+
+Prepare communication-restricted forms/items in-game first. The page explains
+blocked selections. Pokémon/Pokédex changes are simulated; communication records,
+trainer-card counters and special event unlocks are not reproduced. See the
+[guide, native evidence and validation limits](docs/gen4-trade.md). All **322 automated
+checks pass**, with zero mandatory audit failures. Real-save and in-game acceptance
+remain pending.
+
+
 ## Pokédex number search correction — v0.27.4
 
 Number searches now use the selected Pokédex order: Johto/Sinnoh numbers in

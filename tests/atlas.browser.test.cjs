@@ -17,7 +17,7 @@ test('LeafGreen Reader confirms once, preserves fourteen-box profiles, and shows
     await evaluate(`new Promise((resolve,reject)=>{const r=indexedDB.deleteDatabase('pokemon-reader-adventures');r.onsuccess=()=>resolve(true);r.onerror=()=>reject(r.error);})`);
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
     await command('Page.navigate',{url:baseURL+'/'});
-    await until(()=>evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader initialization');
+    await until(()=>evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`),'Reader initialization');
     await evaluate(`globalThis.leafgreenConfirmations=0;window.confirm=()=>{leafgreenConfirmations++;return true;}`);
     await uploadFixture({valid:true},true,leafgreenFixture(),'English LeafGreen.sav');
     assert.equal(await evaluate('leafgreenConfirmations'),1);
@@ -46,6 +46,7 @@ test('LeafGreen Reader confirms once, preserves fourteen-box profiles, and shows
 });
 
 const root = path.resolve(__dirname, "..");
+const browserWaitMs=Number(process.env.BROWSER_TEST_WAIT_MS)||15000;
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let server, browser, profile, socket, baseURL;
 let nextId = 0;
@@ -56,7 +57,7 @@ let apiUnavailable = false;
 let safariMapFixture=null, safariMapFailure=false;
 
 async function until(operation, message) {
-  const deadline = Date.now() + 15000;
+  const deadline = Date.now() + browserWaitMs;
   while (Date.now() < deadline) {
     try {
       const result = await operation();
@@ -77,7 +78,7 @@ function command(method, params = {}) {
     const timer = setTimeout(() => {
       pending.delete(id);
       reject(new Error(`Chrome command timed out: ${method}`));
-    }, 15000);
+    }, browserWaitMs);
     pending.set(id, (message) => {
       clearTimeout(timer);
       if (message.error) reject(new Error(JSON.stringify(message.error)));
@@ -169,7 +170,7 @@ before(async () => {
     if (message.method === "Runtime.exceptionThrown") exceptions.push(message.params.exceptionDetails);
   });
   await command("Runtime.enable");
-}, { timeout: 25000 });
+}, { timeout: Math.max(25000,browserWaitMs*2) });
 
 // Profiles persist across page navigation within a test; tests start independently.
 beforeEach(async () => {
@@ -311,7 +312,7 @@ test("audited sources, Tunnel alias, and the Route 35 shortcut are usable", asyn
 test("encounter sections remain populated and release labels agree", async () => {
   await atlas();
   const result = await evaluate(`({
-    version: document.title.includes('v0.27.4') && document.querySelector('.eyebrow').textContent.includes('v0.27.4'),
+    version: document.title.includes('v0.27.5') && document.querySelector('.eyebrow').textContent.includes('v0.27.5'),
     safari: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Safari Zone').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size,
     route32: new Set(Array.from(Array.from(document.querySelectorAll('.location-card')).find(c => c.querySelector('h2').textContent === 'Route 32').querySelectorAll('.encounter-entry'),r=>r.dataset.encounterIndex)).size
   })`);
@@ -319,16 +320,16 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.27\.4<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.27\.5<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), "Save reader did not initialize");
-  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.27.4");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`), "Save reader did not initialize");
+  assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.27.5");
   assert.deepEqual(exceptions, []);
 });
 
 test("Reader rejects an invalid save without crashing", async () => {
   await command("Page.navigate", { url: `${baseURL}/` });
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), "Reader did not initialize");
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`), "Reader did not initialize");
   await evaluate(`(() => {
     const transfer = new DataTransfer();
     transfer.items.add(new File([new Uint8Array(16)], 'invalid-test.sav'));
@@ -389,7 +390,7 @@ test("Reader dashboard routes, themes, and mobile layout work", async () => {
 async function fixtureReader(data = fixture(), bytes = null, realParser = false, fileName = "ui-fixture.sav") {
   await command('Fetch.enable', {patterns:[...(realParser?[]:[{urlPattern:'*/js/saves/soulsilver.js'}]),{urlPattern:'https://pokeapi.co/*'}]});
   await command('Page.navigate', {url:baseURL + '/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`), 'Reader did not initialize');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`), 'Reader did not initialize');
   await uploadFixture(data, true, bytes, fileName);
 }
 async function uploadFixture(data, separateAdventure = true, bytes = null, fileName = "ui-fixture.sav") {
@@ -638,7 +639,7 @@ test('Details show Generation IV types, nature modifiers, and unavailable PC bat
 
 test('Ribbons replace the old status row and Load Save resets to the welcome screen', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`),'Reader ready');
   assert.equal(await evaluate(`document.querySelector('.header-actions, #dashboard-save-status, #game-value')`),null);
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').firstElementChild.id`),'load-save');
   assert.equal(await evaluate(`document.querySelector('.secondary-nav').lastElementChild.id`),'settings-toggle');
@@ -822,7 +823,7 @@ test('Reader views stay unavailable before loading, after invalid files, and aft
 
 test('Top ribbon links and actions share the same vertical alignment', async () => {
   await command('Page.navigate',{url:baseURL+'/'});
-  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.4'`),'Reader ready');
+  await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.5'`),'Reader ready');
   for (const width of [320,390,768,1440]) {
     await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<800});
     const centers=await evaluate(`Array.from(document.querySelector('.secondary-nav').children,control=>{const rect=control.getBoundingClientRect();return rect.y+rect.height/2;})`);
@@ -1261,7 +1262,7 @@ test('Shared menu keeps themes across tools and region pairs fit phones and desk
         }
         const state=await evaluate(`({theme:document.documentElement.dataset.theme,labels:[...document.querySelector('.secondary-nav').children].map(c=>c.textContent),fit:document.documentElement.scrollWidth<=innerWidth,hash:location.hash})`);
         assert.equal(state.theme,theme);assert.equal(state.fit,true);
-        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas','Pokédex','⚙']);
+        assert.deepEqual(state.labels,['Load Save','Team Planner','Atlas','Pokédex','Trade','⚙']);
         if(tool==='reader')assert.equal(state.hash,'#overview');
         if(process.env.ATLAS_SCREENSHOT_DIR && width!==320){
           await evaluate('scrollTo(0,0)');
@@ -2911,7 +2912,7 @@ test('Safari reads a constructed binary through Reader, restores fields and pres
  const {safariSave}=require('./fixtures/safari/save.cjs');const {bytes}=safariSave();
  await command('Fetch.disable');await command('Fetch.enable',{patterns:[{urlPattern:'https://pokeapi.co/*'}]});
  await command('Page.navigate',{url:baseURL+'/#overview'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.4'`),'Real Reader ready');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.5'`),'Real Reader ready');
  const payload=Buffer.from(bytes).toString('base64');
  await evaluate(`(()=>{const data=Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0));const files=new DataTransfer();files.items.add(new File([data],'constructed-safari.sav'));const input=document.querySelector('#save-file');input.files=files.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`(async()=>{const a=await import('/js/adventures.js');return (await a.getActiveProfile())?.snapshot.safari?.layout?.[0]===11;})()`),'Parsed Safari persisted by Reader');
@@ -3135,7 +3136,7 @@ test('Kanto uses save registrations, National species links and every map choice
 test('Platinum loads PKHeX binary fixtures through shared Reader on phones and desktop and restores an isolated profile',async()=>{
  const raw=await readFile(path.join(root,'tests/fixtures/gen4/platinum/postgame.sav'));
  await command('Fetch.disable');await command('Page.navigate',{url:baseURL+'/'});
- await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.4'`),'Reader initialized');
+ await until(()=>evaluate(`document.querySelector('#app-version')?.textContent==='0.27.5'`),'Reader initialized');
  await evaluate(`document.querySelector('#new-adventure').checked=true;(()=>{const f=new DataTransfer();f.items.add(new File([Uint8Array.from(atob('${raw.toString('base64')}'),c=>c.charCodeAt(0))],'wrong-soulsilver-name.sav'));const input=document.querySelector('#save-file');input.files=f.files;input.dispatchEvent(new Event('change'));})()`);
  await until(()=>evaluate(`document.querySelector('#file-status').classList.contains('success')`),'Platinum read');
  assert.equal(await evaluate(`document.querySelector('#trainer-name-value').textContent`),'Cynthia');
@@ -3487,4 +3488,48 @@ test('Pokédex number typeahead uses displayed regional and National numbering',
    assert.equal(await evaluate(`document.querySelector('.search-match .dex-number').textContent`),String(id).padStart(3,'0'));
   }
  }
+});
+
+test('Trade exchanges real fixture bytes on phones and desktop, validates moves, downloads both saves and clears stale exports',async()=>{
+ await command('Fetch.disable');
+ const {fixture}=require('./fixtures/gen4/trade.cjs');
+ const {ss,pt}=await fixture();
+ for(const width of [320,390,1440]){
+  await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<500});
+  await command('Page.navigate',{url:baseURL+'/pokemon-reader/trade/'});
+  await until(()=>evaluate(`document.documentElement?.dataset.tradeReady==='true'`),'Trade page ready');
+  const upload=async(side,bytes,name)=>{
+   const payload=Buffer.from(bytes).toString('base64');
+   await evaluate(`(()=>{const input=document.querySelector('#file-${side}'),dt=new DataTransfer();dt.items.add(new File([Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0))],${JSON.stringify(name)}));input.files=dt.files;input.dispatchEvent(new Event('change'));})()`);
+  };
+  await upload('a',ss,'SoulSilver.sav');await upload('b',pt,'Platinum.sav');
+  await until(()=>evaluate(`document.querySelectorAll('#party-a input').length===2&&document.querySelectorAll('#party-b input').length===2`), 'Party choices');
+  await evaluate(`document.querySelector('#party-a input').click();document.querySelector('#party-b input').click()`);
+  await until(()=>evaluate(`!document.querySelector('#confirm-trade').disabled`),'Eligible preview');
+  assert.match(await evaluate(`document.querySelector('#trade-preview').textContent`),/Alakazam/);
+  await evaluate(`for(const select of document.querySelectorAll('#trade-preview select'))select.value='skip';document.querySelector('#confirm-trade').click()`);
+  await until(()=>evaluate(`!document.querySelector('#trade-downloads').hidden`),'Both exports ready');
+  const downloads=await evaluate(`Promise.all([...document.querySelectorAll('#download-links a')].map(async link=>({name:link.download,bytes:Array.from(new Uint8Array(await(await fetch(link.href)).arrayBuffer()))})))`);
+  assert.equal(downloads.length,2);
+  const {detectSave}=await import('../js/saves/index.js');
+  for(const download of downloads){assert.match(download.name,/\.traded-[ab]\.sav$/);const loaded=detectSave(Uint8Array.from(download.bytes));assert.equal(loaded.valid,true);assert.equal(loaded.party[0].speciesId,65);}
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`Trade fits ${width}px`);
+  if(process.env.TRADE_SCREENSHOTS){for(const theme of ['light','dark']){await evaluate(`document.documentElement.dataset.theme='${theme}'`);const shot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});await require('node:fs/promises').writeFile(path.join(root,`work/trade-${width}-${theme}.png`),Buffer.from(shot.data,'base64'));}}
+  assert.match(await evaluate(`document.querySelector('.secondary-nav [aria-current=page]').href`),/\/pokemon-reader\/trade\/$/);
+  await upload('b',new Uint8Array(20),'bad.sav');
+  await until(()=>evaluate(`document.querySelector('#status-b').textContent.includes('512 KB')`),'Invalid replacement explained');
+  assert.equal(await evaluate(`document.querySelector('#trade-downloads').hidden&&document.querySelector('#confirm-trade').disabled&&document.querySelectorAll('#download-links a').length===0`),true);
+ }
+ const {vectors}=require('./fixtures/gen4/evolution.cjs');const {patch}=require('./fixtures/gen4/trade.cjs');
+ const multi=await fixture(vectors.find(v=>v.from===95&&!v.blocked));
+ await patch(multi.ss,1,r=>{r[0x8C]=1;[33,106,20,88].forEach((id,i)=>{new DataView(r.buffer).setUint16(0x28+i*2,id,true);r[0x30+i]=1;r[0x34+i]=0;});});
+ for(const [side,bytes]of [['a',multi.ss],['b',multi.pt]]){
+  const payload=Buffer.from(bytes).toString('base64');await evaluate(`(()=>{const input=document.querySelector('#file-${side}'),dt=new DataTransfer();dt.items.add(new File([Uint8Array.from(atob('${payload}'),c=>c.charCodeAt(0))],'moves.sav'));input.files=dt.files;input.dispatchEvent(new Event('change'));})()`);
+ }
+ await until(()=>evaluate(`document.querySelectorAll('#party-a input').length===2&&document.querySelectorAll('#party-b input').length===2`),'Move test parties');
+ await evaluate(`document.querySelector('#party-a input').click();document.querySelector('#party-b input').click()`);
+ await until(()=>evaluate(`!!document.querySelector('#move-b-1')`),'Sequential evolution prompts');
+ await evaluate(`const choice=document.querySelector('#move-b-0');choice.value='0';choice.dispatchEvent(new Event('change'))`);
+ assert.match(await evaluate(`document.querySelector('#move-b-1 option[value="0"]').textContent`),/Thunder Fang/);
+ assert.deepEqual(exceptions,[]);
 });

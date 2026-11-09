@@ -14,7 +14,7 @@
 }
 app-menu { display: block; }
 .secondary-nav {
-  display: grid; grid-template-columns: auto auto auto auto minmax(0, 1fr);
+  display: grid; grid-template-columns: repeat(5, auto) minmax(0, 1fr);
   align-items: center; gap: 8px; margin-bottom: 20px;
 }
 .secondary-nav a, .secondary-nav button, .secondary-nav #theme-toggle {

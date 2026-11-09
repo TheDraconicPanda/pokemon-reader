@@ -1,3 +1,16 @@
+# SoulSilver ↔ Platinum Trade — v0.27.5
+
+- [x] Add the shared-menu Trade page and a two-save, one-for-one party exchange.
+- [x] Replace both outgoing records, preserve original files/containers, validate both outputs before downloads.
+- [x] Implement receiving-game trade evolutions, held-item consumption, Everstone/Kadabra, moves/HM protection, friendship, Eggs and Pokédex registration.
+- [x] Enforce party, form/item, game and Korean-language restrictions with actionable explanations.
+- [x] Complete automated release audit: 322/322 checks pass, zero mandatory failures.
+- [ ] Verify publication to the existing Pages site.
+- [ ] User validation with real saves and in-game/emulator roundtrip.
+
+Scope: one SoulSilver plus one Platinum save. Other game pairs require a future
+explicit enhancement. See [rules, sources and limitations](docs/gen4-trade.md).
+
 # Pokédex number search correction — v0.27.4
 
 - [x] Match the displayed regional or National number, including leading zeroes.

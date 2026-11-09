@@ -1,0 +1,16 @@
+.trade-app { max-width: 1100px; }
+.trade-sides { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-block: 1.5rem; }
+.trade-side { min-width: 0; border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.trade-side label { display: block; margin-block: .75rem; }
+.trade-side input[type=file] { width: 100%; max-width: 100%; }
+.trade-pokemon { display: flex!important; align-items: flex-start; gap: .5rem; padding: .65rem; border: 1px solid var(--border); border-radius: 8px; overflow-wrap: anywhere; }
+.trade-pokemon:has(input:checked) { outline: 2px solid #60a5fa; }
+.trade-pokemon small { display: block; }
+.trade-pokemon input { flex-shrink: 0; margin-top: .3rem; }
+#trade-preview fieldset { margin-block: 1rem; min-width: 0; }
+#trade-preview select { max-width: 100%; }
+#download-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-block: 1rem; }
+#download-links a { display: inline-block; padding: .8rem; border: 1px solid currentColor; border-radius: 8px; }
+.trade-app button { white-space: normal; }
+.trade-app details { margin-top: 1.5rem; }
+@media(max-width:650px) { .trade-sides { grid-template-columns: 1fr; } .trade-app { padding: 1rem; } }

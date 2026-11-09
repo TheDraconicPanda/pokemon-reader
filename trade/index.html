@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trade — v0.27.5 · Pokémon Reader</title>
+<link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/app-shell.css"><link rel="stylesheet" href="../css/trade.css">
+<script src="../js/app-shell.js"></script>
+</head><body><main class="app trade-app">
+<h1>Trade</h1><app-menu tool="trade"></app-menu>
+<p>Exchange party Pokémon between SoulSilver and Platinum. Each outgoing Pokémon is replaced by the incoming Pokémon in its save.</p>
+<p>Put both Pokémon in their parties and save in-game first. Keep another non-Egg Pokémon in each party. Files stay on this device.</p>
+<div class="trade-sides">
+<section class="trade-side" aria-labelledby="title-a"><h2 id="title-a">Save A</h2><label>Load save A <input type="file" id="file-a" accept=".sav,.dsv"></label><p id="status-a" role="status">No save loaded.</p><div id="party-a"></div><label hidden id="date-label-a">Receiving console date (for Eggs) <input id="date-a" type="date" min="2000-01-01" max="2099-12-31"></label></section>
+<section class="trade-side" aria-labelledby="title-b"><h2 id="title-b">Save B</h2><label>Load save B <input type="file" id="file-b" accept=".sav,.dsv"></label><p id="status-b" role="status">No save loaded.</p><div id="party-b"></div><label hidden id="date-label-b">Receiving console date (for Eggs) <input id="date-b" type="date" min="2000-01-01" max="2099-12-31"></label></section>
+</div>
+<section aria-labelledby="preview-title"><h2 id="preview-title">Trade preview</h2><p id="trade-status" role="status">Load one save of each game and choose a Pokémon on each side.</p><div id="trade-preview"></div><button id="confirm-trade" type="button" disabled>Confirm trade and prepare both saves</button></section>
+<section id="trade-downloads" hidden aria-labelledby="download-title"><h2 id="download-title">Both saves are ready</h2><p>Download and use <strong>both</strong> updated saves to complete the exchange. Keep your originals as backups. Reload the traded saves for another trade.</p><div id="download-links"></div></section>
+<details><summary>Trade rules and coverage</summary><p>This page follows local Generation IV party trading. Normal trade evolutions happen on receipt; evolution items must already be held and are consumed. Everstone blocks evolution except Kadabra. Friendship resets to 70 for non-Eggs. Eggs retain hatch progress and record the receiving console date; they do not register in the Pokédex yet.</p><p>Spiky-eared Pichu cannot enter the communication room. Remove Griseous Orbs and restore party Rotom, Giratina and Shaymin to base forms in-game before loading. Other supported forms and attached Mail travel with their Pokémon; Ball Capsules are detached. This tool does not create items or check how you originally obtained Pokémon.</p><p>Pokémon and Pokédex changes are simulated; communication logs, trainer-card trade counters and event unlocks are not reproduced. <a href="../docs/gen4-trade.md">Rules, evidence and validation</a>.</p></details>
+</main><script type="module" src="../js/trade.js"></script></body></html>
