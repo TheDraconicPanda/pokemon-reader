@@ -8,6 +8,10 @@ import {createServer} from '../scripts/serve.mjs';
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 test('real Chromium: WASM worker, phone controls, raw import/export, fenced durable saves, quota faults, offline reboot and private-file isolation',async()=>{
   const root=resolve(import.meta.dirname,'../..'),work=resolve(root,'work/b1/browser-'+Date.now());await mkdir(work,{recursive:true});
+  // Linux Unix-domain socket paths are limited to 108 bytes. Chromium adds a
+  // temporary directory and SingletonSocket below TMPDIR; use a short repo-local
+  // parent rather than the much longer per-run profile/evidence directory.
+  const temp=resolve(root,'work/tmp');await mkdir(temp,{recursive:true});
   const wasm=await factory({wasmBinary:await readFile(resolve(root,'browser-emulator/vendor/b1.wasm')),print:()=>{},printErr:()=>{}});
   assert.equal(wasm._b1_diagnostic(0,0,0),1);
   const ptr=wasm._b1_diagnostic_rom(),length=wasm._b1_diagnostic_rom_size();
@@ -15,12 +19,16 @@ test('real Chromium: WASM worker, phone controls, raw import/export, fenced dura
   const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
   const base=`http://127.0.0.1:${server.address().port}`,url=base+'/browser-emulator/';
   const browser=spawn(process.env.CHROMIUM_PATH||(process.platform==='win32'?'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe':'google-chrome'),
-    ['--headless','--no-first-run','--no-default-browser-check','--no-sandbox','--disable-extensions','--autoplay-policy=no-user-gesture-required','--disable-features=BackForwardCache',
-      '--remote-debugging-port=0',`--user-data-dir=${work}/profile`,`--disk-cache-dir=${work}/cache`,'about:blank'],{stdio:'ignore',env:{...process.env,TEMP:work,TMP:work,TMPDIR:work}});
+    ['--headless','--no-first-run','--no-default-browser-check','--no-sandbox','--disable-extensions','--disable-gpu','--disable-dev-shm-usage','--autoplay-policy=no-user-gesture-required','--disable-features=BackForwardCache',
+      '--remote-debugging-port=0',`--user-data-dir=${work}/profile`,`--disk-cache-dir=${work}/cache`,'about:blank'],{stdio:['ignore','ignore','pipe'],env:{...process.env,TEMP:temp,TMP:temp,TMPDIR:temp}});
+  let browserError='',browserSpawnError=null;
+  browser.stderr.on('data',data=>{browserError=(browserError+data).slice(-4000);});
+  browser.on('error',error=>{browserSpawnError=error;});
   let socket;let id=0;const pending=new Map(),exceptions=[];
   async function until(fn,message){const until=Date.now()+30000;while(Date.now()<until){try{const x=await fn();if(x)return x;}catch(error){if(!/context|target|ENOENT/i.test(error.message))throw error;}await pause(50);}throw Error(message);}
   try{
-    const port=await until(async()=>{try{return String(await readFile(resolve(work,'profile/DevToolsActivePort'))).split('\n')[0];}catch(error){if(['ENOENT','EBUSY'].includes(error.code))return null;throw error;}},'Chrome startup');
+    const port=await until(async()=>{if(browserSpawnError)throw browserSpawnError;if(browser.exitCode!==null)throw Error('Chrome exited: '+browserError);
+      try{return String(await readFile(resolve(work,'profile/DevToolsActivePort'))).split('\n')[0];}catch(error){if(['ENOENT','EBUSY'].includes(error.code))return null;throw error;}},'Chrome startup');
     const tabs=await(await fetch(`http://127.0.0.1:${port}/json/list`)).json();
     socket=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise(r=>socket.addEventListener('open',r,{once:true}));
     socket.onmessage=({data})=>{const m=JSON.parse(data);if(m.id){pending.get(m.id)?.(m);pending.delete(m.id);}if(m.method==='Runtime.exceptionThrown')exceptions.push(m.params.exceptionDetails);};
