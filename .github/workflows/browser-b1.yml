@@ -1,0 +1,31 @@
+name: Browser B1 verification
+on:
+  push:
+    branches: [Emulator]
+    paths: ['browser-emulator/**', '.github/workflows/browser-b1.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  b1:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify shipped WASM, parsers and offline assets in a real browser
+        env:
+          CHROMIUM_PATH: google-chrome
+        run: node --test browser-emulator/tests/*.test.mjs
+      - name: Package only explicit public assets
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';import path from 'node:path';let m=JSON.parse(fs.readFileSync('browser-emulator/offline-assets.json'));for(let f of [...m.files.filter(f=>f!=='./'),'sw.js','offline-assets.json','source.zip']){let out=path.join('work/b1-public/browser-emulator',f);fs.mkdirSync(path.dirname(out),{recursive:true});fs.copyFileSync(path.join('browser-emulator',f),out);}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Reader-Browser-B1-public-assets
+          path: work/b1-public
+          if-no-files-found: error

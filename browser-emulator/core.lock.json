@@ -1,0 +1,15 @@
+{
+  "prototypeVersion": "0.1.0",
+  "name": "melonDS",
+  "version": "1.1",
+  "revision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+  "repository": "https://github.com/melonDS-emu/melonDS.git",
+  "license": "GPL-3.0-or-later",
+  "emscripten": "4.0.10",
+  "emsdkRevision": "62a853cd3b3134398ce85cde8bb5cbb2ef0194cb",
+  "jit": false,
+  "pthreads": false,
+  "simd": false,
+  "renderer": "single-threaded software, native resolution",
+  "status": "B1 provisional; phone performance and battery acceptance pending"
+}

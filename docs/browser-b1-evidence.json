@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "milestone": "B1",
+  "prototypeVersion": "0.1.0",
+  "branch": "Emulator",
+  "baseline": "721f5b1",
+  "status": "engineering checks pass; source delivered on Emulator; Pages activation and iPhone acceptance pending",
+  "accepted": false,
+  "core": {
+    "name": "melonDS",
+    "version": "1.1",
+    "revision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+    "emscripten": "4.0.10",
+    "jit": false,
+    "pthreads": false,
+    "simd": false,
+    "renderer": "single-threaded software in dedicated web worker",
+    "binaryHashes": "browser-emulator/vendor/build.json"
+  },
+  "automatedChecks": {
+    "B1": {
+      "passed": 7,
+      "failed": 0,
+      "command": "node --test browser-emulator/tests/*.test.mjs",
+      "coverage": [
+        "actual WASM original ARM execution, red/green screens, key/touch mirrors, DS clock and PCM production",
+        "actual retail and IR cartridge SPI writes, raw import/export/reload, independent existing Reader decoding for synthetic Platinum and SoulSilver saves",
+        "120 Hz host pacing and slow-host emulated-time deficit",
+        "serialized snapshot revisions, detached bytes, quota-failure retention and retry",
+        "actual AudioWorklet queue output, underruns, overflow, paused silence and 44.1 kHz resampling",
+        "WASM hashes, offline inventory and exact normalized parser-source closure",
+        "real Chromium local .nds input, mobile buttons, raw save import/download, durable storage fences and checksum fallback, offline reload with retained ROM/save, landscape gameplay fit, background pause and private-path rejection"
+      ]
+    },
+    "existingReader": {
+      "passed": 306,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 134902.7498,
+      "environment": "Windows, repository-local Node 22.16.0, installed Chrome",
+      "command": "node --test tests/*.test.cjs",
+      "note": "Initial 302/306 exposed Windows CRLF conversion of source/evidence files. Restored canonical HEAD bytes only; affected 33 checks and final full 306 pass. Root .gitattributes prevents future conversion."
+    }
+  },
+  "data": {"commercialROMs": 0, "playerSaves": 0, "phoneTests": 0, "syntheticGames": ["Platinum", "SoulSilver"]},
+  "delivery": {
+    "validatedCodeCommit": "f45f8b830a070ec38288535cdfb3abf7347a8e67",
+    "branchPublished": true,
+    "publicationAuthorization": "2026-11-13: user explicitly requested publication on GitHub; default to GitHub for web apps and discuss alternatives only when required capabilities are unavailable.",
+    "publicationHistory": "Initial PC Git credentials failed and an intermediate connector transfer was rejected. The user subsequently authorized GitHub publication. No Cloudflare tunnel was started.",
+    "local": "node browser-emulator/scripts/serve.mjs",
+    "phoneRoute": "GitHub Pages /pokemon-reader/browser-emulator/ once Pages includes the B1 directory; source publication alone does not activate this URL",
+    "phoneRouteRuntimeVerified": false,
+    "pagesStatus": "not activated for B1; user will handle Pages afterward",
+    "cloudflare": "not started; unused helper retained, not the chosen hosting route",
+    "existingPagesChanged": false,
+    "nativeImplementationChanged": false,
+    "ci": ".github/workflows/browser-b1.yml verifies shipped assets and packages allowlisted public files only",
+    "sourceArchive": "browser-emulator/source.zip"
+  },
+  "nativeUserReports": {
+    "device": "iPhone 16 Plus",
+    "ios": "26.6.1 (user reported)",
+    "game": "Platinum only",
+    "working": ["installation/launch", "diagnostic", "basic gameplay/controls/audio and initial Reader", "normal-save relaunch persistence", "manual states", "automatic recovery"],
+    "manualStatePause": "expected pause; Resume restores play, not a confirmed crash",
+    "stillPending": ["Reader after old-state restore then normal saving", "SoulSilver", "measured performance/heat/battery", "comprehensive offline/persistence/lifecycle/migration"]
+  },
+  "remaining": [
+    "Activate GitHub Pages for the B1 directory while preserving the current Reader site; verify deployed HTTPS assets and scoped offline installation",
+    "Physical iPhone Safari/Home Screen installation and offline cold startup",
+    "Player-ROM gameplay and normal-save Files/Reader round trips in both games",
+    "Sustained speed/audio, heat and matched measured battery comparisons",
+    "Real iOS storage pressure/eviction, interruption and termination behavior"
+  ]
+}

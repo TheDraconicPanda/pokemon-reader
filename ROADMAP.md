@@ -1,4 +1,22 @@
-# Native iPhone emulator v1 — separate implementation track
+# Browser B1 — finite feasibility milestone
+
+- [x] Implement a separate source-built melonDS WASM prototype: local `.nds`,
+  both screens/touch, phone controls/audio, normal-speed pacing, raw saves,
+  offline app cache and diagnostics. Preserve native 0.4.0 and the public Reader.
+- [x] Original ARM, synthetic Platinum/SoulSilver cartridge/Reader round trips,
+  browser storage/fault/offline checks; see [B1 evidence](docs/browser-b1-evidence.json).
+- [ ] Validate the real HTTPS setup on iPhone 16 Plus, both games, offline
+  persistence, sustained speed/audio, heat and matched battery budget.
+- [ ] Accept or stop browser development from measured phone results. Full
+  Reader port, states/recovery and further optimization need a new milestone.
+
+See the [Windows/iPhone runbook and matched protocol](docs/browser-b1.md).
+No Apple fees, signing, Developer Mode, Android port or fast-forward is added.
+GitHub Pages is the chosen hosting route; publication to `Emulator` and Pages
+activation are separate. The existing site is preserved; no Cloudflare tunnel
+was started. Browser device acceptance is pending.
+
+# Native iPhone emulator v1 — historical implementation track
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
 permissions, dependencies, completion criteria and device acceptance. Request one

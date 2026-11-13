@@ -1,5 +1,21 @@
 # Pokémon Reader
 
+## Browser B1 — feasibility prototype 0.1.0
+
+The `Emulator` branch now includes a runnable [browser DS prototype](browser-emulator/)
+with a source-built pinned melonDS WASM core, phone controls/audio, offline Home
+Screen startup, raw cartridge saves and timing/storage diagnostics. Run
+`node browser-emulator/scripts/serve.mjs` on this Windows PC; see the
+[Windows build, iPhone HTTPS route and matched game/battery protocol](docs/browser-b1.md).
+The existing Pages site and native 0.4.0 remain unchanged. iPhone browser/game,
+heat and battery acceptance are **pending**; desktop checks do not establish viability.
+
+User-reported native Platinum testing confirms basic play, normal-save persistence,
+manual states and automatic recovery. Saving a manual state leaves play paused;
+Resume works. SoulSilver, old-state → normal-save Reader behavior, sustained energy
+and comprehensive lifecycle/migration checks remain outstanding. Historical E4
+notes below record delivery-time evidence, not expanded device acceptance.
+
 ## Native iPhone emulator — E4 test build
 
 The `Emulator` branch contains native [Reader Emulator 0.4.0](ios/README.md):

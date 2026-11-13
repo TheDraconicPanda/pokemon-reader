@@ -23,6 +23,13 @@ Prefer correctness and completeness over visual polish. Do not guess at game dat
 
 ## Git workflow: validate, publish, then user test
 
+- User preference (2026-11-13): default to Git/GitHub and GitHub Pages for our web
+  apps. Use the existing repository and hosting when suitable. If GitHub cannot
+  meet a required capability, explain the limitation and discuss alternatives
+  before introducing another hosting service or tunnel. Do not default to
+  Cloudflare or another external preview service. Publishing source to a branch
+  and activating a Pages deployment are separate steps; report each accurately.
+
 - Never implement directly on `main`. Inspect status and preserve existing changes before editing.
 - Use a dedicated feature branch in the existing isolated checkout; do not create a worktree unless explicitly requested.
 - Complete the agreed milestone, inspect the diff, and run meaningful automated checks before publication. Check the changed feature and relevant regressions in Reader, Team Planner, and Atlas. Report missing real-save validation accurately.

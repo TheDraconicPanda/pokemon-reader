@@ -3,6 +3,12 @@ __pycache__/
 
 /work/
 
+# Personal cartridge inputs never belong in source or hosting artifacts.
+*.nds
+*.dsv
+*.sav
+!tests/fixtures/**/*.sav
+
 # Optional independent PKHeX reference harness build output
 scripts/pkhex-reference/bin/
 scripts/pkhex-reference/obj/
