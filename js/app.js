@@ -15,7 +15,7 @@ import { repairSoulSilverAbility } from './saves/soulsilver-ability-repair.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.27.0";
+const APP_VERSION = "0.27.1";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");

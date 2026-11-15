@@ -31,7 +31,7 @@
 - (void)tools {
     UIAlertController *menu=[UIAlertController alertControllerWithTitle:@"Reader tools" message:@"Emulation stays paused. Adventure data is stored in this app." preferredStyle:UIAlertControllerStyleActionSheet];
     BOOL platinum=[_configuration[@"game"] isEqual:@"platinum"];
-    NSArray *entries=@[@[@"Reader",@"/"],@[@"Team Planner",@"/team-planner/"],@[@"Pokédex",platinum?@"/pokedex/#game=platinum":@"/pokedex/"],@[@"Atlas",platinum?@"/pokedex-earth/#atlas&game=platinum":@"/pokedex-earth/#atlas"],platinum?@[@"Great Marsh",@"/pokedex-earth/#great-marsh&game=platinum"]:@[@"Safari Zone",@"/safari-zone/"]];
+    NSArray *entries=@[@[@"Reader",@"/"],@[@"Team Planner",@"/team-planner/"],@[@"Pokédex",platinum?@"/pokedex/#game=platinum":@"/pokedex/"],@[@"Atlas",platinum?@"/atlas/#atlas&game=platinum":@"/atlas/#atlas"],platinum?@[@"Great Marsh",@"/atlas/#great-marsh&game=platinum"]:@[@"Safari Zone",@"/safari-zone/"]];
     for(NSArray *entry in entries)[menu addAction:[UIAlertAction actionWithTitle:entry[0] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self->_web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:entry[1] relativeToURL:self->_origin]]];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Reload page" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self->_web reload];}]];
     [menu addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];

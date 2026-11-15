@@ -57,7 +57,7 @@
     }
     if([type isEqual:@"verified"]){
         if([self.game isEqual:@"soulsilver"])[self loadGame:@"platinum"];
-        else {self.stage=3;[self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.origin stringByAppendingString:@"pokedex-earth/#great-marsh&game=platinum"]]]];}return;
+        else {self.stage=3;[self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.origin stringByAppendingString:@"atlas/#great-marsh&game=platinum"]]]];}return;
     }
     if([type isEqual:@"tool-ready"]&&self.stage==3){
         [self run:@"void (async()=>{for(let i=0;i<150;i++){if(document.querySelector('#great-marsh-status')?.textContent.includes('Saved daily selection')){webkit.messageHandlers.reader.postMessage({type:'done'});return;}await new Promise(r=>setTimeout(r,100));}throw Error('Great Marsh did not use the app-local profile');})().catch(e=>webkit.messageHandlers.reader.postMessage({type:'fatal',message:String(e)}))"];return;

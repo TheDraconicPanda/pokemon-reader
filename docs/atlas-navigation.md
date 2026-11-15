@@ -81,7 +81,7 @@ Reader checks do not validate real-save parsing or gameplay data.
 
 Publication targets the existing `main` deployment branch. Live deployment and
 user acceptance of this layout remain unconfirmed. Test v0.25.39 at
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/ : check New Bark's
+https://thedraconicpanda.github.io/pokemon-reader/atlas/ : check New Bark's
 missing-data message, Route 32's two blocks, Safari Zone's long encounter section,
 and compass navigation on mobile. Map artwork and encounter filters remain deferred.
 

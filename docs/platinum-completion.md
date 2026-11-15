@@ -160,9 +160,9 @@ All pushes are normal, preserving the urgent SoulSilver update `1db68a9`.
 
 Published application: https://thedraconicpanda.github.io/pokemon-reader/
 
-- [Sinnoh](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#sinnoh)
+- [Sinnoh](https://thedraconicpanda.github.io/pokemon-reader/atlas/#sinnoh)
 - [Platinum Pokédex](https://thedraconicpanda.github.io/pokemon-reader/pokedex/#scope=regional&game=platinum)
-- [Great Marsh](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#great-marsh&game=platinum)
+- [Great Marsh](https://thedraconicpanda.github.io/pokemon-reader/atlas/#great-marsh&game=platinum)
 - [Workflow evidence](https://github.com/TheDraconicPanda/pokemon-reader/actions)
 
 The final publication result provides the exact release commit and successful

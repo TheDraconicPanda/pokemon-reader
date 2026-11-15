@@ -72,7 +72,7 @@ progression. Complete battle moves/AI/facility simulation and a census of every
 NPC dialogue are outside the agreed Johto reference milestone. No new real-save
 or in-game playthrough validation is claimed.
 
-For user validation, open the existing [Atlas](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/),
+For user validation, open the existing [Atlas](https://thedraconicpanda.github.io/pokemon-reader/atlas/),
 browse Johto, try Surf-focused EV Training, and follow dungeon links in the
 full-size viewer. Report corrections as they appear; a new hosting/review flow is
 not required.

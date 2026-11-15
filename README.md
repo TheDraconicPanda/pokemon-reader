@@ -14,7 +14,7 @@ faults and real WebKit Reader/profile/tool checks pass, alongside
 Actual signing, player-save/game compatibility, lifecycle/offload and iPhone
 performance/battery acceptance remain deferred; melonDS is provisional. Reader
 and encounter tools work offline; Safari's optional area screenshots remain
-online references. The web Reader stays **0.27.0**. E5 is the integrated release
+online references. The web Reader is **0.27.1**. E5 is the integrated release
 and device-acceptance milestone, on a new request. Emulator fast-forward, live
 data and desktop/browser emulation remain outside v1. See the [finite plan](docs/iphone-emulator-v1-plan.md).
 
@@ -140,7 +140,7 @@ All 238 automated checks pass. The report records 276 directed geographic links,
 exclusions. Full fresh row-by-row comparison against both secondary websites,
 real-save outcomes and in-game/user acceptance remain distinct and documented.
 
-Use the [existing Atlas](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#kanto).
+Use the [existing Atlas](https://thedraconicpanda.github.io/pokemon-reader/atlas/#kanto).
 
 ## Safari v1 final audit — v0.25.79
 
@@ -526,7 +526,7 @@ npm ci
 npm run dev
 ```
 
-Open the address printed by the server, then visit `pokedex-earth/` for the Atlas.
+Open the address printed by the server, then visit `atlas/` for the Atlas.
 No build step is needed. Save files are selected in the browser; do not commit personal saves.
 
 Run `npm test` for the Reader, Atlas, and Planner browser regression checks. Tests require Chromium on
@@ -806,7 +806,7 @@ Surfing appears first; the default shows only tables with 100% clean EV encounte
 Results include Pokémon, encounter percentages, levels, base EV yields, unwanted
 encounters and access notes. Open in Atlas goes directly to the location; returning
 keeps your finder controls. Direct link:
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#ev-training
+https://thedraconicpanda.github.io/pokemon-reader/atlas/#ev-training
 
 The finder uses the existing audited encounters and pinned Generation IV yields.
 Percentages describe encountered Pokémon, not the chance of an encounter per step.

@@ -8,7 +8,7 @@ def build(destination):
         raise ValueError('Bundle output must stay in repository work/.')
     if destination.exists():shutil.rmtree(destination)
     destination.mkdir(parents=True)
-    for name in ['index.html','README.md','js','css','assets','team-planner','pokedex','pokedex-earth','safari-zone','docs']:
+    for name in ['index.html','README.md','js','css','assets','team-planner','pokedex','atlas','safari-zone','docs']:
         source=ROOT/name
         if source.is_dir():shutil.copytree(source,destination/name)
         else:shutil.copyfile(source,destination/name)
