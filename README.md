@@ -1,5 +1,16 @@
 # Pokémon Reader
 
+## Browser Emulator — B1 prototype 0.1.0
+
+Open **Emulator** in the shared menu to run the local browser DS prototype. Its
+app, worker, styles, manifest, offline cache and vendorized parser copy live under
+[`browser-emulator/`](browser-emulator/); it does not load or replace the working
+Reader, Planner, Atlas, Pokédex or Trade logic. ROMs and saves stay in browser
+storage. iPhone performance and battery acceptance remain pending; see the
+[B1 guide and evidence](docs/browser-b1.md).
+
+The shared Reader suite is v0.27.6.
+
 ## SoulSilver ↔ Platinum Trade — v0.27.5
 
 Open **Trade** in the shared menu to load one save of each game and exchange one
@@ -1045,3 +1056,4 @@ reciprocal pairs. Nine scripted holes in Ice Path and Victory Road use separate
 Bell Tower's same-floor pads identify both sides and work in the full-size viewer.
 The existing artwork, encounter data and map catalogue remain unchanged.
 See [coverage, controls and verification](docs/dungeon-map-links.md).
+

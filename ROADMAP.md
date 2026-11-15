@@ -1,3 +1,11 @@
+# Browser Emulator — B1 prototype
+
+- [x] Keep the emulator in its own `browser-emulator/` directory with locally scoped assets, vendorized Reader parser dependencies and offline service worker.
+- [x] Link the app from the shared menu; preserve Reader, Planner, Atlas, Pokédex and Trade source logic.
+- [x] Run the existing seven B1 checks and publish the app on `main`.
+- [ ] Validate sustained iPhone performance, heat and battery use.
+- [ ] User acceptance after Pages deployment.
+
 # SoulSilver ↔ Platinum Trade — v0.27.5
 
 - [x] Add the shared-menu Trade page and a two-save, one-for-one party exchange.
@@ -902,3 +910,4 @@ extension, Safari and new Kanto locations remain separate.
 See [scope and source evidence](docs/dungeon-map-links.md). This completes the
 agreed dungeon-connection implementation; real-game playthrough validation remains
 separate. Safari and Kanto retain their separate development tracks.
+

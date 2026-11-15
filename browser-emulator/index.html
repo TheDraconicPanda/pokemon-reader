@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#132821"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Reader B1"><title>Reader Browser · B1 0.1.0</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.png"><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><div><span class="eyebrow">POKÉMON READER / FEASIBILITY LAB</span><h1>Browser B1 <small>0.1.0</small></h1></div><span id="run-state" class="pill">Starting</span></header>
+<p class="intro">Local DS emulation. Phone performance and battery acceptance pending.</p>
+<section class="toolbar" aria-label="Game setup">
+<label class="button">Choose .nds<input id="rom" type="file" accept=".nds" hidden></label>
+<button id="reopen" disabled>Reopen local ROM</button><button id="diagnostic" disabled>Diagnostic</button>
+<button id="resume" disabled>Resume + audio</button><button id="pause" disabled>Pause</button>
+</section>
+<p id="status" role="status">Preparing the offline core…</p>
+<section class="console" aria-label="Nintendo DS screens">
+<div class="screens"><figure><canvas id="top" width="256" height="192" aria-label="Top DS screen"></canvas><figcaption>TOP</figcaption></figure>
+<figure><canvas id="bottom" width="256" height="192" aria-label="Touchscreen" tabindex="0"></canvas><figcaption>TOUCHSCREEN</figcaption></figure></div>
+<div class="controls" aria-label="Game buttons">
+<div class="shoulders"><button data-key="9">L</button><button data-key="8">R</button></div>
+<div class="hands"><div class="dpad"><button data-key="6" class="up" aria-label="Up">▲</button><button data-key="5" class="left" aria-label="Left">◀</button><button data-key="4" class="right" aria-label="Right">▶</button><button data-key="7" class="down" aria-label="Down">▼</button></div>
+<div class="face"><button data-key="10" class="up">X</button><button data-key="11" class="left">Y</button><button data-key="0" class="right">A</button><button data-key="1" class="down">B</button></div></div>
+<div class="system"><button data-key="2">Select</button><button data-key="3">Start</button></div></div>
+</section>
+<section class="panel"><h2>Cartridge save</h2><p id="save-status" role="status">No cartridge selected.</p>
+<div class="toolbar"><label class="button">Import raw .sav<input id="save-file" type="file" accept=".sav" hidden disabled></label><button id="export" disabled>Export raw .sav</button><button id="persist" disabled>Retry persistence</button></div>
+<p class="hint">Save normally in-game and wait for “Persisted”. This confirms a browser snapshot, not completion of Pokémon’s saving sequence. Export backups regularly. Import restarts the cartridge; save states are not portable.</p></section>
+<details class="panel" open><summary>Performance & browser diagnostics</summary><dl id="metrics"></dl><p id="capabilities"></p><button id="report">Export diagnostic report</button><p class="hint">Speed uses emulated clock time / active wall time. Presentation rate counts canvas uploads, independently of game animation. Resume starts a new measurement window.</p></details>
+<details class="panel"><summary>Offline setup & test instructions</summary><p id="offline" role="status">Checking offline installation…</p><button id="storage">Request persistent storage</button><p id="storage-status"></p>
+<ol><li>Open this HTTPS page in Safari. Wait for “Offline app ready”.</li><li>Share → Add to Home Screen → Open as Web App, then launch that icon.</li><li>Choose your own .nds locally. It is retained in this app’s IndexedDB, never uploaded.</li><li>Enable airplane mode, close and reopen the icon, and use Reopen local ROM.</li><li>Test Platinum and SoulSilver separately using the <a href="https://github.com/TheDraconicPanda/pokemon-reader/blob/Emulator/docs/browser-b1.md">B1 protocol</a>.</li></ol>
+<p>Removing the icon, clearing website data or storage eviction can remove ROMs and saves. Safari and Home Screen storage may differ. Keep exported saves in Files. Backgrounding pauses; unfinished writes can be lost if iOS terminates the page.</p></details>
+<footer>melonDS 1.1 · software / no JIT / no fast-forward · <a href="THIRD-PARTY.txt">Source & licenses</a> · <a href="https://thedraconicpanda.github.io/pokemon-reader/">Existing Reader</a></footer>
+</main><script type="module" src="app.mjs"></script></body></html>

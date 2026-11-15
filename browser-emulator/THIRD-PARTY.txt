@@ -1,0 +1,20 @@
+Reader Browser B1 0.1.0 is an experimental GPL-3.0-or-later frontend and adapter.
+No Nintendo ROM, BIOS, firmware or personal save is distributed.
+
+melonDS 1.1, GPL-3.0-or-later, Copyright melonDS contributors.
+Exact source: https://github.com/melonDS-emu/melonDS/tree/b86390e4428bf38ce4c1ce0e9ca446d6d25955e8
+License: vendor/melonDS-LICENSE.txt
+Build inputs, compiler pin and instructions: core.lock.json and scripts/build-core.mjs
+Adapter/frontend source: https://github.com/TheDraconicPanda/pokemon-reader/tree/Emulator/browser-emulator
+The deployed build's corresponding source bundle is source.zip (including core,
+upstream component notices, diagnostic, Reader parser dependencies and build scripts).
+Sources are provided without charge under their included licenses.
+
+melonDS includes its FreeBIOS fallback/generated DS firmware and third-party
+components including Teakra, blip_buf, FatFs, tiny-AES, xxHash and SHA-1.
+Their original license notices are retained in source.zip. See upstream LICENSE
+and the notices in those source files. No Delta or Pilas-melonDS binary is used.
+
+The existing Reader and its parser source retain the repository's ISC license.
+The original red/green ARM diagnostic is reused from ios/Tests/TestROM.h under
+GPL-3.0-or-later. Native app and Reader releases retain their existing versions.
