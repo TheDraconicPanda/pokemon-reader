@@ -218,7 +218,7 @@ tests on Windows. For an older CRLF checkout, run
 files whose sole difference from HEAD is CRLF conversion, preserving actual
 edits. Reader, Planner, Atlas, Pokédex, Trade and native emulator logic remain
 unchanged; the shared menu/version metadata now links and identifies the browser
-prototype as Reader 0.27.6.
+prototype as Reader 0.27.7.
 
 See `docs/browser-b1-evidence.json` for checks actually completed and delivery
 status. Desktop Chromium, synthetic saves, compilation and PCM production do

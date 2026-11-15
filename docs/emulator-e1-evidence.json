@@ -1,0 +1,57 @@
+{
+  "milestone": "E1",
+  "nativeAppVersion": "0.1.0",
+  "websiteVersion": "0.27.0",
+  "branch": "Emulator",
+  "sourceCommit": "76122eb5d78df969fdc9c0f554c741630eb7f6c5",
+  "status": "prototype built; signing and device acceptance pending",
+  "accepted": false,
+  "core": {
+    "name": "melonDS",
+    "version": "1.1",
+    "revision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+    "jit": false,
+    "renderer": "threaded software with native-resolution Metal presentation",
+    "decision": "candidate, not yet accepted against Delta"
+  },
+  "automated": {
+    "localCoreIntegration": "passed on Linux/GCC 14.2, including actual ARM execution, video colors, keys/touch, audio production, both target cartridge SRAM round trips, failed import preservation and concurrent audio queue",
+    "hostedCoreIntegration": "passed",
+    "iPhoneReleaseCompilation": "passed, unsigned arm64",
+    "simulatorReleaseCompilation": "passed, not a simulator runtime test",
+    "existingWebsiteRegressions": {"tests": 306, "passed": 306, "failed": 0, "skipped": 0},
+    "workflowRun": 40533051459,
+    "workflowURL": "https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459"
+  },
+  "artifact": {
+    "id": 12748015156,
+    "name": "ReaderEmulator-E1-unsigned",
+    "bytes": 1398502,
+    "sha256": "ca7edd81895540be961211867eb042fc02925a17325e9d58a99a48202e06cde2",
+    "digestSource": "GitHub Actions artifact metadata, outer ZIP",
+    "iPhonePackage": "ReaderEmulator-E1-iphoneos-unsigned.ipa",
+    "signed": false,
+    "retentionDays": 30
+  },
+  "device": {
+    "model": "iPhone 16 Plus",
+    "iOSUserReported": "26.6.1",
+    "userHasMac": false,
+    "userHasWindowsComputer": true,
+    "installationRoute": "documented AltServer Windows direct IPA sideloading, not yet validated",
+    "signing": "pending",
+    "actualLaunch": "pending",
+    "SoulSilverCompatibility": "pending",
+    "PlatinumCompatibility": "pending",
+    "performanceComparedToDelta": "not measured",
+    "batteryAndThermalsComparedToDelta": "not measured"
+  },
+  "limits": [
+    "No proprietary ROM, personal save, BIOS dump or signing credentials are committed.",
+    "The original diagnostic ROM and synthetic SRAM tests do not establish commercial-game compatibility.",
+    "The iPhone app has not been launched or performance-tested by the assistant.",
+    "E1 sessions require explicit game-save export; automatic durability and recovery belong to E2 and E3.",
+    "The benchmark records coarse battery levels, not direct energy measurements.",
+    "E2-E5 have not begun."
+  ]
+}

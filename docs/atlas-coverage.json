@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 134829)
-Total output lines: 18399
-
 {
   "schemaVersion": 1,
   "gameId": "soulsilver",
@@ -6524,7 +6521,5685 @@ Total output lines: 18399
       {
         "from": "Route 42",
         "to": "Mahogany Town",
-        "…34829 tokens truncated…     "reason": null,
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "alternative"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Surf crosses the lakes. Walking through Mt. Mortar is an alternative; Surf is not a universal entry requirement."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 42",
+        "to": "Mt. Mortar",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "optional"
+          },
+          {
+            "id": "strength",
+            "usage": "optional"
+          },
+          {
+            "id": "waterfall",
+            "usage": "optional"
+          },
+          {
+            "id": "rock-climb",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "These HMs open different deeper/side areas; the entrance and the ordinary passage do not require every HM. Flash is not needed in HGSS."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 43",
+        "to": "Mahogany Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 43",
+        "to": "Lake of Rage",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "The grass path avoids Team Rocket’s $1,000 gate toll during the incident. Surf opens a side approach and Cut is used in the outer maze; neither is a universal requirement for visiting the lakeshore."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 44",
+        "to": "Mahogany Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 44",
+        "to": "Ice Path",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Strength is needed for the through-route boulder puzzle. Pick up HM07 Waterfall when the NPC asks; teaching or using Waterfall is not needed to exit."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 45",
+        "to": "Blackthorn City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "The road descends south through one-way ledges. Returning uphill from its lower sections is not possible."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 45",
+        "to": "Dark Cave",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "This is the northern cave entrance. Ledges prevent the reverse south-to-north cave shortcut."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 45",
+        "to": "Route 46",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Southbound ledges permit descent; they do not provide an unrestricted climb back north."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 46",
+        "to": "Route 29",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "This enters the lower section only. Ledges block an uphill shortcut to Route 45/Blackthorn."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 46",
+        "to": "Route 45",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Southbound ledges permit descent; they do not provide an unrestricted climb back north."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 46",
+        "to": "Dark Cave",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The connection is in upper Route 46, unreachable uphill from Route 29. Strength is used on the Route 46 cave passage."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 47",
+        "to": "Cliff Edge Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The main corridor opens after Amphy is healed with the SecretPotion."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 47",
+        "to": "Cliff Cave",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Cliff Cave changes elevation and reaches Route 47’s lower shoreline. The tall-grass side area separately needs Surf and Waterfall."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 47",
+        "to": "Embedded Tower",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "rock-climb",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "For Groudon, obtain SoulSilver’s Red Orb after defeating Red and receiving Oak’s Kanto starter. Rayquaza separately requires the Jade Orb."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 47",
+        "to": "Route 48",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 48",
+        "to": "Route 47",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 48",
+        "to": "Safari Zone Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cliff Edge Gate",
+        "to": "Cianwood City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cliff Edge Gate",
+        "to": "Route 47",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The main corridor opens after Amphy is healed with the SecretPotion."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cliff Cave",
+        "to": "Route 47",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Embedded Tower",
+        "to": "Route 47",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "rock-climb",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "For Groudon, obtain SoulSilver’s Red Orb after defeating Red and receiving Oak’s Kanto starter. Rayquaza separately requires the Jade Orb."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Dark Cave",
+        "to": "Route 31",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "This exit is on the Route 31/46 southern side; moving between cave sections can require Surf and Strength."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Dark Cave",
+        "to": "Route 45",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Only the northern/Route 45 cave section reaches this exit; it cannot be reached uphill from the Route 31/46 side."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Dark Cave",
+        "to": "Route 46",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The connection is in upper Route 46, unreachable uphill from Route 29. Strength is used on the Route 46 cave passage."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Sprout Tower",
+        "to": "Violet City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ruins of Alph",
+        "to": "Route 32",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ruins of Alph",
+        "to": "Route 36",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ruins of Alph",
+        "to": "Union Cave",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "through"
+          },
+          {
+            "id": "strength",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The western chamber approaches use Union Cave’s lower passage; one southwestern puzzle chamber also needs Strength."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Union Cave",
+        "to": "Route 32",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Union Cave",
+        "to": "Route 33",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Union Cave",
+        "to": "Ruins of Alph",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "through"
+          },
+          {
+            "id": "strength",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The western chamber approaches use Union Cave’s lower passage; one southwestern puzzle chamber also needs Strength."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Slowpoke Well",
+        "to": "Azalea Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ilex Forest",
+        "to": "Azalea Town",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "cut",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Cut is for the forest through-path; it is not required just to step into the eastern entrance."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ilex Forest",
+        "to": "Route 34",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "cut",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Cut and the Hive Badge open the forest’s main through-path."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "National Park",
+        "to": "Route 35",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "National Park",
+        "to": "Route 36",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "The Sudowoodo junction is a separate SquirtBottle story gate; entering the western Route 36 approach is not gated by it."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "National Park",
+        "to": "Pokéathlon Dome",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Defeat Whitney to open this area."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Burned Tower",
+        "to": "Ecruteak City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Bell Tower",
+        "to": "Bellchime Trail",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Mortar",
+        "to": "Route 42",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Whirl Islands",
+        "to": "Route 41",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "whirlpool",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Flash helps visibility but is not an HM entry requirement. The northeast island leads toward Lugia; its chamber requires the Silver Wing/Tidal Bell story."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Lake of Rage",
+        "to": "Route 43",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ice Path",
+        "to": "Blackthorn City",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The through-route uses Strength and requires collecting HM07; no field use of Waterfall is required."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Ice Path",
+        "to": "Route 44",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Strength is needed for the through-route boulder puzzle. Pick up HM07 Waterfall when the NPC asks; teaching or using Waterfall is not needed to exit."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Dragon's Den",
+        "to": "Blackthorn City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Return from the shrine through the same cave/water approach; its Rising Badge quiz unlocks field Waterfall."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Safari Zone Gate",
+        "to": "Route 48",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Safari Zone Gate",
+        "to": "Safari Zone",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": true
+      },
+      {
+        "from": "Pokéathlon Dome",
+        "to": "Route 35",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokéathlon Dome",
+        "to": "National Park",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Goldenrod Department Store",
+        "to": "Goldenrod City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Goldenrod Department Store",
+        "to": "Goldenrod Tunnel",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Basement keys, switches and the Rocket Director rescue progression gate the warehouse connection."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Goldenrod Radio Tower",
+        "to": "Goldenrod City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Olivine Lighthouse",
+        "to": "Olivine City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokémon Day Care",
+        "to": "Route 34",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "S.S. Aqua",
+        "to": "Olivine City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "After the first voyage, return sailings from Vermilion are Wednesday/Sunday. The connected Vermilion destination is available in this Atlas."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "S.S. Aqua",
+        "to": "Vermilion City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Initial Olivine-to-Vermilion story voyage; later Olivine departures are Monday and Friday. An S.S. Ticket is required."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Victory Road",
+        "to": "Pokémon League Reception Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Victory Road",
+        "to": "Indigo Plateau",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Strength is needed on the cave through-route, not in the League lobby."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Indigo Plateau",
+        "to": "Victory Road",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Strength is needed on the cave through-route, not in the League lobby."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Silver",
+        "to": "Route 28",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 26",
+        "to": "Route 27",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "waterfall",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The League through-route traverses Tohjo Falls; optional whirlpool islands are separate."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 26",
+        "to": "Pokémon League Reception Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "The building is reachable from Route 26; the north guard checks eight Johto Badges before Victory Road."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 27",
+        "to": "New Bark Town",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 27",
+        "to": "Route 26",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "waterfall",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "The League through-route traverses Tohjo Falls; optional whirlpool islands are separate."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 27",
+        "to": "Tohjo Falls",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "through"
+          },
+          {
+            "id": "waterfall",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Surf reaches the cave approach; Waterfall is needed to pass through the falls, not merely to visit an entrance."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 28",
+        "to": "Pokémon League Reception Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 28",
+        "to": "Mt. Silver",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "rock-climb",
+            "usage": "optional"
+          },
+          {
+            "id": "surf",
+            "usage": "optional"
+          },
+          {
+            "id": "waterfall",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "This enters the exterior. Rock Climb is needed for the summit/Red route; Surf and Waterfall open separate water branches. The gate to Route 28 already requires Oak’s authorization."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Tohjo Falls",
+        "to": "Route 27",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "through"
+          },
+          {
+            "id": "waterfall",
+            "usage": "through"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Surf reaches the cave approach; Waterfall is needed to pass through the falls, not merely to visit an entrance."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokémon League Reception Gate",
+        "to": "Route 26",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokémon League Reception Gate",
+        "to": "Route 28",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "All 16 Badges and Professor Oak’s Mt. Silver authorization open the westward passage."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokémon League Reception Gate",
+        "to": "Victory Road",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "strength",
+            "usage": "through"
+          }
+        ],
+        "conditions": [
+          "All eight Johto Badges are checked by the north guard."
+        ],
+        "notes": [
+          "Strength applies to traversing Victory Road beyond the entrance."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pokémon League Reception Gate",
+        "to": "Route 22",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Bellchime Trail",
+        "to": "Ecruteak City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Bellchime Trail",
+        "to": "Bell Tower",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "SoulSilver’s Rainbow Wing, obtained in Pewter City, is required to ascend the tower; no HeartGold Clear Bell is required."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Goldenrod Tunnel",
+        "to": "Goldenrod City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Goldenrod Tunnel",
+        "to": "Goldenrod Department Store",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Basement keys, switches and the Rocket Director rescue progression gate the warehouse connection."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Team Rocket HQ",
+        "to": "Mahogany Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Frontier Access",
+        "to": "Route 40",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Frontier Access",
+        "to": "Battle Frontier",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Post-Hall-of-Fame area; each facility has separate entry/battle rules."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Battle Frontier",
+        "to": "Frontier Access",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "MooMoo Farm",
+        "to": "Route 39",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Magnet Train Station",
+        "to": "Goldenrod City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Magnet Train Station",
+        "to": "Saffron Magnet Train Station",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Safari Zone",
+        "to": "Safari Zone Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": true
+      },
+      {
+        "from": "Route 1",
+        "to": "Pallet Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 1",
+        "to": "Viridian City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 2",
+        "to": "Viridian City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 2",
+        "to": "Pewter City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 2",
+        "to": "Viridian Forest",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 2",
+        "to": "Diglett’s Cave",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 3",
+        "to": "Pewter City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 3",
+        "to": "Mt. Moon",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 4",
+        "to": "Mt. Moon",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 4",
+        "to": "Cerulean City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 5",
+        "to": "Cerulean City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 5",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 5",
+        "to": "Underground Path",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The Underground Path reopens after power is restored."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 6",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 6",
+        "to": "Vermilion City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 6",
+        "to": "Underground Path",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Restore power to reopen the Underground Path."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 7",
+        "to": "Celadon City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 7",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 8",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 8",
+        "to": "Lavender Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 9",
+        "to": "Cerulean City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 9",
+        "to": "Route 10",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 10",
+        "to": "Route 9",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 10",
+        "to": "Lavender Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "South Route 10: travel from the northern section requires passing through Rock Tunnel."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 10",
+        "to": "Rock Tunnel",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 10",
+        "to": "Power Plant",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 11",
+        "to": "Vermilion City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 11",
+        "to": "Route 12",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 11",
+        "to": "Diglett’s Cave",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "rock-climb",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [
+          "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 12",
+        "to": "Route 11",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 12",
+        "to": "Lavender Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 12",
+        "to": "Route 13",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 13",
+        "to": "Route 12",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 13",
+        "to": "Route 14",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 14",
+        "to": "Route 13",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 14",
+        "to": "Route 15",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 15",
+        "to": "Route 14",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 15",
+        "to": "Fuchsia City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 16",
+        "to": "Celadon City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 16",
+        "to": "Route 17",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 17",
+        "to": "Route 16",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 17",
+        "to": "Route 18",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 18",
+        "to": "Route 17",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 18",
+        "to": "Fuchsia City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 19",
+        "to": "Fuchsia City",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [
+          "The southern construction barrier opens after approaching from Route 20 and earning Blaine’s Volcano Badge."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 19",
+        "to": "Route 20",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 20",
+        "to": "Route 19",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 20",
+        "to": "Cinnabar Island",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 20",
+        "to": "Seafoam Islands",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "strength",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Blaine’s Gym is reached upstairs; Articuno is on B4F."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 21",
+        "to": "Cinnabar Island",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 21",
+        "to": "Pallet Town",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 22",
+        "to": "Viridian City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 22",
+        "to": "Pokémon League Reception Gate",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The eastern Reception Gate guard moves after the first visit to Viridian City in HGSS."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 24",
+        "to": "Cerulean City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 24",
+        "to": "Route 25",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Route 25",
+        "to": "Route 24",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pallet Town",
+        "to": "Route 1",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pallet Town",
+        "to": "Route 21",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Viridian City",
+        "to": "Route 1",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Viridian City",
+        "to": "Route 2",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Viridian City",
+        "to": "Route 22",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Viridian City",
+        "to": "Trainer House",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pewter City",
+        "to": "Route 2",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pewter City",
+        "to": "Route 3",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pewter City",
+        "to": "Pewter Museum of Science",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean City",
+        "to": "Route 4",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean City",
+        "to": "Route 24",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean City",
+        "to": "Route 9",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean City",
+        "to": "Route 5",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean City",
+        "to": "Cerulean Cave",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [
+          "All sixteen Badges are required to enter Cerulean Cave."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Lavender Town",
+        "to": "Route 10",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "South Route 10: travel from the northern section requires passing through Rock Tunnel."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Lavender Town",
+        "to": "Route 8",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Lavender Town",
+        "to": "Route 12",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Lavender Town",
+        "to": "Kanto Radio Tower",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Vermilion City",
+        "to": "Route 6",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Vermilion City",
+        "to": "Route 11",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Vermilion City",
+        "to": "S.S. Aqua",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "S.S. Ticket and scheduled sailing: Vermilion to Olivine on Wednesday and Sunday; first Kanto arrival follows the initial Olivine voyage."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon City",
+        "to": "Route 7",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon City",
+        "to": "Route 16",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon City",
+        "to": "Celadon Department Store",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon City",
+        "to": "Celadon Game Corner",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Fuchsia City",
+        "to": "Route 15",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Fuchsia City",
+        "to": "Route 18",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "A Bicycle is required for Cycling Road; Cut opens the northern Route 16 detour."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Fuchsia City",
+        "to": "Route 19",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [
+          "The southern construction barrier opens after approaching from Route 20 and earning Blaine’s Volcano Badge."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Fuchsia City",
+        "to": "Pal Park",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cinnabar Island",
+        "to": "Route 20",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cinnabar Island",
+        "to": "Route 21",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Route 5",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Route 6",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Route 7",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Route 8",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Saffron Magnet Train Station",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Fighting Dojo",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron City",
+        "to": "Silph Co.",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Diglett’s Cave",
+        "to": "Route 11",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "rock-climb",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [
+          "Restore power, receive the EXPN Card in Lavender, then play the Poké Flute channel beside Snorlax on Route 11."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Diglett’s Cave",
+        "to": "Route 2",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Moon",
+        "to": "Route 3",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Moon",
+        "to": "Route 4",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Moon",
+        "to": "Mt. Moon Square",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Rock Tunnel",
+        "to": "Route 10",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Flash improves visibility in Rock Tunnel; it is not a passage requirement."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Seafoam Islands",
+        "to": "Route 20",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          },
+          {
+            "id": "strength",
+            "usage": "optional"
+          }
+        ],
+        "conditions": [],
+        "notes": [
+          "Blaine’s Gym is reached upstairs; Articuno is on B4F."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Cerulean Cave",
+        "to": "Cerulean City",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [
+          "All sixteen Badges are required to enter Cerulean Cave."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Viridian Forest",
+        "to": "Route 2",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pal Park",
+        "to": "Fuchsia City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Power Plant",
+        "to": "Route 10",
+        "status": "valid",
+        "hms": [
+          {
+            "id": "surf",
+            "usage": "passage"
+          }
+        ],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Mt. Moon Square",
+        "to": "Mt. Moon",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Underground Path",
+        "to": "Route 5",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "The Underground Path reopens after power is restored."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Underground Path",
+        "to": "Route 6",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Restore power to reopen the Underground Path."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Kanto Radio Tower",
+        "to": "Lavender Town",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron Magnet Train Station",
+        "to": "Magnet Train Station",
+        "status": "valid",
+        "hms": [],
+        "conditions": [
+          "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+        ],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Saffron Magnet Train Station",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [
+          "Train travel requires restored Power Plant electricity and Copycat’s Pass; entering the station does not."
+        ],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Fighting Dojo",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Silph Co.",
+        "to": "Saffron City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon Department Store",
+        "to": "Celadon City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Celadon Game Corner",
+        "to": "Celadon City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Trainer House",
+        "to": "Viridian City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      },
+      {
+        "from": "Pewter Museum of Science",
+        "to": "Pewter City",
+        "status": "valid",
+        "hms": [],
+        "conditions": [],
+        "notes": [],
+        "dynamicSafariEntrance": false
+      }
+    ],
+    "floorConnections": [
+      {
+        "location": "Cliff Cave",
+        "id": "A",
+        "label": "Upper ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 86,
+            "y": 82
+          },
+          {
+            "mapId": "2f",
+            "x": 87,
+            "y": 85
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Cliff Cave",
+        "id": "B",
+        "label": "Lower ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 151,
+            "y": 98
+          },
+          {
+            "mapId": "b1f",
+            "x": 103,
+            "y": 69
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Dark Cave",
+        "id": "A",
+        "label": "Connecting passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "route-31-route-46-side",
+            "x": 456,
+            "y": 108
+          },
+          {
+            "mapId": "route-45-side",
+            "x": 135,
+            "y": 770
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Sprout Tower",
+        "id": "A",
+        "label": "Central ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 112,
+            "y": 145
+          },
+          {
+            "mapId": "2f",
+            "x": 128,
+            "y": 145
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Sprout Tower",
+        "id": "B",
+        "label": "Northeast ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 336,
+            "y": 72
+          },
+          {
+            "mapId": "2f",
+            "x": 336,
+            "y": 82
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Sprout Tower",
+        "id": "C",
+        "label": "West ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 48,
+            "y": 160
+          },
+          {
+            "mapId": "2f",
+            "x": 48,
+            "y": 170
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Sprout Tower",
+        "id": "D",
+        "label": "Top floor ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 192,
+            "y": 280
+          },
+          {
+            "mapId": "3f",
+            "x": 192,
+            "y": 308
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "A",
+        "label": "Northwest ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 70,
+            "y": 88
+          },
+          {
+            "mapId": "b1f",
+            "x": 503,
+            "y": 575
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "B",
+        "label": "Southwest ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 134,
+            "y": 912
+          },
+          {
+            "mapId": "b1f",
+            "x": 70,
+            "y": 757
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "C",
+        "label": "Lapras chamber passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 471,
+            "y": 721
+          },
+          {
+            "mapId": "b2f",
+            "x": 70,
+            "y": 89
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "D",
+        "label": "North passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 70,
+            "y": 71
+          },
+          {
+            "mapId": "cave-plan-union-side-passages",
+            "x": 684,
+            "y": 444
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "E",
+        "label": "Side passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 70,
+            "y": 185
+          },
+          {
+            "mapId": "cave-plan-union-side-passages",
+            "x": 252,
+            "y": 732
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "F",
+        "label": "Eastern Ruins alcove",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-plan-union-side-passages",
+            "x": 516,
+            "y": 156
+          },
+          {
+            "mapId": "cave-plan-union-ruins-exits",
+            "x": 684,
+            "y": 156
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Union Cave",
+        "id": "G",
+        "label": "Western Ruins alcove",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-plan-union-side-passages",
+            "x": 84,
+            "y": 540
+          },
+          {
+            "mapId": "cave-plan-union-ruins-exits",
+            "x": 156,
+            "y": 156
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Slowpoke Well",
+        "id": "A",
+        "label": "Entrance passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "entrance",
+            "x": 70,
+            "y": 192
+          },
+          {
+            "mapId": "b1f",
+            "x": 464,
+            "y": 402
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Slowpoke Well",
+        "id": "B",
+        "label": "Lower ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 224,
+            "y": 314
+          },
+          {
+            "mapId": "b2f",
+            "x": 252,
+            "y": 282
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Burned Tower",
+        "id": "A",
+        "label": "Basement ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 288,
+            "y": 176
+          },
+          {
+            "mapId": "b1f",
+            "x": 296,
+            "y": 160
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "A",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 96,
+            "y": 72
+          },
+          {
+            "mapId": "2f",
+            "x": 96,
+            "y": 90
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "B",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 192,
+            "y": 280
+          },
+          {
+            "mapId": "3f",
+            "x": 192,
+            "y": 308
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "C",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 336,
+            "y": 70
+          },
+          {
+            "mapId": "4f",
+            "x": 336,
+            "y": 92
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "D",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "4f",
+            "x": 48,
+            "y": 70
+          },
+          {
+            "mapId": "5f",
+            "x": 48,
+            "y": 90
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "E",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "4f",
+            "x": 48,
+            "y": 280
+          },
+          {
+            "mapId": "5f",
+            "x": 48,
+            "y": 308
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "F",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "4f",
+            "x": 336,
+            "y": 280
+          },
+          {
+            "mapId": "5f",
+            "x": 336,
+            "y": 308
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "G",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "5f",
+            "x": 160,
+            "y": 280
+          },
+          {
+            "mapId": "6f",
+            "x": 160,
+            "y": 308
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "H",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "6f",
+            "x": 48,
+            "y": 205
+          },
+          {
+            "mapId": "7f",
+            "x": 48,
+            "y": 223
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "I",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "7f",
+            "x": 192,
+            "y": 308
+          },
+          {
+            "mapId": "8f",
+            "x": 64,
+            "y": 147
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "J",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "7f",
+            "x": 144,
+            "y": 184
+          },
+          {
+            "mapId": "9f",
+            "x": 336,
+            "y": 185
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "K",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "7f",
+            "x": 240,
+            "y": 184
+          },
+          {
+            "mapId": "7f",
+            "x": 96,
+            "y": 112
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "L",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "8f",
+            "x": 64,
+            "y": 244
+          },
+          {
+            "mapId": "9f",
+            "x": 272,
+            "y": 85
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "M",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "8f",
+            "x": 208,
+            "y": 110
+          },
+          {
+            "mapId": "9f",
+            "x": 240,
+            "y": 185
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "N",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "8f",
+            "x": 128,
+            "y": 220
+          },
+          {
+            "mapId": "9f",
+            "x": 176,
+            "y": 307
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "O",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "8f",
+            "x": 320,
+            "y": 207
+          },
+          {
+            "mapId": "9f",
+            "x": 48,
+            "y": 147
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "P",
+        "label": "Teleport pad",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "8f",
+            "x": 336,
+            "y": 293
+          },
+          {
+            "mapId": "9f",
+            "x": 112,
+            "y": 283
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "Q",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "9f",
+            "x": 144,
+            "y": 195
+          },
+          {
+            "mapId": "10f",
+            "x": 128,
+            "y": 200
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Bell Tower",
+        "id": "R",
+        "label": "Stairs",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "roof",
+            "x": 224,
+            "y": 360
+          },
+          {
+            "mapId": "10f",
+            "x": 192,
+            "y": 280
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "A",
+        "label": "West lower passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 488,
+            "y": 520
+          },
+          {
+            "mapId": "1f-back",
+            "x": 312,
+            "y": 1040
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "B",
+        "label": "Central lower passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 840,
+            "y": 520
+          },
+          {
+            "mapId": "1f-back",
+            "x": 664,
+            "y": 1040
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "C",
+        "label": "East lower passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 1240,
+            "y": 478
+          },
+          {
+            "mapId": "1f-back",
+            "x": 1064,
+            "y": 1000
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "D",
+        "label": "West raised ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 359,
+            "y": 212
+          },
+          {
+            "mapId": "1f-back",
+            "x": 184,
+            "y": 748
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "E",
+        "label": "East raised ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 1048,
+            "y": 224
+          },
+          {
+            "mapId": "1f-back",
+            "x": 872,
+            "y": 760
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "F",
+        "label": "Above the waterfall",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 664,
+            "y": 72
+          },
+          {
+            "mapId": "2f",
+            "x": 408,
+            "y": 635
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "G",
+        "label": "Central basement ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-entrance",
+            "x": 664,
+            "y": 686
+          },
+          {
+            "mapId": "b1f",
+            "x": 488,
+            "y": 813
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "H",
+        "label": "Back cave basement ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-back",
+            "x": 312,
+            "y": 459
+          },
+          {
+            "mapId": "b1f",
+            "x": 312,
+            "y": 63
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Mortar",
+        "id": "I",
+        "label": "Back cave upper ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-back",
+            "x": 200,
+            "y": 124
+          },
+          {
+            "mapId": "2f",
+            "x": 120,
+            "y": 151
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "A",
+        "label": "NW ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-nw",
+            "x": 70,
+            "y": 72
+          },
+          {
+            "mapId": "b1f",
+            "x": 168,
+            "y": 110
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "B",
+        "label": "NE · north ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-ne",
+            "x": 375,
+            "y": 71
+          },
+          {
+            "mapId": "b1f",
+            "x": 968,
+            "y": 74
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "C",
+        "label": "NE · south ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-ne",
+            "x": 295,
+            "y": 223
+          },
+          {
+            "mapId": "b1f",
+            "x": 824,
+            "y": 182
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "D",
+        "label": "SW · west ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-sw",
+            "x": 70,
+            "y": 86
+          },
+          {
+            "mapId": "b1f",
+            "x": 264,
+            "y": 650
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "E",
+        "label": "SW · east ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-sw",
+            "x": 406,
+            "y": 86
+          },
+          {
+            "mapId": "b1f",
+            "x": 536,
+            "y": 650
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "F",
+        "label": "SE ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f-se",
+            "x": 134,
+            "y": 112
+          },
+          {
+            "mapId": "b1f",
+            "x": 856,
+            "y": 600
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "G",
+        "label": "B1F southwest ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 295,
+            "y": 595
+          },
+          {
+            "mapId": "b2f",
+            "x": 144,
+            "y": 235
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "H",
+        "label": "B1F central ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 664,
+            "y": 519
+          },
+          {
+            "mapId": "b2f",
+            "x": 224,
+            "y": 65
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "I",
+        "label": "Upper side chamber",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b2f",
+            "x": 208,
+            "y": 315
+          },
+          {
+            "mapId": "b3f",
+            "x": 120,
+            "y": 180
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Whirl Islands",
+        "id": "J",
+        "label": "Lugia chamber entrance",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b2f",
+            "x": 208,
+            "y": 650
+          },
+          {
+            "mapId": "lugia-chamber",
+            "x": 272,
+            "y": 600
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "A",
+        "label": "North 1F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 816,
+            "y": 106
+          },
+          {
+            "mapId": "b1f",
+            "x": 120,
+            "y": 258
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "B",
+        "label": "South 1F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 816,
+            "y": 266
+          },
+          {
+            "mapId": "b1f",
+            "x": 120,
+            "y": 520
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "C",
+        "label": "Boulder puzzle ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 424,
+            "y": 115
+          },
+          {
+            "mapId": "b2f",
+            "x": 408,
+            "y": 155
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "D",
+        "label": "East B1F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 456,
+            "y": 511
+          },
+          {
+            "mapId": "b2f",
+            "x": 680,
+            "y": 294
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "E",
+        "label": "West B3F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b2f",
+            "x": 248,
+            "y": 248
+          },
+          {
+            "mapId": "b3f",
+            "x": 104,
+            "y": 136
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "F",
+        "label": "East B3F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "b2f",
+            "x": 792,
+            "y": 99
+          },
+          {
+            "mapId": "b3f",
+            "x": 408,
+            "y": 146
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "D1",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 198,
+            "y": 139
+          },
+          {
+            "mapId": "b2f",
+            "x": 184,
+            "y": 164
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "D2",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 182,
+            "y": 239
+          },
+          {
+            "mapId": "b2f",
+            "x": 152,
+            "y": 274
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "D3",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 312,
+            "y": 103
+          },
+          {
+            "mapId": "b2f",
+            "x": 312,
+            "y": 138
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Ice Path",
+        "id": "D4",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "b1f",
+            "x": 330,
+            "y": 252
+          },
+          {
+            "mapId": "b2f",
+            "x": 328,
+            "y": 298
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Dragon's Den",
+        "id": "A",
+        "label": "Entrance ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-plan-dragons-den-entrance",
+            "x": 260,
+            "y": 180
+          },
+          {
+            "mapId": "overview",
+            "x": 464,
+            "y": 90
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Dragon's Den",
+        "id": "B",
+        "label": "Dragon Shrine entrance",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "overview",
+            "x": 464,
+            "y": 687
+          },
+          {
+            "mapId": "plan-dragons-den-shrine",
+            "x": 200,
+            "y": 540
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "A",
+        "label": "1F ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "1f",
+            "x": 126,
+            "y": 103
+          },
+          {
+            "mapId": "2f",
+            "x": 148,
+            "y": 283
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "B",
+        "label": "South-central ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 468,
+            "y": 418
+          },
+          {
+            "mapId": "3f",
+            "x": 416,
+            "y": 492
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "C",
+        "label": "Southeast ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 852,
+            "y": 336
+          },
+          {
+            "mapId": "3f",
+            "x": 800,
+            "y": 420
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D",
+        "label": "Northeast ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 932,
+            "y": 125
+          },
+          {
+            "mapId": "3f",
+            "x": 880,
+            "y": 210
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "E",
+        "label": "Northwest ladder",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "2f",
+            "x": 148,
+            "y": 76
+          },
+          {
+            "mapId": "3f",
+            "x": 96,
+            "y": 171
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D1",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 896,
+            "y": 455
+          },
+          {
+            "mapId": "2f",
+            "x": 948,
+            "y": 410
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D2",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 432,
+            "y": 396
+          },
+          {
+            "mapId": "2f",
+            "x": 484,
+            "y": 350
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D3",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 480,
+            "y": 471
+          },
+          {
+            "mapId": "2f",
+            "x": 532,
+            "y": 425
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D4",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 336,
+            "y": 160
+          },
+          {
+            "mapId": "2f",
+            "x": 388,
+            "y": 82
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Victory Road",
+        "id": "D5",
+        "label": "One-way hole",
+        "oneWay": true,
+        "ends": [
+          {
+            "mapId": "3f",
+            "x": 912,
+            "y": 286
+          },
+          {
+            "mapId": "2f",
+            "x": 964,
+            "y": 226
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "A",
+        "label": "Main cave entrance",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "outside",
+            "x": 184,
+            "y": 104
+          },
+          {
+            "mapId": "cave-1f",
+            "x": 648,
+            "y": 832
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "B",
+        "label": "Moltres chamber",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 248,
+            "y": 121
+          },
+          {
+            "mapId": "moltres-chamber",
+            "x": 192,
+            "y": 316
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "C",
+        "label": "Expert Belt chamber",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 552,
+            "y": 608
+          },
+          {
+            "mapId": "expert-belt-chamber",
+            "x": 112,
+            "y": 163
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "D",
+        "label": "Lower mountainside · south",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 830,
+            "y": 595
+          },
+          {
+            "mapId": "lower-mountainside",
+            "x": 336,
+            "y": 466
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "E",
+        "label": "Lower mountainside · middle",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 862,
+            "y": 509
+          },
+          {
+            "mapId": "lower-mountainside",
+            "x": 272,
+            "y": 388
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "F",
+        "label": "Lower mountainside · north",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 895,
+            "y": 285
+          },
+          {
+            "mapId": "lower-mountainside",
+            "x": 208,
+            "y": 157
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "G",
+        "label": "Spiral centre passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-1f",
+            "x": 520,
+            "y": 48
+          },
+          {
+            "mapId": "cave-2f",
+            "x": 352,
+            "y": 368
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "H",
+        "label": "Upper mountainside · north",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 352,
+            "y": 48
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 392,
+            "y": 282
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "I",
+        "label": "Upper mountainside · northeast",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 640,
+            "y": 138
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 619,
+            "y": 259
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "J",
+        "label": "Upper mountainside · east",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 640,
+            "y": 287
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 619,
+            "y": 407
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "K",
+        "label": "Upper mountainside · southeast",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 640,
+            "y": 438
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 619,
+            "y": 556
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "L",
+        "label": "Upper mountainside · south",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 576,
+            "y": 512
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 520,
+            "y": 659
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "M",
+        "label": "Upper mountainside · southwest",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-2f",
+            "x": 352,
+            "y": 512
+          },
+          {
+            "mapId": "upper-mountainside",
+            "x": 296,
+            "y": 659
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "N",
+        "label": "3F entrance",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "upper-mountainside",
+            "x": 232,
+            "y": 451
+          },
+          {
+            "mapId": "cave-3f",
+            "x": 576,
+            "y": 361
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Mt. Silver",
+        "id": "O",
+        "label": "Summit passage",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "cave-3f",
+            "x": 240,
+            "y": 48
+          },
+          {
+            "mapId": "summit",
+            "x": 328,
+            "y": 386
+          }
+        ],
+        "status": "valid"
+      },
+      {
+        "location": "Tohjo Falls",
+        "id": "A",
+        "label": "Behind the west waterfall",
+        "oneWay": false,
+        "ends": [
+          {
+            "mapId": "overview",
+            "x": 272,
+            "y": 245
+          },
+          {
+            "mapId": "cave-plan-tohjo-hidden-room",
+            "x": 224,
+            "y": 324
+          }
+        ],
+        "status": "valid"
+      }
+    ],
+    "missing": [],
+    "broken": [],
+    "orphans": []
+  },
+  "primaryMaps": [
+    {
+      "mapId": "MAP_EVERYWHERE",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Online, battle/communication and placeholder maps outside the geographic Atlas.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_NOTHING",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Invalid/placeholder header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_UNION",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Online, battle/communication and placeholder maps outside the geographic Atlas.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_UNDERGROUND",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Online, battle/communication and placeholder maps outside the geographic Atlas.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_WIFI_SINGLE_BATTLE_AREA",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Online, battle/communication and placeholder maps outside the geographic Atlas.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_WIFI_MULTI_BATTLE_AREA",
+      "section": "MAPSEC_MYSTERY_ZONE",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Online, battle/communication and placeholder maps outside the geographic Atlas.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_BELLCHIME_TOWER",
+      "section": "MAPSEC_BELLCHIME_TRAIL",
+      "region": "Johto",
+      "location": "Bellchime Trail",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_BURNED_TOWER_1F",
+      "section": "MAPSEC_BURNED_TOWER",
+      "region": "Johto",
+      "location": "Burned Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_RUINS_OF_ALPH_UNUSED",
+      "section": "MAPSEC_RUINS_OF_ALPH",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_1",
+      "section": "MAPSEC_ROUTE_1",
+      "region": "Kanto",
+      "location": "Route 1",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_2",
+      "section": "MAPSEC_ROUTE_2",
+      "region": "Kanto",
+      "location": "Route 2",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_3",
+      "section": "MAPSEC_ROUTE_3",
+      "region": "Kanto",
+      "location": "Route 3",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_4",
+      "section": "MAPSEC_ROUTE_4",
+      "region": "Kanto",
+      "location": "Route 4",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_5",
+      "section": "MAPSEC_ROUTE_5",
+      "region": "Kanto",
+      "location": "Route 5",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_6",
+      "section": "MAPSEC_ROUTE_6",
+      "region": "Kanto",
+      "location": "Route 6",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_7",
+      "section": "MAPSEC_ROUTE_7",
+      "region": "Kanto",
+      "location": "Route 7",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_8",
+      "section": "MAPSEC_ROUTE_8",
+      "region": "Kanto",
+      "location": "Route 8",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_9",
+      "section": "MAPSEC_ROUTE_9",
+      "region": "Kanto",
+      "location": "Route 9",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_10",
+      "section": "MAPSEC_ROUTE_10",
+      "region": "Kanto",
+      "location": "Route 10",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_11",
+      "section": "MAPSEC_ROUTE_11",
+      "region": "Kanto",
+      "location": "Route 11",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_12",
+      "section": "MAPSEC_ROUTE_12",
+      "region": "Kanto",
+      "location": "Route 12",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_13",
+      "section": "MAPSEC_ROUTE_13",
+      "region": "Kanto",
+      "location": "Route 13",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_14",
+      "section": "MAPSEC_ROUTE_14",
+      "region": "Kanto",
+      "location": "Route 14",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_15",
+      "section": "MAPSEC_ROUTE_15",
+      "region": "Kanto",
+      "location": "Route 15",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_16",
+      "section": "MAPSEC_ROUTE_16",
+      "region": "Kanto",
+      "location": "Route 16",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_17",
+      "section": "MAPSEC_ROUTE_17",
+      "region": "Kanto",
+      "location": "Route 17",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_18",
+      "section": "MAPSEC_ROUTE_18",
+      "region": "Kanto",
+      "location": "Route 18",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_22",
+      "section": "MAPSEC_ROUTE_22",
+      "region": "Kanto",
+      "location": "Route 22",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_24",
+      "section": "MAPSEC_ROUTE_24",
+      "region": "Kanto",
+      "location": "Route 24",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_25",
+      "section": "MAPSEC_ROUTE_25",
+      "region": "Kanto",
+      "location": "Route 25",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_26",
+      "section": "MAPSEC_ROUTE_26",
+      "region": "Kanto",
+      "location": "Route 26",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_27",
+      "section": "MAPSEC_ROUTE_27",
+      "region": "Kanto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_28",
+      "section": "MAPSEC_ROUTE_28",
+      "region": "Kanto",
+      "location": "Route 28",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_29",
+      "section": "MAPSEC_ROUTE_29",
+      "region": "Johto",
+      "location": "Route 29",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_30",
+      "section": "MAPSEC_ROUTE_30",
+      "region": "Johto",
+      "location": "Route 30",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_31",
+      "section": "MAPSEC_ROUTE_31",
+      "region": "Johto",
+      "location": "Route 31",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_32",
+      "section": "MAPSEC_ROUTE_32",
+      "region": "Johto",
+      "location": "Route 32",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_33",
+      "section": "MAPSEC_ROUTE_33",
+      "region": "Johto",
+      "location": "Route 33",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_34",
+      "section": "MAPSEC_ROUTE_34",
+      "region": "Johto",
+      "location": "Route 34",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_35",
+      "section": "MAPSEC_ROUTE_35",
+      "region": "Johto",
+      "location": "Route 35",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_36",
+      "section": "MAPSEC_ROUTE_36",
+      "region": "Johto",
+      "location": "Route 36",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_37",
+      "section": "MAPSEC_ROUTE_37",
+      "region": "Johto",
+      "location": "Route 37",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_38",
+      "section": "MAPSEC_ROUTE_38",
+      "region": "Johto",
+      "location": "Route 38",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_39",
+      "section": "MAPSEC_ROUTE_39",
+      "region": "Johto",
+      "location": "Route 39",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_42",
+      "section": "MAPSEC_ROUTE_42",
+      "region": "Johto",
+      "location": "Route 42",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_43",
+      "section": "MAPSEC_ROUTE_43",
+      "region": "Johto",
+      "location": "Route 43",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_44",
+      "section": "MAPSEC_ROUTE_44",
+      "region": "Johto",
+      "location": "Route 44",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_45",
+      "section": "MAPSEC_ROUTE_45",
+      "region": "Johto",
+      "location": "Route 45",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_46",
+      "section": "MAPSEC_ROUTE_46",
+      "region": "Johto",
+      "location": "Route 46",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_PALLET",
+      "section": "MAPSEC_PALLET_TOWN",
+      "region": "Kanto",
+      "location": "Pallet Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VIRIDIAN",
+      "section": "MAPSEC_VIRIDIAN_CITY",
+      "region": "Kanto",
+      "location": "Viridian City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_PEWTER",
+      "section": "MAPSEC_PEWTER_CITY",
+      "region": "Kanto",
+      "location": "Pewter City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_CERULEAN",
+      "section": "MAPSEC_CERULEAN_CITY",
+      "region": "Kanto",
+      "location": "Cerulean City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_LAVENDER",
+      "section": "MAPSEC_LAVENDER_TOWN",
+      "region": "Kanto",
+      "location": "Lavender Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VERMILION",
+      "section": "MAPSEC_VERMILION_CITY",
+      "region": "Kanto",
+      "location": "Vermilion City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_CELADON",
+      "section": "MAPSEC_CELADON_CITY",
+      "region": "Kanto",
+      "location": "Celadon City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_FUCHSIA",
+      "section": "MAPSEC_FUCHSIA_CITY",
+      "region": "Kanto",
+      "location": "Fuchsia City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_CINNABAR_ISLAND",
+      "section": "MAPSEC_CINNABAR_ISLAND",
+      "region": "Kanto",
+      "location": "Cinnabar Island",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_INDIGO_PLATEAU",
+      "section": "MAPSEC_INDIGO_PLATEAU",
+      "region": "Kanto",
+      "location": "Indigo Plateau",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_SAFFRON",
+      "section": "MAPSEC_SAFFRON_CITY",
+      "region": "Kanto",
+      "location": "Saffron City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_NEW_BARK",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_NEW_BARK_ELMS_LAB_1F",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NEW_BARK_ELMS_LAB_2F",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NEW_BARK_PLAYER_HOUSE_1F",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NEW_BARK_PLAYER_HOUSE_2F",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NEW_BARK_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NEW_BARK_RIVAL_HOUSE_1F",
+      "section": "MAPSEC_NEW_BARK_TOWN",
+      "region": "Johto",
+      "location": "New Bark Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKEMART",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKECENTER_1F",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_GUIDE_GENT_HOUSE",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_SOUTHEAST_HOUSE",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_AZALEA",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_CIANWOOD",
+      "section": "MAPSEC_CIANWOOD_CITY",
+      "region": "Johto",
+      "location": "Cianwood City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_GOLDENROD",
+      "section": "MAPSEC_GOLDENROD_CITY",
+      "region": "Johto",
+      "location": "Goldenrod City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_OLIVINE",
+      "section": "MAPSEC_OLIVINE_CITY",
+      "region": "Johto",
+      "location": "Olivine City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKEMART",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_GYM",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_1F",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_UNUSED_HOUSE",
+      "section": "MAPSEC_JUBILIFE_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_BELL_TOWER_BARRIER_STATION",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_DOWSING_MACHINE_HOUSE",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_SOUTHWEST_HOUSE",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_DANCE_THEATER",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_MAHOGANY",
+      "section": "MAPSEC_MAHOGANY_TOWN",
+      "region": "Johto",
+      "location": "Mahogany Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_LAKE_OF_RAGE",
+      "section": "MAPSEC_LAKE_OF_RAGE",
+      "region": "Johto",
+      "location": "Lake of Rage",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_BLACKTHORN",
+      "section": "MAPSEC_BLACKTHORN_CITY",
+      "region": "Johto",
+      "location": "Blackthorn City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_MOUNT_SILVER",
+      "section": "MAPSEC_MT_SILVER",
+      "region": "Johto",
+      "location": "Mt. Silver",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_19",
+      "section": "MAPSEC_ROUTE_19",
+      "region": "Kanto",
+      "location": "Route 19",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_20",
+      "section": "MAPSEC_ROUTE_20",
+      "region": "Kanto",
+      "location": "Route 20",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_21",
+      "section": "MAPSEC_ROUTE_21",
+      "region": "Kanto",
+      "location": "Route 21",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_40",
+      "section": "MAPSEC_ROUTE_40",
+      "region": "Johto",
+      "location": "Route 40",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_41",
+      "section": "MAPSEC_ROUTE_41",
+      "region": "Johto",
+      "location": "Route 41",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_NATIONAL_PARK",
+      "section": "MAPSEC_NATIONAL_PARK",
+      "region": "Johto",
+      "location": "National Park",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_31_VIOLET_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_31",
+      "region": "Johto",
+      "location": "Route 31",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_32_RUINS_OF_ALPH_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_32",
+      "region": "Johto",
+      "location": "Route 32",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_UNION_CAVE_1F",
+      "section": "MAPSEC_UNION_CAVE",
+      "region": "Johto",
+      "location": "Union Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_ILEX_FOREST_GATEHOUSE",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_35_GOLDENROD_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_35",
+      "region": "Johto",
+      "location": "Route 35",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_35_NATIONAL_PARK_POKEATHALON_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_35",
+      "region": "Johto",
+      "location": "Route 35",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_36_RUINS_OF_ALPH_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_36",
+      "region": "Johto",
+      "location": "Route 36",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_36_NATIONAL_PARK_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_36",
+      "region": "Johto",
+      "location": "Route 36",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_UNUSED_GATEHOUSE",
+      "section": "MAPSEC_JUBILIFE_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_DIGLETT_CAVE",
+      "section": "MAPSEC_DIGLETTS_CAVE",
+      "region": "Kanto",
+      "location": "Diglett’s Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_MOUNT_MOON",
+      "section": "MAPSEC_MT_MOON",
+      "region": "Kanto",
+      "location": "Mt. Moon",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROCK_TUNNEL_1F",
+      "section": "MAPSEC_ROCK_TUNNEL",
+      "region": "Kanto",
+      "location": "Rock Tunnel",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_PAL_PARK",
+      "section": "MAPSEC_PAL_PARK",
+      "region": "Kanto",
+      "location": "Pal Park",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_SPROUT_TOWER_1F",
+      "section": "MAPSEC_SPROUT_TOWER",
+      "region": "Johto",
+      "location": "Sprout Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_BELL_TOWER_1F",
+      "section": "MAPSEC_BELL_TOWER",
+      "region": "Johto",
+      "location": "Bell Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_GOLDENROD_RADIO_TOWER_1F",
+      "section": "MAPSEC_RADIO_TOWER",
+      "region": "Johto",
+      "location": "Goldenrod Radio Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_RUINS_OF_ALPH",
+      "section": "MAPSEC_RUINS_OF_ALPH",
+      "region": "Johto",
+      "location": "Ruins of Alph",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_SLOWPOKE_WELL_ENTRANCE",
+      "section": "MAPSEC_SLOWPOKE_WELL",
+      "region": "Johto",
+      "location": "Slowpoke Well",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_OLIVINE_LIGHTHOUSE_1F",
+      "section": "MAPSEC_LIGHTHOUSE",
+      "region": "Johto",
+      "location": "Olivine Lighthouse",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_MAHOGANY_SOUVENIR_SHOP",
+      "section": "MAPSEC_MAHOGANY_TOWN",
+      "region": "Johto",
+      "location": "Mahogany Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ILEX_FOREST",
+      "section": "MAPSEC_ILEX_FOREST",
+      "region": "Johto",
+      "location": "Ilex Forest",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_GOLDENROD_TUNNEL_1F",
+      "section": "MAPSEC_GOLDENROD_TUNNEL",
+      "region": "Johto",
+      "location": "Goldenrod Tunnel",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_MOUNT_MORTAR_1F_ENTRANCE",
+      "section": "MAPSEC_MT_MORTAR",
+      "region": "Johto",
+      "location": "Mt. Mortar",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ICE_PATH_1F",
+      "section": "MAPSEC_ICE_PATH",
+      "region": "Johto",
+      "location": "Ice Path",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_WHIRL_ISLANDS_1F",
+      "section": "MAPSEC_WHIRL_ISLANDS",
+      "region": "Johto",
+      "location": "Whirl Islands",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_MOUNT_SILVER_CAVE_1F",
+      "section": "MAPSEC_MT_SILVER_CAVE",
+      "region": "Johto",
+      "location": "Mt. Silver",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_DARK_CAVE_ROUTE_45_SIDE",
+      "section": "MAPSEC_DARK_CAVE",
+      "region": "Johto",
+      "location": "Dark Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VICTORY_ROAD_1F",
+      "section": "MAPSEC_VICTORY_ROAD_JK",
+      "region": "Kanto",
+      "location": "Victory Road",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_DRAGONS_DEN_ENTRANCE",
+      "section": "MAPSEC_DRAGONS_DEN",
+      "region": "Johto",
+      "location": "Dragon's Den",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_TOHJO_FALLS",
+      "section": "MAPSEC_TOHJO_FALLS",
+      "region": "Kanto",
+      "location": "Tohjo Falls",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_30_APRICORN_HOUSE",
+      "section": "MAPSEC_ROUTE_30",
+      "region": "Johto",
+      "location": "Route 30",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_1",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_2",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_UNUSED_3",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ECRUTEAK_POKECENTER_B1F",
+      "section": "MAPSEC_ECRUTEAK_CITY",
+      "region": "Johto",
+      "location": "Ecruteak City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_42_ECRUTEAK_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_42",
+      "region": "Johto",
+      "location": "Route 42",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_MAHOGANY_EAST_HOUSE",
+      "section": "MAPSEC_MAHOGANY_TOWN",
+      "region": "Johto",
+      "location": "Mahogany Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_29_ROUTE_46_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_29",
+      "region": "Johto",
+      "location": "Route 29",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_GYM",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_GYM_ENTRANCE",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_GOLDENROD_GYM",
+      "section": "MAPSEC_GOLDENROD_CITY",
+      "region": "Johto",
+      "location": "Goldenrod City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_OLIVINE_GYM",
+      "section": "MAPSEC_OLIVINE_CITY",
+      "region": "Johto",
+      "location": "Olivine City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CIANWOOD_GYM",
+      "section": "MAPSEC_CIANWOOD_CITY",
+      "region": "Johto",
+      "location": "Cianwood City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_MAHOGANY_GYM_LEADER_ROOM",
+      "section": "MAPSEC_MAHOGANY_TOWN",
+      "region": "Johto",
+      "location": "Mahogany Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_BLACKTHORN_GYM",
+      "section": "MAPSEC_BLACKTHORN_CITY",
+      "region": "Johto",
+      "location": "Blackthorn City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_43_MAHOGANY_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_43",
+      "region": "Johto",
+      "location": "Route 43",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_ROUTE_30_MR_POKEMON_HOUSE",
+      "section": "MAPSEC_ROUTE_30",
+      "region": "Johto",
+      "location": "Route 30",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CHERRYGROVE_POKECENTER_B1F",
+      "section": "MAPSEC_CHERRYGROVE_CITY",
+      "region": "Johto",
+      "location": "Cherrygrove City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_CERULEAN_CAVE_1F",
+      "section": "MAPSEC_CERULEAN_CAVE",
+      "region": "Kanto",
+      "location": "Cerulean Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_SEAFOAM_ISLANDS_1F",
+      "section": "MAPSEC_SEAFOAM_ISLANDS",
+      "region": "Kanto",
+      "location": "Seafoam Islands",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIRIDIAN_FOREST",
+      "section": "MAPSEC_VIRIDIAN_FOREST",
+      "region": "Kanto",
+      "location": "Viridian Forest",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_9_UNUSED",
+      "section": "MAPSEC_POWER_PLANT",
+      "region": "Kanto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VIOLET_ROUTE_36_GATEHOUSE",
+      "section": "MAPSEC_ROUTE_36",
+      "region": "Johto",
+      "location": "Route 36",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_NATIONAL_PARK_UNUSED_GATEHOUSE",
+      "section": "MAPSEC_POKEATHLON_DOME",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_47",
+      "section": "MAPSEC_ROUTE_47",
+      "region": "Johto",
+      "location": "Route 47",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_ROUTE_48",
+      "section": "MAPSEC_ROUTE_48",
+      "region": "Johto",
+      "location": "Route 48",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_UNION_CAVE_B1F",
+      "section": "MAPSEC_UNION_CAVE",
+      "region": "Johto",
+      "location": "Union Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_UNION_CAVE_B2F",
+      "section": "MAPSEC_UNION_CAVE",
+      "region": "Johto",
+      "location": "Union Cave",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_SPROUT_TOWER_2F",
+      "section": "MAPSEC_SPROUT_TOWER",
+      "region": "Johto",
+      "location": "Sprout Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_SPROUT_TOWER_3F",
+      "section": "MAPSEC_SPROUT_TOWER",
+      "region": "Johto",
+      "location": "Sprout Tower",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VIOLET_POKEMART",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_POKECENTER_1F",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_POKEMON_SCHOOL",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_NORTHWEST_HOUSE",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_UNUSED",
+      "section": "MAPSEC_JUBILIFE_CITY",
+      "region": "Johto",
+      "location": null,
+      "status": "excluded",
+      "reason": "Unused primary header.",
+      "implementationStatus": "excluded",
+      "dedicatedMapView": false
+    },
+    {
+      "mapId": "MAP_VIOLET_BELLSPROUT_ONYX_TRADE_HOUSE",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_CHARCOAL_KILN",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_KURT_HOUSE",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_POKEMART",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_POKECENTER_1F",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_VIOLET_POKECENTER_B1F",
+      "section": "MAPSEC_VIOLET_CITY",
+      "region": "Johto",
+      "location": "Violet City",
+      "status": "grouped",
+      "reason": null,
+      "implementationStatus": "grouped-reference",
+      "dedicatedMapView": true
+    },
+    {
+      "mapId": "MAP_AZALEA_POKECENTER_B1F",
+      "section": "MAPSEC_AZALEA_TOWN",
+      "region": "Johto",
+      "location": "Azalea Town",
+      "status": "grouped",
+      "reason": null,
       "implementationStatus": "grouped-reference",
       "dedicatedMapView": true
     },
@@ -12438,19 +18113,20 @@ Total output lines: 18399
     "realSaveOrInGameValidation": false,
     "scope": "All native named Sinnoh geographic/facility groups, Lost Tower as a distinct dungeon, and Underground reference access; unused/network/system headers explicitly excluded. Unreleased event areas remain labelled reference-only."
   },
-  "applicationVersion": "0.27.6",
-  "generatedAt": "2026-11-15T16:24:39.050Z",
+  "applicationVersion": "0.27.7",
+  "generatedAt": "2026-11-15T23:39:57.359Z",
   "generator": "scripts/audit-atlas.mjs",
   "referenceInventorySha256": "7435df68355e128b271defcb787b6e86c8e7256c55fda7aeeb5a246e4c47a90f",
   "inputSha256": {
     ".github/workflows/atlas-validation.yml": "84d47b0c6cab64ee2dc8a76fb68e8fb8f9e5ba9fb4f17f0274eaed396d88039a",
-    "css/app-shell.css": "019d2ff313006bd3be45a65427cbc7ddac25325cbdb2a720da1ee5d2b8dcff76",
-    "css/pokedex.css": "fb31a03eef6fbb292da25ce58ca39d18e651bd34c30f410e5c172006f123f76f",
+    "atlas/index.html": "bd8ad8754d07ada0d4c0e621d09777c5c7ec99d08ea9ac3ff8b4e2be95b68adc",
+    "css/app-shell.css": "71dca1fde23e9c5f28e6e35ea6fd862e632ce9d11d2ee1a8fc18f19fa895a27c",
+    "css/pokedex.css": "2cc9abe68bdab2ebb3946e54905aa8e334ed40cd651f1edf97272264ea9f2f09",
     "css/safari-scenario.css": "d11056d6d9f350918339725fa38c93616df088c82bf82887b171d807a5995f4a",
     "css/safari.css": "5502d0f654dbff8a9f8c51fdbc7ebec35c5968b0f0d0d76c37705aa187ff67b4",
     "css/species.css": "155a9cc30dc56f59d1a97b8b2ee5a336a7314eb579aaabe3f30ce1048e1d5343",
     "css/style.css": "660ed7b3a30cb545bf65a33bf2acf536a188b2ca15676674549448d8b69d2fbd",
-    "css/trade.css": "e882e27fae3a7178d2defb43257fe42356b2f1735016b298096ad794c0df9913",
+    "css/trade.css": "9776e8c6ac348afb2a2677aaa943db183707117743d951b37c697a5543e80bde",
     "css/world.css": "2f911a8683c11e172d5cb4159ab1417a926dadd0cec08ab6a1ade17f8291733c",
     "docs/platinum-atlas-inventory.json": "bd2394d58ad291fe0f4a13e52deda46cac666110d1390409768c71710d281b03",
     "docs/platinum-encounter-comparison.json": "207bd256fc39b6abed516e6d35b17116f0380248dc9d4128f5044615b547dbda",
@@ -12458,10 +18134,10 @@ Total output lines: 18399
     "docs/platinum-map-audit.json": "ba99835727cee2ac4557386184b592947a4a96b3cf14d61dc0f4fe14d45e674a",
     "docs/platinum-source-decisions.json": "90cca9787d77cf55aecaae8213c226cff195963077a611d0dc91e75c243511dd",
     "docs/schemas/gen4-atlas.schema.json": "5bb95b26e2a51cb55d017a884e9485b190e0893444b6f67eebc9ca323ae5a1fc",
-    "index.html": "3d9ab271e4176235312a5ec3f82fc931a1d0b918b9de0eca5a7875cbd5221b12",
+    "index.html": "5eade728b5219842ea88f02c6e7890545106af1558f07a58d3c985f822bb840f",
     "js/adventures.js": "87fbb19a2398bbbcb86f17aef0bc970c36cb1edfa1a8aee07d4a0aa8b163b01f",
-    "js/app-shell.js": "72e96132ff2454775f195d3914860dbcbca486655e9fb82a3859f67ace14300e",
-    "js/app.js": "8fed66c646bb87878deeec7e903251db691f47507efdbd26fbd4cfd5ab2821bb",
+    "js/app-shell.js": "73afb71ba0fd9d12028493233215521e7acc0d52db3538228531ba35e42aba27",
+    "js/app.js": "9179859cc145d53d8e09ece2a3a322ffdc4efb149c8666520e0b5fb89287f1dc",
     "js/atlas-encounter-sections.js": "339ba2aed2b880737505feceeda82330bbb554c139755b46a1977e17e6e0813f",
     "js/atlas-encounters.js": "c87ec62a59cb50116cad5b6ecfb42fa5f972a3d4a5f33d99429aa1422a7f0218",
     "js/atlas-ev-training.js": "5576f6a80e2fbbe66b67f4e42c5e56860732221ac01ab8d14165f3dd8dbdaffd",
@@ -12507,19 +18183,19 @@ Total output lines: 18399
     "js/data/games/soulsilver/travel.js": "3b382c175417c6285e45f8ef4d43c257dbc346729dd1880488b8519ab70636c5",
     "js/data/gen4-default-names.js": "d50ec71f155bf417ca312d6d71ba136ebb194f6cef7630e293b064798809f18c",
     "js/data/gen4-locations.js": "d8d848664b276c3b6d822300fbc02abe24b02ce9da3ec3e23f462a23353a9d42",
-    "js/data/gen4-trade-items.js": "cedf88b6438fe00ac8f7e3eb09e1e0175d2ed8ab926ff96673e9d9f7a202bc5f",
+    "js/data/gen4-trade-items.js": "9a75b92f065bbf5632ed554c8d40b54e284d4ed57e6965c96dc78ec0aea1bebe",
     "js/data/hgss-badges.js": "78e9a0d54c9d9562f13ecdbef60a771f13d0a0616904df1645f807c3c72ca05d",
-    "js/data/machine-locations.js": "b75019a91542bc9f9562463fd5230c71542c4e2cef6b6662a44295729b9aa34e",
+    "js/data/machine-locations.js": "3df098361e492683eb8fb05ce73081d4e21f86393012ee76f54d71ecc9279cf6",
     "js/data/pokedex-reference.js": "159780ba64387cc18e91a00729a4b8d97c91bc87b9af5febc9338b74d6aac688",
     "js/data/safari-layout.js": "0d0dc6a6c256c043d11500abad2e47f6e1d71d6fa555e168c546962de9975add",
     "js/data/safari-reference.js": "85ba040d70507f86d67aad688bc55026d550ac37b8d5128fee91273f5cf0b221",
     "js/great-marsh-engine.js": "8d889df893573eaadf532429206a95100941407e85600e542a7504f9cdda38bf",
     "js/great-marsh.js": "d766fa5f0e6c7f694d1a741a6f0fcfc27f0e4c00a55967234737216c354c8368",
-    "js/planner-defaults.js": "021d0c16846eabb017fc631f8ddc4f99e1ad7264d33508a26343ec0c97999ed3",
+    "js/planner-defaults.js": "ee26d90e91730285312c319f885870eac92e114fccac73db89d30b9cf21457b8",
     "js/planner-model.js": "9fc035e5be9eec608d5cc88fd2413f412adaeb15599f485d7e1efc4f01030948",
     "js/planner-save.js": "81cc4946e7c0b2b8ac0d2010c38cdecd8cf0db22b747e99a9d35f2a6a7aeed2d",
-    "js/planner-store.js": "f0d7cc555b77fa653ebe720dcca580fa6c88fc4d04cffdee60235a85783e3755",
-    "js/pokedex.js": "72ef9f35976da869d0bf233df99ebbfdf079d45a5931a337a2be1ab9b0e691cd",
+    "js/planner-store.js": "b09b02122aa345b27adde66e25bf2eac9af4ad69dac1b1b8c55ab9a2b6bd6f31",
+    "js/pokedex.js": "b3b3643b8aac891df239fe89289e0c93b0eeb58bd2e67b59e8d477ff5d1d424f",
     "js/pokemon-level.js": "4839323b047d7101429d2a902d8ffe93f372d60f0c380e637e3630ca6a1ef508",
     "js/safari-atlas.js": "f88a753fc4f715cb2b7e0320d1279b651d71595529f19e92d74c5cf7aea44e69",
     "js/safari-engine.js": "56c1cc9d029d4b81812d443d4c756e8f8c06700a0aefe8b04cd298dd8d4a77f5",
@@ -12549,18 +18225,17 @@ Total output lines: 18399
     "js/saves/soulsilver-evolution.js": "59c63b244a4cc8477a8e248b37c0b009ef059b9f248fb5dbb93e11a68b0d9c12",
     "js/saves/soulsilver-safari.js": "2533bb2f908ead3f1ff56ec221c955d7cf975784e04a0e7d3057c32ce4d6d6ee",
     "js/saves/soulsilver.js": "3d2af6e8e1639b9848e55c64e3fdddbcbdb939828a670de7956d20d2731c6ac7",
-    "js/saves/trade-pokedex.js": "afbfe4870e01260f3ed108f36899923cf5a3bcd1a2141e9fb5de92beefc1eeec",
-    "js/saves/trade-transaction.js": "a3961f3638a26047d533868186fd8a8c5f6ea7810cfecaa8c89ff1a57fcfce0c",
+    "js/saves/trade-pokedex.js": "95b0d624e4619ec326d29e30f7659fb2bc85973bdcef407fc1c2b5d243ac3d6b",
+    "js/saves/trade-transaction.js": "5d83a299627a5a426dc7c7bf308efeebc538b790d5ecb1bded85b0d9eec95976",
     "js/species-presentation.js": "5297aa63b2c71bc1a5a5ce59e5ae8c7ff7d8a87b72246ae832cd1ac46c867652",
-    "js/trade.js": "e17bc6f6b9c23e85b68f65f4570c63b2c58ded6394dd691a1420d3c7c6db752f",
+    "js/trade.js": "88e23d7e0612d6b114f28124ab3496f3762a947433b525b1fa23efaf85ef531e",
     "js/world.js": "9695871a26e45ea6b820c1c9f703ff34431eb29c28fc1c09304775e78a0720c2",
-    "package-lock.json": "3e6443c305c16132e71a989913fa9fb33b49c1fe55d9de8b10c045e2fdfb06b8",
-    "package.json": "75472f0c0af221ab2e3a44faf171f3ddb7439a1f5f39150b9391d51bf126d03d",
-    "pokedex-earth/index.html": "562b7361d7616e9c483b56eabd057565184f0357c333d6a1b65f8bdda5c0d5d8",
-    "pokedex/index.html": "e4ee72ce636393e9df4958667a9ac6a90706d35fafde7e3317c1acf1bba94cdf",
-    "safari-zone/index.html": "948b9cff0bba19f3a1be4a398b11f155198f9a32fe31d482b3a76655825ae80b",
+    "package-lock.json": "131008576917f82bb128dad35f8684c84fbc7c3cdf4168fb25f2d0a162b5c753",
+    "package.json": "54bc9dba640ba9902785f023214c31db4ccfaa797be2ee26929083b5b0eb7af5",
+    "pokedex/index.html": "2b4e71a1741258fc1d2501b10e34d77fe4ab48b071b4834b14bbf102d356b974",
+    "safari-zone/index.html": "fe26a828432db2e3c9924d3bd2107520bb53575eac822430ea5833c3c348332b",
     "scripts/atlas-map-sources.json": "1028abc60230861b5c5de47b421fff9d09d610f528b0289053d04355785ed385",
-    "scripts/audit-atlas.mjs": "1ba7880525a84d2e55bcf89f7ceae1312dc69eed3e25e33f7836fb0c473c5cde",
+    "scripts/audit-atlas.mjs": "1f8ae21dd42d39f48fa5824b0bdc1181aa8a1f7c740d9ce71305699e35a41023",
     "scripts/audit-hgss-abilities.mjs": "d4da63172ae73d26279d8f4edb24b079a8b1b1246e5ead882c0860b24fb43c22",
     "scripts/audit-johto-atlas.mjs": "778ec685b7a07904299498cb052fe14de85f1912c6d30a9405876e1aaf297c95",
     "scripts/audit-leafgreen-reader.mjs": "ac2ac0a63aa699cb5482d621989c8601d3e1c8e7d39b45f76804b04f3ebcfc88",
@@ -12590,7 +18265,7 @@ Total output lines: 18399
     "scripts/build-soulsilver-interiors.py": "22a8197068a45297334d870175c6467faacbd47e967208c56e8ddeaae2379708",
     "scripts/build-soulsilver-location-encounters.py": "b499a93dbbd577badba4a4e4aab162048ecb9e6d1d021078377fcf5cf2426aed",
     "scripts/build-soulsilver-route-encounters.py": "6ea007d377bb6d2b257e98229b6bf8f00951a77428789c745c6e2629835ab5b0",
-    "scripts/build-trade-items.py": "1c2b8f67e547477e1da9a77aaa45411dc76143d5c15fe8898782511e16f0945b",
+    "scripts/build-trade-items.py": "2ea19a14bec1a31246d1891d9c8556f964476a35e8918acd025d6ebde5983af6",
     "scripts/compare-platinum-encounters.py": "e65cd92c8fdc34a53dbe701858661e02649689c4cbe1c4ea3b2e3d6086bed097",
     "scripts/leafgreen-reference/Program.cs": "576793d267698ce425f24cbcf72d471ed12ef557f3e86703aa8ec44f4b83032a",
     "scripts/leafgreen-reference/Reference.csproj": "5b9e4694318db642752e79bc3a35f5fd7e58ed1012e3e9711e75b264c180b396",
@@ -12605,7 +18280,7 @@ Total output lines: 18399
     "scripts/soulsilver-interior-rooms.json": "34c7f1ff040eec6425d18eb2826f8c8994ccbcd69ffc5904bcd209868f4f6856",
     "scripts/soulsilver-kanto-inventory.json": "2d65d8448d54e386d2dd64aa96a9bcdf7e1dad5a9915ce791448eb66d820d0b0",
     "scripts/soulsilver_encounters.py": "10c7129a0a6684469e24393b0492b73de40cb7399277316a6fa14bf704e918b5",
-    "team-planner/index.html": "39c733e235d6629fe8407f9cda1aa977ead3ca35b0e9e23f9aad4f4baf0affb1",
+    "team-planner/index.html": "2f6874c509fd4b8bea69b8f876c48f8db5cf52515d87f7fe5a7a33f581590072",
     "tests/adventures.test.cjs": "0b78531fd02357081cd53e40ae9a816846d82bb8ee881c83295b37639f64e754",
     "tests/atlas-caught.test.cjs": "749dd71e2f92fa8eb38c6aada97ffcbcb73d7c1d1e3802f235b3dea42d1fc4f9",
     "tests/atlas-coverage.test.cjs": "326fdf79cd67dc9601e46d9e5ab811268c6c4535abf1ec9dafb20fb4c67cf694",
@@ -12618,7 +18293,7 @@ Total output lines: 18399
     "tests/atlas-maps.test.cjs": "c4263bf7a334bba1253536ed3fa18db365448eeff8944834083c6c626f03476a",
     "tests/atlas-route-reference.test.cjs": "3d0b77da278482e2ccd86b24eb2ce543f2a30fbcc31e317da5e3deab4ff870ec",
     "tests/atlas-travel.test.cjs": "757a00d0a340d531990c576ed5937e659bf5affc5dbf4c72fe95914cdc7614ea",
-    "tests/atlas.browser.test.cjs": "5b31ca7ff8648186cc78ca33a750ee882f13b8436150f7a3b09e92ffb655d1b8",
+    "tests/atlas.browser.test.cjs": "6d09809dabce6220218d196044a576f7e20ca0a1e3fc889d65e7733e17c2b74e",
     "tests/fixtures/gen3.cjs": "22f087fb2f02cdb458a077fb5aa388b04bc1384f4979c52673085d19140099be",
     "tests/fixtures/gen4/default-names.expected.json": "89bc7b8dc79d9e0999ae77a10b90e896ef48f7689f2375a1dcca4e2b40443be4",
     "tests/fixtures/gen4/evolution-oracle.json": "e2db8e8f89992b5a93e18068657e36edebe597409911f69dc56aa73e4f0d0236",
@@ -12638,7 +18313,7 @@ Total output lines: 18399
     "tests/fixtures/gen4/platinum/provenance.json": "e874edf56106681b7d9441d136121bf6a407735d61a16676f692b927b18f438f",
     "tests/fixtures/gen4/platinum/shuffles.json": "fc9015d4aa1c2455acf1d771bfb0fee7820ed4b6634e12b4a8a0bb1eacea209e",
     "tests/fixtures/gen4/soulsilver-baseline.json": "c962f39fcd3eaf989a929b9b6fcaf8b3b737f6c9e32f101583f5648ccbc07bad",
-    "tests/fixtures/gen4/trade.cjs": "037cd34b321468d3f0922d9d2b40542a04312dc8a58ea8608f805236a1a44833",
+    "tests/fixtures/gen4/trade.cjs": "80a7cd1800d1052cc4e47e784346276e85e79240b515f82144ce8ff1047023c9",
     "tests/fixtures/hgss-abilities.cjs": "84216fa504bc07e7619b7595b986cacd5e420496a2ca4014d016c455287c17d6",
     "tests/fixtures/leafgreen/pkhex-records.json": "b9abd3ed36758af20d93839831d9f08d3f95fbb790607fcee548610c8d726368",
     "tests/fixtures/leafgreen/pkhex-save.json": "767a7e5b4a11f325015e0664d7a1d6bef858144abf996ffaee4507705e8c1787",
@@ -12653,7 +18328,7 @@ Total output lines: 18399
     "tests/great-marsh.test.cjs": "ebd355c6a8d07eab6c826c0c21e93bb57d992fdd2c63cb99537e88a2c50d667c",
     "tests/hgss-abilities.test.cjs": "64acc7cc45c00726cfaa343ee2ee8aab187bbb7dd5efa053bc3da3453fe36d66",
     "tests/leafgreen-reader.test.cjs": "ae6b29b671cdd85fc6c877ae63e8f0b2abd4801fdda94c9f89df0a68c1c6009a",
-    "tests/machine-locations.test.cjs": "732c77af88947ed473e842ac5a69a58e69b684634545f1dd665df129ca513f4e",
+    "tests/machine-locations.test.cjs": "bec78127b575f8c43c08e44d62fe8fa3b57a4b56f7b6274a894cc6d1c5fd7def",
     "tests/planner-model.test.cjs": "6bf7de4287d2e85377ceb9bc59fd3410f62288e3dbc95b064718f01e27eca806",
     "tests/platinum-atlas.test.cjs": "0175845c38a6ad43ffcc1e9a0efa09cacfe37334f4e20546ab2f95749b010272",
     "tests/platinum-evolution.test.cjs": "05df383db8857e440e19c44b013d21f1307bfabff6ed208836fb21bcdab78b30",
@@ -12665,15 +18340,15 @@ Total output lines: 18399
     "tests/safari-initialization.test.cjs": "0d90e28501b12b3eefd91d904686ff076ff077a8663d93de9d15bf601c77fc7b",
     "tests/safari-optimizer.test.cjs": "56c4534cf44f24f7997ae99e157d563a46c42479d07051152433c17a47b17514",
     "tests/safari-reference.test.cjs": "9ebd2b80831e3c8b98ef4389cfe1ca84b6c59baf157c255a9c41d3136ce0d673",
-    "tests/trade.test.cjs": "574541aead026468d84437804d02b16054c1070b8c9b7b0f87086ccbb6b97047",
-    "trade/index.html": "6594a4f69d9c6fafdeac60fc326a8e7b0057ea167ab23bac59fbc2f47e5d4f59"
+    "tests/trade.test.cjs": "ca321c632befeae0877d0721b35592c1cac6ecf4a49865c64c71adb5dcac09bb",
+    "trade/index.html": "18e4966e05b6c8d3e85ce9f0795e40e52cbdf4d64c42c481e065120c502e8c78"
   },
   "automatedTests": {
-    "command": "node --test --test-reporter=tap --test-concurrency=1 tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
+    "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
     "timeoutMs": 300000,
     "browserWaitMs": 15000,
-    "startedAt": "2026-11-15T16:24:39.100Z",
-    "completedAt": "2026-11-15T16:27:46.776Z",
+    "startedAt": "2026-11-15T23:39:57.408Z",
+    "completedAt": "2026-11-15T23:42:07.679Z",
     "status": "passed",
     "tests": 322,
     "pass": 322,
@@ -12683,7 +18358,7 @@ Total output lines: 18399
     "exitCode": 0,
     "error": null,
     "log": "work/atlas-validation.tap",
-    "logSha256": "40edf1ebb60cbe82d6ce465069628f7855b47fade4da3da92be1f49bc073c224",
+    "logSha256": "e6d23ea21e3561ebdf31b83f8a3c58a837db3c5630144ef32664cb5766d063ff",
     "testFiles": [
       "tests/adventures.test.cjs",
       "tests/atlas-caught.test.cjs",
@@ -12721,4 +18396,3 @@ Total output lines: 18399
   },
   "completionPassed": true
 }
-

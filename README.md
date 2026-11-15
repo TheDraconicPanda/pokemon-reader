@@ -9,7 +9,7 @@ Reader, Planner, Atlas, Pokédex or Trade logic. ROMs and saves stay in browser
 storage. iPhone performance and battery acceptance remain pending; see the
 [B1 guide and evidence](docs/browser-b1.md).
 
-The shared Reader suite is v0.27.6.
+The shared Reader suite is v0.27.7.
 
 ## SoulSilver ↔ Platinum Trade — v0.27.5
 
@@ -66,18 +66,26 @@ Release validation passes all **308 automated checks**, including phone/desktop
 Atlas navigation and Reader/Planner regressions, with zero mandatory audit
 failures. User and real-game validation remain pending.
 
-## Planned native iPhone emulator
+## Native iPhone emulator — E4 test build
 
-The [iPhone emulator v1 plan](docs/iphone-emulator-v1-plan.md) defines five finite
-implementation milestones: a measured native prototype, durable game saves,
-manual/automatic recovery states, completed-save Reader integration and final
-device acceptance. The target phone is iPhone 16 Plus; melonDS is the first core
-candidate, subject to performance and battery testing against Delta.
+The native [Reader Emulator 0.4.1](ios/README.md) lives in its isolated `ios/`
+project: open Reader inside the app using the latest completed in-game save, with offline
+metadata/artwork, ROM-bound Adventure Profiles and read-only integration. The
+library, ordinary saves, manual states and automatic recovery remain supported.
+See [E4 behavior, delivery and deferred phone checks](docs/emulator-e4.md).
 
-This is planning only. No iPhone app or benchmark has been delivered, and the
-existing Reader release remains v0.27.0. Implementation starts only when a
-milestone is requested; desktop, live data and emulator fast-forward are later
-work. See the plan for build/signing prerequisites and command/file permissions.
+Nine native integration groups, all 322 current web regressions, macOS
+storage/checkpoint faults and real WebKit Reader/profile/tool checks passed for
+the E4 baseline, alongside
+[unsigned iPhone/simulator release builds](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41512278571).
+Actual signing, player-save/game compatibility, lifecycle/offload and iPhone
+performance/battery acceptance remain deferred; melonDS is provisional. Reader
+and encounter tools work offline; Safari's optional area screenshots remain
+online references. The native bundle now includes Browser B1 and Trade; the
+updated native checks are pending the hosted build. The web Reader is **0.27.7**.
+E5 is the integrated release
+and device-acceptance milestone, on a new request. Emulator fast-forward, live
+data and desktop/browser emulation remain outside v1. See the [finite plan](docs/iphone-emulator-v1-plan.md).
 
 ## LeafGreen Reader — v0.27.0
 
@@ -201,7 +209,7 @@ All 238 automated checks pass. The report records 276 directed geographic links,
 exclusions. Full fresh row-by-row comparison against both secondary websites,
 real-save outcomes and in-game/user acceptance remain distinct and documented.
 
-Use the [existing Atlas](https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#kanto).
+Use the [existing Atlas](https://thedraconicpanda.github.io/pokemon-reader/atlas/#kanto).
 
 ## Safari v1 final audit — v0.25.79
 
@@ -587,7 +595,7 @@ npm ci
 npm run dev
 ```
 
-Open the address printed by the server, then visit `pokedex-earth/` for the Atlas.
+Open the address printed by the server, then visit `atlas/` for the Atlas.
 No build step is needed. Save files are selected in the browser; do not commit personal saves.
 
 Run `npm test` for the Reader, Atlas, and Planner browser regression checks. Tests require Chromium on
@@ -867,7 +875,7 @@ Surfing appears first; the default shows only tables with 100% clean EV encounte
 Results include Pokémon, encounter percentages, levels, base EV yields, unwanted
 encounters and access notes. Open in Atlas goes directly to the location; returning
 keeps your finder controls. Direct link:
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/#ev-training
+https://thedraconicpanda.github.io/pokemon-reader/atlas/#ev-training
 
 The finder uses the existing audited encounters and pinned Generation IV yields.
 Percentages describe encountered Pokémon, not the chance of an encounter per step.

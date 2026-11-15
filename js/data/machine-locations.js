@@ -20,7 +20,7 @@ export function machineObtainInfo(gameId, machine) {
           if (seen.has(key)) continue;
           seen.add(key);
           const entries = index.get(id) || [];
-          entries.push({ location: place.name, instruction: row.location, section: row.section || '', cost: row.cost || '', conditions: [...(row.conditions || [])], source: row.source || '', href: `../pokedex-earth/#location=${encodeURIComponent(place.name)}${gameId === 'platinum' ? '&game=platinum' : ''}` });
+          entries.push({ location: place.name, instruction: row.location, section: row.section || '', cost: row.cost || '', conditions: [...(row.conditions || [])], source: row.source || '', href: `../atlas/#location=${encodeURIComponent(place.name)}${gameId === 'platinum' ? '&game=platinum' : ''}` });
           index.set(id, entries);
         }
       }

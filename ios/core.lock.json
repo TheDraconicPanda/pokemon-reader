@@ -1,0 +1,10 @@
+{
+  "name": "melonDS",
+  "repository": "https://github.com/melonDS-emu/melonDS.git",
+  "revision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+  "upstreamVersion": "1.1",
+  "license": "GPL-3.0-or-later",
+  "jit": false,
+  "renderer": "threaded software; native-resolution Metal presentation",
+  "status": "candidate pending iPhone performance and battery acceptance"
+}

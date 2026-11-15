@@ -105,6 +105,7 @@ async function storageInfo(request=false){try{let persistent=await navigator.sto
 }catch{$('storage-status').textContent='Storage policy unavailable. Writes may fail; retain exported backups.';}}
 $('storage').onclick=()=>storageInfo(true);storageInfo();
 async function offline(){try{
+  if(window.__readerNativeConfig){$('offline').textContent='Offline app bundled with Reader.';return;}
   if(!isSecureContext||!('serviceWorker'in navigator))throw Error('HTTPS required for offline installation. PC LAN HTTP does not qualify on iPhone.');
   const registration=await navigator.serviceWorker.register('./sw.js',{scope:'./'});
   await navigator.serviceWorker.ready;

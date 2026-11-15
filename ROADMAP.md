@@ -48,19 +48,42 @@ explicit enhancement. See [rules, sources and limitations](docs/gen4-trade.md).
 
 The [implementation plan](docs/iphone-emulator-v1-plan.md) records agreed scope,
 permissions, dependencies, completion criteria and device acceptance. Request one
-finite milestone by ID, for example "Implement Emulator E1."
+finite milestone by ID, for example "Implement Emulator E5."
 
 - [x] Document iPhone-first scope, command/file permissions and finite milestones.
 - [ ] **E1:** Installable native prototype, iPhone 16 Plus/Delta performance and
-  battery comparison, and evidence-based core decision. Build/signing setup and
-  exact iOS version are outstanding; melonDS is the first candidate.
+  battery comparison, and evidence-based core decision. Native prototype 0.1.0,
+  pinned no-JIT core, original diagnostic/host checks and unsigned device/simulator
+  release builds are implemented. User-reported iOS: 26.6.1; Windows available,
+  no Mac. Signing, actual installation and game/battery acceptance are pending.
 - [ ] **E2:** Offline game library, controls and durable in-game save import/export.
+  Native 0.2.0 source implemented; host save/fault/export checks and all 306 web
+  regressions pass. Hosted macOS storage and device/simulator release builds also pass; phone save
+  round trips, offline startup and physical controls remain deferred. See
+  [E2 evidence and remaining tests](docs/emulator-e2.md).
 - [ ] **E3:** Manual save states, rotating automatic recovery and failure handling.
+  Native 0.3.0 source implemented; host state/rollback/fault/export checks and all
+  306 web regressions pass. macOS storage/checkpoint faults and unsigned
+  iPhone/simulator release builds also pass; engineering delivery is complete.
+  Actual phone lifecycle/update/offload and energy checks remain deferred. See
+  [E3 evidence and remaining checks](docs/emulator-e3.md).
 - [ ] **E4:** Bundled Reader integration using validated completed in-game saves.
+  Native 0.4.0 engineering delivery is implemented: nine native groups, 306 web
+  regressions, real macOS WebKit and storage faults, and unsigned iPhone/simulator
+  builds pass. Phone/player-save, Files/share, app-local persistence and Reader
+  overhead checks remain deferred. The 0.4.1 main integration adds Browser B1 and
+  Trade to the native bundle; the 322 web checks and seven B1 checks pass, with
+  the hosted native integration run pending. See [E4 evidence](docs/emulator-e4.md).
 - [ ] **E5:** Integrated compatibility/performance audit, signed test release and
   user/device acceptance for SoulSilver and Platinum.
 
-No emulator implementation or device benchmark is claimed. Fast-forward, live
+See [prototype use/build instructions](ios/README.md) and the
+[Windows install runbook](docs/emulator-e1-windows.md). E1 remains open until its
+device/core acceptance gates pass; no device benchmark is claimed. Per the user's
+2 November direction, E2–E4 implementation may proceed sequentially while phone
+checks are deferred, using the provisional core. Each milestone still needs its
+automated checks and build delivery; E5 retains all device acceptance gates.
+E2/E3 are engineering-ready for device testing; E4 implementation is complete and E5 is next. Fast-forward, live
 Reader data, browser/desktop/GBA emulation and cloud sync are outside v1. Native
 build milestones have their own artifact/install requirements; they are not
 fulfilled by publishing the existing GitHub Pages website.

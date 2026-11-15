@@ -163,7 +163,7 @@ release label; parsing/evolution and real-save behavior are not certified by thi
 static audit. No Safari simulator or encounter mechanics were added.
 
 After deployment, check **v0.25.37** at the usual Atlas URL:
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/
+https://thedraconicpanda.github.io/pokemon-reader/atlas/
 
 Try the Route 35 → Route 36 connection and its Cut note, search “Goldenrod
 Underground”, open Sources on any location, and inspect the Route 27/47, Dark Cave,
