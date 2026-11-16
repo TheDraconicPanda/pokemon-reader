@@ -1,8 +1,15 @@
 # Browser Emulator — B1 prototype
 
+- [x] Add a browser-only full-state bridge to the pinned melonDS serializer; keep native iOS implementation untouched.
+- [x] Store a rotating periodic recovery checkpoint and one overwriteable Quick Save slot in separate IndexedDB records from cartridge `.sav` data.
+- [x] Add offline restore choices for the latest checkpoint, Quick Save, or a fresh cartridge-save boot; preserve old v1 IndexedDB records during schema upgrade.
+- [x] Add browser tests for deterministic state roundtrip, malformed-state rollback, state-slot fallback, queue retry, v1 storage migration, and offline restore.
+- [ ] Real iPhone Home Screen validation: close/reopen after unsaved gameplay, long background, offline restore, Quick Save, and separate normal cartridge save.
+- [ ] Investigate raw `.sav` export/import incompatibility with the existing Reader as a separate issue.
+- [ ] Measure phone checkpoint duration, stutter, quota/storage usage, sustained speed, heat, and battery.
 - [x] Keep the emulator in its own `browser-emulator/` directory with locally scoped assets, vendorized Reader parser dependencies and offline service worker.
 - [x] Link the app from the shared menu; preserve Reader, Planner, Atlas, Pokédex and Trade source logic.
-- [x] Run the existing seven B1 checks and publish the app on `main`.
+- [x] Run the original seven B1 checks and publish the app on `main`.
 - [ ] Validate sustained iPhone performance, heat and battery use.
 - [ ] User acceptance after Pages deployment.
 

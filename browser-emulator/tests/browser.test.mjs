@@ -25,7 +25,7 @@ test('real Chromium: WASM worker, phone controls, raw import/export, fenced dura
   browser.stderr.on('data',data=>{browserError=(browserError+data).slice(-4000);});
   browser.on('error',error=>{browserSpawnError=error;});
   let socket;let id=0;const pending=new Map(),exceptions=[];
-  async function until(fn,message){const until=Date.now()+30000;while(Date.now()<until){try{const x=await fn();if(x)return x;}catch(error){if(!/context|target|ENOENT/i.test(error.message))throw error;}await pause(50);}throw Error(message);}
+  async function until(fn,message,timeoutMs=30000){const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){try{const x=await fn();if(x)return x;}catch(error){if(!/context|target|ENOENT/i.test(error.message))throw error;}await pause(50);}throw Error(message);}
   try{
     const port=await until(async()=>{if(browserSpawnError)throw browserSpawnError;if(browser.exitCode!==null)throw Error('Chrome exited: '+browserError);
       try{return String(await readFile(resolve(work,'profile/DevToolsActivePort'))).split('\n')[0];}catch(error){if(['ENOENT','EBUSY'].includes(error.code))return null;throw error;}},'Chrome startup');
@@ -73,13 +73,36 @@ test('real Chromium: WASM worker, phone controls, raw import/export, fenced dura
       let denied=false;try{await b.save('synthetic-test',new Uint8Array([9]),9)}catch{denied=true;}
       await a.save('synthetic-test',new Uint8Array([4,5,6]),2);const record=await a.get('saves','synthetic-test');record.current.bytes[0]=99;await a.put('saves','synthetic-test',record);
       const recovered=await a.loadSave('synthetic-test');let quota=true;const q=new SaveQueue(async()=>{if(quota)throw new DOMException('Full','QuotaExceededError');});
-      let failed=false;try{await q.enqueue(new Uint8Array([7]),7)}catch{failed=true;}quota=false;await q.flush();await a.lease('synthetic-test',true);a.db.close();b.db.close();
-      return {fenced,denied,recovered:recovered.recovered,byte:recovered.bytes[0],failed,retried:!q.error};})()`);
-    assert.deepEqual(result,{fenced:true,denied:true,recovered:true,byte:1,failed:true,retried:true});
+      let failed=false;try{await q.enqueue(new Uint8Array([7]),7)}catch{failed=true;}quota=false;await q.flush();
+      const state=(marker)=>{const bytes=new Uint8Array(20);bytes.set([77,69,76,78]);const v=new DataView(bytes.buffer);v.setUint16(4,13,true);v.setUint16(6,0,true);v.setUint32(8,20,true);bytes[16]=marker;return bytes;};
+      await a.saveState('synthetic-test','quick',state(1),{coreRevision:'test-core',major:13,minor:0});
+      await a.saveState('synthetic-test','quick',state(2),{coreRevision:'test-core',major:13,minor:0});
+      const corrupt=await a.get('states','synthetic-test:quick');corrupt.current.bytes[16]=9;await a.put('states','synthetic-test:quick',corrupt);
+      const old=await a.loadState('synthetic-test','quick','test-core');
+      const auto=await a.saveState('synthetic-test','auto',state(3),{coreRevision:'test-core',major:13,minor:0});
+      const stillSeparate=await a.loadSave('synthetic-test');
+      const legacyName='reader-browser-b1-v1-migration-test',legacy=indexedDB.open(legacyName,1);await new Promise((resolve,reject)=>{legacy.onupgradeneeded=()=>{for(const n of ['roms','saves','leases'])legacy.result.createObjectStore(n);};legacy.onsuccess=resolve;legacy.onerror=()=>reject(legacy.error);});
+      const legacyTx=legacy.result.transaction('roms','readwrite');legacyTx.objectStore('roms').put({kept:true},'legacy');await new Promise((resolve,reject)=>{legacyTx.oncomplete=resolve;legacyTx.onabort=()=>reject(legacyTx.error);});legacy.result.close();
+      const upgraded=await Store.open(legacyName),preserved=(await upgraded.get('roms','legacy'))?.kept,hasStates=upgraded.db.objectStoreNames.contains('states');upgraded.db.close();
+      await new Promise(resolve=>{const d=indexedDB.deleteDatabase(legacyName);d.onsuccess=resolve;d.onerror=resolve;});
+      await a.lease('synthetic-test',true);a.db.close();b.db.close();
+      return {fenced,denied,recovered:recovered.recovered,byte:recovered.bytes[0],failed,retried:!q.error,
+        stateFallback:old.recovered,stateByte:old.bytes[16],autoSlot:(await auto.meta.slot)==='auto',cartridgeSeparate:stillSeparate.bytes[0]===1,
+        legacyPreserved:preserved,legacyAddedStateStore:hasStates};})()`);
+    assert.deepEqual(result,{fenced:true,denied:true,recovered:true,byte:1,failed:true,retried:true,stateFallback:true,stateByte:1,autoSlot:true,cartridgeSeparate:true,legacyPreserved:true,legacyAddedStateStore:true});
+    // Quick Save is a separate durable state slot. Then verify automatic checkpoints
+    // occur on a timer without requiring another cartridge SRAM write.
+    await evaluate(`document.querySelector('#quick-save').click()`);
+    await until(()=>evaluate(`document.querySelector('#state-status').textContent.includes('Quick Save saved locally')`),'durable Quick Save');
+    await evaluate(`document.querySelector('#resume').click()`);await until(()=>evaluate(`document.querySelector('#run-state').textContent==='Running'`),'run for periodic checkpoint');
+    await until(()=>evaluate(`document.querySelector('#state-status').textContent.includes('Automatic recovery saved locally')`),'periodic full-state checkpoint',40000);
     // Offline cold page reload + retained ROM/save, with network actually disabled.
     await command('Network.enable');await command('Network.emulateNetworkConditions',{offline:true,latency:0,downloadThroughput:0,uploadThroughput:0});
     await command('Page.reload',{ignoreCache:true});await until(()=>evaluate(`document.querySelector('#run-state')?.textContent==='Ready'`),'offline worker startup');
-    await evaluate(`document.querySelector('#reopen').click()`);await until(()=>evaluate(`document.querySelector('#save-status').textContent.includes('restored')`),'offline retained ROM and save');
+    await evaluate(`document.querySelector('#reopen').click()`);await until(()=>evaluate(`document.querySelector('#checkpoint-dialog').open`),'offline retained ROM and state choices');
+    await evaluate(`document.querySelector('#restore-quick').click()`);await until(()=>evaluate(`document.querySelector('#state-status').textContent.includes('Restored Quick Save')`),'offline Quick Save restore');
+    await evaluate(`document.querySelector('#reopen').click()`);await until(()=>evaluate(`document.querySelector('#checkpoint-dialog').open`),'reopen state chooser');
+    await evaluate(`document.querySelector('#resume-latest').click()`);await until(()=>evaluate(`document.querySelector('#state-status').textContent.includes('Restored automatic recovery')`),'offline automatic-state restore');
     await evaluate(`document.querySelector('#resume').click()`);await until(()=>evaluate(`document.querySelector('#run-state').textContent==='Running'`),'offline play');
     await evaluate(`document.querySelector('#pause').click()`);await until(()=>evaluate(`document.querySelector('#run-state').textContent==='Paused'`),'offline pause');
     for(const [width,height]of [[320,800],[932,430]]){await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true);}
@@ -92,4 +115,4 @@ test('real Chromium: WASM worker, phone controls, raw import/export, fenced dura
     await evaluate(`dispatchEvent(new Event('blur'))`);await until(()=>evaluate(`document.querySelector('#run-state').textContent==='Paused'`),'background pauses explicitly');
     console.log('B1 browser evidence directory:',work);
   }finally{socket?.close();browser.kill();browser.unref();server.closeAllConnections();await new Promise(r=>server.close(r));}
-},{timeout:150000});
+},{timeout:220000});

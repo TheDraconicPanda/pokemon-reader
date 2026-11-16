@@ -1,4 +1,4 @@
-# Browser B1 — feasibility prototype 0.1.0
+# Browser B1 — feasibility prototype 0.1.1
 
 B1 is an engineering prototype, with **iPhone acceptance pending**. It runs
 melonDS locally in WebAssembly. No Apple membership, Developer Mode, signing
@@ -10,8 +10,9 @@ The native 0.4.0 implementation and the existing website are preserved. The
 `Emulator` baseline was `721f5b1`; fetched `main` was `ec02da5` (Reader 0.27.5).
 B1 packages the Emulator branch's 0.27.0 parser closure in its own directory;
 it does not replace newer Reader work or import Adventure Profiles. Browser and
-native states are not portable. Full Reader integration, states/recovery,
-fast-forward, DSi, GBA, multiplayer and an Android port are outside B1.
+native states are not portable. B1.1 adds browser-local full-state checkpoints;
+native-state interoperability, Reader integration, fast-forward, DSi, GBA,
+multiplayer and an Android port remain outside B1.
 
 ## Run on this Windows PC
 
@@ -102,6 +103,38 @@ game files are shipped. See `browser-emulator/THIRD-PARTY.txt`, pinned lock and
 GPL text. `source.zip` supplies exact upstream files, component notices, adapter,
 diagnostic and parser/build sources alongside the WASM binary.
 
+## Full-state recovery and Quick Save
+
+The full-state serializer is exposed only by the browser adapter and calls the
+pinned melonDS `NDS::DoSavestate(Savestate*)`. The state contains the complete
+emulated DS machine, including cartridge SRAM. The adapter caps stored states at
+64 MiB, checks the MELN format/version and rolls back to a captured in-memory
+state if a restore fails after deserialization has begun.
+
+Full states live in a separate IndexedDB `states` store, keyed by the local ROM
+SHA-256 and slot. The `auto` slot rotates current/previous generations every 30
+seconds while running; pausing or backgrounding requests another best-effort
+checkpoint. The `quick` slot is one overwriteable emergency state, written by
+the icon-only button between L/R. Both use SHA-256 checksums, core/state version
+metadata and same-ROM validation. Loading a state does not persist its embedded
+SRAM into the independent `.sav` record just because it was restored. Later
+cartridge writes continue the normal `.sav` queue; explicit `.sav` export reads
+the current emulated cartridge memory.
+
+On ROM reopen, choose the newest full-state checkpoint, the Quick Save, or a
+fresh boot from stored cartridge-save data. The old IndexedDB stores are retained
+by the version-2 schema upgrade. If a newest generation is corrupt or
+incompatible, the previous valid generation is tried. If both fail, the app
+reports the issue and leaves the records intact. A failed automatic checkpoint
+pauses gameplay and exposes a separate retry; `.sav` retry status remains
+independent. No pagehide, unload, or iOS termination callback is trusted.
+
+Serialization is synchronous on the emulation worker and can briefly stall game
+frames while it captures. The UI and diagnostic report expose checkpoint size,
+capture time, IndexedDB commit time, and failures for device measurement. The
+30-second interval is an initial prototype value, not an iPhone performance
+acceptance result.
+
 ## Measurements and failure behavior
 
 - **Speed:** actual DS system-clock delta / 33,513,982 Hz, divided by active wall
@@ -132,11 +165,11 @@ diagnostic and parser/build sources alongside the WASM binary.
   is supported and write failures remain possible. Browser policy can change.
   [WebKit's storage policy](https://webkit.org/blog/14403/updates-to-storage-policy/)
   explains persistence heuristics and eviction. Export remains the backup route.
-- Hiding the page or losing focus pauses and clears input. An extra snapshot may
-  be requested, but periodic writes during active play are the primary retention
-  mechanism. No unload handler or last-second termination save is relied upon.
-  iOS may kill a page/worker without another callback. Resume starts a new active
-  measurement window; export a report before pausing if you need that interval.
+- Hiding the page or losing focus pauses and clears input, then requests a
+  full-state checkpoint in addition to normal dirty `.sav` persistence. Periodic
+  checkpoints during active play provide recovery if iOS kills the worker without
+  a final callback. Resume starts a new active measurement window; export a report
+  before pausing if you need that interval.
 - The capability report records secure context, WASM/worker/audio/storage/
   service-worker support, Home Screen mode, Web Locks and isolation. Diagnostic
   reports contain metrics and browser identity, not ROM/save bytes, filenames,

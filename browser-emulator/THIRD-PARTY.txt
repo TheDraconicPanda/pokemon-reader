@@ -1,4 +1,4 @@
-Reader Browser B1 0.1.0 is an experimental GPL-3.0-or-later frontend and adapter.
+Reader Browser B1 0.1.1 is an experimental GPL-3.0-or-later frontend and adapter.
 No Nintendo ROM, BIOS, firmware or personal save is distributed.
 
 melonDS 1.1, GPL-3.0-or-later, Copyright melonDS contributors.

@@ -1,12 +1,20 @@
 # Pokémon Reader
 
-## Browser Emulator — B1 prototype 0.1.0
+## Browser Emulator — B1 prototype 0.1.1
 
-Open **Emulator** in the shared menu to run the local browser DS prototype. Its
-app, worker, styles, manifest, offline cache and vendorized parser copy live under
+Open **Emulator** in the shared menu to run the local browser DS prototype. B1.1
+adds rotating automatic full-state recovery checkpoints and one overwriteable
+Quick Save slot, separately stored from cartridge `.sav` data. Periodic captures
+do not depend on the game's in-game Save command; a pause/background event also
+triggers a best-effort capture. Checkpoint time, size and capture/storage duration
+are shown separately from `.sav` persistence. On reopen, choose the latest state,
+the Quick Save, or a fresh boot from cartridge-save data.
+
+Its app, worker, styles, manifest, offline cache and vendorized parser copy live under
 [`browser-emulator/`](browser-emulator/); it does not load or replace the working
 Reader, Planner, Atlas, Pokédex or Trade logic. ROMs and saves stay in browser
-storage. iPhone performance and battery acceptance remain pending; see the
+storage. iPhone crash/relaunch, long-background, save-state stutter, raw save
+Reader import, performance and battery acceptance remain pending; see the
 [B1 guide and evidence](docs/browser-b1.md).
 
 The shared Reader suite is v0.27.7.
