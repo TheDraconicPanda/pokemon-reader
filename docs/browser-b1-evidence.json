@@ -4,7 +4,7 @@
   "prototypeVersion": "0.1.1",
   "branch": "browser-b1-state-persistence",
   "baseline": "df6665f",
-  "status": "B1.1 implementation and automated validation pass; Pages publication and iPhone acceptance pending",
+  "status": "B1.1 automated validation passes and code is integrated into main; live Pages verification and iPhone acceptance pending",
   "accepted": false,
   "core": {
     "name": "melonDS",
@@ -54,14 +54,14 @@
     ]
   },
   "delivery": {
-    "validatedCodeCommit": null,
-    "branchPublished": false,
+    "validatedCodeCommit": "5d0b919",
+    "branchPublished": true,
     "publicationAuthorization": "2026-11-13: user explicitly requested publication on GitHub; default to GitHub for web apps and discuss alternatives only when required capabilities are unavailable.",
-    "publicationHistory": "B1.1 is being validated on browser-b1-state-persistence; no B1.1 publication has been made.",
+    "publicationHistory": "Validated B1.1 commit 5d0b919 was integrated into main and pushed in merge commit 7492e0e. GitHub Pages workflow was triggered by the push; live route verification remains pending.",
     "local": "node browser-emulator/scripts/serve.mjs",
     "phoneRoute": "https://thedraconicpanda.github.io/pokemon-reader/browser-emulator/ after the existing main Pages deployment completes",
     "phoneRouteRuntimeVerified": false,
-    "pagesStatus": "B1.1 awaits validation and publication through the existing main Pages workflow",
+    "pagesStatus": "B1.1 integrated into main and pushed; verify the existing Pages deployment before iPhone testing",
     "cloudflare": "not started; unused helper retained, not the chosen hosting route",
     "existingPagesChanged": "Shared menu/version metadata updated; existing app logic preserved",
     "nativeImplementationChanged": false,
