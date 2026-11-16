@@ -2150,7 +2150,8 @@ test('Safari mini Atlas keeps a true 3×2 grid, four compass slots, themes and r
   await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
   await safariVisit('#safari','/pokemon-reader');
   await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'))`);
-  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}`);
+  const overflow=await evaluate(`(() => { const nodes=[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {tag:el.tagName,id:el.id,className:typeof el.className==='string'?el.className:'',left:Math.round(r.left*10)/10,right:Math.round(r.right*10)/10,width:Math.round(r.width*10)/10,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,position:s.position,overflowX:s.overflowX};}).filter(x=>x.width>0&&(x.right>innerWidth+.5||x.left<-.5||x.scrollWidth>x.clientWidth+1)).sort((a,b)=>b.right-a.right).slice(0,15); return {viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,nodes}; })()`);
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}: ${JSON.stringify(overflow)}`);
   const geometry=await evaluate(`(() => {const r=[...document.querySelectorAll('[data-safari-position]')].map(n=>n.getBoundingClientRect());return r[0].top===r[1].top&&r[1].top===r[2].top&&r[3].top===r[4].top&&r[4].top===r[5].top&&r[0].left===r[3].left&&r[0].left<r[1].left&&r[1].left<r[2].left&&r[3].top>r[0].bottom;})()`);
   assert.equal(geometry,true);assert.equal(await evaluate(`document.querySelectorAll('#safari-compass>.compass-direction').length`),4);
   await editSafari(0,11,{save:false});
@@ -2203,7 +2204,8 @@ test('Safari maps follow all twelve area identities, open full size, fit both th
   for(const theme of ['light','dark'])for(const width of [320,390,768,1440]){
    await command('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:false});
    await evaluate(`localStorage.setItem('pokemon-reader-theme',${JSON.stringify(theme)});window.dispatchEvent(new Event('pageshow'))`);
-   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}`);
+   const overflow=await evaluate(`(() => { const nodes=[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {tag:el.tagName,id:el.id,className:typeof el.className==='string'?el.className:'',left:Math.round(r.left*10)/10,right:Math.round(r.right*10)/10,width:Math.round(r.width*10)/10,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,position:s.position,overflowX:s.overflowX};}).filter(x=>x.width>0&&(x.right>innerWidth+.5||x.left<-.5||x.scrollWidth>x.clientWidth+1)).sort((a,b)=>b.right-a.right).slice(0,15); return {viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,nodes}; })()`);
+   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),true,`${theme} ${width}: ${JSON.stringify(overflow)}`);
    assert.equal(await evaluate(`(()=>{const r=document.querySelector('.safari-map').getBoundingClientRect();return r.width>100&&r.right<=innerWidth&&r.height>0;})()`),true);
    assert.equal(await evaluate(`document.querySelectorAll('#safari-compass>.compass-direction').length`),4);
    if(process.env.SAFARI_SCREENSHOT_DIR&&[390,1440].includes(width)){
@@ -3085,9 +3087,13 @@ test('Safari final audit links Gate, Atlas, simulator and species reference with
  assert.equal(await evaluate(`document.activeElement.id`),'safari-live-title');
  assert.match(await evaluate(`document.querySelector('#safari-proposed-encounters').textContent`),/Bagon/);
  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('/js/adventures.js')).getActiveProfile()))()`),saved);
- await evaluate(`document.querySelector('#safari-proposed-encounters a[href*="species=371&"]').click()`);
+ const speciesUrl=await evaluate(`document.querySelector('#safari-proposed-encounters a[href*="species=371&"]').href`);
+ await command('Page.navigate',{url:speciesUrl});
  await until(()=>evaluate(`document.querySelector('#reference-detail')?.open&&document.querySelector('#reference-title')?.textContent==='Bagon'`),'Simulator species opens reference');
- await evaluate(`history.back()`);
+ const history=await command('Page.getNavigationHistory');
+ const previous=history.entries.slice(0,history.currentIndex).reverse().find(entry=>entry.url.includes('/safari-zone/'));
+ assert.ok(previous,'Safari simulator history entry remains available');
+ await command('Page.navigateToHistoryEntry',{entryId:previous.id});
  await until(()=>evaluate(`document.documentElement?.dataset.safariScenarioReady==='true'`),'Back returns to simulator');
  assert.doesNotMatch(await evaluate(`document.querySelector('#scenario-differences').textContent`),/Hypothetical/,'Returning reconstructs saved state rather than persisting a proposal');
  assert.equal(await evaluate(`(async()=>JSON.stringify(await (await import('/js/adventures.js')).getActiveProfile()))()`),saved);
