@@ -72,7 +72,7 @@ update is pushed for Pages deployment; live confirmation remains pending.
 
 - From the regular **Safari Zone Gate**, the north connection enters the mini
   Atlas at the entrance position. Atlas’s Johto **Safari** card and contextual
-  Safari link open it directly at `pokedex-earth/#safari`.
+  Safari link open it directly at `atlas/#safari`.
 - Six positions are shown as **three columns × two rows**, north up. The grid
   is a schematic directory, not a claim to new game-map imagery. A position can
   be selected directly; compass buttons move only to its immediate neighbors.

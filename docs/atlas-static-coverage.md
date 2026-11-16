@@ -155,7 +155,7 @@ existing v0.25.35 work was retained; only its release label is synchronized at
 v0.25.36.
 
 After publication, open the existing Atlas link and confirm v0.25.36:
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/
+https://thedraconicpanda.github.io/pokemon-reader/atlas/
 
 Try New Bark Town's League approach, the Ruins of Alph junction, Ilex Forest,
 Cianwood/Cliff Edge Gate, and the Route 28/Mt. Silver approach. Search “Waterfall”

@@ -85,18 +85,60 @@ requested milestone; preserve the existing website. Native app delivery requires
 a real iOS build/install route, not a Pages deployment. Device/performance tests
 cannot be claimed from simulator tests or successful compilation.
 
-The user authorizes project-related investigation, commands and Git operations
-without routine conversational approval. Clarified explicitly: any files inside
-the project repository, including new source files and build output, may be
-created or modified. Commands that write outside the repository or the user's
-Google Drive folder require approval first. The Drive folder path is not known;
-do not infer it. Keep scratch files in repository-local `work/`; redirect caches,
-temporary output and tool state locally where supported. External toolchain,
-cache or signing-file writes need a bounded approval before the command runs.
-Follow normal non-force Git workflow and preserve user changes. Runtime/platform
-approval requirements still apply; report actual blockers and their source.
+The user's latest authorization explicitly covers the `Emulator` branch of
+`TheDraconicPanda/pokemon-reader` and this verified Google Drive folder:
+https://drive.google.com/drive/folders/1065tfo0qpmwMqhTH12TfORae0rFivN91
+(folder name: Emulator; ID: `1065tfo0qpmwMqhTH12TfORae0rFivN91`).
+Use connected Drive tools for this folder; no local sync path has been verified.
+File work in these locations, including new project source and build output,
+needs no routine conversational approval. Commit and push emulator work to
+`Emulator` by default; do not infer authorization to merge this track into other
+branches from older main-publication instructions. Preserve unrelated work and
+use normal non-force Git operations.
 
-User device: iPhone 16 Plus; iOS version and Mac/signing access still unknown.
+Commands needed to research, investigate and implement the requested project
+tasks are authorized within those file-write boundaries. Any modification to
+other files requires approval first, including external toolchain, cache,
+temporary-output or signing-file writes. Keep scratch files in repository-local
+`work/` and redirect tool state locally where supported. When approval is needed,
+give a concise plain-language explanation of the intended action, target and
+purpose (for example, "I'll update this file to configure the iOS build"). Do not
+ask again for permission to research or work in the authorized locations.
+Runtime/platform approval requirements still apply; explain any actual blocker
+and its source without inventing an additional routine approval step.
+
+User device: iPhone 16 Plus on user-reported iOS 26.6.1. The user has no Mac but
+does have a Windows computer. Use the hosted macOS build route; signing and
+actual installation are still to be validated. The Windows runbook is
+`docs/emulator-e1-windows.md`. E1 native source is under `ios/`; host and GitHub
+release builds do not establish device acceptance. Keep binary delivery and
+test evidence distinct from pending game/battery results.
+User direction (2026-11-02): phone installation/testing may be deferred while
+development continues. Complete each requested milestone's implementation,
+automated checks and build delivery before the next, but do not block E2–E4 on
+earlier user/device checks alone. Carry those checks forward explicitly; E1 and
+the core remain unaccepted until measured on the phone. Do not waive any release
+gate or claim device performance from host/simulator results. See the plan's
+deferred device-testing policy. This supersedes the earlier E1-before-E2 gate.
+E2 engineering checkpoint (2026-11-02): native 0.2.0 source `3a994d5`, unsigned
+iPhone/simulator builds in run 41473961486, Linux core/storage/export checks,
+macOS storage fault tests and 306 web regressions pass. See `docs/emulator-e2.md`
+and its verification JSON. Phone runtime/save/controls and energy acceptance
+remain deferred.
+E3 engineering checkpoint (2026-11-02): native 0.3.0 source `fbb5ef9`, unsigned
+iPhone/simulator builds in run 41491929606, five Linux CTest groups, macOS
+cartridge/checkpoint fault tests and 306 web regressions pass. Three manual slots,
+three automatic generations, compressed atomic storage and guarded restoration
+are implemented. See `docs/emulator-e3.md` and its evidence JSON. The two-minute
+checkpoint interval is a test default; phone lifecycle/clock, offload/update,
+stutter and energy acceptance remain deferred.
+E4 engineering checkpoint (2026-11-02): native 0.4.0 source `f9463b2`, unsigned
+builds in run 41512278571, nine native CTest groups, 306 web regressions, macOS
+storage/checkpoint faults and actual WKWebView completed-save/profile/Great Marsh
+checks pass. See `docs/emulator-e4.md` and its evidence JSON. Reader copies are
+read-only; checkpoint restoration never supplies Reader input. Phone/player-save,
+Files/share, offload/update persistence and performance/energy checks remain
+deferred. E5 is next only on a new implementation request.
 melonDS is the initial candidate, pending measured performance/battery evidence.
 v1 includes normal-speed play, durable game saves, manual states, automatic
 recovery and Reader integration from completed in-game saves. Blanket emulator

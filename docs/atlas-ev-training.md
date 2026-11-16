@@ -7,7 +7,7 @@ now has its own development track and is excluded from this feature.
 ## User workflow
 
 Select **EV Training** in Atlas, or open
-`/pokemon-reader/pokedex-earth/#ev-training` directly. Choose HP, Attack, Defense,
+`/pokemon-reader/atlas/#ev-training` directly. Choose HP, Attack, Defense,
 Special Attack, Special Defense or Speed; in-game time; and encounter method.
 The default shows only tables in which every encounter awards the chosen stat
 and no other stat. Surfing is ranked first. Turn off **No unwanted EVs** to inspect

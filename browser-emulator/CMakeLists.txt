@@ -24,6 +24,6 @@ target_link_options(b1 PRIVATE
   -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=worker,node
   -sALLOW_MEMORY_GROWTH=1 -sINITIAL_MEMORY=67108864 -sMAXIMUM_MEMORY=1073741824
   -sFILESYSTEM=0 -sDISABLE_EXCEPTION_CATCHING=0
-  "-sEXPORTED_FUNCTIONS=['_malloc','_free','_b1_load','_b1_step','_b1_video','_b1_audio','_b1_audio_read','_b1_save','_b1_save_size','_b1_revision','_b1_word','_b1_diagnostic','_b1_diagnostic_write','_b1_diagnostic_rom','_b1_diagnostic_rom_size']"
+  "-sEXPORTED_FUNCTIONS=['_malloc','_free','_b1_load','_b1_step','_b1_video','_b1_audio','_b1_audio_read','_b1_save','_b1_save_size','_b1_revision','_b1_state_capture','_b1_state_data','_b1_state_load','_b1_word','_b1_diagnostic','_b1_diagnostic_write','_b1_diagnostic_rom','_b1_diagnostic_rom_size']"
   "-sEXPORTED_RUNTIME_METHODS=['HEAPU8','HEAP16','HEAPU32']")
 set_target_properties(b1 PROPERTIES SUFFIX ".mjs" RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/vendor")

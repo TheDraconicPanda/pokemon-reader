@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "milestone": "E3",
+  "nativeVersion": "0.3.0",
+  "webReaderVersion": "0.27.0",
+  "branch": "Emulator",
+  "sourceCommit": "fbb5ef9ef26cd73ee4cdf0e9aece157f1e09d32e",
+  "status": "ready for device testing; engineering checks and unsigned delivery complete",
+  "accepted": false,
+  "coreRevision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+  "stateContract": {
+    "envelope": "RDSTATE1Z",
+    "coreStateVersion": "13.0",
+    "adapterContract": 1,
+    "manualSlotsPerROM": 3,
+    "automaticGenerationsPerCompatibility": 3,
+    "compression": "system zlib level 1",
+    "defaultIntervalSeconds": 120,
+    "intervalStatus": "test default; phone stutter/energy acceptance pending"
+  },
+  "automatedChecks": {
+    "localCTest": {
+      "passed": 5,
+      "failed": 0
+    },
+    "webRegressions": {
+      "passed": 306,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 228498.662572
+    },
+    "hostedLinux": {
+      "jobId": 125436875368,
+      "conclusion": "success",
+      "CTestPassed": 5
+    },
+    "hostedApple": {
+      "jobId": 125436874567,
+      "conclusion": "success",
+      "storageAndCheckpointFaultTests": "passed",
+      "runner": "macos-15-intel"
+    }
+  },
+  "hostDiagnosticSamples": [
+    {
+      "cartridge": "SoulSilver IR",
+      "rawStateBytes": 19760248,
+      "committedBytes": 97279,
+      "captureMs": 12.5482,
+      "writeMs": 43.976
+    },
+    {
+      "cartridge": "Platinum",
+      "rawStateBytes": 19760247,
+      "committedBytes": 100414,
+      "captureMs": 5.3623,
+      "writeMs": 42.0906
+    }
+  ],
+  "sampleLimits": "Original tiny ARM programs and synthetic SRAM fixtures on a Linux host; these are not game, iPhone, stutter or energy measurements.",
+  "build": {
+    "runId": 41491929606,
+    "url": "https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41491929606",
+    "signed": false,
+    "status": "success",
+    "artifact": {
+      "id": 13164184196,
+      "name": "ReaderEmulator-E3-unsigned",
+      "bytes": 1647060,
+      "sha256": "81ac6eb941ba3209f4290cfe201367ab033761b679857c5d2d9d803eb8de7155",
+      "expiresAt": "2026-12-02T17:40:50Z"
+    },
+    "iphoneos": "release compilation and packaging passed",
+    "iphonesimulator": "release compilation and packaging passed"
+  },
+  "pendingPhoneChecks": [
+    "Signing and installation",
+    "SoulSilver/Platinum gameplay, manual and automatic restore after relaunch",
+    "Real in-game saving after restoration, pre-restore backup and low storage",
+    "Lock/background/force termination/restart and audio interruptions",
+    "Update/offload/reinstall retention using the actual signing route",
+    "Checkpoint capture stutter, actual state sizes and matched Delta performance/energy/thermal budget",
+    "Day/night and time-based behavior after long pauses or restoring an older serialized console clock"
+  ],
+  "evidencePolicy": "Phone checks deferred by user direction on 2026-11-02; no acceptance gate waived. No zero-progress-loss guarantee.",
+  "nextMilestone": "E4 completed-save Reader integration; not started"
+}

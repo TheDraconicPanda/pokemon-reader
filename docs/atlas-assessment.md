@@ -157,7 +157,7 @@ Separate preview hosting and source ZIP review are not needed. Standing authoriz
 covers routine commit, integration, and publishing after checks pass.
 
 After publication, check the displayed v0.25.27 at:
-https://thedraconicpanda.github.io/pokemon-reader/pokedex-earth/
+https://thedraconicpanda.github.io/pokemon-reader/atlas/
 
 Search for “Safari Zone Gate”, click Safari Zone, and confirm exactly the Safari
 Zone card appears with a return link to the Gate. Manually searching “Safari Zone”

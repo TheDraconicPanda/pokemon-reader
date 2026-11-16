@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "milestone": "B1",
-  "prototypeVersion": "0.1.0",
-  "branch": "main (B1 source originally branch Emulator)",
-  "baseline": "721f5b1",
-  "status": "engineering checks pass; browser app integrated on main; Pages deployment verification and iPhone acceptance pending",
+  "prototypeVersion": "0.1.1",
+  "branch": "browser-b1-state-persistence",
+  "baseline": "df6665f",
+  "status": "B1.1 implementation and automated validation pass; Pages publication and iPhone acceptance pending",
   "accepted": false,
   "core": {
     "name": "melonDS",
@@ -19,17 +19,19 @@
   },
   "automatedChecks": {
     "B1": {
-      "passed": 7,
+      "passed": 9,
       "failed": 0,
       "command": "node --test browser-emulator/tests/*.test.mjs",
       "coverage": [
         "actual WASM original ARM execution, red/green screens, key/touch mirrors, DS clock and PCM production",
         "actual retail and IR cartridge SPI writes, raw import/export/reload, independent existing Reader decoding for synthetic Platinum and SoulSilver saves",
         "120 Hz host pacing and slow-host emulated-time deficit",
-        "serialized snapshot revisions, detached bytes, quota-failure retention and retry",
+        "full machine-state serialization and deterministic restore using the pinned melonDS core; damaged state rejection with rollback",
+        "separate durable Quick Save and periodic full-state checkpoints, reopen recovery, offline recovery, ROM binding, migration, checksum fallback, quota failure retention and retry",
+        "separate cartridge .sav persistence and reader save import/export behavior",
         "actual AudioWorklet queue output, underruns, overflow, paused silence and 44.1 kHz resampling",
         "WASM hashes, offline inventory and exact normalized parser-source closure",
-        "real Chromium local .nds input, mobile buttons, raw save import/download, durable storage fences and checksum fallback, offline reload with retained ROM/save, landscape gameplay fit, background pause and private-path rejection"
+        "real Chromium local .nds input, mobile controls, offline reload and private-file isolation"
       ]
     },
     "existingReader": {
@@ -42,16 +44,24 @@
       "note": "Initial 302/306 exposed Windows CRLF conversion of source/evidence files. Restored canonical HEAD bytes only; affected 33 checks and final full 306 pass. Root .gitattributes prevents future conversion."
     }
   },
-  "data": {"commercialROMs": 0, "playerSaves": 0, "phoneTests": 0, "syntheticGames": ["Platinum", "SoulSilver"]},
+  "data": {
+    "commercialROMs": 0,
+    "playerSaves": 0,
+    "phoneTests": 0,
+    "syntheticGames": [
+      "Platinum",
+      "SoulSilver"
+    ]
+  },
   "delivery": {
-    "validatedCodeCommit": "f45f8b830a070ec38288535cdfb3abf7347a8e67",
-    "branchPublished": true,
+    "validatedCodeCommit": null,
+    "branchPublished": false,
     "publicationAuthorization": "2026-11-13: user explicitly requested publication on GitHub; default to GitHub for web apps and discuss alternatives only when required capabilities are unavailable.",
-    "publicationHistory": "Initial PC Git credentials failed and an intermediate connector transfer was rejected. The user subsequently authorized GitHub publication. No Cloudflare tunnel was started.",
+    "publicationHistory": "B1.1 is being validated on browser-b1-state-persistence; no B1.1 publication has been made.",
     "local": "node browser-emulator/scripts/serve.mjs",
     "phoneRoute": "https://thedraconicpanda.github.io/pokemon-reader/browser-emulator/ after the existing main Pages deployment completes",
     "phoneRouteRuntimeVerified": false,
-    "pagesStatus": "B1 directory integrated into main; awaiting the existing Pages deployment",
+    "pagesStatus": "B1.1 awaits validation and publication through the existing main Pages workflow",
     "cloudflare": "not started; unused helper retained, not the chosen hosting route",
     "existingPagesChanged": "Shared menu/version metadata updated; existing app logic preserved",
     "nativeImplementationChanged": false,
@@ -62,16 +72,29 @@
     "device": "iPhone 16 Plus",
     "ios": "26.6.1 (user reported)",
     "game": "Platinum only",
-    "working": ["installation/launch", "diagnostic", "basic gameplay/controls/audio and initial Reader", "normal-save relaunch persistence", "manual states", "automatic recovery"],
+    "working": [
+      "installation/launch",
+      "diagnostic",
+      "basic gameplay/controls/audio and initial Reader",
+      "normal-save relaunch persistence",
+      "manual states",
+      "automatic recovery"
+    ],
     "manualStatePause": "expected pause; Resume restores play, not a confirmed crash",
-    "stillPending": ["Reader after old-state restore then normal saving", "SoulSilver", "measured performance/heat/battery", "comprehensive offline/persistence/lifecycle/migration"]
+    "stillPending": [
+      "Reader after old-state restore then normal saving",
+      "SoulSilver",
+      "measured performance/heat/battery",
+      "comprehensive offline/persistence/lifecycle/migration"
+    ]
   },
   "remaining": [
-    "Verify the existing main Pages deployment serves the B1 directory and scoped offline installation",
-    "Physical iPhone Safari/Home Screen installation and offline cold startup",
-    "Player-ROM gameplay and normal-save Files/Reader round trips in both games",
+    "Complete code review and publish the validated B1.1 branch to the existing main Pages workflow",
+    "Verify the existing main Pages deployment serves B1.1 and scoped offline installation",
+    "Physical iPhone Safari/Home Screen installation, Quick Save icon usability and offline cold startup",
+    "Test Quick Save and automatic restore after app switching, extended background suspension, and full app close/reopen",
+    "Player-ROM normal-save Files/Reader round trips in both games; earlier iPhone raw .sav import issue remains unresolved",
     "Sustained speed/audio, heat and matched measured battery comparisons",
     "Real iOS storage pressure/eviction, interruption and termination behavior"
   ]
 }
-

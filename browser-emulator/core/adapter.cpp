@@ -4,6 +4,7 @@
 #include "Args.h"
 #include "NDS.h"
 #include "GPU3D_Soft.h"
+#include "Savestate.h"
 #include "../../ios/Tests/TestROM.h"
 #include <memory>
 #include <algorithm>
@@ -13,6 +14,15 @@ static std::unique_ptr<melonDS::NDS> nds;
 static uint32_t video[256*192*2];
 static int16_t audio[4096*2];
 static bool diagnostic=false;
+static std::unique_ptr<melonDS::Savestate> stateBuffer;
+static constexpr unsigned MaxBrowserStateBytes=64*1024*1024;
+
+static std::unique_ptr<melonDS::Savestate> captureState() {
+    if(!nds)return nullptr;
+    auto state=std::make_unique<melonDS::Savestate>();
+    if(state->Error||!nds->DoSavestate(state.get())||state->Error||state->Length()>MaxBrowserStateBytes)return nullptr;
+    return state;
+}
 extern "C" {
 int b1_load(const uint8_t* rom,unsigned size,const uint8_t* save,unsigned length) {
     diagnostic=false;
@@ -48,6 +58,22 @@ unsigned b1_audio_read(){return nds?nds->SPU.ReadOutput(audio,4096):0;}
 const uint8_t* b1_save(){return nds?nds->GetNDSSave():nullptr;}
 unsigned b1_save_size(){return nds?nds->GetNDSSaveLength():0;}
 unsigned b1_revision(){return session.revision;}
+unsigned b1_state_capture(){
+    stateBuffer=captureState();
+    return stateBuffer?stateBuffer->Length():0;
+}
+const uint8_t* b1_state_data(){return stateBuffer?static_cast<const uint8_t*>(stateBuffer->Buffer()):nullptr;}
+int b1_state_load(const uint8_t* data,unsigned length){
+    if(!nds||!data||length<16||length>MaxBrowserStateBytes)return 0;
+    auto backup=captureState();
+    if(!backup)return -1;
+    melonDS::Savestate state(const_cast<uint8_t*>(data),length,false);
+    if(state.Error)return 0;
+    if(nds->DoSavestate(&state)&&!state.Error)return 1;
+    melonDS::Savestate rollback(backup->Buffer(),backup->Length(),false);
+    if(!rollback.Error&&nds->DoSavestate(&rollback)&&!rollback.Error)return 0;
+    return -1;
+}
 const uint8_t* b1_diagnostic_rom(){return diagnostic&&nds?nds->GetNDSCart()->GetROM():nullptr;}
 unsigned b1_diagnostic_rom_size(){return diagnostic&&nds?nds->GetNDSCart()->GetROMLength():0;}
 unsigned b1_word(unsigned offset){return nds&&offset<=0x3FFFFC?*reinterpret_cast<uint32_t*>(nds->MainRAM+offset):0;}

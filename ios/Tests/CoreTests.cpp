@@ -1,0 +1,115 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+#include "Core.h"
+#include "TestROM.h"
+#include "Library.h"
+#include "Platform.h"
+#include <cstdlib>
+#include <iostream>
+#include <thread>
+#include <stdexcept>
+#include <cmath>
+#include <fstream>
+#include <chrono>
+#define CHECK(x) do { if(!(x)) throw std::runtime_error("Failed: " #x); } while(0)
+int main(int argc,char** argv) {
+    using namespace reader;
+    Core core;std::string error;auto rom=test::rom();
+    CHECK(!core.load(nullptr,0,nullptr,0,error));CHECK(!error.empty());
+    auto truncated=rom;truncated[0x2F]=0xFF;
+    CHECK(!core.load(truncated.data(),truncated.size(),nullptr,0,error));
+    CHECK(!core.load(rom.data(),rom.size(),rom.data(),17,error));
+    CHECK(core.load(rom.data(),rom.size(),nullptr,0,error));CHECK(error.empty());
+    CHECK(core.gameCode=="####");
+    double time=0;std::array<int16_t,4096> audio{};size_t sound=0;
+    for(int i=0;i<8;++i){time+=core.step(1,20,30);sound+=core.readAudio(audio.data(),2048);}
+    CHECK(core.diagnosticWord(0x1000)==42);CHECK(core.running());
+    CHECK((core.diagnosticWord(0x1004)&1)==0);
+    CHECK((core.diagnosticWord(0x1008)&0x40)==0);
+    CHECK(time>0.10 && time<0.15);CHECK(sound>4000);
+    std::array<uint32_t,Pixels*2> video{};core.copyVideo(video.data());
+    std::cerr<<"Diagnostic screen colors: "<<std::hex<<video[0]<<" / "<<video[Pixels]<<std::dec<<"\n";
+    // Native DS 5->6->8-bit conversion: 31 -> 62 -> 251, as implemented by
+    // the software renderer, in BGRA memory order.
+    CHECK(video[0]==0xFFFB0000);CHECK(video[Pixels]==0xFF00FB00);CHECK(core.copySave().empty());
+    // Bad replacement must preserve the running instance.
+    CHECK(!core.load(nullptr,0,nullptr,0,error));CHECK(core.running());
+    CHECK(core.diagnosticWord(0x1000)==42);
+    core.step(0);CHECK(core.diagnosticWord(0x1000)==42);CHECK((core.diagnosticWord(0x1004)&1)==1);
+    CHECK((core.diagnosticWord(0x1008)&0x40)!=0);
+    // Exercise both real retail cartridge types (Platinum and SoulSilver IR)
+    // with our original CPU programs and synthetic SRAM, not commercial ROMs.
+    auto retail=rom;retail.resize(0x10000);
+    std::copy_n(rom.data()+0x1000,0x1000,retail.data()+0x8000);
+    std::copy_n(rom.data()+0x2000,0x1000,retail.data()+0x9000);
+    retail[0x21]=0x80;retail[0x31]=0x90;
+    std::vector<uint8_t> saved(0x80000);for(size_t i=0;i<saved.size();++i)saved[i]=uint8_t((i*13+5)&255);
+    for(const char* code:{"CPUE","IPGE"}){
+        std::copy_n(code,4,retail.data()+12);
+        CHECK(core.load(retail.data(),retail.size(),saved.data(),saved.size(),error));
+        CHECK(core.copySave()==saved);core.step(0);CHECK(core.copySave()==saved);
+        auto revision=core.saveRevision;
+        core.diagnosticSaveByte(0x100,0x53);
+        CHECK(core.copySave()[0x100]==0x53);CHECK(core.saveRevision>revision);
+        Library library("core-save-test");auto entry=library.importROM(retail,std::string(code)+".nds");
+        library.writeSave(entry.id,core.copySave());
+        auto persisted=Library("core-save-test").save(entry.id).bytes;
+        Core relaunched;CHECK(relaunched.load(retail.data(),retail.size(),persisted.data(),persisted.size(),error));
+        CHECK(relaunched.copySave()[0x100]==0x53);std::filesystem::remove_all("core-save-test");
+    }
+    CHECK(argc==3);
+    for(int i=1;i<=2;++i){
+        std::ifstream f(argv[i],std::ios::binary);Bytes imported((std::istreambuf_iterator<char>(f)),{});
+        const char* code=i==1?"IPGE":"CPUE";std::string game=i==1?"soulsilver":"platinum";
+        CHECK(validImport(imported,code,error));std::copy_n(code,4,retail.data()+12);
+        CHECK(core.load(retail.data(),retail.size(),imported.data(),imported.size(),error));
+        core.step(0);core.diagnosticSaveByte(0x30000,0x53);CHECK(core.saveRevision>0);
+        auto changed=core.copySave();CHECK(validImport(changed,code,error));
+        Library library("native-export-test");auto entry=library.importROM(retail,game+".nds");library.writeSave(entry.id,changed);
+        core.step(1,20,30);auto memory=core.diagnosticWord(0x1004);
+        auto started=std::chrono::steady_clock::now();auto state=core.captureState();
+        double captureMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-started).count();
+        auto diskStart=std::chrono::steady_clock::now();auto checkpoint=library.writeState(entry.id,"manual-1",core.stateCompatibility,Core::stateFormat(),state,changed,1000);
+        double writeMs=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-diskStart).count();
+        auto storedSize=std::filesystem::file_size(std::filesystem::path("native-export-test")/"games"/entry.id/"states"/checkpoint.file);
+        // Advance cartridge progress and RAM after the checkpoint, then reload
+        // on a brand-new core, with the durable current save backed up first.
+        core.step(0);core.diagnosticSaveByte(0x30000,0x61);library.writeSave(entry.id,core.copySave());
+        auto current=library.save(entry.id).bytes;library.backupBeforeState(entry.id);
+        auto savedState=Library("native-export-test").state(entry.id,checkpoint.file,core.stateCompatibility);
+        Core restored;CHECK(restored.load(retail.data(),retail.size(),savedState.save.data(),savedState.save.size(),error));
+        CHECK(restored.restoreState(savedState.state,error));CHECK(restored.saveRevision==0);
+        CHECK(restored.copySave()==changed);CHECK(restored.diagnosticWord(0x1004)==memory);
+        CHECK(library.save(entry.id).bytes==current);CHECK(library.saveBeforeState(entry.id)==current);
+        for(int frame=0;frame<3;++frame)restored.step(0);
+        CHECK((restored.diagnosticWord(0x1004)&1)==1);CHECK(restored.running());
+        auto malformed=state;malformed[20]=0;malformed[21]=0;malformed[22]=0;malformed[23]=0;
+        CHECK(!restored.restoreState(malformed,error));CHECK(restored.running());
+        restored.diagnosticSaveByte(0x30000,0x53);CHECK(restored.saveRevision>0);
+        library.writeSave(entry.id,restored.copySave());CHECK(library.saveBeforeState(entry.id)==current);
+        std::cout<<"State sample "<<game<<": "<<state.size()<<" raw bytes, "<<storedSize<<" stored bytes, capture "<<captureMs<<" ms, write "<<writeMs<<" ms (host only)\n";
+        auto reloaded=Library("native-export-test").save(entry.id).bytes;
+        Core restarted;CHECK(restarted.load(retail.data(),retail.size(),reloaded.data(),reloaded.size(),error));CHECK(restarted.copySave()==changed);
+        std::ofstream input("e2-"+game+"-input.sav",std::ios::binary);input.write(reinterpret_cast<const char*>(imported.data()),imported.size());
+        std::ofstream output("e2-"+game+"-export.sav",std::ios::binary);output.write(reinterpret_cast<const char*>(reloaded.data()),reloaded.size());
+        std::filesystem::remove_all("native-export-test");
+    }
+    AudioRing<8> ring;int16_t input[24],output[24];
+    for(int i=0;i<24;++i)input[i]=int16_t(i+1);
+    CHECK(ring.write(input,6)==6);CHECK(ring.read(output,4)==4);
+    for(int i=0;i<8;++i)CHECK(output[i]==input[i]);
+    CHECK(ring.write(input+12,6)==6);CHECK(ring.read(output,10)==8);
+    for(int i=0;i<16;++i)CHECK(output[i]==input[i+8]);
+    for(int i=16;i<20;++i)CHECK(output[i]==0);
+    AudioRing<64> concurrent;std::atomic<bool> bad{false};
+    std::thread producer([&]{for(int i=0;i<20000;++i){int16_t pair[]={int16_t(i%30000),int16_t(i%30000)};while(!concurrent.write(pair,1))std::this_thread::yield();}});
+    for(int i=0;i<20000;++i){int16_t pair[2];while(!concurrent.read(pair,1))std::this_thread::yield();if(pair[0]!=i%30000||pair[1]!=pair[0])bad=true;}
+    producer.join();CHECK(!bad.load());
+    namespace P=melonDS::Platform;
+    auto sem=P::Semaphore_Create();CHECK(!P::Semaphore_TryWait(sem,0));P::Semaphore_Post(sem,2);
+    CHECK(P::Semaphore_TryWait(sem,0));P::Semaphore_Reset(sem);CHECK(!P::Semaphore_TryWait(sem,0));P::Semaphore_Free(sem);
+    // File mode Preserve must never truncate an existing save.
+    auto file=P::OpenFile("platform-test.bin",P::Write);CHECK(file);CHECK(P::FileWrite("save",1,4,file)==4);P::CloseFile(file);
+    CHECK(P::CheckFileWritable("platform-test.bin"));file=P::OpenFile("platform-test.bin",P::Read);CHECK(P::FileLength(file)==4);
+    char data[4];CHECK(P::FileRead(data,1,4,file)==4);CHECK(std::string(data,4)=="save");P::CloseFile(file);std::remove("platform-test.bin");
+    std::cout<<"PASS: real melonDS ARM execution, frame timing, video, audio, input path, rejected imports, SPSC audio, semaphore and file preservation.\n";
+}

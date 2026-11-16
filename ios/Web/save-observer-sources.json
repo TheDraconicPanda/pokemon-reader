@@ -1,0 +1,10 @@
+{
+  "sources": [
+    {"url":"https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/src/save.c","sha256":"c3cd84b17b771db6c878289955794c0e55f86fda65b2205a53b2caaae571d2fc","routines":["HandleWriteSaveAsync_NormalData","HandleWriteSaveAsync_PCBoxes"],"contract":"Both 16-byte footers commit matching counts. PC delta saves still finish by writing the PC footer."},
+    {"url":"https://github.com/pret/pokeheartgold/blob/d2355244ac42b3c6e40d8c36aa3564ee8706dea4/include/save.h","sha256":"03d45990d01e7b02ffb8b8678f97f666ced23b8eda75b679e18c1447da6b8eff","contract":"SaveChunkFooter: count,size,magic,slot,CRC; 16 bytes."},
+    {"url":"https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/src/savedata.c","sha256":"2d893f963ccb9b1c3aa412d631fc66840661b8e9726524821d17e91b46e12ec7","routines":["SaveDataState_Main"],"contract":"Body, secondary last ten footer bytes, then primary first ten/full footer. Normal-only saves retain global generation and existing PC; full saves advance global generation."},
+    {"url":"https://github.com/pret/pokeplatinum/blob/49f78f35ccd8c6880e189d23a630eef2976c44ac/include/savedata.h","sha256":"e5ec3253658045258fb6821c39bc188f7060ca8228226f1a7df5ae89141e07f2","contract":"SaveBlockFooter: global and block counters,size,signature,block ID,padding,CRC; 20 bytes."}
+  ],
+  "verification":"Synthetic fixtures replay these write phases through pinned melonDS retail/IR SPI callbacks. No retail Pokemon program or player save has been exercised on the target phone.",
+  "readerAdapter":"Canonical read-only copies duplicate the selected validated blocks in both partitions to avoid the shared Reader's historical HGSS 20-byte-footer counter heuristic. Original cartridge bytes and explicit file imports are unchanged."
+}

@@ -31,7 +31,7 @@
       if (reader) load.type = 'button';
       else load.href = new URL('#overview', root).href;
       nav.append(load);
-      for (const [label, path, tool] of [['Team Planner', 'team-planner/', 'planner'], ['Atlas', 'pokedex-earth/', 'atlas'], ['Pokédex', 'pokedex/', 'pokedex'], ['Trade', 'trade/', 'trade'], ['Emulator', 'browser-emulator/', 'emulator']]) {
+      for (const [label, path, tool] of [['Team Planner', 'team-planner/', 'planner'], ['Atlas', 'atlas/', 'atlas'], ['Pokédex', 'pokedex/', 'pokedex'], ['Trade', 'trade/', 'trade'], ['Emulator', 'browser-emulator/', 'emulator']]) {
         const link = document.createElement('a');
         link.textContent = label; link.href = new URL(path, root).href;
         if (this.getAttribute('tool') === tool) link.setAttribute('aria-current', 'page');

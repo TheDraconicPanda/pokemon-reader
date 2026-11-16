@@ -1,14 +1,17 @@
 # iPhone emulator v1 implementation plan
 
-Agreed scope and execution rules, 27 October 2026. Status: planning only;
-no native emulator, signed build, device benchmark or recovery implementation
-has been delivered. Request milestones by the stable IDs below, for example:
-"Implement Emulator E1."
+Agreed scope and execution rules, 27 October 2026. E1 implementation is underway:
+native prototype 0.1.0 and unsigned hosted release builds exist; signed iPhone
+installation, game/battery benchmarks and core acceptance are still pending.
+Recovery implementation belongs to E3. On 2 November 2026 the user requested
+continued progress without first testing E1. E2 is engineering-ready as native 0.2.0 with passing hosted release builds;
+device acceptance remains pending. Request milestones by stable ID,
+for example: "Implement Emulator E5."
 
 ## Product scope
 
 - Native iPhone app first; acceptance device: iPhone 16 Plus. iOS version is
-  still to be supplied. Delta runs acceptably on this device, but its blanket
+  user-reported as 26.6.1. Delta runs acceptably on this device, but its blanket
   fast-forward and extra battery use are not the desired model.
 - Native melonDS is the first candidate, not an established performance winner.
   Pin the actual core/adapter revision after checking buildability, licensing,
@@ -65,21 +68,26 @@ without a new implementation request. Routine technical choices within the
 milestone are delegated. Ask only about missing essential inputs, material scope
 changes, external file writes, or an actual platform authorization blocker.
 
-Project-related investigation, commands and Git operations are authorized.
-All files inside this repository, including new source files, ignored scratch
-files and build output, may be created or modified without further permission.
-Use repository-local `work/` for scratch material. The user also permits file
-work in their Google Drive folder, but its exact location has not been supplied;
-do not infer a path. Commands that write anywhere else require approval first.
-This includes external toolchain installs, caches, signing files and temporary
-outputs; redirect these into the repository where supported. Authorization to
-run a Git command does not authorize unrelated external file writes.
+The user's latest explicit working locations are the `Emulator` branch in this
+repository and the verified [Emulator Google Drive folder](https://drive.google.com/drive/folders/1065tfo0qpmwMqhTH12TfORae0rFivN91)
+(ID: `1065tfo0qpmwMqhTH12TfORae0rFivN91`). File work in these locations,
+including new source, ignored scratch files and build output, needs no routine
+approval. Use connected Drive tools; a local Drive sync path is not known.
+Use repository-local `work/` for scratch material.
 
-Use feature branches in the existing checkout, preserve user/remote changes,
-and use non-force integration/pushes. No routine conversational Git approval is
-needed. Actual tool/platform approval requirements still apply; explain a concrete
-blocker rather than repeatedly asking for Git permission. Commit completed work
-and publish through the existing repository when transport and access permit.
+Project-related research, investigation and commands are authorized within those
+file-write boundaries. Any modification to other files requires approval first.
+This includes external toolchain installs, caches, signing files and temporary
+outputs; redirect these into the repository where supported. For a required
+approval, briefly explain what the command will do, its target and its purpose.
+Do not request permission again for authorized research or work in these two
+locations. Authorization to run a Git command does not authorize unrelated writes.
+
+Work on and push to `Emulator` by default in the existing checkout. This latest
+direction supersedes older feature-branch/main-publication defaults for this
+emulator track; integration into another branch needs explicit direction.
+Preserve user/remote changes and use non-force pushes. Actual tool/platform
+approval requirements still apply; explain concrete blockers and their source.
 No new repository, hosting service or paid service is implied by this plan.
 
 For native milestones, delivery means reproducible source/build instructions and
@@ -97,8 +105,16 @@ that concludes "blocked" is finite and useful, but is not an accepted release.
 
 ## E1 — Installable prototype and performance decision
 
-**Outcome:** an iPhone prototype and measured decision on the core before full
-app development. This is the next implementation milestone.
+**Outcome:** an iPhone prototype and measured decision on the core. Under the
+deferred-testing policy below, further development may use the provisional core
+before the device decision is available.
+
+Implementation checkpoint: native prototype **0.1.0**, source `76122eb`, has
+passed [GitHub device/simulator release compilation](https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/40533051459),
+the actual-core host tests and all 306 existing website regression checks.
+The package is unsigned. [Evidence and remaining gates](emulator-e1-evidence.json)
+keep signing, phone launch, game compatibility and Delta comparisons pending;
+none of the acceptance boxes below is satisfied by compilation alone.
 
 Work:
 
@@ -135,15 +151,52 @@ Acceptance:
 - [ ] Record the core decision and evidence. If it fails, report the failure and
   one bounded alternative evaluation; further core search is a separate request.
 
-Essential user inputs: exact iOS version; available Mac/Xcode or acceptable
-hosted build route; signing/install route; access to the user's ROM/save and
-device test results. Never commit ROMs, personal saves or signing credentials.
+Confirmed user setup: iPhone 16 Plus, user-reported iOS 26.6.1, no Mac, Windows
+computer available. Hosted macOS release compilation is implemented. The
+[Windows install route](emulator-e1-windows.md) is documented but not yet tested
+on the user's phone; ROM/save access and device results remain user-side gates.
+Never commit ROMs, personal saves or signing credentials.
 Complete independent investigation while waiting; report an exact blocker if a
-signed build or phone test cannot be produced. E2 depends on the E1 decision.
+signed build or phone test cannot be produced. The E1 device/core decision is
+required for acceptance, but no longer blocks E2 implementation by itself.
+
+### Deferred device-testing policy — 2 November 2026
+
+The user has not installed/tested E1 and wants development to continue. Separate
+engineering readiness from device acceptance for E1–E4:
+
+- Finish each requested milestone's source, relevant automated integration and
+  failure tests, documentation and reproducible unsigned release build before
+  proceeding to the next requested milestone. Keep requests finite and sequential.
+- A milestone with those engineering checks complete may be ready for device
+  testing while its acceptance boxes remain open. Earlier phone-only checks do
+  not block the next implementation milestone. A failed build or unresolved
+  correctness/progress-loss defect still blocks dependent work.
+- Continue with pinned melonDS as a provisional candidate behind the native
+  adapter. Keep library storage and Reader interfaces separate from its state
+  format. Changing cores later may require adapter work and invalidate recovery
+  states; preserve ordinary saves and do not promise portable save states.
+- Carry all outstanding installation, real-game save/state round trips,
+  lifecycle/offload, compatibility and performance/energy checks into one device
+  test checklist for E5. Preserve the original per-milestone acceptance criteria
+  and evidence; deferring a check does not pass it.
+- Phone performance and battery efficiency remain unknown. A failed measured
+  budget still requires the bounded alternative evaluation in E1 and revalidation
+  of affected milestones before v1 acceptance. Do not claim that later feature
+  development proves the core is suitable.
+
+**E2: library and durable in-game saves** is engineering-ready for device testing.
+E3 native 0.3.0 engineering checks, macOS storage/checkpoint fault tests and
+unsigned release builds pass. E4 native 0.4.0 also passes its engineering checks,
+real macOS WebKit integration and unsigned device/simulator builds. The completed-
+save Reader connection is ready for device testing. E5 is next on a new request;
+all deferred phone checks and the provisional core decision remain required.
+E5 retains the complete device and user acceptance gate. This policy supersedes
+the earlier requirement to wait for E1 device/core acceptance before starting E2.
 
 ## E2 — Game library and durable in-game saves
 
-**Outcome:** the approved core becomes a usable offline player whose normal
+**Outcome:** the candidate core becomes a usable offline player whose normal
 Pokémon saves survive closing and reopening the app.
 
 - Import and retain local ROMs; identify games/variants by content hash, provide
@@ -244,6 +297,12 @@ Acceptance:
 - [ ] Meaningful integration checks and existing web regressions pass; actual
   phone/player-save checks and app-local profile behavior are recorded.
 
+E4 engineering delivery is recorded in [the guide](emulator-e4.md) and
+[verification JSON](emulator-e4-evidence.json). Nine native groups, all 306 existing
+web regressions, macOS storage/checkpoint faults, real WKWebView decoding/profile/
+Great Marsh checks and unsigned iPhone/simulator builds pass. The acceptance
+boxes above remain open for the actual phone/player-save and persistence checks.
+
 ## E5 — Integrated release and device acceptance
 
 **Outcome:** a reproducible v1 test release that meets all preceding criteria.
@@ -273,8 +332,8 @@ Acceptance:
 | ID | Milestone | Current status |
 | --- | --- | --- |
 | Plan | Scope, permissions and acceptance criteria | Documented; no implementation claimed |
-| E1 | Installable prototype and performance decision | Not started; setup inputs outstanding |
-| E2 | Library and durable in-game saves | Not started; depends on E1 |
-| E3 | Save states and automatic recovery | Not started; depends on E2 |
-| E4 | Completed-save Reader integration | Not started; depends on E3 |
-| E5 | Integrated release and device acceptance | Not started; depends on E4 |
+| E1 | Installable prototype and performance decision | Native prototype/unsigned builds implemented; signing, device tests and core decision deferred, not accepted |
+| E2 | Library and durable in-game saves | Native 0.2.0 engineering checks/unsigned device and simulator builds pass; ready for device testing, acceptance deferred |
+| E3 | Save states and automatic recovery | Native 0.3.0 engineering checks/unsigned builds pass; ready for device testing, acceptance deferred |
+| E4 | Completed-save Reader integration | Native 0.4.0 engineering checks, macOS WebKit and unsigned builds pass; ready for device testing, acceptance deferred |
+| E5 | Integrated release and device acceptance | Next on a new request; all E1–E4 phone/core acceptance gates remain required |

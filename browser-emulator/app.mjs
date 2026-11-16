@@ -3,8 +3,8 @@ import {detectSave} from './vendor/reader/js/saves/index.js';
 const $=id=>document.getElementById(id);
 const status=message=>$('status').textContent=message;
 const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});
-let gameCode=null,loaded=false,isDiagnostic=false,running=false,busy=false,pressed=new Map(),keyboard=new Set(),touch=[-1,-1];
-let audio=null,audioNode=null,audioHealth={},metrics={},saveHealth={},presentations=0,presentationStart=0,presentationRate=0;
+let gameCode=null,loaded=false,isDiagnostic=false,running=false,busy=false,pressed=new Map(),keyboard=new Set(),touch=[-1,-1],checkpointFailures=new Set();
+let audio=null,audioNode=null,audioHealth={},metrics={},saveHealth={},stateHealth={},presentations=0,presentationStart=0,presentationRate=0;
 const capabilities={secureContext:isSecureContext,wasm:typeof WebAssembly==='object',worker:typeof Worker==='function',
   audioWorklet:typeof AudioWorkletNode==='function',indexedDB:!!globalThis.indexedDB,serviceWorker:'serviceWorker'in navigator,
   persistentStorage:!!navigator.storage?.persist,standalone:matchMedia('(display-mode: standalone)').matches||!!navigator.standalone,
@@ -15,7 +15,20 @@ const image=contexts.map(c=>c.createImageData(256,192));
 function send(type,data={}){worker.postMessage({type,...data});}
 function controls(){for(const id of ['rom','reopen','diagnostic'])$(id).disabled=busy;
   for(const id of ['resume','pause','export','persist','save-file'])$(id).disabled=busy||!loaded||(id==='save-file'&&isDiagnostic);
+  $('quick-save').disabled=busy||!loaded||isDiagnostic;$('retry-state').disabled=busy||!loaded||!checkpointFailures.size;
   $('resume').disabled||=running;$('pause').disabled||=!running;
+}
+function checkpointTime(at){return new Date(at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});}
+function showCheckpointChoices(options={}){
+  const valid=['auto','quick'].filter(slot=>options[slot]?.at);
+  if(!valid.length)return;
+  const latest=valid.sort((a,b)=>options[b].at-options[a].at)[0],info=options[latest];
+  $('checkpoint-summary').textContent=`A local ${latest==='quick'?'Quick Save':'automatic checkpoint'} is available from ${checkpointTime(info.at)}${info.recovered?' (recovered from the previous valid copy)':''}.`;
+  $('resume-latest').textContent=`Resume latest · ${latest==='quick'?'Quick Save':'automatic'}`;
+  $('resume-latest').dataset.slot=latest;
+  $('restore-quick').hidden=!options.quick?.at;
+  if(options.quick?.at)$('restore-quick').textContent=`Restore Quick Save · ${checkpointTime(options.quick.at)}${options.quick.recovered?' (previous copy)':''}`;
+  $('checkpoint-dialog').showModal();
 }
 async function startAudio(){
   if(!globalThis.AudioContext||!capabilities.audioWorklet)throw Error('AudioWorklet unavailable. Use a current Safari over HTTPS.');
@@ -54,6 +67,10 @@ $('rom').onchange=()=>action(async()=>{const file=$('rom').files[0];if(!file)ret
 for(const id of ['reopen','diagnostic'])$(id).onclick=()=>{pause();busy=true;controls();send(id);};
 $('resume').onclick=()=>action(async()=>{await startAudio();send('resume');});
 $('pause').onclick=pause;
+$('quick-save').onclick=()=>{if($('quick-save').disabled)return;$('quick-save').disabled=true;$('state-status').textContent='Capturing Quick Save…';send('quick-save');};
+$('retry-state').onclick=()=>{const slot=checkpointFailures.values().next().value;if(slot)send('retry-state',{slot});};
+$('resume-latest').onclick=()=>{busy=true;controls();send('restore-state',{slot:$('resume-latest').dataset.slot});};
+$('restore-quick').onclick=()=>{busy=true;controls();send('restore-state',{slot:'quick'});};
 $('export').onclick=()=>send('export');$('persist').onclick=()=>send('persist');
 $('save-file').onchange=()=>action(async()=>{const f=$('save-file').files[0];if(!f)return;pause();
   if(!['CPUE','IPGE'].includes(gameCode))throw Error('B1 save import is validated for original English Platinum and SoulSilver only.');
@@ -70,7 +87,8 @@ function renderMetrics(){const rows={
   'Audio health (cumulative)':`${audioHealth.underrunFrames||0} missing output samples · ${audioHealth.droppedFrames||0} dropped input frames`,
   'Audio queue / context':`${(audioHealth.bufferedMs||0).toFixed(0)} ms / ${audio?.state||'not started'}`,
   'Last persistence':`${saveHealth.state||'none'} · ${(saveHealth.ms||0).toFixed(1)} ms`,
-  'Persistence failures':saveHealth.failures||0};
+  'Last full-state checkpoint':stateHealth.at?`${stateHealth.slot||'state'} · ${(stateHealth.length/1048576).toFixed(1)} MiB · ${(stateHealth.captureMs||0).toFixed(1)} ms capture / ${(stateHealth.ms||0).toFixed(1)} ms storage`:'none',
+  'Persistence failures':saveHealth.failures||0,'Full-state failures':stateHealth.failures||0};
   $('metrics').replaceChildren(...Object.entries(rows).flatMap(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;return[dt,dd];}));
 }
 worker.onmessage=({data})=>{
@@ -78,7 +96,8 @@ worker.onmessage=({data})=>{
     case 'ready':busy=false;controls();status('Choose your own cartridge, reopen a retained ROM, or run the original diagnostic.');$('run-state').textContent='Ready';break;
     case 'loaded':loaded=true;busy=false;gameCode=data.gameCode;isDiagnostic=data.diagnostic;controls();
       status(data.diagnostic?'Original red/green diagnostic loaded. Tap Resume.':'Cartridge loaded locally. Tap Resume + audio.');
-      $('save-status').textContent=data.recovered?'Recovered the previous checksum-valid save. Export a backup.':data.hasSave?'Stored cartridge save restored.':'No stored save yet. Save normally in-game.';break;
+      $('save-status').textContent=data.recovered?'Recovered the previous checksum-valid cartridge save. Export a backup.':data.hasSave?'Stored cartridge save restored.':'No stored save yet. Save normally in-game.';
+      checkpointFailures.clear();$('state-status').textContent=data.checkpoints?.auto?.error||data.checkpoints?.quick?.error||'No full-state checkpoint yet.';showCheckpointChoices(data.checkpoints);controls();break;
     case 'running':running=true;document.body.classList.add('playing');scrollTo(0,0);presentations=0;presentationRate=0;presentationStart=performance.now();$('run-state').textContent='Running';status('Normal speed · no fast-forward');controls();break;
     case 'paused':running=false;clearInput();document.body.classList.remove('playing');$('run-state').textContent='Paused';audioNode?.port.postMessage({reset:true});audio?.suspend().catch(()=>{});controls();break;
     case 'video':for(let s=0;s<2;s++){const src=data.data.subarray(s*256*192*4,(s+1)*256*192*4),dst=image[s].data;
@@ -89,6 +108,18 @@ worker.onmessage=({data})=>{
     case 'save':saveHealth={...saveHealth,...data,failures:(saveHealth.failures||0)+(data.state==='failed'?1:0)};
       $('save-status').textContent=data.state==='persisted'?`Persisted browser snapshot at ${new Date(data.at).toLocaleTimeString()} (${data.ms.toFixed(1)} ms). Finish the in-game save, then export a backup.`:
         data.state==='failed'?'Persistence failed. RAM retained. Export now, free storage, then retry.':data.state==='dirty'?'Cartridge changed — persistence pending…':'Writing browser snapshot…';renderMetrics();break;
+    case 'checkpoint':
+      if(data.state==='persisted'){
+        checkpointFailures.delete(data.slot);stateHealth={...data,failures:stateHealth.failures||0};$('state-status').textContent=`${data.slot==='quick'?'Quick Save':'Automatic recovery'} saved locally at ${checkpointTime(data.at)} · ${(data.length/1048576).toFixed(1)} MiB · ${(data.captureMs||0).toFixed(0)} ms capture / ${(data.ms||0).toFixed(0)} ms storage.`;
+        $('quick-save').classList.toggle('saved',data.slot==='quick');setTimeout(()=>$('quick-save').classList.remove('saved'),1800);
+      }else if(data.state==='failed'){
+        checkpointFailures.add(data.slot);stateHealth={...stateHealth,failures:(stateHealth.failures||0)+1};$('state-status').textContent=`${data.slot==='quick'?'Quick Save':'Automatic recovery'} failed: ${data.message||'browser storage unavailable'}.`;
+      }else $('state-status').textContent=data.slot==='quick'?'Writing Quick Save…':'Writing automatic recovery checkpoint…';
+      controls();break;
+    case 'state-restored':
+      busy=false;$('checkpoint-dialog').close();checkpointFailures.clear();
+      $('state-status').textContent=`Restored ${data.slot==='quick'?'Quick Save':'automatic recovery'} from ${checkpointTime(data.at)}${data.recovered?' (previous valid copy)':''}.`;
+      status('Full emulator state restored. Tap Resume + audio to continue.');controls();break;
     case 'export':{
       if(!data.bytes.length){status('No cartridge save memory to export.');break;}
       let validation='Reader check unavailable for this game';
@@ -99,12 +130,13 @@ worker.onmessage=({data})=>{
   }
 };
 worker.onerror=()=>{busy=true;status('Core worker could not start. Check secure context, available memory and the WASM build; reload before continuing.');controls();};
-$('report').onclick=()=>download(JSON.stringify({prototype:'B1 0.1.0',core:'b86390e4428bf38ce4c1ce0e9ca446d6d25955e8',capabilities,metrics,presentationRate,audioHealth,saveHealth:{state:saveHealth.state,ms:saveHealth.ms,failures:saveHealth.failures||0},userAgent:navigator.userAgent,deviceAcceptance:'pending'},null,2),'reader-b1-diagnostics.json','application/json');
+$('report').onclick=()=>download(JSON.stringify({prototype:'B1 0.1.1',core:'b86390e4428bf38ce4c1ce0e9ca446d6d25955e8',capabilities,metrics,presentationRate,audioHealth,saveHealth:{state:saveHealth.state,ms:saveHealth.ms,failures:saveHealth.failures||0},stateHealth,checkpointStatus:$('state-status').textContent,userAgent:navigator.userAgent,deviceAcceptance:'pending'},null,2),'reader-b1-diagnostics.json','application/json');
 async function storageInfo(request=false){try{let persistent=await navigator.storage?.persisted?.();if(request)persistent=await navigator.storage?.persist?.();const estimate=await navigator.storage?.estimate?.();
   $('storage-status').textContent=`Persistent storage: ${persistent?'granted':'not granted / unsupported'}. Estimated use ${((estimate?.usage||0)/1048576).toFixed(1)} MiB / quota ${((estimate?.quota||0)/1048576).toFixed(0)} MiB. Export saves even when persistence is granted.`;
 }catch{$('storage-status').textContent='Storage policy unavailable. Writes may fail; retain exported backups.';}}
 $('storage').onclick=()=>storageInfo(true);storageInfo();
 async function offline(){try{
+  if(window.__readerNativeConfig){$('offline').textContent='Offline app bundled with Reader.';return;}
   if(!isSecureContext||!('serviceWorker'in navigator))throw Error('HTTPS required for offline installation. PC LAN HTTP does not qualify on iPhone.');
   const registration=await navigator.serviceWorker.register('./sw.js',{scope:'./'});
   await navigator.serviceWorker.ready;

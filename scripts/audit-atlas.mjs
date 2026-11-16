@@ -168,7 +168,7 @@ export function assessAtlas(input){
 async function fingerprints(){
  const files=[];async function walk(dir){for(const entry of await readdir(path.join(ROOT,dir),{withFileTypes:true})){const f=path.posix.join(dir,entry.name);if(entry.isDirectory()){if(!['bin','obj','__pycache__'].includes(entry.name))await walk(f);}else if(/\.(?:js|mjs|cjs|json|py|css|html|cs|csproj|sav)$/.test(f)&&!f.includes('__pycache__'))files.push(f);}}
  for(const dir of ['js','scripts','tests','css'])await walk(dir);
- for(const f of ['package.json','package-lock.json','index.html','pokedex-earth/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','trade/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json','docs/platinum-atlas-inventory.json','docs/platinum-encounter-comparison.json','docs/platinum-map-audit.json','docs/platinum-source-decisions.json','docs/schemas/gen4-atlas.schema.json'])files.push(f);
+ for(const f of ['package.json','package-lock.json','index.html','atlas/index.html','team-planner/index.html','pokedex/index.html','safari-zone/index.html','trade/index.html','.github/workflows/atlas-validation.yml','docs/platinum-evolution-independent.json','docs/platinum-atlas-inventory.json','docs/platinum-encounter-comparison.json','docs/platinum-map-audit.json','docs/platinum-source-decisions.json','docs/schemas/gen4-atlas.schema.json'])files.push(f);
  return Object.fromEntries(await Promise.all(files.sort().map(async f=>[f,sha(await readFile(path.join(ROOT,f)))])));
 }
 async function runTests(){

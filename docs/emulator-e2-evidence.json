@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "milestone": "E2",
+  "nativeVersion": "0.2.0",
+  "webReaderVersion": "0.27.0",
+  "sourceCommit": "3a994d5484a07fea56023611c8fc748ad9a3789b",
+  "branch": "Emulator",
+  "coreRevision": "b86390e4428bf38ce4c1ce0e9ca446d6d25955e8",
+  "status": "ready for device testing; engineering checks and unsigned delivery complete",
+  "accepted": false,
+  "automatedChecks": {
+    "localNative": {
+      "passed": 4,
+      "failed": 0,
+      "command": "ctest --test-dir work/e1/build-linux --output-on-failure"
+    },
+    "webRegressions": {
+      "passed": 306,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 213060.27325,
+      "command": "npm test"
+    },
+    "hostedLinuxCore": {
+      "jobId": 125374517767,
+      "conclusion": "success"
+    },
+    "hostedMacOSStorageFaults": {
+      "jobId": 125374518068,
+      "step": "Check durable storage on macOS",
+      "conclusion": "success"
+    }
+  },
+  "build": {
+    "runId": 41473961486,
+    "url": "https://github.com/TheDraconicPanda/pokemon-reader/actions/runs/41473961486",
+    "signed": false,
+    "status": "success",
+    "artifact": {
+      "id": 13156028378,
+      "name": "ReaderEmulator-E2-unsigned",
+      "bytes": 1478867,
+      "sha256": "79c331bc83ae9a42dec58e57d585ef229d34405e37e9b263c2b7b70c77fc9a53",
+      "expiresAt": "2026-12-02T15:46:06Z"
+    },
+    "iphoneos": "release compilation and packaging passed",
+    "iphonesimulator": "release compilation and packaging passed"
+  },
+  "fixtureLimits": [
+    "Original diagnostic ARM programs only; no commercial ROM in CI.",
+    "Synthetic SoulSilver and independently PKHeX-generated synthetic Platinum saves.",
+    "Native cartridge SPI writes, filesystem reload and JavaScript Reader parsing do not establish commercial-game compatibility."
+  ],
+  "pendingDeviceChecks": [
+    "Signing and installation on iPhone 16 Plus/user-reported iOS 26.6.1",
+    "SoulSilver and Platinum real gameplay and completed-save round trips",
+    "Offline startup, touch/controller/keyboard and orientation changes",
+    "Background, lock, interruptions, low storage and actual lifecycle retention",
+    "Matched Delta performance, thermal and energy comparisons",
+    "Actual signing-route update/offload/reinstall retention"
+  ],
+  "notImplemented": [
+    "E3 manual save states and automatic recovery",
+    "E4 integrated Reader"
+  ],
+  "evidencePolicy": "Phone checks deferred by user direction on 2026-11-02; no acceptance gate waived."
+}
