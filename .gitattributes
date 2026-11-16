@@ -1,0 +1,7 @@
+# Source/evidence hashes use canonical Git bytes on Windows and hosted runners.
+* text=auto eol=lf
+*.sav -text
+*.wasm -text
+*.png -text
+*.jpg -text
+*.zip -text
