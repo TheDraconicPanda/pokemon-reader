@@ -8,3 +8,9 @@ scripts/pkhex-reference/bin/
 scripts/pkhex-reference/obj/
 scripts/leafgreen-reference/bin/
 scripts/leafgreen-reference/obj/
+
+# Personal cartridge inputs never belong in source or hosting artifacts.
+*.nds
+*.dsv
+*.sav
+!tests/fixtures/**/*.sav
