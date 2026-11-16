@@ -1,3 +1,12 @@
+## GitHub-first workflow
+
+- User preference (2026-11-13): default to Git/GitHub and GitHub Pages for our web
+  apps. Use the existing repository and hosting when suitable. If GitHub cannot
+  meet a required capability, explain the limitation and discuss alternatives
+  before introducing another hosting service or tunnel. Do not default to
+  Cloudflare or another external preview service. Publishing source to a branch
+  and activating a Pages deployment are separate steps; report each accurately.
+
 # AGENTS.md — Pokémon Reader project instructions
 
 ## Project purpose
