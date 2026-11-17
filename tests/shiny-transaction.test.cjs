@@ -20,8 +20,8 @@ test('Generation III shiny PID editing preserves checksum, nature, gender, abili
 test('Generation III shiny editing refuses Spinda to preserve its PID-encoded spot pattern',async()=>{
   const {setGen3PokemonShiny,decodeGen3Pokemon}=await import('../js/saves/gen3-pokemon.js');
   const {LEAFGREEN_READER}=await import('../js/data/games/leafgreen/reader-reference.js');
-  const nativeSpecies=LEAFGREEN_READER.nativeSpecies.indexOf(327);
-  assert.ok(nativeSpecies>0,'Spinda has a valid native LeafGreen species index');
+  const nativeSpecies=Number(Object.keys(LEAFGREEN_READER.nativeSpecies).find(id=>LEAFGREEN_READER.nativeSpecies[id]===327));
+  assert.ok(Number.isInteger(nativeSpecies)&&nativeSpecies>0,'Spinda has a valid native LeafGreen species index');
   const spinda=pokemon({species:nativeSpecies});
   assert.equal(decodeGen3Pokemon(spinda).speciesId,327);
   assert.throws(()=>setGen3PokemonShiny(spinda,true),/Spinda.*spot pattern/);
