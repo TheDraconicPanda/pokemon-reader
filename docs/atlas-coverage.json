@@ -18342,7 +18342,7 @@
     "tests/safari-reference.test.cjs": "9ebd2b80831e3c8b98ef4389cfe1ca84b6c59baf157c255a9c41d3136ce0d673",
     "tests/trade.test.cjs": "ca321c632befeae0877d0721b35592c1cac6ecf4a49865c64c71adb5dcac09bb",
     "trade/index.html": "44db6f7d6662450d223002b344045bcaad73c560f47a32dd8311f2a12c784f45",
-    "tests/shiny-transaction.test.cjs": "8a8b7bba15b6bb8d3f773207bd2af17396b94430e7f01d6f29edad2c060a6315"
+    "tests/shiny-transaction.test.cjs": "10f1a3bac798faf62b4661087bbddd066bf018a4a92483149b4ef459e01c1429"
   },
   "automatedTests": {
     "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
