@@ -61,3 +61,23 @@ test('SoulSilver party and PC shiny edits retain Pokémon data and the save cont
   }
   assert.deepEqual(bytes,original);
 });
+
+test('Platinum can turn an existing shiny Pokémon off and back on without changing its identity',async()=>{
+  const fs=require('node:fs'),path=require('node:path');
+  const {detectSave}=await import('../js/saves/index.js');
+  const {setPokemonShiny}=await import('../js/saves/shiny-transaction.js');
+  const file=path.join(__dirname,'fixtures/gen4/platinum/postgame.sav');
+  const bytes=new Uint8Array(fs.readFileSync(file)),original=bytes.slice();
+  const loaded=detectSave(bytes);assert.equal(loaded.valid,true,loaded.reason);
+  const shiny=loaded.party.find(p=>p.shiny);assert.ok(shiny);
+  const nonShinyBytes=setPokemonShiny(bytes,shiny,false),nonShinySave=detectSave(nonShinyBytes);
+  assert.equal(nonShinySave.valid,true,nonShinySave.reason);
+  const nonShiny=nonShinySave.party.find(p=>p.slot===shiny.slot);
+  assert.equal(nonShiny.shiny,false);assert.equal(nonShiny.natureId,shiny.natureId);
+  assert.equal(nonShiny.genderId,shiny.genderId);assert.equal(nonShiny.abilityId,shiny.abilityId);
+  assert.equal(nonShiny.formId,shiny.formId);assert.deepEqual(nonShiny.ivs,shiny.ivs);
+  const shinyAgain=setPokemonShiny(nonShinyBytes,nonShiny,true),reloaded=detectSave(shinyAgain);
+  assert.equal(reloaded.valid,true,reloaded.reason);
+  assert.equal(reloaded.party.find(p=>p.slot===shiny.slot).shiny,true);
+  assert.deepEqual(bytes,original);
+});
