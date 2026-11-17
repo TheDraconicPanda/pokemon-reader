@@ -18119,7 +18119,7 @@
   "referenceInventorySha256": "7435df68355e128b271defcb787b6e86c8e7256c55fda7aeeb5a246e4c47a90f",
   "inputSha256": {
     ".github/workflows/atlas-validation.yml": "84d47b0c6cab64ee2dc8a76fb68e8fb8f9e5ba9fb4f17f0274eaed396d88039a",
-    "atlas/index.html": "bd8ad8754d07ada0d4c0e621d09777c5c7ec99d08ea9ac3ff8b4e2be95b68adc",
+    "atlas/index.html": "666ae8d0b3b127e7aa02d970306dbd634cde71f5ecc3dcee88c6099b6d467298",
     "css/app-shell.css": "71dca1fde23e9c5f28e6e35ea6fd862e632ce9d11d2ee1a8fc18f19fa895a27c",
     "css/pokedex.css": "2cc9abe68bdab2ebb3946e54905aa8e334ed40cd651f1edf97272264ea9f2f09",
     "css/safari-scenario.css": "d11056d6d9f350918339725fa38c93616df088c82bf82887b171d807a5995f4a",
@@ -18232,8 +18232,8 @@
     "js/world.js": "9695871a26e45ea6b820c1c9f703ff34431eb29c28fc1c09304775e78a0720c2",
     "package-lock.json": "17d4613f49034c87dc34252dda48f74fef0c7f82c0e1a1bb4e6f33460d6c96aa",
     "package.json": "cc44963ad35eaaa5d0640bcda846baae25b130adba6255325df20eab708b562e",
-    "pokedex/index.html": "2b4e71a1741258fc1d2501b10e34d77fe4ab48b071b4834b14bbf102d356b974",
-    "safari-zone/index.html": "fe26a828432db2e3c9924d3bd2107520bb53575eac822430ea5833c3c348332b",
+    "pokedex/index.html": "f6b55dd47031e060d9550bcf42f085f8ac6632d8c94fbb0960261bf2e27166d0",
+    "safari-zone/index.html": "8584fde51e03e78e84830975d51e76379d9458eecbc865c3129ba0772a7df588",
     "scripts/atlas-map-sources.json": "1028abc60230861b5c5de47b421fff9d09d610f528b0289053d04355785ed385",
     "scripts/audit-atlas.mjs": "1f8ae21dd42d39f48fa5824b0bdc1181aa8a1f7c740d9ce71305699e35a41023",
     "scripts/audit-hgss-abilities.mjs": "d4da63172ae73d26279d8f4edb24b079a8b1b1246e5ead882c0860b24fb43c22",
@@ -18280,7 +18280,7 @@
     "scripts/soulsilver-interior-rooms.json": "34c7f1ff040eec6425d18eb2826f8c8994ccbcd69ffc5904bcd209868f4f6856",
     "scripts/soulsilver-kanto-inventory.json": "2d65d8448d54e386d2dd64aa96a9bcdf7e1dad5a9915ce791448eb66d820d0b0",
     "scripts/soulsilver_encounters.py": "10c7129a0a6684469e24393b0492b73de40cb7399277316a6fa14bf704e918b5",
-    "team-planner/index.html": "2f6874c509fd4b8bea69b8f876c48f8db5cf52515d87f7fe5a7a33f581590072",
+    "team-planner/index.html": "4aa01f8a17ded6c50a650583e5a88292c0d5a94ff03fadabdc3528bdf499b18a",
     "tests/adventures.test.cjs": "0b78531fd02357081cd53e40ae9a816846d82bb8ee881c83295b37639f64e754",
     "tests/atlas-caught.test.cjs": "749dd71e2f92fa8eb38c6aada97ffcbcb73d7c1d1e3802f235b3dea42d1fc4f9",
     "tests/atlas-coverage.test.cjs": "326fdf79cd67dc9601e46d9e5ab811268c6c4535abf1ec9dafb20fb4c67cf694",
@@ -18341,8 +18341,8 @@
     "tests/safari-optimizer.test.cjs": "56c4534cf44f24f7997ae99e157d563a46c42479d07051152433c17a47b17514",
     "tests/safari-reference.test.cjs": "9ebd2b80831e3c8b98ef4389cfe1ca84b6c59baf157c255a9c41d3136ce0d673",
     "tests/trade.test.cjs": "ca321c632befeae0877d0721b35592c1cac6ecf4a49865c64c71adb5dcac09bb",
-    "trade/index.html": "18e4966e05b6c8d3e85ce9f0795e40e52cbdf4d64c42c481e065120c502e8c78",
-    "tests/shiny-transaction.test.cjs": "3be82534b90d174e2b1b9f558b0cdc5bc8f3b33460f1ab39b2b14543725be595"
+    "trade/index.html": "44db6f7d6662450d223002b344045bcaad73c560f47a32dd8311f2a12c784f45",
+    "tests/shiny-transaction.test.cjs": "8a8b7bba15b6bb8d3f773207bd2af17396b94430e7f01d6f29edad2c060a6315"
   },
   "automatedTests": {
     "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
