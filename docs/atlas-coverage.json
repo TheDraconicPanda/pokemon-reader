@@ -18293,7 +18293,7 @@
     "tests/atlas-maps.test.cjs": "c4263bf7a334bba1253536ed3fa18db365448eeff8944834083c6c626f03476a",
     "tests/atlas-route-reference.test.cjs": "3d0b77da278482e2ccd86b24eb2ce543f2a30fbcc31e317da5e3deab4ff870ec",
     "tests/atlas-travel.test.cjs": "757a00d0a340d531990c576ed5937e659bf5affc5dbf4c72fe95914cdc7614ea",
-    "tests/atlas.browser.test.cjs": "8debc1f88cb45572a9631fb9df3c621c4aaab9b127ce7c926ce6d644c9e1deb2",
+    "tests/atlas.browser.test.cjs": "54a8cd5cd307f9b4c08c44687bc3a937e0d4085d976adfa468101eee4a41aa65",
     "tests/fixtures/gen3.cjs": "22f087fb2f02cdb458a077fb5aa388b04bc1384f4979c52673085d19140099be",
     "tests/fixtures/gen4/default-names.expected.json": "89bc7b8dc79d9e0999ae77a10b90e896ef48f7689f2375a1dcca4e2b40443be4",
     "tests/fixtures/gen4/evolution-oracle.json": "e2db8e8f89992b5a93e18068657e36edebe597409911f69dc56aa73e4f0d0236",
@@ -18342,7 +18342,8 @@
     "tests/safari-reference.test.cjs": "9ebd2b80831e3c8b98ef4389cfe1ca84b6c59baf157c255a9c41d3136ce0d673",
     "tests/trade.test.cjs": "ca321c632befeae0877d0721b35592c1cac6ecf4a49865c64c71adb5dcac09bb",
     "trade/index.html": "18e4966e05b6c8d3e85ce9f0795e40e52cbdf4d64c42c481e065120c502e8c78",
-    "tests/shiny-transaction.test.cjs": "10f1a3bac798faf62b4661087bbddd066bf018a4a92483149b4ef459e01c1429"
+    "tests/shiny-transaction.test.cjs": "d2fa87fb9117d4afff490615867fc9228ff9b45732a73b14ec80a0d9bffe14f2",
+    "js/saves/shiny-transaction.js": "5ceeedc0da65cff698f64c4a704b07193f7b919aca0990eeefa8682641d29e34"
   },
   "automatedTests": {
     "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
