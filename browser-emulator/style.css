@@ -19,7 +19,7 @@ body.playing main{position:static;width:100%;max-width:none;height:100dvh;margin
 body.playing main>*:not(.console){display:none!important}
 body.playing .console{position:fixed;inset:0;z-index:1000;width:100%;height:100dvh;margin:0;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));border:0;border-radius:0;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 body.playing .screens{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(4px,1.2dvh,12px)}
-body.playing figure{width:min(100%,calc((100dvh - 260px)*1.3333),calc((100vw - 24px)*1.3333));max-width:100%;flex:0 1 auto}
+body.playing figure{width:min(100%,calc((100dvh - 260px)*.6667),calc((100vw - 24px)*1.3333));max-width:100%;flex:0 1 auto}
 body.playing canvas{width:100%;height:auto;max-height:100%;object-fit:contain}
 body.playing figcaption{display:none}
 body.playing .controls{flex:0 0 auto;width:min(100%,550px);padding-bottom:2px}
