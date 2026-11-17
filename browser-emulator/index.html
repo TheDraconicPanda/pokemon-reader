@@ -2,21 +2,22 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#132821"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Reader B1"><title>Reader Browser · B1 0.1.1</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.png"><link rel="stylesheet" href="style.css"></head>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="../css/app-shell.css"><script src="../js/app-shell.js"></script></head>
 <body><main>
+<app-menu tool="emulator"></app-menu>
 <header><div><span class="eyebrow">POKÉMON READER / FEASIBILITY LAB</span><h1>Browser B1 <small>0.1.1</small></h1></div><span id="run-state" class="pill">Starting</span></header>
 <p class="intro">Local DS emulation. Phone performance and battery acceptance pending.</p>
 <section class="toolbar" aria-label="Game setup">
 <label class="button">Choose .nds<input id="rom" type="file" accept=".nds" hidden></label>
 <button id="reopen" disabled>Reopen local ROM</button><button id="diagnostic" disabled>Diagnostic</button>
-<button id="resume" disabled>Resume + audio</button><button id="pause" disabled>Pause</button>
+<button id="resume" disabled>Resume + audio</button>
 </section>
 <p id="status" role="status">Preparing the offline core…</p>
 <section class="console" aria-label="Nintendo DS screens">
 <div class="screens"><figure><canvas id="top" width="256" height="192" aria-label="Top DS screen"></canvas><figcaption>TOP</figcaption></figure>
 <figure><canvas id="bottom" width="256" height="192" aria-label="Touchscreen" tabindex="0"></canvas><figcaption>TOUCHSCREEN</figcaption></figure></div>
 <div class="controls" aria-label="Game buttons">
-<div class="shoulders"><button data-key="9">L</button><button id="quick-save" class="icon-button" type="button" aria-label="Quick save" title="Quick save" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h13l4 4v14H3V3h1Zm2 0v6h11V3M7 21v-8h10v8M15 3v4h1"/><path d="m18 11 3 3-3 3"/></svg></button><button data-key="8">R</button></div>
+<div class="shoulders"><button data-key="9">L</button><button id="pause" class="icon-button" type="button" aria-label="Menu / pause" title="Menu / pause" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button><button id="quick-save" class="icon-button" type="button" aria-label="Quick save" title="Quick save" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h13l4 4v14H3V3h1Zm2 0v6h11V3M7 21v-8h10v8M15 3v4h1"/><path d="m18 11 3 3-3 3"/></svg></button><button data-key="8">R</button></div>
 <div class="hands"><div class="dpad"><button data-key="6" class="up" aria-label="Up">▲</button><button data-key="5" class="left" aria-label="Left">◀</button><button data-key="4" class="right" aria-label="Right">▶</button><button data-key="7" class="down" aria-label="Down">▼</button></div>
 <div class="face"><button data-key="10" class="up">X</button><button data-key="11" class="left">Y</button><button data-key="0" class="right">A</button><button data-key="1" class="down">B</button></div></div>
 <div class="system"><button data-key="2">Select</button><button data-key="3">Start</button></div></div>
