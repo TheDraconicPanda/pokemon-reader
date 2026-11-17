@@ -12,10 +12,11 @@ import { evolveSavePokemon } from './saves/evolution-transaction.js';
 import { evolutionExportName, abilityRepairExportName } from './saves/gen4-container.js';
 import { validateSoulSilverAbility, hgssAbilityName } from './saves/gen4-abilities.js';
 import { repairSoulSilverAbility } from './saves/soulsilver-ability-repair.js';
+import { setPokemonShiny, shinyExportName } from './saves/shiny-transaction.js';
 import { GEN4_LOCATION_NAMES } from "./data/gen4-locations.js";
 import { HGSS_BADGES } from "./data/hgss-badges.js";
 
-const APP_VERSION = "0.27.7";
+const APP_VERSION = "0.27.8";
 
 const fileInput = document.querySelector("#save-file");
 const dropZone = document.querySelector("#drop-zone");
@@ -1273,6 +1274,7 @@ function renderPokemonDetail(pokemon) {
     ["Shiny", pokemon.shiny ? "Yes" : "No"],
     ["Egg", pokemon.isEgg ? "Yes" : "No"],
   ]);
+  addShinyEditControl(pokemonDetailContent, pokemon);
   addAbilityRepairControl(pokemonDetailContent, pokemon);
 
   addSection("Stats", [
@@ -1460,6 +1462,69 @@ function renderAbilityValidation(result) {
   note.textContent = 'Checks party and PC abilities against HGSS species and forms. Eggs are excluded. Species-valid abilities are left unchanged, including transferred Pokémon. No save data is changed by validation.';
   if (unknown) note.textContent += ' Some records have an unverified checksum, species, form or PID; no replacement is guessed.';
   section.append(note); document.querySelector('#overview-summary').append(section);
+}
+
+function addShinyEditControl(container, pokemon) {
+  const section = document.createElement('section');
+  section.className = 'pokemon-detail-section shiny-edit-control';
+  const heading = document.createElement('h3');
+  heading.textContent = 'Shiny status';
+  const label = document.createElement('label');
+  label.className = 'checkline';
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = Boolean(pokemon.shiny);
+  checkbox.setAttribute('aria-label', 'Shiny Pokémon');
+  label.append(checkbox, document.createTextNode(' Shiny'));
+  const feedback = document.createElement('p');
+  feedback.className = 'status';
+  feedback.setAttribute('aria-live', 'polite');
+
+  if (!currentSaveBytes) {
+    checkbox.disabled = true;
+    const note = document.createElement('p');
+    note.textContent = 'Reload the original save file to edit shiny status. Restored adventures contain decoded progress only.';
+    section.append(heading, label, note);
+    container.append(section);
+    return;
+  }
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'save-shiny-button';
+  button.textContent = 'Download new save file';
+  const sync = () => { button.disabled = checkbox.checked === Boolean(pokemon.shiny); };
+  checkbox.addEventListener('change', sync);
+  sync();
+
+  if (pokemon.speciesId === 327) {
+    checkbox.disabled = true;
+    button.disabled = true;
+    feedback.textContent = "Spinda's spot pattern is encoded in its personality value, so its shiny status cannot be changed without changing its appearance.";
+  } else {
+    button.addEventListener('click', () => {
+      if (!currentSaveBytes || checkbox.checked === Boolean(pokemon.shiny)) return;
+      const desired = checkbox.checked;
+      if (!window.confirm(`Change ${pokemon.nickname || getDisplaySpeciesName(pokemon)} to ${desired ? 'Shiny' : 'non-Shiny'}?\n\nA separate modified save file will be downloaded. Your original file and currently loaded adventure will not be changed. Load the downloaded file explicitly to use the edit.`)) return;
+      const revision = loadRevision;
+      button.disabled = true;
+      checkbox.disabled = true;
+      feedback.textContent = 'Preparing modified save…';
+      try {
+        if (revision !== loadRevision) return;
+        const output = setPokemonShiny(currentSaveBytes, pokemon, desired);
+        feedback.className = 'status success';
+        feedback.textContent = downloadModifiedSave(output, shinyExportName(currentSaveFileName));
+      } catch (error) {
+        feedback.className = 'status error';
+        feedback.textContent = error?.message || 'Shiny status could not be changed; no save was modified.';
+        checkbox.disabled = false;
+        sync();
+      }
+    });
+  }
+  section.append(heading, label, button, feedback);
+  container.append(section);
 }
 
 function addAbilityRepairControl(container, pokemon) {
