@@ -18071,7 +18071,13 @@
       "reason": "Accessory encounter systems, not Johto/Kanto Atlas geography."
     }
   ],
-  "mandatoryFailures": [],
+  "mandatoryFailures": [
+    {
+      "code": "automated-tests",
+      "location": null,
+      "detail": "All automated checks must run and pass; missing browser capabilities are not a pass."
+    }
+  ],
   "integrityPassed": true,
   "realSaveOrInGameValidation": false,
   "platinum": {
@@ -18346,21 +18352,21 @@
     "js/saves/shiny-transaction.js": "5ceeedc0da65cff698f64c4a704b07193f7b919aca0990eeefa8682641d29e34"
   },
   "automatedTests": {
-    "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
+    "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/shiny-transaction.test.cjs tests/trade.test.cjs",
     "timeoutMs": 300000,
     "browserWaitMs": 15000,
-    "startedAt": "2026-11-15T23:39:57.408Z",
-    "completedAt": "2026-11-15T23:42:07.679Z",
-    "status": "passed",
-    "tests": 322,
-    "pass": 322,
-    "fail": 0,
+    "startedAt": "2026-11-17T15:42:31.741Z",
+    "completedAt": "2026-11-17T15:45:01.962Z",
+    "status": "failed",
+    "tests": 327,
+    "pass": 325,
+    "fail": 2,
     "skipped": 0,
     "cancelled": 0,
-    "exitCode": 0,
+    "exitCode": 1,
     "error": null,
     "log": "work/atlas-validation.tap",
-    "logSha256": "e6d23ea21e3561ebdf31b83f8a3c58a837db3c5630144ef32664cb5766d063ff",
+    "logSha256": "dac54a7c09ddb0eb6714ded8c0b6372ab61c02eee8cd717e6fd77f898c9cba0b",
     "testFiles": [
       "tests/adventures.test.cjs",
       "tests/atlas-caught.test.cjs",
@@ -18393,8 +18399,9 @@
       "tests/safari-initialization.test.cjs",
       "tests/safari-optimizer.test.cjs",
       "tests/safari-reference.test.cjs",
+      "tests/shiny-transaction.test.cjs",
       "tests/trade.test.cjs"
     ]
   },
-  "completionPassed": true
+  "completionPassed": false
 }
