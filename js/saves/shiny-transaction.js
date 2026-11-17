@@ -119,7 +119,7 @@ export function setPokemonShiny(input, displayed, desiredShiny) {
       throw new Error('The updated Pokémon record failed checksum validation. No save was changed.');
     }
     for (let i = 0; i < before.length; i++) {
-      if (![0,1,6,7].includes(i) && before[i] !== after[i]) throw new Error('Unrelated Pokémon data changed. No save was changed.');
+      if (![0,1,2,3,6,7].includes(i) && before[i] !== after[i]) throw new Error('Unrelated Pokémon data changed. No save was changed.');
     }
   }
 
@@ -135,10 +135,10 @@ export function setPokemonShiny(input, displayed, desiredShiny) {
 }
 
 export function shinyExportName(name = 'pokemon-save.sav') {
-  const match = name.match(/(\\.[^./\\\\]+)$/);
+    const match = name.match(/(\.[^./\\]+)$/);
   const extension = match ? match[1] : '.sav';
   const base = match ? name.slice(0, -extension.length) : name;
-  const previous = base.match(/^(.*)\\.shiny(?:-(\\d+))?$/i);
+    const previous = base.match(/^(.*)\.shiny(?:-(\d+))?$/i);
   const next = previous ? `${previous[1]}.shiny-${BigInt(previous[2] || '1') + 1n}` : `${base}.shiny`;
   return `${next}${extension}`;
 }
