@@ -18071,7 +18071,13 @@
       "reason": "Accessory encounter systems, not Johto/Kanto Atlas geography."
     }
   ],
-  "mandatoryFailures": [],
+  "mandatoryFailures": [
+    {
+      "code": "automated-tests",
+      "location": null,
+      "detail": "All automated checks must run and pass; missing browser capabilities are not a pass."
+    }
+  ],
   "integrityPassed": true,
   "realSaveOrInGameValidation": false,
   "platinum": {
@@ -18113,13 +18119,13 @@
     "realSaveOrInGameValidation": false,
     "scope": "All native named Sinnoh geographic/facility groups, Lost Tower as a distinct dungeon, and Underground reference access; unused/network/system headers explicitly excluded. Unreleased event areas remain labelled reference-only."
   },
-  "applicationVersion": "0.27.7",
+  "applicationVersion": "0.27.8",
   "generatedAt": "2026-11-15T23:39:57.359Z",
   "generator": "scripts/audit-atlas.mjs",
   "referenceInventorySha256": "7435df68355e128b271defcb787b6e86c8e7256c55fda7aeeb5a246e4c47a90f",
   "inputSha256": {
     ".github/workflows/atlas-validation.yml": "84d47b0c6cab64ee2dc8a76fb68e8fb8f9e5ba9fb4f17f0274eaed396d88039a",
-    "atlas/index.html": "bd8ad8754d07ada0d4c0e621d09777c5c7ec99d08ea9ac3ff8b4e2be95b68adc",
+    "atlas/index.html": "666ae8d0b3b127e7aa02d970306dbd634cde71f5ecc3dcee88c6099b6d467298",
     "css/app-shell.css": "71dca1fde23e9c5f28e6e35ea6fd862e632ce9d11d2ee1a8fc18f19fa895a27c",
     "css/pokedex.css": "2cc9abe68bdab2ebb3946e54905aa8e334ed40cd651f1edf97272264ea9f2f09",
     "css/safari-scenario.css": "d11056d6d9f350918339725fa38c93616df088c82bf82887b171d807a5995f4a",
@@ -18134,10 +18140,10 @@
     "docs/platinum-map-audit.json": "ba99835727cee2ac4557386184b592947a4a96b3cf14d61dc0f4fe14d45e674a",
     "docs/platinum-source-decisions.json": "90cca9787d77cf55aecaae8213c226cff195963077a611d0dc91e75c243511dd",
     "docs/schemas/gen4-atlas.schema.json": "5bb95b26e2a51cb55d017a884e9485b190e0893444b6f67eebc9ca323ae5a1fc",
-    "index.html": "5eade728b5219842ea88f02c6e7890545106af1558f07a58d3c985f822bb840f",
+    "index.html": "811bb5df2ff062a0728c90db0037ffb1ef687b376401a1ba9b8c632853b4b78e",
     "js/adventures.js": "87fbb19a2398bbbcb86f17aef0bc970c36cb1edfa1a8aee07d4a0aa8b163b01f",
     "js/app-shell.js": "73afb71ba0fd9d12028493233215521e7acc0d52db3538228531ba35e42aba27",
-    "js/app.js": "9179859cc145d53d8e09ece2a3a322ffdc4efb149c8666520e0b5fb89287f1dc",
+    "js/app.js": "028361b4aa7d193da3d9688210a48beeefbb73e795e0ce08e3ea3f5895e902d4",
     "js/atlas-encounter-sections.js": "339ba2aed2b880737505feceeda82330bbb554c139755b46a1977e17e6e0813f",
     "js/atlas-encounters.js": "c87ec62a59cb50116cad5b6ecfb42fa5f972a3d4a5f33d99429aa1422a7f0218",
     "js/atlas-ev-training.js": "5576f6a80e2fbbe66b67f4e42c5e56860732221ac01ab8d14165f3dd8dbdaffd",
@@ -18205,7 +18211,7 @@
     "js/safari-simulator-ui.js": "721f6765cd879a9a2c27a72ba788d6e07455ded6d13316ff45c7f146198e0823",
     "js/safari-store.js": "90e6ae2e971caea81ce33dbb2c78dfe93091c7e96d349403968e9a4d64f9792a",
     "js/saves/evolution-transaction.js": "0da077f4283851f901c03d35eca999a6eaceb99ad2e2cb7584c57b33ef84d317",
-    "js/saves/gen3-pokemon.js": "83a9fb0c3605964666f85d2de358324bad9f0c358bfa88fefe4afdcc74316954",
+    "js/saves/gen3-pokemon.js": "7447ad1e962dc8febb14faf5921344b4cffd5aadb424bc5e6f51e7d35847a67a",
     "js/saves/gen3-sectors.js": "81ebc0354177223e718d606b23163a23e67105edfc28deb4d8257fe5f9005932",
     "js/saves/gen4-abilities.js": "c8d97b788cf7582be71c9bb82c5ad0114d785f6cbd8bb52659f8f7ffa152f719",
     "js/saves/gen4-binary.js": "33e8fb51b261ad0bbe6a40e7c436f8d6f082cee05f9d7099ecf74b8b086a4635",
@@ -18221,6 +18227,7 @@
     "js/saves/platinum-special.js": "c6cb6a4147976dd2e841590c849ed5d6af9e0f65d0e9a3960a7c5998de777e36",
     "js/saves/platinum.js": "1ee85111b766301629ea23e787413cbbd4b8803b5261622a732437c486e9082d",
     "js/saves/profiles.js": "3786c2b655fd3021b795b0c992e8e7937b9e7f18ccba9cd6c0a8419d9d7c81ec",
+    "js/saves/shiny-transaction.js": "5ceeedc0da65cff698f64c4a704b07193f7b919aca0990eeefa8682641d29e34",
     "js/saves/soulsilver-ability-repair.js": "9b02d9db4f6a78f92c110369bdb77364429112c73ebf17dea955445950512b9c",
     "js/saves/soulsilver-evolution.js": "59c63b244a4cc8477a8e248b37c0b009ef059b9f248fb5dbb93e11a68b0d9c12",
     "js/saves/soulsilver-safari.js": "2533bb2f908ead3f1ff56ec221c955d7cf975784e04a0e7d3057c32ce4d6d6ee",
@@ -18230,8 +18237,8 @@
     "js/species-presentation.js": "5297aa63b2c71bc1a5a5ce59e5ae8c7ff7d8a87b72246ae832cd1ac46c867652",
     "js/trade.js": "88e23d7e0612d6b114f28124ab3496f3762a947433b525b1fa23efaf85ef531e",
     "js/world.js": "9695871a26e45ea6b820c1c9f703ff34431eb29c28fc1c09304775e78a0720c2",
-    "package-lock.json": "131008576917f82bb128dad35f8684c84fbc7c3cdf4168fb25f2d0a162b5c753",
-    "package.json": "54bc9dba640ba9902785f023214c31db4ccfaa797be2ee26929083b5b0eb7af5",
+    "package-lock.json": "17d4613f49034c87dc34252dda48f74fef0c7f82c0e1a1bb4e6f33460d6c96aa",
+    "package.json": "cc44963ad35eaaa5d0640bcda846baae25b130adba6255325df20eab708b562e",
     "pokedex/index.html": "2b4e71a1741258fc1d2501b10e34d77fe4ab48b071b4834b14bbf102d356b974",
     "safari-zone/index.html": "fe26a828432db2e3c9924d3bd2107520bb53575eac822430ea5833c3c348332b",
     "scripts/atlas-map-sources.json": "1028abc60230861b5c5de47b421fff9d09d610f528b0289053d04355785ed385",
@@ -18293,7 +18300,7 @@
     "tests/atlas-maps.test.cjs": "c4263bf7a334bba1253536ed3fa18db365448eeff8944834083c6c626f03476a",
     "tests/atlas-route-reference.test.cjs": "3d0b77da278482e2ccd86b24eb2ce543f2a30fbcc31e317da5e3deab4ff870ec",
     "tests/atlas-travel.test.cjs": "757a00d0a340d531990c576ed5937e659bf5affc5dbf4c72fe95914cdc7614ea",
-    "tests/atlas.browser.test.cjs": "6d09809dabce6220218d196044a576f7e20ca0a1e3fc889d65e7733e17c2b74e",
+    "tests/atlas.browser.test.cjs": "54a8cd5cd307f9b4c08c44687bc3a937e0d4085d976adfa468101eee4a41aa65",
     "tests/fixtures/gen3.cjs": "22f087fb2f02cdb458a077fb5aa388b04bc1384f4979c52673085d19140099be",
     "tests/fixtures/gen4/default-names.expected.json": "89bc7b8dc79d9e0999ae77a10b90e896ef48f7689f2375a1dcca4e2b40443be4",
     "tests/fixtures/gen4/evolution-oracle.json": "e2db8e8f89992b5a93e18068657e36edebe597409911f69dc56aa73e4f0d0236",
@@ -18340,25 +18347,26 @@
     "tests/safari-initialization.test.cjs": "0d90e28501b12b3eefd91d904686ff076ff077a8663d93de9d15bf601c77fc7b",
     "tests/safari-optimizer.test.cjs": "56c4534cf44f24f7997ae99e157d563a46c42479d07051152433c17a47b17514",
     "tests/safari-reference.test.cjs": "9ebd2b80831e3c8b98ef4389cfe1ca84b6c59baf157c255a9c41d3136ce0d673",
+    "tests/shiny-transaction.test.cjs": "d2fa87fb9117d4afff490615867fc9228ff9b45732a73b14ec80a0d9bffe14f2",
     "tests/trade.test.cjs": "ca321c632befeae0877d0721b35592c1cac6ecf4a49865c64c71adb5dcac09bb",
     "trade/index.html": "18e4966e05b6c8d3e85ce9f0795e40e52cbdf4d64c42c481e065120c502e8c78"
   },
   "automatedTests": {
-    "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/trade.test.cjs",
+    "command": "node --test --test-reporter=tap tests/adventures.test.cjs tests/atlas-caught.test.cjs tests/atlas-coverage.test.cjs tests/atlas-data.test.cjs tests/atlas-ev-training.test.cjs tests/atlas-kanto.test.cjs tests/atlas-location-details.test.cjs tests/atlas-location-encounters.test.cjs tests/atlas-map-links.test.cjs tests/atlas-maps.test.cjs tests/atlas-route-reference.test.cjs tests/atlas-travel.test.cjs tests/atlas.browser.test.cjs tests/gen3-pokemon.test.cjs tests/gen3-sectors.test.cjs tests/gen4-foundation.test.cjs tests/great-marsh.test.cjs tests/hgss-abilities.test.cjs tests/leafgreen-reader.test.cjs tests/machine-locations.test.cjs tests/planner-model.test.cjs tests/platinum-atlas.test.cjs tests/platinum-evolution.test.cjs tests/platinum-pokedex.test.cjs tests/platinum-reader.test.cjs tests/pokedex-reference.test.cjs tests/safari-audit.test.cjs tests/safari-engine.test.cjs tests/safari-initialization.test.cjs tests/safari-optimizer.test.cjs tests/safari-reference.test.cjs tests/shiny-transaction.test.cjs tests/trade.test.cjs",
     "timeoutMs": 300000,
     "browserWaitMs": 15000,
-    "startedAt": "2026-11-15T23:39:57.408Z",
-    "completedAt": "2026-11-15T23:42:07.679Z",
-    "status": "passed",
-    "tests": 322,
-    "pass": 322,
-    "fail": 0,
+    "startedAt": "2026-11-17T15:42:31.741Z",
+    "completedAt": "2026-11-17T15:45:01.962Z",
+    "status": "failed",
+    "tests": 327,
+    "pass": 325,
+    "fail": 2,
     "skipped": 0,
     "cancelled": 0,
-    "exitCode": 0,
+    "exitCode": 1,
     "error": null,
     "log": "work/atlas-validation.tap",
-    "logSha256": "e6d23ea21e3561ebdf31b83f8a3c58a837db3c5630144ef32664cb5766d063ff",
+    "logSha256": "dac54a7c09ddb0eb6714ded8c0b6372ab61c02eee8cd717e6fd77f898c9cba0b",
     "testFiles": [
       "tests/adventures.test.cjs",
       "tests/atlas-caught.test.cjs",
@@ -18391,8 +18399,9 @@
       "tests/safari-initialization.test.cjs",
       "tests/safari-optimizer.test.cjs",
       "tests/safari-reference.test.cjs",
+      "tests/shiny-transaction.test.cjs",
       "tests/trade.test.cjs"
     ]
   },
-  "completionPassed": true
+  "completionPassed": false
 }

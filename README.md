@@ -17,7 +17,19 @@ storage. iPhone crash/relaunch, long-background, save-state stutter, raw save
 Reader import, performance and battery acceptance remain pending; see the
 [B1 guide and evidence](docs/browser-b1.md).
 
-The shared Reader suite is v0.27.7.
+The shared Reader suite is v0.27.8.
+
+## Shiny status editor — v0.27.8
+
+Open any supported Party or PC Pokémon in Reader to change its **Shiny** checkbox
+and download a separate modified save. SoulSilver, Platinum and LeafGreen are
+supported. The editor preserves nature, gender, ability, form and unrelated
+Pokémon/save data, recalculates native checksums and retains the original
+`.sav` / `.dsv` extension. The loaded adventure and original file are not
+modified; load the downloaded revision explicitly. Spinda is excluded because
+its visible spot pattern is encoded in its personality value. Automated
+synthetic-save coverage is included; real player-save/in-game validation remains
+separate.
 
 ## SoulSilver ↔ Platinum Trade — v0.27.5
 
