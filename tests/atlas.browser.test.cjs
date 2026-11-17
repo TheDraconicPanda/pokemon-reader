@@ -320,7 +320,7 @@ test("encounter sections remain populated and release labels agree", async () =>
   assert.equal(result.safari, 339);
   assert.equal(result.route32, 33);
   const html = await readFile(path.join(root, "index.html"), "utf8");
-  assert.match(html, /<title>Pokémon Reader — v0\.27\.7<\/title>/);
+  assert.match(html, /<title>Pokémon Reader — v0\.27\.8<\/title>/);
   await command("Page.navigate", { url: `${baseURL}/` });
   await until(() => evaluate(`document.querySelector('#app-version')?.textContent === '0.27.8'`), "Save reader did not initialize");
   assert.equal(await evaluate("document.title"), "Pokémon Reader — v0.27.8");
