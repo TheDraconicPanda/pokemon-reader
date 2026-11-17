@@ -429,6 +429,10 @@ test('Party keeps six slots and shared details retain fields, moves, and focus',
   await until(() => evaluate(`document.querySelector('#pokemon-detail-content').getAttribute('aria-busy') === 'false'`), 'Detail loaded');
   const content=await evaluate(`document.querySelector('#pokemon-detail-content').textContent`);
   for (const value of ['Summary','Stats','Moves','Training','History','Original','20/49','PP Ups','Empty move slot','Hidden Power']) assert.ok(content.includes(value),value);
+  assert.equal(await evaluate(`document.querySelector('.shiny-edit-control input[type="checkbox"]')?.checked`),true);
+  assert.equal(await evaluate(`document.querySelector('.shiny-edit-control button')?.disabled`),true);
+  await evaluate(`document.querySelector('.shiny-edit-control input').click()`);
+  assert.equal(await evaluate(`document.querySelector('.shiny-edit-control button')?.disabled`),false);
   await command('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
   await until(() => evaluate(`!document.querySelector('#pokemon-detail-dialog').open`), 'Escape did not close details');
