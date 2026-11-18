@@ -31,9 +31,11 @@
       if (reader) load.type = 'button';
       else load.href = new URL('#overview', root).href;
       nav.append(load);
-      for (const [label, path, tool] of [['Team Planner', 'team-planner/', 'planner'], ['Atlas', 'atlas/', 'atlas'], ['Pokédex', 'pokedex/', 'pokedex'], ['Trade', 'trade/', 'trade'], ['Emulator', 'browser-emulator/', 'emulator']]) {
+      for (const [label, path, tool] of [['Team Planner', 'team-planner/', 'planner'], ['Atlas', 'atlas/', 'atlas'], ['Pokédex', 'pokedex/', 'pokedex'], ['Trade', 'trade/', 'trade'], ['Emulator', 'https://thedraconicpanda.github.io/Emulator/', 'emulator']]) {
         const link = document.createElement('a');
-        link.textContent = label; link.href = new URL(path, root).href;
+        link.textContent = label;
+        link.href = tool === 'emulator' ? path : new URL(path, root).href;
+        if (tool === 'emulator') { link.target = '_blank'; link.rel = 'noopener'; }
         if (this.getAttribute('tool') === tool) link.setAttribute('aria-current', 'page');
         nav.append(link);
       }
