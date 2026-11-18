@@ -42,7 +42,7 @@ This file is the shared working notebook for ChatGPT and Codex. Keep it concise,
 - Branch: `emulator-0.2-immersive-ui`
 - Base: `main`
 - Status at handoff creation: open, draft, not merged.
-- Latest known head: `9b495acbe2c01950a6cd34682293e26bb785fbd6`
+- Latest known head after offline asset regeneration: `d481008e6fd39ff2f44932a92a7f710786cd13dc`
 - ChatGPT implemented UI-only changes in:
   - `browser-emulator/index.html`: shared suite navigation; Pause moved into the handheld control row beside Quick Save.
   - `browser-emulator/style.css`: shared navigation integration and immersive full-screen gameplay layout, retaining the existing green emulator palette.
@@ -59,14 +59,16 @@ This file is the shared working notebook for ChatGPT and Codex. Keep it concise,
 **Explicit exclusions:** no desktop manual validation; no unrelated refactoring or feature work; do not change the existing colors; do not merge PR #9. If a blocking defect is found, make the smallest relevant fix on the PR branch and document why it was necessary. If validation requires the user's device or action, provide concise steps rather than claiming it was tested.
 
 #### Codex completion report
-- Status: pending.
-- Files changed: pending.
-- Offline asset/service-worker regeneration: pending.
-- Automated tests: pending.
-- iPhone portrait validation: pending.
-- iPhone landscape validation: pending.
-- Persistence checks: pending.
-- Outstanding issues: pending.
+- Status: asset regeneration and automated checks complete; PR remains open, draft, and unmerged.
+- PR branch update: commit `d481008` (`Regenerate immersive emulator offline assets`) pushed to `emulator-0.2-immersive-ui`.
+- Files changed by follow-up: `browser-emulator/offline-assets.json`, `browser-emulator/sw.js`, `browser-emulator/source.zip`, and vendored `browser-emulator/vendor/reader/js/saves/gen3-pokemon.js`. The preparation script synchronized the stale vendored parser with the PR base; this was required by the parser-closure integrity test.
+- Offline assets/service worker: regenerated with `node browser-emulator/scripts/prepare.mjs`; 32 assets packaged, cache version `b1-ab7bfb15e72723c8`.
+- B1 automated suite: `node --test browser-emulator/tests/*.test.mjs` — 9/9 passed.
+- Existing Reader/Planner/Atlas suite: `node --test --test-concurrency=1 tests/*.test.cjs` — 327/327 passed. `CHROMIUM_PATH` pointed to the installed Chrome for automated browser tests. Single-file concurrency avoided Windows Chrome temporary-profile contention.
+- Desktop manual validation: not performed, per scope.
+- iPhone portrait and landscape validation: not performed. No iPhone control surface was connected, and the PR workflow provides an artifact rather than an HTTPS preview of the PR branch.
+- Touch controls, Pause/menu return, Quick Save, and on-device save/checkpoint persistence: remain unverified on iPhone.
+- Outstanding / next action: provide an HTTPS preview of this PR branch or perform the requested iPhone-only checks on the PR build. Do not merge PR #9 until review/validation decisions are made.
 
 ## Handoff update format
 For each new task, add a short section under **Active work** with:
